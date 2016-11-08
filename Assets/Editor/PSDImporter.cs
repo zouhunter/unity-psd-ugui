@@ -129,6 +129,7 @@ public class CommonPSDImporter : Editor
                 {
                     string texturePathName = baseDirectory + layer.images[imageIndex].name + PSDImporterConst.PNG_SUFFIX;
 
+                    Debug.Log(texturePathName);
                     // modify the importer settings
                     TextureImporter textureImporter = AssetImporter.GetAtPath(texturePathName) as TextureImporter;
                     textureImporter.textureType = TextureImporterType.Sprite;
@@ -248,12 +249,24 @@ public class CommonPSDImporter : Editor
                         Text text = Resources.Load(PSDImporterConst.PREFAB_PATH_TEXT, typeof(Text)) as Text;
 
                         Text myText = GameObject.Instantiate(text) as Text;
-                        Debug.Log("Label Color : " + image.arguments[0]);
+                       
                         //                        myText.color = image.arguments[0];
                         //                        myText.font = image.arguments[1];
+                        Debug.Log("Label Color : " + image.arguments[0]);
                         Debug.Log("fontSize : " + image.arguments[2]);
 
-                        myText.fontSize = System.Convert.ToInt32(image.arguments[2]);
+                        Color color;
+                        if (UnityEngine.ColorUtility.TryParseHtmlString(("#" + image.arguments[0]), out color))
+                        {
+                            myText.color = color;
+                        }
+
+                        int size;
+                        if (int.TryParse(image.arguments[2], out size))
+                        {
+                            myText.fontSize = size;
+                        }
+
                         myText.text = image.arguments[3];
                         myText.transform.SetParent(obj.transform, false);//.parent = obj.transform;
 
@@ -392,7 +405,6 @@ public class CommonPSDImporter : Editor
             Image myImage = GameObject.Instantiate(pic) as Image;
             myImage.transform.SetParent(rectTransform, false); //parent = rectTransform;
         }
-
         return gridLayoutGroup;
     }
 
