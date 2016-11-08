@@ -13,6 +13,7 @@ public class PSDImporterConst
 
     public const string PREFAB_PATH_EMPTY = "Prefabs/UI/Empty";
     public const string PREFAB_PATH_BUTTON = "Prefabs/UI/Button";
+    public const string PREFAB_PATH_TOGGLE = "Prefabs/UI/Toggle";
     public const string PREFAB_PATH_CANVAS = "Prefabs/UI/Canvas";
     public const string PREFAB_PATH_GRID = "Prefabs/UI/Grid";
     public const string PREFAB_PATH_IMAGE = "Prefabs/UI/Image";

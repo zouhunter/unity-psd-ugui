@@ -74,8 +74,8 @@
 
 </images>
 </Layer><Layer>
-<type>Button</type>
-<name>button_2</name>
+<type>Toggle</type>
+<name>toggle_1</name>
 <images>
 <Image>
 <name>normal_13</name>

@@ -3,7 +3,7 @@ public class PSDUI
 	public Layer[] layers;
     public Size psdSize;
 
-	public enum LayerType { Normal, ScrollView, Grid, Button, Lable}
+	public enum LayerType { Normal, ScrollView, Grid, Button, Lable, Toggle }
 	public class Layer
 	{
 		public string name;
