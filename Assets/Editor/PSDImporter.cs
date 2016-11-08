@@ -85,6 +85,7 @@ public class CommonPSDImporter : Editor
         for (int layerIndex = 0; layerIndex < psdUI.layers.Length; layerIndex++)
         {
             DrawLayer(psdUI.layers[layerIndex], obj);
+            Debug.Log("Draw1" + psdUI.layers[layerIndex].name);
         }
 
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
@@ -207,7 +208,17 @@ public class CommonPSDImporter : Editor
             }
         }
     }
-
+    static private void DrawChildLayer(PSDUI.Layer layer, GameObject parent)
+    {
+        if (layer.layers != null)
+        {
+            for (int layerIndex = 0; layerIndex < layer.layers.Length; layerIndex++)
+            {
+                DrawLayer(layer.layers[layerIndex], parent);
+                Debug.Log("Draw2" + layer.layers[layerIndex].name);
+            }
+        }
+    }
     static private void DrawNormalLayer(PSDUI.Layer layer, GameObject parent)
     {
         GameObject obj = CreateEmptyParent(layer.name);
@@ -249,7 +260,7 @@ public class CommonPSDImporter : Editor
                         Text text = Resources.Load(PSDImporterConst.PREFAB_PATH_TEXT, typeof(Text)) as Text;
 
                         Text myText = GameObject.Instantiate(text) as Text;
-                       
+
                         //                        myText.color = image.arguments[0];
                         //                        myText.font = image.arguments[1];
                         Debug.Log("Label Color : " + image.arguments[0]);
@@ -312,14 +323,9 @@ public class CommonPSDImporter : Editor
             }
         }
 
-        if (layer.layers != null)
-        {
-            for (int layerIndex = 0; layerIndex < layer.layers.Length; layerIndex++)
-            {
-                DrawLayer(layer.layers[layerIndex], obj);
-            }
-        }
+        DrawChildLayer(layer, obj);
     }
+
 
     static private void DrawButton(PSDUI.Layer layer, GameObject parent)
     {
@@ -345,6 +351,17 @@ public class CommonPSDImporter : Editor
                         RectTransform rectTransform = button.GetComponent<RectTransform>();
                         rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
                         rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
+                    }
+                }
+                else if (image.name.Contains("Title"))
+                {
+                    if (image.imageType == PSDUI.ImageType.Label)
+                    {
+                        //Éú³ÉÎÄ×Ö 
+                        Text ttemp = Resources.Load<Text>(PSDImporterConst.PREFAB_PATH_TEXT);
+                        Text text = GameObject.Instantiate(ttemp) as Text;
+                        text.transform.SetParent(button.transform, false);
+                        text.text = image.arguments[3];
                     }
                 }
             }

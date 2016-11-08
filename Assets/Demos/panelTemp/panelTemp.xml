@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><PSDUI><psdSize><width>454</width><height>340</height></psdSize><layers><Layer><type>Normal</type><name>Panel01</name><layers><Layer><type>Normal</type><name>bodyContent</name><layers><Layer><type>Normal</type><name>contentBody</name><layers></layers><images><Image>
+<?xml version="1.0" encoding="utf-8"?><PSDUI><psdSize><width>1600</width><height>900</height></psdSize><layers><Layer><type>Normal</type><name>Panel01</name><layers><Layer><type>Normal</type><name>bodyContent</name><layers><Layer><type>Normal</type><name>contentBody</name><layers></layers><images><Image>
 <name>bg02_1</name>
 <imageSource>Custom</imageSource>
 <position><x>-2</x><y>-16.5</y></position><size><width>414</width><height>243</height></size><imageType>Image</imageType>
@@ -18,7 +18,7 @@
 <Image>
 <imageType>Label</imageType>
 <name>closeTitle_3</name>
-<position><x>200</x><y>163</y></position><size><width>44</width><height>14</height></size><arguments><string>538F5E</string><string>MicrosoftYaHei</string><string>18</string><string>close</string></arguments></Image>
+<position><x>681</x><y>-163</y></position><size><width>44</width><height>14</height></size><arguments><string>538F5E</string><string>MicrosoftYaHei</string><string>18</string><string>close</string></arguments></Image>
 
 </images>
 </Layer><Layer><type>Normal</type><name>head</name><layers></layers><images></images></Layer></layers><images><Image>
