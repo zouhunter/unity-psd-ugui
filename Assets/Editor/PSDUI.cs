@@ -5,7 +5,7 @@ public class PSDUI
 
     public enum ImageType { Image, Texture, Label, SliceImage };
     public enum ImageSource { Common, Custom };
-    public enum LayerType { Normal, ScrollView, Grid, Button, Lable, Toggle }
+    public enum LayerType { Panel, Normal, ScrollView, Grid, Button, Lable, Toggle }
     public class Layer
     {
         public string name;

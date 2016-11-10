@@ -450,10 +450,34 @@ public class CommonPSDImporter : Editor
         grid.transform.SetParent(scrollRect.transform, false); //parent = scrollRect.transform;
     }
 
+    static private void DrawPanel(PSDUI.Layer layer, GameObject parent)
+    {
+        Image temp = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof(Image)) as Image;
+        Image panel = GameObject.Instantiate(temp) as Image;
+        panel.transform.SetParent(parent.transform, false); //parent = parent.transform;
+
+        panel.name = layer.name;
+
+        DrawChildLayer(layer, panel.gameObject);
+
+        PSDUI.Image image = layer.images[0];
+
+        string assetPath = baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
+        Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
+        panel.sprite = sprite;
+
+        RectTransform rectTransform = panel.GetComponent<RectTransform>();
+        rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
+        rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
+    }
+
     static private void DrawLayer(PSDUI.Layer layer, GameObject parent)
     {
         switch (layer.type)
         {
+            case PSDUI.LayerType.Panel:
+                DrawPanel(layer, parent);
+                break;
             case PSDUI.LayerType.Normal:
                 DrawNormalLayer(layer, parent);
                 break;
