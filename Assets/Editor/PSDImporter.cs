@@ -358,10 +358,20 @@ public class CommonPSDImporter : Editor
                     if (image.imageType == PSDUI.ImageType.Label)
                     {
                         //Éú³ÉÎÄ×Ö 
-                        Text ttemp = Resources.Load<Text>(PSDImporterConst.PREFAB_PATH_TEXT);
-                        Text text = GameObject.Instantiate(ttemp) as Text;
-                        text.transform.SetParent(button.transform, false);
-                        text.text = image.arguments[3];
+                        Text text = button.GetComponentInChildren<Text>();
+                        Color color;
+                        if (UnityEngine.ColorUtility.TryParseHtmlString(("#" + image.arguments[0]), out color))
+                        {
+                            text.color = color;
+                        }
+
+                        int size;
+                        if (int.TryParse(image.arguments[2], out size))
+                        {
+                            text.fontSize = size;
+                        }
+
+                        text.text = System.Text.UTF8Encoding.UTF8.GetString(System.Text.ASCIIEncoding.UTF8.GetBytes(image.arguments[3]));
                     }
                 }
             }

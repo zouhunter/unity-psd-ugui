@@ -1,0 +1,12 @@
+Button,name@Button,子节点Text将加载到Button的表面,normal、highLighted、pressed、disabled只有normal将不会设置为图片切效果
+Toggle,name@Toggle,,
+Slider,name@Slider,,
+Text,name,,
+Image,name,,
+DropDown,name@DropDown,,
+InputField,name@InputField,,
+Scrollbar,name@Scrollbar,,
+Panel(带image父级),name@Panel,,
+,,,
+,"注：空节点才能使用
+“@”，“：”",,
