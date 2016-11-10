@@ -378,7 +378,7 @@ public class CommonPSDImporter : Editor
         }
     }
 
-    static private void DrawToggle(PSDUI.Layer layer, GameObject parent)
+    static private Toggle DrawToggle(PSDUI.Layer layer, GameObject parent)
     {
         Toggle temp = Resources.Load(PSDImporterConst.PREFAB_PATH_TOGGLE, typeof(Toggle)) as Toggle;
         Toggle toggle = GameObject.Instantiate(temp) as Toggle;
@@ -406,6 +406,7 @@ public class CommonPSDImporter : Editor
                 }
             }
         }
+        return toggle;
     }
 
     static private GridLayoutGroup DrawGrid(PSDUI.Layer layer, GameObject parent)
@@ -445,9 +446,26 @@ public class CommonPSDImporter : Editor
         rectTransform.sizeDelta = new Vector2(layer.size.width, layer.size.height);
         rectTransform.anchoredPosition = new Vector2(layer.position.x, layer.position.y);
 
-        GridLayoutGroup grid = DrawGrid(layer, parent);
-        scrollRect.content = grid.GetComponent<RectTransform>();
-        grid.transform.SetParent(scrollRect.transform, false); //parent = scrollRect.transform;
+        if (layer.layers != null)
+        {
+            PSDUI.Layer childLayer = layer.layers[0];
+            string type = layer.arguments[0].ToUpper();
+            switch (type)
+            {
+                case "V":
+                    scrollRect.vertical = true;
+                    scrollRect.horizontal = false;
+                    break;
+                case "H":
+                    scrollRect.vertical = false;
+                    scrollRect.horizontal = true;
+                    break;
+                default:
+                    break;
+            }
+
+            DrawChildLayer(layer, scrollRect.content.gameObject);
+        }
     }
 
     static private void DrawPanel(PSDUI.Layer layer, GameObject parent)

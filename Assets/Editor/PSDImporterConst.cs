@@ -19,4 +19,6 @@ public class PSDImporterConst
     public const string PREFAB_PATH_IMAGE = "Prefabs/UI/Image";
     public const string PREFAB_PATH_SCROLLVIEW = "Prefabs/UI/ScrollView";
     public const string PREFAB_PATH_TEXT = "Prefabs/UI/Text";
+    public const string PREFAB_PATH_SCROLLBAR_V = "Prefabs/UI/ScrollbarV";
+    public const string PREFAB_PATH_SCROLLBAR_H = "Prefabs/UI/ScrollbarH";
 }
