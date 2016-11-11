@@ -19,5 +19,6 @@ namespace PSDUIImporter
         Slider,
         Group,
         InputField,
+        ScrollBar,
     }
 }

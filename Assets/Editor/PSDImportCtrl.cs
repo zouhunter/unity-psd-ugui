@@ -34,7 +34,6 @@ namespace PSDUIImporter
         private ILayerImport emptyImport;
         private ILayerImport groupImport;
         private ILayerImport inputFiledImport;
-
         public PSDImportCtrl(string xmlFilePath)
         {
             InitDataAndPath(xmlFilePath);
@@ -140,6 +139,9 @@ namespace PSDUIImporter
                     break;
                 case LayerType.InputField:
                     inputFiledImport.DrawLayer(layer, parent);
+                    break;
+                case LayerType.ScrollBar:
+                    scrollBarImport.DrawLayer(layer, parent);
                     break;
                 default:
                     break;

@@ -131,6 +131,9 @@ function exportLayerSet(obj)
             else if (obj.layers[i].name.search("@InputField") >=0) {
                 exportInputField(obj.layers[i]);
             }
+            else if (obj.layers[i].name.search("@ScrollBar") >=0) {
+                exportScrollBar(obj.layers[i]);
+            }
             else
             {
                 exportDefultLayer(obj.layers[i]);
@@ -421,6 +424,33 @@ function exportSlider(obj)
 
         obj.layers[obj.layers.length - 1].visible = false;
     }
+
+    sceneData += "<images>\n";
+
+    for (var i = obj.layers.length - 1; 0 <= i; i--)
+    {
+        exportArtLayer(obj.layers[i]);
+    }
+
+    sceneData += "\n</images>\n</Layer>";
+}
+
+function exportScrollBar(obj)
+{
+    var itemName = obj.name.substring(0, obj.name.search("@"));
+    sceneData += ("<Layer>\n<type>ScrollBar</type>\n<name>" + itemName + "</name>\n");
+
+    var params = obj.name.split(":");
+
+    if (params.length != 3)
+    {
+        alert(obj.name + "-------Layer's name is not 1 argument------------");
+    }
+    
+    sceneData += "<arguments>";
+    sceneData += "<string>" + params[1] + "</string>"; //滑动方向
+    sceneData += "<string>" + params[2] + "</string>"; //比例
+    sceneData += "</arguments>";
 
     sceneData += "<images>\n";
 
