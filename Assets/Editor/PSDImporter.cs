@@ -78,7 +78,7 @@ namespace PSDUIImporter
             Canvas canvas = GameObject.Instantiate(temp) as Canvas;
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
-            UnityEngine.UI.CanvasScaler scaler = canvas.GetComponent< UnityEngine.UI.CanvasScaler>();
+            UnityEngine.UI.CanvasScaler scaler = canvas.GetComponent<UnityEngine.UI.CanvasScaler>();
             scaler.referenceResolution = new Vector2(psdUI.psdSize.width, psdUI.psdSize.height);
 
             GameObject obj = CreateEmptyParent(baseFilename);
@@ -90,7 +90,7 @@ namespace PSDUIImporter
             }
 
             AssetDatabase.Refresh();
-           
+
             if (baseFilename.Contains("Common"))
             {
                 for (int layerIndex = 0; layerIndex < psdUI.layers.Length; layerIndex++)
@@ -224,136 +224,124 @@ namespace PSDUIImporter
                 for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
                 {
                     Image image = layer.images[imageIndex];
-
-                    if (image.imageSource == ImageSource.Custom)
-                    {
-                         UnityEngine.UI.Image pic = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof( UnityEngine.UI.Image)) as  UnityEngine.UI.Image;
-
-                        string assetPath = baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
-                        Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
-
-                        if (sprite == null)
-                        {
-                            Debug.Log("loading asset at path: " + baseDirectory + image.name);
-                        }
-
-                        pic.sprite = sprite;
-
-                         UnityEngine.UI.Image myImage = GameObject.Instantiate(pic) as  UnityEngine.UI.Image;
-                        myImage.name = image.name;
-                        myImage.transform.SetParent(obj.transform, false);//.parent = obj.transform;
-
-                        RectTransform rectTransform = myImage.GetComponent<RectTransform>();
-                        rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
-                        rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
-                    }
-                    else
-                    if (image.imageSource == ImageSource.Common)
-                    {
-                        if (image.imageType == ImageType.Label)
-                        {
-                             UnityEngine.UI.Text text = Resources.Load(PSDImporterConst.PREFAB_PATH_TEXT, typeof( UnityEngine.UI.Text)) as  UnityEngine.UI.Text;
-
-                             UnityEngine.UI.Text myText = GameObject.Instantiate(text) as  UnityEngine.UI.Text;
-
-                            //                        myText.color = image.arguments[0];
-                            //                        myText.font = image.arguments[1];
-                            Debug.Log("Label Color : " + image.arguments[0]);
-                            Debug.Log("fontSize : " + image.arguments[2]);
-
-                            Color color;
-                            if (UnityEngine.ColorUtility.TryParseHtmlString(("#" + image.arguments[0]), out color))
-                            {
-                                myText.color = color;
-                            }
-
-                            int size;
-                            if (int.TryParse(image.arguments[2], out size))
-                            {
-                                myText.fontSize = size;
-                            }
-
-                            myText.text = image.arguments[3];
-                            myText.transform.SetParent(obj.transform, false);//.parent = obj.transform;
-
-                            RectTransform rectTransform = myText.GetComponent<RectTransform>();
-                            rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
-                            rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
-                        }
-                        else if (image.imageType == ImageType.Texture)
-                        {
-                             UnityEngine.UI.Image pic = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof( UnityEngine.UI.Image)) as  UnityEngine.UI.Image;
-                            pic.sprite = null;
-                             UnityEngine.UI.Image myImage = GameObject.Instantiate(pic) as  UnityEngine.UI.Image;
-                            myImage.name = image.name;
-                            myImage.transform.SetParent(obj.transform, false);//.parent = obj.transform;
-
-                            RectTransform rectTransform = myImage.GetComponent<RectTransform>();
-                            rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
-                            rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
-                        }
-                        else
-                        {
-                             UnityEngine.UI.Image pic = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof( UnityEngine.UI.Image)) as  UnityEngine.UI.Image;
-
-                            string commonImagePath = PSDImporterConst.COMMON_BASE_FOLDER + image.name.Replace(".", "/") + PSDImporterConst.PNG_SUFFIX;
-                            Debug.Log("==  CommonImagePath  ====" + commonImagePath);
-                            Sprite sprite = AssetDatabase.LoadAssetAtPath(commonImagePath, typeof(Sprite)) as Sprite;
-                            pic.sprite = sprite;
-
-                             UnityEngine.UI.Image myImage = GameObject.Instantiate(pic) as  UnityEngine.UI.Image;
-                            myImage.name = image.name;
-                            myImage.transform.SetParent(obj.transform, false);//.parent = obj.transform;
-
-                            if (image.imageType == ImageType.SliceImage)
-                            {
-                                myImage.type =  UnityEngine.UI.Image.Type.Sliced;
-                            }
-
-                            RectTransform rectTransform = myImage.GetComponent<RectTransform>();
-                            rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
-                            rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
-                        }
-                    }
+                    DrawImage(image, parent);
                 }
             }
 
             DrawChildLayer(layer, obj);
         }
 
+        static private void DrawImage(Image image,GameObject parent)
+        {
+            if (image.imageSource == ImageSource.Custom)
+            {
+                UnityEngine.UI.Image pic = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof(UnityEngine.UI.Image)) as UnityEngine.UI.Image;
+
+                string assetPath = baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
+                Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
+
+                if (sprite == null)
+                {
+                    Debug.Log("loading asset at path: " + baseDirectory + image.name);
+                }
+
+                pic.sprite = sprite;
+
+                UnityEngine.UI.Image myImage = GameObject.Instantiate(pic) as UnityEngine.UI.Image;
+                myImage.name = image.name;
+                myImage.transform.SetParent(parent.transform, false);//.parent = obj.transform;
+
+                RectTransform rectTransform = myImage.GetComponent<RectTransform>();
+                rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
+                rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
+            }
+            else if (image.imageSource == ImageSource.Common)
+            {
+                if (image.imageType == ImageType.Label)
+                {
+                    UnityEngine.UI.Text text = Resources.Load(PSDImporterConst.PREFAB_PATH_TEXT, typeof(UnityEngine.UI.Text)) as UnityEngine.UI.Text;
+
+                    UnityEngine.UI.Text myText = GameObject.Instantiate(text) as UnityEngine.UI.Text;
+
+                    //                        myText.color = image.arguments[0];
+                    //                        myText.font = image.arguments[1];
+                    Debug.Log("Label Color : " + image.arguments[0]);
+                    Debug.Log("fontSize : " + image.arguments[2]);
+
+                    Color color;
+                    if (UnityEngine.ColorUtility.TryParseHtmlString(("#" + image.arguments[0]), out color))
+                    {
+                        myText.color = color;
+                    }
+
+                    int size;
+                    if (int.TryParse(image.arguments[2], out size))
+                    {
+                        myText.fontSize = size;
+                    }
+
+                    myText.text = image.arguments[3];
+                    myText.transform.SetParent(parent.transform, false);//.parent = obj.transform;
+
+                    RectTransform rectTransform = myText.GetComponent<RectTransform>();
+                    rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
+                    rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
+                }
+                else if (image.imageType == ImageType.Texture)
+                {
+                    UnityEngine.UI.Image pic = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof(UnityEngine.UI.Image)) as UnityEngine.UI.Image;
+                    pic.sprite = null;
+                    UnityEngine.UI.Image myImage = GameObject.Instantiate(pic) as UnityEngine.UI.Image;
+                    myImage.name = image.name;
+                    myImage.transform.SetParent(parent.transform, false);//.parent = obj.transform;
+
+                    RectTransform rectTransform = myImage.GetComponent<RectTransform>();
+                    rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
+                    rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
+                }
+                else
+                {
+                    UnityEngine.UI.Image pic = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof(UnityEngine.UI.Image)) as UnityEngine.UI.Image;
+
+                    string commonImagePath = PSDImporterConst.COMMON_BASE_FOLDER + image.name.Replace(".", "/") + PSDImporterConst.PNG_SUFFIX;
+                    Debug.Log("==  CommonImagePath  ====" + commonImagePath);
+                    Sprite sprite = AssetDatabase.LoadAssetAtPath(commonImagePath, typeof(Sprite)) as Sprite;
+                    pic.sprite = sprite;
+
+                    UnityEngine.UI.Image myImage = GameObject.Instantiate(pic) as UnityEngine.UI.Image;
+                    myImage.name = image.name;
+                    myImage.transform.SetParent(parent.transform, false);//.parent = obj.transform;
+
+                    if (image.imageType == ImageType.SliceImage)
+                    {
+                        myImage.type = UnityEngine.UI.Image.Type.Sliced;
+                    }
+
+                    RectTransform rectTransform = myImage.GetComponent<RectTransform>();
+                    rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
+                    rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
+                }
+            }
+        }
+
 
         static private void DrawButton(Layer layer, GameObject parent)
         {
-             UnityEngine.UI.Button temp = Resources.Load(PSDImporterConst.PREFAB_PATH_BUTTON, typeof( UnityEngine.UI.Button)) as  UnityEngine.UI.Button;
-             UnityEngine.UI.Button button = GameObject.Instantiate(temp) as  UnityEngine.UI.Button;
+            UnityEngine.UI.Button temp = Resources.Load(PSDImporterConst.PREFAB_PATH_BUTTON, typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
+            UnityEngine.UI.Button button = GameObject.Instantiate(temp) as UnityEngine.UI.Button;
             button.transform.SetParent(parent.transform, false);//.parent = parent.transform;
-
 
             if (layer.images != null)
             {
                 for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
                 {
                     Image image = layer.images[imageIndex];
-
-                    if (image.name.Contains("normal"))
+                    if (image.imageType == ImageType.Label)
                     {
-                        if (image.imageSource == ImageSource.Custom)
-                        {
-                            string assetPath = baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
-                            Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
-                            button.image.sprite = sprite;
-
-                            RectTransform rectTransform = button.GetComponent<RectTransform>();
-                            rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
-                            rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
-                        }
-                    }
-                    else if (image.name.Contains("Title"))
-                    {
-                        if (image.imageType == ImageType.Label)
+                        if (image.name.ToLower().Contains("title"))
                         {
                             //Éú³ÉÎÄ×Ö 
-                             UnityEngine.UI.Text text = button.GetComponentInChildren< UnityEngine.UI.Text>();
+                            UnityEngine.UI.Text text = button.GetComponentInChildren<UnityEngine.UI.Text>();
                             Color color;
                             if (UnityEngine.ColorUtility.TryParseHtmlString(("#" + image.arguments[0]), out color))
                             {
@@ -365,18 +353,36 @@ namespace PSDUIImporter
                             {
                                 text.fontSize = size;
                             }
+                        }
+                    }
+                    else
+                    {
+                        if (image.name.ToLower().Contains("normal"))
+                        {
+                            if (image.imageSource == ImageSource.Custom)
+                            {
+                                string assetPath = baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
+                                Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
+                                button.image.sprite = sprite;
 
-                            text.text = System.Text.UTF8Encoding.UTF8.GetString(System.Text.ASCIIEncoding.UTF8.GetBytes(image.arguments[3]));
+                                RectTransform rectTransform = button.GetComponent<RectTransform>();
+                                rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
+                                rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
+                            }
+                        }
+                        else
+                        {
+
                         }
                     }
                 }
             }
         }
 
-        static private  UnityEngine.UI.Toggle DrawToggle(Layer layer, GameObject parent)
+        static private UnityEngine.UI.Toggle DrawToggle(Layer layer, GameObject parent)
         {
-             UnityEngine.UI.Toggle temp = Resources.Load(PSDImporterConst.PREFAB_PATH_TOGGLE, typeof( UnityEngine.UI.Toggle)) as  UnityEngine.UI.Toggle;
-             UnityEngine.UI.Toggle toggle = GameObject.Instantiate(temp) as  UnityEngine.UI.Toggle;
+            UnityEngine.UI.Toggle temp = Resources.Load(PSDImporterConst.PREFAB_PATH_TOGGLE, typeof(UnityEngine.UI.Toggle)) as UnityEngine.UI.Toggle;
+            UnityEngine.UI.Toggle toggle = GameObject.Instantiate(temp) as UnityEngine.UI.Toggle;
             toggle.transform.SetParent(parent.transform, false);//.parent = parent.transform;
 
 
@@ -399,7 +405,7 @@ namespace PSDUIImporter
                             rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
                         }
                     }
-                    else if(image.name.Contains("mask"))
+                    else if (image.name.Contains("mask"))
                     {
                         if (image.imageSource == ImageSource.Custom)
                         {
@@ -445,12 +451,12 @@ namespace PSDUIImporter
             int cellCount = System.Convert.ToInt32(layer.arguments[0]) * System.Convert.ToInt32(layer.arguments[1]);
             for (int cell = 0; cell < cellCount; cell++)
             {
-                 UnityEngine.UI.Image pic = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof( UnityEngine.UI.Image)) as  UnityEngine.UI.Image;
+                UnityEngine.UI.Image pic = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof(UnityEngine.UI.Image)) as UnityEngine.UI.Image;
                 pic.sprite = null;
                 //            Sprite sprite = Resources.Load (relativeResoucesDirectory + "normal_13", typeof(Sprite)) as Sprite;
                 //            pic.sprite = sprite;
 
-                 UnityEngine.UI.Image myImage = GameObject.Instantiate(pic) as  UnityEngine.UI.Image;
+                UnityEngine.UI.Image myImage = GameObject.Instantiate(pic) as UnityEngine.UI.Image;
                 myImage.transform.SetParent(rectTransform, false); //parent = rectTransform;
             }
             return gridLayoutGroup;
@@ -489,23 +495,34 @@ namespace PSDUIImporter
 
         static private void DrawPanel(Layer layer, GameObject parent)
         {
-             UnityEngine.UI.Image temp = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof( UnityEngine.UI.Image)) as  UnityEngine.UI.Image;
-             UnityEngine.UI.Image panel = GameObject.Instantiate(temp) as  UnityEngine.UI.Image;
+            UnityEngine.UI.Image temp = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof(UnityEngine.UI.Image)) as UnityEngine.UI.Image;
+            UnityEngine.UI.Image panel = GameObject.Instantiate(temp) as UnityEngine.UI.Image;
             panel.transform.SetParent(parent.transform, false); //parent = parent.transform;
 
             panel.name = layer.name;
 
             DrawChildLayer(layer, panel.gameObject);
 
-            Image image = layer.images[0];
-            Debug.Log(layer.images.Length);
-            string assetPath = baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
-            Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
-            panel.sprite = sprite;
+            for (int i = 0; i < layer.images.Length; i++)
+            {
+                Image image = layer.images[i];
 
-            RectTransform rectTransform = panel.GetComponent<RectTransform>();
-            rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
-            rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
+                if (image.name.Contains("background"))
+                {
+                    string assetPath = baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
+                    Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
+                    panel.sprite = sprite;
+
+                    RectTransform rectTransform = panel.GetComponent<RectTransform>();
+                    rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
+                    rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
+                }
+                else
+                {
+                    DrawImage(image, panel.gameObject);
+                }
+            }
+            
         }
 
         static private void DrawLayer(Layer layer, GameObject parent)
@@ -518,7 +535,7 @@ namespace PSDUIImporter
                 case LayerType.Normal:
                     DrawNormalLayer(layer, parent);
                     break;
-                case LayerType. Button:
+                case LayerType.Button:
                     DrawButton(layer, parent);
                     break;
                 case LayerType.Toggle:

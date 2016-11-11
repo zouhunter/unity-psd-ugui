@@ -1,6 +1,6 @@
-Button,name@Button,子节点Text将加载到Button的表面,"normal、highLighted、pressed、disabled只有normal将不会设置为图片切效果,title加载文字"
+Button,name@Button,子节点Text将加载到Button的表面,"normal图片,title文字"
 Toggle,name@Toggle,子节点放置前景（开）和背景（关）图片,background、title、mask
-Slider,name@Slider,,
+Slider,name@Slider,参数L、R、U、B分别上从左到右，从右到左...,
 Text,name,除作为button的子对象，其名字将保存,
 Image,name、selectable、selectable@common,9Slice的后缀名可以加载出slice类型的image,
 DropDown,name@DropDown,,
