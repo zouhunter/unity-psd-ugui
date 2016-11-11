@@ -391,7 +391,7 @@ namespace PSDUIImporter
                 {
                     Image image = layer.images[imageIndex];
 
-                    if (image.name.Contains("normal"))
+                    if (image.name.Contains("background"))
                     {
                         if (image.imageSource == ImageSource.Custom)
                         {
@@ -402,6 +402,31 @@ namespace PSDUIImporter
                             RectTransform rectTransform = toggle.GetComponent<RectTransform>();
                             rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
                             rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
+                        }
+                    }
+                    else if(image.name.Contains("mask"))
+                    {
+                        if (image.imageSource == ImageSource.Custom)
+                        {
+                            string assetPath = baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
+                            Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
+                            toggle.graphic.GetComponent<UnityEngine.UI.Image>().sprite = sprite;
+                        }
+                    }
+                    else if (image.name.Contains("title"))
+                    {
+                        //Éú³ÉÎÄ×Ö 
+                        UnityEngine.UI.Text text = toggle.GetComponentInChildren<UnityEngine.UI.Text>();
+                        Color color;
+                        if (UnityEngine.ColorUtility.TryParseHtmlString(("#" + image.arguments[0]), out color))
+                        {
+                            text.color = color;
+                        }
+
+                        int size;
+                        if (int.TryParse(image.arguments[2], out size))
+                        {
+                            text.fontSize = size;
                         }
                     }
                 }
