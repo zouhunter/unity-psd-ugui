@@ -19,6 +19,7 @@ namespace PSDUIImporter
         public const string PREFAB_PATH_GRID = "Prefabs/UI/Grid";
         public const string PREFAB_PATH_IMAGE = "Prefabs/UI/Image";
         public const string PREFAB_PATH_SCROLLVIEW = "Prefabs/UI/ScrollView";
+        public const string PREFAB_PATH_SLIDER = "Prefabs/UI/Slider";
         public const string PREFAB_PATH_TEXT = "Prefabs/UI/Text";
         public const string PREFAB_PATH_SCROLLBAR = "Prefabs/UI/Scrollbar";
     }

@@ -122,6 +122,9 @@ function exportLayerSet(obj)
             {
                 exportPanel(obj.layers[i]);
             }
+            else if (obj.layers[i].name.search("@Slider")>=0) {
+                exportSlider(obj.layers[i]);
+            }
             else
             {
                 exportDefultLayer(obj.layers[i]);
@@ -130,6 +133,7 @@ function exportLayerSet(obj)
     }
     sceneData += "</layers>";
 }
+
 function exportDefultLayer(obj)
 {
     sceneData += "<Layer>";
@@ -300,6 +304,56 @@ function exportToggle(obj)
 {
     var itemName = obj.name.substring(0, obj.name.search("@"));
     sceneData += ("<Layer>\n<type>Toggle</type>\n<name>" + itemName + "</name>\n");
+
+    sceneData += "<images>\n";
+
+    for (var i = obj.layers.length - 1; 0 <= i; i--)
+    {
+        exportArtLayer(obj.layers[i]);
+    }
+
+    sceneData += "\n</images>\n</Layer>";
+}
+
+function exportSlider(obj)
+{
+    var itemName = obj.name.substring(0, obj.name.search("@"));
+    sceneData += ("<Layer>\n<type>Slider</type>\n<name>" + itemName + "</name>\n");
+
+    var params = obj.name.split(":");
+
+    if (params.length != 2)
+    {
+        alert(obj.name + "-------Layer's name is not 1 argument------------");
+    }
+    
+    sceneData += "<arguments>";
+    sceneData += "<string>" + params[1] + "</string>"; //滑动方向
+    sceneData += "</arguments>";
+
+    var recSize;
+    if (obj.layers[obj.layers.length - 1].name.search("@Size") < 0)
+    {
+        alert("Bottom layer's name doesn't contain '@Size'");
+    }
+    else
+    {
+        obj.layers[obj.layers.length - 1].visible = true;
+
+        recSize = getLayerRec(duppedPsd.duplicate());
+
+        sceneData += "<position>";
+        sceneData += "<x>" + recSize.x + "</x>";
+        sceneData += "<y>" + recSize.y + "</y>";
+        sceneData += "</position>";
+
+        sceneData += "<size>";
+        sceneData += "<width>" + recSize.width + "</width>";
+        sceneData += "<height>" + recSize.height + "</height>";
+        sceneData += "</size>";
+
+        obj.layers[obj.layers.length - 1].visible = false;
+    }
 
     sceneData += "<images>\n";
 

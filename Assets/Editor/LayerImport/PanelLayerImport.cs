@@ -29,7 +29,7 @@ namespace PSDUIImporter
             {
                 Image image = layer.images[i];
 
-                if (image.name.Contains("background"))
+                if (image.name.ToLower().Contains("background"))
                 {
                     string assetPath = ctrl.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
                     Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;

@@ -15,6 +15,7 @@ namespace PSDUIImporter
         Grid,
         Button,
         Lable,
-        Toggle
+        Toggle,
+        Slider
     }
 }

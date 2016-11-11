@@ -128,6 +128,9 @@ namespace PSDUIImporter
                 case LayerType.ScrollView:
                     scrollViewImport.DrawLayer(layer, parent);
                     break;
+                case LayerType.Slider:
+                    sliderImport.DrawLayer(layer, parent);
+                    break;
                 default:
                     break;
                     
