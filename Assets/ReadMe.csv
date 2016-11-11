@@ -4,12 +4,12 @@ Slider,name@Slider,参数L、R、U、B分别上从左到右，从右到左...,Background、Full、H
 Text,name,,,除作为button的子对象，其名字将保存
 Image,name、selectable、selectable@common,9Slice的后缀名可以加载出slice类型的image,,
 DropDown,name@DropDown,,,
-InputField,name@InputField,,,
+InputField,name@InputField,,Background图片、Text文字、Holder文字,
 Scrollbar,name@Scrollbar,,,
 Panel(带image父级),name@Panel,子节点放置一个图片，将作为自身的image，其属性和空物体一样,,
 ScrollView,name@ScrollView,"V,H作为参数，尺寸由放置在其下的@Size控制，内部item放置为子节点",,
 Group,name@Group,"V,H作为第一个参数，间距为第二个参数，内部item放置为子节点",,item直接放图片不识别
-,,,,
+Grid,name@Grid,,,
 ,,,,
 ,"注：空节使用
 “@”时@前为名

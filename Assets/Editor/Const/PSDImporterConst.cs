@@ -24,5 +24,6 @@ namespace PSDUIImporter
         public const string PREFAB_PATH_SCROLLBAR = "Prefabs/UI/Scrollbar";
         public const string PREFAB_PATH_GROUP_V = "Prefabs/UI/VerticalGroup";
         public const string PREFAB_PATH_GROUP_H = "Prefabs/UI/HorizontalGroup";
+        public const string PREFAB_PATH_INPUTFIELD = "Prefabs/UI/InputField";
     }
 }

@@ -33,6 +33,7 @@ namespace PSDUIImporter
         private ILayerImport gridImport;
         private ILayerImport emptyImport;
         private ILayerImport groupImport;
+        private ILayerImport inputFiledImport;
 
         public PSDImportCtrl(string xmlFilePath)
         {
@@ -94,6 +95,7 @@ namespace PSDUIImporter
             gridImport = new GridLayerImport(this);
             emptyImport = new DefultLayerImport(this);
             groupImport = new GroupLayerImport(this);
+            inputFiledImport = new InputFieldLayerImport(this);
         }
 
         public void StartDrawUILayers()
@@ -135,6 +137,9 @@ namespace PSDUIImporter
                     break;
                 case LayerType.Group:
                     groupImport.DrawLayer(layer, parent);
+                    break;
+                case LayerType.InputField:
+                    inputFiledImport.DrawLayer(layer, parent);
                     break;
                 default:
                     break;

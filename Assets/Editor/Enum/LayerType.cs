@@ -18,5 +18,6 @@ namespace PSDUIImporter
         Toggle,
         Slider,
         Group,
+        InputField,
     }
 }

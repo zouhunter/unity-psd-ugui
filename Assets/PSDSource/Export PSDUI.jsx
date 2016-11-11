@@ -128,6 +128,9 @@ function exportLayerSet(obj)
             else if (obj.layers[i].name.search("@Group")>=0) {
                 exportGroup(obj.layers[i]);
             }
+            else if (obj.layers[i].name.search("@InputField") >=0) {
+                exportInputField(obj.layers[i]);
+            }
             else
             {
                 exportDefultLayer(obj.layers[i]);
@@ -332,6 +335,21 @@ function exportGroup(obj)
     sceneData += "</arguments>";
 
     sceneData += "</Layer>";
+}
+
+function exportInputField(obj)
+{
+    var itemName = obj.name.substring(0, obj.name.search("@"));
+    sceneData += ("<Layer>\n<type>InputField</type>\n<name>" + itemName + "</name>\n");
+
+    sceneData += "<images>\n";
+
+    for (var i = obj.layers.length - 1; 0 <= i; i--)
+    {
+        exportArtLayer(obj.layers[i]);
+    }
+
+    sceneData += "\n</images>\n</Layer>";
 }
 
 function exportButton(obj)
