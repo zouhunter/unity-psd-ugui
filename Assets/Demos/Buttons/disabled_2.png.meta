@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 6947a748407881b4f92e62df3573117f
-timeCreated: 1478831731
+guid: 6d98a875453d254439c8e359da459294
+timeCreated: 1478838255
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName: {}
@@ -51,7 +51,7 @@ TextureImporter:
   spriteSheet:
     sprites: []
     outline: []
-  spritePackingTag: panelTemp
+  spritePackingTag: Buttons
   userData: 
   assetBundleName: 
   assetBundleVariant: 

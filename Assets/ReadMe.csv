@@ -2,12 +2,13 @@ Button,name@Button,×Ó½ÚµãText½«¼ÓÔØµ½ButtonµÄ±íÃæ,"normal¡¢highLighted¡¢pressed¡
 Toggle,name@Toggle,×Ó½Úµã·ÅÖÃÇ°¾°£¨¿ª£©ºÍ±³¾°£¨¹Ø£©Í¼Æ¬,background¡¢title¡¢mask
 Slider,name@Slider,,
 Text,name,³ı×÷ÎªbuttonµÄ×Ó¶ÔÏó£¬ÆäÃû×Ö½«±£´æ,
-Image,name,9SliceµÄºó×ºÃû¿ÉÒÔ¼ÓÔØ³ösliceÀàĞÍµÄimage,
+Image,name¡¢selectable¡¢selectable@common,9SliceµÄºó×ºÃû¿ÉÒÔ¼ÓÔØ³ösliceÀàĞÍµÄimage,
 DropDown,name@DropDown,,
 InputField,name@InputField,,
 Scrollbar,name@Scrollbar,,
 Panel(´øimage¸¸¼¶),name@Panel,×Ó½Úµã·ÅÖÃÒ»¸öÍ¼Æ¬£¬½«×÷Îª×ÔÉíµÄimage£¬ÆäÊôĞÔºÍ¿ÕÎïÌåÒ»Ñù,
 ScrollView,name@ScrollView,"V,H×÷Îª²ÎÊı£¬³ß´çÓÉ·ÅÖÃÔÚÆäÏÂµÄ@Size¿ØÖÆ£¬ÄÚ²¿item·ÅÖÃÎª×Ó½Úµã",
 ,,,
-,"×¢£º¿Õ½Úµã²ÅÄÜÊ¹ÓÃ
-¡°@¡±£¬¡°£º¡±",,
+,"×¢£º¿Õ½ÚÊ¹ÓÃ
+¡°@¡±£¬¡°£º¡±£¬@Ç°ÎªÃû£¬£ººóÎª²ÎÊı
+imageÊ¹ÓÃÊ±£¬@ºóÎª¹«ÓÃÍ¼Æ¬µÄÃû³Æ£¨Èçnormal_Common@btn001£©",,

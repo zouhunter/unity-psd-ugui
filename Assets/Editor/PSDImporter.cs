@@ -60,14 +60,14 @@ namespace PSDUIImporter
             Debug.Log("baseDirectory " + baseDirectory);
 
             // if the scene already exists, delete it
-            string scenePath = baseDirectory + baseFilename + " Scene.unity";
-            if (File.Exists(scenePath) == true)
-            {
-                File.Delete(scenePath);
-                AssetDatabase.Refresh();
-            }
+            //string scenePath = baseDirectory + baseFilename + " Scene.unity";
+            //if (File.Exists(scenePath) == true)
+            //{
+            //    File.Delete(scenePath);
+            //    AssetDatabase.Refresh();
+            //}
             // now create a new scene
-            EditorSceneManager.NewScene(UnityEditor.SceneManagement.NewSceneSetup.DefaultGameObjects);//  EditorApplication.NewScene ();
+            EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects);//  EditorApplication.NewScene ();
 
             for (int layerIndex = 0; layerIndex < psdUI.layers.Length; layerIndex++)
             {
@@ -76,6 +76,7 @@ namespace PSDUIImporter
 
             Canvas temp = Resources.Load(PSDImporterConst.PREFAB_PATH_CANVAS, typeof(Canvas)) as Canvas;
             Canvas canvas = GameObject.Instantiate(temp) as Canvas;
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
             UnityEngine.UI.CanvasScaler scaler = canvas.GetComponent< UnityEngine.UI.CanvasScaler>();
             scaler.referenceResolution = new Vector2(psdUI.psdSize.width, psdUI.psdSize.height);
@@ -86,15 +87,10 @@ namespace PSDUIImporter
             for (int layerIndex = 0; layerIndex < psdUI.layers.Length; layerIndex++)
             {
                 DrawLayer(psdUI.layers[layerIndex], obj);
-                Debug.Log("Draw1" + psdUI.layers[layerIndex].name);
             }
 
-            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-
             AssetDatabase.Refresh();
-            //EditorSceneManager.SaveScene()
-            //EditorApplication.SaveScene(scenePath);
-
+           
             if (baseFilename.Contains("Common"))
             {
                 for (int layerIndex = 0; layerIndex < psdUI.layers.Length; layerIndex++)
@@ -115,7 +111,7 @@ namespace PSDUIImporter
         }
 
         //--------------------------------------------------------------------------
-        // private methods
+        // private methods,按texture或image的要求导入图片到unity可加载的状态
         //-------------------------------------------------------------------------
 
         static private void ImportLayer(Layer layer, string baseDirectory)
@@ -172,8 +168,7 @@ namespace PSDUIImporter
                     newPath = baseDirectory + PSDImporterConst.IMAGE + "/";
                     System.IO.Directory.CreateDirectory(newPath);
                 }
-                else
-                if (layer.name == PSDImporterConst.NINE_SLICE)
+                else if (layer.name == PSDImporterConst.NINE_SLICE)
                 {
                     newPath = baseDirectory + PSDImporterConst.NINE_SLICE + "/";
                     System.IO.Directory.CreateDirectory(newPath);
@@ -188,7 +183,7 @@ namespace PSDUIImporter
                     // we need to fixup all images that were exported from PS
                     Image image = layer.images[imageIndex];
 
-                    if (image.imageSource == ImageSource.Custom)
+                    if (image.imageSource == ImageSource.Common)
                     {
                         string texturePathName = baseDirectory + layer.images[imageIndex].name + PSDImporterConst.PNG_SUFFIX;
                         string targetPathName = newPath + layer.images[imageIndex].name + PSDImporterConst.PNG_SUFFIX;
