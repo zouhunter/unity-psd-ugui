@@ -24,7 +24,7 @@ namespace PSDUIImporter
                 for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
                 {
                     Image image = layer.images[imageIndex];
-                    ctrl.DrawImage(image, parent);
+                    ctrl.DrawImage(image, obj);
                 }
             }
 

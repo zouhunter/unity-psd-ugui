@@ -8,6 +8,8 @@ InputField,name@InputField,,,
 Scrollbar,name@Scrollbar,,,
 Panel(带image父级),name@Panel,子节点放置一个图片，将作为自身的image，其属性和空物体一样,,
 ScrollView,name@ScrollView,"V,H作为参数，尺寸由放置在其下的@Size控制，内部item放置为子节点",,
+Group,name@Group,"V,H作为第一个参数，间距为第二个参数，内部item放置为子节点",,item直接放图片不识别
+,,,,
 ,,,,
 ,"注：空节使用
 “@”时@前为名

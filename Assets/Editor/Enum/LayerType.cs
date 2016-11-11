@@ -16,6 +16,7 @@ namespace PSDUIImporter
         Button,
         Lable,
         Toggle,
-        Slider
+        Slider,
+        Group,
     }
 }

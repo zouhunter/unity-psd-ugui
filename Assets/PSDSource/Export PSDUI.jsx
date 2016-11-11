@@ -125,6 +125,9 @@ function exportLayerSet(obj)
             else if (obj.layers[i].name.search("@Slider")>=0) {
                 exportSlider(obj.layers[i]);
             }
+            else if (obj.layers[i].name.search("@Group")>=0) {
+                exportGroup(obj.layers[i]);
+            }
             else
             {
                 exportDefultLayer(obj.layers[i]);
@@ -281,6 +284,52 @@ function exportGrid(obj)
     //~         exportArtLayer(obj.layers[i]);
     //~     }
     //~     sceneData += "\n</images>\n</Layer>\n";
+
+    sceneData += "</Layer>";
+}
+
+function exportGroup(obj)
+{
+    var itemName = obj.name.substring(0, obj.name.search("@"));
+    sceneData += ("<Layer>\n<type>Group</type>\n<name>" + itemName + "</name>\n");
+
+    exportLayerSet(obj);
+
+    var params = obj.name.split(":");
+
+    if (params.length != 3 )
+    {
+        alert(obj.name + "-------Layer's name not equals 2------------");
+    }
+
+    var recSize;
+    if (obj.layers[obj.layers.length - 1].name.search("@Size") < 0)
+    {
+        alert("Bottom layer's name doesn't contain '@Size'");
+    }
+    else
+    {
+        obj.layers[obj.layers.length - 1].visible = true;
+
+        recSize = getLayerRec(duppedPsd.duplicate());
+
+        sceneData += "<position>";
+        sceneData += "<x>" + recSize.x + "</x>";
+        sceneData += "<y>" + recSize.y + "</y>";
+        sceneData += "</position>";
+
+        sceneData += "<size>";
+        sceneData += "<width>" + recSize.width + "</width>";
+        sceneData += "<height>" + recSize.height + "</height>";
+        sceneData += "</size>";
+
+        obj.layers[obj.layers.length - 1].visible = false;
+    }
+
+    sceneData += "<arguments>";
+    sceneData += "<string>" + params[1] + "</string>";   //方向
+    sceneData += "<string>" + params[2] + "</string>";   //span
+    sceneData += "</arguments>";
 
     sceneData += "</Layer>";
 }
