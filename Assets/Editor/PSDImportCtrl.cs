@@ -43,6 +43,86 @@ namespace PSDUIImporter
             InitDrawers();
         }
 
+        public void DrawLayer(Layer layer, GameObject parent)
+        {
+            switch (layer.type)
+            {
+                case LayerType.Panel:
+                    panelImport.DrawLayer(layer, parent);
+                    break;
+                case LayerType.Normal:
+                    emptyImport.DrawLayer(layer, parent);
+                    break;
+                case LayerType.Button:
+                    buttonImport.DrawLayer(layer, parent);
+                    break;
+                case LayerType.Toggle:
+                    toggleImport.DrawLayer(layer, parent);
+                    break;
+                case LayerType.Grid:
+                    gridImport.DrawLayer(layer, parent);
+                    break;
+                case LayerType.ScrollView:
+                    scrollViewImport.DrawLayer(layer, parent);
+                    break;
+                case LayerType.Slider:
+                    sliderImport.DrawLayer(layer, parent);
+                    break;
+                case LayerType.Group:
+                    groupImport.DrawLayer(layer, parent);
+                    break;
+                case LayerType.InputField:
+                    inputFiledImport.DrawLayer(layer, parent);
+                    break;
+                case LayerType.ScrollBar:
+                    scrollBarImport.DrawLayer(layer, parent);
+                    break;
+                default:
+                    break;
+
+            }
+        }
+
+        public void DrawLayers(Layer[] layers, GameObject parent)
+        {
+            if (layers != null)
+            {
+                for (int layerIndex = 0; layerIndex < layers.Length; layerIndex++)
+                {
+                    DrawLayer(layers[layerIndex], parent);
+                }
+            }
+        }
+
+        public void DrawImage(Image image, GameObject parent)
+        {
+            switch (image.imageType)
+            {
+                case ImageType.Image:
+                    spriteImport.DrawImage(image, parent);
+                    break;
+                case ImageType.Texture:
+                    textureImport.DrawImage(image, parent);
+                    break;
+                case ImageType.Label:
+                    textImport.DrawImage(image, parent);
+                    break;
+                case ImageType.SliceImage:
+                    slicedSpriteImport.DrawImage(image, parent);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
+        public GameObject CreateEmptyParent(string parentName)
+        {
+            GameObject pfb = Resources.Load<GameObject>(PSDImporterConst.PREFAB_PATH_EMPTY);
+            GameObject go = GameObject.Instantiate<GameObject>(pfb);
+            go.name = parentName;
+            return go;
+        }
         private void InitDataAndPath(string xmlFilePath)
         {
             psdUI = (PSDUI)XMLSerializeUtility.DeserializeXml(xmlFilePath, typeof(PSDUI));
@@ -109,86 +189,6 @@ namespace PSDUIImporter
             AssetDatabase.Refresh();
         }
 
-        public void DrawLayer(Layer layer, GameObject parent)
-        {
-            switch (layer.type)
-            {
-                case LayerType.Panel:
-                    panelImport.DrawLayer(layer, parent);
-                    break;
-                case LayerType.Normal:
-                    emptyImport.DrawLayer(layer, parent);
-                    break;
-                case LayerType.Button:
-                    buttonImport.DrawLayer(layer, parent);
-                    break;
-                case LayerType.Toggle:
-                    toggleImport.DrawLayer(layer, parent);
-                    break;
-                case LayerType.Grid:
-                    gridImport.DrawLayer(layer, parent);
-                    break;
-                case LayerType.ScrollView:
-                    scrollViewImport.DrawLayer(layer, parent);
-                    break;
-                case LayerType.Slider:
-                    sliderImport.DrawLayer(layer, parent);
-                    break;
-                case LayerType.Group:
-                    groupImport.DrawLayer(layer, parent);
-                    break;
-                case LayerType.InputField:
-                    inputFiledImport.DrawLayer(layer, parent);
-                    break;
-                case LayerType.ScrollBar:
-                    scrollBarImport.DrawLayer(layer, parent);
-                    break;
-                default:
-                    break;
-                    
-            }
-        }
-
-        public void DrawLayers(Layer[] layers, GameObject parent)
-        {
-            if (layers != null)
-            {
-                for (int layerIndex = 0; layerIndex < layers.Length; layerIndex++)
-                {
-                    DrawLayer(layers[layerIndex], parent);
-                }
-            }
-        }
-
-        public void DrawImage(Image image,GameObject parent)
-        {
-            switch (image.imageType)
-            {
-                case ImageType.Image:
-                    spriteImport.DrawImage(image, parent);
-                    break;
-                case ImageType.Texture:
-                    textureImport.DrawImage(image, parent);
-                    break;
-                case ImageType.Label:
-                    textImport.DrawImage(image, parent);
-                    break;
-                case ImageType.SliceImage:
-                    slicedSpriteImport.DrawImage(image, parent);
-                    break;
-                default:
-                    break;
-            }
-        }
-
-
-        public GameObject CreateEmptyParent(string parentName)
-        {
-            GameObject pfb = Resources.Load<GameObject>(PSDImporterConst.PREFAB_PATH_EMPTY);
-            GameObject go = GameObject.Instantiate<GameObject>(pfb);
-            go.name = parentName;
-            return go;
-        }
 
         private void MoveLayers()
         {

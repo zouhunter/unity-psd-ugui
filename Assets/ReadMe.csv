@@ -3,7 +3,7 @@ Toggle,name@Toggle,,Background、Title、Mask,
 Slider,name@Slider,参数L、R、T、B分别上从左到右，从右到左...,Background、Full、Handle,
 Text,name,,,除作为button的子对象，其名字将保存
 Image,name、selectable、selectable@common,9Slice的后缀名可以加载出slice类型的image,,
-DropDown,name@DropDown,,,
+DropDown,name@DropDown,,"Backgrond，ItemBackground,Checkmark,Arrow,Label（字）,ItemLable(字)",
 InputField,name@InputField,,Background图片、Text文字、Holder文字,
 Scrollbar,name@Scrollbar,L、R、T、B第一个参数，bar的比例为第二个参数（0~1）,Background、Handle,子节点图片不识别
 Panel(带image父级),name@Panel,子节点放置一个图片，将作为自身的image，其属性和空物体一样,,
