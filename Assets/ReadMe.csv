@@ -1,4 +1,4 @@
-Button,name@Button,,"Normal图片,Title文字",
+Button,name@Button,,"Title,Normal,Pressed,Highted,Disabled",
 Toggle,name@Toggle,,Background、Title、Mask,
 Slider,name@Slider,参数L、R、T、B分别上从左到右，从右到左...,Background、Full、Handle,
 Text,name,,,用作其他组件的文字时（name将舍去）

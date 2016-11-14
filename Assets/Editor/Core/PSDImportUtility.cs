@@ -12,7 +12,7 @@ namespace PSDUIImporter
     {
         public static string baseFilename;
         public static string baseDirectory;
-
+        public static Canvas canvas;
 
         public static object DeserializeXml(string filePath, System.Type type)
         {
@@ -46,12 +46,12 @@ namespace PSDUIImporter
             return go;
         }
 
-        public static T InstantiateItem<T>(string resourcePatn, string name, Transform parent) where T : UnityEngine.MonoBehaviour
+        public static T InstantiateItem<T>(string resourcePatn, string name) where T : UnityEngine.MonoBehaviour
         {
             GameObject temp = Resources.Load(resourcePatn, typeof(GameObject)) as GameObject;
             GameObject item = GameObject.Instantiate(temp) as GameObject;
-            item.transform.SetParent(parent.transform, false);//.parent = parent.transform;
             item.name = name;
+            item.transform.SetParent(canvas.transform, false);
             return item.GetComponent<T>();
         }
 

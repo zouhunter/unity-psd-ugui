@@ -16,7 +16,7 @@ namespace PSDUIImporter
         {
             if (image.imageSource == ImageSource.Common || image.imageSource == ImageSource.Custom)
             {
-                UnityEngine.UI.Image pic = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof(UnityEngine.UI.Image)) as UnityEngine.UI.Image;
+                UnityEngine.UI.Image pic =  PSDImportUtility.InstantiateItem<UnityEngine.UI.Image>(PSDImporterConst.PREFAB_PATH_IMAGE, image.name);
 
                 string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
                 Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
@@ -28,35 +28,31 @@ namespace PSDUIImporter
 
                 pic.sprite = sprite;
 
-                UnityEngine.UI.Image myImage = GameObject.Instantiate(pic) as UnityEngine.UI.Image;
-                myImage.name = image.name;
-                myImage.transform.SetParent(parent.transform, false);//.parent = obj.transform;
-
-                RectTransform rectTransform = myImage.GetComponent<RectTransform>();
+                RectTransform rectTransform = pic.GetComponent<RectTransform>();
                 rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
                 rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
+                rectTransform.SetParent(parent.transform);
             }
             else if (image.imageSource == ImageSource.Globle)
             {
-                UnityEngine.UI.Image pic = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof(UnityEngine.UI.Image)) as UnityEngine.UI.Image;
+                UnityEngine.UI.Image pic = PSDImportUtility.InstantiateItem<UnityEngine.UI.Image>(PSDImporterConst.PREFAB_PATH_IMAGE, image.name);
 
                 string commonImagePath = PSDImporterConst.Globle_BASE_FOLDER + image.name.Replace(".", "/") + PSDImporterConst.PNG_SUFFIX;
                 Debug.Log("==  CommonImagePath  ====" + commonImagePath);
                 Sprite sprite = AssetDatabase.LoadAssetAtPath(commonImagePath, typeof(Sprite)) as Sprite;
                 pic.sprite = sprite;
 
-                UnityEngine.UI.Image myImage = GameObject.Instantiate(pic) as UnityEngine.UI.Image;
-                myImage.name = image.name;
-                myImage.transform.SetParent(parent.transform, false);//.parent = obj.transform;
+                pic.name = image.name;
 
                 if (image.imageType == ImageType.SliceImage)
                 {
-                    myImage.type = UnityEngine.UI.Image.Type.Sliced;
+                    pic.type = UnityEngine.UI.Image.Type.Sliced;
                 }
 
-                RectTransform rectTransform = myImage.GetComponent<RectTransform>();
+                RectTransform rectTransform = pic.GetComponent<RectTransform>();
                 rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
                 rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
+                rectTransform.SetParent(parent.transform);
             }
         }
     }

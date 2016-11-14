@@ -14,7 +14,6 @@ namespace PSDUIImporter
     public class PSDImportCtrl
     {
         private PSDUI psdUI;
-        private Canvas canvas;
 
         private IImageImport spriteImport;
         private IImageImport textImport;
@@ -132,10 +131,10 @@ namespace PSDUIImporter
         {
             EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects);//  EditorApplication.NewScene ();
             Canvas temp = Resources.Load(PSDImporterConst.PREFAB_PATH_CANVAS, typeof(Canvas)) as Canvas;
-            canvas = GameObject.Instantiate(temp) as Canvas;
-            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            PSDImportUtility.canvas = GameObject.Instantiate(temp) as Canvas;
+            PSDImportUtility.canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
-            UnityEngine.UI.CanvasScaler scaler = canvas.GetComponent<UnityEngine.UI.CanvasScaler>();
+            UnityEngine.UI.CanvasScaler scaler = PSDImportUtility.canvas.GetComponent<UnityEngine.UI.CanvasScaler>();
             scaler.referenceResolution = new Vector2(psdUI.psdSize.width, psdUI.psdSize.height);
         }
 
@@ -169,7 +168,7 @@ namespace PSDUIImporter
         public void StartDrawUILayers()
         {
             GameObject obj = PSDImportUtility.CreateEmptyParent(PSDImportUtility.baseFilename);
-            obj.transform.SetParent(canvas.transform, false);
+            obj.transform.SetParent(PSDImportUtility.canvas.transform, false);
 
             for (int layerIndex = 0; layerIndex < psdUI.layers.Length; layerIndex++)
             {
