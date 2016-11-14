@@ -12,24 +12,18 @@ namespace PSDUIImporter
 {
     public class SpriteImport : IImageImport
     {
-        PSDImportCtrl ctrl;
-        public SpriteImport(PSDImportCtrl ctrl)
-        {
-            this.ctrl = ctrl;
-        }
-
         public void DrawImage(Image image, GameObject parent)
         {
             if (image.imageSource == ImageSource.Custom)
             {
                 UnityEngine.UI.Image pic = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof(UnityEngine.UI.Image)) as UnityEngine.UI.Image;
 
-                string assetPath = ctrl.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
+                string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
                 Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
 
                 if (sprite == null)
                 {
-                    Debug.Log("loading asset at path: " + ctrl.baseDirectory + image.name);
+                    Debug.Log("loading asset at path: " + PSDImportUtility.baseDirectory + image.name);
                 }
 
                 pic.sprite = sprite;

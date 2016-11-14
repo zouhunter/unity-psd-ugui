@@ -12,7 +12,7 @@ namespace PSDUIImporter
         PSDImportCtrl ctrl;
         public ScrollViewLayerImport(PSDImportCtrl ctrl)
         {
-            this.ctrl = ctrl;
+            this.ctrl = ctrl; Debug.Log(ctrl);
         }
         public void DrawLayer(Layer layer, GameObject parent)
         {

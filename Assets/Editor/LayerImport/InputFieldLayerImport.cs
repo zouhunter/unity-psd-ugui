@@ -65,7 +65,7 @@ namespace PSDUIImporter
                         {
                             if (image.imageSource == ImageSource.Custom)
                             {
-                                string assetPath = pSDImportCtrl.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
+                                string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
                                 Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
                                 inputfield.image.sprite = sprite;
 

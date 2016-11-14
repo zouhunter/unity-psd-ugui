@@ -12,7 +12,7 @@ namespace PSDUIImporter
         PSDImportCtrl ctrl;
         public SliderLayerImport(PSDImportCtrl ctrl)
         {
-            this.ctrl = ctrl;
+            this.ctrl = ctrl; Debug.Log(ctrl);
         }
         public void DrawLayer(Layer layer, GameObject parent)
         {
@@ -47,7 +47,7 @@ namespace PSDUIImporter
             for (int i = 0; i < layer.images.Length; i++)
             {
                 Image image = layer.images[i];
-                string assetPath = ctrl.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX; Debug.Log("==  CommonImagePath  ====" + assetPath);
+                string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX; Debug.Log("==  CommonImagePath  ====" + assetPath);
                 Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
 
                 if (image.name.ToLower().Contains("background"))

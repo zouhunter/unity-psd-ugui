@@ -12,7 +12,7 @@ namespace PSDUIImporter
         PSDImportCtrl ctrl;
         public ToggleLayerImport(PSDImportCtrl ctrl)
         {
-            this.ctrl = ctrl;
+            this.ctrl = ctrl; Debug.Log(ctrl);
         }
         public void DrawLayer(Layer layer, GameObject parent)
         {
@@ -31,7 +31,7 @@ namespace PSDUIImporter
                     {
                         if (image.imageSource == ImageSource.Custom)
                         {
-                            string assetPath = ctrl.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
+                            string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
                             Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
                             toggle.image.sprite = sprite;
 
@@ -44,7 +44,7 @@ namespace PSDUIImporter
                     {
                         if (image.imageSource == ImageSource.Custom)
                         {
-                            string assetPath = ctrl.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
+                            string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
                             Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
                             toggle.graphic.GetComponent<UnityEngine.UI.Image>().sprite = sprite;
                         }

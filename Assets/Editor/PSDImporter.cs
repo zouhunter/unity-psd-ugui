@@ -53,14 +53,14 @@ namespace PSDUIImporter
             }
 
             // cache some useful variables
-            baseFilename = Path.GetFileNameWithoutExtension(assetPath);
-            baseDirectory = "Assets/" + Path.GetDirectoryName(assetPath.Remove(0, Application.dataPath.Length + 1)) + "/";
+            PSDImportUtility.baseFilename = Path.GetFileNameWithoutExtension(assetPath);
+            PSDImportUtility.baseDirectory = "Assets/" + Path.GetDirectoryName(assetPath.Remove(0, Application.dataPath.Length + 1)) + "/";
 
-            Debug.Log("baseFilename " + baseFilename);
-            Debug.Log("baseDirectory " + baseDirectory);
+            Debug.Log("PSDImportUtility.baseFilename " + PSDImportUtility.baseFilename);
+            Debug.Log("PSDImportUtility.baseDirectory " + PSDImportUtility.baseDirectory);
 
             // if the scene already exists, delete it
-            //string scenePath = baseDirectory + baseFilename + " Scene.unity";
+            //string scenePath = PSDImportUtility.baseDirectory + PSDImportUtility.baseFilename + " Scene.unity";
             //if (File.Exists(scenePath) == true)
             //{
             //    File.Delete(scenePath);
@@ -71,7 +71,7 @@ namespace PSDUIImporter
 
             for (int layerIndex = 0; layerIndex < psdUI.layers.Length; layerIndex++)
             {
-                ImportLayer(psdUI.layers[layerIndex], baseDirectory);
+                ImportLayer(psdUI.layers[layerIndex], PSDImportUtility.baseDirectory);
             }
 
             Canvas temp = Resources.Load(PSDImporterConst.PREFAB_PATH_CANVAS, typeof(Canvas)) as Canvas;
@@ -81,7 +81,7 @@ namespace PSDUIImporter
             UnityEngine.UI.CanvasScaler scaler = canvas.GetComponent<UnityEngine.UI.CanvasScaler>();
             scaler.referenceResolution = new Vector2(psdUI.psdSize.width, psdUI.psdSize.height);
 
-            GameObject obj = CreateEmptyParent(baseFilename);
+            GameObject obj = CreateEmptyParent(PSDImportUtility.baseFilename);
             obj.transform.SetParent(canvas.transform, false);
 
             for (int layerIndex = 0; layerIndex < psdUI.layers.Length; layerIndex++)
@@ -91,11 +91,11 @@ namespace PSDUIImporter
 
             AssetDatabase.Refresh();
 
-            if (baseFilename.Contains("Common"))
+            if (PSDImportUtility.baseFilename.Contains("Common"))
             {
                 for (int layerIndex = 0; layerIndex < psdUI.layers.Length; layerIndex++)
                 {
-                    MoveAsset(psdUI.layers[layerIndex], baseDirectory);
+                    MoveAsset(psdUI.layers[layerIndex], PSDImportUtility.baseDirectory);
                 }
 
                 AssetDatabase.Refresh();
@@ -125,17 +125,17 @@ namespace PSDUIImporter
 
                     if (image.imageSource == ImageSource.Custom)
                     {
-                        string texturePathName = baseDirectory + layer.images[imageIndex].name + PSDImporterConst.PNG_SUFFIX;
+                        string texturePathName = PSDImportUtility.baseDirectory + layer.images[imageIndex].name + PSDImporterConst.PNG_SUFFIX;
 
                         Debug.Log(texturePathName);
                         // modify the importer settings
                         TextureImporter textureImporter = AssetImporter.GetAtPath(texturePathName) as TextureImporter;
                         textureImporter.textureType = TextureImporterType.Sprite;
                         textureImporter.spriteImportMode = SpriteImportMode.Single;
-                        textureImporter.spritePackingTag = baseFilename;
+                        textureImporter.spritePackingTag = PSDImportUtility.baseFilename;
                         textureImporter.maxTextureSize = 2048;
 
-                        if (baseFilename.Contains("Common") && layer.name == PSDImporterConst.NINE_SLICE)  //If Psd's name contains "Common", then it's Common type;
+                        if (PSDImportUtility.baseFilename.Contains("Common") && layer.name == PSDImporterConst.NINE_SLICE)  //If Psd's name contains "Common", then it's Common type;
                         {
                             textureImporter.spriteBorder = new Vector4(3, 3, 3, 3);   // Set Default Slice type  UnityEngine.UI.Image's border to Vector4 (3, 3, 3, 3)
                         }
@@ -150,7 +150,7 @@ namespace PSDUIImporter
             {
                 for (int layerIndex = 0; layerIndex < layer.layers.Length; layerIndex++)
                 {
-                    ImportLayer(layer.layers[layerIndex], baseDirectory);
+                    ImportLayer(layer.layers[layerIndex], PSDImportUtility.baseDirectory);
                 }
             }
         }
@@ -162,15 +162,15 @@ namespace PSDUIImporter
         {
             if (layer.images != null)
             {
-                string newPath = baseDirectory;
+                string newPath = PSDImportUtility.baseDirectory;
                 if (layer.name == PSDImporterConst.IMAGE)
                 {
-                    newPath = baseDirectory + PSDImporterConst.IMAGE + "/";
+                    newPath = PSDImportUtility.baseDirectory + PSDImporterConst.IMAGE + "/";
                     System.IO.Directory.CreateDirectory(newPath);
                 }
                 else if (layer.name == PSDImporterConst.NINE_SLICE)
                 {
-                    newPath = baseDirectory + PSDImporterConst.NINE_SLICE + "/";
+                    newPath = PSDImportUtility.baseDirectory + PSDImporterConst.NINE_SLICE + "/";
                     System.IO.Directory.CreateDirectory(newPath);
                 }
 
@@ -185,7 +185,7 @@ namespace PSDUIImporter
 
                     if (image.imageSource == ImageSource.Common)
                     {
-                        string texturePathName = baseDirectory + layer.images[imageIndex].name + PSDImporterConst.PNG_SUFFIX;
+                        string texturePathName = PSDImportUtility.baseDirectory + layer.images[imageIndex].name + PSDImporterConst.PNG_SUFFIX;
                         string targetPathName = newPath + layer.images[imageIndex].name + PSDImporterConst.PNG_SUFFIX;
 
                         Debug.Log(texturePathName);
@@ -200,7 +200,7 @@ namespace PSDUIImporter
             {
                 for (int layerIndex = 0; layerIndex < layer.layers.Length; layerIndex++)
                 {
-                    MoveAsset(layer.layers[layerIndex], baseDirectory);
+                    MoveAsset(layer.layers[layerIndex], PSDImportUtility.baseDirectory);
                 }
             }
         }
@@ -238,12 +238,12 @@ namespace PSDUIImporter
             {
                 UnityEngine.UI.Image pic = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof(UnityEngine.UI.Image)) as UnityEngine.UI.Image;
 
-                string assetPath = baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
+                string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
                 Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
 
                 if (sprite == null)
                 {
-                    Debug.Log("loading asset at path: " + baseDirectory + image.name);
+                    Debug.Log("loading asset at path: " + PSDImportUtility.baseDirectory + image.name);
                 }
 
                 pic.sprite = sprite;
@@ -362,7 +362,7 @@ namespace PSDUIImporter
                         {
                             if (image.imageSource == ImageSource.Custom)
                             {
-                                string assetPath = baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
+                                string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
                                 Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
                                 button.image.sprite = sprite;
 
@@ -397,7 +397,7 @@ namespace PSDUIImporter
                     {
                         if (image.imageSource == ImageSource.Custom)
                         {
-                            string assetPath = baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
+                            string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
                             Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
                             toggle.image.sprite = sprite;
 
@@ -410,7 +410,7 @@ namespace PSDUIImporter
                     {
                         if (image.imageSource == ImageSource.Custom)
                         {
-                            string assetPath = baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
+                            string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
                             Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
                             toggle.graphic.GetComponent<UnityEngine.UI.Image>().sprite = sprite;
                         }
@@ -510,7 +510,7 @@ namespace PSDUIImporter
 
                 if (image.name.Contains("background"))
                 {
-                    string assetPath = baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
+                    string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
                     Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
                     panel.sprite = sprite;
 

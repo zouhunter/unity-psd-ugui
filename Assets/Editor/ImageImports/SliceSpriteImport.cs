@@ -9,12 +9,6 @@ namespace PSDUIImporter
 {
     public class SliceSpriteImport : IImageImport
     {
-        PSDImportCtrl ctrl;
-        public SliceSpriteImport(PSDImportCtrl ctrl)
-        {
-            this.ctrl = ctrl;
-        }
-
         public void DrawImage(Image image, GameObject parent)
         {
             UnityEngine.UI.Image pic = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof(UnityEngine.UI.Image)) as UnityEngine.UI.Image;

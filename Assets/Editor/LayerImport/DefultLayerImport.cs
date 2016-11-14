@@ -12,11 +12,11 @@ namespace PSDUIImporter
         PSDImportCtrl ctrl;
         public DefultLayerImport(PSDImportCtrl ctrl)
         {
-            this.ctrl = ctrl;
+            this.ctrl = ctrl; Debug.Log(ctrl);
         }
         public void DrawLayer(Layer layer, GameObject parent)
         {
-            GameObject obj = ctrl.CreateEmptyParent(layer.name);
+            GameObject obj = PSDImportUtility.CreateEmptyParent(layer.name);
             obj.transform.SetParent(parent.transform, false); //parent.transform;
 
             if (layer.images != null)

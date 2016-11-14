@@ -9,12 +9,6 @@ namespace PSDUIImporter
 {
     public class TextImport : IImageImport
     {
-        PSDImportCtrl ctrl;
-        public TextImport(PSDImportCtrl ctrl)
-        {
-            this.ctrl = ctrl;
-        }
-
         public void DrawImage(Image image, GameObject parent)
         {
             UnityEngine.UI.Text text = Resources.Load(PSDImporterConst.PREFAB_PATH_TEXT, typeof(UnityEngine.UI.Text)) as UnityEngine.UI.Text;

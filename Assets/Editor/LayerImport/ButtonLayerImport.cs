@@ -13,13 +13,21 @@ namespace PSDUIImporter
         PSDImportCtrl ctrl;
         public ButtonLayerImport(PSDImportCtrl ctrl)
         {
-            this.ctrl = ctrl;
+            this.ctrl = ctrl; Debug.Log(ctrl);
         }
+      
         public void DrawLayer(Layer layer, GameObject parent)
         {
-            UnityEngine.UI.Button temp = Resources.Load(PSDImporterConst.PREFAB_PATH_BUTTON, typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
-            UnityEngine.UI.Button button = GameObject.Instantiate(temp) as UnityEngine.UI.Button;
-            button.transform.SetParent(parent.transform, false);//.parent = parent.transform;
+            UnityEngine.UI.Button button = PSDImportUtility.InstantiateItem<UnityEngine.UI.Button>(PSDImporterConst.PREFAB_PATH_BUTTON, layer.name, parent.transform);
+            //UnityEngine.UI.Button temp = Resources.Load(PSDImporterConst.PREFAB_PATH_BUTTON, typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
+            //UnityEngine.UI.Button button = GameObject.Instantiate(temp) as UnityEngine.UI.Button;
+            //button.transform.SetParent(parent.transform, false);//.parent = parent.transform;
+            //button.name = layer.name;
+            //GameObject temp = Resources.Load(PSDImporterConst.PREFAB_PATH_BUTTON, typeof(GameObject)) as GameObject;
+            //GameObject item = GameObject.Instantiate(temp) as GameObject;
+            //item.transform.SetParent(parent.transform, false);//.parent = parent.transform;
+            //UnityEngine.UI.Button button = item.GetComponent<UnityEngine.UI.Button>();
+            //item.name = layer.name;
 
             if (layer.images != null)
             {
@@ -51,7 +59,7 @@ namespace PSDUIImporter
                         {
                             if (image.imageSource == ImageSource.Custom)
                             {
-                                string assetPath = ctrl.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
+                                string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
                                 Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
                                 button.image.sprite = sprite;
 
