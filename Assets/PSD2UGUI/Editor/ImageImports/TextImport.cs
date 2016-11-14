@@ -22,6 +22,10 @@ namespace PSDUIImporter
             {
                 myText.color = color;
             }
+            else
+            {
+                Debug.Log(image.arguments[0]);
+            }
 
             float size;
             if (float.TryParse(image.arguments[2], out size))
@@ -35,7 +39,7 @@ namespace PSDUIImporter
             rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
             rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
 
-            rectTransform.SetParent(parent.transform);
+            rectTransform.SetParent(parent.transform,true);
         }
     }
 }
