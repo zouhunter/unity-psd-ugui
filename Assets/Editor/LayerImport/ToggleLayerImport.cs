@@ -12,7 +12,7 @@ namespace PSDUIImporter
         PSDImportCtrl ctrl;
         public ToggleLayerImport(PSDImportCtrl ctrl)
         {
-            this.ctrl = ctrl; Debug.Log(ctrl);
+            this.ctrl = ctrl;
         }
         public void DrawLayer(Layer layer, GameObject parent)
         {

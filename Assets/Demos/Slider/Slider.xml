@@ -4,7 +4,7 @@
 <layers><Layer>
 <type>Slider</type>
 <name>testSlider</name>
-<arguments><string>B</string></arguments><position><x>0</x><y>0</y></position><size><width>416</width><height>46</height></size><images>
+<arguments><string>R</string></arguments><position><x>0</x><y>0</y></position><size><width>416</width><height>46</height></size><images>
 <Image>
 <name>@Size_1</name>
 <imageSource>Custom</imageSource>
