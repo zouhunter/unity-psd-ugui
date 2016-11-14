@@ -57,7 +57,7 @@ namespace PSDUIImporter
                     {
                         if (image.name.ToLower().Contains("normal"))
                         {
-                            if (image.imageSource == ImageSource.Custom)
+                            if (image.imageSource == ImageSource.Custom|| image.imageSource == ImageSource.Common)
                             {
                                 string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
                                 Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;

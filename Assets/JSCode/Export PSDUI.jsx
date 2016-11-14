@@ -675,9 +675,9 @@ function makeValidFileName(fileName)
     
     if (validName.match("Common"))
     {
-        validName = validName.substring (validName.lastIndexOf ("@") + 1);  //截取@后面之后的字符串作为图片的名称。
+        validName = validName.substring (0,validName.lastIndexOf ("@"));  //截取@之后的字符串作为图片的名称。
     }
-    else if(!sourcePsdName.match("@Common"))    // 判断是否为公用的PSD素材文件，如果不是，则自动为图片增加后缀，防止重名。 公用psd文件的图片层不允许重名。
+    else if(!sourcePsdName.match("Common"))    // 判断是否为公用的PSD素材文件，如果不是，则自动为图片增加后缀，防止重名。 公用psd文件的图片层不允许重名。
     {
         validName += "_" + uuid++;
     }

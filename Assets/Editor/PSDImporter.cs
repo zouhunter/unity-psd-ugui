@@ -304,7 +304,7 @@ namespace PSDUIImporter
                 {
                     UnityEngine.UI.Image pic = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof(UnityEngine.UI.Image)) as UnityEngine.UI.Image;
 
-                    string commonImagePath = PSDImporterConst.COMMON_BASE_FOLDER + image.name.Replace(".", "/") + PSDImporterConst.PNG_SUFFIX;
+                    string commonImagePath = PSDImporterConst.Globle_BASE_FOLDER + image.name.Replace(".", "/") + PSDImporterConst.PNG_SUFFIX;
                     Debug.Log("==  CommonImagePath  ====" + commonImagePath);
                     Sprite sprite = AssetDatabase.LoadAssetAtPath(commonImagePath, typeof(Sprite)) as Sprite;
                     pic.sprite = sprite;
@@ -360,7 +360,7 @@ namespace PSDUIImporter
                     {
                         if (image.name.ToLower().Contains("normal"))
                         {
-                            if (image.imageSource == ImageSource.Custom)
+                            if (image.imageSource == ImageSource.Custom || image.imageSource == ImageSource.Common)
                             {
                                 string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
                                 Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
@@ -395,7 +395,7 @@ namespace PSDUIImporter
 
                     if (image.name.Contains("background"))
                     {
-                        if (image.imageSource == ImageSource.Custom)
+                        if (image.imageSource == ImageSource.Custom || image.imageSource == ImageSource.Common)
                         {
                             string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
                             Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
@@ -408,7 +408,7 @@ namespace PSDUIImporter
                     }
                     else if (image.name.Contains("mask"))
                     {
-                        if (image.imageSource == ImageSource.Custom)
+                        if (image.imageSource == ImageSource.Custom || image.imageSource == ImageSource.Common)
                         {
                             string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
                             Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;

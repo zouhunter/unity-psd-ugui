@@ -181,7 +181,7 @@ namespace PSDUIImporter
 
         private void MoveLayers()
         {
-            if (PSDImportUtility.baseFilename.Contains("Common"))
+            if (PSDImportUtility.baseFilename.Contains("Global"))
             {
                 for (int layerIndex = 0; layerIndex < psdUI.layers.Length; layerIndex++)
                 {
@@ -205,7 +205,7 @@ namespace PSDUIImporter
                     // we need to fixup all images that were exported from PS
                     Image image = layer.images[imageIndex];
 
-                    if (image.imageSource == ImageSource.Custom)
+                    if (image.imageType != ImageType.Label)
                     {
                         string texturePathName = PSDImportUtility.baseDirectory + layer.images[imageIndex].name + PSDImporterConst.PNG_SUFFIX;
 
@@ -217,7 +217,7 @@ namespace PSDUIImporter
                         textureImporter.spritePackingTag = PSDImportUtility.baseFilename;
                         textureImporter.maxTextureSize = 2048;
 
-                        if (PSDImportUtility.baseFilename.Contains("Common") && layer.name == PSDImporterConst.NINE_SLICE)  //If Psd's name contains "Common", then it's Common type;
+                        if (image.imageType != ImageType.SliceImage)  //If Psd's name contains "Common", then it's Common type;
                         {
                             textureImporter.spriteBorder = new Vector4(3, 3, 3, 3);   // Set Default Slice type  UnityEngine.UI.Image's border to Vector4 (3, 3, 3, 3)
                         }
@@ -239,19 +239,19 @@ namespace PSDUIImporter
         //------------------------------------------------------------------
         //when it's a common psd, then move the asset to special folder
         //------------------------------------------------------------------
-        private  void MoveAsset(Layer layer, string baseDirectory)
+        private void MoveAsset(Layer layer, string baseDirectory)
         {
             if (layer.images != null)
             {
-                string newPath = PSDImportUtility.baseDirectory;
+                string newPath = PSDImporterConst.Globle_BASE_FOLDER;
                 if (layer.name == PSDImporterConst.IMAGE)
                 {
-                    newPath = PSDImportUtility.baseDirectory + PSDImporterConst.IMAGE + "/";
+                    newPath += PSDImporterConst.IMAGE + "/";
                     System.IO.Directory.CreateDirectory(newPath);
                 }
                 else if (layer.name == PSDImporterConst.NINE_SLICE)
                 {
-                    newPath = PSDImportUtility.baseDirectory + PSDImporterConst.NINE_SLICE + "/";
+                    newPath += PSDImporterConst.NINE_SLICE + "/";
                     System.IO.Directory.CreateDirectory(newPath);
                 }
 
@@ -264,16 +264,13 @@ namespace PSDUIImporter
                     // we need to fixup all images that were exported from PS
                     Image image = layer.images[imageIndex];
 
-                    if (image.imageSource == ImageSource.Common)
-                    {
-                        string texturePathName = PSDImportUtility.baseDirectory + layer.images[imageIndex].name + PSDImporterConst.PNG_SUFFIX;
-                        string targetPathName = newPath + layer.images[imageIndex].name + PSDImporterConst.PNG_SUFFIX;
+                    string texturePathName = PSDImportUtility.baseDirectory + layer.images[imageIndex].name + PSDImporterConst.PNG_SUFFIX;
+                    string targetPathName = newPath + layer.images[imageIndex].name + PSDImporterConst.PNG_SUFFIX;
 
-                        Debug.Log(texturePathName);
-                        Debug.Log(targetPathName);
+                    Debug.Log(texturePathName);
+                    Debug.Log(targetPathName);
 
-                        AssetDatabase.MoveAsset(texturePathName, targetPathName);
-                    }
+                    AssetDatabase.MoveAsset(texturePathName, targetPathName);
                 }
             }
 

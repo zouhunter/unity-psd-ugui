@@ -9,6 +9,7 @@ namespace PSDUIImporter
     public enum ImageSource
     {
         Common,
-        Custom
+        Custom,
+        Globle
     }
 }

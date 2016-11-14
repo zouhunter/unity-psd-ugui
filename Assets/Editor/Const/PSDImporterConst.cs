@@ -6,7 +6,7 @@ namespace PSDUIImporter
     {
         public const string BASE_FOLDER = "UI/";
         public const string PNG_SUFFIX = ".png";
-        public const string COMMON_BASE_FOLDER = "Assets/PSDExportMaterials/";
+        public const string Globle_BASE_FOLDER = "Assets/PSDExportMaterials/";
 
         public const string RENDER = "Render";
         public const string NINE_SLICE = "9Slice";
