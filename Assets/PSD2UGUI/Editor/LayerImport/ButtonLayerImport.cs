@@ -19,7 +19,7 @@ namespace PSDUIImporter
         public void DrawLayer(Layer layer, GameObject parent)
         {
             UnityEngine.UI.Button button = PSDImportUtility.InstantiateItem<UnityEngine.UI.Button>(PSDImporterConst.PREFAB_PATH_BUTTON, layer.name);
-            RectTransform rectTransform;
+
             if (layer.images != null)
             {
                 for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
@@ -37,8 +37,9 @@ namespace PSDUIImporter
                             {
                                 button.image.sprite = sprite;
 
-                                rectTransform = button.GetComponent<RectTransform>();
+                                RectTransform rectTransform = button.GetComponent<RectTransform>();
                                 rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
+
                                 rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
 
                                 rectTransform.SetParent(parent.transform, true);
@@ -78,8 +79,10 @@ namespace PSDUIImporter
 
         }
     }
+
+
     [ExecuteInEditMode]
-    public class PosLoader:MonoBehaviour
+    public class PosLoader : MonoBehaviour
     {
         public Vector2 worldPos;
         void Start()

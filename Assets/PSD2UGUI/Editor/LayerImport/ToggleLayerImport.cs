@@ -16,10 +16,8 @@ namespace PSDUIImporter
         }
         public void DrawLayer(Layer layer, GameObject parent)
         {
-            UnityEngine.UI.Toggle temp = Resources.Load(PSDImporterConst.PREFAB_PATH_TOGGLE, typeof(UnityEngine.UI.Toggle)) as UnityEngine.UI.Toggle;
-            UnityEngine.UI.Toggle toggle = GameObject.Instantiate(temp) as UnityEngine.UI.Toggle;
-            toggle.transform.SetParent(parent.transform, false);//.parent = parent.transform;
-
+            //UnityEngine.UI.Toggle temp = Resources.Load(PSDImporterConst.PREFAB_PATH_TOGGLE, typeof(UnityEngine.UI.Toggle)) as UnityEngine.UI.Toggle;
+            UnityEngine.UI.Toggle toggle = PSDImportUtility.InstantiateItem<UnityEngine.UI.Toggle>(PSDImporterConst.PREFAB_PATH_TOGGLE,layer.name);// GameObject.Instantiate(temp) as UnityEngine.UI.Toggle;
 
             if (layer.images != null)
             {
@@ -27,7 +25,7 @@ namespace PSDUIImporter
                 {
                     Image image = layer.images[imageIndex];
 
-                    if (image.name.Contains("background"))
+                    if (image.name.ToLower().Contains("background"))
                     {
                         if (image.imageSource == ImageSource.Common || image.imageSource == ImageSource.Custom)
                         {
@@ -38,9 +36,14 @@ namespace PSDUIImporter
                             RectTransform rectTransform = toggle.GetComponent<RectTransform>();
                             rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
                             rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
+
+                            rectTransform.SetParent(parent.transform, true);
+
+                            PosLoader posloader = toggle.gameObject.AddComponent<PosLoader>();
+                            posloader.worldPos = rectTransform.position;
                         }
                     }
-                    else if (image.name.Contains("mask"))
+                    else if (image.name.ToLower().Contains("mask"))
                     {
                         if (image.imageSource == ImageSource.Common || image.imageSource == ImageSource.Custom)
                         {
@@ -49,21 +52,9 @@ namespace PSDUIImporter
                             toggle.graphic.GetComponent<UnityEngine.UI.Image>().sprite = sprite;
                         }
                     }
-                    else if (image.name.Contains("title"))
+                    else
                     {
-                        //生成文字 
-                        UnityEngine.UI.Text text = toggle.GetComponentInChildren<UnityEngine.UI.Text>();
-                        Color color;
-                        if (UnityEngine.ColorUtility.TryParseHtmlString(("#" + image.arguments[0]), out color))
-                        {
-                            text.color = color;
-                        }
-
-                        int size;
-                        if (int.TryParse(image.arguments[2], out size))
-                        {
-                            text.fontSize = size;
-                        }
+                        ctrl.DrawImage(image, toggle.graphic.gameObject);
                     }
                 }
             }
