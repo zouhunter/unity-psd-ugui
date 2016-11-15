@@ -17,7 +17,11 @@ namespace PSDUIImporter
         public void DrawLayer(Layer layer, GameObject parent)
         {
             RectTransform obj = PSDImportUtility.InstantiateItem<RectTransform>(PSDImporterConst.PREFAB_PATH_EMPTY,layer.name,parent);
-            
+
+            RectTransform rectTransform = parent.GetComponent<RectTransform>();
+            obj.sizeDelta = rectTransform.sizeDelta;
+            obj.anchoredPosition = rectTransform.anchoredPosition;
+
             if (layer.images != null)
             {
                 for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)

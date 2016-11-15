@@ -131,7 +131,7 @@ function exportLayerSet(obj)
             else if (obj.layers[i].name.search("@InputField") >=0) {
                 exportInputField(obj.layers[i]);
             }
-            else if (obj.layers[i].name.search("@ScrollBar") >=0) {
+            else if (obj.layers[i].name.search("@Scrollbar") >=0) {
                 exportScrollBar(obj.layers[i]);
             }
             else

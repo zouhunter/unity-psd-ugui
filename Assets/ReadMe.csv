@@ -1,6 +1,6 @@
 Button,name@Button,,"Title,Normal,Pressed,Highted,Disabled",
 Toggle,name@Toggle,,Background、Title、Mask,
-Slider,name@Slider,参数L、R、T、B分别上从左到右，从右到左...,Background、Full、Handle,
+Slider,name@Slider,"参数L、R、T、B分别上从左到右，从右到左...,@Size控制区域",Background、Full、Handle,
 Text,name,,,用作其他组件的文字时（name将舍去）
 Image,@Common,9Slice的后缀名可以加载出slice类型的image,,
 DropDown,name@DropDown,,"Backgrond，ItemBackground,Checkmark,Arrow,Label（字）,ItemLable(字)",
