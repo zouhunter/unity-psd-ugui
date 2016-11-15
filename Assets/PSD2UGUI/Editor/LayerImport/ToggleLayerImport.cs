@@ -17,7 +17,7 @@ namespace PSDUIImporter
         public void DrawLayer(Layer layer, GameObject parent)
         {
             //UnityEngine.UI.Toggle temp = Resources.Load(PSDImporterConst.PREFAB_PATH_TOGGLE, typeof(UnityEngine.UI.Toggle)) as UnityEngine.UI.Toggle;
-            UnityEngine.UI.Toggle toggle = PSDImportUtility.InstantiateItem<UnityEngine.UI.Toggle>(PSDImporterConst.PREFAB_PATH_TOGGLE,layer.name);// GameObject.Instantiate(temp) as UnityEngine.UI.Toggle;
+            UnityEngine.UI.Toggle toggle = PSDImportUtility.InstantiateItem<UnityEngine.UI.Toggle>(PSDImporterConst.PREFAB_PATH_TOGGLE,layer.name,parent);// GameObject.Instantiate(temp) as UnityEngine.UI.Toggle;
 
             if (layer.images != null)
             {
@@ -37,10 +37,10 @@ namespace PSDUIImporter
                             rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
                             rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
 
-                            rectTransform.SetParent(parent.transform, true);
+                            //rectTransform.SetParent(parent.transform, true);
 
-                            PosLoader posloader = toggle.gameObject.AddComponent<PosLoader>();
-                            posloader.worldPos = rectTransform.position;
+                            //PosLoader posloader = toggle.gameObject.AddComponent<PosLoader>();
+                            //posloader.worldPos = rectTransform.position;
                         }
                     }
                     else if (image.name.ToLower().Contains("mask"))

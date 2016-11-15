@@ -30,6 +30,8 @@ namespace PSDUIImporter
         private ILayerImport emptyImport;
         private ILayerImport groupImport;
         private ILayerImport inputFiledImport;
+
+
         public PSDImportCtrl(string xmlFilePath)
         {
             InitDataAndPath(xmlFilePath);
@@ -37,6 +39,7 @@ namespace PSDUIImporter
             LoadLayers();
             MoveLayers();
             InitDrawers();
+            PSDImportUtility.ParentDic.Clear();
         }
 
         public void DrawLayer(Layer layer, GameObject parent)
@@ -165,15 +168,23 @@ namespace PSDUIImporter
             inputFiledImport = new InputFieldLayerImport(this);
         }
 
-        public void StartDrawUILayers()
+        public void BeginDrawUILayers()
         {
-            RectTransform obj = PSDImportUtility.InstantiateItem<RectTransform>(PSDImporterConst.PREFAB_PATH_EMPTY,PSDImportUtility.baseFilename);
+            RectTransform obj = PSDImportUtility.InstantiateItem<RectTransform>(PSDImporterConst.PREFAB_PATH_EMPTY,PSDImportUtility.baseFilename,PSDImportUtility.canvas.gameObject);
 
             for (int layerIndex = 0; layerIndex < psdUI.layers.Length; layerIndex++)
             {
                 DrawLayer(psdUI.layers[layerIndex], obj.gameObject);
             }
             AssetDatabase.Refresh();
+        }
+
+        public void BeginSetUIParents()
+        {
+            foreach (var item in PSDImportUtility.ParentDic)
+            {
+                item.Key.SetParent(item.Value);
+            }
         }
 
 
@@ -234,6 +245,7 @@ namespace PSDUIImporter
                 }
             }
         }
+
         //------------------------------------------------------------------
         //when it's a common psd, then move the asset to special folder
         //------------------------------------------------------------------

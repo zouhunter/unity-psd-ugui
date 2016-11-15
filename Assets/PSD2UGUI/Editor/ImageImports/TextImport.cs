@@ -11,7 +11,7 @@ namespace PSDUIImporter
     {
         public void DrawImage(Image image, GameObject parent)
         {
-            UnityEngine.UI.Text myText = PSDImportUtility.InstantiateItem<Text>(PSDImporterConst.PREFAB_PATH_TEXT, image.name);
+            UnityEngine.UI.Text myText = PSDImportUtility.InstantiateItem<Text>(PSDImporterConst.PREFAB_PATH_TEXT, image.name,parent);
             //                        myText.color = image.arguments[0];
             //                        myText.font = image.arguments[1];
             Debug.Log("Label Color : " + image.arguments[0]);
@@ -38,8 +38,6 @@ namespace PSDUIImporter
             RectTransform rectTransform = myText.GetComponent<RectTransform>();
             rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
             rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
-
-            rectTransform.SetParent(parent.transform,true);
         }
     }
 }

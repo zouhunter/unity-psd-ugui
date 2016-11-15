@@ -13,6 +13,7 @@ namespace PSDUIImporter
         public static string baseFilename;
         public static string baseDirectory;
         public static Canvas canvas;
+        public static readonly Dictionary<Transform, Transform> ParentDic = new Dictionary<Transform, Transform>();
 
         public static object DeserializeXml(string filePath, System.Type type)
         {
@@ -38,12 +39,13 @@ namespace PSDUIImporter
             return instance;
         }
 
-        public static T InstantiateItem<T>(string resourcePatn, string name) where T : UnityEngine.Object
+        public static T InstantiateItem<T>(string resourcePatn, string name,GameObject parent) where T : UnityEngine.Object
         {
             GameObject temp = Resources.Load(resourcePatn, typeof(GameObject)) as GameObject;
             GameObject item = GameObject.Instantiate(temp) as GameObject;
             item.name = name;
             item.transform.SetParent(canvas.transform, false);
+            ParentDic[item.transform] =  parent.transform;
             return item.GetComponent<T>();
         }
 

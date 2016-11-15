@@ -24,7 +24,8 @@ namespace PSDUIImporter
             if ((inputFile != null) && (inputFile != "") && (inputFile.StartsWith(Application.dataPath)))
             {
                 PSDImportCtrl import = new PSDUIImporter.PSDImportCtrl(inputFile);
-                import.StartDrawUILayers();
+                import.BeginDrawUILayers();
+                import.BeginSetUIParents();
             }
             GC.Collect();
         }

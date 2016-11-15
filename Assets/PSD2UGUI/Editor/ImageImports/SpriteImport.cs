@@ -16,7 +16,7 @@ namespace PSDUIImporter
         {
             if (image.imageSource == ImageSource.Common || image.imageSource == ImageSource.Custom)
             {
-                UnityEngine.UI.Image pic =  PSDImportUtility.InstantiateItem<UnityEngine.UI.Image>(PSDImporterConst.PREFAB_PATH_IMAGE, image.name);
+                UnityEngine.UI.Image pic =  PSDImportUtility.InstantiateItem<UnityEngine.UI.Image>(PSDImporterConst.PREFAB_PATH_IMAGE, image.name,parent);
 
                 string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
                 Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
@@ -31,11 +31,10 @@ namespace PSDUIImporter
                 RectTransform rectTransform = pic.GetComponent<RectTransform>();
                 rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
                 rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
-                rectTransform.SetParent(parent.transform);
             }
             else if (image.imageSource == ImageSource.Globle)
             {
-                UnityEngine.UI.Image pic = PSDImportUtility.InstantiateItem<UnityEngine.UI.Image>(PSDImporterConst.PREFAB_PATH_IMAGE, image.name);
+                UnityEngine.UI.Image pic = PSDImportUtility.InstantiateItem<UnityEngine.UI.Image>(PSDImporterConst.PREFAB_PATH_IMAGE, image.name,parent);
 
                 string commonImagePath = PSDImporterConst.Globle_BASE_FOLDER + image.name.Replace(".", "/") + PSDImporterConst.PNG_SUFFIX;
                 Debug.Log("==  CommonImagePath  ====" + commonImagePath);
@@ -52,7 +51,6 @@ namespace PSDUIImporter
                 RectTransform rectTransform = pic.GetComponent<RectTransform>();
                 rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
                 rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
-                rectTransform.SetParent(parent.transform);
             }
         }
     }

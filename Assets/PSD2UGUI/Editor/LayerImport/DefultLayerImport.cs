@@ -16,7 +16,7 @@ namespace PSDUIImporter
         }
         public void DrawLayer(Layer layer, GameObject parent)
         {
-            RectTransform obj = PSDImportUtility.InstantiateItem<RectTransform>(PSDImporterConst.PREFAB_PATH_EMPTY,layer.name);
+            RectTransform obj = PSDImportUtility.InstantiateItem<RectTransform>(PSDImporterConst.PREFAB_PATH_EMPTY,layer.name,parent);
             
             if (layer.images != null)
             {
@@ -28,7 +28,7 @@ namespace PSDUIImporter
             }
 
             ctrl.DrawLayers(layer.layers, obj.gameObject);
-            obj.transform.SetParent(parent.transform, false); //parent.transform;
+            //obj.transform.SetParent(parent.transform, false); //parent.transform;
         }
     }
 }

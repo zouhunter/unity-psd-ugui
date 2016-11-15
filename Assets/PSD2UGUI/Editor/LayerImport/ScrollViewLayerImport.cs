@@ -16,9 +16,10 @@ namespace PSDUIImporter
         }
         public void DrawLayer(Layer layer, GameObject parent)
         {
-            UnityEngine.UI.ScrollRect temp = Resources.Load(PSDImporterConst.PREFAB_PATH_SCROLLVIEW, typeof(UnityEngine.UI.ScrollRect)) as UnityEngine.UI.ScrollRect;
-            UnityEngine.UI.ScrollRect scrollRect = GameObject.Instantiate(temp) as UnityEngine.UI.ScrollRect;
-            scrollRect.transform.SetParent(parent.transform, false); //parent = parent.transform;
+            //UnityEngine.UI.ScrollRect temp = Resources.Load(PSDImporterConst.PREFAB_PATH_SCROLLVIEW, typeof(UnityEngine.UI.ScrollRect)) as UnityEngine.UI.ScrollRect;
+            UnityEngine.UI.ScrollRect scrollRect = PSDImportUtility.InstantiateItem<UnityEngine.UI.ScrollRect>(PSDImporterConst.PREFAB_PATH_SCROLLVIEW,layer.name,parent);
+            //scrollRect.transform.SetParent(parent.transform, false); //parent = parent.transform;
+
 
             RectTransform rectTransform = scrollRect.GetComponent<RectTransform>();
             rectTransform.sizeDelta = new Vector2(layer.size.width, layer.size.height);

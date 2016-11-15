@@ -18,7 +18,7 @@ namespace PSDUIImporter
         public void DrawLayer(Layer layer, GameObject parent)
         {
             //UnityEngine.UI.Image temp = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof(UnityEngine.UI.Image)) as UnityEngine.UI.Image;
-            UnityEngine.UI.Image panel = PSDImportUtility.InstantiateItem<UnityEngine.UI.Image>(PSDImporterConst.PREFAB_PATH_IMAGE,layer.name);//GameObject.Instantiate(temp) as UnityEngine.UI.Image;
+            UnityEngine.UI.Image panel = PSDImportUtility.InstantiateItem<UnityEngine.UI.Image>(PSDImporterConst.PREFAB_PATH_IMAGE,layer.name,parent);//GameObject.Instantiate(temp) as UnityEngine.UI.Image;
 
             panel.name = layer.name;
 
@@ -38,7 +38,7 @@ namespace PSDUIImporter
                     rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
                     rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
 
-                    panel.transform.SetParent(parent.transform, false); //parent = parent.transform;
+                    //panel.transform.SetParent(parent.transform, false); //parent = parent.transform;
                 }
                 else
                 {
