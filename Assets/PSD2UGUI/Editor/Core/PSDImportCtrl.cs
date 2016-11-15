@@ -167,12 +167,11 @@ namespace PSDUIImporter
 
         public void StartDrawUILayers()
         {
-            GameObject obj = PSDImportUtility.CreateEmptyParent(PSDImportUtility.baseFilename);
-            obj.transform.SetParent(PSDImportUtility.canvas.transform, false);
+            RectTransform obj = PSDImportUtility.InstantiateItem<RectTransform>(PSDImporterConst.PREFAB_PATH_EMPTY,PSDImportUtility.baseFilename);
 
             for (int layerIndex = 0; layerIndex < psdUI.layers.Length; layerIndex++)
             {
-                DrawLayer(psdUI.layers[layerIndex], obj);
+                DrawLayer(psdUI.layers[layerIndex], obj.gameObject);
             }
             AssetDatabase.Refresh();
         }

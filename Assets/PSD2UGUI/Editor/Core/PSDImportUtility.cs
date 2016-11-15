@@ -38,15 +38,7 @@ namespace PSDUIImporter
             return instance;
         }
 
-        public static GameObject CreateEmptyParent(string parentName)
-        {
-            GameObject pfb = Resources.Load<GameObject>(PSDImporterConst.PREFAB_PATH_EMPTY);
-            GameObject go = GameObject.Instantiate<GameObject>(pfb);
-            go.name = parentName;
-            return go;
-        }
-
-        public static T InstantiateItem<T>(string resourcePatn, string name) where T : UnityEngine.MonoBehaviour
+        public static T InstantiateItem<T>(string resourcePatn, string name) where T : UnityEngine.Object
         {
             GameObject temp = Resources.Load(resourcePatn, typeof(GameObject)) as GameObject;
             GameObject item = GameObject.Instantiate(temp) as GameObject;

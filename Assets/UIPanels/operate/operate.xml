@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><PSDUI><psdSize><width>1600</width><height>900</height></psdSize><layers><Layer>
+﻿<?xml version="1.0" encoding="utf-8"?><PSDUI><psdSize><width>1600</width><height>900</height></psdSize><layers><Layer>
 <type>Panel</type>
 <name>Panel01</name>
 <layers><Layer>
@@ -6,7 +6,7 @@
 <name>grp01</name>
 <layers><Layer>
 <type>Button</type>
-<name>����</name>
+<name>重置</name>
 <images>
 <Image>
 <name>Normal_1</name>
@@ -22,7 +22,7 @@
 </images>
 </Layer><Layer>
 <type>Button</type>
-<name>��һ��</name>
+<name>上一步</name>
 <images>
 <Image>
 <name>Normal_3</name>
@@ -38,7 +38,7 @@
 </images>
 </Layer><Layer>
 <type>Button</type>
-<name>��һ��</name>
+<name>下一步</name>
 <images>
 <Image>
 <name>Normal_5</name>
@@ -78,7 +78,7 @@
 </images>
 </Layer><Layer>
 <type>Button</type>
-<name>���</name>
+<name>启动</name>
 <images>
 <Image>
 <name>Normal_10</name>
@@ -94,7 +94,7 @@
 </images>
 </Layer><Layer>
 <type>Button</type>
-<name>����</name>
+<name>返回</name>
 <images>
 <Image>
 <name>Normal_12</name>
@@ -110,7 +110,7 @@
 </images>
 </Layer><Layer>
 <type>Toggle</type>
-<name>��ʾʵ������</name>
+<name>显示实验流程</name>
 <images>
 <Image>
 <name>Background_14</name>
@@ -125,7 +125,7 @@
 <Image>
 <imageType>Label</imageType>
 <name>Title_16</name>
-<position><x>-130.5</x><y>-401.5</y></position><size><width>91</width><height>15</height></size><arguments><string>FFFFFF</string><string>MicrosoftYaHei</string><string>14</string><string>��ʾʵ������</string></arguments></Image>
+<position><x>-130.5</x><y>-401.5</y></position><size><width>91</width><height>15</height></size><arguments><string>FFFFFF</string><string>MicrosoftYaHei</string><string>14</string><string>显示实验流程</string></arguments></Image>
 
 </images>
 </Layer></layers><images>
@@ -137,7 +137,7 @@
 <Image>
 <imageType>Label</imageType>
 <name>Title_18</name>
-<position><x>473.5</x><y>-401</y></position><size><width>531</width><height>28</height></size><arguments><string>FFFFFF</string><string>MicrosoftYaHei</string><string>28</string><string>���ѧԺ���ֽ������������������ʵ��</string></arguments></Image>
+<position><x>473.5</x><y>-401</y></position><size><width>531</width><height>28</height></size><arguments><string>FFFFFF</string><string>MicrosoftYaHei</string><string>28</string><string>滇池学院·钢筋混凝土梁正截面受弯实验</string></arguments></Image>
 
 </images>
 </Layer></layers></PSDUI>

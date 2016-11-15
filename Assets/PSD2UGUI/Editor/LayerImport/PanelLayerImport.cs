@@ -37,6 +37,7 @@ namespace PSDUIImporter
                     RectTransform rectTransform = panel.GetComponent<RectTransform>();
                     rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
                     rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
+
                     panel.transform.SetParent(parent.transform, false); //parent = parent.transform;
                 }
                 else

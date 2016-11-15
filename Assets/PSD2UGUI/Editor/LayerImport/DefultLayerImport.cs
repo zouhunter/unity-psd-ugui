@@ -16,19 +16,19 @@ namespace PSDUIImporter
         }
         public void DrawLayer(Layer layer, GameObject parent)
         {
-            GameObject obj = PSDImportUtility.CreateEmptyParent(layer.name);
-            obj.transform.SetParent(parent.transform, false); //parent.transform;
-
+            RectTransform obj = PSDImportUtility.InstantiateItem<RectTransform>(PSDImporterConst.PREFAB_PATH_EMPTY,layer.name);
+            
             if (layer.images != null)
             {
                 for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
                 {
                     Image image = layer.images[imageIndex];
-                    ctrl.DrawImage(image, obj);
+                    ctrl.DrawImage(image, obj.gameObject);
                 }
             }
 
-            ctrl.DrawLayers(layer.layers, obj);
+            ctrl.DrawLayers(layer.layers, obj.gameObject);
+            obj.transform.SetParent(parent.transform, false); //parent.transform;
         }
     }
 }

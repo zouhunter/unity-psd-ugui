@@ -16,14 +16,17 @@ namespace PSDUIImporter
         }
         public void DrawLayer(Layer layer, GameObject parent)
         {
-            UnityEngine.UI.Slider temp = Resources.Load(PSDImporterConst.PREFAB_PATH_SLIDER, typeof(UnityEngine.UI.Slider)) as UnityEngine.UI.Slider;
-            UnityEngine.UI.Slider slider = GameObject.Instantiate(temp) as UnityEngine.UI.Slider;
-            slider.transform.SetParent(parent.transform, false); //parent = parent.transform;
+            //UnityEngine.UI.Slider temp = Resources.Load(PSDImporterConst.PREFAB_PATH_SLIDER, typeof(UnityEngine.UI.Slider)) as UnityEngine.UI.Slider;
+            UnityEngine.UI.Slider slider = PSDImportUtility.InstantiateItem<UnityEngine.UI.Slider>(PSDImporterConst.PREFAB_PATH_SLIDER,layer.name); //GameObject.Instantiate(temp) as UnityEngine.UI.Slider;
 
             RectTransform rectTransform = slider.GetComponent<RectTransform>();
             rectTransform.sizeDelta = new Vector2(layer.size.width, layer.size.height);
             rectTransform.anchoredPosition = new Vector2(layer.position.x, layer.position.y);
 
+            slider.transform.SetParent(parent.transform, true); //parent = parent.transform;
+
+            PosLoader posloader = slider.gameObject.AddComponent<PosLoader>();
+            posloader.worldPos = rectTransform.position;
 
             string type = layer.arguments[0].ToUpper();
             switch (type)
