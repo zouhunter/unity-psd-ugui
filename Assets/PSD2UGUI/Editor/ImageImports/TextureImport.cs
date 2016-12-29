@@ -9,7 +9,7 @@ namespace PSDUIImporter
 {
     public class TextureImport : IImageImport
     {
-        public void DrawImage(Image image, GameObject parent)
+        public void DrawImage(PsImage image, GameObject parent)
         {
             UnityEngine.UI.Image pic = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof(UnityEngine.UI.Image)) as UnityEngine.UI.Image;
             pic.sprite = null;

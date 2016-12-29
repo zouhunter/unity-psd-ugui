@@ -93,7 +93,7 @@ namespace PSDUIImporter
             }
         }
 
-        public void DrawImage(Image image, GameObject parent)
+        public void DrawImage(PsImage image, GameObject parent)
         {
             switch (image.imageType)
             {
@@ -212,7 +212,7 @@ namespace PSDUIImporter
                 for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
                 {
                     // we need to fixup all images that were exported from PS
-                    Image image = layer.images[imageIndex];
+                    PsImage image = layer.images[imageIndex];
 
                     if (image.imageType != ImageType.Label)
                     {
@@ -271,7 +271,7 @@ namespace PSDUIImporter
                 for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
                 {
                     // we need to fixup all images that were exported from PS
-                    Image image = layer.images[imageIndex];
+                    PsImage image = layer.images[imageIndex];
 
                     string texturePathName = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
                     string targetPathName = newPath + image.name + PSDImporterConst.PNG_SUFFIX;

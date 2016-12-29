@@ -18,10 +18,7 @@ namespace PSDUIImporter
         }
         public void DrawLayer(Layer layer, GameObject parent)
         {
-            //UnityEngine.UI.Slider temp = Resources.Load(PSDImporterConst.PREFAB_PATH_SLIDER, typeof(UnityEngine.UI.Slider)) as UnityEngine.UI.Slider;
             UnityEngine.UI.Slider slider = PSDImportUtility.InstantiateItem<UnityEngine.UI.Slider>(PSDImporterConst.PREFAB_PATH_SLIDER,layer.name,parent); //GameObject.Instantiate(temp) as UnityEngine.UI.Slider;
-
-         
 
             string type = layer.arguments[0].ToUpper();
             switch (type)
@@ -44,7 +41,7 @@ namespace PSDUIImporter
 
             for (int i = 0; i < layer.images.Length; i++)
             {
-                Image image = layer.images[i];
+                PsImage image = layer.images[i];
                 string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX; Debug.Log("==  CommonImagePath  ====" + assetPath);
                 Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
 

@@ -12,7 +12,7 @@ namespace PSDUIImporter
 {
     public class SpriteImport : IImageImport
     {
-        public void DrawImage(Image image, GameObject parent)
+        public void DrawImage(PsImage image, GameObject parent)
         {
             if (image.imageSource == ImageSource.Common || image.imageSource == ImageSource.Custom)
             {

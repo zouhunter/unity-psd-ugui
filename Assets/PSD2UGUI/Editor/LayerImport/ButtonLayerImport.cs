@@ -24,7 +24,7 @@ namespace PSDUIImporter
             {
                 for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
                 {
-                    Image image = layer.images[imageIndex];
+                    PsImage image = layer.images[imageIndex];
                     string lowerName = image.name.ToLower();
                     if (image.imageType == ImageType.Image && image.name.ToLower().Contains("normal") || image.name.ToLower().Contains("pressed") || image.name.ToLower().Contains("disabled") || image.name.ToLower().Contains("highlighted"))
                     {

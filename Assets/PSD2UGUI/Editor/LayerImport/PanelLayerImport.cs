@@ -26,7 +26,7 @@ namespace PSDUIImporter
 
             for (int i = 0; i < layer.images.Length; i++)
             {
-                Image image = layer.images[i];
+                PsImage image = layer.images[i];
 
                 if (image.name.ToLower().Contains("background"))
                 {

@@ -52,7 +52,7 @@ namespace PSDUIImporter
 
             for (int i = 0; i < layer.images.Length; i++)
             {
-                Image image = layer.images[i];
+                PsImage image = layer.images[i];
                 string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX; Debug.Log("==  CommonImagePath  ====" + assetPath);
                 Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
 
