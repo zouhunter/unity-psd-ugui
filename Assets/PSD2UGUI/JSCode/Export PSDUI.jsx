@@ -401,29 +401,6 @@ function exportSlider(obj)
     sceneData += "<string>" + params[1] + "</string>"; //滑动方向
     sceneData += "</arguments>";
 
-    var recSize;
-    if (obj.layers[obj.layers.length - 1].name.search("@Size") < 0)
-    {
-        alert("Bottom layer's name doesn't contain '@Size'");
-    }
-    else
-    {
-        obj.layers[obj.layers.length - 1].visible = true;
-
-        recSize = getLayerRec(duppedPsd.duplicate());
-
-        sceneData += "<position>";
-        sceneData += "<x>" + recSize.x + "</x>";
-        sceneData += "<y>" + recSize.y + "</y>";
-        sceneData += "</position>";
-
-        sceneData += "<size>";
-        sceneData += "<width>" + recSize.width + "</width>";
-        sceneData += "<height>" + recSize.height + "</height>";
-        sceneData += "</size>";
-
-        obj.layers[obj.layers.length - 1].visible = false;
-    }
 
     sceneData += "<images>\n";
 

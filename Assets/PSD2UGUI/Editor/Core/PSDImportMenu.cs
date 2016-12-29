@@ -20,7 +20,14 @@ namespace PSDUIImporter
         [MenuItem("Assets/Create/PSDImport ...")]
         static public void ImportHogSceneMenuItem()
         {
-            string inputFile = EditorUtility.OpenFilePanel("Choose PSDUI File to Import", Application.dataPath, "xml");
+            string startPath = null;
+            if (Selection.activeObject != null)
+            {
+                startPath = AssetDatabase.GetAssetPath(Selection.activeObject);
+                startPath = Path.GetDirectoryName(startPath);
+            }
+
+            string inputFile = EditorUtility.OpenFilePanel("Choose PSDUI File to Import", startPath ?? Application.dataPath, "xml");
             if ((inputFile != null) && (inputFile != "") && (inputFile.StartsWith(Application.dataPath)))
             {
                 PSDImportCtrl import = new PSDUIImporter.PSDImportCtrl(inputFile);

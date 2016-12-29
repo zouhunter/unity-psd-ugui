@@ -16,7 +16,7 @@ namespace PSDUIImporter
         }
         public void DrawLayer(Layer layer, GameObject parent)
         {
-            throw new NotImplementedException();
+            Debug.Log(ctrl);
         }
     }
 }

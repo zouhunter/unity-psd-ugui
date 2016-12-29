@@ -132,7 +132,7 @@ namespace PSDUIImporter
 
         private void InitCanvas()
         {
-            EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects);//  EditorApplication.NewScene ();
+            //EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects);//  EditorApplication.NewScene ();
             Canvas temp = Resources.Load(PSDImporterConst.PREFAB_PATH_CANVAS, typeof(Canvas)) as Canvas;
             PSDImportUtility.canvas = GameObject.Instantiate(temp) as Canvas;
             PSDImportUtility.canvas.renderMode = RenderMode.ScreenSpaceOverlay;
@@ -225,7 +225,6 @@ namespace PSDUIImporter
                         textureImporter.spriteImportMode = SpriteImportMode.Single;
                         textureImporter.spritePackingTag = PSDImportUtility.baseFilename;
                         textureImporter.maxTextureSize = 2048;
-
                         if (image.imageType != ImageType.SliceImage)  //If Psd's name contains "Common", then it's Common type;
                         {
                             textureImporter.spriteBorder = new Vector4(3, 3, 3, 3);   // Set Default Slice type  UnityEngine.UI.Image's border to Vector4 (3, 3, 3, 3)
@@ -274,8 +273,8 @@ namespace PSDUIImporter
                     // we need to fixup all images that were exported from PS
                     Image image = layer.images[imageIndex];
 
-                    string texturePathName = PSDImportUtility.baseDirectory + layer.images[imageIndex].name + PSDImporterConst.PNG_SUFFIX;
-                    string targetPathName = newPath + layer.images[imageIndex].name + PSDImporterConst.PNG_SUFFIX;
+                    string texturePathName = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
+                    string targetPathName = newPath + image.name + PSDImporterConst.PNG_SUFFIX;
 
                     Debug.Log(texturePathName);
                     Debug.Log(targetPathName);

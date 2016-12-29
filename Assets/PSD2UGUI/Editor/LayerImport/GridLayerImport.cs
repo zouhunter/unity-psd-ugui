@@ -38,6 +38,7 @@ namespace PSDUIImporter
                 UnityEngine.UI.Image myImage = GameObject.Instantiate(pic) as UnityEngine.UI.Image;
                 myImage.transform.SetParent(rectTransform, false); //parent = rectTransform;
             }
+            Debug.Log(ctrl);
         }
     }
 }

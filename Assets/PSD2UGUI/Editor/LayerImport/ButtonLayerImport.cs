@@ -33,7 +33,7 @@ namespace PSDUIImporter
                             string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
                             Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
 
-                            if (image.name.ToLower().Contains("normal"))
+                            if (lowerName.Contains("normal"))
                             {
                                 button.image.sprite = sprite;
 
@@ -46,21 +46,21 @@ namespace PSDUIImporter
                                 //PosLoader posloader = button.gameObject.AddComponent<PosLoader>();
                                 //posloader.worldPos = rectTransform.position;
                             }
-                            else if (image.name.ToLower().Contains("pressed"))
+                            else if (lowerName.Contains("pressed"))
                             {
                                 button.transition = UnityEngine.UI.Selectable.Transition.SpriteSwap;
                                 UnityEngine.UI.SpriteState state = button.spriteState;
                                 state.pressedSprite = sprite;
                                 button.spriteState = state;
                             }
-                            else if (image.name.ToLower().Contains("disabled"))
+                            else if (lowerName.Contains("disabled"))
                             {
                                 button.transition = UnityEngine.UI.Selectable.Transition.SpriteSwap;
                                 UnityEngine.UI.SpriteState state = button.spriteState;
                                 state.disabledSprite = sprite;
                                 button.spriteState = state;
                             }
-                            else if (image.name.ToLower().Contains("highlighted"))
+                            else if (lowerName.Contains("highlighted"))
                             {
                                 button.transition = UnityEngine.UI.Selectable.Transition.SpriteSwap;
                                 UnityEngine.UI.SpriteState state = button.spriteState;

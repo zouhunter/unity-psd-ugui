@@ -14,6 +14,9 @@ namespace PSDUIImporter
         public ScrollBarLayerImport(PSDImportCtrl ctrl)
         {
             this.ctrl = ctrl;
+            Debug.Log(this.ctrl);
+
+
         }
         public void DrawLayer(Layer layer, GameObject parent)
         {

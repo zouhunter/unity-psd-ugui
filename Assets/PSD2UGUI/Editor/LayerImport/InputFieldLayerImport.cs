@@ -11,6 +11,7 @@ namespace PSDUIImporter
         public InputFieldLayerImport(PSDImportCtrl pSDImportCtrl)
         {
             this.pSDImportCtrl = pSDImportCtrl;
+            Debug.Log(this.pSDImportCtrl);
         }
 
         public void DrawLayer(Layer layer, GameObject parent)
