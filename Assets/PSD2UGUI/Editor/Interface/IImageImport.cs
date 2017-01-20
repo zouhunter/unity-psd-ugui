@@ -10,6 +10,6 @@ namespace PSDUIImporter
 {
     public interface IImageImport
     {
-        void DrawImage(PsImage image,GameObject parent);
+        void DrawImage(Image image,GameObject parent);
     }
 }

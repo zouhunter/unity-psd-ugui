@@ -9,25 +9,32 @@ namespace PSDUIImporter
 {
     public class SliceSpriteImport : IImageImport
     {
-        public void DrawImage(PsImage image, GameObject parent)
+        public void DrawImage(Image image, GameObject parent)
         {
-            UnityEngine.UI.Image pic = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof(UnityEngine.UI.Image)) as UnityEngine.UI.Image;
+            UnityEngine.UI.Image pic = PSDImportUtility.InstantiateItem<UnityEngine.UI.Image>(PSDImporterConst.PREFAB_PATH_IMAGE, image.name, parent);
+            string assetPath = "";
 
-            string commonImagePath = PSDImporterConst.Globle_BASE_FOLDER + image.name.Replace(".", "/") + PSDImporterConst.PNG_SUFFIX;
-            Debug.Log("==  CommonImagePath  ====" + commonImagePath);
-            Sprite sprite = AssetDatabase.LoadAssetAtPath(commonImagePath, typeof(Sprite)) as Sprite;
-            pic.sprite = sprite;
-
-            UnityEngine.UI.Image myImage = GameObject.Instantiate(pic) as UnityEngine.UI.Image;
-            myImage.name = image.name;
-            myImage.transform.SetParent(parent.transform, false);//.parent = obj.transform;
-
-            if (image.imageType == ImageType.SliceImage)
+            if (image.imageSource == ImageSource.Common || image.imageSource == ImageSource.Custom)
             {
-                myImage.type = UnityEngine.UI.Image.Type.Sliced;
+                assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
+
+            }
+            else if (image.imageSource == ImageSource.Globle)
+            {
+
             }
 
-            RectTransform rectTransform = myImage.GetComponent<RectTransform>();
+            Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
+
+            if (sprite == null)
+            {
+                Debug.Log("loading asset at path: " + PSDImportUtility.baseDirectory + image.name);
+            }
+
+            pic.sprite = sprite;
+            pic.type = UnityEngine.UI.Image.Type.Sliced;
+
+            RectTransform rectTransform = pic.GetComponent<RectTransform>();
             rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
             rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
         }

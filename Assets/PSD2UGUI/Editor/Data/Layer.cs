@@ -12,7 +12,7 @@ namespace PSDUIImporter
         public LayerType type;
         public Layer[] layers;
         public string[] arguments;
-        public PsImage[] images;
+        public Image[] images;
         public Size size;
         public Position position;
     }

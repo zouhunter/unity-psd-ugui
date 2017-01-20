@@ -93,7 +93,7 @@ namespace PSDUIImporter
             }
         }
 
-        public void DrawImage(PsImage image, GameObject parent)
+        public void DrawImage(Image image, GameObject parent)
         {
             switch (image.imageType)
             {
@@ -212,24 +212,28 @@ namespace PSDUIImporter
                 for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
                 {
                     // we need to fixup all images that were exported from PS
-                    PsImage image = layer.images[imageIndex];
-
+                    Image image = layer.images[imageIndex];
                     if (image.imageType != ImageType.Label)
                     {
                         string texturePathName = PSDImportUtility.baseDirectory + layer.images[imageIndex].name + PSDImporterConst.PNG_SUFFIX;
-
-                        Debug.Log(texturePathName);
-                        // modify the importer settings
                         TextureImporter textureImporter = AssetImporter.GetAtPath(texturePathName) as TextureImporter;
-                        textureImporter.textureType = TextureImporterType.Sprite;
-                        textureImporter.spriteImportMode = SpriteImportMode.Single;
-                        textureImporter.spritePackingTag = PSDImportUtility.baseFilename;
-                        textureImporter.maxTextureSize = 2048;
-                        if (image.imageType != ImageType.SliceImage)  //If Psd's name contains "Common", then it's Common type;
+                        
+                        if (image.imageType == ImageType.Texture)
                         {
-                            textureImporter.spriteBorder = new Vector4(3, 3, 3, 3);   // Set Default Slice type  UnityEngine.UI.Image's border to Vector4 (3, 3, 3, 3)
+                            textureImporter.textureType = TextureImporterType.Image;
                         }
+                        else
+                        {
+                            // modify the importer settings
+                            textureImporter.textureType = TextureImporterType.Sprite;
+                            textureImporter.spriteImportMode = SpriteImportMode.Single;
+                            textureImporter.spritePackingTag = PSDImportUtility.baseFilename;
 
+                            if (image.imageType == ImageType.SliceImage) {
+                                textureImporter.spriteBorder = new Vector4(3, 3, 3, 3);   // Set Default Slice type  UnityEngine.UI.Image's border to Vector4 (3, 3, 3, 3)
+                            }
+                        }
+                        textureImporter.maxTextureSize = 2048;
                         AssetDatabase.WriteImportSettingsIfDirty(texturePathName);
                         AssetDatabase.ImportAsset(texturePathName);
                     }
@@ -271,7 +275,7 @@ namespace PSDUIImporter
                 for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
                 {
                     // we need to fixup all images that were exported from PS
-                    PsImage image = layer.images[imageIndex];
+                    Image image = layer.images[imageIndex];
 
                     string texturePathName = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
                     string targetPathName = newPath + image.name + PSDImporterConst.PNG_SUFFIX;

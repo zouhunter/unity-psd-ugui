@@ -9,7 +9,7 @@ namespace PSDUIImporter
 {
     public class TextImport : IImageImport
     {
-        public void DrawImage(PsImage image, GameObject parent)
+        public void DrawImage(Image image, GameObject parent)
         {
             UnityEngine.UI.Text myText = PSDImportUtility.InstantiateItem<Text>(PSDImporterConst.PREFAB_PATH_TEXT, image.name,parent);
             //                        myText.color = image.arguments[0];

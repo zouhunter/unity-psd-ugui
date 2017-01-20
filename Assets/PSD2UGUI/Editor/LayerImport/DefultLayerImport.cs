@@ -26,7 +26,7 @@ namespace PSDUIImporter
             {
                 for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
                 {
-                    PsImage image = layer.images[imageIndex];
+                    Image image = layer.images[imageIndex];
                     ctrl.DrawImage(image, obj.gameObject);
                 }
             }

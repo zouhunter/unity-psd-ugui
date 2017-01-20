@@ -2,7 +2,7 @@
 using UnityEngine;
 namespace PSDUIImporter
 {
-    public class PsImage
+    public class Image
     {
         public ImageType imageType;
         public ImageSource imageSource;

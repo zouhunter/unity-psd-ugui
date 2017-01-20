@@ -72,12 +72,12 @@ function main(){
     // export layers
     sceneData = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
     sceneData += "<PSDUI>";
-    
+
     sceneData += "<psdSize>";
     sceneData += "<width>" + duppedPsd.width.value + "</width>";
     sceneData += "<height>" + duppedPsd.height.value+ "</height>";
     sceneData += "</psdSize>";
-    
+
     exportLayerSet(app.activeDocument);
 
     sceneData += "</PSDUI>";
@@ -198,34 +198,10 @@ function exportScrollView(obj)
         obj.layers[obj.layers.length - 1].visible = false;
     }
 
-    //var totalContentCount = obj.layers.length - 1;  
-    
-    //obj.layers[0].visible = true;
-    //var rec0 = getLayerRec(duppedPsd.duplicate());
-    //obj.layers[0].visible = false;
-    
-    //var renderHorizontalGap = params[2] > 1 ? (recSize.width - rec0.width * params[2])/(params[2] - 1) : 0;
-    //var renderVerticalGap = params[1] > 1 ? (recSize.height - rec0.height * params[1])/(params[1] - 1) : 0;
-
     sceneData += "<arguments>";
-    //sceneData += "<string>" + params[1] + "</string>";   //行数
-    //sceneData += "<string>" + params[2] + "</string>";   //列数
-    //sceneData += "<string>" + rec0.width + "</string>";   //render width
-    //sceneData += "<string>" + rec0.height + "</string>";   //render height
-    //sceneData += "<string>" + renderHorizontalGap + "</string>"; //水平间距
-    //sceneData += "<string>" + renderVerticalGap + "</string>"; //垂直间距
     sceneData += "<string>" + params[1] + "</string>";     //滑动方向
     sceneData += "</arguments>";
 
-
-    //~     sceneData += "<images>\n";
-    //~     
-    //~     for(var i = obj.layers.length-1; 0<=i; i--)
-    //~     {
-    //~         exportArtLayer(obj.layers[i]);
-    //~     }
-    //~     
-    //~     sceneData += "\n</images>";
     sceneData += "</Layer>";
 }
 
@@ -265,12 +241,12 @@ function exportGrid(obj)
         obj.layers[obj.layers.length - 1].visible = false;
     }
 
-    var totalContentCount = obj.layers.length - 1;  
-    
+    var totalContentCount = obj.layers.length - 1;
+
     obj.layers[0].visible = true;
     var rec0 = getLayerRec(duppedPsd.duplicate());
     obj.layers[0].visible = false;
-    
+
     var renderHorizontalGap = params[2] > 1 ? (recSize.width - rec0.width * params[2])/(params[2] - 1) : 0;
     var renderVerticalGap = params[1] > 1 ? (recSize.height - rec0.height * params[1])/(params[1] - 1) : 0;
 
@@ -282,14 +258,6 @@ function exportGrid(obj)
     sceneData += "<string>" + renderHorizontalGap + "</string>"; //水平间距
     sceneData += "<string>" + renderVerticalGap + "</string>"; //垂直间距
     sceneData += "</arguments>";
-
-    //~     sceneData += "<images>\n";
-    //~     
-    //~     for(var i = obj.layers.length-1; 0<=i; i--)
-    //~     {      
-    //~         exportArtLayer(obj.layers[i]);
-    //~     }
-    //~     sceneData += "\n</images>\n</Layer>\n";
 
     sceneData += "</Layer>";
 }
@@ -396,7 +364,7 @@ function exportSlider(obj)
     {
         alert(obj.name + "-------Layer's name is not 1 argument------------");
     }
-    
+
     sceneData += "<arguments>";
     sceneData += "<string>" + params[1] + "</string>"; //滑动方向
     sceneData += "</arguments>";
@@ -414,7 +382,7 @@ function exportSlider(obj)
 
 function exportScrollBar(obj)
 {
-    var itemName = obj.name.substring(0, obj.name.search("@"));
+    var itemName =  obj.name.substring(0, obj.name.search("@"));
     sceneData += ("<Layer>\n<type>ScrollBar</type>\n<name>" + itemName + "</name>\n");
 
     var params = obj.name.split(":");
@@ -423,7 +391,7 @@ function exportScrollBar(obj)
     {
         alert(obj.name + "-------Layer's name is not 1 argument------------");
     }
-    
+
     sceneData += "<arguments>";
     sceneData += "<string>" + params[1] + "</string>"; //滑动方向
     sceneData += "<string>" + params[2] + "</string>"; //比例
@@ -463,10 +431,6 @@ function exportArtLayer(obj)
     {
         exportLabel(obj);
     }
-    else if (obj.name.search("Texture") >= 0)
-    {
-        exportTexture(obj);
-    }
     else
     {
         exportImage(obj);
@@ -490,45 +454,56 @@ function exportLabel(obj)
     sceneData += "</arguments>";
 }
 
-function exportTexture(obj)
-{
-    var validFileName = makeValidFileName(obj.name);
-    sceneData += "<imageType>" + "Texture" + "</imageType>\n";
-    sceneData += "<name>" + validFileName + "</name>\n";
-    obj.visible = true;
-    saveScenePng(duppedPsd.duplicate(), validFileName, false);
-    obj.visible = false;
-}
-
 function exportImage(obj)
 {
-    var validFileName = makeValidFileName(obj.name);
+    var validFileName = obj.name;
+    if (obj.name.match("#")) {
+        validFileName = obj.name.substring (0,obj.name.lastIndexOf ("#"));//截取#之后的字符串作为图片的名称。
+        if (obj.name.match("#Custom")) //不是公用，则自动为图片增加后缀
+        {
+            validFileName += "_" + uuid++;
+        }
+    }
+    validFileName = makeValidFileName(validFileName);
     sceneData += "<name>" + validFileName + "</name>\n";
 
-    if (obj.name.search("Common") >= 0)
+    obj.visible = true;
+    saveScenePng(duppedPsd.duplicate(), validFileName, true);
+    obj.visible = false;
+
+    var params = obj.name.split(":");
+
+    if (params.length >= 2)
+    {
+        if (params.length > 2) {
+            alert(obj.name + "-------Layer's name only 1 argument------------");
+        }
+        if (params[1] == "T") {
+            sceneData += "<imageType>" + "Texture" + "</imageType>\n";
+        }
+        else if(params[1] == "S")
+        {
+            sceneData += "<imageType>" + "SliceImage" + "</imageType>\n";
+        }
+        else{
+            sceneData += "<imageType>" + "Image" + "</imageType>\n";
+        }
+    }
+    else{
+        sceneData += "<imageType>" + "Image" + "</imageType>\n";
+    }
+
+    if (obj.name.search("#Common") >= 0)
     {
         sceneData += "<imageSource>" + "Common" + "</imageSource>\n";
-        obj.visible = true;
-        saveScenePng(duppedPsd.duplicate(), validFileName, true);
-        obj.visible = false;
     }
-    else
+    else if(obj.name.search("#Custom") ||obj.name.search("#") <= 0)
     {
         sceneData += "<imageSource>" + "Custom" + "</imageSource>\n";
-
-        obj.visible = true;
-        saveScenePng(duppedPsd.duplicate(), validFileName, true);
-        obj.visible = false;
     }
-
-    if (obj.name.search("9Slice") > 0)
+    else if(obj.name.search("#Global"))
     {
-        sceneData += "<imageType>" + "SliceImage" + "</imageType>\n";
-    }
-
-    else
-    {
-        sceneData += "<imageType>" + "Image" + "</imageType>\n";
+        sceneData += "<imageSource>" + "Global" + "</imageSource>\n";
     }
 }
 
@@ -617,8 +592,8 @@ function saveScenePng(psd, fileName, writeToDisk)
     width = psd.width.value;
 
 
-     if (writeToDisk)
-     {
+    if (writeToDisk)
+    {
         // save the image
         var pngFile = new File(destinationFolder + "/" + fileName + ".png");
         var pngSaveOptions = new PNGSaveOptions();
@@ -649,16 +624,6 @@ function makeValidFileName(fileName)
     var validName = fileName.replace(/^\s+|\s+$/gm, ''); // trim spaces
     validName = validName.replace(/[\\\*\/\?:"\|<>]/g, ''); // remove characters not allowed in a file name
     validName = validName.replace(/[ ]/g, '_'); // replace spaces with underscores, since some programs still may have troubles with them
-    
-    if (validName.match("Common"))
-    {
-        validName = validName.substring (0,validName.lastIndexOf ("@"));  //截取@之后的字符串作为图片的名称。
-    }
-    else if(!sourcePsdName.match("Common"))    // 判断是否为公用的PSD素材文件，如果不是，则自动为图片增加后缀，防止重名。 公用psd文件的图片层不允许重名。
-    {
-        validName += "_" + uuid++;
-    }
-    
-     $.writeln(validName);
+    $.writeln(validName);
     return validName;
 }
