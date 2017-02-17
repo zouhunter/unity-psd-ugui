@@ -464,6 +464,9 @@ function exportImage(obj)
             validFileName += "_" + uuid++;
         }
     }
+    else{
+        validFileName += "_" + uuid++;
+    }
     validFileName = makeValidFileName(validFileName);
     sceneData += "<name>" + validFileName + "</name>\n";
 
