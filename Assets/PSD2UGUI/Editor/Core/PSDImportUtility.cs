@@ -21,12 +21,13 @@ namespace PSDUIImporter
             StreamReader xmlFile = File.OpenText(filePath);
             if (xmlFile != null)
             {
-                string xml = xmlFile.ReadToEnd();
+                byte[] bytes = File.ReadAllBytes(filePath);
+                Encoding encoding = Encoding.GetEncoding("gb2312");
+                string xml = encoding.GetString(bytes);
                 if ((xml != null) && (xml.ToString() != ""))
                 {
+                    byte[] byteArray = Encoding.UTF8.GetBytes(xml);
                     XmlSerializer xs = new XmlSerializer(type);
-                    System.Text.UTF8Encoding encoding = new System.Text.UTF8Encoding();
-                    byte[] byteArray = encoding.GetBytes(xml);
                     MemoryStream memoryStream = new MemoryStream(byteArray);
                     XmlTextWriter xmlTextWriter = new XmlTextWriter(memoryStream, System.Text.Encoding.UTF8);
                     if (xmlTextWriter != null)

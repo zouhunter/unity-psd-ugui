@@ -220,7 +220,7 @@ namespace PSDUIImporter
                         
                         if (image.imageType == ImageType.Texture)
                         {
-                            textureImporter.textureType = TextureImporterType.Image;
+                            textureImporter.textureType = TextureImporterType.Default;
                         }
                         else
                         {
