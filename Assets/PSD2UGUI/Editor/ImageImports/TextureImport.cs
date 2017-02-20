@@ -15,7 +15,7 @@ namespace PSDUIImporter
 
             string assetPath = "";
 
-            if (image.imageSource == ImageSource.Common || image.imageSource == ImageSource.Custom)
+            if (image.imageSource == ImageSource.Normal || image.imageSource == ImageSource.Custom)
             {
                 assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
             }

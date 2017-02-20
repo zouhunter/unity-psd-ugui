@@ -2,7 +2,6 @@ Button,name@Button,,"Title,Normal,Pressed,Highted,Disabled",
 Toggle,name@Toggle,,Background、Title、Mask,
 Slider,name@Slider,"参数L、R、T、B分别上从左到右，从右到左...,@Size控制区域",Background、Full、Handle,
 Text,name,,,用作其他组件的文字时（name将舍去）
-Image,@Common,9Slice的后缀名可以加载出slice类型的image,,
 DropDown,name@DropDown,,"Backgrond，ItemBackground,Checkmark,Arrow,Label（字）,ItemLable(字)",
 InputField,name@InputField,,Background图片、Text文字、Holder文字,
 Scrollbar,name@Scrollbar,L、R、T、B第一个参数，bar的比例为第二个参数（0~1）,Background、Handle,子节点图片不识别
@@ -10,11 +9,13 @@ Panel(带image父级),name@Panel,,Background,
 ScrollView,name@ScrollView,"V,H作为参数，尺寸由放置在其下的@Size控制，内部item放置为子节点",,
 Group,name@Group,"V,H作为第一个参数，间距为第二个参数，内部item放置为子节点",,item直接放图片不识别
 Grid,name@Grid,,,
+image,"
+Img,img#C;  img# N:S ;    img#G:T; 
+带id;       通用;       工程通用
+第二个参数S表示Slice，T表示Texture，不加#默认为带id普通图片
+",,,
 ,,,,
-,"注：空节使用
-“@”时@前为创建名
-
-image使用时，@前为公用图片的名称
-（如normal_pic001@Common）：Common，Custom(默认),Globle分别是不加id,加id，全局图片",（参数以：进行分割）,,
-,@后是类型判断，大写第一个字母,,参数不同于具体图片，名字不保存，第一个字母大写,
-"psd文件名带有@Common,导出时，所有图片不会加唯一id,要保证名字相同则图片相同",,,,
+注意事项：,@后是类型判断，大写第一个字母,,,
+,"psd文件名带有@Common,导出时，所有图片不会加唯一id,要保证名字相同则图片相同",,,
+,（参数以：进行分割）,,,
+,参数不同于具体图片，名字不保存，第一个字母大写,,,

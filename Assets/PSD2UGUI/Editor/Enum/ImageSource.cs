@@ -8,7 +8,7 @@ namespace PSDUIImporter
 {
     public enum ImageSource
     {
-        Common,
+        Normal,
         Custom,
         Globle
     }

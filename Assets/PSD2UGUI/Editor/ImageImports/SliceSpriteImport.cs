@@ -14,7 +14,7 @@ namespace PSDUIImporter
             UnityEngine.UI.Image pic = PSDImportUtility.InstantiateItem<UnityEngine.UI.Image>(PSDImporterConst.PREFAB_PATH_IMAGE, image.name, parent);
             string assetPath = "";
 
-            if (image.imageSource == ImageSource.Common || image.imageSource == ImageSource.Custom)
+            if (image.imageSource == ImageSource.Normal || image.imageSource == ImageSource.Custom)
             {
                 assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
 

@@ -190,15 +190,14 @@ namespace PSDUIImporter
 
         private void MoveLayers()
         {
-            if (PSDImportUtility.baseFilename.Contains("Global"))
+            for (int layerIndex = 0; layerIndex < psdUI.layers.Length; layerIndex++)
             {
-                for (int layerIndex = 0; layerIndex < psdUI.layers.Length; layerIndex++)
-                {
-                    MoveAsset(psdUI.layers[layerIndex], PSDImportUtility.baseDirectory);
-                }
-
-                AssetDatabase.Refresh();
+                //如果文件名有Globle，将强制全部移动到指定文件夹
+                PSDImportUtility.forceMove = PSDImportUtility.baseFilename.Contains("Globle");
+                MoveAsset(psdUI.layers[layerIndex], PSDImportUtility.baseDirectory);
             }
+
+            AssetDatabase.Refresh();
         }
 
         //--------------------------------------------------------------------------
@@ -257,18 +256,23 @@ namespace PSDUIImporter
             if (layer.images != null)
             {
                 string newPath = PSDImporterConst.Globle_BASE_FOLDER;
-                if (layer.name == PSDImporterConst.IMAGE)
-                {
-                    newPath += PSDImporterConst.IMAGE + "/";
-                    System.IO.Directory.CreateDirectory(newPath);
-                }
-                else if (layer.name == PSDImporterConst.NINE_SLICE)
-                {
-                    newPath += PSDImporterConst.NINE_SLICE + "/";
-                    System.IO.Directory.CreateDirectory(newPath);
-                }
 
-                Debug.Log("creating new folder : " + newPath);
+                //if (layer.name == PSDImporterConst.IMAGE)
+                //{
+                //    newPath += PSDImporterConst.IMAGE + "/";
+                //    System.IO.Directory.CreateDirectory(newPath);
+                //}
+                //else if (layer.name == PSDImporterConst.NINE_SLICE)
+                //{
+                //    newPath += PSDImporterConst.NINE_SLICE + "/";
+                //    System.IO.Directory.CreateDirectory(newPath);
+                //}
+
+                if (Directory.Exists(newPath))
+                {
+                    Debug.Log("creating new folder : " + newPath);
+                    Directory.CreateDirectory(newPath);
+                }
 
                 AssetDatabase.Refresh();
 
@@ -277,13 +281,16 @@ namespace PSDUIImporter
                     // we need to fixup all images that were exported from PS
                     Image image = layer.images[imageIndex];
 
-                    string texturePathName = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
-                    string targetPathName = newPath + image.name + PSDImporterConst.PNG_SUFFIX;
+                    if (image.imageSource == ImageSource.Globle || PSDImportUtility.forceMove)
+                    {
+                        string texturePathName = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
+                        string targetPathName = newPath + image.name + PSDImporterConst.PNG_SUFFIX;
 
-                    Debug.Log(texturePathName);
-                    Debug.Log(targetPathName);
+                        Debug.Log(texturePathName);
+                        Debug.Log(targetPathName);
 
-                    AssetDatabase.MoveAsset(texturePathName, targetPathName);
+                        AssetDatabase.MoveAsset(texturePathName, targetPathName);
+                    }
                 }
             }
 

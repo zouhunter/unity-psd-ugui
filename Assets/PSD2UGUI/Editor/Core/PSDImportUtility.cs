@@ -12,6 +12,7 @@ namespace PSDUIImporter
     {
         public static string baseFilename;
         public static string baseDirectory;
+        public static bool forceMove;
         public static Canvas canvas;
         public static readonly Dictionary<Transform, Transform> ParentDic = new Dictionary<Transform, Transform>();
 

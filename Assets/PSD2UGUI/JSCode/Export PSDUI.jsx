@@ -459,7 +459,7 @@ function exportImage(obj)
     var validFileName = obj.name;
     if (obj.name.match("#")) {
         validFileName = obj.name.substring (0,obj.name.lastIndexOf ("#"));//截取#之后的字符串作为图片的名称。
-        if (obj.name.match("#Custom")) //不是公用，则自动为图片增加后缀
+        if (obj.name.match("#C")) //不是公用，则自动为图片增加后缀
         {
             validFileName += "_" + uuid++;
         }
@@ -496,17 +496,17 @@ function exportImage(obj)
         sceneData += "<imageType>" + "Image" + "</imageType>\n";
     }
 
-    if (obj.name.search("#Common") >= 0)
+    if (obj.name.search("#N") >= 0)
     {
-        sceneData += "<imageSource>" + "Common" + "</imageSource>\n";
+        sceneData += "<imageSource>" + "Normal" + "</imageSource>\n";
     }
-    else if(obj.name.search("#Custom") ||obj.name.search("#") <= 0)
+    else if(obj.name.search("#G") >= 0)
     {
-        sceneData += "<imageSource>" + "Custom" + "</imageSource>\n";
+        sceneData += "<imageSource>" + "Globle" + "</imageSource>\n";
     }
-    else if(obj.name.search("#Global"))
+    else
     {
-        sceneData += "<imageSource>" + "Global" + "</imageSource>\n";
+		sceneData += "<imageSource>" + "Custom" + "</imageSource>\n";
     }
 }
 

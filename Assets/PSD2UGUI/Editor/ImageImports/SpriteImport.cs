@@ -18,7 +18,7 @@ namespace PSDUIImporter
 
             string assetPath = "";
 
-            if (image.imageSource == ImageSource.Common || image.imageSource == ImageSource.Custom)
+            if (image.imageSource == ImageSource.Normal || image.imageSource == ImageSource.Custom)
             {
                 assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
               
@@ -33,7 +33,7 @@ namespace PSDUIImporter
 
             if (sprite == null)
             {
-                Debug.Log("loading asset at path: " + PSDImportUtility.baseDirectory + image.name);
+                Debug.Log("loading asset at path: " + assetPath +"\nname:" + image.name);
             }
 
             pic.sprite = sprite;

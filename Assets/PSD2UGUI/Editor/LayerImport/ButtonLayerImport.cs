@@ -28,7 +28,7 @@ namespace PSDUIImporter
                     string lowerName = image.name.ToLower();
                     if (image.imageType == ImageType.Image && image.name.ToLower().Contains("normal") || image.name.ToLower().Contains("pressed") || image.name.ToLower().Contains("disabled") || image.name.ToLower().Contains("highlighted"))
                     {
-                        if (image.imageSource == ImageSource.Custom || image.imageSource == ImageSource.Common)
+                        if (image.imageSource == ImageSource.Custom || image.imageSource == ImageSource.Normal)
                         {
                             string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
                             Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
