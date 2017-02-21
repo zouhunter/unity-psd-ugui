@@ -34,6 +34,15 @@ namespace PSDUIImporter
             if (sprite == null)
             {
                 Debug.Log("loading asset at path: " + assetPath +"\nname:" + image.name);
+                if (image.arguments.Length > 0)
+                {
+                    Debug.Log(image.arguments[0]);
+                    Color color;
+                    if (ColorUtility.TryParseHtmlString(image.arguments[0], out color))
+                    {
+                        pic.color = color;
+                    }
+                }
             }
 
             pic.sprite = sprite;

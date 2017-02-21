@@ -216,6 +216,11 @@ namespace PSDUIImporter
                     {
                         string texturePathName = PSDImportUtility.baseDirectory + layer.images[imageIndex].name + PSDImporterConst.PNG_SUFFIX;
                         TextureImporter textureImporter = AssetImporter.GetAtPath(texturePathName) as TextureImporter;
+
+                        if (textureImporter == null) {
+                            continue;//图片不存在，可能是颜色区域
+                        }
+
                         
                         if (image.imageType == ImageType.Texture)
                         {

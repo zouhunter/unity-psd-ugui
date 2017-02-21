@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?><PSDUI><psdSize><width>1024</width><height>768</height></psdSize><layers><Layer>
+<type>Panel</type>
+<name>Temp</name>
+<layers></layers><images>
+<Image>
+<name>Background_1</name>
+<position><x>0</x><y>0</y></position><size><width>1024</width><height>768</height></size><imageSource>Custom</imageSource>
+<imageType>Image</imageType>
+</Image>
+<Image>
+<name>Rect_2</name>
+<arguments><string>#7C857CFF</string></arguments><position><x>-4</x><y>60</y></position><size><width>856</width><height>274</height></size><imageType>Image</imageType>
+</Image>
+<Image>
+<name>Image_3</name>
+<position><x>-4</x><y>-259</y></position><size><width>856</width><height>184</height></size><imageSource>Custom</imageSource>
+<imageType>Image</imageType>
+</Image>
+
+</images>
+</Layer></layers></PSDUI>
