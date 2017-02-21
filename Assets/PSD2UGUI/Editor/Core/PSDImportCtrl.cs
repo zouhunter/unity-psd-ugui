@@ -98,16 +98,12 @@ namespace PSDUIImporter
             switch (image.imageType)
             {
                 case ImageType.Image:
-                    spriteImport.DrawImage(image, parent);
-                    break;
                 case ImageType.Texture:
-                    textureImport.DrawImage(image, parent);
+                case ImageType.SliceImage:
+                    spriteImport.DrawImage(image, parent);
                     break;
                 case ImageType.Label:
                     textImport.DrawImage(image, parent);
-                    break;
-                case ImageType.SliceImage:
-                    slicedSpriteImport.DrawImage(image, parent);
                     break;
                 default:
                     break;
@@ -153,8 +149,6 @@ namespace PSDUIImporter
         {
             spriteImport = new SpriteImport();
             textImport = new TextImport();
-            textureImport = new TextureImport();
-            slicedSpriteImport = new SliceSpriteImport();
 
             buttonImport = new ButtonLayerImport(this);
             toggleImport = new ToggleLayerImport(this);

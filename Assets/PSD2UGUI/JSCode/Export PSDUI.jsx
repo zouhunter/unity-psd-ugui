@@ -5,7 +5,7 @@
 //**************************************************
 // hidden object game exporter
 //$.writeln("=== Starting Debugging Session ===");
-
+//@include "stdlib.js"
 // enable double clicking from the Macintosh Finder or the Windows Explorer
 #target photoshop
 
@@ -427,6 +427,7 @@ function exportPanel(obj)
 function exportArtLayer(obj)
 {
     sceneData += "<Image>\n";
+	
     if (LayerKind.TEXT == obj.kind)
     {
         exportLabel(obj);
@@ -470,9 +471,43 @@ function exportImage(obj)
     validFileName = makeValidFileName(validFileName);
     sceneData += "<name>" + validFileName + "</name>\n";
 
-    obj.visible = true;
-    saveScenePng(duppedPsd.duplicate(), validFileName, true);
-    obj.visible = false;
+	if(obj.kind == LayerKind.SOLIDFILL)
+	{
+	    sceneData += "<arguments>";
+        sceneData += "<string>" + "#" + getLayerColor(obj) + (Math.floor(obj.opacity * 2.55)).toString(16) + "</string>";
+        sceneData += "</arguments>";
+		
+		var recSize = getLayerRec(duppedPsd.duplicate());
+		sceneData += "<position>";
+        sceneData += "<x>" + recSize.x + "</x>";
+        sceneData += "<y>" + recSize.y + "</y>";
+        sceneData += "</position>";
+
+        sceneData += "<size>";
+        sceneData += "<width>" + recSize.width + "</width>";
+        sceneData += "<height>" + recSize.height + "</height>";
+        sceneData += "</size>";
+		
+		obj.visible = false;
+	}
+	else{
+        obj.visible = true;
+        saveScenePng(duppedPsd.duplicate(), validFileName, true);
+        obj.visible = false;
+		
+	if (obj.name.search("#N") >= 0)
+    {
+        sceneData += "<imageSource>" + "Normal" + "</imageSource>\n";
+    }
+    else if(obj.name.search("#G") >= 0)
+    {
+        sceneData += "<imageSource>" + "Globle" + "</imageSource>\n";
+    }
+    else
+    {
+		sceneData += "<imageSource>" + "Custom" + "</imageSource>\n";
+    }
+	}
 
     var params = obj.name.split(":");
 
@@ -496,18 +531,18 @@ function exportImage(obj)
         sceneData += "<imageType>" + "Image" + "</imageType>\n";
     }
 
-    if (obj.name.search("#N") >= 0)
-    {
-        sceneData += "<imageSource>" + "Normal" + "</imageSource>\n";
-    }
-    else if(obj.name.search("#G") >= 0)
-    {
-        sceneData += "<imageSource>" + "Globle" + "</imageSource>\n";
-    }
-    else
-    {
-		sceneData += "<imageSource>" + "Custom" + "</imageSource>\n";
-    }
+  
+}
+//获取层级颜色
+function getLayerColor(obj){
+   var desc = Stdlib.getLayerDescriptor(app.activeDocument, obj);
+   var adjs = desc.getList(cTID('Adjs'));
+   var clrDesc = adjs.getObjectValue(0);
+   var color= clrDesc.getObjectValue(cTID('Clr '));
+   var red = Math.round(color.getDouble(cTID('Rd  ')));
+   var green = Math.round(color.getDouble(cTID('Grn ')));
+   var blue = Math.round(color.getDouble(cTID('Bl  ')));
+   return Stdlib.createRGBColor(red, green, blue).rgb.hexValue;
 }
 
 function hideAllLayers(obj)
