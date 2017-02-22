@@ -151,8 +151,10 @@ function exportDefultLayer(obj)
 
     exportLayerSet(obj);
 
+    recordPositionAndSize(obj);
+	
     sceneData += "<images>";
-    for (var j = obj.artLayers.length - 1; 0 <= j; j--)
+    for (var j = 0; j < obj.artLayers.length - 1; j++)
     {
         exportArtLayer(obj.artLayers[j]);
     }
@@ -174,14 +176,26 @@ function exportScrollView(obj)
         alert(obj.name + "-------Layer's name is illegal------------");
     }
 
-    var recSize;
-    if (obj.layers[obj.layers.length - 1].name.search("@Size") < 0)
+    recordPositionAndSize(obj);
+
+    sceneData += "<arguments>";
+    sceneData += "<string>" + params[1] + "</string>";     //滑动方向
+    sceneData += "</arguments>";
+
+    sceneData += "</Layer>";
+}
+
+function recordPositionAndSize(obj)
+{
+	var recSize;
+	var sizeObj =obj.layers[obj.layers.length - 1] ;
+    if (sizeObj.name.search("@Size") < 0)
     {
-        alert("Bottom layer's name doesn't contain '@Size'");
+       alert("Bottom layer's name doesn't contain '@Size'");
     }
     else
     {
-        obj.layers[obj.layers.length - 1].visible = true;
+        sizeObj.visible = true;
 
         recSize = getLayerRec(duppedPsd.duplicate());
 
@@ -195,14 +209,8 @@ function exportScrollView(obj)
         sceneData += "<height>" + recSize.height + "</height>";
         sceneData += "</size>";
 
-        obj.layers[obj.layers.length - 1].visible = false;
+        sizeObj.visible = false;
     }
-
-    sceneData += "<arguments>";
-    sceneData += "<string>" + params[1] + "</string>";     //滑动方向
-    sceneData += "</arguments>";
-
-    sceneData += "</Layer>";
 }
 
 function exportGrid(obj)

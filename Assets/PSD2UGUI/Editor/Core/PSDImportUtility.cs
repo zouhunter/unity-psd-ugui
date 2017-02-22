@@ -51,5 +51,29 @@ namespace PSDUIImporter
             return item.GetComponent<T>();
         }
 
+        public static void TrySetImageColor(Image image,UnityEngine.UI.Graphic pic)
+        {
+            if (image.arguments.Length > 0)
+            {
+                Debug.Log(image.arguments[0]);
+                Color color;
+                if (ColorUtility.TryParseHtmlString(image.arguments[0], out color))
+                {
+                    pic.color = color;
+                }
+            }
+        }
+
+        public static void SetRectTransform(Image image,RectTransform rectTransform)
+        {
+            rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
+            rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
+        }
+
+        public static void SetRectTransform(Layer layer, RectTransform rectTransform)
+        {
+            rectTransform.sizeDelta = new Vector2(layer.size.width, layer.size.height);
+            rectTransform.anchoredPosition = new Vector2(layer.position.x, layer.position.y);
+        }
     }
 }
