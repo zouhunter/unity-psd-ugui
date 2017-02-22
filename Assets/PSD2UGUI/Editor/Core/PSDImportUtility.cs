@@ -64,14 +64,35 @@ namespace PSDUIImporter
             }
         }
 
+        /// <summary>
+        /// 生成图片路径
+        /// </summary>
+        /// <param name="image"></param>
+        /// <returns></returns>
+        public static string GetPicturePath(Image image)
+        {
+            string assetPath = "";
+            if (image.imageSource == ImageSource.Normal || image.imageSource == ImageSource.Custom)
+            {
+                assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
+            }
+            else if (image.imageSource == ImageSource.Globle)
+            {
+                assetPath = PSDImporterConst.Globle_BASE_FOLDER + image.name.Replace(".", "/") + PSDImporterConst.PNG_SUFFIX;
+                Debug.Log("==  CommonImagePath  ====" + assetPath);
+            }
+            return assetPath;
+        }
         public static void SetRectTransform(Image image,RectTransform rectTransform)
         {
+            rectTransform.name = image.name;
             rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
             rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
         }
 
         public static void SetRectTransform(Layer layer, RectTransform rectTransform)
         {
+            rectTransform.name = layer.name;
             rectTransform.sizeDelta = new Vector2(layer.size.width, layer.size.height);
             rectTransform.anchoredPosition = new Vector2(layer.position.x, layer.position.y);
         }
