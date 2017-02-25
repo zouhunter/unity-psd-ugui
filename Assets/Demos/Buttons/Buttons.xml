@@ -1,4 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><PSDUI><psdSize><width>1600</width><height>900</height></psdSize><layers><Layer><type>Normal</type><name>ButtonTemp</name><layers><Layer><type>Normal</type><name>bodyContent</name><layers><Layer><type>Normal</type><name>contentBody</name><layers><Layer>
+<?xml version="1.0" encoding="utf-8"?><PSDUI><psdSize><width>1600</width><height>900</height></psdSize><layers><Layer>
+<type>Panel</type>
+<name>ButtonTemp</name>
+<layers><Layer><type>Normal</type><name>bodyContent</name><layers><Layer><type>Normal</type><name>contentBody</name><layers><Layer>
 <type>Button</type>
 <name>item</name>
 <images>
@@ -32,7 +35,7 @@
 <position><x>12</x><y>40</y></position><size><width>74</width><height>32</height></size><arguments><string>BBB62D</string><string>MicrosoftYaHei</string><string>22</string><string>sdfsdfsfsfdsf</string></arguments></Image>
 
 </images>
-</Layer></layers><images></images></Layer></layers><images></images></Layer><Layer>
+</Layer></layers><position><x>16</x><y>-38</y></position><size><width>332</width><height>252</height></size><images></images></Layer></layers><position><x>16</x><y>-38</y></position><size><width>332</width><height>252</height></size><images></images></Layer><Layer>
 <type>Button</type>
 <name>close</name>
 <images>
@@ -62,9 +65,12 @@
 <position><x>199</x><y>154</y></position><size><width>40</width><height>32</height></size><arguments><string>28B743</string><string>MicrosoftYaHei</string><string>22</string><string>close</string></arguments></Image>
 
 </images>
-</Layer></layers><images><Image>
+</Layer></layers><images>
+<Image>
 <name>background_8</name>
 <position><x>0</x><y>0</y></position><size><width>454</width><height>340</height></size><imageSource>Custom</imageSource>
 <imageType>Image</imageType>
 </Image>
-</images></Layer></layers></PSDUI>
+
+</images>
+</Layer></layers></PSDUI>

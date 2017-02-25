@@ -20,7 +20,6 @@ namespace PSDUIImporter
             //UnityEngine.UI.Image temp = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof(UnityEngine.UI.Image)) as UnityEngine.UI.Image;
             UnityEngine.UI.Image panel = PSDImportUtility.InstantiateItem<UnityEngine.UI.Image>(PSDImporterConst.PREFAB_PATH_IMAGE, layer.name, parent);//GameObject.Instantiate(temp) as UnityEngine.UI.Image;
 
-            panel.name = layer.name;
 
             ctrl.DrawLayers(layer.layers, panel.gameObject);//子节点
 
@@ -42,6 +41,8 @@ namespace PSDUIImporter
                     }
 
                     PSDImportUtility.SetRectTransform(image, panel.GetComponent<RectTransform>());
+
+                    panel.name = layer.name;
                 }
                 else
                 {
