@@ -14,7 +14,7 @@ namespace PSDUIImporter
         {
             this.ctrl = ctrl;
         }
-        public void DrawLayer(Layer layer, GameObject parent)
+        public void DrawLayer(Layer layer, UINode parent)
         {
             UnityEngine.UI.GridLayoutGroup temp = Resources.Load(PSDImporterConst.PREFAB_PATH_GRID, typeof(UnityEngine.UI.GridLayoutGroup)) as UnityEngine.UI.GridLayoutGroup;
             UnityEngine.UI.GridLayoutGroup gridLayoutGroup = GameObject.Instantiate(temp) as UnityEngine.UI.GridLayoutGroup;

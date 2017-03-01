@@ -12,7 +12,7 @@ namespace PSDUIImporter
             this.pSDImportCtrl = pSDImportCtrl;
         }
 
-        public void DrawLayer(Layer layer, GameObject parent)
+        public void DrawLayer(Layer layer, UINode parent)
         {
             GameObject temp;
             string type = layer.arguments[0].ToUpper();
@@ -40,8 +40,8 @@ namespace PSDUIImporter
             {
                 group.spacing = span;
             }
-
-            pSDImportCtrl.DrawLayers(layer.layers, group.gameObject);
+            UINode _node = new UINode(group.transform, parent);
+            pSDImportCtrl.DrawLayers(layer.layers, _node);
         }
     }
 }

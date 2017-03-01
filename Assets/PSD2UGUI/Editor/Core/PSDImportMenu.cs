@@ -24,16 +24,15 @@ namespace PSDUIImporter
             if (Selection.activeObject != null)
             {
                 startPath = AssetDatabase.GetAssetPath(Selection.activeObject);
-                startPath = Path.GetDirectoryName(startPath);
             }
-
-            string inputFile = EditorUtility.OpenFilePanel("Choose PSDUI File to Import", startPath ?? Application.dataPath, "xml");
-            if ((inputFile != null) && (inputFile != "") && (inputFile.StartsWith(Application.dataPath)))
+            if (startPath != null && startPath.EndsWith("xml"))
             {
-                PSDImportCtrl import = new PSDUIImporter.PSDImportCtrl(inputFile);
+                PSDImportCtrl import = new PSDUIImporter.PSDImportCtrl(startPath);
                 import.BeginDrawUILayers();
-                import.BeginSetUIParents();
+                import.BeginSetUIParents(PSDImportUtility.uinode);
+                import.BeginSetAnchers(PSDImportUtility.uinode);
             }
+            
             GC.Collect();
         }
     }

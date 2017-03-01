@@ -6,15 +6,7 @@ namespace PSDUIImporter
 {
     internal class InputFieldLayerImport : ILayerImport
     {
-        private PSDImportCtrl pSDImportCtrl;
-
-        public InputFieldLayerImport(PSDImportCtrl pSDImportCtrl)
-        {
-            this.pSDImportCtrl = pSDImportCtrl;
-            //Debug.Log(this.pSDImportCtrl);
-        }
-
-        public void DrawLayer(Layer layer, GameObject parent)
+        public void DrawLayer(Layer layer, UINode parent)
         {
             UnityEngine.UI.InputField temp = Resources.Load(PSDImporterConst.PREFAB_PATH_INPUTFIELD, typeof(UnityEngine.UI.InputField)) as UnityEngine.UI.InputField;
             UnityEngine.UI.InputField inputfield = GameObject.Instantiate(temp) as UnityEngine.UI.InputField;

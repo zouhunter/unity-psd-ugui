@@ -16,9 +16,10 @@ namespace PSDUIImporter
             this.ctrl = ctrl;
         }
 
-        public void DrawLayer(Layer layer, GameObject parent)
+        public void DrawLayer(Layer layer, UINode parent)
         {
-            UnityEngine.UI.Button button = PSDImportUtility.InstantiateItem<UnityEngine.UI.Button>(PSDImporterConst.PREFAB_PATH_BUTTON, layer.name, parent);
+            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_BUTTON, layer.name, parent);
+            UnityEngine.UI.Button button = node.GetCompoment<UnityEngine.UI.Button>();
 
             if (layer.images != null)
             {
@@ -38,7 +39,7 @@ namespace PSDUIImporter
                     }
                     else
                     {
-                        ctrl.DrawImage(image, button.gameObject);
+                        ctrl.DrawImage(image, node);
                     }
                 }
             }

@@ -39,10 +39,10 @@ namespace PSDUIImporter
             LoadLayers();
             MoveLayers();
             InitDrawers();
-            PSDImportUtility.ParentDic.Clear();
+            PSDImportUtility.uinode = new UINode(PSDImportUtility.canvas.transform,null);
         }
 
-        public void DrawLayer(Layer layer, GameObject parent)
+        public void DrawLayer(Layer layer, UINode parent)
         {
             switch (layer.type)
             {
@@ -82,7 +82,7 @@ namespace PSDUIImporter
             }
         }
 
-        public void DrawLayers(Layer[] layers, GameObject parent)
+        public void DrawLayers(Layer[] layers, UINode parent)
         {
             if (layers != null)
             {
@@ -93,7 +93,7 @@ namespace PSDUIImporter
             }
         }
 
-        public void DrawImage(Image image, GameObject parent)
+        public void DrawImage(Image image, UINode parent)
         {
             switch (image.imageType)
             {
@@ -123,7 +123,7 @@ namespace PSDUIImporter
             if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo() == false) { return; }
 
             PSDImportUtility.baseFilename = Path.GetFileNameWithoutExtension(xmlFilePath);
-            PSDImportUtility.baseDirectory = "Assets/" + Path.GetDirectoryName(xmlFilePath.Remove(0, Application.dataPath.Length + 1)) + "/";
+            PSDImportUtility.baseDirectory = Path.GetDirectoryName(xmlFilePath) + "/";
         }
 
         private void InitCanvas()
@@ -159,25 +159,38 @@ namespace PSDUIImporter
             gridImport = new GridLayerImport(this);
             emptyImport = new DefultLayerImport(this);
             groupImport = new GroupLayerImport(this);
-            inputFiledImport = new InputFieldLayerImport(this);
+            inputFiledImport = new InputFieldLayerImport();
         }
 
         public void BeginDrawUILayers()
         {
-            RectTransform obj = PSDImportUtility.InstantiateItem<RectTransform>(PSDImporterConst.PREFAB_PATH_EMPTY,PSDImportUtility.baseFilename,PSDImportUtility.canvas.gameObject);
+            UINode obj = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_EMPTY,PSDImportUtility.baseFilename,PSDImportUtility.uinode);
 
             for (int layerIndex = 0; layerIndex < psdUI.layers.Length; layerIndex++)
             {
-                DrawLayer(psdUI.layers[layerIndex], obj.gameObject);
+                DrawLayer(psdUI.layers[layerIndex], obj);
             }
             AssetDatabase.Refresh();
         }
 
-        public void BeginSetUIParents()
+        public void BeginSetUIParents(UINode node)
         {
-            foreach (var item in PSDImportUtility.ParentDic)
+            foreach (var item in node.childs)
             {
-                item.Key.SetParent(item.Value);
+                item.transform.SetParent(node.transform);
+                BeginSetUIParents(item);
+            }
+        }
+
+        public void BeginSetAnchers(UINode node)
+        {
+            foreach (var item in node.childs)
+            {
+                RectTransform p_rt = node.GetCompoment<RectTransform>();
+                RectTransform c_rt = item.GetCompoment<RectTransform>();
+
+                //...
+                BeginSetAnchers(item);
             }
         }
 

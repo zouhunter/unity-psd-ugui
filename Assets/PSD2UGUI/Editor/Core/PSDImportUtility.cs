@@ -14,7 +14,8 @@ namespace PSDUIImporter
         public static string baseDirectory;
         public static bool forceMove;
         public static Canvas canvas;
-        public static readonly Dictionary<Transform, Transform> ParentDic = new Dictionary<Transform, Transform>();
+        public static UINode uinode;
+        //public static readonly Dictionary<Transform, Transform> ParentDic = new Dictionary<Transform, Transform>();
 
         public static object DeserializeXml(string filePath, System.Type type)
         {
@@ -41,14 +42,14 @@ namespace PSDUIImporter
             return instance;
         }
 
-        public static T InstantiateItem<T>(string resourcePatn, string name,GameObject parent) where T : UnityEngine.Object
+        public static UINode InstantiateItem(string resourcePatn, string name,UINode parent)
         {
             GameObject temp = Resources.Load(resourcePatn, typeof(GameObject)) as GameObject;
             GameObject item = GameObject.Instantiate(temp) as GameObject;
             item.name = name;
             item.transform.SetParent(canvas.transform, false);
-            ParentDic[item.transform] =  parent.transform;
-            return item.GetComponent<T>();
+            UINode node = new UINode(item.transform,parent);
+            return node;
         }
 
         public static void TrySetImageColor(Image image,UnityEngine.UI.Graphic pic)

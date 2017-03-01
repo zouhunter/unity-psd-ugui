@@ -14,10 +14,10 @@ namespace PSDUIImporter
         {
             this.ctrl = ctrl;
         }
-        public void DrawLayer(Layer layer, GameObject parent)
+        public void DrawLayer(Layer layer, UINode parent)
         {
-            UnityEngine.UI.Toggle toggle = PSDImportUtility.InstantiateItem<UnityEngine.UI.Toggle>(PSDImporterConst.PREFAB_PATH_TOGGLE,layer.name,parent);// GameObject.Instantiate(temp) as UnityEngine.UI.Toggle;
-
+            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_TOGGLE,layer.name,parent);// GameObject.Instantiate(temp) as UnityEngine.UI.Toggle;
+            UnityEngine.UI.Toggle toggle = node.GetCompoment<UnityEngine.UI.Toggle>();
             if (layer.images != null)
             {
                 for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
@@ -60,7 +60,7 @@ namespace PSDUIImporter
                     }
                     else
                     {
-                        ctrl.DrawImage(image, toggle.graphic.gameObject);
+                        ctrl.DrawImage(image, node);
                     }
                 }
             }

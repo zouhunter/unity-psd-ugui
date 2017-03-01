@@ -15,19 +15,20 @@ namespace PSDUIImporter
             this.ctrl = ctrl;
         }
 
-        public void DrawLayer(Layer layer, GameObject parent)
+        public void DrawLayer(Layer layer, UINode parent)
         {
             //UnityEngine.UI.Image temp = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof(UnityEngine.UI.Image)) as UnityEngine.UI.Image;
-            UnityEngine.UI.Image panel = PSDImportUtility.InstantiateItem<UnityEngine.UI.Image>(PSDImporterConst.PREFAB_PATH_IMAGE, layer.name, parent);//GameObject.Instantiate(temp) as UnityEngine.UI.Image;
+                UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, layer.name, parent);//GameObject.Instantiate(temp) as UnityEngine.UI.Image;
+            UnityEngine.UI.Image panel = node.GetCompoment<UnityEngine.UI.Image>();
 
 
-            ctrl.DrawLayers(layer.layers, panel.gameObject);//子节点
+            ctrl.DrawLayers(layer.layers, node);//子节点
 
             for (int i = 0; i < layer.images.Length; i++)
             {
                 Image image = layer.images[i];
 
-                if (image.name.ToLower().Contains("background"))
+                if (image.name.ToLower().StartsWith("b_"))
                 {
                     if (image.arguments == null || image.arguments.Length == 0)
                     {
@@ -46,7 +47,7 @@ namespace PSDUIImporter
                 }
                 else
                 {
-                    ctrl.DrawImage(image, panel.gameObject);
+                    ctrl.DrawImage(image, node);
                 }
             }
 

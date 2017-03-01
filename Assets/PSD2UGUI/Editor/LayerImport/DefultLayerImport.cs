@@ -14,21 +14,22 @@ namespace PSDUIImporter
         {
             this.ctrl = ctrl;
         }
-        public void DrawLayer(Layer layer, GameObject parent)
+        public void DrawLayer(Layer layer, UINode parent)
         {
-            RectTransform obj = PSDImportUtility.InstantiateItem<RectTransform>(PSDImporterConst.PREFAB_PATH_EMPTY,layer.name,parent);
-
+            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_EMPTY,layer.name,parent);
+            RectTransform obj = node.GetCompoment<RectTransform>();
             PSDImportUtility.SetRectTransform(layer, obj);
+
             if (layer.images != null)
             {
                 for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
                 {
                     Image image = layer.images[imageIndex];
-                    ctrl.DrawImage(image, obj.gameObject);
+                    ctrl.DrawImage(image, node);
                 }
             }
 
-            ctrl.DrawLayers(layer.layers, obj.gameObject);
+            ctrl.DrawLayers(layer.layers, node);
         }
     }
 }

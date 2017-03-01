@@ -14,16 +14,17 @@ namespace PSDUIImporter
         {
             this.ctrl = ctrl;
         }
-        public void DrawLayer(Layer layer, GameObject parent)
+        public void DrawLayer(Layer layer, UINode parent)
         {
-            //UnityEngine.UI.ScrollRect temp = Resources.Load(PSDImporterConst.PREFAB_PATH_SCROLLVIEW, typeof(UnityEngine.UI.ScrollRect)) as UnityEngine.UI.ScrollRect;
-            UnityEngine.UI.ScrollRect scrollRect = PSDImportUtility.InstantiateItem<UnityEngine.UI.ScrollRect>(PSDImporterConst.PREFAB_PATH_SCROLLVIEW,layer.name,parent);
-            //scrollRect.transform.SetParent(parent.transform, false); //parent = parent.transform;
-
+            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_SCROLLVIEW,layer.name,parent);
+            UnityEngine.UI.ScrollRect scrollRect = node.GetCompoment<UnityEngine.UI.ScrollRect>();
 
             RectTransform rectTransform = scrollRect.GetComponent<RectTransform>();
             rectTransform.sizeDelta = new Vector2(layer.size.width, layer.size.height);
             rectTransform.anchoredPosition = new Vector2(layer.position.x, layer.position.y);
+
+            UINode childNode = new UINode(node.transform.GetChild(0), node);
+            UINode contentNode = new UINode(scrollRect.content, childNode);
 
             if (layer.layers != null)
             {
@@ -42,7 +43,7 @@ namespace PSDUIImporter
                         break;
                 }
 
-                ctrl.DrawLayers(layer.layers, scrollRect.content.gameObject);
+                ctrl.DrawLayers(layer.layers, contentNode);
             }
         }
     }

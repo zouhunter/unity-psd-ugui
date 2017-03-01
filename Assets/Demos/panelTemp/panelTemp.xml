@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?><PSDUI><psdSize><width>1600</width><height>900</height></psdSize><layers><Layer>
+<type>Panel</type>
+<name>Panel01</name>
+<layers></layers><images>
+<Image>
+<name>b_blue</name>
+<arguments><string>#3EAE355e</string></arguments><position><x>5</x><y>2</y></position><size><width>454</width><height>340</height></size><imageType>Image</imageType>
+</Image>
+
+</images>
+</Layer></layers></PSDUI>

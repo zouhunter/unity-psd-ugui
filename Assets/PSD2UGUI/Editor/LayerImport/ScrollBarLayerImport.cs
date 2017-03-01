@@ -18,7 +18,7 @@ namespace PSDUIImporter
 
 
         }
-        public void DrawLayer(Layer layer, GameObject parent)
+        public void DrawLayer(Layer layer, UINode parent)
         {
             UnityEngine.UI.Scrollbar temp = Resources.Load(PSDImporterConst.PREFAB_PATH_SCROLLBAR, typeof(UnityEngine.UI.Scrollbar)) as UnityEngine.UI.Scrollbar;
             UnityEngine.UI.Scrollbar scrollBar = GameObject.Instantiate(temp) as UnityEngine.UI.Scrollbar;

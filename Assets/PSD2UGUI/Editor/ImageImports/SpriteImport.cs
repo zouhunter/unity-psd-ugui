@@ -12,7 +12,7 @@ namespace PSDUIImporter
 {
     public class SpriteImport : IImageImport
     {
-        public void DrawImage(Image image, GameObject parent)
+        public void DrawImage(Image image, UINode parent)
         {
             switch (image.imageType)
             {
@@ -30,17 +30,18 @@ namespace PSDUIImporter
             }
         }
 
-        private void DrawRawImage(Image image, GameObject parent)
+        private void DrawRawImage(Image image, UINode parent)
         {
-            UnityEngine.UI.RawImage pic = PSDImportUtility.InstantiateItem<UnityEngine.UI.RawImage>(PSDImporterConst.PREFAB_PATH_RawIMAGE, image.name, parent);
-            string assetPath =PSDImportUtility. GetPicturePath(image);
+            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_RawIMAGE, image.name, parent);
+            UnityEngine.UI.RawImage pic = node.GetCompoment<UnityEngine.UI.RawImage>();
+            string assetPath = PSDImportUtility.GetPicturePath(image);
             Texture texture = UnityEditor.AssetDatabase.LoadAssetAtPath(assetPath, typeof(Texture)) as Texture;
             pic.texture = texture;
 
             if (texture == null)
             {
                 Debug.Log("loading asset at path: " + assetPath + "\nname:" + image.name);
-                if (image.arguments.Length > 0)
+                if (image.arguments != null && image.arguments.Length > 0)
                 {
                     Debug.Log(image.arguments[0]);
                     Color color;
@@ -55,18 +56,19 @@ namespace PSDUIImporter
 
         }
 
-        private void DrawNormalImage(Image image, GameObject parent)
+        private void DrawNormalImage(Image image, UINode parent)
         {
-            UnityEngine.UI.Image pic = PSDImportUtility.InstantiateItem<UnityEngine.UI.Image>(PSDImporterConst.PREFAB_PATH_IMAGE, image.name, parent);
+            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, image.name, parent);
+            UnityEngine.UI.Image pic = node.GetCompoment<UnityEngine.UI.Image>();
 
-            string assetPath =PSDImportUtility. GetPicturePath(image);
+            string assetPath = PSDImportUtility.GetPicturePath(image);
 
             Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
 
             if (sprite == null)
             {
                 Debug.Log("loading asset at path: " + assetPath + "\nname:" + image.name);
-                if (image.arguments.Length > 0)
+                if (image.arguments != null && image.arguments.Length > 0)
                 {
                     Debug.Log(image.arguments[0]);
                     Color color;
@@ -84,10 +86,10 @@ namespace PSDUIImporter
             PSDImportUtility.SetRectTransform(image, pic.GetComponent<RectTransform>());
         }
 
-        private void DrawSliceImage(Image image, GameObject parent)
+        private void DrawSliceImage(Image image, UINode parent)
         {
-            UnityEngine.UI.Image pic = PSDImportUtility.InstantiateItem<UnityEngine.UI.Image>(PSDImporterConst.PREFAB_PATH_IMAGE, image.name, parent);
-
+            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, image.name, parent);
+            UnityEngine.UI.Image pic = node.GetCompoment<UnityEngine.UI.Image>();
             string assetPath = PSDImportUtility.GetPicturePath(image);
 
             Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
