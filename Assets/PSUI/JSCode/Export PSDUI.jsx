@@ -467,7 +467,7 @@ function exportLabel(obj)
     saveScenePng(duppedPsd.duplicate(), validFileName, false);
     obj.visible = false;
     sceneData += "<arguments>";
-    sceneData += "<string>" + obj.textItem.color.rgb.hexValue + "</string>";
+    sceneData += "<string>" + "#" +obj.textItem.color.rgb.hexValue + (Math.floor(obj.opacity * 2.55)).toString(16) + "</string>";
     sceneData += "<string>" + obj.textItem.font + "</string>";
     sceneData += "<string>" + obj.textItem.size.value + "</string>";
     sceneData += "<string>" + obj.textItem.contents + "</string>";

@@ -8,27 +8,22 @@ namespace PSDUIImporter
     {
         public void DrawLayer(Layer layer, UINode parent)
         {
-            UnityEngine.UI.InputField temp = Resources.Load(PSDImporterConst.PREFAB_PATH_INPUTFIELD, typeof(UnityEngine.UI.InputField)) as UnityEngine.UI.InputField;
-            UnityEngine.UI.InputField inputfield = GameObject.Instantiate(temp) as UnityEngine.UI.InputField;
-            inputfield.transform.SetParent(parent.transform, false);//.parent = parent.transform;
-            inputfield.name = layer.name;
+            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_INPUTFIELD, layer.name, parent);
+            UnityEngine.UI.InputField inputfield = node.GetCompoment<UnityEngine.UI.InputField>();
 
             if (layer.images != null)
             {
                 for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
                 {
                     Image image = layer.images[imageIndex];
+                    string lowerName = image.name.ToLower();
 
                     if (image.imageType == ImageType.Label)
                     {
-                        if (image.name.ToLower().Contains("text"))
+                        if (lowerName.StartsWith("t_"))
                         {
                             UnityEngine.UI.Text text = (UnityEngine.UI.Text)inputfield.textComponent;//inputfield.transform.Find("Text").GetComponent<UnityEngine.UI.Text>();
-                            Color color;
-                            if (UnityEngine.ColorUtility.TryParseHtmlString(("#" + image.arguments[0]), out color))
-                            {
-                                text.color = color;
-                            }
+                            PSDImportUtility.TrySetImageColor(image, inputfield.textComponent);
 
                             int size;
                             if (int.TryParse(image.arguments[2], out size))
@@ -36,14 +31,10 @@ namespace PSDUIImporter
                                 text.fontSize = size;
                             }
                         }
-                        else if (image.name.ToLower().Contains("holder"))
+                        else if (lowerName.StartsWith("p_"))
                         {
                             UnityEngine.UI.Text text = (UnityEngine.UI.Text)inputfield.placeholder;//.transform.Find("Placeholder").GetComponent<UnityEngine.UI.Text>();
-                            Color color;
-                            if (UnityEngine.ColorUtility.TryParseHtmlString(("#" + image.arguments[0]), out color))
-                            {
-                                text.color = color;
-                            }
+                            PSDImportUtility.TrySetImageColor(image, inputfield.textComponent);
 
                             int size;
                             if (int.TryParse(image.arguments[2], out size))
@@ -54,18 +45,10 @@ namespace PSDUIImporter
                     }
                     else
                     {
-                        if (image.name.ToLower().Contains("background"))
+                        if (lowerName.StartsWith("b_"))
                         {
-                            if (image.imageSource == ImageSource.Normal || image.imageSource == ImageSource.Custom)
-                            {
-                                string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
-                                Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
-                                inputfield.image.sprite = sprite;
-
-                                RectTransform rectTransform = inputfield.GetComponent<RectTransform>();
-                                rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
-                                rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
-                            }
+                            PSDImportUtility.SetPictureOrLoadColor(image, inputfield.image);
+                            PSDImportUtility.SetRectTransform(image,inputfield.GetComponent<RectTransform>());
                         }
                     }
                 }

@@ -1,31 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?><PSDUI><psdSize><width>1600</width><height>900</height></psdSize><layers><Layer>
 <type>Panel</type>
-<name>InputFieldTemp</name>
+<name>InputFiled</name>
 <layers><Layer>
 <type>InputField</type>
 <name>name</name>
 <images>
 <Image>
-<name>Background_1</name>
-<imageSource>Custom</imageSource>
-<position><x>2</x><y>0</y></position><size><width>382</width><height>118</height></size><imageType>Image</imageType>
+<name>b_blue_1</name>
+<arguments><string>#384CE6fe</string></arguments><position><x>6</x><y>-11</y></position><size><width>368</width><height>66</height></size><imageType>Image</imageType>
 </Image>
 <Image>
 <imageType>Label</imageType>
-<name>Holder_2</name>
-<position><x>2.5</x><y>47.5</y></position><size><width>123</width><height>23</height></size><arguments><string>1DDFBD</string><string>MicrosoftYaHei</string><string>22</string><string>placeholder
-</string></arguments></Image>
+<name>p_please</name>
+<position><x>-94</x><y>-9.5</y></position><size><width>132</width><height>23</height></size><arguments><string>#2C3EC3b0</string><string>MicrosoftYaHei</string><string>22</string><string>«Î ‰»ÎŒƒ◊÷ ...</string></arguments></Image>
 <Image>
 <imageType>Label</imageType>
-<name>Text_3</name>
-<position><x>2</x><y>49.5</y></position><size><width>44</width><height>17</height></size><arguments><string>1DDFBD</string><string>MicrosoftYaHei</string><string>22</string><string>Text</string></arguments></Image>
+<name>t_hellow</name>
+<position><x>-134</x><y>-9.5</y></position><size><width>50</width><height>17</height></size><arguments><string>#F11F51fe</string><string>MicrosoftYaHei</string><string>22</string><string>3453</string></arguments></Image>
 
 </images>
 </Layer></layers><images>
 <Image>
-<name>Background_4</name>
-<imageSource>Custom</imageSource>
-<position><x>0</x><y>0</y></position><size><width>454</width><height>340</height></size><imageType>Image</imageType>
+<name>b_red_2</name>
+<arguments><string>#F11F51fe</string></arguments><position><x>-27.5</x><y>-18</y></position><size><width>587</width><height>284</height></size><imageType>Image</imageType>
 </Image>
 
 </images>
