@@ -164,11 +164,12 @@ namespace PSDUIImporter
 
         public void BeginDrawUILayers()
         {
-            UINode obj = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_EMPTY,PSDImportUtility.baseFilename,PSDImportUtility.uinode);
-
+            UINode empty = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_EMPTY,PSDImportUtility.baseFilename, PSDImportUtility.uinode);
+            RectTransform rt = empty.GetCompoment<RectTransform>();
+            rt.sizeDelta = new Vector2(psdUI.psdSize.width, psdUI.psdSize.height);
             for (int layerIndex = 0; layerIndex < psdUI.layers.Length; layerIndex++)
             {
-                DrawLayer(psdUI.layers[layerIndex], obj);
+                DrawLayer(psdUI.layers[layerIndex], empty);
             }
             AssetDatabase.Refresh();
         }
@@ -186,11 +187,8 @@ namespace PSDUIImporter
         {
             foreach (var item in node.childs)
             {
-                RectTransform p_rt = node.GetCompoment<RectTransform>();
-                RectTransform c_rt = item.GetCompoment<RectTransform>();
-
-                //...
                 BeginSetAnchers(item);
+                PSDImportUtility.SetAnchorByNode(item);
             }
         }
 

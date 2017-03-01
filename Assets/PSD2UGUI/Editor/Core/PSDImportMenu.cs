@@ -30,7 +30,9 @@ namespace PSDUIImporter
                 PSDImportCtrl import = new PSDUIImporter.PSDImportCtrl(startPath);
                 import.BeginDrawUILayers();
                 import.BeginSetUIParents(PSDImportUtility.uinode);
-                import.BeginSetAnchers(PSDImportUtility.uinode);
+                import.BeginSetAnchers(PSDImportUtility.uinode.childs[0]);
+                var rt = PSDImportUtility.uinode.childs[0].GetCompoment<RectTransform>();
+                PSDImportUtility.SetCustomAnchor(rt, rt);
             }
             
             GC.Collect();

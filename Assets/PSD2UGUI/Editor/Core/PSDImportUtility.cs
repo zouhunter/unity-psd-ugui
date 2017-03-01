@@ -97,5 +97,62 @@ namespace PSDUIImporter
             rectTransform.sizeDelta = new Vector2(layer.size.width, layer.size.height);
             rectTransform.anchoredPosition = new Vector2(layer.position.x, layer.position.y);
         }
+        public static void SetAnchorByNode(UINode node)
+        {
+            switch (node.anchoType)
+            {
+                case UINode.AnchoType.Custom:
+                    RectTransform p_rt = node.parent.GetCompoment<RectTransform>();
+                    RectTransform c_rt = node.GetCompoment<RectTransform>();
+                    SetCustomAnchor(p_rt, c_rt);
+                    break;
+                case UINode.AnchoType.Expland:
+                    break;
+                case UINode.AnchoType.Center:
+                    break;
+                case UINode.AnchoType.LeftCenter:
+                    break;
+                case UINode.AnchoType.RightCenter:
+                    break;
+                case UINode.AnchoType.UpCenter:
+                    break;
+                case UINode.AnchoType.DownCenter:
+                    break;
+                case UINode.AnchoType.LeftExpland:
+                    break;
+                case UINode.AnchoType.RightExpland:
+                    break;
+                case UINode.AnchoType.UpExpland:
+                    break;
+                case UINode.AnchoType.DownExpland:
+                    break;
+                case UINode.AnchoType.LeftUp:
+                    break;
+                case UINode.AnchoType.RightUp:
+                    break;
+                case UINode.AnchoType.LeftDown:
+                    break;
+                case UINode.AnchoType.RightDown:
+                    break;
+                default:
+                    break;
+            }
+        }
+        public static void SetCustomAnchor(RectTransform parentRectt, RectTransform rectt)
+        {
+            Vector2 sizeDelta = rectt.sizeDelta;
+            Vector2 p_sizeDelta = parentRectt.sizeDelta;
+            Vector2 anchoredPosition = rectt.anchoredPosition;
+            float xmin = p_sizeDelta.x * 0.5f + anchoredPosition.x - sizeDelta.x * 0.5f;
+            float xmax = p_sizeDelta.x * 0.5f + anchoredPosition.x + sizeDelta.x * 0.5f;
+            float ymin = p_sizeDelta.y * 0.5f + anchoredPosition.y - sizeDelta.y * 0.5f;
+            float ymax = p_sizeDelta.y * 0.5f + anchoredPosition.y + sizeDelta.y * 0.5f;
+            rectt.anchorMin = new Vector2(xmin / p_sizeDelta.x, ymin / p_sizeDelta.y);
+            rectt.anchorMax = new Vector2(xmax / p_sizeDelta.x, ymax / p_sizeDelta.y);
+            rectt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, sizeDelta.x);
+            rectt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, sizeDelta.y);
+            rectt.sizeDelta = Vector2.zero;
+            rectt.anchoredPosition = Vector2.zero;
+        }
     }
 }
