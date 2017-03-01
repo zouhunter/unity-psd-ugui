@@ -38,29 +38,44 @@ namespace PSDUIImporter
                 default:
                     break;
             }
-
+            bool haveHandle = false;
             for (int i = 0; i < layer.images.Length; i++)
             {
                 Image image = layer.images[i];
-                string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX; Debug.Log("==  CommonImagePath  ====" + assetPath);
-                Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
+                string lowerName = image.name.ToLower();
+                UnityEngine.UI.Image graph = null;
+                
+                if (lowerName.StartsWith("b_"))
+                {
+                    graph = slider.transform.Find("Background").GetComponent<UnityEngine.UI.Image>();
+                    PSDImportUtility.SetRectTransform(image, slider.GetComponent<RectTransform>());
+                    slider.name = layer.name;
+                }
+                else if (lowerName.StartsWith("f_"))
+                {
+                    graph = slider.fillRect.GetComponent<UnityEngine.UI.Image>();
+                }
+                else if (lowerName.StartsWith("h_"))
+                {
+                    graph = slider.handleRect.GetComponent<UnityEngine.UI.Image>();
+                    RectTransform rect = graph.GetComponent<RectTransform>();
+                    rect.name = image.name;
+                    rect.sizeDelta = new Vector2(image.size.width,0);
+                    rect.anchoredPosition = Vector2.zero;
+                    haveHandle = true;
+                }
 
-                if (image.name.ToLower().Contains("background"))
+                if (graph == null)
                 {
-                    RectTransform rectTransform = slider.GetComponent<RectTransform>();
-                    rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
-                    rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
+                    continue;
+                }
 
-                    slider.transform.Find("Background").GetComponent<UnityEngine.UI.Image>().sprite = sprite;
-                }
-                else if (image.name.ToLower().Contains("fill"))
-                {
-                    slider.fillRect.GetComponent<UnityEngine.UI.Image>().sprite = sprite;
-                }
-                else if (image.name.ToLower().Contains("handle"))
-                {
-                    slider.handleRect.GetComponent<UnityEngine.UI.Image>().sprite = sprite;
-                }
+                PSDImportUtility.SetPictureOrLoadColor(image, graph);
+            }
+
+            if (!haveHandle)
+            {
+                UnityEngine.Object.DestroyImmediate(slider.handleRect.parent.gameObject);
             }
         }
     }

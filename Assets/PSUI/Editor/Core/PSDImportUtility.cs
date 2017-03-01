@@ -73,17 +73,31 @@ namespace PSDUIImporter
         public static string GetPicturePath(Image image)
         {
             string assetPath = "";
-            if (image.imageSource == ImageSource.Normal || image.imageSource == ImageSource.Custom)
-            {
-                assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
-            }
-            else if (image.imageSource == ImageSource.Globle)
+            if (PSDImportUtility.forceMove|| image.imageSource == ImageSource.Globle)
             {
                 assetPath = PSDImporterConst.Globle_BASE_FOLDER + image.name.Replace(".", "/") + PSDImporterConst.PNG_SUFFIX;
                 Debug.Log("==  CommonImagePath  ====" + assetPath);
             }
+            else if (image.imageSource == ImageSource.Normal || image.imageSource == ImageSource.Custom)
+            {
+                assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
+            }
             return assetPath;
         }
+
+        public static void SetPictureOrLoadColor(Image image,UnityEngine.UI.Image graph)
+        {
+            if (image.arguments != null && image.arguments.Length > 0)
+            {
+                PSDImportUtility.TrySetImageColor(image, graph);
+            }
+            else
+            {
+                string assetPath = PSDImportUtility.GetPicturePath(image);
+                graph.sprite = UnityEditor.AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
+            }
+        }
+
         public static void SetRectTransform(Image image,RectTransform rectTransform)
         {
             rectTransform.name = image.name;

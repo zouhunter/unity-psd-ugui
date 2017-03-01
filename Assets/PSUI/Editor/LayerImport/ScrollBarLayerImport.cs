@@ -20,9 +20,8 @@ namespace PSDUIImporter
         }
         public void DrawLayer(Layer layer, UINode parent)
         {
-            UnityEngine.UI.Scrollbar temp = Resources.Load(PSDImporterConst.PREFAB_PATH_SCROLLBAR, typeof(UnityEngine.UI.Scrollbar)) as UnityEngine.UI.Scrollbar;
-            UnityEngine.UI.Scrollbar scrollBar = GameObject.Instantiate(temp) as UnityEngine.UI.Scrollbar;
-            scrollBar.transform.SetParent(parent.transform, false); //parent = parent.transform;
+            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_SCROLLBAR, layer.name, parent);
+            Scrollbar scrollBar = node.GetCompoment<Scrollbar>();
 
             string type = layer.arguments[0].ToUpper();
             switch (type)
@@ -53,21 +52,27 @@ namespace PSDUIImporter
             for (int i = 0; i < layer.images.Length; i++)
             {
                 Image image = layer.images[i];
-                string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX; Debug.Log("==  CommonImagePath  ====" + assetPath);
-                Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
+                string lowerName = image.name.ToLower();
+                UnityEngine.UI.Image graph = null;
 
-                if (image.name.ToLower().Contains("background"))
+                if (lowerName.StartsWith("b_"))
                 {
-                    scrollBar.GetComponent<UnityEngine.UI.Image>().sprite = sprite;
-                    RectTransform rectTransform = scrollBar.GetComponent<RectTransform>();
+                    graph = scrollBar.GetComponent<UnityEngine.UI.Image>();
+                    PSDImportUtility.SetRectTransform(image, scrollBar.GetComponent<RectTransform>());
+                }
+                else if (lowerName.StartsWith("h_"))
+                {
+                    graph = scrollBar.handleRect.GetComponent<UnityEngine.UI.Image>();
+                }
 
-                    rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
-                    rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
-                }
-                else if (image.name.ToLower().Contains("handle"))
+                if (graph == null)
                 {
-                    scrollBar.handleRect.GetComponent<UnityEngine.UI.Image>().sprite = sprite;
+                    //忽略Scorllbar其他的artLayer
+                    continue;
                 }
+
+                PSDImportUtility.SetPictureOrLoadColor(image, graph);
+
             }
         }
     }

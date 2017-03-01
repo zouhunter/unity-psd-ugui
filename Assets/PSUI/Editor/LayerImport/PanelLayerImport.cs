@@ -32,7 +32,7 @@ namespace PSDUIImporter
                 {
                     if (image.arguments == null || image.arguments.Length == 0)
                     {
-                        string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
+                        string assetPath = PSDImportUtility.GetPicturePath(image);
                         Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
                         panel.sprite = sprite;
                     }

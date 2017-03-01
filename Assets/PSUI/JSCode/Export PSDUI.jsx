@@ -178,6 +178,14 @@ function exportScrollView(obj)
     }
 
     var haveSize = recordPositionAndSize(obj);
+    var artLayerLength = haveSize ? obj.artLayers.length - 1: obj.artLayers.length
+	
+    sceneData += "<images>";
+    for (var j = 0; j < artLayerLength; j++)
+    {
+        exportArtLayer(obj.artLayers[j]);
+    }
+    sceneData += "</images>";
 
     sceneData += "<arguments>";
     sceneData += "<string>" + params[1] + "</string>";     //滑动方向
@@ -192,7 +200,7 @@ function recordPositionAndSize(obj)
 	var sizeObj =obj.layers[obj.layers.length - 1] ;
     if (sizeObj.name.search("@Size") < 0)
     {
-        alert("Bottom layer's name doesn't contain '@Size'");
+        //alert("Bottom layer's name doesn't contain '@Size'");
         return false;
     }
     else
