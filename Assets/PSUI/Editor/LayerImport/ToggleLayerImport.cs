@@ -26,37 +26,12 @@ namespace PSDUIImporter
                     string lowerName = image.name.ToLower();
                     if (lowerName.StartsWith("b_"))
                     {
-                        if (image.imageSource == ImageSource.Normal || image.imageSource == ImageSource.Custom)
-                        {
-                            if (image.arguments == null)
-                            {
-                                string assetPath = PSDImportUtility.GetPicturePath(image);
-                                Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
-                                toggle.image.sprite = sprite;
-                            }
-                            else
-                            {
-                                PSDImportUtility.TrySetImageColor(image, toggle.targetGraphic);
-                            }
-
-                            PSDImportUtility.SetRectTransform(image, toggle.GetComponent<RectTransform>());
-                        }
+                        PSDImportUtility.SetPictureOrLoadColor(image, toggle.targetGraphic);
+                        PSDImportUtility.SetRectTransform(image, toggle.GetComponent<RectTransform>());
                     }
                     else if (lowerName.StartsWith("m_"))
                     {
-                        if (image.imageSource == ImageSource.Normal || image.imageSource == ImageSource.Custom)
-                        {
-                            if (image.arguments == null)
-                            {
-                                string assetPath = PSDImportUtility.GetPicturePath(image);
-                                Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
-                                toggle.graphic.GetComponent<UnityEngine.UI.Image>().sprite = sprite;
-                            }
-                            else
-                            {
-                                PSDImportUtility.TrySetImageColor(image, toggle.graphic);
-                            }
-                        }
+                        PSDImportUtility.SetPictureOrLoadColor(image, toggle.graphic);
                     }
                     else
                     {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class UINode {
     public enum AnchoType
@@ -20,7 +21,7 @@ public class UINode {
     public AnchoType anchoType = AnchoType.Custom;
     public List<UINode> childs = new List<UINode>();
     public Transform transform;
-    
+    public UnityAction ReprocessEvent;
     public UINode(Transform transform,UINode parent)
     {
         this.transform = transform;
@@ -32,6 +33,7 @@ public class UINode {
     {
         return transform.GetComponent<T>();
     }
+
     public T AddComponent<T>() where T : Component
     {
         return transform.gameObject.AddComponent<T>();

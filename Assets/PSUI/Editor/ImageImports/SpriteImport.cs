@@ -36,24 +36,7 @@ namespace PSDUIImporter
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_RawIMAGE, image.name, parent);
             UnityEngine.UI.RawImage pic = node.GetComponent<UnityEngine.UI.RawImage>();
-            string assetPath = PSDImportUtility.GetPicturePath(image);
-            Texture texture = UnityEditor.AssetDatabase.LoadAssetAtPath(assetPath, typeof(Texture)) as Texture;
-            pic.texture = texture;
-
-            if (texture == null)
-            {
-                Debug.Log("loading asset at path: " + assetPath + "\nname:" + image.name);
-                if (image.arguments != null && image.arguments.Length > 0)
-                {
-                    Debug.Log(image.arguments[0]);
-                    Color color;
-                    if (ColorUtility.TryParseHtmlString(image.arguments[0], out color))
-                    {
-                        pic.color = color;
-                    }
-                }
-            }
-
+            PSDImportUtility.SetPictureOrLoadColor(image, pic);
             PSDImportUtility.SetRectTransform(image, pic.GetComponent<RectTransform>());
             return node;
         }
@@ -62,29 +45,8 @@ namespace PSDUIImporter
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, image.name, parent);
             UnityEngine.UI.Image pic = node.GetComponent<UnityEngine.UI.Image>();
-
-            string assetPath = PSDImportUtility.GetPicturePath(image);
-
-            Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
-
-            if (sprite == null)
-            {
-                Debug.Log("loading asset at path: " + assetPath + "\nname:" + image.name);
-                if (image.arguments != null && image.arguments.Length > 0)
-                {
-                    Debug.Log(image.arguments[0]);
-                    Color color;
-                    if (ColorUtility.TryParseHtmlString(image.arguments[0], out color))
-                    {
-                        pic.color = color;
-                    }
-                }
-            }
-
-            pic.sprite = sprite;
-
+            PSDImportUtility.SetPictureOrLoadColor(image, pic);
             pic.type = UnityEngine.UI.Image.Type.Simple;
-
             PSDImportUtility.SetRectTransform(image, pic.GetComponent<RectTransform>());
             return node;
         }
@@ -93,17 +55,10 @@ namespace PSDUIImporter
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, image.name, parent);
             UnityEngine.UI.Image pic = node.GetComponent<UnityEngine.UI.Image>();
-            string assetPath = PSDImportUtility.GetPicturePath(image);
-
-            Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
-
-            pic.sprite = sprite;
-
+            PSDImportUtility.SetPictureOrLoadColor(image, pic);
             pic.type = UnityEngine.UI.Image.Type.Sliced;
-
             PSDImportUtility.SetRectTransform(image, pic.GetComponent<RectTransform>());
             return node;
-
         }
 
     }

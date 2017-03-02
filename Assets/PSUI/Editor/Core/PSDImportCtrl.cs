@@ -30,6 +30,7 @@ namespace PSDUIImporter
         private ILayerImport emptyImport;
         private ILayerImport groupImport;
         private ILayerImport inputFiledImport;
+        private ILayerImport dropdownImport;
 
 
         public PSDImportCtrl(string xmlFilePath)
@@ -76,6 +77,9 @@ namespace PSDUIImporter
                     break;
                 case LayerType.ScrollBar:
                     node = scrollBarImport.DrawLayer(layer, parent);
+                    break;
+                case LayerType.Dropdown:
+                    node = dropdownImport.DrawLayer(layer, parent);
                     break;
                 default:
                     break;
@@ -177,6 +181,8 @@ namespace PSDUIImporter
             gridImport = new GridLayerImport(this);
             emptyImport = new DefultLayerImport(this);
             groupImport = new GroupLayerImport(this);
+            dropdownImport = new DropDownLayerImport(this);
+
         }
 
         public void BeginDrawUILayers()
@@ -206,6 +212,18 @@ namespace PSDUIImporter
             {
                 BeginSetAnchers(item);
                 PSDImportUtility.SetAnchorByNode(item);
+            }
+        }
+
+        public void BeginReprocess(UINode node)
+        {
+            foreach (var item in node.childs)
+            {
+                BeginReprocess(item);
+                if (node.ReprocessEvent != null)
+                {
+                    node.ReprocessEvent.Invoke();
+                }
             }
         }
 

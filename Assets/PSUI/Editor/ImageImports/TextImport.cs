@@ -13,7 +13,7 @@ namespace PSDUIImporter
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_TEXT, image.name,parent);
             UnityEngine.UI.Text myText = node.GetComponent<Text>();
-            PSDImportUtility.TrySetImageColor(image, myText);
+            PSDImportUtility.SetPictureOrLoadColor(image, myText);
 
             float size;
             if (float.TryParse(image.arguments[2], out size))

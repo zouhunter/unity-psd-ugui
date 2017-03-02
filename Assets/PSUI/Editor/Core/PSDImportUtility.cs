@@ -52,25 +52,12 @@ namespace PSDUIImporter
             return node;
         }
 
-        public static void TrySetImageColor(Image image,UnityEngine.UI.Graphic pic)
-        {
-            if (image.arguments.Length > 0)
-            {
-                Debug.Log(image.arguments[0]);
-                Color color;
-                if (ColorUtility.TryParseHtmlString(image.arguments[0], out color))
-                {
-                    pic.color = color;
-                }
-            }
-        }
-
         /// <summary>
         /// 生成图片路径
         /// </summary>
         /// <param name="image"></param>
         /// <returns></returns>
-        public static string GetPicturePath(Image image)
+        static string GetPicturePath(Image image)
         {
             string assetPath = "";
             if (PSDImportUtility.forceMove|| image.imageSource == ImageSource.Globle)
@@ -85,29 +72,52 @@ namespace PSDUIImporter
             return assetPath;
         }
 
-        public static void SetPictureOrLoadColor(Image image,UnityEngine.UI.Image graph)
+        public static void SetPictureOrLoadColor(Image image,UnityEngine.UI.Graphic graph)
         {
             if (image.arguments != null && image.arguments.Length > 0)
             {
-                PSDImportUtility.TrySetImageColor(image, graph);
+                if (image.arguments.Length > 0)
+                {
+                    Debug.Log(image.arguments[0]);
+                    Color color;
+                    if (ColorUtility.TryParseHtmlString(image.arguments[0], out color))
+                    {
+                        graph.color = color;
+                    }
+                }
             }
             else
             {
                 string assetPath = PSDImportUtility.GetPicturePath(image);
-                graph.sprite = UnityEditor.AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
+
+                Object sprite = UnityEditor.AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite));
+                if (sprite != null)
+                {
+                    if (graph is UnityEngine.UI.Image)
+                    {
+                       ((UnityEngine.UI.Image)graph).sprite = sprite as Sprite;
+                    }
+                    else if (graph is UnityEngine.UI.RawImage)
+                    {
+                        ((UnityEngine.UI.RawImage)graph).texture = sprite as Texture;
+                    }
+
+                }
+                else
+                {
+                    Debug.Log("loading asset at path: " + assetPath + "\nname:" + image.name);
+                }
             }
         }
 
         public static void SetRectTransform(Image image,RectTransform rectTransform)
         {
-            rectTransform.name = image.name;
             rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
             rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
         }
 
         public static void SetRectTransform(Layer layer, RectTransform rectTransform, RectTransform parentTrans)
         {
-            rectTransform.name = layer.name;
             if (layer.size != null)
             {
                 rectTransform.sizeDelta = new Vector2(layer.size.width, layer.size.height);
@@ -123,6 +133,7 @@ namespace PSDUIImporter
         {
             RectTransform p_rt = node.parent.GetComponent<RectTransform>();
             RectTransform c_rt = node.GetComponent<RectTransform>();
+
             switch (node.anchoType)
             {
                 case UINode.AnchoType.Custom:

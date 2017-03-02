@@ -17,10 +17,8 @@ namespace PSDUIImporter
 
         public UINode DrawLayer(Layer layer, UINode parent)
         {
-            //UnityEngine.UI.Image temp = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof(UnityEngine.UI.Image)) as UnityEngine.UI.Image;
-                UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, layer.name, parent);//GameObject.Instantiate(temp) as UnityEngine.UI.Image;
+            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, layer.name, parent);//GameObject.Instantiate(temp) as UnityEngine.UI.Image;
             UnityEngine.UI.Image panel = node.GetComponent<UnityEngine.UI.Image>();
-
 
             ctrl.DrawLayers(layer.layers, node);//子节点
 
@@ -30,19 +28,8 @@ namespace PSDUIImporter
 
                 if (image.name.ToLower().StartsWith("b_"))
                 {
-                    if (image.arguments == null || image.arguments.Length == 0)
-                    {
-                        string assetPath = PSDImportUtility.GetPicturePath(image);
-                        Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
-                        panel.sprite = sprite;
-                    }
-                    else
-                    {
-                        PSDImportUtility.TrySetImageColor(image, panel);
-                    }
-
+                    PSDImportUtility.SetPictureOrLoadColor(image, panel);
                     PSDImportUtility.SetRectTransform(image, panel.GetComponent<RectTransform>());
-
                     panel.name = layer.name;
                 }
                 else

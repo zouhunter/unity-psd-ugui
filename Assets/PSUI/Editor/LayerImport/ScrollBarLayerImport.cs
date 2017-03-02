@@ -14,10 +14,8 @@ namespace PSDUIImporter
         public ScrollBarLayerImport(PSDImportCtrl ctrl)
         {
             this.ctrl = ctrl;
-            Debug.Log(this.ctrl);
-
-
         }
+
         public UINode DrawLayer(Layer layer, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_SCROLLBAR, layer.name, parent);
@@ -59,6 +57,7 @@ namespace PSDUIImporter
                 {
                     graph = scrollBar.GetComponent<UnityEngine.UI.Image>();
                     PSDImportUtility.SetRectTransform(image, scrollBar.GetComponent<RectTransform>());
+                    scrollBar.name = layer.name;
                 }
                 else if (lowerName.StartsWith("h_"))
                 {

@@ -20,5 +20,6 @@ namespace PSDUIImporter
         Group,
         InputField,
         ScrollBar,
+        Dropdown
     }
 }

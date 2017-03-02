@@ -8,9 +8,9 @@ namespace PSDUIImporter
         public const string PNG_SUFFIX = ".png";
         public const string Globle_BASE_FOLDER = "Assets/Common/Images/";
 
-        public const string RENDER = "Render";
-        public const string NINE_SLICE = "9Slice";
-        public const string IMAGE = "Image";
+        //public const string RENDER = "Render";
+        //public const string NINE_SLICE = "9Slice";
+        //public const string IMAGE = "Image";
 
         public const string PREFAB_PATH_EMPTY = "Prefabs/UI/Empty";
         public const string PREFAB_PATH_BUTTON = "Prefabs/UI/Button";
@@ -25,5 +25,6 @@ namespace PSDUIImporter
         public const string PREFAB_PATH_SCROLLBAR = "Prefabs/UI/Scrollbar";
         public const string PREFAB_PATH_GROUP = "Prefabs/UI/Group";
         public const string PREFAB_PATH_INPUTFIELD = "Prefabs/UI/InputField";
+        public const string PREFAB_PATH_DROPDOWN = "Prefabs/UI/Dropdown";
     }
 }

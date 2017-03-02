@@ -34,17 +34,8 @@ namespace PSDUIImporter
                 if (image.name.ToLower().StartsWith("b_"))
                 {
                     havebg = true;
-                    
-                    if (image.arguments == null || image.arguments.Length == 0)
-                    {
-                        string assetPath = PSDImportUtility.GetPicturePath(image);
-                        Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
-                        graph.sprite = sprite;
-                    }
-                    else
-                    {
-                        PSDImportUtility.TrySetImageColor(image, graph);
-                    }
+
+                    PSDImportUtility.SetPictureOrLoadColor(image, graph);
 
                     PSDImportUtility.SetRectTransform(image, graph.GetComponent<RectTransform>());
                 }

@@ -110,6 +110,12 @@ function exportLayerSet(obj)
             {
                 exportGrid(obj.layers[i]);
             }
+            else if (obj.layers[i].name.search("@Group")>=0) {
+                exportGroup(obj.layers[i]);
+            }
+            else if (obj.layers[i].name.search("@Dropdown")>=0) {
+                exportDropdown(obj.layers[i]);
+            }
             else if (obj.layers[i].name.search("@Button") >= 0)
             {
                 exportButton(obj.layers[i]);
@@ -125,9 +131,7 @@ function exportLayerSet(obj)
             else if (obj.layers[i].name.search("@Slider")>=0) {
                 exportSlider(obj.layers[i]);
             }
-            else if (obj.layers[i].name.search("@Group")>=0) {
-                exportGroup(obj.layers[i]);
-            }
+           
             else if (obj.layers[i].name.search("@InputField") >=0) {
                 exportInputField(obj.layers[i]);
             }
@@ -194,40 +198,12 @@ function exportScrollView(obj)
     sceneData += "</Layer>";
 }
 
-function recordPositionAndSize(obj)
-{
-	var recSize;
-	var sizeObj =obj.layers[obj.layers.length - 1] ;
-    if (sizeObj.name.search("@Size") < 0)
-    {
-        //alert("Bottom layer's name doesn't contain '@Size'");
-        return false;
-    }
-    else
-    {
-        sizeObj.visible = true;
-
-        recSize = getLayerRec(duppedPsd.duplicate());
-
-        sceneData += "<position>";
-        sceneData += "<x>" + recSize.x + "</x>";
-        sceneData += "<y>" + recSize.y + "</y>";
-        sceneData += "</position>";
-
-        sceneData += "<size>";
-        sceneData += "<width>" + recSize.width + "</width>";
-        sceneData += "<height>" + recSize.height + "</height>";
-        sceneData += "</size>";
-
-        sizeObj.visible = false;
-        return true;
-    }
-}
-
 function exportGrid(obj)
 {
     var itemName = obj.name.substring(0, obj.name.search("@"));
     sceneData += ("<Layer>\n<type>Grid</type>\n<name>" + itemName + "</name>\n");
+    
+    exportLayerSet(obj);
 
     var params = obj.name.split(":");
 
@@ -236,7 +212,6 @@ function exportGrid(obj)
         alert(obj.name + "-------Layer's name not equals 2------------");
     }
 
-    exportLayerSet(obj);
 
     var haveSize = recordPositionAndSize(obj);
 
@@ -270,8 +245,6 @@ function exportGroup(obj)
     {
         alert(obj.name + "-------Layer's name not equals 2------------");
     }
-    exportLayerSet(obj);
-
     var haveSize = recordPositionAndSize(obj);
 
     var artLayerLength = haveSize ? obj.artLayers.length - 1: obj.artLayers.length
@@ -289,6 +262,23 @@ function exportGroup(obj)
     sceneData += "</arguments>";
 
     sceneData += "</Layer>";
+}
+
+function exportDropdown(obj)
+{
+    var itemName = obj.name.substring(0, obj.name.search("@"));
+    sceneData += ("<Layer>\n<type>Dropdown</type>\n<name>" + itemName + "</name>\n");
+
+    exportLayerSet(obj);
+
+    sceneData += "<images>\n";
+
+    for (var j = obj.artLayers.length - 1; 0 <= j; j--)
+    {
+        exportArtLayer(obj.artLayers[j]);
+    }
+
+    sceneData += "\n</images>\n</Layer>";
 }
 
 function exportInputField(obj)
@@ -516,6 +506,38 @@ function exportImage(obj)
 
   
 }
+
+//记录最后一层有@Size的layer尺寸和坐标
+function recordPositionAndSize(obj)
+{
+    var recSize;
+    var sizeObj =obj.layers[obj.layers.length - 1] ;
+    if (sizeObj.name.search("@Size") < 0)
+    {
+        //alert("Bottom layer's name doesn't contain '@Size'");
+        return false;
+    }
+    else
+    {
+        sizeObj.visible = true;
+
+        recSize = getLayerRec(duppedPsd.duplicate());
+
+        sceneData += "<position>";
+        sceneData += "<x>" + recSize.x + "</x>";
+        sceneData += "<y>" + recSize.y + "</y>";
+        sceneData += "</position>";
+
+        sceneData += "<size>";
+        sceneData += "<width>" + recSize.width + "</width>";
+        sceneData += "<height>" + recSize.height + "</height>";
+        sceneData += "</size>";
+
+        sizeObj.visible = false;
+        return true;
+    }
+}
+
 //获取层级颜色
 function getLayerColor(obj){
    var desc = Stdlib.getLayerDescriptor(app.activeDocument, obj);

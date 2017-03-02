@@ -23,7 +23,7 @@ namespace PSDUIImporter
                         if (lowerName.StartsWith("t_"))
                         {
                             UnityEngine.UI.Text text = (UnityEngine.UI.Text)inputfield.textComponent;//inputfield.transform.Find("Text").GetComponent<UnityEngine.UI.Text>();
-                            PSDImportUtility.TrySetImageColor(image, inputfield.textComponent);
+                            PSDImportUtility.SetPictureOrLoadColor(image, inputfield.textComponent);
 
                             int size;
                             if (int.TryParse(image.arguments[2], out size))
@@ -34,7 +34,7 @@ namespace PSDUIImporter
                         else if (lowerName.StartsWith("p_"))
                         {
                             UnityEngine.UI.Text text = (UnityEngine.UI.Text)inputfield.placeholder;//.transform.Find("Placeholder").GetComponent<UnityEngine.UI.Text>();
-                            PSDImportUtility.TrySetImageColor(image, inputfield.textComponent);
+                            PSDImportUtility.SetPictureOrLoadColor(image, inputfield.textComponent);
 
                             int size;
                             if (int.TryParse(image.arguments[2], out size))
