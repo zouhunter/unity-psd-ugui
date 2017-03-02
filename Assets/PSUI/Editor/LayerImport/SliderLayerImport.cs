@@ -9,14 +9,7 @@ namespace PSDUIImporter
 {
     public class SliderLayerImport : ILayerImport
     {
-        PSDImportCtrl ctrl;
-        public SliderLayerImport(PSDImportCtrl ctrl)
-        {
-            this.ctrl = ctrl;
-            Debug.Log(this.ctrl);
-
-        }
-        public void DrawLayer(Layer layer, UINode parent)
+        public UINode DrawLayer(Layer layer, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_SLIDER,layer.name,parent); //GameObject.Instantiate(temp) as UnityEngine.UI.Slider;
             UnityEngine.UI.Slider slider = node.GetCompoment<UnityEngine.UI.Slider>();
@@ -77,6 +70,7 @@ namespace PSDUIImporter
             {
                 UnityEngine.Object.DestroyImmediate(slider.handleRect.parent.gameObject);
             }
+            return node;
         }
     }
 }

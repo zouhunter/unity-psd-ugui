@@ -16,7 +16,7 @@ namespace PSDUIImporter
             this.ctrl = ctrl;
         }
 
-        public void DrawLayer(Layer layer, UINode parent)
+        public UINode DrawLayer(Layer layer, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_BUTTON, layer.name, parent);
             UnityEngine.UI.Button button = node.GetCompoment<UnityEngine.UI.Button>();
@@ -44,6 +44,7 @@ namespace PSDUIImporter
                     }
                 }
             }
+            return node;
         }
         private void SetSpriteSwipe(Image image,UnityEngine.UI.Button button)
         {

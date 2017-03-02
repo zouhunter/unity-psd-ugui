@@ -92,6 +92,16 @@ namespace PSDUIImporter
                 }
             }
         }
+        public void DrawImages(Image[] images,UINode parent)
+        {
+            if (images != null)
+            {
+                for (int layerIndex = 0; layerIndex < images.Length; layerIndex++)
+                {
+                    DrawImage(images[layerIndex], parent);
+                }
+            }
+        }
 
         public void DrawImage(Image image, UINode parent)
         {
@@ -150,16 +160,16 @@ namespace PSDUIImporter
             spriteImport = new SpriteImport();
             textImport = new TextImport();
 
+            sliderImport = new SliderLayerImport();
+            inputFiledImport = new InputFieldLayerImport();
             buttonImport = new ButtonLayerImport(this);
             toggleImport = new ToggleLayerImport(this);
             panelImport = new PanelLayerImport(this);
             scrollViewImport = new ScrollViewLayerImport(this);
             scrollBarImport = new ScrollBarLayerImport(this);
-            sliderImport = new SliderLayerImport(this);
             gridImport = new GridLayerImport(this);
             emptyImport = new DefultLayerImport(this);
             groupImport = new GroupLayerImport(this);
-            inputFiledImport = new InputFieldLayerImport();
         }
 
         public void BeginDrawUILayers()
@@ -191,7 +201,6 @@ namespace PSDUIImporter
                 PSDImportUtility.SetAnchorByNode(item);
             }
         }
-
 
         private void MoveLayers()
         {

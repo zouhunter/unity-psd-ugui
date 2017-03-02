@@ -121,42 +121,15 @@ namespace PSDUIImporter
         }
         public static void SetAnchorByNode(UINode node)
         {
+            RectTransform p_rt = node.parent.GetCompoment<RectTransform>();
+            RectTransform c_rt = node.GetCompoment<RectTransform>();
             switch (node.anchoType)
             {
                 case UINode.AnchoType.Custom:
-                    RectTransform p_rt = node.parent.GetCompoment<RectTransform>();
-                    RectTransform c_rt = node.GetCompoment<RectTransform>();
                     SetCustomAnchor(p_rt, c_rt);
                     break;
-                case UINode.AnchoType.Expland:
-                    break;
-                case UINode.AnchoType.Center:
-                    break;
-                case UINode.AnchoType.LeftCenter:
-                    break;
-                case UINode.AnchoType.RightCenter:
-                    break;
-                case UINode.AnchoType.UpCenter:
-                    break;
-                case UINode.AnchoType.DownCenter:
-                    break;
-                case UINode.AnchoType.LeftExpland:
-                    break;
-                case UINode.AnchoType.RightExpland:
-                    break;
-                case UINode.AnchoType.UpExpland:
-                    break;
-                case UINode.AnchoType.DownExpland:
-                    break;
-                case UINode.AnchoType.LeftUp:
-                    break;
-                case UINode.AnchoType.RightUp:
-                    break;
-                case UINode.AnchoType.LeftDown:
-                    break;
-                case UINode.AnchoType.RightDown:
-                    break;
                 default:
+                    SetNormalAnchor(node.anchoType, p_rt, c_rt);
                     break;
             }
         }
@@ -169,12 +142,89 @@ namespace PSDUIImporter
             float xmax = p_sizeDelta.x * 0.5f + anchoredPosition.x + sizeDelta.x * 0.5f;
             float ymin = p_sizeDelta.y * 0.5f + anchoredPosition.y - sizeDelta.y * 0.5f;
             float ymax = p_sizeDelta.y * 0.5f + anchoredPosition.y + sizeDelta.y * 0.5f;
+            float xSize = 0;
+            float ySize = 0;
+            float xanchored = 0;
+            float yanchored = 0;
             rectt.anchorMin = new Vector2(xmin / p_sizeDelta.x, ymin / p_sizeDelta.y);
             rectt.anchorMax = new Vector2(xmax / p_sizeDelta.x, ymax / p_sizeDelta.y);
             rectt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, sizeDelta.x);
             rectt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, sizeDelta.y);
-            rectt.sizeDelta = Vector2.zero;
-            rectt.anchoredPosition = Vector2.zero;
+            rectt.sizeDelta = new Vector2(xSize,ySize);
+            rectt.anchoredPosition = new Vector2(xanchored,yanchored);
+        }
+        public static void SetNormalAnchor(UINode.AnchoType anchoType, RectTransform parentRectt, RectTransform rectt)
+        {
+            Vector2 sizeDelta = rectt.sizeDelta;
+            Vector2 p_sizeDelta = parentRectt.sizeDelta;
+            Vector2 anchoredPosition = rectt.anchoredPosition;
+
+            float xmin = 0;
+            float xmax = 0;
+            float ymin = 0;
+            float ymax = 0;
+            float xSize = 0;
+            float ySize = 0;
+            float xanchored = 0;
+            float yanchored = 0;
+
+            if ((anchoType & UINode.AnchoType.Up) == UINode.AnchoType.Up)
+            {
+                ymin = ymax = 1;
+                yanchored = anchoredPosition.y - p_sizeDelta.y * 0.5f;
+                ySize = sizeDelta.y;
+            }
+            if ((anchoType & UINode.AnchoType.Down) == UINode.AnchoType.Down)
+            {
+                ymin = ymax = 0;
+                yanchored = anchoredPosition.y + p_sizeDelta.y * 0.5f;
+                ySize = sizeDelta.y;
+            }
+            if ((anchoType & UINode.AnchoType.Left) == UINode.AnchoType.Left)
+            {
+                xmin = xmax = 0;
+                xanchored = anchoredPosition.x + p_sizeDelta.x * 0.5f;
+                xSize = sizeDelta.x;
+            }
+            if ((anchoType & UINode.AnchoType.Right) == UINode.AnchoType.Right)
+            {
+                xmin = xmax = 1;
+                xanchored = anchoredPosition.x - p_sizeDelta.x * 0.5f;
+                xSize = sizeDelta.x;
+            }
+            if ((anchoType & UINode.AnchoType.XStretch) == UINode.AnchoType.XStretch)
+            {
+                xmin = 0; xmax = 1;
+                xanchored = anchoredPosition.x;
+                xSize = sizeDelta.x - p_sizeDelta.x;
+            }
+            if ((anchoType & UINode.AnchoType.YStretch) == UINode.AnchoType.YStretch)
+            {
+                ymin = 0; ymax = 1;
+                yanchored = anchoredPosition.y;
+                ySize = sizeDelta.y - p_sizeDelta.y;
+            }
+            if ((anchoType & UINode.AnchoType.XCenter) == UINode.AnchoType.XCenter)
+            {
+                xmin = xmax = 0.5f;
+                xanchored = anchoredPosition.x;
+                xSize = sizeDelta.x;
+            }
+            if ((anchoType & UINode.AnchoType.YCenter) == UINode.AnchoType.YCenter)
+            {
+                ymin = ymax = 0.5f;
+                yanchored = anchoredPosition.y;
+                ySize = sizeDelta.y;
+            }
+
+            rectt.anchorMin = new Vector2(xmin, ymin);
+            rectt.anchorMax = new Vector2(xmax, ymax);
+
+            rectt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, sizeDelta.x);
+            rectt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, sizeDelta.y);
+
+            rectt.sizeDelta = new Vector2(xSize, ySize);
+            rectt.anchoredPosition = new Vector2(xanchored, yanchored);
         }
     }
 }

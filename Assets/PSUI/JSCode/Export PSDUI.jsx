@@ -5,7 +5,7 @@
 //**************************************************
 // hidden object game exporter
 //$.writeln("=== Starting Debugging Session ===");
-//@include "stdlib.js"
+//@include "stdlib.jsx"
 // enable double clicking from the Macintosh Finder or the Windows Explorer
 #target photoshop
 
@@ -231,51 +231,30 @@ function exportGrid(obj)
 
     var params = obj.name.split(":");
 
-    if (params.length > 1)
+    if (params.length < 4)
     {
-        alert("Layer's name is illegal");
+        alert("Grid need 3 params,ancho,r or c ,count");
     }
+    else{
 
-    var recSize;
-    if (obj.layers[obj.layers.length - 1].name.search("@Size") < 0)
+    }
+    exportLayerSet(obj);
+
+    var haveSize = recordPositionAndSize(obj);
+
+    var artLayerLength = haveSize ? obj.artLayers.length - 1: obj.artLayers.length
+	
+    sceneData += "<images>";
+    for (var j = 0; j < artLayerLength; j++)
     {
-        alert("Bottom layer's name doesn't contain '@Size'");
+        exportArtLayer(obj.artLayers[j]);
     }
-    else
-    {
-        obj.layers[obj.layers.length - 1].visible = true;
-
-        recSize = getLayerRec(duppedPsd.duplicate());
-
-        sceneData += "<position>";
-        sceneData += "<x>" + recSize.x + "</x>";
-        sceneData += "<y>" + recSize.y + "</y>";
-        sceneData += "</position>";
-
-        sceneData += "<size>";
-        sceneData += "<width>" + recSize.width + "</width>";
-        sceneData += "<height>" + recSize.height + "</height>";
-        sceneData += "</size>";
-
-        obj.layers[obj.layers.length - 1].visible = false;
-    }
-
-    var totalContentCount = obj.layers.length - 1;
-
-    obj.layers[0].visible = true;
-    var rec0 = getLayerRec(duppedPsd.duplicate());
-    obj.layers[0].visible = false;
-
-    var renderHorizontalGap = params[2] > 1 ? (recSize.width - rec0.width * params[2])/(params[2] - 1) : 0;
-    var renderVerticalGap = params[1] > 1 ? (recSize.height - rec0.height * params[1])/(params[1] - 1) : 0;
-
+    sceneData += "</images>";
+  
     sceneData += "<arguments>";
-    sceneData += "<string>" + params[1] + "</string>";   //行数
-    sceneData += "<string>" + params[2] + "</string>";   //列数
-    sceneData += "<string>" + rec0.width + "</string>";   //render width
-    sceneData += "<string>" + rec0.height + "</string>";   //render height
-    sceneData += "<string>" + renderHorizontalGap + "</string>"; //水平间距
-    sceneData += "<string>" + renderVerticalGap + "</string>"; //垂直间距
+    sceneData += "<string>" + params[1] + "</string>";   
+    sceneData += "<string>" + params[2] + "</string>";   
+    sceneData += "<string>" + params[3] + "</string>";   
     sceneData += "</arguments>";
 
     sceneData += "</Layer>";

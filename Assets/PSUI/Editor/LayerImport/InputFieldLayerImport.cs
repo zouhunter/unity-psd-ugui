@@ -6,7 +6,7 @@ namespace PSDUIImporter
 {
     internal class InputFieldLayerImport : ILayerImport
     {
-        public void DrawLayer(Layer layer, UINode parent)
+        public UINode DrawLayer(Layer layer, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_INPUTFIELD, layer.name, parent);
             UnityEngine.UI.InputField inputfield = node.GetCompoment<UnityEngine.UI.InputField>();
@@ -53,6 +53,7 @@ namespace PSDUIImporter
                     }
                 }
             }
+            return node;
         }
     }
 }

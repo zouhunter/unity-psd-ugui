@@ -10,6 +10,6 @@ namespace PSDUIImporter
 {
     public interface ILayerImport
     {
-        void DrawLayer(Layer layer, UINode parent);
+        UINode DrawLayer(Layer layer, UINode parent);
     }
 }

@@ -6,12 +6,15 @@ using UnityEngine.UI;
 public class UINode {
     public enum AnchoType
     {
-        Custom,
-        Expland,
-        Center,
-        LeftCenter,RightCenter,UpCenter,DownCenter,
-        LeftExpland,RightExpland,UpExpland,DownExpland,
-        LeftUp,RightUp,LeftDown,RightDown
+        Custom = 1 << 0,
+        Left = 1 << 1,
+        Right = 1 << 2,
+        Up = 1 << 3,
+        Down = 1 << 4,
+        XStretch = 1 << 5,
+        YStretch = 1 << 6,
+        XCenter = 1 << 7,
+        YCenter = 1 << 8,
     }
     public UINode parent;
     public AnchoType anchoType = AnchoType.Custom;

@@ -14,31 +14,33 @@ namespace PSDUIImporter
         {
             this.ctrl = ctrl;
         }
-        public void DrawLayer(Layer layer, UINode parent)
+        public UINode DrawLayer(Layer layer, UINode parent)
         {
-            UnityEngine.UI.GridLayoutGroup temp = Resources.Load(PSDImporterConst.PREFAB_PATH_GRID, typeof(UnityEngine.UI.GridLayoutGroup)) as UnityEngine.UI.GridLayoutGroup;
-            UnityEngine.UI.GridLayoutGroup gridLayoutGroup = GameObject.Instantiate(temp) as UnityEngine.UI.GridLayoutGroup;
-            gridLayoutGroup.transform.SetParent(parent.transform, false);//.parent = parent.transform;
+            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_GRID, layer.name, parent);
+            GridLayoutGroup gridLayoutGroup = node.GetCompoment<GridLayoutGroup>();
+            PSDImportUtility.SetRectTransform(layer, gridLayoutGroup.GetComponent<RectTransform>());
 
-            gridLayoutGroup.padding = new RectOffset();
-            gridLayoutGroup.cellSize = new Vector2(System.Convert.ToInt32(layer.arguments[2]), System.Convert.ToInt32(layer.arguments[3]));
+            gridLayoutGroup.padding = new RectOffset(1,1,1,1);
+            gridLayoutGroup.cellSize = new Vector2(layer.size.width, layer.size.height);
 
-            RectTransform rectTransform = gridLayoutGroup.GetComponent<RectTransform>();
-            rectTransform.sizeDelta = new Vector2(layer.size.width, layer.size.height);
-            rectTransform.anchoredPosition = new Vector2(layer.position.x, layer.position.y);
-
-            int cellCount = System.Convert.ToInt32(layer.arguments[0]) * System.Convert.ToInt32(layer.arguments[1]);
-            for (int cell = 0; cell < cellCount; cell++)
+            if (layer.arguments != null && layer.arguments.Length > 1 )
             {
-                UnityEngine.UI.Image pic = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof(UnityEngine.UI.Image)) as UnityEngine.UI.Image;
-                pic.sprite = null;
-                //            Sprite sprite = Resources.Load (relativeResoucesDirectory + "normal_13", typeof(Sprite)) as Sprite;
-                //            pic.sprite = sprite;
+                string ancho = layer.arguments[0].ToLower();
+                if (ancho.Contains("l")) node.anchoType |= UINode.AnchoType.Left;
+                if (ancho.Contains("r")) node.anchoType |= UINode.AnchoType.Right;
+                if (ancho.Contains("u")) node.anchoType |= UINode.AnchoType.Up;
+                if (ancho.Contains("d")) node.anchoType |= UINode.AnchoType.Down;
 
-                UnityEngine.UI.Image myImage = GameObject.Instantiate(pic) as UnityEngine.UI.Image;
-                myImage.transform.SetParent(rectTransform, false); //parent = rectTransform;
+                string rc = layer.arguments[1];
+                gridLayoutGroup.constraint = rc.ToLower() == "c" ? GridLayoutGroup.Constraint.FixedColumnCount : (rc.ToLower() == "r"? GridLayoutGroup.Constraint.FixedRowCount: GridLayoutGroup.Constraint.Flexible);
+                int count = int.Parse(layer.arguments[2]);
+                gridLayoutGroup.constraintCount = count;
+              
             }
-            Debug.Log(ctrl);
+
+            ctrl.DrawImages(layer.images, node);
+            ctrl.DrawLayers(layer.layers, node);
+            return node;
         }
     }
 }

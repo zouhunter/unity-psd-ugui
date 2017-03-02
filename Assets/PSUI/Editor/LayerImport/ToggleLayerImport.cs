@@ -14,7 +14,7 @@ namespace PSDUIImporter
         {
             this.ctrl = ctrl;
         }
-        public void DrawLayer(Layer layer, UINode parent)
+        public UINode DrawLayer(Layer layer, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_TOGGLE,layer.name,parent);// GameObject.Instantiate(temp) as UnityEngine.UI.Toggle;
             UnityEngine.UI.Toggle toggle = node.GetCompoment<UnityEngine.UI.Toggle>();
@@ -64,6 +64,7 @@ namespace PSDUIImporter
                     }
                 }
             }
+            return node;
         }
     }
 }

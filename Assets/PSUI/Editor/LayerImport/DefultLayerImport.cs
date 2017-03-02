@@ -14,7 +14,7 @@ namespace PSDUIImporter
         {
             this.ctrl = ctrl;
         }
-        public void DrawLayer(Layer layer, UINode parent)
+        public UINode DrawLayer(Layer layer, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_EMPTY,layer.name,parent);
             RectTransform obj = node.GetCompoment<RectTransform>();
@@ -30,6 +30,7 @@ namespace PSDUIImporter
             }
 
             ctrl.DrawLayers(layer.layers, node);
+            return node;
         }
     }
 }

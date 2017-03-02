@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?><PSDUI><psdSize><width>1600</width><height>900</height></psdSize><layers><Layer><type>Normal</type><name>ื้ 1</name><layers><Layer>
+<type>Grid</type>
+<name>Panel01</name>
+<layers><Layer>
+<type>Panel</type>
+<name>item</name>
+<layers><Layer>
+<type>Button</type>
+<name>switch</name>
+<images>
+<Image>
+<name>n_blue_1</name>
+<arguments><string>#4E3AE45e</string></arguments><position><x>-152.5</x><y>110</y></position><size><width>83</width><height>44</height></size><imageType>Image</imageType>
+</Image>
+
+</images>
+</Layer></layers><images>
+<Image>
+<name>b_green_2</name>
+<arguments><string>#3EAE355e</string></arguments><position><x>-153</x><y>110.5</y></position><size><width>138</width><height>123</height></size><imageType>Image</imageType>
+</Image>
+
+</images>
+</Layer></layers><position><x>-153</x><y>110.5</y></position><size><width>138</width><height>123</height></size><images></images><arguments><string>LU</string><string>C</string><string>2</string></arguments></Layer></layers><position><x>-87.5</x><y>39.5</y></position><size><width>265</width><height>265</height></size><images></images></Layer></layers></PSDUI>

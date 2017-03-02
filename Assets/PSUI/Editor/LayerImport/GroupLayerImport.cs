@@ -12,9 +12,9 @@ namespace PSDUIImporter
             this.pSDImportCtrl = pSDImportCtrl;
         }
 
-        public void DrawLayer(Layer layer, UINode parent)
+        public UINode DrawLayer(Layer layer, UINode parent)
         {
-            GameObject temp;
+            GameObject temp = null;
             string type = layer.arguments[0].ToUpper();
             switch (type.ToUpper())
             {
@@ -24,8 +24,6 @@ namespace PSDUIImporter
                 case "H":
                     temp = Resources.Load(PSDImporterConst.PREFAB_PATH_GROUP_H, typeof(GameObject)) as GameObject;
                     break;
-                default:
-                    return;
             }
 
             UnityEngine.UI.HorizontalOrVerticalLayoutGroup group = GameObject.Instantiate(temp).GetComponent<UnityEngine.UI.HorizontalOrVerticalLayoutGroup>();//as UnityEngine.UI.HorizontalOrVerticalLayoutGroup;
@@ -42,6 +40,7 @@ namespace PSDUIImporter
             }
             UINode _node = new UINode(group.transform, parent);
             pSDImportCtrl.DrawLayers(layer.layers, _node);
+            return null;
         }
     }
 }

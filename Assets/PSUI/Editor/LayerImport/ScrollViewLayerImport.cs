@@ -15,7 +15,7 @@ namespace PSDUIImporter
         {
             this.ctrl = ctrl;
         }
-        public void DrawLayer(Layer layer, UINode parent)
+        public UINode DrawLayer(Layer layer, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_SCROLLVIEW,layer.name,parent);
             UnityEngine.UI.ScrollRect scrollRect = node.GetCompoment<UnityEngine.UI.ScrollRect>();
@@ -81,6 +81,7 @@ namespace PSDUIImporter
 
                 ctrl.DrawLayers(layer.layers, childNode);
             }
+            return node;
         }
     }
 }

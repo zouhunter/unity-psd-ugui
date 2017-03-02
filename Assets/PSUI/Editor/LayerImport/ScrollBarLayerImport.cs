@@ -18,7 +18,7 @@ namespace PSDUIImporter
 
 
         }
-        public void DrawLayer(Layer layer, UINode parent)
+        public UINode DrawLayer(Layer layer, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_SCROLLBAR, layer.name, parent);
             Scrollbar scrollBar = node.GetCompoment<Scrollbar>();
@@ -72,8 +72,8 @@ namespace PSDUIImporter
                 }
 
                 PSDImportUtility.SetPictureOrLoadColor(image, graph);
-
             }
+            return node;
         }
     }
 }
