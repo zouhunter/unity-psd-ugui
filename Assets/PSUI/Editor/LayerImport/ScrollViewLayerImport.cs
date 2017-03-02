@@ -57,11 +57,10 @@ namespace PSDUIImporter
             if (!havebg)
             {
                 UnityEngine.Object.DestroyImmediate(graph);
-                PSDImportUtility.SetRectTransform(layer, scrollRect.GetComponent<RectTransform>());
+                PSDImportUtility.SetRectTransform(layer, scrollRect.GetComponent<RectTransform>(),parent.GetComponent<RectTransform>());
             }
 
-            childNode.GetComponent<RectTransform>().sizeDelta = node.GetComponent<RectTransform>().sizeDelta;
-            childNode.GetComponent<RectTransform>().anchoredPosition = node.GetComponent<RectTransform>().anchoredPosition;
+            PSDImportUtility.SetRectTransform(layer, childNode.GetComponent<RectTransform>(), scrollRect.GetComponent<RectTransform>());
 
             if (layer.arguments != null)
             {

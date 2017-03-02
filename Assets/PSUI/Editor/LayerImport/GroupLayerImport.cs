@@ -14,33 +14,38 @@ namespace PSDUIImporter
 
         public UINode DrawLayer(Layer layer, UINode parent)
         {
-            GameObject temp = null;
-            string type = layer.arguments[0].ToUpper();
-            switch (type.ToUpper())
+            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_GROUP, layer.name, parent);
+            UnityEngine.UI.LayoutGroup group = null;
+            string type = layer.arguments[0].ToLower();
+            float span = 0;
+            float.TryParse(layer.arguments[1], out span);
+            switch (type)
             {
-                case "V":
-                    temp = Resources.Load(PSDImporterConst.PREFAB_PATH_GROUP_V, typeof(GameObject)) as GameObject;
+                case "v":
+                    group = node.AddComponent<UnityEngine.UI.VerticalLayoutGroup>();
+                    group.childAlignment = TextAnchor.UpperLeft;
+                    ((UnityEngine.UI.VerticalLayoutGroup)group).spacing = span;
                     break;
-                case "H":
-                    temp = Resources.Load(PSDImporterConst.PREFAB_PATH_GROUP_H, typeof(GameObject)) as GameObject;
+                case "h":
+                    group = node.AddComponent<UnityEngine.UI.HorizontalLayoutGroup>();
+                    group.childAlignment = TextAnchor.UpperLeft;
+                    ((UnityEngine.UI.HorizontalLayoutGroup)group).spacing = span;
                     break;
             }
 
-            UnityEngine.UI.HorizontalOrVerticalLayoutGroup group = GameObject.Instantiate(temp).GetComponent<UnityEngine.UI.HorizontalOrVerticalLayoutGroup>();//as UnityEngine.UI.HorizontalOrVerticalLayoutGroup;
-            group.transform.SetParent(parent.transform, false); //parent = parent.transform;
+            PSDImportUtility.SetRectTransform(layer, group.GetComponent<RectTransform>(),parent.GetComponent<RectTransform>());
 
-            RectTransform rectTransform = group.GetComponent<RectTransform>();
-            rectTransform.sizeDelta = new Vector2(layer.size.width, layer.size.height);
-            rectTransform.anchoredPosition = new Vector2(layer.position.x, layer.position.y);
-
-            float span;
-            if (float.TryParse(layer.arguments[1],out span))
+            UINode[] nodes = pSDImportCtrl.DrawImages(layer.images,node);
+            foreach (var item in nodes)
             {
-                group.spacing = span;
+                item.anchoType = UINode.AnchoType.Left | UINode.AnchoType.Up;
             }
-            UINode _node = new UINode(group.transform, parent);
-            pSDImportCtrl.DrawLayers(layer.layers, _node);
-            return null;
+            nodes = pSDImportCtrl.DrawLayers(layer.layers, node);
+            foreach (var item in nodes)
+            {
+                item.anchoType = UINode.AnchoType.Left | UINode.AnchoType.Up;
+            }
+            return node;
         }
     }
 }

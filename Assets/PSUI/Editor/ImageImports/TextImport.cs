@@ -9,7 +9,7 @@ namespace PSDUIImporter
 {
     public class TextImport : IImageImport
     {
-        public void DrawImage(Image image, UINode parent)
+        public UINode DrawImage(Image image, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_TEXT, image.name,parent);
             UnityEngine.UI.Text myText = node.GetComponent<Text>();
@@ -26,6 +26,7 @@ namespace PSDUIImporter
             RectTransform rectTransform = myText.GetComponent<RectTransform>();
             rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
             rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
+            return node;
         }
     }
 }

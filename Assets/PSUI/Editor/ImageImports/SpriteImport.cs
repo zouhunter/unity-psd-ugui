@@ -12,25 +12,27 @@ namespace PSDUIImporter
 {
     public class SpriteImport : IImageImport
     {
-        public void DrawImage(Image image, UINode parent)
+        public UINode DrawImage(Image image, UINode parent)
         {
+            UINode node = null;
             switch (image.imageType)
             {
                 case ImageType.Image:
-                    DrawNormalImage(image, parent);
+                    node = DrawNormalImage(image, parent);
                     break;
                 case ImageType.Texture:
-                    DrawRawImage(image, parent);
+                    node = DrawRawImage(image, parent);
                     break;
                 case ImageType.SliceImage:
-                    DrawSliceImage(image, parent);
+                    node = DrawSliceImage(image, parent);
                     break;
                 default:
                     break;
             }
+            return node;
         }
 
-        private void DrawRawImage(Image image, UINode parent)
+        private UINode DrawRawImage(Image image, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_RawIMAGE, image.name, parent);
             UnityEngine.UI.RawImage pic = node.GetComponent<UnityEngine.UI.RawImage>();
@@ -53,10 +55,10 @@ namespace PSDUIImporter
             }
 
             PSDImportUtility.SetRectTransform(image, pic.GetComponent<RectTransform>());
-
+            return node;
         }
 
-        private void DrawNormalImage(Image image, UINode parent)
+        private UINode DrawNormalImage(Image image, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, image.name, parent);
             UnityEngine.UI.Image pic = node.GetComponent<UnityEngine.UI.Image>();
@@ -84,9 +86,10 @@ namespace PSDUIImporter
             pic.type = UnityEngine.UI.Image.Type.Simple;
 
             PSDImportUtility.SetRectTransform(image, pic.GetComponent<RectTransform>());
+            return node;
         }
 
-        private void DrawSliceImage(Image image, UINode parent)
+        private UINode DrawSliceImage(Image image, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, image.name, parent);
             UnityEngine.UI.Image pic = node.GetComponent<UnityEngine.UI.Image>();
@@ -99,6 +102,7 @@ namespace PSDUIImporter
             pic.type = UnityEngine.UI.Image.Type.Sliced;
 
             PSDImportUtility.SetRectTransform(image, pic.GetComponent<RectTransform>());
+            return node;
 
         }
 

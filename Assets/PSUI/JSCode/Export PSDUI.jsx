@@ -231,13 +231,11 @@ function exportGrid(obj)
 
     var params = obj.name.split(":");
 
-    if (params.length < 4)
+    if (params.length < 3)
     {
-        alert("Grid need 3 params,ancho,r or c ,count");
+        alert(obj.name + "-------Layer's name not equals 2------------");
     }
-    else{
 
-    }
     exportLayerSet(obj);
 
     var haveSize = recordPositionAndSize(obj);
@@ -254,7 +252,6 @@ function exportGrid(obj)
     sceneData += "<arguments>";
     sceneData += "<string>" + params[1] + "</string>";   
     sceneData += "<string>" + params[2] + "</string>";   
-    sceneData += "<string>" + params[3] + "</string>";   
     sceneData += "</arguments>";
 
     sceneData += "</Layer>";
@@ -273,34 +270,22 @@ function exportGroup(obj)
     {
         alert(obj.name + "-------Layer's name not equals 2------------");
     }
+    exportLayerSet(obj);
 
-    var recSize;
-    if (obj.layers[obj.layers.length - 1].name.search("@Size") < 0)
+    var haveSize = recordPositionAndSize(obj);
+
+    var artLayerLength = haveSize ? obj.artLayers.length - 1: obj.artLayers.length
+	
+    sceneData += "<images>";
+    for (var j = 0; j < artLayerLength; j++)
     {
-        alert("Bottom layer's name doesn't contain '@Size'");
+        exportArtLayer(obj.artLayers[j]);
     }
-    else
-    {
-        obj.layers[obj.layers.length - 1].visible = true;
-
-        recSize = getLayerRec(duppedPsd.duplicate());
-
-        sceneData += "<position>";
-        sceneData += "<x>" + recSize.x + "</x>";
-        sceneData += "<y>" + recSize.y + "</y>";
-        sceneData += "</position>";
-
-        sceneData += "<size>";
-        sceneData += "<width>" + recSize.width + "</width>";
-        sceneData += "<height>" + recSize.height + "</height>";
-        sceneData += "</size>";
-
-        obj.layers[obj.layers.length - 1].visible = false;
-    }
-
+    sceneData += "</images>";
+  
     sceneData += "<arguments>";
-    sceneData += "<string>" + params[1] + "</string>";   //方向
-    sceneData += "<string>" + params[2] + "</string>";   //span
+    sceneData += "<string>" + params[1] + "</string>";   
+    sceneData += "<string>" + params[2] + "</string>";   
     sceneData += "</arguments>";
 
     sceneData += "</Layer>";

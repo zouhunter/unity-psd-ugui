@@ -83,42 +83,48 @@ namespace PSDUIImporter
             return node;
         }
 
-        public void DrawLayers(Layer[] layers, UINode parent)
+        public UINode[] DrawLayers(Layer[] layers, UINode parent)
         {
+            UINode[] nodes = new UINode[layers.Length];
             if (layers != null)
             {
                 for (int layerIndex = 0; layerIndex < layers.Length; layerIndex++)
                 {
-                    DrawLayer(layers[layerIndex], parent);
+                    nodes[layerIndex] = DrawLayer(layers[layerIndex], parent);
                 }
             }
+            return nodes;
         }
-        public void DrawImages(Image[] images,UINode parent)
+        public UINode[] DrawImages(Image[] images,UINode parent)
         {
+            UINode[] nodes = new UINode[images.Length];
             if (images != null)
             {
                 for (int layerIndex = 0; layerIndex < images.Length; layerIndex++)
                 {
-                    DrawImage(images[layerIndex], parent);
+                    nodes[layerIndex] = DrawImage(images[layerIndex], parent);
                 }
             }
+            return nodes;
         }
 
-        public void DrawImage(Image image, UINode parent)
+        public UINode DrawImage(Image image, UINode parent)
         {
+            UINode node = null;
             switch (image.imageType)
             {
                 case ImageType.Image:
                 case ImageType.Texture:
                 case ImageType.SliceImage:
-                    spriteImport.DrawImage(image, parent);
+                    node = spriteImport.DrawImage(image, parent);
                     break;
                 case ImageType.Label:
-                    textImport.DrawImage(image, parent);
+                    node = textImport.DrawImage(image, parent);
                     break;
                 default:
                     break;
             }
+            return node;
         }
 
         private void InitDataAndPath(string xmlFilePath)

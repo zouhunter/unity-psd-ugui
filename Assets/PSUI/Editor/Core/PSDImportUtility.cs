@@ -105,7 +105,7 @@ namespace PSDUIImporter
             rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
         }
 
-        public static void SetRectTransform(Layer layer, RectTransform rectTransform, RectTransform parentTrans = null)
+        public static void SetRectTransform(Layer layer, RectTransform rectTransform, RectTransform parentTrans)
         {
             rectTransform.name = layer.name;
             if (layer.size != null)

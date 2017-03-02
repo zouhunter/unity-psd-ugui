@@ -10,6 +10,6 @@ namespace PSDUIImporter
 {
     public interface IImageImport
     {
-        void DrawImage(Image image, UINode parent);
+        UINode DrawImage(Image image, UINode parent);
     }
 }

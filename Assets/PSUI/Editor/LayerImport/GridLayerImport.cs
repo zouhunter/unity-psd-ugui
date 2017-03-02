@@ -17,23 +17,18 @@ namespace PSDUIImporter
         public UINode DrawLayer(Layer layer, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_GRID, layer.name, parent);
+            node.anchoType = UINode.AnchoType.Up | UINode.AnchoType.Left;
             GridLayoutGroup gridLayoutGroup = node.GetComponent<GridLayoutGroup>();
-            PSDImportUtility.SetRectTransform(layer, gridLayoutGroup.GetComponent<RectTransform>());
+            PSDImportUtility.SetRectTransform(layer, gridLayoutGroup.GetComponent<RectTransform>(),node.GetComponent<RectTransform>());
 
             gridLayoutGroup.padding = new RectOffset(1,1,1,1);
             gridLayoutGroup.cellSize = new Vector2(layer.size.width, layer.size.height);
 
             if (layer.arguments != null && layer.arguments.Length > 1 )
             {
-                string ancho = layer.arguments[0].ToLower();
-                if (ancho.Contains("l")) node.anchoType |= UINode.AnchoType.Left;
-                if (ancho.Contains("r")) node.anchoType |= UINode.AnchoType.Right;
-                if (ancho.Contains("u")) node.anchoType |= UINode.AnchoType.Up;
-                if (ancho.Contains("d")) node.anchoType |= UINode.AnchoType.Down;
-
-                string rc = layer.arguments[1];
+                string rc = layer.arguments[0];
                 gridLayoutGroup.constraint = rc.ToLower() == "c" ? GridLayoutGroup.Constraint.FixedColumnCount : (rc.ToLower() == "r"? GridLayoutGroup.Constraint.FixedRowCount: GridLayoutGroup.Constraint.Flexible);
-                int count = int.Parse(layer.arguments[2]);
+                int count = int.Parse(layer.arguments[1]);
                 gridLayoutGroup.constraintCount = count;
               
             }
