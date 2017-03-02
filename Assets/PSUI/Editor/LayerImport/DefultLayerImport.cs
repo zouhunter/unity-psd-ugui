@@ -17,8 +17,8 @@ namespace PSDUIImporter
         public UINode DrawLayer(Layer layer, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_EMPTY,layer.name,parent);
-            RectTransform obj = node.GetCompoment<RectTransform>();
-            PSDImportUtility.SetRectTransform(layer, obj,parent.GetCompoment<RectTransform>());
+            RectTransform obj = node.GetComponent<RectTransform>();
+            PSDImportUtility.SetRectTransform(layer, obj,parent.GetComponent<RectTransform>());
 
             if (layer.images != null)
             {

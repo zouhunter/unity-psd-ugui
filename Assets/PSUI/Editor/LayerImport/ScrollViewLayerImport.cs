@@ -18,9 +18,12 @@ namespace PSDUIImporter
         public UINode DrawLayer(Layer layer, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_SCROLLVIEW,layer.name,parent);
-            UnityEngine.UI.ScrollRect scrollRect = node.GetCompoment<UnityEngine.UI.ScrollRect>();
+            UnityEngine.UI.ScrollRect scrollRect = node.GetComponent<UnityEngine.UI.ScrollRect>();
 
-            UINode childNode = new UINode(node.transform.GetChild(0), node);
+            UINode childNode = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, "Viewport", node);
+            scrollRect.viewport = childNode.GetComponent<RectTransform>();
+            childNode.AddComponent<Mask>();
+            childNode.anchoType = UINode.AnchoType.XStretch | UINode.AnchoType.YStretch;
 
             UnityEngine.UI.Image graph = scrollRect.GetComponent<UnityEngine.UI.Image>();
             bool havebg = false;
@@ -57,7 +60,10 @@ namespace PSDUIImporter
                 PSDImportUtility.SetRectTransform(layer, scrollRect.GetComponent<RectTransform>());
             }
 
-            if (layer.layers != null)
+            childNode.GetComponent<RectTransform>().sizeDelta = node.GetComponent<RectTransform>().sizeDelta;
+            childNode.GetComponent<RectTransform>().anchoredPosition = node.GetComponent<RectTransform>().anchoredPosition;
+
+            if (layer.arguments != null)
             {
                 string type = layer.arguments[0].ToUpper();
                 switch (type)
@@ -78,8 +84,31 @@ namespace PSDUIImporter
                     default:
                         break;
                 }
+            }
 
-                ctrl.DrawLayers(layer.layers, childNode);
+            if (layer.layers != null)
+            {
+                for (int i = 0; i < layer.layers.Length; i++)
+                {
+                    Layer child = layer.layers[i];
+                    string childLowerName = child.name;
+                    UINode c_Node = ctrl.DrawLayer(child, childNode);
+
+                    if (childLowerName.StartsWith("c_"))
+                    {
+                        scrollRect.content = c_Node.GetComponent<RectTransform>();
+                    }
+                    else if (childLowerName.StartsWith("vb_"))
+                    {
+                        scrollRect.verticalScrollbar = c_Node.GetComponent<Scrollbar>();
+                        scrollRect.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHide;
+                    }
+                    else if (childLowerName.StartsWith("hb_"))
+                    {
+                        scrollRect.horizontalScrollbar = c_Node.GetComponent<Scrollbar>();
+                        scrollRect.horizontalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHide;
+                    }
+                }
             }
             return node;
         }

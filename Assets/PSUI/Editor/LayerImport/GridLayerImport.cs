@@ -17,7 +17,7 @@ namespace PSDUIImporter
         public UINode DrawLayer(Layer layer, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_GRID, layer.name, parent);
-            GridLayoutGroup gridLayoutGroup = node.GetCompoment<GridLayoutGroup>();
+            GridLayoutGroup gridLayoutGroup = node.GetComponent<GridLayoutGroup>();
             PSDImportUtility.SetRectTransform(layer, gridLayoutGroup.GetComponent<RectTransform>());
 
             gridLayoutGroup.padding = new RectOffset(1,1,1,1);

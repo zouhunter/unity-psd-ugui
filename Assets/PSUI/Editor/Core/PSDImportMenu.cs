@@ -31,7 +31,7 @@ namespace PSDUIImporter
                 import.BeginDrawUILayers();
                 import.BeginSetUIParents(PSDImportUtility.uinode);
                 import.BeginSetAnchers(PSDImportUtility.uinode.childs[0]);
-                var rt = PSDImportUtility.uinode.childs[0].GetCompoment<RectTransform>();
+                var rt = PSDImportUtility.uinode.childs[0].GetComponent<RectTransform>();
                 PSDImportUtility.SetCustomAnchor(rt, rt);
             }
             

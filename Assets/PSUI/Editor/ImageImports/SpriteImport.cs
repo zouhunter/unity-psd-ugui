@@ -33,7 +33,7 @@ namespace PSDUIImporter
         private void DrawRawImage(Image image, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_RawIMAGE, image.name, parent);
-            UnityEngine.UI.RawImage pic = node.GetCompoment<UnityEngine.UI.RawImage>();
+            UnityEngine.UI.RawImage pic = node.GetComponent<UnityEngine.UI.RawImage>();
             string assetPath = PSDImportUtility.GetPicturePath(image);
             Texture texture = UnityEditor.AssetDatabase.LoadAssetAtPath(assetPath, typeof(Texture)) as Texture;
             pic.texture = texture;
@@ -59,7 +59,7 @@ namespace PSDUIImporter
         private void DrawNormalImage(Image image, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, image.name, parent);
-            UnityEngine.UI.Image pic = node.GetCompoment<UnityEngine.UI.Image>();
+            UnityEngine.UI.Image pic = node.GetComponent<UnityEngine.UI.Image>();
 
             string assetPath = PSDImportUtility.GetPicturePath(image);
 
@@ -89,7 +89,7 @@ namespace PSDUIImporter
         private void DrawSliceImage(Image image, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, image.name, parent);
-            UnityEngine.UI.Image pic = node.GetCompoment<UnityEngine.UI.Image>();
+            UnityEngine.UI.Image pic = node.GetComponent<UnityEngine.UI.Image>();
             string assetPath = PSDImportUtility.GetPicturePath(image);
 
             Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;

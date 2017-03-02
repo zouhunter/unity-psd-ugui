@@ -121,8 +121,8 @@ namespace PSDUIImporter
         }
         public static void SetAnchorByNode(UINode node)
         {
-            RectTransform p_rt = node.parent.GetCompoment<RectTransform>();
-            RectTransform c_rt = node.GetCompoment<RectTransform>();
+            RectTransform p_rt = node.parent.GetComponent<RectTransform>();
+            RectTransform c_rt = node.GetComponent<RectTransform>();
             switch (node.anchoType)
             {
                 case UINode.AnchoType.Custom:

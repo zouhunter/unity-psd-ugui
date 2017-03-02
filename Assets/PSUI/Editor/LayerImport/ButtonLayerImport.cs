@@ -19,7 +19,7 @@ namespace PSDUIImporter
         public UINode DrawLayer(Layer layer, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_BUTTON, layer.name, parent);
-            UnityEngine.UI.Button button = node.GetCompoment<UnityEngine.UI.Button>();
+            UnityEngine.UI.Button button = node.GetComponent<UnityEngine.UI.Button>();
 
             if (layer.images != null)
             {

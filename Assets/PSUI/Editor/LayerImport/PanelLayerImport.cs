@@ -19,7 +19,7 @@ namespace PSDUIImporter
         {
             //UnityEngine.UI.Image temp = Resources.Load(PSDImporterConst.PREFAB_PATH_IMAGE, typeof(UnityEngine.UI.Image)) as UnityEngine.UI.Image;
                 UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, layer.name, parent);//GameObject.Instantiate(temp) as UnityEngine.UI.Image;
-            UnityEngine.UI.Image panel = node.GetCompoment<UnityEngine.UI.Image>();
+            UnityEngine.UI.Image panel = node.GetComponent<UnityEngine.UI.Image>();
 
 
             ctrl.DrawLayers(layer.layers, node);//子节点

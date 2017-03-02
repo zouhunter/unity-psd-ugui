@@ -42,44 +42,45 @@ namespace PSDUIImporter
             PSDImportUtility.uinode = new UINode(PSDImportUtility.canvas.transform,null);
         }
 
-        public void DrawLayer(Layer layer, UINode parent)
+        public UINode DrawLayer(Layer layer, UINode parent)
         {
+            UINode node = null;
             switch (layer.type)
             {
                 case LayerType.Panel:
-                    panelImport.DrawLayer(layer, parent);
+                    node= panelImport.DrawLayer(layer, parent);
                     break;
                 case LayerType.Normal:
-                    emptyImport.DrawLayer(layer, parent);
+                    node = emptyImport.DrawLayer(layer, parent);
                     break;
                 case LayerType.Button:
-                    buttonImport.DrawLayer(layer, parent);
+                    node = buttonImport.DrawLayer(layer, parent);
                     break;
                 case LayerType.Toggle:
-                    toggleImport.DrawLayer(layer, parent);
+                    node = toggleImport.DrawLayer(layer, parent);
                     break;
                 case LayerType.Grid:
-                    gridImport.DrawLayer(layer, parent);
+                    node = gridImport.DrawLayer(layer, parent);
                     break;
                 case LayerType.ScrollView:
-                    scrollViewImport.DrawLayer(layer, parent);
+                    node = scrollViewImport.DrawLayer(layer, parent);
                     break;
                 case LayerType.Slider:
-                    sliderImport.DrawLayer(layer, parent);
+                    node = sliderImport.DrawLayer(layer, parent);
                     break;
                 case LayerType.Group:
-                    groupImport.DrawLayer(layer, parent);
+                    node = groupImport.DrawLayer(layer, parent);
                     break;
                 case LayerType.InputField:
-                    inputFiledImport.DrawLayer(layer, parent);
+                    node = inputFiledImport.DrawLayer(layer, parent);
                     break;
                 case LayerType.ScrollBar:
-                    scrollBarImport.DrawLayer(layer, parent);
+                    node = scrollBarImport.DrawLayer(layer, parent);
                     break;
                 default:
                     break;
-
             }
+            return node;
         }
 
         public void DrawLayers(Layer[] layers, UINode parent)
@@ -175,7 +176,7 @@ namespace PSDUIImporter
         public void BeginDrawUILayers()
         {
             UINode empty = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_EMPTY,PSDImportUtility.baseFilename, PSDImportUtility.uinode);
-            RectTransform rt = empty.GetCompoment<RectTransform>();
+            RectTransform rt = empty.GetComponent<RectTransform>();
             rt.sizeDelta = new Vector2(psdUI.psdSize.width, psdUI.psdSize.height);
             for (int layerIndex = 0; layerIndex < psdUI.layers.Length; layerIndex++)
             {

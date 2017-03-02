@@ -12,7 +12,7 @@ namespace PSDUIImporter
         public UINode DrawLayer(Layer layer, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_SLIDER,layer.name,parent); //GameObject.Instantiate(temp) as UnityEngine.UI.Slider;
-            UnityEngine.UI.Slider slider = node.GetCompoment<UnityEngine.UI.Slider>();
+            UnityEngine.UI.Slider slider = node.GetComponent<UnityEngine.UI.Slider>();
             string type = layer.arguments[0].ToUpper();
             switch (type)
             {

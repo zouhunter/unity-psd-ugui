@@ -28,7 +28,12 @@ public class UINode {
         if(parent != null) parent.childs.Add(this);
     }
 
-    public T GetCompoment<T>() where T:Object{
+    public T GetComponent<T>() where T : Component
+    {
         return transform.GetComponent<T>();
+    }
+    public T AddComponent<T>() where T : Component
+    {
+        return transform.gameObject.AddComponent<T>();
     }
 }
