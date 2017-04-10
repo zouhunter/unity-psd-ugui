@@ -19,10 +19,12 @@ var duppedPsd;
 var destinationFolder;
 var uuid;
 var sourcePsdName;
-
+var exportSolid;
 main();
 
 function main(){
+    //选择是否导出色框
+    PreSelect();
     // got a valid document?
     if (app.documents.length <= 0)
     {
@@ -423,7 +425,13 @@ function exportLabel(obj)
     sceneData += "<arguments>";
     sceneData += "<string>" + "#" +obj.textItem.color.rgb.hexValue + (Math.floor(obj.opacity * 2.55)).toString(16) + "</string>";
     sceneData += "<string>" + obj.textItem.font + "</string>";
-    sceneData += "<string>" + obj.textItem.size.value + "</string>";
+	try{
+		sceneData += "<string>" + obj.textItem.size.value + "</string>";
+	}
+	catch(err){
+		alert(err);
+        sceneData += "<string>" + 22 + "</string>";
+	}
     sceneData += "<string>" + obj.textItem.contents + "</string>";
     sceneData += "</arguments>";
 }
@@ -444,7 +452,7 @@ function exportImage(obj)
     validFileName = makeValidFileName(validFileName);
     sceneData += "<name>" + validFileName + "</name>\n";
 
-	if(obj.kind == LayerKind.SOLIDFILL)
+    if(exportSolid && obj.kind == LayerKind.SOLIDFILL)
 	{
 	    sceneData += "<arguments>";
         sceneData += "<string>" + "#" + getLayerColor(obj) + (Math.floor(obj.opacity * 2.55)).toString(16) + "</string>";
@@ -669,4 +677,10 @@ function makeValidFileName(fileName)
     validName = validName.replace(/[ ]/g, '_'); // replace spaces with underscores, since some programs still may have troubles with them
     $.writeln(validName);
     return validName;
+}
+
+function PreSelect()
+{
+    exportSolid =confirm("如果需要将颜色框导出为图片请按确认（默认只记录颜色信息）");
+    //var ipt=prompt("请输入您的名字","KING视界")
 }
