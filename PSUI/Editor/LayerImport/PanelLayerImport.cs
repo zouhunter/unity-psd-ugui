@@ -19,16 +19,16 @@ namespace PSDUIImporter
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, layer.name, parent);//GameObject.Instantiate(temp) as UnityEngine.UI.Image;
             UnityEngine.UI.Image panel = node.GetComponent<UnityEngine.UI.Image>();
-            PSDImportUtility.SetRectTransform(layer, panel.GetComponent<RectTransform>(),parent.GetComponent<RectTransform>());
 
             ctrl.DrawLayers(layer.layers, node);//子节点
-
+            bool havebg = false;
             for (int i = 0; i < layer.images.Length; i++)
             {
                 Image image = layer.images[i];
 
                 if (image.name.ToLower().StartsWith("b_"))
                 {
+                    havebg = true;
                     PSDImportUtility.SetPictureOrLoadColor(image, panel);
                     PSDImportUtility.SetRectTransform(image, panel.GetComponent<RectTransform>());
                     panel.name = layer.name;
@@ -37,6 +37,12 @@ namespace PSDUIImporter
                 {
                     ctrl.DrawImage(image, node);
                 }
+            }
+            if (!havebg)
+            {
+                GameObject.DestroyImmediate(panel.GetComponent<UnityEngine.UI.Image>());
+                PSDImportUtility.SetRectTransform(layer, panel.GetComponent<RectTransform>(), parent.GetComponent<RectTransform>());
+                panel.name = layer.name;
             }
             return node;
 
