@@ -10,10 +10,8 @@ namespace PSDUIImporter
 {
     public class ScrollBarLayerImport : ILayerImport
     {
-        PSDImportCtrl ctrl;
-        public ScrollBarLayerImport(PSDImportCtrl ctrl)
+        public ScrollBarLayerImport()
         {
-            this.ctrl = ctrl;
         }
 
         public UINode DrawLayer(Layer layer, UINode parent)

@@ -22,6 +22,12 @@ namespace PSDUIImporter
 
             UINode childNode = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, "Viewport", node);
             scrollRect.viewport = childNode.GetComponent<RectTransform>();
+            Color color;
+            if (ColorUtility.TryParseHtmlString("#FFFFFF01",out color))
+            {
+                childNode.GetComponent<UnityEngine.UI.Image>().color = color;
+                Debug.Log(color);
+            }
             childNode.AddComponent<Mask>();
             childNode.anchoType = UINode.AnchoType.XStretch | UINode.AnchoType.YStretch;
 

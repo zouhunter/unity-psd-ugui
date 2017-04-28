@@ -177,7 +177,7 @@ namespace PSDUIImporter
             toggleImport = new ToggleLayerImport(this);
             panelImport = new PanelLayerImport(this);
             scrollViewImport = new ScrollViewLayerImport(this);
-            scrollBarImport = new ScrollBarLayerImport(this);
+            scrollBarImport = new ScrollBarLayerImport();
             gridImport = new GridLayerImport(this);
             emptyImport = new DefultLayerImport(this);
             groupImport = new GroupLayerImport(this);
@@ -263,7 +263,7 @@ namespace PSDUIImporter
                         
                         if (image.imageType == ImageType.Texture)
                         {
-                            textureImporter.textureType = TextureImporterType.Default;
+                            textureImporter.textureType = TextureImporterType.Image;
                         }
                         else
                         {

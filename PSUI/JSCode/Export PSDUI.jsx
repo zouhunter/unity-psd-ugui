@@ -388,10 +388,12 @@ function exportPanel(obj)
     sceneData += ("<Layer>\n<type>Panel</type>\n<name>" + itemName + "</name>\n");
 
     exportLayerSet(obj);
-
-    sceneData += "<images>\n";
-
-    for (var j = obj.artLayers.length - 1; 0 <= j; j--)
+    
+    var haveSize = recordPositionAndSize(obj);
+    var artLayerLength = haveSize ? obj.artLayers.length - 1: obj.artLayers.length
+	
+    sceneData += "<images>";
+    for (var j = 0; j < artLayerLength; j++)
     {
         exportArtLayer(obj.artLayers[j]);
     }

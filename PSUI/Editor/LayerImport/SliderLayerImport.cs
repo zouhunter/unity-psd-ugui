@@ -53,7 +53,7 @@ namespace PSDUIImporter
                     graph = slider.handleRect.GetComponent<UnityEngine.UI.Image>();
                     RectTransform rect = graph.GetComponent<RectTransform>();
                     rect.name = image.name;
-                    rect.sizeDelta = new Vector2(image.size.width,0);
+                    rect.sizeDelta = new Vector2(image.size.width,image.size.height);
                     rect.anchoredPosition = Vector2.zero;
                     haveHandle = true;
                 }
