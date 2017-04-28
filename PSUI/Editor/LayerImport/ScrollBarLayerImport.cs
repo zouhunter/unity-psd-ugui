@@ -38,13 +38,6 @@ namespace PSDUIImporter
                     break;
             }
 
-            float pecent;
-            if (float.TryParse(layer.arguments[1], out pecent))
-            {
-                scrollBar.size = pecent;
-            }
-
-
             for (int i = 0; i < layer.images.Length; i++)
             {
                 Image image = layer.images[i];

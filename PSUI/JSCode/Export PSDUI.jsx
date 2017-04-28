@@ -157,13 +157,13 @@ function exportDefultLayer(obj)
 
     exportLayerSet(obj);
 
-    var haveSize = recordPositionAndSize(obj);
-    var artLayerLength = haveSize ? obj.artLayers.length - 1: obj.artLayers.length
+    var index = recordPositionAndSize(obj);
 	
     sceneData += "<images>";
-    for (var j = 0; j < artLayerLength; j++)
+    for (var j = 0; j < obj.artLayers.length; j++)
     {
-        exportArtLayer(obj.artLayers[j]);
+        if(j != index)
+            exportArtLayer(obj.artLayers[j]);
     }
     sceneData += "</images>";
     sceneData += "</Layer>";
@@ -183,13 +183,13 @@ function exportScrollView(obj)
         alert(obj.name + "-------Layer's name is illegal------------");
     }
 
-    var haveSize = recordPositionAndSize(obj);
-    var artLayerLength = haveSize ? obj.artLayers.length - 1: obj.artLayers.length
-	
+    var index = recordPositionAndSize(obj);
+
     sceneData += "<images>";
-    for (var j = 0; j < artLayerLength; j++)
+    for (var j = 0; j < obj.artLayers.length; j++)
     {
-        exportArtLayer(obj.artLayers[j]);
+        if(j != index)
+            exportArtLayer(obj.artLayers[j]);
     }
     sceneData += "</images>";
 
@@ -215,14 +215,13 @@ function exportGrid(obj)
     }
 
 
-    var haveSize = recordPositionAndSize(obj);
+    var index = recordPositionAndSize(obj);
 
-    var artLayerLength = haveSize ? obj.artLayers.length - 1: obj.artLayers.length
-	
     sceneData += "<images>";
-    for (var j = 0; j < artLayerLength; j++)
+    for (var j = 0; j < obj.artLayers.length; j++)
     {
-        exportArtLayer(obj.artLayers[j]);
+        if(j != index)
+            exportArtLayer(obj.artLayers[j]);
     }
     sceneData += "</images>";
   
@@ -247,14 +246,13 @@ function exportGroup(obj)
     {
         alert(obj.name + "-------Layer's name not equals 2------------");
     }
-    var haveSize = recordPositionAndSize(obj);
+    var index = recordPositionAndSize(obj);
 
-    var artLayerLength = haveSize ? obj.artLayers.length - 1: obj.artLayers.length
-	
     sceneData += "<images>";
-    for (var j = 0; j < artLayerLength; j++)
+    for (var j = 0; j < obj.artLayers.length; j++)
     {
-        exportArtLayer(obj.artLayers[j]);
+        if(index != j)
+            exportArtLayer(obj.artLayers[j]);
     }
     sceneData += "</images>";
   
@@ -362,14 +360,13 @@ function exportScrollBar(obj)
 
     var params = obj.name.split(":");
 
-    if (params.length != 3)
+    if (params.length != 2)
     {
         alert(obj.name + "-------Layer's name is not 1 argument------------");
     }
 
     sceneData += "<arguments>";
     sceneData += "<string>" + params[1] + "</string>"; //滑动方向
-    sceneData += "<string>" + params[2] + "</string>"; //比例
     sceneData += "</arguments>";
 
     sceneData += "<images>\n";
@@ -389,13 +386,13 @@ function exportPanel(obj)
 
     exportLayerSet(obj);
     
-    var haveSize = recordPositionAndSize(obj);
-    var artLayerLength = haveSize ? obj.artLayers.length - 1: obj.artLayers.length
+    var index = recordPositionAndSize(obj);
 	
     sceneData += "<images>";
-    for (var j = 0; j < artLayerLength; j++)
+    for (var j = 0; j < obj.artLayers.length; j++)
     {
-        exportArtLayer(obj.artLayers[j]);
+        if(j!= index)
+            exportArtLayer(obj.artLayers[j]);
     }
 
     sceneData += "\n</images>\n</Layer>";
@@ -427,13 +424,13 @@ function exportLabel(obj)
     sceneData += "<arguments>";
     sceneData += "<string>" + "#" +obj.textItem.color.rgb.hexValue + (Math.floor(obj.opacity * 2.55)).toString(16) + "</string>";
     sceneData += "<string>" + obj.textItem.font + "</string>";
-	try{
-		sceneData += "<string>" + obj.textItem.size.value + "</string>";
-	}
-	catch(err){
-		alert(err);
+    try{
+        sceneData += "<string>" + obj.textItem.size.value + "</string>";
+    }
+    catch(err){
+        alert(err);
         sceneData += "<string>" + 22 + "</string>";
-	}
+    }
     sceneData += "<string>" + obj.textItem.contents + "</string>";
     sceneData += "</arguments>";
 }
@@ -455,13 +452,13 @@ function exportImage(obj)
     sceneData += "<name>" + validFileName + "</name>\n";
 
     if(exportSolid && obj.kind == LayerKind.SOLIDFILL)
-	{
-	    sceneData += "<arguments>";
+    {
+        sceneData += "<arguments>";
         sceneData += "<string>" + "#" + getLayerColor(obj) + (Math.floor(obj.opacity * 2.55)).toString(16) + "</string>";
         sceneData += "</arguments>";
 		
-		var recSize = getLayerRec(duppedPsd.duplicate());
-		sceneData += "<position>";
+        var recSize = getLayerRec(duppedPsd.duplicate());
+        sceneData += "<position>";
         sceneData += "<x>" + recSize.x + "</x>";
         sceneData += "<y>" + recSize.y + "</y>";
         sceneData += "</position>";
@@ -471,26 +468,26 @@ function exportImage(obj)
         sceneData += "<height>" + recSize.height + "</height>";
         sceneData += "</size>";
 		
-		obj.visible = false;
-	}
-	else{
+        obj.visible = false;
+    }
+    else{
         obj.visible = true;
         saveScenePng(duppedPsd.duplicate(), validFileName, true);
         obj.visible = false;
 		
-	if (obj.name.search("#N") >= 0)
-    {
-        sceneData += "<imageSource>" + "Normal" + "</imageSource>\n";
+        if (obj.name.search("#N") >= 0)
+        {
+            sceneData += "<imageSource>" + "Normal" + "</imageSource>\n";
+        }
+        else if(obj.name.search("#G") >= 0)
+        {
+            sceneData += "<imageSource>" + "Globle" + "</imageSource>\n";
+        }
+        else
+        {
+            sceneData += "<imageSource>" + "Custom" + "</imageSource>\n";
+        }
     }
-    else if(obj.name.search("#G") >= 0)
-    {
-        sceneData += "<imageSource>" + "Globle" + "</imageSource>\n";
-    }
-    else
-    {
-		sceneData += "<imageSource>" + "Custom" + "</imageSource>\n";
-    }
-	}
 
     var params = obj.name.split(":");
 
@@ -520,16 +517,19 @@ function exportImage(obj)
 //记录最后一层有@Size的layer尺寸和坐标
 function recordPositionAndSize(obj)
 {
-    var recSize;
-    var sizeObj =obj.layers[obj.layers.length - 1] ;
-    if (sizeObj.name.search("@Size") < 0)
-    {
-        //alert("Bottom layer's name doesn't contain '@Size'");
-        return false;
+    var index = -1;
+    for (var i = 0; i < obj.layers.length; i++) {
+        if(obj.layers[i].name.search("@Size") == 0)
+        {
+            index = i;
+        }
     }
-    else
+	
+
+    if(index != -1)
     {
-        sizeObj.visible = true;
+        var recSize;
+        obj.layers[index].visible = true;
 
         recSize = getLayerRec(duppedPsd.duplicate());
 
@@ -543,21 +543,22 @@ function recordPositionAndSize(obj)
         sceneData += "<height>" + recSize.height + "</height>";
         sceneData += "</size>";
 
-        sizeObj.visible = false;
-        return true;
+        obj.layers[index].visible = false;
     }
+    
+    return index;
 }
 
 //获取层级颜色
 function getLayerColor(obj){
-   var desc = Stdlib.getLayerDescriptor(app.activeDocument, obj);
-   var adjs = desc.getList(cTID('Adjs'));
-   var clrDesc = adjs.getObjectValue(0);
-   var color= clrDesc.getObjectValue(cTID('Clr '));
-   var red = Math.round(color.getDouble(cTID('Rd  ')));
-   var green = Math.round(color.getDouble(cTID('Grn ')));
-   var blue = Math.round(color.getDouble(cTID('Bl  ')));
-   return Stdlib.createRGBColor(red, green, blue).rgb.hexValue;
+    var desc = Stdlib.getLayerDescriptor(app.activeDocument, obj);
+    var adjs = desc.getList(cTID('Adjs'));
+    var clrDesc = adjs.getObjectValue(0);
+    var color= clrDesc.getObjectValue(cTID('Clr '));
+    var red = Math.round(color.getDouble(cTID('Rd  ')));
+    var green = Math.round(color.getDouble(cTID('Grn ')));
+    var blue = Math.round(color.getDouble(cTID('Bl  ')));
+    return Stdlib.createRGBColor(red, green, blue).rgb.hexValue;
 }
 
 function hideAllLayers(obj)
