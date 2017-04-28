@@ -128,6 +128,10 @@ namespace PSDUIImporter
                 rectTransform.sizeDelta = parentTrans.sizeDelta;
                 rectTransform.anchoredPosition = parentTrans.anchoredPosition;
             }
+            else
+            {
+                Debug.Log("尺寸设置失败");
+            }
         }
         public static void SetAnchorByNode(UINode node)
         {
