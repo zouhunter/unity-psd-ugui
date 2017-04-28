@@ -518,8 +518,8 @@ function exportImage(obj)
 function recordPositionAndSize(obj)
 {
     var index = -1;
-    for (var i = 0; i < obj.layers.length; i++) {
-        if(obj.layers[i].name.search("@Size") == 0)
+    for (var i = 0; i < obj.artLayers.length; i++) {
+        if(obj.artLayers[i].name.search("@Size") == 0)
         {
             index = i;
         }
@@ -529,7 +529,7 @@ function recordPositionAndSize(obj)
     if(index != -1)
     {
         var recSize;
-        obj.layers[index].visible = true;
+        obj.artLayers[index].visible = true;
 
         recSize = getLayerRec(duppedPsd.duplicate());
 
@@ -543,7 +543,7 @@ function recordPositionAndSize(obj)
         sceneData += "<height>" + recSize.height + "</height>";
         sceneData += "</size>";
 
-        obj.layers[index].visible = false;
+        obj.artLayers[index].visible = false;
     }
     
     return index;
