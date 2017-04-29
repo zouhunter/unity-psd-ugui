@@ -17,7 +17,7 @@ namespace PSDUIImporter
         public UINode DrawLayer(Layer layer, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_SCROLLBAR, layer.name, parent);
-            Scrollbar scrollBar = node.GetComponent<Scrollbar>();
+            Scrollbar scrollBar = node.InitComponent<Scrollbar>();
 
             string type = layer.arguments[0].ToUpper();
             switch (type)

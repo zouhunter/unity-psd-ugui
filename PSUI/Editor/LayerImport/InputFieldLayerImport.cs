@@ -9,7 +9,7 @@ namespace PSDUIImporter
         public UINode DrawLayer(Layer layer, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_INPUTFIELD, layer.name, parent);
-            UnityEngine.UI.InputField inputfield = node.GetComponent<UnityEngine.UI.InputField>();
+            UnityEngine.UI.InputField inputfield = node.InitComponent<UnityEngine.UI.InputField>();
 
             if (layer.images != null)
             {

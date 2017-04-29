@@ -22,18 +22,18 @@ namespace PSDUIImporter
             switch (type)
             {
                 case "v":
-                    group = node.AddComponent<UnityEngine.UI.VerticalLayoutGroup>();
+                    group = node.InitComponent<UnityEngine.UI.VerticalLayoutGroup>();
                     group.childAlignment = TextAnchor.UpperLeft;
                     ((UnityEngine.UI.VerticalLayoutGroup)group).spacing = span;
                     break;
                 case "h":
-                    group = node.AddComponent<UnityEngine.UI.HorizontalLayoutGroup>();
+                    group = node.InitComponent<UnityEngine.UI.HorizontalLayoutGroup>();
                     group.childAlignment = TextAnchor.UpperLeft;
                     ((UnityEngine.UI.HorizontalLayoutGroup)group).spacing = span;
                     break;
             }
 
-            PSDImportUtility.SetRectTransform(layer, group.GetComponent<RectTransform>(),parent.GetComponent<RectTransform>());
+            PSDImportUtility.SetRectTransform(layer, group.GetComponent<RectTransform>(),parent.InitComponent<RectTransform>());
 
             UINode[] nodes = pSDImportCtrl.DrawImages(layer.images,node);
             foreach (var item in nodes)

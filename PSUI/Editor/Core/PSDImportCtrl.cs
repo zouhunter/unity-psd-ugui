@@ -27,7 +27,6 @@ namespace PSDUIImporter
         private ILayerImport scrollBarImport;
         private ILayerImport sliderImport;
         private ILayerImport gridImport;
-        private ILayerImport emptyImport;
         private ILayerImport groupImport;
         private ILayerImport inputFiledImport;
         private ILayerImport dropdownImport;
@@ -50,9 +49,6 @@ namespace PSDUIImporter
             {
                 case LayerType.Panel:
                     node= panelImport.DrawLayer(layer, parent);
-                    break;
-                case LayerType.Normal:
-                    node = emptyImport.DrawLayer(layer, parent);
                     break;
                 case LayerType.Button:
                     node = buttonImport.DrawLayer(layer, parent);
@@ -179,7 +175,6 @@ namespace PSDUIImporter
             scrollViewImport = new ScrollViewLayerImport(this);
             scrollBarImport = new ScrollBarLayerImport();
             gridImport = new GridLayerImport(this);
-            emptyImport = new DefultLayerImport(this);
             groupImport = new GroupLayerImport(this);
             dropdownImport = new DropDownLayerImport(this);
 
@@ -188,7 +183,7 @@ namespace PSDUIImporter
         public void BeginDrawUILayers()
         {
             UINode empty = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_EMPTY,PSDImportUtility.baseFilename, PSDImportUtility.uinode);
-            RectTransform rt = empty.GetComponent<RectTransform>();
+            RectTransform rt = empty.InitComponent<RectTransform>();
             rt.sizeDelta = new Vector2(psdUI.psdSize.width, psdUI.psdSize.height);
             for (int layerIndex = 0; layerIndex < psdUI.layers.Length; layerIndex++)
             {

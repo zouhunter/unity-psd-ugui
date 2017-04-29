@@ -10,7 +10,6 @@ namespace PSDUIImporter
     public enum LayerType
     {
         Panel,
-        Normal,
         ScrollView,
         Grid,
         Button,

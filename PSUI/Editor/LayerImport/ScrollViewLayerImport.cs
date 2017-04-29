@@ -18,17 +18,17 @@ namespace PSDUIImporter
         public UINode DrawLayer(Layer layer, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_SCROLLVIEW,layer.name,parent);
-            UnityEngine.UI.ScrollRect scrollRect = node.GetComponent<UnityEngine.UI.ScrollRect>();
+            UnityEngine.UI.ScrollRect scrollRect = node.InitComponent<UnityEngine.UI.ScrollRect>();
 
             UINode childNode = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, "Viewport", node);
-            scrollRect.viewport = childNode.GetComponent<RectTransform>();
+            scrollRect.viewport = childNode.InitComponent<RectTransform>();
             Color color;
             if (ColorUtility.TryParseHtmlString("#FFFFFF01",out color))
             {
-                childNode.GetComponent<UnityEngine.UI.Image>().color = color;
+                childNode.InitComponent<UnityEngine.UI.Image>().color = color;
                 Debug.Log(color);
             }
-            childNode.AddComponent<Mask>();
+            childNode.InitComponent<Mask>();
             childNode.anchoType = UINode.AnchoType.XStretch | UINode.AnchoType.YStretch;
 
             UnityEngine.UI.Image graph = scrollRect.GetComponent<UnityEngine.UI.Image>();
@@ -54,10 +54,10 @@ namespace PSDUIImporter
             if (!havebg)
             {
                 UnityEngine.Object.DestroyImmediate(graph);
-                PSDImportUtility.SetRectTransform(layer, scrollRect.GetComponent<RectTransform>(),parent.GetComponent<RectTransform>());
+                PSDImportUtility.SetRectTransform(layer, scrollRect.GetComponent<RectTransform>(),parent.InitComponent<RectTransform>());
             }
 
-            PSDImportUtility.SetRectTransform(layer, childNode.GetComponent<RectTransform>(), scrollRect.GetComponent<RectTransform>());
+            PSDImportUtility.SetRectTransform(layer, childNode.InitComponent<RectTransform>(), scrollRect.GetComponent<RectTransform>());
 
             if (layer.arguments != null)
             {
@@ -92,16 +92,16 @@ namespace PSDUIImporter
 
                     if (childLowerName.StartsWith("c_"))
                     {
-                        scrollRect.content = c_Node.GetComponent<RectTransform>();
+                        scrollRect.content = c_Node.InitComponent<RectTransform>();
                     }
                     else if (childLowerName.StartsWith("vb_"))
                     {
-                        scrollRect.verticalScrollbar = c_Node.GetComponent<Scrollbar>();
+                        scrollRect.verticalScrollbar = c_Node.InitComponent<Scrollbar>();
                         scrollRect.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHide;
                     }
                     else if (childLowerName.StartsWith("hb_"))
                     {
-                        scrollRect.horizontalScrollbar = c_Node.GetComponent<Scrollbar>();
+                        scrollRect.horizontalScrollbar = c_Node.InitComponent<Scrollbar>();
                         scrollRect.horizontalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHide;
                     }
                 }

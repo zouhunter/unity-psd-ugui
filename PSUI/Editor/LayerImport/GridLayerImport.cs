@@ -18,8 +18,8 @@ namespace PSDUIImporter
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_GRID, layer.name, parent);
             node.anchoType = UINode.AnchoType.Up | UINode.AnchoType.Left;
-            GridLayoutGroup gridLayoutGroup = node.GetComponent<GridLayoutGroup>();
-            PSDImportUtility.SetRectTransform(layer, gridLayoutGroup.GetComponent<RectTransform>(),node.GetComponent<RectTransform>());
+            GridLayoutGroup gridLayoutGroup = node.InitComponent<GridLayoutGroup>();
+            PSDImportUtility.SetRectTransform(layer, gridLayoutGroup.GetComponent<RectTransform>(),node.InitComponent<RectTransform>());
 
             gridLayoutGroup.padding = new RectOffset(1,1,1,1);
             gridLayoutGroup.cellSize = new Vector2(layer.size.width, layer.size.height);

@@ -32,7 +32,7 @@ namespace PSDUIImporter
                 import.BeginSetUIParents(PSDImportUtility.uinode);
                 import.BeginSetAnchers(PSDImportUtility.uinode.childs[0]);
                 //最外层的要单独处理
-                var rt = PSDImportUtility.uinode.childs[0].GetComponent<RectTransform>();
+                var rt = PSDImportUtility.uinode.childs[0].InitComponent<RectTransform>();
                 PSDImportUtility.SetCustomAnchor(rt, rt);
                 import.BeginReprocess(PSDImportUtility.uinode.childs[0]);//后处理
             }

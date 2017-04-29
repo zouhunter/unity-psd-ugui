@@ -104,71 +104,46 @@ function exportLayerSet(obj)
     {
         if (obj.layers[i].typename == "LayerSet")//空节点（组）
         {
-            if (obj.layers[i].name.search("@ScrollView") >= 0)
+            if (obj.layers[i].name.toUpperCase().search("@SCROLLVIEW") >= 0)
             {
                 exportScrollView(obj.layers[i]);
             }
-            else if (obj.layers[i].name.search("@Grid") >= 0)
+            else if (obj.layers[i].name.toUpperCase().search("@GRID") >= 0)
             {
                 exportGrid(obj.layers[i]);
             }
-            else if (obj.layers[i].name.search("@Group")>=0) {
+            else if (obj.layers[i].name.toUpperCase().search("@GROUP")>=0) {
                 exportGroup(obj.layers[i]);
             }
-            else if (obj.layers[i].name.search("@Dropdown")>=0) {
+            else if (obj.layers[i].name.toUpperCase().search("@DROPDOWN")>=0) {
                 exportDropdown(obj.layers[i]);
             }
-            else if (obj.layers[i].name.search("@Button") >= 0)
+            else if (obj.layers[i].name.toUpperCase().search("@BUTTON") >= 0)
             {
                 exportButton(obj.layers[i]);
             }
-            else if (obj.layers[i].name.search("@Toggle") >= 0)
+            else if (obj.layers[i].name.toUpperCase().search("@TOGGLE") >= 0)
             {
                 exportToggle(obj.layers[i]);
             }
-            else if (obj.layers[i].name.search("@Panel") >= 0)
-            {
-                exportPanel(obj.layers[i]);
-            }
-            else if (obj.layers[i].name.search("@Slider")>=0) {
+            else if (obj.layers[i].name.toUpperCase().search("@SLIDER")>=0) {
                 exportSlider(obj.layers[i]);
             }
            
-            else if (obj.layers[i].name.search("@InputField") >=0) {
+            else if (obj.layers[i].name.toUpperCase().search("@INPUTFIELD") >=0) {
                 exportInputField(obj.layers[i]);
             }
-            else if (obj.layers[i].name.search("@Scrollbar") >=0) {
+            else if (obj.layers[i].name.toUpperCase().search("@SCROLLBAR") >=0) {
                 exportScrollBar(obj.layers[i]);
             }
             else
             {
-                exportDefultLayer(obj.layers[i]);
+                exportPanel(obj.layers[i]);
             }
         }
     }
     sceneData += "</layers>";
 }
-
-function exportDefultLayer(obj)
-{
-    sceneData += "<Layer>";
-    sceneData += "<type>Normal</type>";
-    sceneData += "<name>" + obj.name + "</name>";
-
-    exportLayerSet(obj);
-
-    var index = recordPositionAndSize(obj);
-	
-    sceneData += "<images>";
-    for (var j = 0; j < obj.artLayers.length; j++)
-    {
-        if(j != index)
-            exportArtLayer(obj.artLayers[j]);
-    }
-    sceneData += "</images>";
-    sceneData += "</Layer>";
-}
-
 function exportScrollView(obj)
 {
     var itemName = obj.name.substring(0, obj.name.search("@"));
@@ -242,10 +217,20 @@ function exportGroup(obj)
 
     var params = obj.name.split(":");
 
-    if (params.length != 3 )
+    if (params.length < 3)
     {
-        alert(obj.name + "-------Layer's name not equals 2------------");
+        var ipt = ""; 
+        while (!(ipt.toLowerCase() == "v" || ipt.toLowerCase() == "h")) {
+            ipt = prompt("方向选择：请输入以下方向中的一个:\nh:水平;v:垂直");
+        }
+        params[1] = ipt;
+        while (IsNumber(ipt)) {
+            ipt = prompt("间距离选择：请输入一像素值");
+        }
+        params[2] = ipt;
+
     }
+
     var index = recordPositionAndSize(obj);
 
     sceneData += "<images>";
@@ -262,6 +247,11 @@ function exportGroup(obj)
     sceneData += "</arguments>";
 
     sceneData += "</Layer>";
+}
+
+function IsNumber(object){
+    var nub = Number(object);
+    return isNaN(nub);
 }
 
 function exportDropdown(obj)
@@ -333,9 +323,13 @@ function exportSlider(obj)
 
     var params = obj.name.split(":");
 
-    if (params.length != 2)
+    if (params.length < 2)
     {
-        alert(obj.name + "-------Layer's name is not 1 argument------------");
+        var ipt = ""; 
+        while (!(ipt.toLowerCase() == "l" || ipt.toLowerCase() == "r"||ipt.toLowerCase()=="u")||ipt.toLowerCase() == "d") {
+            ipt = prompt("正确的命名包含方向，请输入以下方向中的一个:\nl:从左到右;r:从右到左;d:从下到上;u:从上到下");
+        }
+        params[1] = ipt;
     }
 
     sceneData += "<arguments>";
@@ -360,9 +354,13 @@ function exportScrollBar(obj)
 
     var params = obj.name.split(":");
 
-    if (params.length != 2)
+    if (params.length < 2)
     {
-        alert(obj.name + "-------Layer's name is not 1 argument------------");
+        var ipt = ""; 
+        while (!(ipt.toLowerCase() == "l" || ipt.toLowerCase()== "r"||ipt.toLowerCase()=="u")||ipt.toLowerCase() == "d") {
+            ipt = prompt("正确的命名包含方向，请输入以下方向中的一个:\nl:从左到右;r:从右到左;d:从下到上;u:从上到下");
+        }
+        params[1] = ipt;
     }
 
     sceneData += "<arguments>";
@@ -381,7 +379,7 @@ function exportScrollBar(obj)
 
 function exportPanel(obj)
 {
-    var itemName = obj.name.substring(0, obj.name.search("@"));
+    var itemName = obj.name;
     sceneData += ("<Layer>\n<type>Panel</type>\n<name>" + itemName + "</name>\n");
 
     exportLayerSet(obj);
@@ -519,7 +517,7 @@ function recordPositionAndSize(obj)
 {
     var index = -1;
     for (var i = 0; i < obj.artLayers.length; i++) {
-        if(obj.artLayers[i].name.search("@Size") == 0)
+        if(obj.artLayers[i].name.toUpperCase().search("@SIZE") == 0)
         {
             index = i;
         }
@@ -684,6 +682,6 @@ function makeValidFileName(fileName)
 
 function PreSelect()
 {
-    exportSolid =confirm("如果需要将颜色框导出为图片请按确认（默认只记录颜色信息）");
+    exportSolid =confirm("不导出色块为图片？");
     //var ipt=prompt("请输入您的名字","KING视界")
 }

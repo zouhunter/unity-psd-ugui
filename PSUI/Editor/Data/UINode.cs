@@ -29,13 +29,11 @@ public class UINode {
         if(parent != null) parent.childs.Add(this);
     }
 
-    public T GetComponent<T>() where T : Component
+    public T InitComponent<T>() where T : Component
     {
-        return transform.GetComponent<T>();
-    }
-
-    public T AddComponent<T>() where T : Component
-    {
-        return transform.gameObject.AddComponent<T>();
+        var t = transform.gameObject.GetComponent<T>();
+        if (t == null)
+            transform.gameObject.AddComponent<T>();
+        return t;
     }
 }

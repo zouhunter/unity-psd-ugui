@@ -17,7 +17,7 @@ namespace PSDUIImporter
         public UINode DrawLayer(Layer layer, UINode parent)
         {
             UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_DROPDOWN, layer.name, parent);
-            Dropdown dropdown = node.GetComponent<Dropdown>();
+            Dropdown dropdown = node.InitComponent<Dropdown>();
             ScrollRect scrllRect = dropdown.template.GetComponent<ScrollRect>();
             RectTransform content = scrllRect.content;
             Toggle toggle = content.GetComponentInChildren<Toggle>();
@@ -27,7 +27,7 @@ namespace PSDUIImporter
             childNode.anchoType = UINode.AnchoType.Down | UINode.AnchoType.XStretch;
             //由于设置相对坐标需要，所以修改了部分预制体的状态
             childNode.ReprocessEvent = () => {
-                RectTransform rt = childNode.GetComponent<RectTransform>();
+                RectTransform rt = childNode.InitComponent<RectTransform>();
                 rt.pivot = new Vector2(0.5f, 1);
                 rt.anchoredPosition = Vector3.zero;
             };
@@ -90,7 +90,7 @@ namespace PSDUIImporter
                 if (lowerName.StartsWith("vb_"))
                 {
                     UINode barNode = ctrl.DrawLayer(child, childNode);
-                    scrllRect.verticalScrollbar = barNode.GetComponent<Scrollbar>();
+                    scrllRect.verticalScrollbar = barNode.InitComponent<Scrollbar>();
                     scrllRect.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHide;
                 }
                 else
