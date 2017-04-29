@@ -326,8 +326,8 @@ function exportSlider(obj)
     if (params.length < 2)
     {
         var ipt = ""; 
-        while (!(ipt.toLowerCase() == "l" || ipt.toLowerCase() == "r"||ipt.toLowerCase()=="u")||ipt.toLowerCase() == "d") {
-            ipt = prompt("正确的命名包含方向，请输入以下方向中的一个:\nl:从左到右;r:从右到左;d:从下到上;u:从上到下");
+        while (!(ipt.toLowerCase() == "l" || ipt.toLowerCase()== "r"||ipt.toLowerCase()=="b")||ipt.toLowerCase() == "t") {
+            ipt = prompt("请选择"+ obj.name + "的方向：\nl:从左到右;r:从右到左;b:从下到上;t:从上到下");
         }
         params[1] = ipt;
     }
@@ -357,8 +357,8 @@ function exportScrollBar(obj)
     if (params.length < 2)
     {
         var ipt = ""; 
-        while (!(ipt.toLowerCase() == "l" || ipt.toLowerCase()== "r"||ipt.toLowerCase()=="u")||ipt.toLowerCase() == "d") {
-            ipt = prompt("正确的命名包含方向，请输入以下方向中的一个:\nl:从左到右;r:从右到左;d:从下到上;u:从上到下");
+        while (!(ipt.toLowerCase() == "l" || ipt.toLowerCase()== "r"||ipt.toLowerCase()=="b")||ipt.toLowerCase() == "t") {
+            ipt = prompt("请选择"+ obj.name + "的方向：\nl:从左到右;r:从右到左;b:从下到上;t:从上到下");
         }
         params[1] = ipt;
     }
