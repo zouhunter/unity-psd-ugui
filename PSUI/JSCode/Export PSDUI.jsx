@@ -437,13 +437,9 @@ function exportImage(obj)
 {
     var validFileName = obj.name;
     if (obj.name.match("#")) {
-        validFileName = obj.name.substring (0,obj.name.lastIndexOf ("#"));//截取#之后的字符串作为图片的名称。
-        if (obj.name.match("#C")) //不是公用，则自动为图片增加后缀
-        {
-            validFileName += "_" + uuid++;
-        }
+        validFileName = obj.name.substring (0,obj.name.indexOf ("#"));//截取#之前的字符串作为图片的名称。
     }
-    else{
+    if (!obj.name.match("#") || obj.name.match("#C")) {//私用图片自动为图片增加后缀
         validFileName += "_" + uuid++;
     }
     validFileName = makeValidFileName(validFileName);
@@ -472,14 +468,14 @@ function exportImage(obj)
         obj.visible = true;
         saveScenePng(duppedPsd.duplicate(), validFileName, true);
         obj.visible = false;
-		
-        if (obj.name.search("#N") >= 0)
-        {
-            sceneData += "<imageSource>" + "Normal" + "</imageSource>\n";
-        }
-        else if(obj.name.search("#G") >= 0)
+   
+        if(obj.name.match("#G"))
         {
             sceneData += "<imageSource>" + "Globle" + "</imageSource>\n";
+        }
+        else  if (obj.name.match("#N"))
+        {
+            sceneData += "<imageSource>" + "Normal" + "</imageSource>\n";
         }
         else
         {
@@ -487,29 +483,16 @@ function exportImage(obj)
         }
     }
 
-    var params = obj.name.split(":");
-
-    if (params.length >= 2)
+    if (obj.name.match("#T")) {
+        sceneData += "<imageType>" + "Texture" + "</imageType>\n";
+    }
+    else if(obj.name.match("#S"))
     {
-        if (params.length > 2) {
-            alert(obj.name + "-------Layer's name only 1 argument------------");
-        }
-        if (params[1] == "T") {
-            sceneData += "<imageType>" + "Texture" + "</imageType>\n";
-        }
-        else if(params[1] == "S")
-        {
-            sceneData += "<imageType>" + "SliceImage" + "</imageType>\n";
-        }
-        else{
-            sceneData += "<imageType>" + "Image" + "</imageType>\n";
-        }
+        sceneData += "<imageType>" + "SliceImage" + "</imageType>\n";
     }
     else{
         sceneData += "<imageType>" + "Image" + "</imageType>\n";
     }
-
-  
 }
 
 //记录最后一层有@Size的layer尺寸和坐标
