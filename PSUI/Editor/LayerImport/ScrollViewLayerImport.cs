@@ -31,7 +31,6 @@ namespace PSDUIImporter
             childNode.InitComponent<Mask>();
             childNode.anchoType = UINode.AnchoType.XStretch | UINode.AnchoType.YStretch;
 
-            UnityEngine.UI.Image graph = scrollRect.GetComponent<UnityEngine.UI.Image>();
             bool havebg = false;
             for (int i = 0; i < layer.images.Length; i++)
             {
@@ -40,10 +39,11 @@ namespace PSDUIImporter
                 if (image.name.ToLower().StartsWith("b_"))
                 {
                     havebg = true;
+                    UnityEngine.UI.Image graph = node.InitComponent<UnityEngine.UI.Image>();
 
                     PSDImportUtility.SetPictureOrLoadColor(image, graph);
 
-                    PSDImportUtility.SetRectTransform(image, graph.GetComponent<RectTransform>());
+                    PSDImportUtility.SetRectTransform(image, scrollRect.GetComponent<RectTransform>());
                 }
                 else
                 {
@@ -53,7 +53,6 @@ namespace PSDUIImporter
 
             if (!havebg)
             {
-                UnityEngine.Object.DestroyImmediate(graph);
                 PSDImportUtility.SetRectTransform(layer, scrollRect.GetComponent<RectTransform>(),parent.InitComponent<RectTransform>());
             }
 
