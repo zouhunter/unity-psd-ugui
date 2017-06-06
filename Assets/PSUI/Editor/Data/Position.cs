@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 namespace PSDUIImporter
 {
+    [Serializable]
     public class Position
     {
         public float x;

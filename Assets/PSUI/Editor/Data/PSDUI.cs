@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 namespace PSDUIImporter
 {
+    [System.Serializable]
     public class PSDUI
     {
         public Size psdSize;

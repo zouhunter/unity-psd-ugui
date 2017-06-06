@@ -2,6 +2,7 @@
 using UnityEngine;
 namespace PSDUIImporter
 {
+    [Serializable]
     public class Image
     {
         public ImageType imageType;

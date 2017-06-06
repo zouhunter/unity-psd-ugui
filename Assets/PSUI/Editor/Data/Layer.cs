@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 namespace PSDUIImporter
 {
+    [Serializable]
     public class Layer
     {
         public string name;
