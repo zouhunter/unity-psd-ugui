@@ -22,8 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-using PhotoshopFile;
 using System;
+using PhotoshopFile;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -39,74 +39,104 @@ public class PSDEditorWindow : EditorWindow {
     private bool importIntoSelected = false;
     private string fileName;
 	private bool useSizeDelta;
-
     private Transform selectedTransform;
+    private static PSDEditorWindow window;
+    private const string lastPsdPath = "lastPsdPath";
 
     [MenuItem("Sprites/PSD Import")]
     public static void ShowWindow() {
-        var wnd = GetWindow<PSDEditorWindow>("PSD Import");
-        wnd.Show();
+        window = GetWindow<PSDEditorWindow>("PSD Import");
+        window.psdPath = EditorPrefs.GetString(lastPsdPath);
     }
 
     public void OnGUI() {
+
+        DrawHead();
+        DrawLayerList();
+        DrawToolButtons();
+    }
+    private void DrawHead()
+    {
         psdPath = EditorGUILayout.TextField("PSD File", psdPath);
         if (GUILayout.Button("Load"))
         {
             psdPath = EditorUtility.OpenFilePanel("", Application.dataPath, "psd");
+            EditorPrefs.SetString(lastPsdPath, psdPath);
         }
-
-        if (!string.IsNullOrEmpty(psdPath)) {
-            if (psd == null) {
+    }
+    private void DrawLayerList()
+    {
+        if (!string.IsNullOrEmpty(psdPath))
+        {
+            if (psd == null)
+            {
                 psd = new PsdFile();
                 psd.Load(psdPath, Encoding.Default);
                 fileName = Path.GetFileNameWithoutExtension(psdPath);
+                
             }
-            if (psd != null) {
+
+            if (psd != null)
+            {
                 scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
 
-                foreach (Layer layer in psd.Layers) {
-                    if (layer.Name != "</Layer set>" && layer.Name != "</Layer group>") {
+                foreach (Layer layer in psd.Layers)
+                {
+                    if (layer.Name != "</Layer set>" && layer.Name != "</Layer group>")
+                    {
                         layer.Visible = EditorGUILayout.ToggleLeft(layer.Name, layer.Visible);
                     }
                 }
 
                 EditorGUILayout.EndScrollView();
-
-                if (GUILayout.Button("Export visible layers")) {
-                    ExportLayers();
-                }
-
-                atlassize = EditorGUILayout.IntField("Max. atlas size", atlassize);
-
-                if (!((atlassize != 0) && ((atlassize & (atlassize - 1)) == 0))) {
-                    EditorGUILayout.HelpBox("Atlas size should be a power of 2", MessageType.Warning);
-                }
-
-                pixelsToUnitSize = EditorGUILayout.FloatField("Pixels To Unit Size", pixelsToUnitSize);
-
-                if (pixelsToUnitSize <= 0) {
-                    EditorGUILayout.HelpBox("Pixels To Unit Size should be greater than 0.", MessageType.Warning);
-                }
-                importIntoSelected = EditorGUILayout.Toggle("Import into selected object", importIntoSelected);
-                useSizeDelta = EditorGUILayout.Toggle("Use Size Delta", useSizeDelta);
-                if (GUILayout.Button("Create atlas")) {
-                    CreateAtlas();
-                }
-                if (GUILayout.Button("Create sprites")) {
-                    CreateSprites();
-                }
-                if (GUILayout.Button("Create images")) {
-                    CreateImages();
-                }
             }
-            else {
+            else
+            {
                 EditorGUILayout.HelpBox("This texture is not a PSD file.", MessageType.Error);
             }
         }
     }
+    private void DrawToolButtons()
+    {
+        if(psd != null)
+        {
+            if (GUILayout.Button("Export visible layers"))
+            {
+                ExportLayers();
+            }
 
+            atlassize = EditorGUILayout.IntField("Max. atlas size", atlassize);
+
+            if (!((atlassize != 0) && ((atlassize & (atlassize - 1)) == 0)))
+            {
+                EditorGUILayout.HelpBox("Atlas size should be a power of 2", MessageType.Warning);
+            }
+
+            pixelsToUnitSize = EditorGUILayout.FloatField("Pixels To Unit Size", pixelsToUnitSize);
+
+            if (pixelsToUnitSize <= 0)
+            {
+                EditorGUILayout.HelpBox("Pixels To Unit Size should be greater than 0.", MessageType.Warning);
+            }
+            importIntoSelected = EditorGUILayout.Toggle("Import into selected object", importIntoSelected);
+            useSizeDelta = EditorGUILayout.Toggle("Use Size Delta", useSizeDelta);
+            if (GUILayout.Button("Create atlas"))
+            {
+                CreateAtlas();
+            }
+            if (GUILayout.Button("Create sprites"))
+            {
+                CreateSprites();
+            }
+            if (GUILayout.Button("Create images"))
+            {
+                CreateImages();
+            }
+        }
+    }
+   
     private Texture2D CreateTexture(Layer layer) {
-        var rect = RectUtility.GetRectByRectRange(layer.Rect);
+        var rect = PsdUtility.GetRectByRectRange(layer.Rect);
 
         if ((int)rect.width == 0 || (int)rect.height == 0)
             return null;
@@ -159,7 +189,7 @@ public class PSDEditorWindow : EditorWindow {
         int zOrder = 0;
         GameObject root = new GameObject(fileName);
         foreach (var layer in psd.Layers) {
-            var rect = RectUtility.GetRectByRectRange(layer.Rect);
+            var rect = PsdUtility.GetRectByRectRange(layer.Rect);
 
             if (layer.Visible && rect.width > 0 && rect.height > 0) {
                 Texture2D tex = CreateTexture(layer);
@@ -274,7 +304,7 @@ public class PSDEditorWindow : EditorWindow {
         rtransf.localPosition = Vector3.zero;
 
         foreach (var layer in psd.Layers) {
-            var rect = RectUtility.GetRectByRectRange(layer.Rect);
+            var rect = PsdUtility.GetRectByRectRange(layer.Rect);
 
             if (layer.Visible && rect.width > 0 && rect.height > 0) {
                 var targetOrder = zOrder++;
@@ -315,6 +345,5 @@ public class PSDEditorWindow : EditorWindow {
 
         return (Sprite)AssetDatabase.LoadAssetAtPath(path, typeof(Sprite));
     }
-
 }
 
