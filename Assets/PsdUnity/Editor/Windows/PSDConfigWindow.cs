@@ -16,20 +16,26 @@ public class PSDConfigWindow : EditorWindow
         public List<Data> childs = new List<Data>();
         public IPsdLayer layer;
         public bool isFolder;
+
+        private GUIContent _folderOff;
+        private GUIContent _folderOn;
+        private GUIContent _filenormal;
+
         public Data(IPsdLayer layer)
         {
             this.layer = layer;
             isFolder = layer.Childs.Length != 0;
-            if (!isFolder)
-            {
-                Debug.Log("-->");
-                foreach (var item in layer.Resources)
-                {
-                    Debug.Log(item.Key);
-                    Debug.Log(item.Value);
-                }
-            }
-              
+
+            _folderOff =new GUIContent(layer.Name,EditorGUIUtility.IconContent("IN foldout focus").image);
+            _folderOn = new GUIContent(layer.Name,EditorGUIUtility.IconContent("IN foldout focus on").image);
+            _filenormal = new GUIContent(layer.Name, EditorGUIUtility.IconContent("eventpin").image);
+            content = isFolder ? _folderOff : _filenormal;
+        }
+
+        public void Switch(bool on)
+        {
+            content =on ?_folderOn : _folderOff;
+            content.text = layer.Name;
         }
     }
 
@@ -47,6 +53,9 @@ public class PSDConfigWindow : EditorWindow
 
     private static PSDConfigWindow window;
     private SerializedProperty scriptProp;
+
+ 
+
     private void OnEnable()
     {
         psdPath = EditorPrefs.GetString(Prefs_pdfPath);
@@ -128,15 +137,15 @@ public class PSDConfigWindow : EditorWindow
     {
         GUIStyle style = "Label";
         Rect rt = GUILayoutUtility.GetRect(data.content, style);
-        if (data.isSelected && data.isFolder)
-        {
-            EditorGUI.DrawRect(rt, Color.gray);
-        }
-
+       
         rt.x += (16 * EditorGUI.indentLevel);
-
-        data.isSelected = EditorGUI.Toggle(rt, data.isSelected, style);
-
+        
+        var select = EditorGUI.Toggle(rt, data.isSelected, style);
+        if(data.isSelected != select && data.isFolder)
+        {
+            data.isSelected = select;
+            data.Switch(select);
+        }
         EditorGUI.LabelField(rt, data.content);
     }
 
@@ -152,39 +161,20 @@ public class PSDConfigWindow : EditorWindow
 
     void LoadDataLayers(Data data, int indent = 0)
     {
-        GUIContent content = GetGUIContent(data.layer);
-
-        if (content != null)
+        if (data.content != null)
         {
             data.indent = indent;
-            data.content = content;
         }
 
         foreach (var layer in data.layer.Childs)
         {
-            content = GetGUIContent(layer);
-            if (content != null)
+            if (data.content != null)
             {
                 Data child = new Data(layer);
                 child.indent = indent + 1;
-                child.content = content;
                 data.childs.Add(child);
                 LoadDataLayers(child, child.indent);
             }
         }
     }
-    GUIContent GetGUIContent(IPsdLayer layer)
-    {
-        Texture texture = null;
-        if (layer.Childs != null && layer.Childs.Length > 0)
-        {
-            texture = EditorGUIUtility.IconContent("IN foldout focus").image;
-        }
-        else
-        {
-            texture = EditorGUIUtility.IconContent("eventpin").image;
-        }
-        return new GUIContent(layer.Name, texture);
-    }
-
 }
