@@ -9,15 +9,15 @@ namespace PSDUnity
 {
     public class TextImport : IImageImport
     {
-        public UINode DrawImage(Image image, UINode parent)
+        public UGUINode DrawImage(ImgNode image, UGUINode parent)
         {
-            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_TEXT, image.sprite.name, parent);
+            UGUINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_TEXT, image.sprite.name, parent);
             UnityEngine.UI.Text myText = node.InitComponent<Text>();
             PSDImportUtility.SetPictureOrLoadColor(image, myText);
             RectTransform rectTransform = myText.GetComponent<RectTransform>();
             AdjustImage(image, myText.fontSize);
-            rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
-            rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
+            rectTransform.sizeDelta = new Vector2(image.rect.width, image.rect.height);
+            rectTransform.anchoredPosition = new Vector2(image.rect.x, image.rect.y);
             return node;
         }
         /// <summary>
@@ -26,10 +26,10 @@ namespace PSDUnity
         /// <param name="image"></param>
         /// <param name="fontSize"></param>
         /// <returns></returns>
-        private void AdjustImage(Image image,int fontSize)
+        private void AdjustImage(ImgNode image,int fontSize)
         {
-            image.size.width += 40;
-            image.size.height += 20;
+            image.rect.width += 40;
+            image.rect.height += 20;
         }
     }
 }

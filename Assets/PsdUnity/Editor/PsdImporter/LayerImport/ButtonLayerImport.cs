@@ -16,18 +16,18 @@ namespace PSDUnity
             this.ctrl = ctrl;
         }
 
-        public UINode DrawLayer(Layer layer, UINode parent)
+        public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_BUTTON, layer.name, parent);
+            UGUINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_BUTTON, layer.name, parent);
             UnityEngine.UI.Button button = node.InitComponent<UnityEngine.UI.Button>();
 
             if (layer.images != null)
             {
                 for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
                 {
-                    Image image = layer.images[imageIndex];
+                    ImgNode image = layer.images[imageIndex];
                     string lowerName = image.sprite.name.ToLower();
-                    if (image.imageType == ImageType.Image && lowerName.StartsWith("n_") || lowerName.StartsWith("p_") || lowerName.StartsWith("d_") || lowerName.StartsWith("h_"))
+                    if (image.type == ImgType.Image && lowerName.StartsWith("n_") || lowerName.StartsWith("p_") || lowerName.StartsWith("d_") || lowerName.StartsWith("h_"))
                     {
                         if (image.color == UnityEngine.Color.white)
                         {
@@ -46,7 +46,7 @@ namespace PSDUnity
             }
             return node;
         }
-        private void SetSpriteSwipe(Image image,UnityEngine.UI.Button button)
+        private void SetSpriteSwipe(ImgNode image,UnityEngine.UI.Button button)
         {
             string lowerName = image.sprite.name.ToLower();
             string assetPath = PSDImportUtility.baseDirectory + image.sprite + PSDImporterConst.PNG_SUFFIX;
@@ -57,8 +57,8 @@ namespace PSDUnity
                 button.image.sprite = sprite;
 
                 RectTransform rectTransform = button.GetComponent<RectTransform>();
-                rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
-                rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
+                rectTransform.sizeDelta = new Vector2(image.rect.width, image.rect.height);
+                rectTransform.anchoredPosition = new Vector2(image.rect.x, image.rect.y);
             }
             else if (lowerName.StartsWith("p_"))
             {
@@ -83,7 +83,7 @@ namespace PSDUnity
             }
         }
 
-        private void SetColorSwipe(Image image, UnityEngine.UI.Button button)
+        private void SetColorSwipe(ImgNode image, UnityEngine.UI.Button button)
         {
             string lowerName = image.sprite.name.ToLower();
             Color color = image.color;
@@ -91,8 +91,8 @@ namespace PSDUnity
                 if (lowerName.StartsWith("n_"))
                 {
                     RectTransform rectTransform = button.GetComponent<RectTransform>();
-                    rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
-                    rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
+                    rectTransform.sizeDelta = new Vector2(image.rect.width, image.rect.height);
+                    rectTransform.anchoredPosition = new Vector2(image.rect.x, image.rect.y);
 
                     button.image.color = color;
                     button.transition = UnityEngine.UI.Selectable.Transition.ColorTint;

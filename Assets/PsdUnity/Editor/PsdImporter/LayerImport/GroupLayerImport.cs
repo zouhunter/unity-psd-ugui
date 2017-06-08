@@ -12,9 +12,9 @@ namespace PSDUnity
             this.pSDImportCtrl = pSDImportCtrl;
         }
 
-        public UINode DrawLayer(Layer layer, UINode parent)
+        public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_GROUP, layer.name, parent);
+            UGUINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_GROUP, layer.name, parent);
             UnityEngine.UI.LayoutGroup group = null;
             string type = layer.arguments[0].ToLower();
             float span = 0;
@@ -35,15 +35,15 @@ namespace PSDUnity
 
             PSDImportUtility.SetRectTransform(layer, group.GetComponent<RectTransform>(),parent.InitComponent<RectTransform>());
 
-            UINode[] nodes = pSDImportCtrl.DrawImages(layer.images,node);
+            UGUINode[] nodes = pSDImportCtrl.DrawImages(layer.images,node);
             foreach (var item in nodes)
             {
-                item.anchoType = UINode.AnchoType.Left | UINode.AnchoType.Up;
+                item.anchoType = UGUINode.AnchoType.Left | UGUINode.AnchoType.Up;
             }
-            nodes = pSDImportCtrl.DrawLayers(layer.layers, node);
+            nodes = pSDImportCtrl.DrawLayers(layer.groups, node);
             foreach (var item in nodes)
             {
-                item.anchoType = UINode.AnchoType.Left | UINode.AnchoType.Up;
+                item.anchoType = UGUINode.AnchoType.Left | UGUINode.AnchoType.Up;
             }
             return node;
         }

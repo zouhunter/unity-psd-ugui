@@ -10,6 +10,6 @@ namespace PSDUnity
 {
     public interface ILayerImport
     {
-        UINode DrawLayer(Layer layer, UINode parent);
+        UGUINode DrawLayer(GroupNode layer, UGUINode parent);
     }
 }

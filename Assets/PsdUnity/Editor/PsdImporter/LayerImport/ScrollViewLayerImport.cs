@@ -15,12 +15,12 @@ namespace PSDUnity
         {
             this.ctrl = ctrl;
         }
-        public UINode DrawLayer(Layer layer, UINode parent)
+        public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_SCROLLVIEW,layer.name,parent);
+            UGUINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_SCROLLVIEW,layer.name,parent);
             UnityEngine.UI.ScrollRect scrollRect = node.InitComponent<UnityEngine.UI.ScrollRect>();
 
-            UINode childNode = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, "Viewport", node);
+            UGUINode childNode = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, "Viewport", node);
             scrollRect.viewport = childNode.InitComponent<RectTransform>();
             Color color;
             if (ColorUtility.TryParseHtmlString("#FFFFFF01",out color))
@@ -29,12 +29,12 @@ namespace PSDUnity
                 Debug.Log(color);
             }
             childNode.InitComponent<Mask>();
-            childNode.anchoType = UINode.AnchoType.XStretch | UINode.AnchoType.YStretch;
+            childNode.anchoType = UGUINode.AnchoType.XStretch | UGUINode.AnchoType.YStretch;
 
             bool havebg = false;
             for (int i = 0; i < layer.images.Length; i++)
             {
-                Image image = layer.images[i];
+                ImgNode image = layer.images[i];
 
                 if (image.sprite.name.ToLower().StartsWith("b_"))
                 {
@@ -83,13 +83,13 @@ namespace PSDUnity
                 }
             }
 
-            if (layer.layers != null)
+            if (layer.groups != null)
             {
-                for (int i = 0; i < layer.layers.Length; i++)
+                for (int i = 0; i < layer.groups.Length; i++)
                 {
-                    Layer child = layer.layers[i];
+                    GroupNode child = layer.groups[i];
                     string childLowerName = child.name;
-                    UINode c_Node = ctrl.DrawLayer(child, childNode);
+                    UGUINode c_Node = ctrl.DrawLayer(child, childNode);
 
                     if (childLowerName.StartsWith("c_"))
                     {

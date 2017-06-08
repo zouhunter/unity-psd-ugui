@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 namespace PSDUnity
 {
-    public enum ImageSource
+    public enum ImgSource
     {
         Normal,
         Custom,

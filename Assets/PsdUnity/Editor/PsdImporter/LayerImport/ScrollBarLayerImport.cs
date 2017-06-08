@@ -14,9 +14,9 @@ namespace PSDUnity
         {
         }
 
-        public UINode DrawLayer(Layer layer, UINode parent)
+        public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_SCROLLBAR, layer.name, parent);
+            UGUINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_SCROLLBAR, layer.name, parent);
             Scrollbar scrollBar = node.InitComponent<Scrollbar>();
 
             string type = layer.arguments[0].ToUpper();
@@ -40,7 +40,7 @@ namespace PSDUnity
 
             for (int i = 0; i < layer.images.Length; i++)
             {
-                Image image = layer.images[i];
+                ImgNode image = layer.images[i];
                 string lowerName = image.sprite.name.ToLower();
                 UnityEngine.UI.Image graph = null;
 

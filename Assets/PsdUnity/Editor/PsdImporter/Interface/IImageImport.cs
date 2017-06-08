@@ -10,6 +10,6 @@ namespace PSDUnity
 {
     public interface IImageImport
     {
-        UINode DrawImage(Image image, UINode parent);
+        UGUINode DrawImage(ImgNode image, UGUINode parent);
     }
 }

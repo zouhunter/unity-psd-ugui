@@ -6,19 +6,19 @@ namespace PSDUnity
 {
     internal class InputFieldLayerImport : ILayerImport
     {
-        public UINode DrawLayer(Layer layer, UINode parent)
+        public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_INPUTFIELD, layer.name, parent);
+            UGUINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_INPUTFIELD, layer.name, parent);
             UnityEngine.UI.InputField inputfield = node.InitComponent<UnityEngine.UI.InputField>();
 
             if (layer.images != null)
             {
                 for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
                 {
-                    Image image = layer.images[imageIndex];
+                    ImgNode image = layer.images[imageIndex];
                     string lowerName = image.sprite.name.ToLower();
 
-                    if (image.imageType == ImageType.Label)
+                    if (image.type == ImgType.Label)
                     {
                         if (lowerName.StartsWith("t_"))
                         {

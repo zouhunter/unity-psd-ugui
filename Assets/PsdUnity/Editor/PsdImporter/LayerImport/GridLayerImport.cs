@@ -14,15 +14,15 @@ namespace PSDUnity
         {
             this.ctrl = ctrl;
         }
-        public UINode DrawLayer(Layer layer, UINode parent)
+        public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_GRID, layer.name, parent);
-            node.anchoType = UINode.AnchoType.Up | UINode.AnchoType.Left;
+            UGUINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_GRID, layer.name, parent);
+            node.anchoType = UGUINode.AnchoType.Up | UGUINode.AnchoType.Left;
             GridLayoutGroup gridLayoutGroup = node.InitComponent<GridLayoutGroup>();
             PSDImportUtility.SetRectTransform(layer, gridLayoutGroup.GetComponent<RectTransform>(),node.InitComponent<RectTransform>());
 
             gridLayoutGroup.padding = new RectOffset(1,1,1,1);
-            gridLayoutGroup.cellSize = new Vector2(layer.size.width, layer.size.height);
+            gridLayoutGroup.cellSize = new Vector2(layer.rect.width, layer.rect.height);
 
             if (layer.arguments != null && layer.arguments.Length > 1 )
             {
@@ -34,7 +34,7 @@ namespace PSDUnity
             }
 
             ctrl.DrawImages(layer.images, node);
-            ctrl.DrawLayers(layer.layers, node);
+            ctrl.DrawLayers(layer.groups as GroupNode[], node);
             return node;
         }
     }

@@ -14,7 +14,7 @@ namespace PSDUnity
         public static string baseDirectory;
         public static bool forceMove;
         public static Canvas canvas;
-        public static UINode uinode;
+        public static UGUINode uinode;
         //public static readonly Dictionary<Transform, Transform> ParentDic = new Dictionary<Transform, Transform>();
 
         public static object DeserializeXml(string filePath, System.Type type)
@@ -42,13 +42,13 @@ namespace PSDUnity
             return instance;
         }
 
-        public static UINode InstantiateItem(string resourcePatn, string name, UINode parent)
+        public static UGUINode InstantiateItem(string resourcePatn, string name, UGUINode parent)
         {
             GameObject temp = Resources.Load(resourcePatn, typeof(GameObject)) as GameObject;
             GameObject item = GameObject.Instantiate(temp) as GameObject;
             item.name = name;
             item.transform.SetParent(canvas.transform, false);
-            UINode node = new UINode(item.transform, parent);
+            UGUINode node = new UGUINode(item.transform, parent);
             return node;
         }
 
@@ -72,23 +72,23 @@ namespace PSDUnity
         //    return assetPath;
         //}
 
-        public static void SetPictureOrLoadColor(Image image, UnityEngine.UI.Graphic graph)
+        public static void SetPictureOrLoadColor(ImgNode image, UnityEngine.UI.Graphic graph)
         {
             graph.color = image.color;
-            switch (image.imageType)
+            switch (image.type)
             {
-                case ImageType.Image:
+                case ImgType.Image:
                     ((UnityEngine.UI.Image)graph).sprite = image.sprite;
                     break;
-                case ImageType.Texture:
+                case ImgType.Texture:
                     ((UnityEngine.UI.RawImage)graph).texture = image.texture;
                     break;
-                case ImageType.Label:
+                case ImgType.Label:
                     var myText = (UnityEngine.UI.Text)graph;
                     myText.text = image.text;
                     myText.fontSize = image.fontSize;
                     break;
-                case ImageType.SliceImage:
+                case ImgType.SliceImage:
                     ((UnityEngine.UI.Image)graph).sprite = image.sprite;
                     break;
                 default:
@@ -96,18 +96,18 @@ namespace PSDUnity
             }
         }
 
-        public static void SetRectTransform(Image image, RectTransform rectTransform)
+        public static void SetRectTransform(ImgNode image, RectTransform rectTransform)
         {
-            rectTransform.sizeDelta = new Vector2(image.size.width, image.size.height);
-            rectTransform.anchoredPosition = new Vector2(image.position.x, image.position.y);
+            rectTransform.sizeDelta = new Vector2(image.rect.width, image.rect.height);
+            rectTransform.anchoredPosition = new Vector2(image.rect.x, image.rect.y);
         }
 
-        public static void SetRectTransform(Layer layer, RectTransform rectTransform, RectTransform parentTrans)
+        public static void SetRectTransform(GroupNode layer, RectTransform rectTransform, RectTransform parentTrans)
         {
-            if (layer.size != null)
+            if (layer.rect != null)
             {
-                rectTransform.sizeDelta = new Vector2(layer.size.width, layer.size.height);
-                rectTransform.anchoredPosition = new Vector2(layer.position.x, layer.position.y);
+                rectTransform.sizeDelta = new Vector2(layer.rect.width, layer.rect.height);
+                rectTransform.anchoredPosition = new Vector2(layer.rect.x, layer.rect.y);
             }
             else if (parentTrans != null)
             {
@@ -119,14 +119,14 @@ namespace PSDUnity
                 Debug.Log("尺寸设置失败");
             }
         }
-        public static void SetAnchorByNode(UINode node)
+        public static void SetAnchorByNode(UGUINode node)
         {
             RectTransform p_rt = node.parent.InitComponent<RectTransform>();
             RectTransform c_rt = node.InitComponent<RectTransform>();
 
             switch (node.anchoType)
             {
-                case UINode.AnchoType.Custom:
+                case UGUINode.AnchoType.Custom:
                     SetCustomAnchor(p_rt, c_rt);
                     break;
                 default:
@@ -154,7 +154,7 @@ namespace PSDUnity
             rectt.sizeDelta = new Vector2(xSize, ySize);
             rectt.anchoredPosition = new Vector2(xanchored, yanchored);
         }
-        public static void SetNormalAnchor(UINode.AnchoType anchoType, RectTransform parentRectt, RectTransform rectt)
+        public static void SetNormalAnchor(UGUINode.AnchoType anchoType, RectTransform parentRectt, RectTransform rectt)
         {
             Vector2 sizeDelta = rectt.sizeDelta;
             Vector2 p_sizeDelta = parentRectt.sizeDelta;
@@ -169,49 +169,49 @@ namespace PSDUnity
             float xanchored = 0;
             float yanchored = 0;
 
-            if ((anchoType & UINode.AnchoType.Up) == UINode.AnchoType.Up)
+            if ((anchoType & UGUINode.AnchoType.Up) == UGUINode.AnchoType.Up)
             {
                 ymin = ymax = 1;
                 yanchored = anchoredPosition.y - p_sizeDelta.y * 0.5f;
                 ySize = sizeDelta.y;
             }
-            if ((anchoType & UINode.AnchoType.Down) == UINode.AnchoType.Down)
+            if ((anchoType & UGUINode.AnchoType.Down) == UGUINode.AnchoType.Down)
             {
                 ymin = ymax = 0;
                 yanchored = anchoredPosition.y + p_sizeDelta.y * 0.5f;
                 ySize = sizeDelta.y;
             }
-            if ((anchoType & UINode.AnchoType.Left) == UINode.AnchoType.Left)
+            if ((anchoType & UGUINode.AnchoType.Left) == UGUINode.AnchoType.Left)
             {
                 xmin = xmax = 0;
                 xanchored = anchoredPosition.x + p_sizeDelta.x * 0.5f;
                 xSize = sizeDelta.x;
             }
-            if ((anchoType & UINode.AnchoType.Right) == UINode.AnchoType.Right)
+            if ((anchoType & UGUINode.AnchoType.Right) == UGUINode.AnchoType.Right)
             {
                 xmin = xmax = 1;
                 xanchored = anchoredPosition.x - p_sizeDelta.x * 0.5f;
                 xSize = sizeDelta.x;
             }
-            if ((anchoType & UINode.AnchoType.XStretch) == UINode.AnchoType.XStretch)
+            if ((anchoType & UGUINode.AnchoType.XStretch) == UGUINode.AnchoType.XStretch)
             {
                 xmin = 0; xmax = 1;
                 xanchored = anchoredPosition.x;
                 xSize = sizeDelta.x - p_sizeDelta.x;
             }
-            if ((anchoType & UINode.AnchoType.YStretch) == UINode.AnchoType.YStretch)
+            if ((anchoType & UGUINode.AnchoType.YStretch) == UGUINode.AnchoType.YStretch)
             {
                 ymin = 0; ymax = 1;
                 yanchored = anchoredPosition.y;
                 ySize = sizeDelta.y - p_sizeDelta.y;
             }
-            if ((anchoType & UINode.AnchoType.XCenter) == UINode.AnchoType.XCenter)
+            if ((anchoType & UGUINode.AnchoType.XCenter) == UGUINode.AnchoType.XCenter)
             {
                 xmin = xmax = 0.5f;
                 xanchored = anchoredPosition.x;
                 xSize = sizeDelta.x;
             }
-            if ((anchoType & UINode.AnchoType.YCenter) == UINode.AnchoType.YCenter)
+            if ((anchoType & UGUINode.AnchoType.YCenter) == UGUINode.AnchoType.YCenter)
             {
                 ymin = ymax = 0.5f;
                 yanchored = anchoredPosition.y;

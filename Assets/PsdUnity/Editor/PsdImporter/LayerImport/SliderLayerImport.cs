@@ -9,9 +9,9 @@ namespace PSDUnity
 {
     public class SliderLayerImport : ILayerImport
     {
-        public UINode DrawLayer(Layer layer, UINode parent)
+        public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_SLIDER,layer.name,parent); //GameObject.Instantiate(temp) as UnityEngine.UI.Slider;
+            UGUINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_SLIDER,layer.name,parent); //GameObject.Instantiate(temp) as UnityEngine.UI.Slider;
             UnityEngine.UI.Slider slider = node.InitComponent<UnityEngine.UI.Slider>();
             string type = layer.arguments[0].ToUpper();
             switch (type)
@@ -34,7 +34,7 @@ namespace PSDUnity
             bool haveHandle = false;
             for (int i = 0; i < layer.images.Length; i++)
             {
-                Image image = layer.images[i];
+                ImgNode image = layer.images[i];
                 string lowerName = image.sprite.name.ToLower();
                 UnityEngine.UI.Image graph = null;
                 
@@ -53,7 +53,7 @@ namespace PSDUnity
                     graph = slider.handleRect.GetComponent<UnityEngine.UI.Image>();
                     RectTransform rect = graph.GetComponent<RectTransform>();
                     rect.name = image.sprite.name;
-                    rect.sizeDelta = new Vector2(image.size.width,image.size.height);
+                    rect.sizeDelta = new Vector2(image.rect.width,image.rect.height);
                     rect.anchoredPosition = Vector2.zero;
                     haveHandle = true;
                 }

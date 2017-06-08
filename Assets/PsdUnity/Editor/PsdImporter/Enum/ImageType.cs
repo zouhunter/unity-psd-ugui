@@ -7,11 +7,11 @@ using System.Collections.Generic;
 
 namespace PSDUnity
 {
-    public enum ImageType
+    public enum ImgType:int
     {
-        Image,
-        Texture,
-        Label,
-        SliceImage
+        Label = 0,
+        Image = 1,
+        SliceImage = 2,
+        Texture = 3
     }
 }

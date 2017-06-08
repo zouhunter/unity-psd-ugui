@@ -15,16 +15,16 @@ namespace PSDUnity
             this.ctrl = ctrl;
         }
 
-        public UINode DrawLayer(Layer layer, UINode parent)
+        public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, layer.name, parent);//GameObject.Instantiate(temp) as UnityEngine.UI.Image;
+            UGUINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, layer.name, parent);//GameObject.Instantiate(temp) as UnityEngine.UI.Image;
             UnityEngine.UI.Image panel = node.InitComponent<UnityEngine.UI.Image>();
 
-            ctrl.DrawLayers(layer.layers, node);//子节点
+            ctrl.DrawLayers(layer.groups, node);//子节点
             bool havebg = false;
             for (int i = 0; i < layer.images.Length; i++)
             {
-                Image image = layer.images[i];
+                ImgNode image = layer.images[i];
 
                 if (image.sprite.name.ToLower().StartsWith("b_"))
                 {

@@ -12,18 +12,18 @@ namespace PSDUnity
 {
     public class SpriteImport : IImageImport
     {
-        public UINode DrawImage(Image image, UINode parent)
+        public UGUINode DrawImage(ImgNode image, UGUINode parent)
         {
-            UINode node = null;
-            switch (image.imageType)
+            UGUINode node = null;
+            switch (image.type)
             {
-                case ImageType.Image:
+                case ImgType.Image:
                     node = DrawNormalImage(image, parent);
                     break;
-                case ImageType.Texture:
+                case ImgType.Texture:
                     node = DrawRawImage(image, parent);
                     break;
-                case ImageType.SliceImage:
+                case ImgType.SliceImage:
                     node = DrawSliceImage(image, parent);
                     break;
                 default:
@@ -32,18 +32,18 @@ namespace PSDUnity
             return node;
         }
 
-        private UINode DrawRawImage(Image image, UINode parent)
+        private UGUINode DrawRawImage(ImgNode image, UGUINode parent)
         {
-            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_RawIMAGE, image.sprite.name, parent);
+            UGUINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_RawIMAGE, image.sprite.name, parent);
             UnityEngine.UI.RawImage pic = node.InitComponent<UnityEngine.UI.RawImage>();
             PSDImportUtility.SetPictureOrLoadColor(image, pic);
             PSDImportUtility.SetRectTransform(image, pic.GetComponent<RectTransform>());
             return node;
         }
 
-        private UINode DrawNormalImage(Image image, UINode parent)
+        private UGUINode DrawNormalImage(ImgNode image, UGUINode parent)
         {
-            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, image.sprite.name, parent);
+            UGUINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, image.sprite.name, parent);
             UnityEngine.UI.Image pic = node.InitComponent<UnityEngine.UI.Image>();
             PSDImportUtility.SetPictureOrLoadColor(image, pic);
             pic.type = UnityEngine.UI.Image.Type.Simple;
@@ -51,9 +51,9 @@ namespace PSDUnity
             return node;
         }
 
-        private UINode DrawSliceImage(Image image, UINode parent)
+        private UGUINode DrawSliceImage(ImgNode image, UGUINode parent)
         {
-            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, image.sprite.name, parent);
+            UGUINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, image.sprite.name, parent);
             UnityEngine.UI.Image pic = node.InitComponent<UnityEngine.UI.Image>();
             PSDImportUtility.SetPictureOrLoadColor(image, pic);
             pic.type = UnityEngine.UI.Image.Type.Sliced;

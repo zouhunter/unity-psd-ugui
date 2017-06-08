@@ -7,18 +7,18 @@ using System.Collections.Generic;
 
 namespace PSDUnity
 {
-    public enum LayerType
+    public enum ControlType
     {
-        Panel,
-        ScrollView,
-        Grid,
-        Button,
-        Lable,
-        Toggle,
-        Slider,
-        Group,
-        InputField,
-        ScrollBar,
-        Dropdown
+        Panel = 0,
+        ScrollView = 1,
+        Grid = 2,
+        Button = 3,
+        Label = 4,
+        Toggle = 5,
+        Slider = 6,
+        Group = 7,
+        InputField = 8,
+        ScrollBar = 9,
+        Dropdown = 10
     }
 }

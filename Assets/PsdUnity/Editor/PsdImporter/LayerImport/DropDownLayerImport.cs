@@ -14,17 +14,17 @@ namespace PSDUnity
         {
             this.ctrl = ctrl;
         }
-        public UINode DrawLayer(Layer layer, UINode parent)
+        public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_DROPDOWN, layer.name, parent);
+            UGUINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_DROPDOWN, layer.name, parent);
             Dropdown dropdown = node.InitComponent<Dropdown>();
             ScrollRect scrllRect = dropdown.template.GetComponent<ScrollRect>();
             RectTransform content = scrllRect.content;
             Toggle toggle = content.GetComponentInChildren<Toggle>();
 
-            UINode childNode = new UINode(dropdown.template, node);
+            UGUINode childNode = new UGUINode(dropdown.template, node);
             childNode.transform.SetParent(PSDImportUtility.canvas.transform);
-            childNode.anchoType = UINode.AnchoType.Down | UINode.AnchoType.XStretch;
+            childNode.anchoType = UGUINode.AnchoType.Down | UGUINode.AnchoType.XStretch;
             //由于设置相对坐标需要，所以修改了部分预制体的状态
             childNode.ReprocessEvent = () => {
                 RectTransform rt = childNode.InitComponent<RectTransform>();
@@ -33,7 +33,7 @@ namespace PSDUnity
             };
             for (int i = 0; i < layer.images.Length; i++)
             {
-                Image image = layer.images[i];
+                ImgNode image = layer.images[i];
                 string lowerName = image.sprite.name.ToLower();
                 if (lowerName.StartsWith("b1_"))
                 {
@@ -50,7 +50,7 @@ namespace PSDUnity
                 {
                     UnityEngine.UI.Image itemimage = (UnityEngine.UI.Image)toggle.targetGraphic;
                     PSDImportUtility.SetPictureOrLoadColor(image, itemimage);
-                    content.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, image.size.height);
+                    content.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, image.rect.height);
                 }
                 else if (lowerName.StartsWith("t1_"))
                 {
@@ -71,13 +71,13 @@ namespace PSDUnity
                 }
             }
 
-            for (int i = 0; i < layer.layers.Length; i++)
+            for (int i = 0; i < layer.groups.Length; i++)
             {
-                Layer child = layer.layers[i];
+                GroupNode child = layer.groups[i] as GroupNode;
                 string lowerName = child.name;
                 if (lowerName.StartsWith("vb_"))
                 {
-                    UINode barNode = ctrl.DrawLayer(child, childNode);
+                    UGUINode barNode = ctrl.DrawLayer(child, childNode);
                     scrllRect.verticalScrollbar = barNode.InitComponent<Scrollbar>();
                     scrllRect.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHide;
                 }

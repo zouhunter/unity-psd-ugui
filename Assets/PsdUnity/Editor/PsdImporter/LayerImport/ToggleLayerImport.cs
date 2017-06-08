@@ -14,15 +14,15 @@ namespace PSDUnity
         {
             this.ctrl = ctrl;
         }
-        public UINode DrawLayer(Layer layer, UINode parent)
+        public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_TOGGLE,layer.name,parent);// GameObject.Instantiate(temp) as UnityEngine.UI.Toggle;
+            UGUINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_TOGGLE,layer.name,parent);// GameObject.Instantiate(temp) as UnityEngine.UI.Toggle;
             UnityEngine.UI.Toggle toggle = node.InitComponent<UnityEngine.UI.Toggle>();
             if (layer.images != null)
             {
                 for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
                 {
-                    Image image = layer.images[imageIndex];
+                    ImgNode image = layer.images[imageIndex];
                     string lowerName = image.sprite.name.ToLower();
                     if (lowerName.StartsWith("b_"))
                     {

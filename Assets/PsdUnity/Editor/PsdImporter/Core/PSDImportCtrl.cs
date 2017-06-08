@@ -13,7 +13,7 @@ namespace PSDUnity
 {
     public class PSDImportCtrl
     {
-        private PSDUI psdUI;
+        private AtlasObject psdUI;
 
         private IImageImport spriteImport;
         private IImageImport textImport;
@@ -34,47 +34,47 @@ namespace PSDUnity
 
         public PSDImportCtrl(string xmlFilePath)
         {
-            InitDataAndPath(xmlFilePath);
+            //InitDataAndPath(xmlFilePath);
             InitCanvas();
             LoadLayers();
             MoveLayers();
             InitDrawers();
-            PSDImportUtility.uinode = new UINode(PSDImportUtility.canvas.transform,null);
+            PSDImportUtility.uinode = new UGUINode(PSDImportUtility.canvas.transform,null);
         }
 
-        public UINode DrawLayer(Layer layer, UINode parent)
+        public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UINode node = null;
-            switch (layer.type)
+            UGUINode node = null;
+            switch (layer.controltype)
             {
-                case LayerType.Panel:
+                case ControlType.Panel:
                     node= panelImport.DrawLayer(layer, parent);
                     break;
-                case LayerType.Button:
+                case ControlType.Button:
                     node = buttonImport.DrawLayer(layer, parent);
                     break;
-                case LayerType.Toggle:
+                case ControlType.Toggle:
                     node = toggleImport.DrawLayer(layer, parent);
                     break;
-                case LayerType.Grid:
+                case ControlType.Grid:
                     node = gridImport.DrawLayer(layer, parent);
                     break;
-                case LayerType.ScrollView:
+                case ControlType.ScrollView:
                     node = scrollViewImport.DrawLayer(layer, parent);
                     break;
-                case LayerType.Slider:
+                case ControlType.Slider:
                     node = sliderImport.DrawLayer(layer, parent);
                     break;
-                case LayerType.Group:
+                case ControlType.Group:
                     node = groupImport.DrawLayer(layer, parent);
                     break;
-                case LayerType.InputField:
+                case ControlType.InputField:
                     node = inputFiledImport.DrawLayer(layer, parent);
                     break;
-                case LayerType.ScrollBar:
+                case ControlType.ScrollBar:
                     node = scrollBarImport.DrawLayer(layer, parent);
                     break;
-                case LayerType.Dropdown:
+                case ControlType.Dropdown:
                     node = dropdownImport.DrawLayer(layer, parent);
                     break;
                 default:
@@ -83,9 +83,9 @@ namespace PSDUnity
             return node;
         }
 
-        public UINode[] DrawLayers(Layer[] layers, UINode parent)
+        public UGUINode[] DrawLayers(GroupNode[] layers, UGUINode parent)
         {
-            UINode[] nodes = new UINode[layers.Length];
+            UGUINode[] nodes = new UGUINode[layers.Length];
             if (layers != null)
             {
                 for (int layerIndex = 0; layerIndex < layers.Length; layerIndex++)
@@ -95,9 +95,9 @@ namespace PSDUnity
             }
             return nodes;
         }
-        public UINode[] DrawImages(Image[] images,UINode parent)
+        public UGUINode[] DrawImages(ImgNode[] images,UGUINode parent)
         {
-            UINode[] nodes = new UINode[images.Length];
+            UGUINode[] nodes = new UGUINode[images.Length];
             if (images != null)
             {
                 for (int layerIndex = 0; layerIndex < images.Length; layerIndex++)
@@ -108,17 +108,17 @@ namespace PSDUnity
             return nodes;
         }
 
-        public UINode DrawImage(Image image, UINode parent)
+        public UGUINode DrawImage(ImgNode image, UGUINode parent)
         {
-            UINode node = null;
-            switch (image.imageType)
+            UGUINode node = null;
+            switch (image.type)
             {
-                case ImageType.Image:
-                case ImageType.Texture:
-                case ImageType.SliceImage:
+                case ImgType.Image:
+                case ImgType.Texture:
+                case ImgType.SliceImage:
                     node = spriteImport.DrawImage(image, parent);
                     break;
-                case ImageType.Label:
+                case ImgType.Label:
                     node = textImport.DrawImage(image, parent);
                     break;
                 default:
@@ -127,21 +127,21 @@ namespace PSDUnity
             return node;
         }
 
-        private void InitDataAndPath(string xmlFilePath)
-        {
-            psdUI = (PSDUI)PSDImportUtility.DeserializeXml(xmlFilePath, typeof(PSDUI));
-            Debug.Log(psdUI.psdSize.width + "=====psdSize======" + psdUI.psdSize.height);
-            if (psdUI == null)
-            {
-                Debug.Log("The file " + xmlFilePath + " wasn't able to generate a PSDUI.");
-                return;
-            }
+        //private void InitDataAndPath(string xmlFilePath)
+        //{
+        //    psdUI = (PSDUI)PSDImportUtility.DeserializeXml(xmlFilePath, typeof(PSDUI));
+        //    Debug.Log(psdUI.psdSize.x + "=====psdSize======" + psdUI.psdSize.y);
+        //    if (psdUI == null)
+        //    {
+        //        Debug.Log("The file " + xmlFilePath + " wasn't able to generate a PSDUI.");
+        //        return;
+        //    }
 
-            if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo() == false) { return; }
+        //    if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo() == false) { return; }
 
-            PSDImportUtility.baseFilename = Path.GetFileNameWithoutExtension(xmlFilePath);
-            PSDImportUtility.baseDirectory = Path.GetDirectoryName(xmlFilePath) + "/";
-        }
+        //    PSDImportUtility.baseFilename = Path.GetFileNameWithoutExtension(xmlFilePath);
+        //    PSDImportUtility.baseDirectory = Path.GetDirectoryName(xmlFilePath) + "/";
+        //}
 
         private void InitCanvas()
         {
@@ -151,14 +151,14 @@ namespace PSDUnity
             PSDImportUtility.canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
             UnityEngine.UI.CanvasScaler scaler = PSDImportUtility.canvas.GetComponent<UnityEngine.UI.CanvasScaler>();
-            scaler.referenceResolution = new Vector2(psdUI.psdSize.width, psdUI.psdSize.height);
+            scaler.referenceResolution = new Vector2(psdUI.psdSize.x, psdUI.psdSize.y);
         }
 
         private void LoadLayers()
         {
-            for (int layerIndex = 0; layerIndex < psdUI.layers.Length; layerIndex++)
+            for (int layerIndex = 0; layerIndex < psdUI.groups.Length; layerIndex++)
             {
-                ImportLayer(psdUI.layers[layerIndex], PSDImportUtility.baseDirectory);
+                ImportLayer(psdUI.groups[layerIndex] as GroupNode, PSDImportUtility.baseDirectory);
             }
         }
 
@@ -182,17 +182,17 @@ namespace PSDUnity
 
         public void BeginDrawUILayers()
         {
-            UINode empty = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_EMPTY,PSDImportUtility.baseFilename, PSDImportUtility.uinode);
+            UGUINode empty = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_EMPTY,PSDImportUtility.baseFilename, PSDImportUtility.uinode);
             RectTransform rt = empty.InitComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(psdUI.psdSize.width, psdUI.psdSize.height);
-            for (int layerIndex = 0; layerIndex < psdUI.layers.Length; layerIndex++)
+            rt.sizeDelta = new Vector2(psdUI.psdSize.x, psdUI.psdSize.y);
+            for (int layerIndex = 0; layerIndex < psdUI.groups.Length; layerIndex++)
             {
-                DrawLayer(psdUI.layers[layerIndex], empty);
+                DrawLayer(psdUI.groups[layerIndex] as GroupNode, empty);
             }
             AssetDatabase.Refresh();
         }
 
-        public void BeginSetUIParents(UINode node)
+        public void BeginSetUIParents(UGUINode node)
         {
             foreach (var item in node.childs)
             {
@@ -201,7 +201,7 @@ namespace PSDUnity
             }
         }
 
-        public void BeginSetAnchers(UINode node)
+        public void BeginSetAnchers(UGUINode node)
         {
             foreach (var item in node.childs)
             {
@@ -210,7 +210,7 @@ namespace PSDUnity
             }
         }
 
-        public void BeginReprocess(UINode node)
+        public void BeginReprocess(UGUINode node)
         {
             foreach (var item in node.childs)
             {
@@ -224,11 +224,11 @@ namespace PSDUnity
 
         private void MoveLayers()
         {
-            for (int layerIndex = 0; layerIndex < psdUI.layers.Length; layerIndex++)
+            for (int layerIndex = 0; layerIndex < psdUI.groups.Length; layerIndex++)
             {
                 //如果文件名有Globle，将强制全部移动到指定文件夹
                 PSDImportUtility.forceMove = PSDImportUtility.baseFilename.Contains("Globle");
-                MoveAsset(psdUI.layers[layerIndex], PSDImportUtility.baseDirectory);
+                MoveAsset(psdUI.groups[layerIndex] as GroupNode, PSDImportUtility.baseDirectory);
             }
 
             AssetDatabase.Refresh();
@@ -238,15 +238,15 @@ namespace PSDUnity
         // private methods,按texture或image的要求导入图片到unity可加载的状态
         //-------------------------------------------------------------------------
 
-        private void ImportLayer(Layer layer, string baseDirectory)
+        private void ImportLayer(GroupNode layer, string baseDirectory)
         {
             if (layer.images != null)
             {
                 for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
                 {
                     // we need to fixup all images that were exported from PS
-                    Image image = layer.images[imageIndex];
-                    if (image.imageType != ImageType.Label)
+                    ImgNode image = layer.images[imageIndex];
+                    if (image.type != ImgType.Label)
                     {
                         string texturePathName = PSDImportUtility.baseDirectory + layer.images[imageIndex].sprite + PSDImporterConst.PNG_SUFFIX;
                         TextureImporter textureImporter = AssetImporter.GetAtPath(texturePathName) as TextureImporter;
@@ -256,7 +256,7 @@ namespace PSDUnity
                         }
 
                         
-                        if (image.imageType == ImageType.Texture)
+                        if (image.type == ImgType.Texture)
                         {
                             textureImporter.textureType = TextureImporterType.Image;
                         }
@@ -267,7 +267,7 @@ namespace PSDUnity
                             textureImporter.spriteImportMode = SpriteImportMode.Single;
                             textureImporter.spritePackingTag = PSDImportUtility.baseFilename;
 
-                            if (image.imageType == ImageType.SliceImage) {
+                            if (image.type == ImgType.SliceImage) {
                                 textureImporter.spriteBorder = new Vector4(3, 3, 3, 3);   // Set Default Slice type  UnityEngine.UI.Image's border to Vector4 (3, 3, 3, 3)
                             }
                         }
@@ -278,11 +278,11 @@ namespace PSDUnity
                 }
             }
 
-            if (layer.layers != null)
+            if (layer.groups != null)
             {
-                for (int layerIndex = 0; layerIndex < layer.layers.Length; layerIndex++)
+                for (int layerIndex = 0; layerIndex < layer.groups.Length; layerIndex++)
                 {
-                    ImportLayer(layer.layers[layerIndex], PSDImportUtility.baseDirectory);
+                    ImportLayer(layer.groups[layerIndex] as GroupNode, PSDImportUtility.baseDirectory);
                 }
             }
         }
@@ -290,7 +290,7 @@ namespace PSDUnity
         //------------------------------------------------------------------
         //when it's a common psd, then move the asset to special folder
         //------------------------------------------------------------------
-        private void MoveAsset(Layer layer, string baseDirectory)
+        private void MoveAsset(GroupNode layer, string baseDirectory)
         {
             if (layer.images != null)
             {
@@ -307,9 +307,9 @@ namespace PSDUnity
                 for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
                 {
                     // we need to fixup all images that were exported from PS
-                    Image image = layer.images[imageIndex];
+                    ImgNode image = layer.images[imageIndex];
 
-                    if (image.imageSource == ImageSource.Globle || PSDImportUtility.forceMove)
+                    if (image.source == ImgSource.Globle || PSDImportUtility.forceMove)
                     {
                         string texturePathName = PSDImportUtility.baseDirectory + image.sprite + PSDImporterConst.PNG_SUFFIX;
                         string targetPathName = newPath + image.sprite + PSDImporterConst.PNG_SUFFIX;
@@ -322,11 +322,11 @@ namespace PSDUnity
                 }
             }
 
-            if (layer.layers != null)
+            if (layer.groups != null)
             {
-                for (int layerIndex = 0; layerIndex < layer.layers.Length; layerIndex++)
+                for (int layerIndex = 0; layerIndex < layer.groups.Length; layerIndex++)
                 {
-                    MoveAsset(layer.layers[layerIndex], PSDImportUtility.baseDirectory);
+                    MoveAsset(layer.groups[layerIndex] as GroupNode, PSDImportUtility.baseDirectory);
                 }
             }
         }
