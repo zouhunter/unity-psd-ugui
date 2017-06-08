@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace PSDUIImporter
+namespace PSDUnity
 {
     public class DropDownLayerImport : ILayerImport
     {
@@ -34,7 +34,7 @@ namespace PSDUIImporter
             for (int i = 0; i < layer.images.Length; i++)
             {
                 Image image = layer.images[i];
-                string lowerName = image.name.ToLower();
+                string lowerName = image.sprite.name.ToLower();
                 if (lowerName.StartsWith("b1_"))
                 {
                     PSDImportUtility.SetPictureOrLoadColor(image, dropdown.image);
@@ -55,22 +55,10 @@ namespace PSDUIImporter
                 else if (lowerName.StartsWith("t1_"))
                 {
                     PSDImportUtility.SetPictureOrLoadColor(image, dropdown.captionText);
-                    float size;
-                    if (float.TryParse(image.arguments[2], out size))
-                    {
-                        dropdown.captionText.fontSize = (int)size;
-                    }
-                    dropdown.captionText.text = image.arguments[3];
                 }
                 else if (lowerName.StartsWith("t2_"))
                 {
                     PSDImportUtility.SetPictureOrLoadColor(image, dropdown.itemText);
-                    float size;
-                    if (float.TryParse(image.arguments[2], out size))
-                    {
-                        dropdown.itemText.fontSize = (int)size;
-                    }
-                    dropdown.itemText.text = image.arguments[3];
                 }
                 else if (lowerName.StartsWith("m_"))
                 {

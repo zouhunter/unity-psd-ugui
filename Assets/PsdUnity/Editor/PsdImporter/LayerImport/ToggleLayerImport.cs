@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace PSDUIImporter
+namespace PSDUnity
 {
     public class ToggleLayerImport : ILayerImport
     {
@@ -23,7 +23,7 @@ namespace PSDUIImporter
                 for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
                 {
                     Image image = layer.images[imageIndex];
-                    string lowerName = image.name.ToLower();
+                    string lowerName = image.sprite.name.ToLower();
                     if (lowerName.StartsWith("b_"))
                     {
                         PSDImportUtility.SetPictureOrLoadColor(image, toggle.targetGraphic);

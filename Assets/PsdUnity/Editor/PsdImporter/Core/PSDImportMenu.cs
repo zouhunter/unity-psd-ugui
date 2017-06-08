@@ -9,7 +9,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using UnityEditor.SceneManagement;
 
-namespace PSDUIImporter
+namespace PSDUnity
 {
     //------------------------------------------------------------------------------
     // class definition
@@ -27,7 +27,7 @@ namespace PSDUIImporter
             }
             if (startPath != null && startPath.EndsWith("xml"))
             {
-                PSDImportCtrl import = new PSDUIImporter.PSDImportCtrl(startPath);
+                PSDImportCtrl import = new PSDUnity.PSDImportCtrl(startPath);
                 import.BeginDrawUILayers();
                 import.BeginSetUIParents(PSDImportUtility.uinode);
                 import.BeginSetAnchers(PSDImportUtility.uinode.childs[0]);

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 
 
-namespace PSDUIImporter
+namespace PSDUnity
 {
     public class SpriteImport : IImageImport
     {
@@ -34,7 +34,7 @@ namespace PSDUIImporter
 
         private UINode DrawRawImage(Image image, UINode parent)
         {
-            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_RawIMAGE, image.name, parent);
+            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_RawIMAGE, image.sprite.name, parent);
             UnityEngine.UI.RawImage pic = node.InitComponent<UnityEngine.UI.RawImage>();
             PSDImportUtility.SetPictureOrLoadColor(image, pic);
             PSDImportUtility.SetRectTransform(image, pic.GetComponent<RectTransform>());
@@ -43,7 +43,7 @@ namespace PSDUIImporter
 
         private UINode DrawNormalImage(Image image, UINode parent)
         {
-            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, image.name, parent);
+            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, image.sprite.name, parent);
             UnityEngine.UI.Image pic = node.InitComponent<UnityEngine.UI.Image>();
             PSDImportUtility.SetPictureOrLoadColor(image, pic);
             pic.type = UnityEngine.UI.Image.Type.Simple;
@@ -53,7 +53,7 @@ namespace PSDUIImporter
 
         private UINode DrawSliceImage(Image image, UINode parent)
         {
-            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, image.name, parent);
+            UINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, image.sprite.name, parent);
             UnityEngine.UI.Image pic = node.InitComponent<UnityEngine.UI.Image>();
             PSDImportUtility.SetPictureOrLoadColor(image, pic);
             pic.type = UnityEngine.UI.Image.Type.Sliced;

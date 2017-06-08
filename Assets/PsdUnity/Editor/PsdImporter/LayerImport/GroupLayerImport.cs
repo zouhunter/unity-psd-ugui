@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace PSDUIImporter
+namespace PSDUnity
 {
     internal class GroupLayerImport : ILayerImport
     {

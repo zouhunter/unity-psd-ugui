@@ -1,8 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using System;
+using System.Runtime.Serialization;
 using System.Collections.Generic;
 
-public class AtlasObject : ScriptableObject {
-    public List<Sprite> sprites;
+namespace PSDUnity
+{
+    public class AtlasObject : ScriptableObject
+    {
+        public PSDUI PSD;
+    }
 }

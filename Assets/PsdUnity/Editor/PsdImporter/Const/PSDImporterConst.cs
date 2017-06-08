@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-namespace PSDUIImporter
+namespace PSDUnity
 {
     public class PSDImporterConst
     {

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
-namespace PSDUIImporter
+namespace PSDUnity
 {
     public class PanelLayerImport : ILayerImport
     {
@@ -26,7 +26,7 @@ namespace PSDUIImporter
             {
                 Image image = layer.images[i];
 
-                if (image.name.ToLower().StartsWith("b_"))
+                if (image.sprite.name.ToLower().StartsWith("b_"))
                 {
                     havebg = true;
                     PSDImportUtility.SetPictureOrLoadColor(image, panel);

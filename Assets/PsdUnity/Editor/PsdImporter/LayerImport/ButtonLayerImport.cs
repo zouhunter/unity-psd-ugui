@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-namespace PSDUIImporter
+namespace PSDUnity
 {
     public class ButtonLayerImport : ILayerImport
     {
@@ -26,10 +26,10 @@ namespace PSDUIImporter
                 for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
                 {
                     Image image = layer.images[imageIndex];
-                    string lowerName = image.name.ToLower();
+                    string lowerName = image.sprite.name.ToLower();
                     if (image.imageType == ImageType.Image && lowerName.StartsWith("n_") || lowerName.StartsWith("p_") || lowerName.StartsWith("d_") || lowerName.StartsWith("h_"))
                     {
-                        if (image.arguments == null || image.arguments.Length == 0)
+                        if (image.color == UnityEngine.Color.white)
                         {
                             SetSpriteSwipe(image, button);
                         }
@@ -48,8 +48,8 @@ namespace PSDUIImporter
         }
         private void SetSpriteSwipe(Image image,UnityEngine.UI.Button button)
         {
-            string lowerName = image.name.ToLower();
-            string assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
+            string lowerName = image.sprite.name.ToLower();
+            string assetPath = PSDImportUtility.baseDirectory + image.sprite + PSDImporterConst.PNG_SUFFIX;
             Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
 
             if (lowerName.StartsWith("n_"))
@@ -85,10 +85,9 @@ namespace PSDUIImporter
 
         private void SetColorSwipe(Image image, UnityEngine.UI.Button button)
         {
-            string lowerName = image.name.ToLower();
-            Color color;
-            if (ColorUtility.TryParseHtmlString(image.arguments[0], out color))
-            {
+            string lowerName = image.sprite.name.ToLower();
+            Color color = image.color;
+           
                 if (lowerName.StartsWith("n_"))
                 {
                     RectTransform rectTransform = button.GetComponent<RectTransform>();
@@ -122,7 +121,6 @@ namespace PSDUIImporter
                     state.highlightedColor = color;
                     button.colors = state;
                 }
-            }
         }
     }
 }

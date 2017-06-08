@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace PSDUIImporter
+namespace PSDUnity
 {
     public class ScrollBarLayerImport : ILayerImport
     {
@@ -41,7 +41,7 @@ namespace PSDUIImporter
             for (int i = 0; i < layer.images.Length; i++)
             {
                 Image image = layer.images[i];
-                string lowerName = image.name.ToLower();
+                string lowerName = image.sprite.name.ToLower();
                 UnityEngine.UI.Image graph = null;
 
                 if (lowerName.StartsWith("b_"))

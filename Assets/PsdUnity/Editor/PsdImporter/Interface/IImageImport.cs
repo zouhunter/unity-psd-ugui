@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-namespace PSDUIImporter
+namespace PSDUnity
 {
     public interface IImageImport
     {

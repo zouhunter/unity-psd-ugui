@@ -5,12 +5,13 @@ using System.Collections.Generic;
 using UnityEditor;
 using Ntreev.Library.Psd;
 using System;
-
+using PSDUnity;
 public class PSDConfigWindow : EditorWindow
 {
-    class Data
+    public class Data
     {
-        public bool isSelected = false;
+        public bool isExpanded { get; private set; }
+        public bool selected { get; private set; }
         public int indent = 0;
         public GUIContent content;
         public List<Data> childs = new List<Data>();
@@ -26,16 +27,26 @@ public class PSDConfigWindow : EditorWindow
             this.layer = layer;
             isFolder = layer.Childs.Length != 0;
 
-            _folderOff =new GUIContent(layer.Name,EditorGUIUtility.IconContent("IN foldout focus").image);
-            _folderOn = new GUIContent(layer.Name,EditorGUIUtility.IconContent("IN foldout focus on").image);
+            _folderOff = new GUIContent(layer.Name, EditorGUIUtility.IconContent("IN foldout focus").image);
+            _folderOn = new GUIContent(layer.Name, EditorGUIUtility.IconContent("IN foldout focus on").image);
             _filenormal = new GUIContent(layer.Name, EditorGUIUtility.IconContent("eventpin").image);
             content = isFolder ? _folderOff : _filenormal;
         }
 
-        public void Switch(bool on)
+        public void Expland(bool on)
         {
-            content =on ?_folderOn : _folderOff;
+            content = on ? _folderOn : _folderOff;
             content.text = layer.Name;
+            isExpanded = on;
+        }
+        public void Select(bool on)
+        {
+            selected = on;
+            if (childs != null)
+                foreach (var child in childs)
+                {
+                    child.Select(on);
+                }
         }
     }
 
@@ -54,7 +65,7 @@ public class PSDConfigWindow : EditorWindow
     private static PSDConfigWindow window;
     private SerializedProperty scriptProp;
 
- 
+
 
     private void OnEnable()
     {
@@ -88,7 +99,7 @@ public class PSDConfigWindow : EditorWindow
             if (GUILayout.Button("选择"))
             {
                 psdPath = EditorUtility.OpenFilePanel("选择一个pdf文件", psdPath, "psd");
-                if(!string.IsNullOrEmpty(psdPath))
+                if (!string.IsNullOrEmpty(psdPath))
                 {
                     EditorPrefs.SetString(Prefs_pdfPath, psdPath);
                     OpenPsdDocument();
@@ -114,38 +125,50 @@ public class PSDConfigWindow : EditorWindow
             EditorGUI.indentLevel = data.indent;
             DrawGUIData(data);
         }
-        if(data.isSelected)
-        for (int i = 0; i < data.childs.Count; i++)
-        {
-            Data child = data.childs[i];
-            if (child.content != null)
+        if (data.isExpanded)
+            for (int i = 0; i < data.childs.Count; i++)
             {
-                EditorGUI.indentLevel = child.indent;
-                if (child.childs.Count > 0)
+                Data child = data.childs[i];
+                if (child.content != null)
                 {
-                    DrawData(child);
-                }
-                else
-                {
-                    DrawGUIData(child);
+                    EditorGUI.indentLevel = child.indent;
+                    if (child.childs.Count > 0)
+                    {
+                        DrawData(child);
+                    }
+                    else
+                    {
+                        DrawGUIData(child);
+                    }
                 }
             }
-        }
     }
 
     void DrawGUIData(Data data)
     {
         GUIStyle style = "Label";
         Rect rt = GUILayoutUtility.GetRect(data.content, style);
-       
-        rt.x += (16 * EditorGUI.indentLevel);
-        
-        var select = EditorGUI.Toggle(rt, data.isSelected, style);
-        if(data.isSelected != select && data.isFolder)
+
+        var offset = (16 * EditorGUI.indentLevel);
+        var pointWidth = 10;
+
+        var expanded = EditorGUI.Toggle(new Rect(rt.x + offset, rt.y, pointWidth, rt.height), data.isExpanded, style);
+        if (data.isExpanded != expanded && data.isFolder)
         {
-            data.isSelected = select;
-            data.Switch(select);
+            data.Expland(expanded);
         }
+
+        var srect = new Rect(rt.x + offset, rt.y, rt.width - offset - pointWidth, rt.height);
+        var selected = EditorGUI.Toggle(srect, data.selected, style);
+        if (selected != data.selected)
+        {
+            data.Select(selected);
+        }
+        if (data.selected)
+        {
+            EditorGUI.DrawRect(srect, Color.gray);
+        }
+
         EditorGUI.LabelField(rt, data.content);
     }
 

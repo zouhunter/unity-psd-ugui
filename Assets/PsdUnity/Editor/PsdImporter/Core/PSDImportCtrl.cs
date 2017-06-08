@@ -9,7 +9,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using UnityEditor.SceneManagement;
 
-namespace PSDUIImporter
+namespace PSDUnity
 {
     public class PSDImportCtrl
     {
@@ -248,7 +248,7 @@ namespace PSDUIImporter
                     Image image = layer.images[imageIndex];
                     if (image.imageType != ImageType.Label)
                     {
-                        string texturePathName = PSDImportUtility.baseDirectory + layer.images[imageIndex].name + PSDImporterConst.PNG_SUFFIX;
+                        string texturePathName = PSDImportUtility.baseDirectory + layer.images[imageIndex].sprite + PSDImporterConst.PNG_SUFFIX;
                         TextureImporter textureImporter = AssetImporter.GetAtPath(texturePathName) as TextureImporter;
 
                         if (textureImporter == null) {
@@ -311,8 +311,8 @@ namespace PSDUIImporter
 
                     if (image.imageSource == ImageSource.Globle || PSDImportUtility.forceMove)
                     {
-                        string texturePathName = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
-                        string targetPathName = newPath + image.name + PSDImporterConst.PNG_SUFFIX;
+                        string texturePathName = PSDImportUtility.baseDirectory + image.sprite + PSDImporterConst.PNG_SUFFIX;
+                        string targetPathName = newPath + image.sprite + PSDImporterConst.PNG_SUFFIX;
 
                         Debug.Log(texturePathName);
                         Debug.Log(targetPathName);

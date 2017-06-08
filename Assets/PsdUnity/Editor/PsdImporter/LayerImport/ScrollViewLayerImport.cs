@@ -6,7 +6,7 @@ using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace PSDUIImporter
+namespace PSDUnity
 {
     public class ScrollViewLayerImport : ILayerImport
     {
@@ -36,7 +36,7 @@ namespace PSDUIImporter
             {
                 Image image = layer.images[i];
 
-                if (image.name.ToLower().StartsWith("b_"))
+                if (image.sprite.name.ToLower().StartsWith("b_"))
                 {
                     havebg = true;
                     UnityEngine.UI.Image graph = node.InitComponent<UnityEngine.UI.Image>();

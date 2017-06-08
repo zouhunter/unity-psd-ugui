@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-namespace PSDUIImporter
+namespace PSDUnity
 {
     public static class PSDImportUtility
     {
@@ -52,64 +52,47 @@ namespace PSDUIImporter
             return node;
         }
 
-        /// <summary>
-        /// 生成图片路径
-        /// </summary>
-        /// <param name="image"></param>
-        /// <returns></returns>
-        static string GetPicturePath(Image image)
-        {
-            string assetPath = "";
-            if (PSDImportUtility.forceMove || image.imageSource == ImageSource.Globle)
-            {
-                assetPath = PSDImporterConst.Globle_BASE_FOLDER + image.name.Replace(".", "/") + PSDImporterConst.PNG_SUFFIX;
-                Debug.Log("==  CommonImagePath  ====" + assetPath);
-            }
-            else if (image.imageSource == ImageSource.Normal || image.imageSource == ImageSource.Custom)
-            {
-                assetPath = PSDImportUtility.baseDirectory + image.name + PSDImporterConst.PNG_SUFFIX;
-            }
-            return assetPath;
-        }
+        ///// <summary>
+        ///// 生成图片路径
+        ///// </summary>
+        ///// <param name="image"></param>
+        ///// <returns></returns>
+        //static string GetPicturePath(Image image)
+        //{
+        //    string assetPath = "";
+        //    if (PSDImportUtility.forceMove || image.imageSource == ImageSource.Globle)
+        //    {
+        //        assetPath = PSDImporterConst.Globle_BASE_FOLDER + image.texture.Replace(".", "/") + PSDImporterConst.PNG_SUFFIX;
+        //        Debug.Log("==  CommonImagePath  ====" + assetPath);
+        //    }
+        //    else if (image.imageSource == ImageSource.Normal || image.imageSource == ImageSource.Custom)
+        //    {
+        //        assetPath = PSDImportUtility.baseDirectory + image.texture + PSDImporterConst.PNG_SUFFIX;
+        //    }
+        //    return assetPath;
+        //}
 
         public static void SetPictureOrLoadColor(Image image, UnityEngine.UI.Graphic graph)
         {
-            if (image.arguments != null && image.arguments.Length > 0)
+            graph.color = image.color;
+            switch (image.imageType)
             {
-                if (image.arguments.Length > 0)
-                {
-                    Color color;
-                    if (ColorUtility.TryParseHtmlString(image.arguments[0], out color))
-                    {
-                        if (graph == null)
-                        {
-                            Debug.Log(image.name + "空");
-                        }
-                        graph.color = color;
-                    }
-                }
-            }
-            else
-            {
-                string assetPath = PSDImportUtility.GetPicturePath(image);
-
-                Object sprite = UnityEditor.AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite));
-                if (sprite != null)
-                {
-                    if (graph is UnityEngine.UI.Image)
-                    {
-                        ((UnityEngine.UI.Image)graph).sprite = sprite as Sprite;
-                    }
-                    else if (graph is UnityEngine.UI.RawImage)
-                    {
-                        ((UnityEngine.UI.RawImage)graph).texture = sprite as Texture;
-                    }
-
-                }
-                else
-                {
-                    Debug.Log("loading asset at path: " + assetPath + "\nname:" + image.name);
-                }
+                case ImageType.Image:
+                    ((UnityEngine.UI.Image)graph).sprite = image.sprite;
+                    break;
+                case ImageType.Texture:
+                    ((UnityEngine.UI.RawImage)graph).texture = image.texture;
+                    break;
+                case ImageType.Label:
+                    var myText = (UnityEngine.UI.Text)graph;
+                    myText.text = image.text;
+                    myText.fontSize = image.fontSize;
+                    break;
+                case ImageType.SliceImage:
+                    ((UnityEngine.UI.Image)graph).sprite = image.sprite;
+                    break;
+                default:
+                    break;
             }
         }
 

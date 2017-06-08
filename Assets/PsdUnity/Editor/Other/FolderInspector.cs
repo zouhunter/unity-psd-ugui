@@ -2,6 +2,7 @@
 using UnityEditor;
 using System.IO;
 using System.Collections.Generic;
+using PSDUnity;
 
 [CustomEditor(typeof(UnityEditor.DefaultAsset))]
 public class FolderInspector : Editor

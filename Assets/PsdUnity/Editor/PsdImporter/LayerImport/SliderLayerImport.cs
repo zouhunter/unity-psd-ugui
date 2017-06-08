@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-namespace PSDUIImporter
+namespace PSDUnity
 {
     public class SliderLayerImport : ILayerImport
     {
@@ -35,7 +35,7 @@ namespace PSDUIImporter
             for (int i = 0; i < layer.images.Length; i++)
             {
                 Image image = layer.images[i];
-                string lowerName = image.name.ToLower();
+                string lowerName = image.sprite.name.ToLower();
                 UnityEngine.UI.Image graph = null;
                 
                 if (lowerName.StartsWith("b_"))
@@ -52,7 +52,7 @@ namespace PSDUIImporter
                 {
                     graph = slider.handleRect.GetComponent<UnityEngine.UI.Image>();
                     RectTransform rect = graph.GetComponent<RectTransform>();
-                    rect.name = image.name;
+                    rect.name = image.sprite.name;
                     rect.sizeDelta = new Vector2(image.size.width,image.size.height);
                     rect.anchoredPosition = Vector2.zero;
                     haveHandle = true;

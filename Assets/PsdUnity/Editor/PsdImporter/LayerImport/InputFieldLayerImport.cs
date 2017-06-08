@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace PSDUIImporter
+namespace PSDUnity
 {
     internal class InputFieldLayerImport : ILayerImport
     {
@@ -16,31 +16,19 @@ namespace PSDUIImporter
                 for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
                 {
                     Image image = layer.images[imageIndex];
-                    string lowerName = image.name.ToLower();
+                    string lowerName = image.sprite.name.ToLower();
 
                     if (image.imageType == ImageType.Label)
                     {
                         if (lowerName.StartsWith("t_"))
                         {
                             UnityEngine.UI.Text text = (UnityEngine.UI.Text)inputfield.textComponent;//inputfield.transform.Find("Text").GetComponent<UnityEngine.UI.Text>();
-                            PSDImportUtility.SetPictureOrLoadColor(image, inputfield.textComponent);
-
-                            int size;
-                            if (int.TryParse(image.arguments[2], out size))
-                            {
-                                text.fontSize = size;
-                            }
+                            PSDImportUtility.SetPictureOrLoadColor(image, text);
                         }
                         else if (lowerName.StartsWith("p_"))
                         {
                             UnityEngine.UI.Text text = (UnityEngine.UI.Text)inputfield.placeholder;//.transform.Find("Placeholder").GetComponent<UnityEngine.UI.Text>();
-                            PSDImportUtility.SetPictureOrLoadColor(image, inputfield.textComponent);
-
-                            int size;
-                            if (int.TryParse(image.arguments[2], out size))
-                            {
-                                text.fontSize = size;
-                            }
+                            PSDImportUtility.SetPictureOrLoadColor(image, text);
                         }
                     }
                     else

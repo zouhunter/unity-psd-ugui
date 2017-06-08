@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace PSDUIImporter
+namespace PSDUnity
 {
     public enum ImageType
     {
