@@ -58,36 +58,75 @@ public class PSDConfigWindow : EditorWindow
         window.Repaint();
     }
     private const string Prefs_pdfPath = "Prefs_pdfPath";
-    private string psdPath;
+    private const string Prefs_atlasID = "Prefs_atlasID";
+    private AtlasObject atlasObj;
+    private string psdPath { get { return atlasObj.psdFile; } set { atlasObj.psdFile = value; } }
     private Ntreev.Library.Psd.PsdDocument psd;
     private Data data;
 
     private static PSDConfigWindow window;
     private SerializedProperty scriptProp;
 
-
-
     private void OnEnable()
     {
-        psdPath = EditorPrefs.GetString(Prefs_pdfPath);
         scriptProp = new SerializedObject(this).FindProperty("m_Script");
+        var guid = EditorPrefs.GetString(Prefs_atlasID);
+        if (!string.IsNullOrEmpty(guid))
+        {
+            var path = AssetDatabase.GUIDToAssetPath(guid);
+            if (!string.IsNullOrEmpty(path))
+            {
+                atlasObj = AssetDatabase.LoadAssetAtPath<AtlasObject>(path);
+
+            }
+        }
     }
     private void OnGUI()
     {
         EditorGUILayout.PropertyField(scriptProp);
-        if (DrawFileSelect())
+        if (DrawAtlasObj())
         {
-            DrawData(data);
+            if (DrawFileSelect())
+            {
+                DrawData(data);
+            }
+            else
+            {
+                DrawErrBox("请先选择正确的PDF文件路径");
+            }
         }
         else
         {
-            DrawHelpBox();
+            DrawErrBox("请先选择正确的PDF文件路径");
         }
+
         if (GUILayout.Button("生成"))
         {
             var obj = AtlasObject.CreateInstance<AtlasObject>();
             ProjectWindowUtil.CreateAsset(obj, "atlsObj.asset");
         }
+    }
+    private bool DrawAtlasObj()
+    {
+        using (var hor = new EditorGUILayout.HorizontalScope())
+        {
+            EditorGUILayout.LabelField("AtlasObj:");
+            EditorGUI.BeginChangeCheck();
+            atlasObj = EditorGUILayout.ObjectField(atlasObj, typeof(AtlasObject), false) as AtlasObject;
+            if (GUILayout.Button("创建"))
+            {
+                atlasObj = ScriptableObject.CreateInstance<AtlasObject>();
+                ProjectWindowUtil.CreateAsset(atlasObj, "atlasObj.asset");
+            }
+            var change = EditorGUI.EndChangeCheck();
+            if (change)
+            {
+                var path = AssetDatabase.GetAssetPath(atlasObj);
+                EditorPrefs.SetString(Prefs_atlasID, AssetDatabase.AssetPathToGUID(path));
+            }
+        }
+
+        return atlasObj != null;
     }
 
     private bool DrawFileSelect()
@@ -95,15 +134,21 @@ public class PSDConfigWindow : EditorWindow
         using (var hor = new EditorGUILayout.HorizontalScope())
         {
             EditorGUILayout.LabelField("PSD文件路径：");
+            EditorGUI.BeginChangeCheck();
+
             psdPath = EditorGUILayout.TextField(psdPath);
             if (GUILayout.Button("选择"))
             {
                 psdPath = EditorUtility.OpenFilePanel("选择一个pdf文件", psdPath, "psd");
                 if (!string.IsNullOrEmpty(psdPath))
                 {
-                    EditorPrefs.SetString(Prefs_pdfPath, psdPath);
                     OpenPsdDocument();
                 }
+            }
+            var change = EditorGUI.EndChangeCheck();
+            if (change)
+            {
+                EditorPrefs.SetString(Prefs_pdfPath, psdPath);
             }
         }
         if (!string.IsNullOrEmpty(psdPath) && psd == null)
@@ -112,9 +157,9 @@ public class PSDConfigWindow : EditorWindow
         }
         return psd != null;
     }
-    private void DrawHelpBox()
+    private void DrawErrBox(string str)
     {
-        EditorGUILayout.HelpBox("请先选择正确的PDF文件路径", MessageType.Error);
+        EditorGUILayout.HelpBox(str, MessageType.Error);
     }
 
 
@@ -174,12 +219,13 @@ public class PSDConfigWindow : EditorWindow
 
     private void OpenPsdDocument()
     {
-        using (PsdDocument document = PsdDocument.Create(psdPath))
-        {
-            data = new Data(document);
-            LoadDataLayers(data);
-            psd = document;
-        }
+        if (System.IO.File.Exists(psdPath))
+            using (PsdDocument document = PsdDocument.Create(psdPath))
+            {
+                data = new Data(document);
+                LoadDataLayers(data);
+                psd = document;
+            }
     }
 
     void LoadDataLayers(Data data, int indent = 0)

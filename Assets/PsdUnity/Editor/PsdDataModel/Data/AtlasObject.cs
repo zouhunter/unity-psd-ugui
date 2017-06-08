@@ -9,6 +9,7 @@ namespace PSDUnity
 {
     public class AtlasObject : ScriptableObject
     {
+        public string psdFile;
         public Vector2 psdSize;
         public GroupNode[] groups;
     }

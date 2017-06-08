@@ -12,6 +12,7 @@ namespace PSDUnity
     public class AtlasObjectDrawer : Editor
     {
         SerializedProperty scriptProp;
+        SerializedProperty psdFileProp;
         SerializedProperty psdSizeProp;
         SerializedProperty groupsProp;
 
@@ -19,6 +20,7 @@ namespace PSDUnity
         private void OnEnable()
         {
             scriptProp = serializedObject.FindProperty("m_Script");
+            psdFileProp = serializedObject.FindProperty("psdFile");
             psdSizeProp = serializedObject.FindProperty("psdSize");
             groupsProp = serializedObject.FindProperty("groups");
         }
@@ -40,6 +42,7 @@ namespace PSDUnity
 
         private void DrawPageSize()
         {
+            psdFileProp.stringValue = EditorGUILayout.TextField("PSD路径：",psdFileProp.stringValue);
             psdSizeProp.vector2Value = EditorGUILayout.Vector2Field(pageSizeContent, psdSizeProp.vector2Value);
         }
         private void DrawGroupNode()
