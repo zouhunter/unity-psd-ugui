@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace PSDUnity
 {
-    [System.Serializable]
+    [Serializable]
     public class ImgNode
     {
         public string name = "";

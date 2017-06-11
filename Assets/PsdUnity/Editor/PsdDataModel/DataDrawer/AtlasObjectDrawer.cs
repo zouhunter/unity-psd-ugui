@@ -37,6 +37,7 @@ namespace PSDUnity
             serializedObject.Update();
             DrawPageSize();
             DrawGroupNode();
+
             serializedObject.ApplyModifiedProperties();
         }
 
@@ -49,6 +50,7 @@ namespace PSDUnity
         {
             ReorderableListGUI.Title("资源列表");
             ReorderableListGUI.ListField(groupsProp);
+
         }
     }
 

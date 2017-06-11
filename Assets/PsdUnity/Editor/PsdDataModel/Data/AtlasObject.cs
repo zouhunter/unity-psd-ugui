@@ -10,7 +10,10 @@ namespace PSDUnity
     public class AtlasObject : ScriptableObject
     {
         public string psdFile;
+        public string exportPath;
+        public bool maskAsColor;
         public Vector2 psdSize;
+        [SerializeField]
         public GroupNode[] groups;
     }
 }

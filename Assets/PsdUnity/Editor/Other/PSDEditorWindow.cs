@@ -30,7 +30,8 @@
 //using System.Text;
 //using UnityEditor;
 //using UnityEngine;
-//public class PSDEditorWindow : EditorWindow {
+//public class PSDEditorWindow : EditorWindow
+//{
 //    private Vector2 scrollPos;
 //    private PsdFile psd;
 //    private string psdPath;
@@ -38,19 +39,21 @@
 //    private float pixelsToUnitSize = 100.0f;
 //    private bool importIntoSelected = false;
 //    private string fileName;
-//	private bool useSizeDelta;
+//    private bool useSizeDelta;
 //    private Transform selectedTransform;
 //    private static PSDEditorWindow window;
 //    private const string lastPsdPath = "lastPsdPath";
 
 //    [MenuItem("Sprites/PSD Import")]
-//    public static void ShowWindow() {
+//    public static void ShowWindow()
+//    {
 //        window = GetWindow<PSDEditorWindow>("PSD Import");
 //        window.psdPath = EditorPrefs.GetString(lastPsdPath);
 //    }
 //    private bool onGUI;
 
-//    public void OnGUI() {
+//    public void OnGUI()
+//    {
 //        onGUI = EditorGUILayout.Toggle(onGUI);
 //        if (!onGUI) return;
 //        DrawHead();
@@ -75,7 +78,7 @@
 //                psd = new PsdFile();
 //                psd.Load(psdPath, Encoding.Default);
 //                fileName = Path.GetFileNameWithoutExtension(psdPath);
-                
+
 //            }
 
 //            if (psd != null)
@@ -100,7 +103,7 @@
 //    }
 //    private void DrawToolButtons()
 //    {
-//        if(psd != null)
+//        if (psd != null)
 //        {
 //            if (GUILayout.Button("Export visible layers"))
 //            {
@@ -136,8 +139,9 @@
 //            }
 //        }
 //    }
-   
-//    private Texture2D CreateTexture(Layer layer) {
+
+//    private Texture2D CreateTexture(Layer layer)
+//    {
 //        var rect = PsdUtility.GetRectByRectRange(layer.Rect);
 
 //        if ((int)rect.width == 0 || (int)rect.height == 0)
@@ -150,7 +154,8 @@
 //        Channel blue = (from l in layer.Channels where l.ID == 2 select l).First();
 //        Channel alpha = layer.AlphaChannel;
 
-//        for (int i = 0; i < pixels.Length; i++) {
+//        for (int i = 0; i < pixels.Length; i++)
+//        {
 //            byte r = red.ImageData[i];
 //            byte g = green.ImageData[i];
 //            byte b = blue.ImageData[i];
@@ -169,9 +174,12 @@
 //        return tex;
 //    }
 
-//    private void ExportLayers() {
-//        foreach (Layer layer in psd.Layers) {
-//            if (layer.Visible) {
+//    private void ExportLayers()
+//    {
+//        foreach (Layer layer in psd.Layers)
+//        {
+//            if (layer.Visible)
+//            {
 //                Texture2D tex = CreateTexture(layer);
 //                if (tex == null) continue;
 //                SaveAsset(tex, "_" + layer.Name);
@@ -180,7 +188,8 @@
 //        }
 //    }
 
-//    private void CreateAtlas() {
+//    private void CreateAtlas()
+//    {
 //        // Texture2D[] textures = (from layer in psd.Layers where layer.Visible select CreateTexture(layer) into tex where tex != null select tex).ToArray();
 
 //        List<Texture2D> textures = new List<Texture2D>();
@@ -190,10 +199,12 @@
 
 //        int zOrder = 0;
 //        GameObject root = new GameObject(fileName);
-//        foreach (var layer in psd.Layers) {
+//        foreach (var layer in psd.Layers)
+//        {
 //            var rect = PsdUtility.GetRectByRectRange(layer.Rect);
 
-//            if (layer.Visible && rect.width > 0 && rect.height > 0) {
+//            if (layer.Visible && rect.width > 0 && rect.height > 0)
+//            {
 //                Texture2D tex = CreateTexture(layer);
 //                // Add the texture to the Texture Array
 //                textures.Add(tex);
@@ -216,7 +227,8 @@
 //        List<SpriteMetaData> Sprites = new List<SpriteMetaData>();
 
 //        // For each rect in the Rect Array create the sprite and assign to the SpriteMetaData
-//        for (int i = 0; i < rects.Length; i++) {
+//        for (int i = 0; i < rects.Length; i++)
+//        {
 //            // add the name and rectangle to the dictionary
 //            SpriteMetaData smd = new SpriteMetaData();
 //            smd.name = spriteRenderers[i].name;
@@ -247,7 +259,8 @@
 //        AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);
 
 //        // For each rect in the Rect Array create the sprite and assign to the SpriteRenderer
-//        for (int j = 0; j < textureImporter.spritesheet.Length; j++) {
+//        for (int j = 0; j < textureImporter.spritesheet.Length; j++)
+//        {
 //            // Debug.Log(textureImporter.spritesheet[j].rect);
 //            Sprite spr = Sprite.Create(atlas, textureImporter.spritesheet[j].rect, textureImporter.spritesheet[j].pivot, pixelsToUnitSize);  // The 100.0f is for the pixels to unit, maybe make that a public variable for the user to change before hand?
 
@@ -255,25 +268,31 @@
 //            spriteRenderers[j].sprite = spr;
 //        }
 
-//        foreach (Texture2D tex in textureArray) {
+//        foreach (Texture2D tex in textureArray)
+//        {
 //            DestroyImmediate(tex);
 //        }
 //    }
 
-//    private void CreateSprites() {
-//        if (importIntoSelected) {
+//    private void CreateSprites()
+//    {
+//        if (importIntoSelected)
+//        {
 //            selectedTransform = Selection.activeTransform;
 //        }
 //        int zOrder = 0;
 //        GameObject root = new GameObject(fileName);
-//        if (importIntoSelected && selectedTransform != null) {
+//        if (importIntoSelected && selectedTransform != null)
+//        {
 //            root.transform.parent = selectedTransform;
 //        }
-//        foreach (var layer in psd.Layers) {
+//        foreach (var layer in psd.Layers)
+//        {
 //            var rect0 = layer.Rect;
 //            var rect = new Rect(rect0.X, rect0.Height - rect0.Y, rect0.Width, rect0.Height);
 
-//            if (layer.Visible && rect.width > 0 && rect.height > 0) {
+//            if (layer.Visible && rect.width > 0 && rect.height > 0)
+//            {
 //                Texture2D tex = CreateTexture(layer);
 //                Sprite spr = SaveAsset(tex, "_" + layer.Name);
 //                DestroyImmediate(tex);
@@ -287,8 +306,10 @@
 //            }
 //        }
 //    }
-//    private void CreateImages() {
-//        if (importIntoSelected) {
+//    private void CreateImages()
+//    {
+//        if (importIntoSelected)
+//        {
 //            selectedTransform = Selection.activeTransform;
 //        }
 //        int zOrder = 0;
@@ -305,10 +326,12 @@
 //        rtransf.sizeDelta = Vector2.zero;
 //        rtransf.localPosition = Vector3.zero;
 
-//        foreach (var layer in psd.Layers) {
+//        foreach (var layer in psd.Layers)
+//        {
 //            var rect = PsdUtility.GetRectByRectRange(layer.Rect);
 
-//            if (layer.Visible && rect.width > 0 && rect.height > 0) {
+//            if (layer.Visible && rect.width > 0 && rect.height > 0)
+//            {
 //                var targetOrder = zOrder++;
 //                Texture2D tex = CreateTexture(layer);
 //                Sprite spr = SaveAsset(tex, "_" + layer.Name);
@@ -329,7 +352,8 @@
 //        }
 //    }
 
-//    private Sprite SaveAsset(Texture2D tex, string suffix) {
+//    private Sprite SaveAsset(Texture2D tex, string suffix)
+//    {
 //        string path = Path.Combine(Path.GetDirectoryName(psdPath),
 //            Path.GetFileNameWithoutExtension(psdPath) + suffix + ".png");
 

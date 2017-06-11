@@ -11,28 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 885e115a8f1c1e04b88b4a1204eba2ee, type: 3}
   m_Name: UIPanelObj
   m_EditorClassIdentifier: 
-  psdFile: "E:/Githubs/PsdUnity/Assets/Demos/UI\u5236\u4F5C\u6A21\u677F.psd"
+  psdFile: 
   psdSize: {x: 0, y: 0}
   groups:
   - name: 
     controltype: 0
     groups: []
-    images:
-    - name: 
-      type: 0
-      source: 0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-      sprite: {fileID: 0}
-      texture: {fileID: 0}
-      text: 
-      font: {fileID: 0}
-      fontSize: 0
-      color: {r: 0, g: 0, b: 0, a: 0}
+    images: []
     rect:
       serializedVersion: 2
       x: 0
@@ -40,3 +25,16 @@ MonoBehaviour:
       width: 0
       height: 0
     arguments: []
+  - name: 
+    controltype: 0
+    groups: []
+    images: []
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    arguments: []
+  myObj:
+    allObjects: []

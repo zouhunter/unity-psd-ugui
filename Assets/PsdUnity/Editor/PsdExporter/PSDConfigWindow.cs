@@ -100,10 +100,12 @@ public class PSDConfigWindow : EditorWindow
             DrawErrBox("请先选择正确的PDF文件路径");
         }
 
-        if (GUILayout.Button("生成"))
+        if (GUILayout.Button("生成Atlas"))
         {
-            var obj = AtlasObject.CreateInstance<AtlasObject>();
-            ProjectWindowUtil.CreateAsset(obj, "atlsObj.asset");
+            foreach (var item in psd.Childs)
+            {
+                PsdExportUtility.CreateAtlas(item as PsdLayer, 1, 4096,string.Format("Assets/{0}.png",item.Name));
+            }
         }
     }
     private bool DrawAtlasObj()
@@ -149,6 +151,7 @@ public class PSDConfigWindow : EditorWindow
             if (change)
             {
                 EditorPrefs.SetString(Prefs_pdfPath, psdPath);
+                EditorUtility.SetDirty(atlasObj);
             }
         }
         if (!string.IsNullOrEmpty(psdPath) && psd == null)
@@ -220,12 +223,11 @@ public class PSDConfigWindow : EditorWindow
     private void OpenPsdDocument()
     {
         if (System.IO.File.Exists(psdPath))
-            using (PsdDocument document = PsdDocument.Create(psdPath))
-            {
-                data = new Data(document);
-                LoadDataLayers(data);
-                psd = document;
-            }
+        {
+            psd = PsdDocument.Create(psdPath);
+            data = new Data(psd);
+            LoadDataLayers(data);
+        } 
     }
 
     void LoadDataLayers(Data data, int indent = 0)
@@ -245,5 +247,10 @@ public class PSDConfigWindow : EditorWindow
                 LoadDataLayers(child, child.indent);
             }
         }
+    }
+
+    void OnDisable()
+    {
+       if(psd != null) psd.Dispose();
     }
 }

@@ -30,7 +30,7 @@ namespace PSDUnity
         {
             RefeshProp(property);
             float height = 3;
-            Debug.Log(nameProp.stringValue);
+            //Debug.Log(nameProp.stringValue);
             //switch ((ControlType)controltypeProp.enumValueIndex)
             //{
             //    case ControlType.Panel:
