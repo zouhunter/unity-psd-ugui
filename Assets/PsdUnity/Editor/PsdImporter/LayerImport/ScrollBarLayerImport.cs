@@ -38,7 +38,7 @@ namespace PSDUnity
                     break;
             }
 
-            for (int i = 0; i < layer.images.Length; i++)
+            for (int i = 0; i < layer.images.Count; i++)
             {
                 ImgNode image = layer.images[i];
                 string lowerName = image.sprite.name.ToLower();

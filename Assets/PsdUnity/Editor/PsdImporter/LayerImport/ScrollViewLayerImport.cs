@@ -32,7 +32,7 @@ namespace PSDUnity
             childNode.anchoType = UGUINode.AnchoType.XStretch | UGUINode.AnchoType.YStretch;
 
             bool havebg = false;
-            for (int i = 0; i < layer.images.Length; i++)
+            for (int i = 0; i < layer.images.Count; i++)
             {
                 ImgNode image = layer.images[i];
 
@@ -85,7 +85,7 @@ namespace PSDUnity
 
             if (layer.groups != null)
             {
-                for (int i = 0; i < layer.groups.Length; i++)
+                for (int i = 0; i < layer.groups.Count; i++)
                 {
                     GroupNode child = layer.groups[i];
                     string childLowerName = child.name;

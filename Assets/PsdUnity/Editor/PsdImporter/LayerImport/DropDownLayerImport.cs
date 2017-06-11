@@ -31,7 +31,7 @@ namespace PSDUnity
                 rt.pivot = new Vector2(0.5f, 1);
                 rt.anchoredPosition = Vector3.zero;
             };
-            for (int i = 0; i < layer.images.Length; i++)
+            for (int i = 0; i < layer.images.Count; i++)
             {
                 ImgNode image = layer.images[i];
                 string lowerName = image.sprite.name.ToLower();
@@ -71,7 +71,7 @@ namespace PSDUnity
                 }
             }
 
-            for (int i = 0; i < layer.groups.Length; i++)
+            for (int i = 0; i < layer.groups.Count; i++)
             {
                 GroupNode child = layer.groups[i] as GroupNode;
                 string lowerName = child.name;

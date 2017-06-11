@@ -21,7 +21,6 @@ namespace Ntreev.Library.Psd
             fontSize = (int)(System.Single)styleSheetsData["FontSize"];
             var strokeColorProp = styleSheetsData["StrokeColor"] as Properties;
             var strokeColor = strokeColorProp["Values"] as ArrayList;
-            UnityEngine.Debug.Log(strokeColor[0]);
             color = new UnityEngine.Color(float.Parse(strokeColor[0].ToString()), float.Parse(strokeColor[1].ToString()), float.Parse(strokeColor[2].ToString()), float.Parse(strokeColor[3].ToString()));
         }
     }

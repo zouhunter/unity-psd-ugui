@@ -20,9 +20,9 @@ namespace PSDUnity
             UGUINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, layer.name, parent);//GameObject.Instantiate(temp) as UnityEngine.UI.Image;
             UnityEngine.UI.Image panel = node.InitComponent<UnityEngine.UI.Image>();
 
-            ctrl.DrawLayers(layer.groups, node);//子节点
+            ctrl.DrawLayers(layer.groups.ToArray(), node);//子节点
             bool havebg = false;
-            for (int i = 0; i < layer.images.Length; i++)
+            for (int i = 0; i < layer.images.Count; i++)
             {
                 ImgNode image = layer.images[i];
 

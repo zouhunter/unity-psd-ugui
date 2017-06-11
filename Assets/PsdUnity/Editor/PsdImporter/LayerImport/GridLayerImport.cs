@@ -24,7 +24,7 @@ namespace PSDUnity
             gridLayoutGroup.padding = new RectOffset(1,1,1,1);
             gridLayoutGroup.cellSize = new Vector2(layer.rect.width, layer.rect.height);
 
-            if (layer.arguments != null && layer.arguments.Length > 1 )
+            if (layer.arguments != null && layer.arguments.Count > 1 )
             {
                 string rc = layer.arguments[0];
                 gridLayoutGroup.constraint = rc.ToLower() == "c" ? GridLayoutGroup.Constraint.FixedColumnCount : (rc.ToLower() == "r"? GridLayoutGroup.Constraint.FixedRowCount: GridLayoutGroup.Constraint.Flexible);
@@ -33,8 +33,8 @@ namespace PSDUnity
               
             }
 
-            ctrl.DrawImages(layer.images, node);
-            ctrl.DrawLayers(layer.groups as GroupNode[], node);
+            ctrl.DrawImages(layer.images.ToArray(), node);
+            ctrl.DrawLayers(layer.groups.ToArray() as GroupNode[], node);
             return node;
         }
     }

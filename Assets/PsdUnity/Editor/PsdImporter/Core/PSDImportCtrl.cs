@@ -242,7 +242,7 @@ namespace PSDUnity
         {
             if (layer.images != null)
             {
-                for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
+                for (int imageIndex = 0; imageIndex < layer.images.Count; imageIndex++)
                 {
                     // we need to fixup all images that were exported from PS
                     ImgNode image = layer.images[imageIndex];
@@ -280,7 +280,7 @@ namespace PSDUnity
 
             if (layer.groups != null)
             {
-                for (int layerIndex = 0; layerIndex < layer.groups.Length; layerIndex++)
+                for (int layerIndex = 0; layerIndex < layer.groups.Count; layerIndex++)
                 {
                     ImportLayer(layer.groups[layerIndex] as GroupNode, PSDImportUtility.baseDirectory);
                 }
@@ -304,7 +304,7 @@ namespace PSDUnity
 
                 AssetDatabase.Refresh();
 
-                for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
+                for (int imageIndex = 0; imageIndex < layer.images.Count; imageIndex++)
                 {
                     // we need to fixup all images that were exported from PS
                     ImgNode image = layer.images[imageIndex];
@@ -324,7 +324,7 @@ namespace PSDUnity
 
             if (layer.groups != null)
             {
-                for (int layerIndex = 0; layerIndex < layer.groups.Length; layerIndex++)
+                for (int layerIndex = 0; layerIndex < layer.groups.Count; layerIndex++)
                 {
                     MoveAsset(layer.groups[layerIndex] as GroupNode, PSDImportUtility.baseDirectory);
                 }

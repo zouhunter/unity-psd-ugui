@@ -20,7 +20,7 @@ namespace PSDUnity
             UnityEngine.UI.Toggle toggle = node.InitComponent<UnityEngine.UI.Toggle>();
             if (layer.images != null)
             {
-                for (int imageIndex = 0; imageIndex < layer.images.Length; imageIndex++)
+                for (int imageIndex = 0; imageIndex < layer.images.Count; imageIndex++)
                 {
                     ImgNode image = layer.images[imageIndex];
                     string lowerName = image.sprite.name.ToLower();

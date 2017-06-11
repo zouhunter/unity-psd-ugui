@@ -36,10 +36,10 @@ public class PSDConfigWindow : EditorWindow
             switch (layerType)
             {
                 case LayerType.Normal:
-                    _spritenormal = new GUIContent(layer.Name, EditorGUIUtility.IconContent("iconselector back").image);
+                    _spritenormal = new GUIContent(layer.Name, EditorGUIUtility.IconContent("createrect").image);
                     break;
                 case LayerType.SolidImage:
-                    _spritenormal = new GUIContent(layer.Name, EditorGUIUtility.IconContent("createrect").image);
+                    _spritenormal = new GUIContent(layer.Name, EditorGUIUtility.IconContent("iconselector back").image);
                     break;
                 case LayerType.Text:
                     _spritenormal = new GUIContent(layer.Name, EditorGUIUtility.IconContent("eventpin").image);
@@ -124,10 +124,15 @@ public class PSDConfigWindow : EditorWindow
 
         if (GUILayout.Button("生成Atlas"))
         {
-            foreach (var item in psd.Childs)
+            GroupNode[] nodes = new GroupNode[psd.Childs.Length];
+            for (int i = 0; i < psd.Childs.Length; i++)
             {
-                PsdExportUtility.CreateAtlas(item as PsdLayer, 1, 4096, string.Format("Assets/{0}.png", item.Name));
+                var item = psd.Childs[i];
+                PsdExportUtility.CreateAtlas(item as PsdLayer,out nodes[i], 1, 4096, string.Format("Assets/{0}.png", item.Name));
             }
+            atlasObj.groups = nodes;
+            atlasObj.psdSize = new Vector2(psd.Width, psd.Height);
+            EditorUtility.SetDirty(atlasObj);
         }
     }
     private bool DrawAtlasObj()

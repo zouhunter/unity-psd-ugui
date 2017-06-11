@@ -12,10 +12,10 @@ namespace PSDUnity
     {
         public string      name;
         public ControlType controltype;
-        public GroupNode[] groups = new GroupNode[0];
-        public ImgNode[]   images = new ImgNode[0];
+        public List<GroupNode> groups = new List<GroupNode>();
+        public List<ImgNode> images = new List<ImgNode>();
         public Rect        rect;
-        public string[] arguments = new string[0];
+        public List<string> arguments = new List<string>();
 
         [OnSerializing]
         private void OnSerializingStarted(StreamingContext context)

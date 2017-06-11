@@ -60,7 +60,7 @@ namespace Ntreev.Library.Psd
             else  if (this.resources.Contains("SoLd.Idnt") == true)
             {
                 this.placedID = this.resources.ToGuid("SoLd.Idnt");
-                layerType = LayerType.SolidImage;
+                layerType = LayerType.Normal;
             }
             else if (this.resources.Contains("SoLE.Idnt") == true)
             {
@@ -80,7 +80,7 @@ namespace Ntreev.Library.Psd
             }
             else
             {
-                layerType = LayerType.Normal;
+                layerType = LayerType.SolidImage;
             }
 
             foreach (var item in this.channels)

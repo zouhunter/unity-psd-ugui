@@ -11,26 +11,43 @@ namespace PSDUnity
 {
     public static class PsdExportUtility
     {
-        public static void CreateAtlas(PsdLayer psd, float pixelsToUnitSize, int atlassize, string releativePath,bool forceSprite = false)
+        public static Vector2 CreateAtlas(PsdLayer psd,out GroupNode group, float pixelsToUnitSize, int atlassize, string releativePath,bool forceSprite = false)
         {
             string fileName = Path.GetFileNameWithoutExtension(releativePath);
 
             List<Texture2D> textures = new List<Texture2D>();
-            RetriveChild(psd, (item) =>
+
+            group = new GroupNode();
+
+            RetriveChild(ref group,psd, (item) =>
              {
                  if (!item.IsGroup)
                  {
-                     Debug.Log(item.SectionType);
-                     if (!item.HasMask || forceSprite)
+                    
+                     switch (item.LayerType)
                      {
-                         Texture2D tex = CreateTexture(item);
-                         tex.name = item.Name;
-                         textures.Add(tex);
+                         case LayerType.Normal:
+                             Texture2D tex = CreateTexture(item);
+                             tex.name = item.Name;
+                             textures.Add(tex);
+                             break;
+                         case LayerType.SolidImage:
+
+                             break;
+                         case LayerType.Text:
+
+                             break;
+                         case LayerType.Group:
+                             break;
+                         case LayerType.Divider:
+                             break;
+                         default:
+                             break;
                      }
-                     else
-                     {
-                         //Debug.Log(GetLayerColor(item));
-                     }
+                 }
+                 else
+                 {
+
                  }
              });
 
@@ -75,6 +92,8 @@ namespace PSDUnity
             {
                UnityEngine.Object.DestroyImmediate(tex);
             }
+
+            return new Vector2(psd.Width, psd.Height);
         }
         public static PsdLayerData AnalysisLayer(PsdLayer layer)
         {
@@ -138,19 +157,34 @@ namespace PSDUnity
         {
             return new PsdLayerData(0, "", "", Color.white);
         }
-        public static void RetriveChild(PsdLayer layer, UnityAction<PsdLayer> OnRetrive)
+        public static void RetriveChild(ref GroupNode group,PsdLayer layer, UnityAction<PsdLayer> OnRetrive)
         {
             OnRetrive(layer);
 
-            if (layer.Childs.Length == 0)
+            if (!layer.IsGroup)
             {
                 return;
             }
             else
             {
+                group = new GroupNode();
+                group.name = layer.Name;
+                group.rect = new Rect(layer.Left, layer.Bottom, layer.Width, layer.Height);
+
                 foreach (var child in layer.Childs)
                 {
-                    RetriveChild(child, OnRetrive);
+                    GroupNode childNode = null;
+                    RetriveChild(ref childNode, child, OnRetrive);
+                    if(childNode != null)
+                    {
+                        group.groups.Add(childNode);
+                    }
+                    else
+                    {
+                        var imgNode = new ImgNode();
+                        imgNode.name = child.Name;
+                        group.images.Add(imgNode);
+                    }
                 }
             }
         }
