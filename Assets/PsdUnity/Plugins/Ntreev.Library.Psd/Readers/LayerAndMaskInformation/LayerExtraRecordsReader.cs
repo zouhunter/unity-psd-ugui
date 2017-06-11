@@ -43,6 +43,7 @@ namespace Ntreev.Library.Psd.Readers.LayerAndMaskInformation
         protected override void ReadValue(PsdReader reader, object userData, out LayerRecords value)
         {
             LayerRecords records = userData as LayerRecords;
+
             LayerMask mask = LayerMaskReader.Read(reader);
             LayerBlendingRanges blendingRanges = LayerBlendingRangesReader.Read(reader);
             string name = reader.ReadPascalString(4);

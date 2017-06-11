@@ -26,7 +26,7 @@ using Ntreev.Library.Psd.Structures;
 
 namespace Ntreev.Library.Psd
 {
-	class DescriptorStructure : Properties
+	public class DescriptorStructure : Properties
     {
         private readonly int version;
 

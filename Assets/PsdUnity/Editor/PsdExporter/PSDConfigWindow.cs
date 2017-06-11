@@ -16,26 +16,48 @@ public class PSDConfigWindow : EditorWindow
         public GUIContent content;
         public List<Data> childs = new List<Data>();
         public IPsdLayer layer;
-        public bool isFolder;
+        public LayerType layerType;
 
-        private GUIContent _folderOff;
-        private GUIContent _folderOn;
-        private GUIContent _filenormal;
+        private GUIContent _groupff;
+        private GUIContent _groupOn;
+        private GUIContent _spritenormal;
 
         public Data(IPsdLayer layer)
         {
             this.layer = layer;
-            isFolder = layer.Childs.Length != 0;
-
-            _folderOff = new GUIContent(layer.Name, EditorGUIUtility.IconContent("IN foldout focus").image);
-            _folderOn = new GUIContent(layer.Name, EditorGUIUtility.IconContent("IN foldout focus on").image);
-            _filenormal = new GUIContent(layer.Name, EditorGUIUtility.IconContent("eventpin").image);
-            content = isFolder ? _folderOff : _filenormal;
+            if(layer is PsdDocument)
+            {
+                layerType = LayerType.Group;
+            }
+            else
+            {
+                layerType = (layer as PsdLayer).LayerType;
+            }
+            switch (layerType)
+            {
+                case LayerType.Normal:
+                    _spritenormal = new GUIContent(layer.Name, EditorGUIUtility.IconContent("iconselector back").image);
+                    break;
+                case LayerType.SolidImage:
+                    _spritenormal = new GUIContent(layer.Name, EditorGUIUtility.IconContent("createrect").image);
+                    break;
+                case LayerType.Text:
+                    _spritenormal = new GUIContent(layer.Name, EditorGUIUtility.IconContent("eventpin").image);
+                    break;
+                case LayerType.Group:
+                    _groupff = new GUIContent(layer.Name, EditorGUIUtility.IconContent("IN foldout focus").image);
+                    _groupOn = new GUIContent(layer.Name, EditorGUIUtility.IconContent("IN foldout focus on").image);
+                    break;
+                default:
+                    break;
+            }
+           
+            content = layerType == LayerType.Group ? _groupff : _spritenormal;
         }
 
         public void Expland(bool on)
         {
-            content = on ? _folderOn : _folderOff;
+            content = on ? _groupOn : _groupff;
             content.text = layer.Name;
             isExpanded = on;
         }
@@ -104,7 +126,7 @@ public class PSDConfigWindow : EditorWindow
         {
             foreach (var item in psd.Childs)
             {
-                PsdExportUtility.CreateAtlas(item as PsdLayer, 1, 4096,string.Format("Assets/{0}.png",item.Name));
+                PsdExportUtility.CreateAtlas(item as PsdLayer, 1, 4096, string.Format("Assets/{0}.png", item.Name));
             }
         }
     }
@@ -201,7 +223,7 @@ public class PSDConfigWindow : EditorWindow
         var pointWidth = 10;
 
         var expanded = EditorGUI.Toggle(new Rect(rt.x + offset, rt.y, pointWidth, rt.height), data.isExpanded, style);
-        if (data.isExpanded != expanded && data.isFolder)
+        if (data.isExpanded != expanded && data.layerType == LayerType.Group)
         {
             data.Expland(expanded);
         }
@@ -227,7 +249,7 @@ public class PSDConfigWindow : EditorWindow
             psd = PsdDocument.Create(psdPath);
             data = new Data(psd);
             LoadDataLayers(data);
-        } 
+        }
     }
 
     void LoadDataLayers(Data data, int indent = 0)
@@ -251,6 +273,6 @@ public class PSDConfigWindow : EditorWindow
 
     void OnDisable()
     {
-       if(psd != null) psd.Dispose();
+        if (psd != null) psd.Dispose();
     }
 }

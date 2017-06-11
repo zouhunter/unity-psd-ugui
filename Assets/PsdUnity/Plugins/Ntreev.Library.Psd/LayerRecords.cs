@@ -20,20 +20,23 @@
 #endregion
 
 using System;
+using System.Collections;
 using System.Linq;
+using Ntreev.Library.Psd.Structures;
 
 namespace Ntreev.Library.Psd
 {
     public class LayerRecords
     {
         private Channel[] channels;
-
+        private TextInfo textinfo;
         private LayerMask layerMask;
         private LayerBlendingRanges blendingRanges;
         private IProperties resources;
         private string name;
         private SectionType sectionType;
         private Guid placedID;
+        private LayerType layerType;
 
         public void SetExtraRecords(LayerMask layerMask, LayerBlendingRanges blendingRanges, IProperties resources, string name)
         {
@@ -46,26 +49,39 @@ namespace Ntreev.Library.Psd
             this.resources.TryGetValue<string>(ref this.name, "luni.Name");
             this.resources.TryGetValue<SectionType>(ref this.sectionType, "lsct.SectionType");
 
-            if (this.resources.Contains("SoLd.Idnt") == true)
-                this.placedID = this.resources.ToGuid("SoLd.Idnt");
-            if (this.resources.Contains("SoLE.Idnt") == true)
-                this.placedID = this.resources.ToGuid("SoLE.Idnt");
-            if(this.resources.Contains("TySh.Idnt"))
+            if(SectionType == SectionType.Divider)
             {
-               Readers.LayerResources.Reader_TySh reader = resources["TySh"] as Readers.LayerResources.Reader_TySh;
-                DescriptorStructure text = null;
-               if(reader.TryGetValue<DescriptorStructure>(ref text, "Text"))
-                {
-                    UnityEngine.Debug.Log(text["Txt"]);
-
-                }
+                layerType = LayerType.Divider;
             }
-            //foreach (var item in resources)
-            //{
-            //    UnityEngine.Debug.Log(item.Key);
+            else if (SectionType == SectionType.Closed || SectionType == SectionType.Opend)
+            {
+                layerType = LayerType.Group;
+            }
+            else  if (this.resources.Contains("SoLd.Idnt") == true)
+            {
+                this.placedID = this.resources.ToGuid("SoLd.Idnt");
+                layerType = LayerType.SolidImage;
+            }
+            else if (this.resources.Contains("SoLE.Idnt") == true)
+            {
+                this.placedID = this.resources.ToGuid("SoLE.Idnt");
+                throw new Exception("WaitDefine");
+            }
+            else if (this.resources.Contains("TySh.Idnt"))
+            {
+                Readers.LayerResources.Reader_TySh reader = resources["TySh"] as Readers.LayerResources.Reader_TySh;
+                DescriptorStructure text = null;
+                if (reader.TryGetValue<DescriptorStructure>(ref text, "Text"))
+                {
+                    textinfo = new TextInfo(text);
+                }
 
-            //}
-
+                layerType = LayerType.Text;
+            }
+            else
+            {
+                layerType = LayerType.Normal;
+            }
 
             foreach (var item in this.channels)
             {
@@ -124,11 +140,11 @@ namespace Ntreev.Library.Psd
 
         public int ChannelCount
         {
-            get 
+            get
             {
                 if (this.channels == null)
                     return 0;
-                return this.channels.Length; 
+                return this.channels.Length;
             }
             set
             {
@@ -179,7 +195,10 @@ namespace Ntreev.Library.Psd
         {
             get { return this.name; }
         }
-
+        public LayerType LayerType
+        {
+            get { return layerType; }
+        }
         public LayerMask Mask
         {
             get { return this.layerMask; }

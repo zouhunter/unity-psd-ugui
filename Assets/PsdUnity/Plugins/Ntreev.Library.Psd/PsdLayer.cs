@@ -197,7 +197,12 @@ namespace Ntreev.Library.Psd
                 return true;
             }
         }
-
+        public LayerType LayerType
+        {
+            get {
+                return records.LayerType;
+            }
+        }
         public bool HasMask
         {
             get { return this.records.Mask != null; }
