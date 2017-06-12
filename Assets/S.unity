@@ -154,6 +154,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 542913927}
+  - 114: {fileID: 542913928}
+  - 114: {fileID: 542913929}
   m_Layer: 0
   m_Name: Assets
   m_TagString: Untagged
@@ -173,6 +175,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!114 &542913928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 542913926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9316eb1e5fdbac4d89f75d337be5e3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializedNodes:
+  - interestingValue: value
+    childCount: 0
+    indexOfFirstChild: 1
+--- !u!114 &542913929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 542913926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ae2338596076f458885b5810158324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  temp:
+    a: 0
 --- !u!1 &1664998491
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,6 +215,7 @@ GameObject:
   - 92: {fileID: 1664998494}
   - 124: {fileID: 1664998493}
   - 81: {fileID: 1664998492}
+  - 114: {fileID: 1664998497}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -259,3 +290,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &1664998497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1664998491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9316eb1e5fdbac4d89f75d337be5e3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializedNodes:
+  - interestingValue: value
+    childCount: 0
+    indexOfFirstChild: 1

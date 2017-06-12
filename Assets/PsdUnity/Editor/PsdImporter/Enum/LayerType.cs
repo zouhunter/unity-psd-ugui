@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace PSDUnity
 {
-    public enum ControlType
+    public enum ControlType:int
     {
         Panel = 0,
         ScrollView = 1,

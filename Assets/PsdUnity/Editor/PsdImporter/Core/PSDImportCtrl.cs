@@ -32,8 +32,9 @@ namespace PSDUnity
         private ILayerImport dropdownImport;
 
 
-        public PSDImportCtrl(string xmlFilePath)
+        public PSDImportCtrl(AtlasObject psdUI)
         {
+            this.psdUI = psdUI;
             //InitDataAndPath(xmlFilePath);
             InitCanvas();
             LoadLayers();
@@ -156,7 +157,7 @@ namespace PSDUnity
 
         private void LoadLayers()
         {
-            for (int layerIndex = 0; layerIndex < psdUI.groups.Length; layerIndex++)
+            for (int layerIndex = 0; layerIndex < psdUI.groups.Count; layerIndex++)
             {
                 ImportLayer(psdUI.groups[layerIndex] as GroupNode, PSDImportUtility.baseDirectory);
             }
@@ -185,7 +186,7 @@ namespace PSDUnity
             UGUINode empty = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_EMPTY,PSDImportUtility.baseFilename, PSDImportUtility.uinode);
             RectTransform rt = empty.InitComponent<RectTransform>();
             rt.sizeDelta = new Vector2(psdUI.psdSize.x, psdUI.psdSize.y);
-            for (int layerIndex = 0; layerIndex < psdUI.groups.Length; layerIndex++)
+            for (int layerIndex = 0; layerIndex < psdUI.groups.Count; layerIndex++)
             {
                 DrawLayer(psdUI.groups[layerIndex] as GroupNode, empty);
             }
@@ -224,7 +225,7 @@ namespace PSDUnity
 
         private void MoveLayers()
         {
-            for (int layerIndex = 0; layerIndex < psdUI.groups.Length; layerIndex++)
+            for (int layerIndex = 0; layerIndex < psdUI.groups.Count; layerIndex++)
             {
                 //如果文件名有Globle，将强制全部移动到指定文件夹
                 PSDImportUtility.forceMove = PSDImportUtility.baseFilename.Contains("Globle");

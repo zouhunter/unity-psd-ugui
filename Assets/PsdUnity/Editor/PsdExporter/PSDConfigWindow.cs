@@ -130,7 +130,7 @@ public class PSDConfigWindow : EditorWindow
                 var item = psd.Childs[i];
                 PsdExportUtility.CreateAtlas(item as PsdLayer,out nodes[i], 1, 4096, string.Format("Assets/{0}.png", item.Name));
             }
-            atlasObj.groups = nodes;
+            atlasObj.groups = new List<GroupNode>(nodes);
             atlasObj.psdSize = new Vector2(psd.Width, psd.Height);
             EditorUtility.SetDirty(atlasObj);
         }

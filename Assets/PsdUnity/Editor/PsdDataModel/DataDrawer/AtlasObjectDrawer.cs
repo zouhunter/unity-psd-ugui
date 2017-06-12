@@ -15,13 +15,14 @@ namespace PSDUnity
         SerializedProperty psdFileProp;
         SerializedProperty psdSizeProp;
         SerializedProperty groupsProp;
-
+        //AtlasObject obj;
         readonly GUIContent pageSizeContent = new GUIContent("界面尺寸", EditorGUIUtility.IconContent("breadcrump mid act").image, "界面尺寸");
         private void OnEnable()
         {
             scriptProp = serializedObject.FindProperty("m_Script");
             psdFileProp = serializedObject.FindProperty("psdFile");
             psdSizeProp = serializedObject.FindProperty("psdSize");
+            //obj = target as AtlasObject;
             groupsProp = serializedObject.FindProperty("groups");
         }
         protected override void OnHeaderGUI()
@@ -37,9 +38,11 @@ namespace PSDUnity
             serializedObject.Update();
             DrawPageSize();
             DrawGroupNode();
-
+            DrawToolButtons();
             serializedObject.ApplyModifiedProperties();
         }
+
+     
 
         private void DrawPageSize()
         {
@@ -50,7 +53,22 @@ namespace PSDUnity
         {
             ReorderableListGUI.Title("资源列表");
             ReorderableListGUI.ListField(groupsProp);
-
+        }
+        private void DrawToolButtons()
+        {
+            if (GUILayout.Button("导出到UI"))
+            {
+                PSDImportUtility.baseFilename = target.name;
+                PSDImportUtility.baseDirectory = Application.dataPath;
+                PSDImportCtrl import = new PSDImportCtrl((AtlasObject)target);
+                import.BeginDrawUILayers();
+                import.BeginSetUIParents(PSDImportUtility.uinode);
+                import.BeginSetAnchers(PSDImportUtility.uinode.childs[0]);
+                //最外层的要单独处理
+                var rt = PSDImportUtility.uinode.childs[0].InitComponent<RectTransform>();
+                PSDImportUtility.SetCustomAnchor(rt, rt);
+                import.BeginReprocess(PSDImportUtility.uinode.childs[0]);//后处理
+            }
         }
     }
 

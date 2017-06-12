@@ -169,6 +169,7 @@ namespace PSDUnity
             {
                 group = new GroupNode();
                 group.name = layer.Name;
+                group.controltype = ControlType.Button;
                 group.rect = new Rect(layer.Left, layer.Bottom, layer.Width, layer.Height);
 
                 foreach (var child in layer.Childs)
