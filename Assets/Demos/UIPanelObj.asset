@@ -17,13 +17,13 @@ MonoBehaviour:
   psdSize: {x: 1107, y: 768}
   groups:
   - name: "\u9762\u677F"
-    controltype: 0
+    controltype: 3
     groups:
     - name: "\u6ED1\u52A8\u533A@ScrollView:VH"
-      controltype: 0
+      controltype: 3
       groups:
       - name: "hb_\u6C34\u5E73\u6ED1\u52A8\u6761@Scrollbar:l"
-        controltype: 0
+        controltype: 3
         groups: []
         images:
         - name: "b_\u80CC\u666F"
@@ -56,15 +56,15 @@ MonoBehaviour:
           font: {fileID: 0}
           fontSize: 0
           color: {r: 1, g: 1, b: 1, a: 1}
+        arguments: []
         rect:
           serializedVersion: 2
           x: 41
           y: 738
           width: 573
           height: 25
-        arguments: []
       - name: "vb_\u5782\u76F4\u6ED1\u52A8\u6761@Scrollbar:b"
-        controltype: 0
+        controltype: 3
         groups: []
         images:
         - name: "b_\u80CC\u666F"
@@ -97,18 +97,18 @@ MonoBehaviour:
           font: {fileID: 0}
           fontSize: 0
           color: {r: 1, g: 1, b: 1, a: 1}
+        arguments: []
         rect:
           serializedVersion: 2
           x: 586
           y: 731
           width: 28
           height: 542
-        arguments: []
       - name: "c_\u7EC4@Group:V:10"
-        controltype: 0
+        controltype: 3
         groups:
         - name: "\u9762\u677F"
-          controltype: 0
+          controltype: 3
           groups: []
           images:
           - name: '@Size'
@@ -126,15 +126,15 @@ MonoBehaviour:
             font: {fileID: 0}
             fontSize: 0
             color: {r: 1, g: 1, b: 1, a: 1}
+          arguments: []
           rect:
             serializedVersion: 2
             x: 44
             y: 280
             width: 545
             height: 88
-          arguments: []
         - name: "\u9762\u677F"
-          controltype: 0
+          controltype: 3
           groups: []
           images:
           - name: '@Size'
@@ -152,15 +152,15 @@ MonoBehaviour:
             font: {fileID: 0}
             fontSize: 0
             color: {r: 1, g: 1, b: 1, a: 1}
+          arguments: []
           rect:
             serializedVersion: 2
             x: 44
             y: 366
             width: 545
             height: 88
-          arguments: []
         - name: "\u9762\u677F"
-          controltype: 0
+          controltype: 3
           groups: []
           images:
           - name: '@Size'
@@ -178,21 +178,21 @@ MonoBehaviour:
             font: {fileID: 0}
             fontSize: 0
             color: {r: 1, g: 1, b: 1, a: 1}
+          arguments: []
           rect:
             serializedVersion: 2
             x: 44
             y: 452
             width: 545
             height: 87
-          arguments: []
         images: []
+        arguments: []
         rect:
           serializedVersion: 2
           x: 44
           y: 452
           width: 545
           height: 260
-        arguments: []
       images:
       - name: "b_\u80CC\u666F"
         type: 0
@@ -209,15 +209,15 @@ MonoBehaviour:
         font: {fileID: 0}
         fontSize: 0
         color: {r: 1, g: 1, b: 1, a: 1}
+      arguments: []
       rect:
         serializedVersion: 2
         x: 37
         y: 738
         width: 578
         height: 550
-      arguments: []
     - name: "\u8FDB\u5EA6\u6761@Slider:v"
-      controltype: 0
+      controltype: 3
       groups: []
       images:
       - name: "b_\u80CC\u666F"
@@ -265,15 +265,15 @@ MonoBehaviour:
         font: {fileID: 0}
         fontSize: 0
         color: {r: 1, g: 1, b: 1, a: 1}
+      arguments: []
       rect:
         serializedVersion: 2
         x: 663
         y: 716
         width: 389
         height: 54
-      arguments: []
     - name: "\u72B6\u6001@Toggle"
-      controltype: 0
+      controltype: 3
       groups: []
       images:
       - name: "m_\u906E\u7F69"
@@ -321,18 +321,18 @@ MonoBehaviour:
         font: {fileID: 0}
         fontSize: 0
         color: {r: 1, g: 1, b: 1, a: 1}
+      arguments: []
       rect:
         serializedVersion: 2
         x: 446
         y: 171
         width: 171
         height: 147
-      arguments: []
     - name: "\u4E0B\u62C9\u6846@Dropdown"
-      controltype: 0
+      controltype: 3
       groups:
       - name: "vb_\u4E0B\u62C9\u6761@Scrollbar:b"
-        controltype: 0
+        controltype: 3
         groups: []
         images:
         - name: "b_\u80CC\u666F"
@@ -365,13 +365,13 @@ MonoBehaviour:
           font: {fileID: 0}
           fontSize: 0
           color: {r: 1, g: 1, b: 1, a: 1}
+        arguments: []
         rect:
           serializedVersion: 2
           x: 1036
           y: 461
           width: 16
           height: 288
-        arguments: []
       images:
       - name: "m_\u9009\u9879\u906E\u7F69"
         type: 0
@@ -463,15 +463,15 @@ MonoBehaviour:
         font: {fileID: 0}
         fontSize: 0
         color: {r: 1, g: 1, b: 1, a: 1}
+      arguments: []
       rect:
         serializedVersion: 2
         x: 662
         y: 461
         width: 390
         height: 349
-      arguments: []
     - name: "\u6309\u626D@Button"
-      controltype: 0
+      controltype: 3
       groups: []
       images:
       - name: "h_\u79FB\u5165\u72B6\u6001"
@@ -549,15 +549,15 @@ MonoBehaviour:
         font: {fileID: 0}
         fontSize: 0
         color: {r: 1, g: 1, b: 1, a: 1}
+      arguments: []
       rect:
         serializedVersion: 2
         x: 31
         y: 171
         width: 370
         height: 147
-      arguments: []
     - name: "\u8F93\u5165\u6846@InputField"
-      controltype: 0
+      controltype: 3
       groups: []
       images:
       - name: "b_\u80CC\u666F"
@@ -605,13 +605,13 @@ MonoBehaviour:
         font: {fileID: 0}
         fontSize: 0
         color: {r: 1, g: 1, b: 1, a: 1}
+      arguments: []
       rect:
         serializedVersion: 2
         x: 663
         y: 627
         width: 386
         height: 148
-      arguments: []
     images:
     - name: "b_\u80CC\u666F\u6216@Size"
       type: 0
@@ -620,18 +620,18 @@ MonoBehaviour:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 0
-        height: 0
+        width: 80
+        height: 40
       sprite: {fileID: 0}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
       fontSize: 0
       color: {r: 1, g: 1, b: 1, a: 1}
+    arguments: []
     rect:
       serializedVersion: 2
       x: -1
       y: 766
       width: 1367
       height: 764
-    arguments: []
