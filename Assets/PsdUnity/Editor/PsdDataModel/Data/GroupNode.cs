@@ -206,7 +206,7 @@ namespace PSDUnity
     [System.Serializable]
     public class GroupNode7 : GroupNode
     {
-        public override List<ImgNode> images { get; set; }
+        public override List<ImgNode> images { get { return null; } set { } }
         public override List<GroupNode> groups { get; set; }
     }
 }

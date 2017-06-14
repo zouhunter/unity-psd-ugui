@@ -13,6 +13,7 @@ namespace PSDUnity
         public string exportPath;
         public bool maskAsColor;
         public Vector2 psdSize;
-        public List<GroupNode1> groups;
+        public List<PictureData> pictureDatas = new List<PictureData>();
+        public List<GroupNode1> groups = new List<GroupNode1>();
     }
 }

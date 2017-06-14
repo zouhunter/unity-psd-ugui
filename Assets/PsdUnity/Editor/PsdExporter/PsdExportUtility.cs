@@ -11,25 +11,23 @@ namespace PSDUnity
 {
     public static class PsdExportUtility
     {
-        public static Vector2 CreateAtlas(PsdLayer psd,out GroupNode1 group, float pixelsToUnitSize, int atlassize, string releativePath,bool forceSprite = false)
+        public static Vector2 CreateAtlas(PsdLayer rootLayer,float pixelsToUnitSize, int atlassize, string releativePath,List<PictureData> pictureData, bool forceSprite = false)
         {
             string fileName = Path.GetFileNameWithoutExtension(releativePath);
 
             List<Texture2D> textures = new List<Texture2D>();
-
-            group = new GroupNode1();
-
-            RetriveChild(ref group,psd, (item) =>
+            RetriveLayerToCreateTexture(rootLayer, (parent,item) =>
              {
                  if (!item.IsGroup)
                  {
-                    
+
                      switch (item.LayerType)
                      {
                          case LayerType.Normal:
                              Texture2D tex = CreateTexture(item);
                              tex.name = item.Name;
                              textures.Add(tex);
+                             pictureData.Add(new PictureData(tex.name, ImgType.Image));
                              break;
                          case LayerType.SolidImage:
 
@@ -90,10 +88,30 @@ namespace PSDUnity
 
             foreach (Texture2D tex in textureArray)
             {
-               UnityEngine.Object.DestroyImmediate(tex);
+                UnityEngine.Object.DestroyImmediate(tex);
             }
 
-            return new Vector2(psd.Width, psd.Height);
+            Sprite[] sprites = AssetDatabase.LoadAllAssetsAtPath(releativePath).OfType<Sprite>().ToArray();
+            foreach (var item in pictureData)
+            {
+                switch (item.type)
+                {
+                    case ImgType.Label:
+                        break;
+                    case ImgType.Image:
+                        Debug.Log(item.picturename);
+                        item.sprite = Array.Find(sprites, x => x.name == item.picturename);
+                        break;
+                    case ImgType.AtlasImage:
+                        break;
+                    case ImgType.Texture:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            return new Vector2(rootLayer.Width, rootLayer.Height);
         }
         public static PsdLayerData AnalysisLayer(PsdLayer layer)
         {
@@ -133,7 +151,7 @@ namespace PSDUnity
                 int n = ((texture.width - mod - 1) + i) - mod;
                 pixels[pixels.Length - n - 1] = new Color32(r, g, b, a);
             }
-           
+
             texture.SetPixels32(pixels);
             texture.Apply();
             return texture;
@@ -157,35 +175,67 @@ namespace PSDUnity
         {
             return new PsdLayerData(0, "", "", Color.white);
         }
-        public static void RetriveChild(ref GroupNode1 group,PsdLayer layer, UnityAction<PsdLayer> OnRetrive)
-        {
-            OnRetrive(layer);
 
-            if (!layer.IsGroup)
+        /// <summary>
+        /// 信息转换
+        /// </summary>
+        /// <param name="layer"></param>
+        /// <param name="group"></param>
+        /// <param name="OnRetrive"></param>
+        public static void RetriveLayerToSwitchModle(PsdLayer layer, GroupNode group, UnityAction<PsdLayer> OnRetrive)
+        {
+            //OnRetrive(layer);
+
+            //if (!layer.IsGroup)
+            //{
+            //    return;
+            //}
+            //else
+            //{
+            //    group.name = layer.Name;
+            //    group.controltype = ControlType.Button;
+            //    group.rect = new Rect(layer.Left, layer.Bottom, layer.Width, layer.Height);
+
+            //    foreach (var child in layer.Childs)
+            //    {
+            //        GroupNode childNode = group.InsertChild();
+            //        if (childNode != null)
+            //        {
+            //            RetriveLayerToSwitchModle(ref childNode, child, OnRetrive);
+
+            //            if (childNode != null)
+            //            {
+            //                group.groups.Add(childNode);
+            //            }
+            //            else
+            //            {
+            //                var imgNode = new ImgNode();
+            //                imgNode.name = child.Name;
+            //                group.images.Add(imgNode);
+            //            }
+            //        }
+
+            //    }
+            //}
+        }
+
+        /// <summary>
+        /// Generate Sprite or texture
+        /// </summary>
+        /// <param name="layer"></param>
+        /// <param name="onRetrive"></param>
+        public static void RetriveLayerToCreateTexture(PsdLayer layer, UnityAction<PsdLayer,PsdLayer> onRetrive)
+        {
+            if (!layer.IsGroup || layer.Childs == null || layer.Childs.Length == 0)
             {
                 return;
             }
             else
             {
-                group = new GroupNode1();
-                group.name = layer.Name;
-                group.controltype = ControlType.Button;
-                group.rect = new Rect(layer.Left, layer.Bottom, layer.Width, layer.Height);
-
                 foreach (var child in layer.Childs)
                 {
-                    GroupNode1 childNode = null;
-                    RetriveChild(ref childNode, child, OnRetrive);
-                    if(childNode != null)
-                    {
-                        group.groups.Add(childNode);
-                    }
-                    else
-                    {
-                        var imgNode = new ImgNode();
-                        imgNode.name = child.Name;
-                        group.images.Add(imgNode);
-                    }
+                    onRetrive(layer,child);
+                    RetriveLayerToCreateTexture(child, onRetrive);
                 }
             }
         }

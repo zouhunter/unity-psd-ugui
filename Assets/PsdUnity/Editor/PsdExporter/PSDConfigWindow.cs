@@ -25,7 +25,7 @@ public class PSDConfigWindow : EditorWindow
         public Data(IPsdLayer layer)
         {
             this.layer = layer;
-            if(layer is PsdDocument)
+            if (layer is PsdDocument)
             {
                 layerType = LayerType.Group;
             }
@@ -51,7 +51,7 @@ public class PSDConfigWindow : EditorWindow
                 default:
                     break;
             }
-           
+
             content = layerType == LayerType.Group ? _groupff : _spritenormal;
         }
 
@@ -111,6 +111,7 @@ public class PSDConfigWindow : EditorWindow
             if (DrawFileSelect())
             {
                 DrawData(data);
+                DrawTools();
             }
             else
             {
@@ -120,19 +121,6 @@ public class PSDConfigWindow : EditorWindow
         else
         {
             DrawErrBox("请先选择正确的PDF文件路径");
-        }
-
-        if (GUILayout.Button("生成Atlas"))
-        {
-            GroupNode1[] nodes = new GroupNode1[psd.Childs.Length];
-            for (int i = 0; i < psd.Childs.Length; i++)
-            {
-                var item = psd.Childs[i];
-                PsdExportUtility.CreateAtlas(item as PsdLayer,out nodes[i], 1, 4096, string.Format("Assets/{0}.png", item.Name));
-            }
-            atlasObj.groups = new List<GroupNode1>(nodes);
-            atlasObj.psdSize = new Vector2(psd.Width, psd.Height);
-            EditorUtility.SetDirty(atlasObj);
         }
     }
     private bool DrawAtlasObj()
@@ -217,6 +205,19 @@ public class PSDConfigWindow : EditorWindow
                     }
                 }
             }
+    }
+
+    private void DrawTools()
+    {
+        if (GUILayout.Button("生成Atlas"))
+        {
+            for (int i = 0; i < psd.Childs.Length; i++)
+            {
+                var item = psd.Childs[i];
+                atlasObj.psdSize = PsdExportUtility.CreateAtlas(item as PsdLayer, 1, 4096, string.Format("Assets/{0}.png", item.Name), atlasObj.pictureDatas);
+            }
+            EditorUtility.SetDirty(atlasObj);
+        }
     }
 
     void DrawGUIData(Data data)

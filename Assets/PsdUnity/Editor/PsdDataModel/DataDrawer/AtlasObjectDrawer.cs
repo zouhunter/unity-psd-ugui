@@ -15,6 +15,7 @@ namespace PSDUnity
         SerializedProperty psdFileProp;
         SerializedProperty psdSizeProp;
         SerializedProperty groupsProp;
+        SerializedProperty pictureDatasProp;
         //AtlasObject obj;
         readonly GUIContent pageSizeContent = new GUIContent("界面尺寸", EditorGUIUtility.IconContent("breadcrump mid act").image, "界面尺寸");
         private void OnEnable()
@@ -24,6 +25,7 @@ namespace PSDUnity
             psdSizeProp = serializedObject.FindProperty("psdSize");
             //obj = target as AtlasObject;
             groupsProp = serializedObject.FindProperty("groups");
+            pictureDatasProp = serializedObject.FindProperty("pictureDatas");
         }
         protected override void OnHeaderGUI()
         {
@@ -37,21 +39,25 @@ namespace PSDUnity
         {
             serializedObject.Update();
             DrawPageSize();
+            DrawPictureList();
             DrawGroupNode();
             DrawToolButtons();
             serializedObject.ApplyModifiedProperties();
         }
-
-     
 
         private void DrawPageSize()
         {
             psdFileProp.stringValue = EditorGUILayout.TextField("PSD路径：",psdFileProp.stringValue);
             psdSizeProp.vector2Value = EditorGUILayout.Vector2Field(pageSizeContent, psdSizeProp.vector2Value);
         }
+        private void DrawPictureList()
+        {
+            ReorderableListGUI.Title("图片列表");
+            ReorderableListGUI.ListField(pictureDatasProp);
+        }
         private void DrawGroupNode()
         {
-            ReorderableListGUI.Title("资源列表");
+            ReorderableListGUI.Title("信息列表");
             ReorderableListGUI.ListField(groupsProp);
         }
         private void DrawToolButtons()

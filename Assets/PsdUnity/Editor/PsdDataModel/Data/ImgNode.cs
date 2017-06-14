@@ -16,5 +16,6 @@ namespace PSDUnity
         public Font font;
         public int fontSize = 0;
         public Color color = UnityEngine.Color.white;
+        public string picturename;
     }
 }

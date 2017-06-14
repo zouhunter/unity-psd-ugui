@@ -25,5 +25,72 @@ MonoBehaviour:
       y: 766
       width: 1367
       height: 764
-    _groups: []
-    _images: []
+    _groups:
+    - name: 
+      controltype: 0
+      arguments: []
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      _groups:
+      - name: 
+        controltype: 0
+        arguments: []
+        rect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        _groups: []
+        _images:
+        - name: 
+          type: 0
+          source: 0
+          rect:
+            serializedVersion: 2
+            x: 0
+            y: 0
+            width: 0
+            height: 0
+          sprite: {fileID: 0}
+          texture: {fileID: 0}
+          text: 
+          font: {fileID: 0}
+          fontSize: 0
+          color: {r: 0, g: 0, b: 0, a: 0}
+      _images:
+      - name: 
+        type: 1
+        source: 0
+        rect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        sprite: {fileID: 0}
+        texture: {fileID: 0}
+        text: 
+        font: {fileID: 0}
+        fontSize: 0
+        color: {r: 0, g: 0, b: 0, a: 0}
+    _images:
+    - name: 
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 0, g: 0, b: 0, a: 0}

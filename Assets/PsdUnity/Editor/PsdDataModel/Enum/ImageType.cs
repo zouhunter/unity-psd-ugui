@@ -11,7 +11,7 @@ namespace PSDUnity
     {
         Label = 0,
         Image = 1,
-        SliceImage = 2,
+        AtlasImage = 2,
         Texture = 3
     }
 }

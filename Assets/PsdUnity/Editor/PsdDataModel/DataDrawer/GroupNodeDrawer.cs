@@ -62,24 +62,25 @@ namespace PSDUnity
         }
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            var rect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
-            property.isExpanded = EditorGUI.ToggleLeft(rect, nameProp.stringValue, property.isExpanded);
-            if (!property.isExpanded)
-            {
-                return;
-            }
-            rect.y += EditorGUIUtility.singleLineHeight;
-            EditorGUI.PropertyField(rect, nameProp, true);
-            rect.y += EditorGUIUtility.singleLineHeight;
-            controltypeProp.intValue =(int) ((ControlType)EditorGUI.EnumPopup(rect, (ControlType)controltypeProp.intValue));
-            rect.y += EditorGUIUtility.singleLineHeight;
-            EditorGUI.PropertyField(rect, groupsProp, true);
-            rect.y += EditorGUI.GetPropertyHeight(groupsProp, new GUIContent("Group"), true);
-            EditorGUI.PropertyField(rect, imagesProp, true);
-            rect.y += EditorGUI.GetPropertyHeight(imagesProp, new GUIContent("Images"), true);
-            EditorGUI.PropertyField(rect, argumentsProp, true);
-            rect.y += EditorGUI.GetPropertyHeight(argumentsProp, new GUIContent("Aregument"), true);
-            EditorGUI.PropertyField(rect, rectProp);
+            //var rect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
+            //property.isExpanded = EditorGUI.ToggleLeft(rect, nameProp.stringValue, property.isExpanded);
+            //if (!property.isExpanded)
+            //{
+            //    return;
+            //}
+            //rect.y += EditorGUIUtility.singleLineHeight;
+            //EditorGUI.PropertyField(rect, nameProp, true);
+            //rect.y += EditorGUIUtility.singleLineHeight;
+            //controltypeProp.intValue =(int) ((ControlType)EditorGUI.EnumPopup(rect, (ControlType)controltypeProp.intValue));
+            //rect.y += EditorGUIUtility.singleLineHeight;
+            //EditorGUI.PropertyField(rect, groupsProp, true);
+            //rect.y += EditorGUI.GetPropertyHeight(groupsProp, new GUIContent("Group"), true);
+            //EditorGUI.PropertyField(rect, imagesProp, true);
+            //rect.y += EditorGUI.GetPropertyHeight(imagesProp, new GUIContent("Images"), true);
+            //EditorGUI.PropertyField(rect, argumentsProp, true);
+            //rect.y += EditorGUI.GetPropertyHeight(argumentsProp, new GUIContent("Aregument"), true);
+            //EditorGUI.PropertyField(rect, rectProp);
+            EditorGUI.PropertyField(position, property,new GUIContent( nameProp.stringValue), true);
         }
     }
 }

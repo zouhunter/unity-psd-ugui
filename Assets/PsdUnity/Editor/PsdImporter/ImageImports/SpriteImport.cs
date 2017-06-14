@@ -23,7 +23,7 @@ namespace PSDUnity
                 case ImgType.Texture:
                     node = DrawRawImage(image, parent);
                     break;
-                case ImgType.SliceImage:
+                case ImgType.AtlasImage:
                     node = DrawSliceImage(image, parent);
                     break;
                 default:

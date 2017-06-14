@@ -116,7 +116,7 @@ namespace PSDUnity
             {
                 case ImgType.Image:
                 case ImgType.Texture:
-                case ImgType.SliceImage:
+                case ImgType.AtlasImage:
                     node = spriteImport.DrawImage(image, parent);
                     break;
                 case ImgType.Label:
@@ -268,7 +268,7 @@ namespace PSDUnity
                             textureImporter.spriteImportMode = SpriteImportMode.Single;
                             textureImporter.spritePackingTag = PSDImportUtility.baseFilename;
 
-                            if (image.type == ImgType.SliceImage) {
+                            if (image.type == ImgType.AtlasImage) {
                                 textureImporter.spriteBorder = new Vector4(3, 3, 3, 3);   // Set Default Slice type  UnityEngine.UI.Image's border to Vector4 (3, 3, 3, 3)
                             }
                         }

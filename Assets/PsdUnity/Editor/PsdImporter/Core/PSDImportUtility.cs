@@ -88,7 +88,7 @@ namespace PSDUnity
                     myText.text = image.text;
                     myText.fontSize = image.fontSize;
                     break;
-                case ImgType.SliceImage:
+                case ImgType.AtlasImage:
                     ((UnityEngine.UI.Image)graph).sprite = image.sprite;
                     break;
                 default:
