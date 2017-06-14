@@ -13,7 +13,7 @@ namespace PSDUnity
         public string exportPath;
         public bool maskAsColor;
         public Vector2 psdSize;
-        public List<GroupNode> groups;
+        public List<GroupNode1> groups;
 
         public void OnBeforeSerialize()
         {

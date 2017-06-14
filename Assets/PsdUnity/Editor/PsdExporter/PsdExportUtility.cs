@@ -11,13 +11,13 @@ namespace PSDUnity
 {
     public static class PsdExportUtility
     {
-        public static Vector2 CreateAtlas(PsdLayer psd,out GroupNode group, float pixelsToUnitSize, int atlassize, string releativePath,bool forceSprite = false)
+        public static Vector2 CreateAtlas(PsdLayer psd,out GroupNode1 group, float pixelsToUnitSize, int atlassize, string releativePath,bool forceSprite = false)
         {
             string fileName = Path.GetFileNameWithoutExtension(releativePath);
 
             List<Texture2D> textures = new List<Texture2D>();
 
-            group = new GroupNode();
+            group = new GroupNode1();
 
             RetriveChild(ref group,psd, (item) =>
              {
@@ -157,7 +157,7 @@ namespace PSDUnity
         {
             return new PsdLayerData(0, "", "", Color.white);
         }
-        public static void RetriveChild(ref GroupNode group,PsdLayer layer, UnityAction<PsdLayer> OnRetrive)
+        public static void RetriveChild(ref GroupNode1 group,PsdLayer layer, UnityAction<PsdLayer> OnRetrive)
         {
             OnRetrive(layer);
 
@@ -167,14 +167,14 @@ namespace PSDUnity
             }
             else
             {
-                group = new GroupNode();
+                group = new GroupNode1();
                 group.name = layer.Name;
                 group.controltype = ControlType.Button;
                 group.rect = new Rect(layer.Left, layer.Bottom, layer.Width, layer.Height);
 
                 foreach (var child in layer.Childs)
                 {
-                    GroupNode childNode = null;
+                    GroupNode1 childNode = null;
                     RetriveChild(ref childNode, child, OnRetrive);
                     if(childNode != null)
                     {

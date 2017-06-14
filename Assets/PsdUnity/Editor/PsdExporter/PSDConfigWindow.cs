@@ -124,13 +124,13 @@ public class PSDConfigWindow : EditorWindow
 
         if (GUILayout.Button("生成Atlas"))
         {
-            GroupNode[] nodes = new GroupNode[psd.Childs.Length];
+            GroupNode1[] nodes = new GroupNode1[psd.Childs.Length];
             for (int i = 0; i < psd.Childs.Length; i++)
             {
                 var item = psd.Childs[i];
                 PsdExportUtility.CreateAtlas(item as PsdLayer,out nodes[i], 1, 4096, string.Format("Assets/{0}.png", item.Name));
             }
-            atlasObj.groups = new List<GroupNode>(nodes);
+            atlasObj.groups = new List<GroupNode1>(nodes);
             atlasObj.psdSize = new Vector2(psd.Width, psd.Height);
             EditorUtility.SetDirty(atlasObj);
         }

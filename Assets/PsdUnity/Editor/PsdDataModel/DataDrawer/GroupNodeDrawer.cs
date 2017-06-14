@@ -6,7 +6,7 @@ using UnityEditor;
 
 namespace PSDUnity
 {
-    [CustomPropertyDrawer(typeof(GroupNode))]
+    [CustomPropertyDrawer(typeof(GroupNode),true)]
     public class GroupNodeDrawer : PropertyDrawer
     {
         SerializedProperty nameProp;
@@ -21,7 +21,7 @@ namespace PSDUnity
             nameProp = property.FindPropertyRelative("name");//
             controltypeProp = property.FindPropertyRelative("controltype");//
             rectProp = property.FindPropertyRelative("rect");//
-            groupsProp = property.FindPropertyRelative("groups");
+            groupsProp = property.FindPropertyRelative("_groups");
             imagesProp = property.FindPropertyRelative("images");
             argumentsProp = property.FindPropertyRelative("arguments");
         }
