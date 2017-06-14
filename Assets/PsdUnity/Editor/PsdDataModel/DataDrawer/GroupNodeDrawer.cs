@@ -22,7 +22,7 @@ namespace PSDUnity
             controltypeProp = property.FindPropertyRelative("controltype");//
             rectProp = property.FindPropertyRelative("rect");//
             groupsProp = property.FindPropertyRelative("_groups");
-            imagesProp = property.FindPropertyRelative("images");
+            imagesProp = property.FindPropertyRelative("_images");
             argumentsProp = property.FindPropertyRelative("arguments");
         }
 

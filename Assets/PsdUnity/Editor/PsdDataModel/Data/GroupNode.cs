@@ -11,10 +11,9 @@ namespace PSDUnity
     {
         public string name;
         public ControlType controltype;
-        public List<ImgNode> images = new List<ImgNode>();
         public List<string> arguments = new List<string>();
         public Rect rect;
-
+        public abstract List<ImgNode> images { get; set; }
         public abstract List<GroupNode> groups { get; set; }
 
     }
@@ -22,10 +21,24 @@ namespace PSDUnity
     public class GroupNode1 : GroupNode
     {
         public List<GroupNode2> _groups;
+        public List<ImgNode> _images = new List<ImgNode>();
+        public override List<ImgNode> images
+        {
+            get
+            {
+                return _images;
+            }
+
+            set
+            {
+                _images = value;
+            }
+        }
         public override List<GroupNode> groups
         {
             get
             {
+                if (_groups == null) _groups = new List<GroupNode2>();
                 return _groups.ConvertAll<GroupNode>(x => x);
             }
 
@@ -39,10 +52,24 @@ namespace PSDUnity
     public class GroupNode2 : GroupNode
     {
         public List<GroupNode3> _groups;
+        public List<ImgNode> _images = new List<ImgNode>();
+        public override List<ImgNode> images
+        {
+            get
+            {
+                return _images;
+            }
+
+            set
+            {
+                _images = value;
+            }
+        }
         public override List<GroupNode> groups
         {
             get
             {
+                if (_groups == null) _groups = new List<GroupNode3>();
                 return _groups.ConvertAll<GroupNode>(x => x);
             }
 
@@ -56,10 +83,24 @@ namespace PSDUnity
     public class GroupNode3 : GroupNode
     {
         public List<GroupNode4> _groups;
+        public List<ImgNode> _images = new List<ImgNode>();
+        public override List<ImgNode> images
+        {
+            get
+            {
+                return _images;
+            }
+
+            set
+            {
+                _images = value;
+            }
+        }
         public override List<GroupNode> groups
         {
             get
             {
+                if (_groups == null) _groups = new List<GroupNode4>();
                 return _groups.ConvertAll<GroupNode>(x => x);
             }
 
@@ -73,10 +114,24 @@ namespace PSDUnity
     public class GroupNode4 : GroupNode
     {
         public List<GroupNode5> _groups;
+        public List<ImgNode> _images = new List<ImgNode>();
+        public override List<ImgNode> images
+        {
+            get
+            {
+                return _images;
+            }
+
+            set
+            {
+                _images = value;
+            }
+        }
         public override List<GroupNode> groups
         {
             get
             {
+                if (_groups == null) _groups = new List<GroupNode5>();
                 return _groups.ConvertAll<GroupNode>(x => x);
             }
 
@@ -90,10 +145,24 @@ namespace PSDUnity
     public class GroupNode5 : GroupNode
     {
         public List<GroupNode6> _groups;
+        public List<ImgNode> _images = new List<ImgNode>();
+        public override List<ImgNode> images
+        {
+            get
+            {
+                return _images;
+            }
+
+            set
+            {
+                _images = value;
+            }
+        }
         public override List<GroupNode> groups
         {
             get
             {
+                if (_groups == null) _groups = new List<GroupNode6>();
                 return _groups.ConvertAll<GroupNode>(x => x);
             }
 
@@ -107,10 +176,24 @@ namespace PSDUnity
     public class GroupNode6 : GroupNode
     {
         public List<GroupNode7> _groups;
+        public List<ImgNode> _images = new List<ImgNode>();
+        public override List<ImgNode> images
+        {
+            get
+            {
+                return _images;
+            }
+
+            set
+            {
+                _images = value;
+            }
+        }
         public override List<GroupNode> groups
         {
             get
             {
+                if (_groups == null) _groups = new List<GroupNode7>();
                 return _groups.ConvertAll<GroupNode>(x => x);
             }
 
@@ -123,6 +206,7 @@ namespace PSDUnity
     [System.Serializable]
     public class GroupNode7 : GroupNode
     {
+        public override List<ImgNode> images { get; set; }
         public override List<GroupNode> groups { get; set; }
     }
 }
