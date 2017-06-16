@@ -17,6 +17,7 @@ namespace PSDUnity
         SerializedProperty groupsProp;
         SerializedProperty forceSpriteProp;
         SerializedProperty atlasInfoProp;
+        SerializedProperty prefabObjProp;
         AtlasObject obj;
         readonly GUIContent pageSizeContent = new GUIContent("界面尺寸", EditorGUIUtility.IconContent("breadcrump mid act").image, "界面尺寸");
         private void OnEnable()
@@ -28,6 +29,7 @@ namespace PSDUnity
             groupsProp = serializedObject.FindProperty("groups");
             atlasInfoProp = serializedObject.FindProperty("atlasInfo");
             forceSpriteProp = serializedObject.FindProperty("forceSprite");
+            prefabObjProp = serializedObject.FindProperty("prefabObj");
         }
         protected override void OnHeaderGUI()
         {
@@ -45,8 +47,19 @@ namespace PSDUnity
             DrawPictureData();
             DrawPictureOption();
             DrawGroupNode();
+            DrawUICreateOption();
             DrawToolButtons();
             serializedObject.ApplyModifiedProperties();
+        }
+
+        private void DrawUICreateOption()
+        {
+            EditorGUILayout.PropertyField(prefabObjProp, true);
+            if (GUILayout.Button("创建规则"))
+            {
+                var obj = PrefabObject.CreateInstance<PrefabObject>();
+                ProjectWindowUtil.CreateAsset(obj, "prefabObj.asset");
+            }
         }
 
         private void DrawPictureData()

@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: cbcca10a838b62f4ca283e39d1f0fe4d
-timeCreated: 1497606952
-licenseType: Pro
+guid: a85e6810dbfff7146ba1b535dcff47c2
+timeCreated: 1497614069
+licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: "b_\u80CC\u666F\u6216@Size"
-    21300002: "b1_\u4E3B\u80CC\u666F"
+    21300000: "b1_\u4E3B\u80CC\u666F"
+    21300002: "b_\u80CC\u666F\u6216@Size"
     21300004: "b_\u80CC\u666F"
     21300006: "b_\u80CC\u666F"
     21300008: "h_\u624B\u67C4"
@@ -29,30 +29,6 @@ TextureImporter:
     21300044: "d_\u7981\u7528\u72B6\u6001"
     21300046: "n_\u666E\u901A\u72B6\u6001"
     21300048: "b_\u80CC\u666F"
-    21300050: "n_\u666E\u901A\u72B6\u6001"
-    21300052: "h_\u79FB\u5165\u72B6\u6001"
-    21300054: "n_\u666E\u901A\u72B6\u6001"
-    21300056: "h_\u79FB\u5165\u72B6\u6001"
-    21300058: "n_\u666E\u901A\u72B6\u6001"
-    21300060: "h_\u79FB\u5165\u72B6\u6001"
-    21300062: "n_\u666E\u901A\u72B6\u6001"
-    21300064: "h_\u79FB\u5165\u72B6\u6001"
-    21300066: "n_\u666E\u901A\u72B6\u6001"
-    21300068: "h_\u79FB\u5165\u72B6\u6001"
-    21300070: "n_\u666E\u901A\u72B6\u6001"
-    21300072: "h_\u79FB\u5165\u72B6\u6001"
-    21300074: "n_\u666E\u901A\u72B6\u6001"
-    21300076: "h_\u79FB\u5165\u72B6\u6001"
-    21300078: "n_\u666E\u901A\u72B6\u6001"
-    21300080: "h_\u79FB\u5165\u72B6\u6001"
-    21300082: "n_\u666E\u901A\u72B6\u6001"
-    21300084: "h_\u79FB\u5165\u72B6\u6001"
-    21300086: "n_\u666E\u901A\u72B6\u6001"
-    21300088: "h_\u79FB\u5165\u72B6\u6001"
-    21300090: "b_\u80CC\u666F"
-    21300092: "b_\u80CC\u666F"
-    21300094: "m_\u906E\u7F69"
-    21300096: "n_\u666E\u901A\u72B6\u6001"
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
