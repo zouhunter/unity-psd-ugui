@@ -11,10 +11,10 @@ namespace PSDUnity
 {
     public static class PsdExportUtility
     {
-        public static Rect GetRectFromLayer(PsdLayer psdLayer)
+        public static Rect GetRectFromLayer(Vector2 rootSize,PsdLayer psdLayer)
         {
-            var xMin = (psdLayer.Right + psdLayer.Left) * 0.5f;
-            var yMin = -(psdLayer.Top + psdLayer.Bottom) * 0.5f;
+            var xMin = (psdLayer.Right + psdLayer.Left - rootSize.x) * 0.5f;
+            var yMin = -(psdLayer.Top + psdLayer.Bottom - rootSize.y) * 0.5f;
             return new Rect(xMin,yMin, psdLayer.Width,psdLayer.Height);
         }
         public static GroupNode1 CreatePictures(PsdLayer rootLayer, PictureExportInfo pictureInfo, bool forceSprite = false)
@@ -22,10 +22,13 @@ namespace PSDUnity
             if (!rootLayer.IsGroup){
                 Debug.LogWarning("[rootLayer不是组]");
                 return null;
-            }
-            var groupnode = new GroupNode1(rootLayer.Name, GetRectFromLayer(rootLayer));// (rootLayer,rootLayer));
 
-            RetriveLayerToSwitchModle(rootLayer, groupnode,forceSprite);
+            }
+            var rootSize = new Vector2(rootLayer.Width, rootLayer.Height);
+
+            var groupnode = new GroupNode1(rootLayer.Name, GetRectFromLayer(rootSize, rootLayer));// (rootLayer,rootLayer));
+
+            RetriveLayerToSwitchModle(rootSize,rootLayer, groupnode,forceSprite);
 
             var pictureData = new List<ImgNode>();
             groupnode.GetImgNodes(pictureData);
@@ -171,10 +174,10 @@ namespace PSDUnity
 
         }
 
-        public static ImgNode AnalysisLayer(PsdLayer layer, bool forceSprite = false)
+        public static ImgNode AnalysisLayer(Vector2 rootSize,PsdLayer layer, bool forceSprite = false)
         {
             ImgNode data = null;
-            var rect = GetRectFromLayer( layer);
+            var rect = GetRectFromLayer(rootSize,layer);
             switch (layer.LayerType)
             {
                 case LayerType.Normal:
@@ -257,7 +260,7 @@ namespace PSDUnity
         /// <param name="layer"></param>
         /// <param name="group"></param>
         /// <param name="OnRetrive"></param>
-        public static void RetriveLayerToSwitchModle(PsdLayer layer, GroupNode group, bool forceSprite = false)
+        public static void RetriveLayerToSwitchModle(Vector2 rootSize,PsdLayer layer, GroupNode group, bool forceSprite = false)
         {
             if (!layer.IsGroup)
             {
@@ -269,17 +272,17 @@ namespace PSDUnity
                 {
                     if (child.IsGroup)
                     {
-                        GroupNode childNode = group.InsertChild(child.Name, GetRectFromLayer(child));
+                        GroupNode childNode = group.InsertChild(child.Name, GetRectFromLayer(rootSize, child));
 
                         if (childNode != null)
                         {
                             group.groups.Add(childNode);
-                            RetriveLayerToSwitchModle(child, childNode,forceSprite);
+                            RetriveLayerToSwitchModle(rootSize,child, childNode,forceSprite);
                         }
                     }
                    else
                     {
-                        ImgNode imgnode = AnalysisLayer(child, forceSprite);
+                        ImgNode imgnode = AnalysisLayer(rootSize,child, forceSprite);
                         if (imgnode != null)
                         {
                             group.images.Add(imgnode);
