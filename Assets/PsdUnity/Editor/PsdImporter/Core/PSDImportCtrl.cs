@@ -152,7 +152,7 @@ namespace PSDUnity
             PSDImportUtility.canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
             UnityEngine.UI.CanvasScaler scaler = PSDImportUtility.canvas.GetComponent<UnityEngine.UI.CanvasScaler>();
-            scaler.referenceResolution = new Vector2(psdUI.psdSize.x, psdUI.psdSize.y);
+            scaler.referenceResolution = new Vector2(psdUI.uiSize.x, psdUI.uiSize.y);
         }
 
         private void LoadLayers()
@@ -185,7 +185,7 @@ namespace PSDUnity
         {
             UGUINode empty = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_EMPTY,PSDImportUtility.baseFilename, PSDImportUtility.uinode);
             RectTransform rt = empty.InitComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(psdUI.psdSize.x, psdUI.psdSize.y);
+            rt.sizeDelta = new Vector2(psdUI.uiSize.x, psdUI.uiSize.y);
             for (int layerIndex = 0; layerIndex < psdUI.groups.Count; layerIndex++)
             {
                 DrawLayer(psdUI.groups[layerIndex] as GroupNode, empty);

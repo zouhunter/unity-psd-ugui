@@ -209,6 +209,14 @@ namespace Ntreev.Library.Psd
             get { return this.blendingRanges; }
         }
 
+        public TextInfo TextInfo
+        {
+            get
+            {
+                return this.textinfo;
+            }
+        }
+
         public IProperties Resources
         {
             get { return this.resources; }

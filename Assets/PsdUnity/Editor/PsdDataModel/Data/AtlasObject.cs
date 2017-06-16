@@ -12,8 +12,9 @@ namespace PSDUnity
         public string psdFile;
         public string exportPath;
         public bool maskAsColor;
-        public Vector2 psdSize;
-        public List<PictureData> pictureDatas = new List<PictureData>();
+        public Vector2 uiSize;
+        public bool forceSprite;
+        public PictureExportInfo atlasInfo;
         public List<GroupNode1> groups = new List<GroupNode1>();
     }
 }

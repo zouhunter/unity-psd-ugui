@@ -9,9 +9,10 @@ namespace PSDUnity
 {
     public enum ImgType:int
     {
-        Label = 0,
+        Label=0,
         Image = 1,
         AtlasImage = 2,
-        Texture = 3
+        Texture = 3,
+        Color = 4
     }
 }

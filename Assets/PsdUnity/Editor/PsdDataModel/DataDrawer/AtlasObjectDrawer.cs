@@ -13,24 +13,27 @@ namespace PSDUnity
     {
         SerializedProperty scriptProp;
         SerializedProperty psdFileProp;
-        SerializedProperty psdSizeProp;
+        SerializedProperty uiSizeProp;
         SerializedProperty groupsProp;
-        SerializedProperty pictureDatasProp;
-        //AtlasObject obj;
+        SerializedProperty forceSpriteProp;
+        SerializedProperty atlasInfoProp;
+        AtlasObject obj;
         readonly GUIContent pageSizeContent = new GUIContent("界面尺寸", EditorGUIUtility.IconContent("breadcrump mid act").image, "界面尺寸");
         private void OnEnable()
         {
+            obj = target as AtlasObject;
             scriptProp = serializedObject.FindProperty("m_Script");
             psdFileProp = serializedObject.FindProperty("psdFile");
-            psdSizeProp = serializedObject.FindProperty("psdSize");
-            //obj = target as AtlasObject;
+            uiSizeProp = serializedObject.FindProperty("uiSize");
             groupsProp = serializedObject.FindProperty("groups");
-            pictureDatasProp = serializedObject.FindProperty("pictureDatas");
+            atlasInfoProp = serializedObject.FindProperty("atlasInfo");
+            forceSpriteProp = serializedObject.FindProperty("forceSprite");
         }
         protected override void OnHeaderGUI()
         {
             base.OnHeaderGUI();
             EditorGUI.BeginDisabledGroup(true);
+            EditorGUILayout.ObjectField(obj, typeof(AtlasObject), false);
             EditorGUILayout.PropertyField(scriptProp);
             EditorGUI.EndDisabledGroup();
         }
@@ -39,21 +42,26 @@ namespace PSDUnity
         {
             serializedObject.Update();
             DrawPageSize();
-            DrawPictureList();
+            DrawPictureData();
+            DrawPictureOption();
             DrawGroupNode();
             DrawToolButtons();
             serializedObject.ApplyModifiedProperties();
         }
 
+        private void DrawPictureData()
+        {
+            EditorGUILayout.PropertyField(atlasInfoProp,true);
+        }
+
         private void DrawPageSize()
         {
             psdFileProp.stringValue = EditorGUILayout.TextField("PSD路径：",psdFileProp.stringValue);
-            psdSizeProp.vector2Value = EditorGUILayout.Vector2Field(pageSizeContent, psdSizeProp.vector2Value);
+            uiSizeProp.vector2Value = EditorGUILayout.Vector2Field(pageSizeContent, uiSizeProp.vector2Value);
         }
-        private void DrawPictureList()
+        private void DrawPictureOption()
         {
-            ReorderableListGUI.Title("图片列表");
-            ReorderableListGUI.ListField(pictureDatasProp);
+            EditorGUILayout.PropertyField(forceSpriteProp);
         }
         private void DrawGroupNode()
         {

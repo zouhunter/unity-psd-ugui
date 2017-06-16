@@ -26,7 +26,7 @@ namespace PSDUnity
             {
                 ImgNode image = layer.images[i];
 
-                if (image.sprite.name.ToLower().StartsWith("b_"))
+                if (image.clampname.ToLower().StartsWith("b_"))
                 {
                     havebg = true;
                     PSDImportUtility.SetPictureOrLoadColor(image, panel);

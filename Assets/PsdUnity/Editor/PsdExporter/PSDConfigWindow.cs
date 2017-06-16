@@ -209,14 +209,9 @@ public class PSDConfigWindow : EditorWindow
 
     private void DrawTools()
     {
-        if (GUILayout.Button("生成Atlas"))
+        if (GUILayout.Button("生成图片"))
         {
-            for (int i = 0; i < psd.Childs.Length; i++)
-            {
-                var item = psd.Childs[i];
-                atlasObj.psdSize = PsdExportUtility.CreateAtlas(item as PsdLayer, 1, 4096, string.Format("Assets/{0}.png", item.Name), atlasObj.pictureDatas);
-            }
-            EditorUtility.SetDirty(atlasObj);
+            SwitchLayerToTexture();
         }
     }
 
@@ -246,6 +241,23 @@ public class PSDConfigWindow : EditorWindow
         }
 
         EditorGUI.LabelField(rt, data.content);
+    }
+
+    private void SwitchLayerToTexture()
+    {
+        atlasObj.groups.Clear();
+        for (int i = 0; i < psd.Childs.Length; i++)
+        {
+            var item = psd.Childs[i];
+            var groupData = PsdExportUtility.CreatePictures(item as PsdLayer, atlasObj.atlasInfo,atlasObj.forceSprite);
+            if (groupData != null)
+            {
+                PsdExportUtility.ChargeTextures(atlasObj.atlasInfo, groupData);
+                atlasObj.groups.Add(groupData);
+            }
+       
+        }
+        EditorUtility.SetDirty(atlasObj);
     }
 
     private void OpenPsdDocument()
