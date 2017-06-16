@@ -20,6 +20,7 @@ namespace PSDUnity
         {
             UGUINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_BUTTON, layer.name, parent);
             UnityEngine.UI.Button button = node.InitComponent<UnityEngine.UI.Button>();
+            PSDImportUtility.SetRectTransform(layer, button.GetComponent<RectTransform>(),parent.transform as RectTransform);
 
             if (layer.images != null)
             {
@@ -48,37 +49,31 @@ namespace PSDUnity
         }
         private void SetSpriteSwipe(ImgNode image,UnityEngine.UI.Button button)
         {
-            string lowerName = image.sprite.name.ToLower();
-            string assetPath = PSDImportUtility.baseDirectory + image.sprite + PSDImporterConst.PNG_SUFFIX;
-            Sprite sprite = AssetDatabase.LoadAssetAtPath(assetPath, typeof(Sprite)) as Sprite;
+            string lowerName = image.clampname.ToLower();
 
             if (lowerName.StartsWith("n_"))
             {
-                button.image.sprite = sprite;
-
-                RectTransform rectTransform = button.GetComponent<RectTransform>();
-                rectTransform.sizeDelta = new Vector2(image.rect.width, image.rect.height);
-                rectTransform.anchoredPosition = new Vector2(image.rect.x, image.rect.y);
+                button.image.sprite = image.sprite;
             }
             else if (lowerName.StartsWith("p_"))
             {
                 button.transition = UnityEngine.UI.Selectable.Transition.SpriteSwap;
                 UnityEngine.UI.SpriteState state = button.spriteState;
-                state.pressedSprite = sprite;
+                state.pressedSprite = image.sprite;
                 button.spriteState = state;
             }
             else if (lowerName.StartsWith("d_"))
             {
                 button.transition = UnityEngine.UI.Selectable.Transition.SpriteSwap;
                 UnityEngine.UI.SpriteState state = button.spriteState;
-                state.disabledSprite = sprite;
+                state.disabledSprite = image.sprite;
                 button.spriteState = state;
             }
             else if (lowerName.StartsWith("h_"))
             {
                 button.transition = UnityEngine.UI.Selectable.Transition.SpriteSwap;
                 UnityEngine.UI.SpriteState state = button.spriteState;
-                state.highlightedSprite = sprite;
+                state.highlightedSprite = image.sprite;
                 button.spriteState = state;
             }
         }

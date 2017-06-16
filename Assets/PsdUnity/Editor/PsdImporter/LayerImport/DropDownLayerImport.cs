@@ -34,7 +34,7 @@ namespace PSDUnity
             for (int i = 0; i < layer.images.Count; i++)
             {
                 ImgNode image = layer.images[i];
-                string lowerName = image.sprite.name.ToLower();
+                string lowerName = image.clampname.ToLower();
                 if (lowerName.StartsWith("b1_"))
                 {
                     PSDImportUtility.SetPictureOrLoadColor(image, dropdown.image);

@@ -23,7 +23,7 @@ namespace PSDUnity
                 for (int imageIndex = 0; imageIndex < layer.images.Count; imageIndex++)
                 {
                     ImgNode image = layer.images[imageIndex];
-                    string lowerName = image.sprite.name.ToLower();
+                    string lowerName = image.clampname.ToLower();
                     if (lowerName.StartsWith("b_"))
                     {
                         PSDImportUtility.SetPictureOrLoadColor(image, toggle.targetGraphic);
