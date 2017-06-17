@@ -8,8 +8,14 @@ namespace PSDUnity
     {
         public string picturename = "";
         public string clampname = "";
-        public int id;
-        public string AddressedName { get { return clampname + id; } }
+        public int hashImage = 0;
+        public string TextureName
+        {
+            get
+            {
+                return clampname + hashImage;
+            }
+        }
         public ImgType type;
         public ImgSource source;
         public Rect rect;
@@ -21,7 +27,7 @@ namespace PSDUnity
         public Color color = UnityEngine.Color.white;
 
         public ImgNode() { }
-        public ImgNode(int id,string name, Rect rect, Texture2D texture) : this(id,name, rect)
+        public ImgNode(string name, Rect rect, Texture2D texture) : this(name, rect)
         {
             //利用name 解析type和source
             type = ImgType.AtlasImage;
@@ -31,14 +37,18 @@ namespace PSDUnity
             this.rect = rect;
             this.texture = texture;
             //添加后缀
-            texture.name = AddressedName;
+            if (texture != null)
+            {
+                hashImage = rect.GetHashCode();
+                texture.name = TextureName;
+            }
         }
-        public ImgNode(int id,string name, Rect rect, Color color) : this(id, name, rect)
+        public ImgNode(string name, Rect rect, Color color) : this(name, rect)
         {
             type = ImgType.Color;
             this.color = color;
         }
-        public ImgNode(int id, string name, Rect rect, string font, int fontSize, string text, Color color):this(id, name,rect)
+        public ImgNode(string name, Rect rect, string font, int fontSize, string text, Color color) : this(name, rect)
         {
             type = ImgType.Label;
             this.font = font;
@@ -47,12 +57,11 @@ namespace PSDUnity
             this.color = color;
         }
 
-        private ImgNode(int id,string name,Rect rect)
+        private ImgNode(string name, Rect rect)
         {
             this.picturename = name;
             this.clampname = ClampName(name);
             this.rect = rect;
-            this.id = id;
         }
 
         /// <summary>

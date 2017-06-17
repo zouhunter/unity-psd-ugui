@@ -25,12 +25,12 @@ namespace PSDUnity
         public static int GetLayerID(PsdLayer layer)
         {
             if (layer.Parent == null) Debug.Log(layer.Name + "parent = null");
-            var id = layer.Depth;
+            var id = 0;
             var idAppend = 1;
             while (layer.Parent != null)
             {
-                idAppend *= 10;
                 id += idAppend * (Array.FindIndex(layer.Parent.Childs,x=>x== layer) + 1);
+                idAppend *= 10;
                 layer = layer.Parent;
             }
             return id;
@@ -81,13 +81,13 @@ namespace PSDUnity
                 switch (item.type)
                 {
                     case ImgType.Image:
-                        item.sprite = Array.Find(fileSingleSprites, x => x.name == item.AddressedName);
+                        item.sprite = Array.Find(fileSingleSprites, x => x.name == item.TextureName);
                         break;
                     case ImgType.AtlasImage:
-                        item.sprite = Array.Find(fileSprites, x => x.name == item.AddressedName);
+                        item.sprite = Array.Find(fileSprites, x => x.name == item.TextureName);
                         break;
                     case ImgType.Texture:
-                        item.texture = Array.Find(fileTextures, x => x.name == item.AddressedName);
+                        item.texture = Array.Find(fileTextures, x => x.name == item.TextureName);
                         break;
                     default:
                         break;
@@ -201,21 +201,21 @@ namespace PSDUnity
             switch (layer.LayerType)
             {
                 case LayerType.Normal:
-                    data = new ImgNode(id, layer.Name, rect, CreateTexture(layer));
+                    data = new ImgNode(layer.Name, rect, CreateTexture(layer));
                     break;
                 case LayerType.SolidImage:
                     if (forceSprite)
                     {
-                        data = new ImgNode(id, layer.Name, rect, CreateTexture(layer));
+                        data = new ImgNode(layer.Name, rect, CreateTexture(layer));
                     }
                     else
                     {
-                        data = new ImgNode(id, layer.Name, rect, GetLayerColor(layer));
+                        data = new ImgNode(layer.Name, rect, GetLayerColor(layer));
                     }
                     break;
                 case LayerType.Text:
                     var textInfo = layer.Records.TextInfo;
-                    data = new ImgNode(id, layer.Name, rect, textInfo.fontName, textInfo.fontSize, textInfo.text, textInfo.color);
+                    data = new ImgNode(layer.Name, rect, textInfo.fontName, textInfo.fontSize, textInfo.text, textInfo.color);
                     break;
                 case LayerType.Group:
                     break;
