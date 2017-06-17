@@ -11,7 +11,9 @@ namespace PSDUnity
     {
         public string name;
         public ControlType controltype;
-        public List<string> arguments = new List<string>();
+        public Direction direction;
+        public int constraintCount;
+        public float spacing;
         public Rect rect;
         public abstract List<ImgNode> images { get; set; }
         public abstract List<GroupNode> groups { get; set; }

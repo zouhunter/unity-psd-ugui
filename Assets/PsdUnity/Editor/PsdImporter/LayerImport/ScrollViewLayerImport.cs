@@ -60,28 +60,24 @@ namespace PSDUnity
 
             PSDImportUtility.SetRectTransform(layer, childNode.InitComponent<RectTransform>(), scrollRect.GetComponent<RectTransform>());
 
-            if (layer.arguments != null)
+            switch (layer.direction)
             {
-                string type = layer.arguments[0].ToUpper();
-                switch (type)
-                {
-                    case "V":
-                        scrollRect.vertical = true;
-                        scrollRect.horizontal = false;
-                        break;
-                    case "H":
-                        scrollRect.vertical = false;
-                        scrollRect.horizontal = true;
-                        break;
-                    case "VH":
-                    case "HV":
-                        scrollRect.vertical = true;
-                        scrollRect.horizontal = true;
-                        break;
-                    default:
-                        break;
-                }
+                case Direction.Horizontal:
+                    scrollRect.vertical = true;
+                    scrollRect.horizontal = false;
+                    break;
+                case Direction.Vertical:
+                    scrollRect.vertical = false;
+                    scrollRect.horizontal = true;
+                    break;
+                case Direction.Horizontal | Direction.Vertical:
+                    scrollRect.vertical = true;
+                    scrollRect.horizontal = true;
+                    break;
+                default:
+                    break;
             }
+
 
             if (layer.groups != null)
             {

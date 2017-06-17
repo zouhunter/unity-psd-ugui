@@ -13,24 +13,24 @@ namespace PSDUnity
         {
             UGUINode node = PSDImportUtility.InstantiateItem(PrefabName.PREFAB_SLIDER,layer.name,parent); //GameObject.Instantiate(temp) as UnityEngine.UI.Slider;
             UnityEngine.UI.Slider slider = node.InitComponent<UnityEngine.UI.Slider>();
-            string type = layer.arguments[0].ToUpper();
-            switch (type)
+            switch (layer.direction)
             {
-                case "R":
-                    slider.direction = Slider.Direction.RightToLeft;
-                    break;
-                case "L":
+                case Direction.LeftToRight:
                     slider.direction = Slider.Direction.LeftToRight;
                     break;
-                case "T":
+                case Direction.BottomToTop:
+                    slider.direction = Slider.Direction.BottomToTop;
+                    break;
+                case Direction.TopToBottom:
                     slider.direction = Slider.Direction.TopToBottom;
                     break;
-                case "B":
-                    slider.direction = Slider.Direction.BottomToTop;
+                case Direction.RightToLeft:
+                    slider.direction = Slider.Direction.RightToLeft;
                     break;
                 default:
                     break;
             }
+            
             bool haveHandle = false;
             for (int i = 0; i < layer.images.Count; i++)
             {

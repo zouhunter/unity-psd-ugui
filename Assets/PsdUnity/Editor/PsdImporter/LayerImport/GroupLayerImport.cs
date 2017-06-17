@@ -16,22 +16,20 @@ namespace PSDUnity
         {
             UGUINode node = PSDImportUtility.InstantiateItem(PrefabName.PREFAB_GROUP, layer.name, parent);
             UnityEngine.UI.LayoutGroup group = null;
-            string type = layer.arguments[0].ToLower();
-            float span = 0;
-            float.TryParse(layer.arguments[1], out span);
-            switch (type)
+            switch (layer.direction)
             {
-                case "v":
+                case Direction.Horizontal:
                     group = node.InitComponent<UnityEngine.UI.VerticalLayoutGroup>();
                     group.childAlignment = TextAnchor.UpperLeft;
-                    ((UnityEngine.UI.VerticalLayoutGroup)group).spacing = span;
                     break;
-                case "h":
+                case Direction.Vertical:
                     group = node.InitComponent<UnityEngine.UI.HorizontalLayoutGroup>();
                     group.childAlignment = TextAnchor.UpperLeft;
-                    ((UnityEngine.UI.HorizontalLayoutGroup)group).spacing = span;
+                    break;
+                default:
                     break;
             }
+            ((UnityEngine.UI.VerticalLayoutGroup)group).spacing = layer.spacing;
 
             PSDImportUtility.SetRectTransform(layer, group.GetComponent<RectTransform>(),parent.InitComponent<RectTransform>());
 

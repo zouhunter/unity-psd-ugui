@@ -19,20 +19,19 @@ namespace PSDUnity
             UGUINode node = PSDImportUtility.InstantiateItem(PrefabName.PREFAB_SCROLLBAR, layer.name, parent);
             Scrollbar scrollBar = node.InitComponent<Scrollbar>();
 
-            string type = layer.arguments[0].ToUpper();
-            switch (type)
+            switch (layer.direction)
             {
-                case "R":
-                    scrollBar.direction = Scrollbar.Direction.RightToLeft;
-                    break;
-                case "L":
+                case Direction.LeftToRight:
                     scrollBar.direction = Scrollbar.Direction.LeftToRight;
                     break;
-                case "T":
+                case Direction.BottomToTop:
+                    scrollBar.direction = Scrollbar.Direction.BottomToTop;
+                    break;
+                case Direction.TopToBottom:
                     scrollBar.direction = Scrollbar.Direction.TopToBottom;
                     break;
-                case "B":
-                    scrollBar.direction = Scrollbar.Direction.BottomToTop;
+                case Direction.RightToLeft:
+                    scrollBar.direction = Scrollbar.Direction.RightToLeft;
                     break;
                 default:
                     break;

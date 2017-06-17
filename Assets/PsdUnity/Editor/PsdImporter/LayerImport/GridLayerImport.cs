@@ -24,14 +24,19 @@ namespace PSDUnity
             gridLayoutGroup.padding = new RectOffset(1,1,1,1);
             gridLayoutGroup.cellSize = new Vector2(layer.rect.width, layer.rect.height);
 
-            if (layer.arguments != null && layer.arguments.Count > 1 )
+            switch (layer.direction)
             {
-                string rc = layer.arguments[0];
-                gridLayoutGroup.constraint = rc.ToLower() == "c" ? GridLayoutGroup.Constraint.FixedColumnCount : (rc.ToLower() == "r"? GridLayoutGroup.Constraint.FixedRowCount: GridLayoutGroup.Constraint.Flexible);
-                int count = int.Parse(layer.arguments[1]);
-                gridLayoutGroup.constraintCount = count;
-              
+                case Direction.Horizontal:
+                    gridLayoutGroup.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+                    break;
+                case Direction.Vertical:
+                    gridLayoutGroup.constraint = GridLayoutGroup.Constraint.FixedRowCount;
+                    break;
+                default:
+                    gridLayoutGroup.constraint = GridLayoutGroup.Constraint.Flexible;
+                    break;
             }
+            gridLayoutGroup.constraintCount = layer.constraintCount;
 
             ctrl.DrawImages(layer.images.ToArray(), node);
             ctrl.DrawLayers(layer.groups.ToArray() as GroupNode[], node);
