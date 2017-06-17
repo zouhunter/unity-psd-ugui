@@ -35,8 +35,7 @@ namespace PSDUnity
         public PSDImportCtrl(AtlasObject psdUI)
         {
             this.psdUI = psdUI;
-            //InitDataAndPath(xmlFilePath);
-            InitCanvas();
+            PSDImportUtility.InitEnviroment(psdUI);
             LoadLayers();
             MoveLayers();
             InitDrawers();
@@ -128,38 +127,12 @@ namespace PSDUnity
             return node;
         }
 
-        //private void InitDataAndPath(string xmlFilePath)
-        //{
-        //    psdUI = (PSDUI)PSDImportUtility.DeserializeXml(xmlFilePath, typeof(PSDUI));
-        //    Debug.Log(psdUI.psdSize.x + "=====psdSize======" + psdUI.psdSize.y);
-        //    if (psdUI == null)
-        //    {
-        //        Debug.Log("The file " + xmlFilePath + " wasn't able to generate a PSDUI.");
-        //        return;
-        //    }
-
-        //    if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo() == false) { return; }
-
-        //    PSDImportUtility.baseFilename = Path.GetFileNameWithoutExtension(xmlFilePath);
-        //    PSDImportUtility.baseDirectory = Path.GetDirectoryName(xmlFilePath) + "/";
-        //}
-
-        private void InitCanvas()
-        {
-            //EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects);//  EditorApplication.NewScene ();
-            Canvas temp = Resources.Load(PSDImporterConst.PREFAB_PATH_CANVAS, typeof(Canvas)) as Canvas;
-            PSDImportUtility.canvas = GameObject.Instantiate(temp) as Canvas;
-            PSDImportUtility.canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-
-            UnityEngine.UI.CanvasScaler scaler = PSDImportUtility.canvas.GetComponent<UnityEngine.UI.CanvasScaler>();
-            scaler.referenceResolution = new Vector2(psdUI.uiSize.x, psdUI.uiSize.y);
-        }
 
         private void LoadLayers()
         {
             for (int layerIndex = 0; layerIndex < psdUI.groups.Count; layerIndex++)
             {
-                ImportLayer(psdUI.groups[layerIndex] as GroupNode, PSDImportUtility.baseDirectory);
+                ImportLayer(psdUI.groups[layerIndex] as GroupNode, psdUI.exportPath);
             }
         }
 
@@ -183,7 +156,7 @@ namespace PSDUnity
 
         public void BeginDrawUILayers()
         {
-            UGUINode empty = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_EMPTY,PSDImportUtility.baseFilename, PSDImportUtility.uinode);
+            UGUINode empty = PSDImportUtility.InstantiateItem(PrefabName.PREFAB_EMPTY,psdUI.exportPath, PSDImportUtility.uinode);
             RectTransform rt = empty.InitComponent<RectTransform>();
             rt.sizeDelta = new Vector2(psdUI.uiSize.x, psdUI.uiSize.y);
             for (int layerIndex = 0; layerIndex < psdUI.groups.Count; layerIndex++)
@@ -228,8 +201,8 @@ namespace PSDUnity
             for (int layerIndex = 0; layerIndex < psdUI.groups.Count; layerIndex++)
             {
                 //如果文件名有Globle，将强制全部移动到指定文件夹
-                PSDImportUtility.forceMove = PSDImportUtility.baseFilename.Contains("Globle");
-                MoveAsset(psdUI.groups[layerIndex] as GroupNode, PSDImportUtility.baseDirectory);
+                psdUI.forceMove = psdUI.exportPath.Contains("Globle");
+                MoveAsset(psdUI.groups[layerIndex] as GroupNode, psdUI.exportPath);
             }
 
             AssetDatabase.Refresh();
@@ -249,7 +222,7 @@ namespace PSDUnity
                     ImgNode image = layer.images[imageIndex];
                     if (image.type != ImgType.Label)
                     {
-                        string texturePathName = PSDImportUtility.baseDirectory + layer.images[imageIndex].sprite + PSDImporterConst.PNG_SUFFIX;
+                        string texturePathName = psdUI.exportPath + layer.images[imageIndex].sprite + psdUI.fileExt;
                         TextureImporter textureImporter = AssetImporter.GetAtPath(texturePathName) as TextureImporter;
 
                         if (textureImporter == null) {
@@ -266,7 +239,7 @@ namespace PSDUnity
                             // modify the importer settings
                             textureImporter.textureType = TextureImporterType.Sprite;
                             textureImporter.spriteImportMode = SpriteImportMode.Single;
-                            textureImporter.spritePackingTag = PSDImportUtility.baseFilename;
+                            textureImporter.spritePackingTag = psdUI.name;
 
                             if (image.type == ImgType.AtlasImage) {
                                 textureImporter.spriteBorder = new Vector4(3, 3, 3, 3);   // Set Default Slice type  UnityEngine.UI.Image's border to Vector4 (3, 3, 3, 3)
@@ -283,7 +256,7 @@ namespace PSDUnity
             {
                 for (int layerIndex = 0; layerIndex < layer.groups.Count; layerIndex++)
                 {
-                    ImportLayer(layer.groups[layerIndex] as GroupNode, PSDImportUtility.baseDirectory);
+                    ImportLayer(layer.groups[layerIndex] as GroupNode, psdUI.exportPath);
                 }
             }
         }
@@ -295,7 +268,7 @@ namespace PSDUnity
         {
             if (layer.images != null)
             {
-                string newPath = PSDImporterConst.Globle_BASE_FOLDER;
+                string newPath = psdUI.globalPath;
 
                 if (!Directory.Exists(newPath))
                 {
@@ -310,10 +283,10 @@ namespace PSDUnity
                     // we need to fixup all images that were exported from PS
                     ImgNode image = layer.images[imageIndex];
 
-                    if (image.source == ImgSource.Globle || PSDImportUtility.forceMove)
+                    if (image.source == ImgSource.Globle || psdUI.forceMove)
                     {
-                        string texturePathName = PSDImportUtility.baseDirectory + image.sprite + PSDImporterConst.PNG_SUFFIX;
-                        string targetPathName = newPath + image.sprite + PSDImporterConst.PNG_SUFFIX;
+                        string texturePathName = psdUI.exportPath + image.sprite + psdUI.fileExt;
+                        string targetPathName = newPath + image.sprite + psdUI.fileExt;
 
                         Debug.Log(texturePathName);
                         Debug.Log(targetPathName);
@@ -327,7 +300,7 @@ namespace PSDUnity
             {
                 for (int layerIndex = 0; layerIndex < layer.groups.Count; layerIndex++)
                 {
-                    MoveAsset(layer.groups[layerIndex] as GroupNode, PSDImportUtility.baseDirectory);
+                    MoveAsset(layer.groups[layerIndex] as GroupNode, psdUI.exportPath);
                 }
             }
         }

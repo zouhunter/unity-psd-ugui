@@ -63,18 +63,19 @@ namespace PSDUnity
                 switch (item.type)
                 {
                     case ImgType.Image:
-                        item.sprite = Array.Find(fileSingleSprites, x => x.name == item.picturename);
+                        item.sprite = Array.Find(fileSingleSprites, x => x.name == item.AddressedName);
                         break;
                     case ImgType.AtlasImage:
-                        item.sprite = Array.Find(fileSprites, x => x.name == item.picturename);
+                        item.sprite = Array.Find(fileSprites, x => x.name == item.AddressedName);
                         break;
                     case ImgType.Texture:
-                        item.texture = Array.Find(fileTextures, x => x.name == item.picturename);
+                        item.texture = Array.Find(fileTextures, x => x.name == item.AddressedName);
                         break;
                     default:
                         break;
                 }
             }
+           
         }
         /// <summary>
         /// 将一组图片保存为atlas
@@ -235,7 +236,6 @@ namespace PSDUnity
 
             texture.SetPixels32(pixels);
             texture.Apply();
-            texture.name = layer.Name;
             return texture;
         }
 

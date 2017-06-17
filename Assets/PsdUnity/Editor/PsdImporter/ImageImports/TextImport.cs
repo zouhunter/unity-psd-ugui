@@ -11,7 +11,7 @@ namespace PSDUnity
     {
         public UGUINode DrawImage(ImgNode image, UGUINode parent)
         {
-            UGUINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_TEXT, image.picturename, parent);
+            UGUINode node = PSDImportUtility.InstantiateItem(PrefabName.PREFAB_TEXT, image.picturename, parent);
             UnityEngine.UI.Text myText = node.InitComponent<Text>();
             PSDImportUtility.SetPictureOrLoadColor(image, myText);
             RectTransform rectTransform = myText.GetComponent<RectTransform>();

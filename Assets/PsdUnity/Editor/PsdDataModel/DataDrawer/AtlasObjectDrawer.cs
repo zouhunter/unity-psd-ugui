@@ -85,8 +85,6 @@ namespace PSDUnity
         {
             if (GUILayout.Button("导出到UI"))
             {
-                PSDImportUtility.baseFilename = target.name;
-                PSDImportUtility.baseDirectory = Application.dataPath;
                 PSDImportCtrl import = new PSDImportCtrl((AtlasObject)target);
                 import.BeginDrawUILayers();
                 import.BeginSetUIParents(PSDImportUtility.uinode);

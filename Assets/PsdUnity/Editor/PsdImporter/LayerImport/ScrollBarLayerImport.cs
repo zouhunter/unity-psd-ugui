@@ -16,7 +16,7 @@ namespace PSDUnity
 
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_SCROLLBAR, layer.name, parent);
+            UGUINode node = PSDImportUtility.InstantiateItem(PrefabName.PREFAB_SCROLLBAR, layer.name, parent);
             Scrollbar scrollBar = node.InitComponent<Scrollbar>();
 
             string type = layer.arguments[0].ToUpper();

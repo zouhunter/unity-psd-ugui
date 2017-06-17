@@ -11,11 +11,14 @@ namespace PSDUnity
     {
         public string psdFile;
         public string exportPath;
+        public string globalPath = "Assets/Common/Images";
         public bool maskAsColor;
+        public string fileExt = ".png";
         public Vector2 uiSize;
         public bool forceSprite;
         public PictureExportInfo atlasInfo;
         public PrefabObject prefabObj;
         public List<GroupNode1> groups = new List<GroupNode1>();
+        internal bool forceMove;
     }
 }

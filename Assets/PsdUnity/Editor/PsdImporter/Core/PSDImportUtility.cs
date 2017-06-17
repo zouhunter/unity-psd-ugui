@@ -10,67 +10,30 @@ namespace PSDUnity
 {
     public static class PSDImportUtility
     {
-        public static string baseFilename;
-        public static string baseDirectory;
-        public static bool forceMove;
-        public static Canvas canvas;
-        public static UGUINode uinode;
-        //public static readonly Dictionary<Transform, Transform> ParentDic = new Dictionary<Transform, Transform>();
+        public static AtlasObject atlasObj { get;private set; }
+        public static Canvas canvas { get;private set; }
+        public static UGUINode uinode { get; set; }
 
-        public static object DeserializeXml(string filePath, System.Type type)
+        public static void InitEnviroment(AtlasObject arg)
         {
-            object instance = null;
-            StreamReader xmlFile = File.OpenText(filePath);
-            if (xmlFile != null)
-            {
-                byte[] bytes = File.ReadAllBytes(filePath);
-                Encoding encoding = Encoding.GetEncoding("gb2312");
-                string xml = encoding.GetString(bytes);
-                if ((xml != null) && (xml.ToString() != ""))
-                {
-                    byte[] byteArray = Encoding.UTF8.GetBytes(xml);
-                    XmlSerializer xs = new XmlSerializer(type);
-                    MemoryStream memoryStream = new MemoryStream(byteArray);
-                    XmlTextWriter xmlTextWriter = new XmlTextWriter(memoryStream, System.Text.Encoding.UTF8);
-                    if (xmlTextWriter != null)
-                    {
-                        instance = xs.Deserialize(memoryStream);
-                    }
-                }
-            }
-            xmlFile.Close();
-            return instance;
+            atlasObj = arg;
+            var canvasPfb = atlasObj.prefabObj.prefabs.Find(x => x.prefabName == PrefabName.PREFAB_CANVAS).prefab;
+            canvas =  GameObject.Instantiate(canvasPfb).GetComponent<Canvas>();
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+
+            UnityEngine.UI.CanvasScaler scaler = PSDImportUtility.canvas.GetComponent<UnityEngine.UI.CanvasScaler>();
+            scaler.referenceResolution = new Vector2(atlasObj.uiSize.x, atlasObj.uiSize.y);
         }
 
-        public static UGUINode InstantiateItem(string resourcePatn, string name, UGUINode parent)
+        public static UGUINode InstantiateItem(PrefabName prefabname, string name, UGUINode parent)
         {
-            GameObject temp = Resources.Load(resourcePatn, typeof(GameObject)) as GameObject;
-            GameObject item = GameObject.Instantiate(temp) as GameObject;
+            GameObject prefab = atlasObj.prefabObj.prefabs.Find(x=>x.prefabName == prefabname).prefab;
+            GameObject item = GameObject.Instantiate(prefab) as GameObject;
             item.name = name;
             item.transform.SetParent(canvas.transform, false);
             UGUINode node = new UGUINode(item.transform, parent);
             return node;
         }
-
-        ///// <summary>
-        ///// 生成图片路径
-        ///// </summary>
-        ///// <param name="image"></param>
-        ///// <returns></returns>
-        //static string GetPicturePath(Image image)
-        //{
-        //    string assetPath = "";
-        //    if (PSDImportUtility.forceMove || image.imageSource == ImageSource.Globle)
-        //    {
-        //        assetPath = PSDImporterConst.Globle_BASE_FOLDER + image.texture.Replace(".", "/") + PSDImporterConst.PNG_SUFFIX;
-        //        Debug.Log("==  CommonImagePath  ====" + assetPath);
-        //    }
-        //    else if (image.imageSource == ImageSource.Normal || image.imageSource == ImageSource.Custom)
-        //    {
-        //        assetPath = PSDImportUtility.baseDirectory + image.texture + PSDImporterConst.PNG_SUFFIX;
-        //    }
-        //    return assetPath;
-        //}
 
         public static void SetPictureOrLoadColor(ImgNode image, UnityEngine.UI.Graphic graph)
         {

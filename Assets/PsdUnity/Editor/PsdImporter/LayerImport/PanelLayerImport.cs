@@ -17,7 +17,7 @@ namespace PSDUnity
 
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_IMAGE, layer.name, parent);//GameObject.Instantiate(temp) as UnityEngine.UI.Image;
+            UGUINode node = PSDImportUtility.InstantiateItem(PrefabName.PREFAB_IMAGE, layer.name, parent);//GameObject.Instantiate(temp) as UnityEngine.UI.Image;
             UnityEngine.UI.Image panel = node.InitComponent<UnityEngine.UI.Image>();
 
             ctrl.DrawLayers(layer.groups.ToArray(), node);//子节点

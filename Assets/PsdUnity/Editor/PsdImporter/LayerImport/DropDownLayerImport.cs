@@ -16,7 +16,7 @@ namespace PSDUnity
         }
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_DROPDOWN, layer.name, parent);
+            UGUINode node = PSDImportUtility.InstantiateItem(PrefabName.PREFAB_DROPDOWN, layer.name, parent);
             Dropdown dropdown = node.InitComponent<Dropdown>();
             ScrollRect scrllRect = dropdown.template.GetComponent<ScrollRect>();
             RectTransform content = scrllRect.content;

@@ -18,7 +18,7 @@ namespace PSDUnity
 
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImportUtility.InstantiateItem(PSDImporterConst.PREFAB_PATH_BUTTON, layer.name, parent);
+            UGUINode node = PSDImportUtility.InstantiateItem(PrefabName.PREFAB_BUTTON, layer.name, parent);
             UnityEngine.UI.Button button = node.InitComponent<UnityEngine.UI.Button>();
             PSDImportUtility.SetRectTransform(layer, button.GetComponent<RectTransform>(),parent.transform as RectTransform);
 

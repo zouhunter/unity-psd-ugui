@@ -29,7 +29,7 @@ namespace PSDUnity
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
             RefeshProp(property);
-            float height = 3;
+            //float height = 3;
             //Debug.Log(nameProp.stringValue);
             switch ((ControlType)controltypeProp.intValue)
             {

@@ -8,6 +8,7 @@ namespace PSDUnity
     {
         public string picturename = "";
         public string clampname = "";
+        public string AddressedName { get { return clampname + GetHashCode(); } }
         public ImgType type;
         public ImgSource source;
         public Rect rect;
@@ -29,6 +30,8 @@ namespace PSDUnity
             source = ImgSource.Custom;
             this.rect = rect;
             this.texture = texture;
+            //添加后缀
+            texture.name = AddressedName;
         }
         public ImgNode(string name, Rect rect, Color color) : this(name, rect)
         {
