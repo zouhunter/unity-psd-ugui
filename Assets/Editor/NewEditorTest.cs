@@ -8,12 +8,13 @@ using System.IO;
 using System;
 using NUnit.Framework;
 
-public class NewEditorTest {
+public class NewEditorTest
+{
 
     [Test]
     public void PrintDefultPrefabsGUID()
     {
-       GameObject[] items = Resources.LoadAll<GameObject>("Prefabs");
+        GameObject[] items = Resources.LoadAll<GameObject>("Prefabs");
         var str = "";
         foreach (var item in items)
         {
@@ -23,13 +24,12 @@ public class NewEditorTest {
         Debug.Log(str);
     }
     [Test]
-    public void DifferenceSprite()
+    public void DifferenceIDOfString()
     {
-        Sprite[] sprites = AssetDatabase.LoadAllAssetsAtPath("Assets/atlas.png").OfType<Sprite>().ToArray();
-        foreach (var item in sprites)
-        {
-            Debug.Log(item.name);
-            Debug.Log(item.GetHashCode());
-        }
+        string str1 = "DifferenceIDOfString";
+        string str2 = "DifferenceIDOfString";
+
+        Debug.Log(str1.GetHashCode());
+        Debug.Log(str2.GetHashCode());
     }
 }

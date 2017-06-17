@@ -8,7 +8,8 @@ namespace PSDUnity
     {
         public string picturename = "";
         public string clampname = "";
-        public string AddressedName { get { return clampname + GetHashCode(); } }
+        public int id;
+        public string AddressedName { get { return clampname + id; } }
         public ImgType type;
         public ImgSource source;
         public Rect rect;
@@ -20,26 +21,24 @@ namespace PSDUnity
         public Color color = UnityEngine.Color.white;
 
         public ImgNode() { }
-        public ImgNode(string name, Rect rect, Texture2D texture) : this(name, rect)
+        public ImgNode(int id,string name, Rect rect, Texture2D texture) : this(id,name, rect)
         {
             //利用name 解析type和source
             type = ImgType.AtlasImage;
             //type = ImgType.Image;
             //type = ImgType.Texture;
-
             source = ImgSource.Custom;
             this.rect = rect;
             this.texture = texture;
             //添加后缀
             texture.name = AddressedName;
         }
-        public ImgNode(string name, Rect rect, Color color) : this(name, rect)
+        public ImgNode(int id,string name, Rect rect, Color color) : this(id, name, rect)
         {
             type = ImgType.Color;
             this.color = color;
-
         }
-        public ImgNode(string name, Rect rect, string font, int fontSize, string text, Color color):this(name,rect)
+        public ImgNode(int id, string name, Rect rect, string font, int fontSize, string text, Color color):this(id, name,rect)
         {
             type = ImgType.Label;
             this.font = font;
@@ -48,11 +47,12 @@ namespace PSDUnity
             this.color = color;
         }
 
-        private ImgNode(string name,Rect rect)
+        private ImgNode(int id,string name,Rect rect)
         {
             this.picturename = name;
             this.clampname = ClampName(name);
             this.rect = rect;
+            this.id = id;
         }
 
         /// <summary>
