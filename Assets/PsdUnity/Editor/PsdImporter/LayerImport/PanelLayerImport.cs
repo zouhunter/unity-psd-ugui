@@ -40,7 +40,7 @@ namespace PSDUnity
             }
             if (!havebg)
             {
-                PSDImportUtility.SetRectTransform(layer, panel.GetComponent<RectTransform>(), parent.InitComponent<RectTransform>());
+                PSDImportUtility.SetRectTransform(layer, panel.GetComponent<RectTransform>());
                 Color color;
                 if (ColorUtility.TryParseHtmlString("#FFFFFF01", out color))
                 {

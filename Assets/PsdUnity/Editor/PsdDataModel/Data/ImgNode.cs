@@ -21,7 +21,7 @@ namespace PSDUnity
         public Sprite sprite;
         public Texture2D texture;
         public string text = "";
-        public string font;
+        public Font font;
         public int fontSize = 0;
         public Color color = UnityEngine.Color.white;
 
@@ -49,7 +49,7 @@ namespace PSDUnity
         {
             this.type = ImgType.Label;
             this.Name = name;
-            this.font = font;
+            this.font = null; Debug.Log(font);
             this.fontSize = fontSize;
             this.text = text;
             this.color = color;

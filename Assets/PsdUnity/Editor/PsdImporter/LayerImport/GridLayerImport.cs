@@ -19,7 +19,7 @@ namespace PSDUnity
             UGUINode node = PSDImportUtility.InstantiateItem(GroupType.GRID, layer.Name, parent);
             node.anchoType = AnchoType.Up | AnchoType.Left;
             GridLayoutGroup gridLayoutGroup = node.InitComponent<GridLayoutGroup>();
-            PSDImportUtility.SetRectTransform(layer, gridLayoutGroup.GetComponent<RectTransform>(),node.InitComponent<RectTransform>());
+            PSDImportUtility.SetRectTransform(layer, gridLayoutGroup.GetComponent<RectTransform>());
 
             gridLayoutGroup.padding = new RectOffset(1,1,1,1);
             gridLayoutGroup.cellSize = new Vector2(layer.rect.width, layer.rect.height);

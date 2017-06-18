@@ -14,8 +14,10 @@ namespace PSDUnity
         SerializedProperty rectProp;
         SerializedProperty groupsProp;
         SerializedProperty imagesProp;
-        SerializedProperty argumentsProp;
-
+        SerializedProperty directionProp;
+        SerializedProperty constraintCountProp;
+        SerializedProperty spacingProp;
+        float SingleHeight { get { return EditorGUIUtility.singleLineHeight; } }
         public void RefeshProp(SerializedProperty property)
         {
             nameProp = property.FindPropertyRelative("Name");//
@@ -23,64 +25,123 @@ namespace PSDUnity
             rectProp = property.FindPropertyRelative("rect");//
             groupsProp = property.FindPropertyRelative("_groups");
             imagesProp = property.FindPropertyRelative("_images");
-            argumentsProp = property.FindPropertyRelative("arguments");
+            directionProp = property.FindPropertyRelative("direction");
+            constraintCountProp = property.FindPropertyRelative("constraintCount");
+            spacingProp = property.FindPropertyRelative("spacing");
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
             RefeshProp(property);
-            //float height = 3;
-            //Debug.Log(nameProp.stringValue);
-            switch ((GroupType)groupTypeProp.intValue)
+            if (!property.isExpanded)
             {
-                case GroupType.IMAGE:
-                    break;
-                case GroupType.SCROLLVIEW:
-                    break;
-                case GroupType.GRID:
-                    break;
-                case GroupType.BUTTON:
-                    break;
-                case GroupType.TEXT:
-                    break;
-                case GroupType.TOGGLE:
-                    break;
-                case GroupType.SLIDER:
-                    break;
-                case GroupType.GROUP:
-                    break;
-                case GroupType.INPUTFIELD:
-                    break;
-                case GroupType.SCROLLBAR:
-                    break;
-                case GroupType.DROPDOWN:
-                    break;
-                default:
-                    break;
+                return SingleHeight;
             }
-            return EditorGUI.GetPropertyHeight(property,label,true);
+            else
+            {
+                float height = 5;
+                switch ((GroupType)groupTypeProp.intValue)
+                {
+                    case GroupType.IMAGE:
+                        break;
+                    case GroupType.SCROLLVIEW:
+                        height +=1;
+                        break;
+                    case GroupType.GRID:
+                        height += 2;
+                        break;
+                    case GroupType.BUTTON:
+                        break;
+                    case GroupType.TEXT:
+                        break;
+                    case GroupType.TOGGLE:
+                        break;
+                    case GroupType.SLIDER:
+                        height += 1;
+                        break;
+                    case GroupType.GROUP:
+                        height += 2;
+                        break;
+                    case GroupType.INPUTFIELD:
+                        break;
+                    case GroupType.SCROLLBAR:
+                        height += 1;
+                        break;
+                    case GroupType.DROPDOWN:
+                        break;
+                    default:
+                        break;
+                }
+                return height * SingleHeight + EditorGUI.GetPropertyHeight(imagesProp,GUIContent.none,true) + EditorGUI.GetPropertyHeight(groupsProp, GUIContent.none, true);
+            }
         }
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            //var rect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
-            //property.isExpanded = EditorGUI.ToggleLeft(rect, nameProp.stringValue, property.isExpanded);
-            //if (!property.isExpanded)
-            //{
-            //    return;
-            //}
-            //rect.y += EditorGUIUtility.singleLineHeight;
-            //EditorGUI.PropertyField(rect, nameProp, true);
-            //rect.y += EditorGUIUtility.singleLineHeight;
-            //controltypeProp.intValue =(int) ((ControlType)EditorGUI.EnumPopup(rect, (ControlType)controltypeProp.intValue));
-            //rect.y += EditorGUIUtility.singleLineHeight;
-            //EditorGUI.PropertyField(rect, groupsProp, true);
-            //rect.y += EditorGUI.GetPropertyHeight(groupsProp, new GUIContent("Group"), true);
-            //EditorGUI.PropertyField(rect, imagesProp, true);
-            //rect.y += EditorGUI.GetPropertyHeight(imagesProp, new GUIContent("Images"), true);
-            //EditorGUI.PropertyField(rect, argumentsProp, true);
-            //rect.y += EditorGUI.GetPropertyHeight(argumentsProp, new GUIContent("Aregument"), true);
-            //EditorGUI.PropertyField(rect, rectProp);
-            EditorGUI.PropertyField(position, property,new GUIContent( nameProp.stringValue), true);
+            var rect = new Rect(position.x, position.y, position.width, SingleHeight);
+            property.isExpanded = EditorGUI.ToggleLeft(rect, nameProp.stringValue, property.isExpanded);
+            if (property.isExpanded)
+            {
+                rect.y += SingleHeight;
+                EditorGUI.PropertyField(rect, nameProp);
+
+                rect.y += SingleHeight;
+                groupTypeProp.intValue = (int)((GroupType)EditorGUI.EnumPopup(rect, (GroupType)groupTypeProp.intValue));
+
+                rect.y += SingleHeight;
+                EditorGUI.PropertyField(rect, groupsProp, true);
+                rect.y += EditorGUI.GetPropertyHeight(groupsProp, new GUIContent("Group"), true);
+
+                EditorGUI.PropertyField(rect, imagesProp, true);
+                rect.y += EditorGUI.GetPropertyHeight(imagesProp, new GUIContent("Images"), true);
+
+                var lastDir = directionProp.enumValueIndex > 0 ? (Direction)directionProp.enumValueIndex : Direction.None;
+                switch ((GroupType)groupTypeProp.enumValueIndex)
+                {
+                    case GroupType.EMPTY:
+                        break;
+                    case GroupType.BUTTON:
+                        break;
+                    case GroupType.TOGGLE:
+                        break;
+                    case GroupType.CANVAS:
+                        break;
+                    case GroupType.GRID:
+                        directionProp.enumValueIndex = (int)(Direction)EditorGUI.EnumPopup(rect,new GUIContent("方向"), lastDir);
+                        rect.y += SingleHeight;
+                        EditorGUI.PropertyField(rect,constraintCountProp);
+                        rect.y += SingleHeight;
+                        break;
+                    case GroupType.IMAGE:
+                        break;
+                    case GroupType.RawIMAGE:
+                        break;
+                    case GroupType.SCROLLVIEW:
+                        directionProp.enumValueIndex = (int)(Direction)EditorGUI.EnumMaskPopup(rect, new GUIContent("方向"), lastDir);
+                        rect.y += SingleHeight;
+                        break;
+                    case GroupType.SLIDER:
+                    case GroupType.SCROLLBAR:
+                        directionProp.enumValueIndex = (int)(Direction)EditorGUI.EnumPopup(rect, new GUIContent("方向"), lastDir);
+                        rect.y += SingleHeight;
+                        break;
+                    case GroupType.TEXT:
+                        break;
+                    case GroupType.GROUP:
+                        directionProp.enumValueIndex = (int)(Direction)EditorGUI.EnumPopup(rect, new GUIContent("方向"), lastDir);
+                        rect.y += SingleHeight;
+                        EditorGUI.PropertyField(rect, spacingProp);
+                        rect.y += SingleHeight;
+                        break;
+                    case GroupType.INPUTFIELD:
+                        break;
+                    case GroupType.DROPDOWN:
+                        break;
+                    default:
+                        break;
+                }
+               
+                EditorGUI.PropertyField(rect, rectProp);
+            }
         }
     }
 }

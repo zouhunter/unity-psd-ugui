@@ -20,7 +20,7 @@ namespace PSDUnity
         {
             UGUINode node = PSDImportUtility.InstantiateItem(GroupType.BUTTON, layer.Name, parent);
             UnityEngine.UI.Button button = node.InitComponent<UnityEngine.UI.Button>();
-            PSDImportUtility.SetRectTransform(layer, button.GetComponent<RectTransform>(),parent.transform as RectTransform);
+            PSDImportUtility.SetRectTransform(layer, button.GetComponent<RectTransform>());
 
             if (layer.images != null)
             {

@@ -26,7 +26,6 @@ namespace PSDUnity
             if (ColorUtility.TryParseHtmlString("#FFFFFF01",out color))
             {
                 childNode.InitComponent<UnityEngine.UI.Image>().color = color;
-                Debug.Log(color);
             }
             childNode.InitComponent<Mask>();
             childNode.anchoType = AnchoType.XStretch | AnchoType.YStretch;
@@ -40,8 +39,6 @@ namespace PSDUnity
                 {
                     havebg = true;
                     UnityEngine.UI.Image graph = node.InitComponent<UnityEngine.UI.Image>();
-                    Debug.Log(graph);
-                    Debug.Log(image);
 
                     PSDImportUtility.SetPictureOrLoadColor(image, graph);
 
@@ -55,10 +52,10 @@ namespace PSDUnity
 
             if (!havebg)
             {
-                PSDImportUtility.SetRectTransform(layer, scrollRect.GetComponent<RectTransform>(),parent.InitComponent<RectTransform>());
+                PSDImportUtility.SetRectTransform(layer, scrollRect.GetComponent<RectTransform>());
             }
 
-            PSDImportUtility.SetRectTransform(layer, childNode.InitComponent<RectTransform>(), scrollRect.GetComponent<RectTransform>());
+            PSDImportUtility.SetRectTransform(layer, childNode.InitComponent<RectTransform>());
 
             switch (layer.direction)
             {

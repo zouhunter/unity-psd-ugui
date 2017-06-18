@@ -15,7 +15,6 @@ namespace PSDUnity
         public bool maskAsColor;
         public string fileExt = ".png";
         public Vector2 uiSize;
-        public bool forceSprite;
         public PictureExportInfo atlasInfo;
         public RouleObject prefabObj;
         public List<GroupNode1> groups = new List<GroupNode1>();

@@ -41,10 +41,10 @@ namespace Ntreev.Library.Psd.Readers.ImageResources
             int version = reader.ReadInt32();
             if (version == 6)
             {
-                var r1 = reader.ReadInt32();
-                var r2 = reader.ReadInt32();
-                var r3 = reader.ReadInt32();
-                var r4 = reader.ReadInt32();
+                /*var r1 = */reader.ReadInt32();
+                /*var r2 = */reader.ReadInt32();
+                /*var r3 = */reader.ReadInt32();
+                /*var r4 = */reader.ReadInt32();
                 string text = reader.ReadString();
                 var count = reader.ReadInt32();
 
@@ -53,6 +53,7 @@ namespace Ntreev.Library.Psd.Readers.ImageResources
                 {
                     slices.Add(ReadSliceInfo(reader));
                 }
+
             }
             {
                 var descriptor = new DescriptorStructure(reader) as IProperties;

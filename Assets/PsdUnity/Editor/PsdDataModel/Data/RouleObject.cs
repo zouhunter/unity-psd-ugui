@@ -38,7 +38,7 @@ namespace PSDUnity
 
         public RouleObject()
         {
-            LoadDefultDatas(prefabs);
+            //LoadDefultDatas(prefabs);
         }
 
         public string AnalysisName(string name,out GroupType groupType,out string[] areguments)

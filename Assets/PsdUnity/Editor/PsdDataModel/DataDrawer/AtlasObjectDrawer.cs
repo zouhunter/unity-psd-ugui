@@ -15,11 +15,10 @@ namespace PSDUnity
         SerializedProperty psdFileProp;
         SerializedProperty uiSizeProp;
         SerializedProperty groupsProp;
-        SerializedProperty forceSpriteProp;
         SerializedProperty atlasInfoProp;
         SerializedProperty prefabObjProp;
         AtlasObject obj;
-        readonly GUIContent pageSizeContent = new GUIContent("界面尺寸", EditorGUIUtility.IconContent("breadcrump mid act").image, "界面尺寸");
+        readonly GUIContent pageSizeContent = new GUIContent("界面尺寸", EditorGUIUtility.IconContent("AnimationKeyframeBackground").image, "界面尺寸");
         private void OnEnable()
         {
             obj = target as AtlasObject;
@@ -28,7 +27,6 @@ namespace PSDUnity
             uiSizeProp = serializedObject.FindProperty("uiSize");
             groupsProp = serializedObject.FindProperty("groups");
             atlasInfoProp = serializedObject.FindProperty("atlasInfo");
-            forceSpriteProp = serializedObject.FindProperty("forceSprite");
             prefabObjProp = serializedObject.FindProperty("prefabObj");
         }
         protected override void OnHeaderGUI()
@@ -74,7 +72,6 @@ namespace PSDUnity
         }
         private void DrawPictureOption()
         {
-            EditorGUILayout.PropertyField(forceSpriteProp);
         }
         private void DrawGroupNode()
         {

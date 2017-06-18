@@ -25,9 +25,9 @@ namespace PSDUnity
             scaler.referenceResolution = new Vector2(atlasObj.uiSize.x, atlasObj.uiSize.y);
         }
 
-        public static UGUINode InstantiateItem(GroupType prefabname, string name, UGUINode parent)
+        public static UGUINode InstantiateItem(GroupType groupType, string name, UGUINode parent)
         {
-            GameObject prefab = atlasObj.prefabObj.prefabs.Find(x=>x.groupType == prefabname).prefab;
+            GameObject prefab = atlasObj.prefabObj.prefabs.Find(x=>x.groupType == groupType).prefab;
             GameObject item = GameObject.Instantiate(prefab) as GameObject;
             item.name = name;
             item.transform.SetParent(canvas.transform, false);
@@ -65,22 +65,10 @@ namespace PSDUnity
             rectTransform.anchoredPosition = new Vector2(image.rect.x, image.rect.y);
         }
 
-        public static void SetRectTransform(GroupNode layer, RectTransform rectTransform, RectTransform parentTrans)
+        public static void SetRectTransform(GroupNode layer, RectTransform rectTransform)
         {
-            if (layer.rect != null)
-            {
-                rectTransform.sizeDelta = new Vector2(layer.rect.width, layer.rect.height);
-                rectTransform.anchoredPosition = new Vector2(layer.rect.x, layer.rect.y);
-            }
-            else if (parentTrans != null)
-            {
-                rectTransform.sizeDelta = parentTrans.sizeDelta;
-                rectTransform.anchoredPosition = parentTrans.anchoredPosition;
-            }
-            else
-            {
-                Debug.Log("尺寸设置失败");
-            }
+            rectTransform.sizeDelta = new Vector2(layer.rect.width, layer.rect.height);
+            rectTransform.anchoredPosition = new Vector2(layer.rect.x, layer.rect.y);
         }
         public static void SetAnchorByNode(UGUINode node)
         {

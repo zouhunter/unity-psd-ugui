@@ -31,7 +31,7 @@ namespace PSDUnity
             }
             ((UnityEngine.UI.VerticalLayoutGroup)group).spacing = layer.spacing;
 
-            PSDImportUtility.SetRectTransform(layer, group.GetComponent<RectTransform>(),parent.InitComponent<RectTransform>());
+            PSDImportUtility.SetRectTransform(layer, group.GetComponent<RectTransform>());
 
             UGUINode[] nodes = pSDImportCtrl.DrawImages(layer.images.ToArray(),node);
             foreach (var item in nodes)

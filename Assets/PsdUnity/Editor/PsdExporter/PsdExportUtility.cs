@@ -19,24 +19,7 @@ namespace PSDUnity
             var yMin = -(psdLayer.Top + psdLayer.Bottom - rootSize.y) * 0.5f;
             return new Rect(xMin,yMin, psdLayer.Width,psdLayer.Height);
         }
-        /// <summary>
-        /// 计算层的唯一定位
-        /// </summary>
-        /// <param name="layer"></param>
-        /// <returns></returns>
-        public static int GetLayerID(PsdLayer layer)
-        {
-            if (layer.Parent == null) Debug.Log(layer.Name + "parent = null");
-            var id = 0;
-            var idAppend = 1;
-            while (layer.Parent != null)
-            {
-                id += idAppend * (Array.FindIndex(layer.Parent.Childs,x=>x== layer) + 1);
-                idAppend *= 10;
-                layer = layer.Parent;
-            }
-            return id;
-        }
+
 
         public static GroupNode1 CreatePictures(PsdLayer rootLayer, PictureExportInfo pictureInfo, bool forceSprite = false)
         {
@@ -199,7 +182,6 @@ namespace PSDUnity
         {
             ImgNode data = null;
             var rect = GetRectFromLayer(rootSize,layer);
-            var id = GetLayerID(layer);
             switch (layer.LayerType)
             {
                 case LayerType.Normal:
@@ -279,8 +261,8 @@ namespace PSDUnity
 
                 if (alpha != null && alpha.Data[i] != 0)
                     a = (byte)alpha.Data[i];
-                //if (mask != null)
-                //    a *= mask.Data[i];
+                if (mask != null && mask.Data[i] != 0)
+                    a *= mask.Data[i];
 
                 int mod = i % layer.Width;
                 int n = ((layer.Width - mod - 1) + i) - mod;

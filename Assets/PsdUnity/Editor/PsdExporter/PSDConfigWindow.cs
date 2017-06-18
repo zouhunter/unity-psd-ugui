@@ -8,13 +8,13 @@ using System;
 using PSDUnity;
 public class PSDConfigWindow : EditorWindow
 {
-    public class Data
+    public class LayerNode
     {
         public bool isExpanded { get; private set; }
         public bool selected { get; private set; }
         public int indent = 0;
         public GUIContent content;
-        public List<Data> childs = new List<Data>();
+        public List<LayerNode> childs = new List<LayerNode>();
         public IPsdLayer layer;
         public LayerType layerType;
 
@@ -22,7 +22,7 @@ public class PSDConfigWindow : EditorWindow
         private GUIContent _groupOn;
         private GUIContent _spritenormal;
 
-        public Data(IPsdLayer layer)
+        public LayerNode(IPsdLayer layer)
         {
             this.layer = layer;
             if (layer is PsdDocument)
@@ -84,7 +84,8 @@ public class PSDConfigWindow : EditorWindow
     private AtlasObject atlasObj;
     private string psdPath { get { return atlasObj.psdFile; } set { atlasObj.psdFile = value; } }
     private Ntreev.Library.Psd.PsdDocument psd;
-    private Data data;
+    private LayerNode data;
+    private bool forceSprite;
 
     private static PSDConfigWindow window;
     private SerializedProperty scriptProp;
@@ -181,7 +182,7 @@ public class PSDConfigWindow : EditorWindow
     }
 
 
-    void DrawData(Data data)
+    void DrawData(LayerNode data)
     {
         if (data.content != null)
         {
@@ -191,7 +192,7 @@ public class PSDConfigWindow : EditorWindow
         if (data.isExpanded)
             for (int i = 0; i < data.childs.Count; i++)
             {
-                Data child = data.childs[i];
+                LayerNode child = data.childs[i];
                 if (child.content != null)
                 {
                     EditorGUI.indentLevel = child.indent;
@@ -209,13 +210,18 @@ public class PSDConfigWindow : EditorWindow
 
     private void DrawTools()
     {
-        if (GUILayout.Button("解析PSD"))
+        using (var hor = new EditorGUILayout.HorizontalScope())
         {
-            SwitchLayerToTexture();
+            EditorGUILayout.LabelField("颜色区域转换为图片？");
+            forceSprite = EditorGUILayout.Toggle(forceSprite);
+            if (GUILayout.Button("解析PSD"))
+            {
+                SwitchLayerToTexture();
+            }
         }
     }
 
-    void DrawGUIData(Data data)
+    void DrawGUIData(LayerNode data)
     {
         GUIStyle style = "Label";
         Rect rt = GUILayoutUtility.GetRect(data.content, style);
@@ -251,7 +257,7 @@ public class PSDConfigWindow : EditorWindow
         for (int i = 0; i < psd.Childs.Length; i++)
         {
             var item = psd.Childs[i];
-            var groupData = PsdExportUtility.CreatePictures(item as PsdLayer, atlasObj.atlasInfo,atlasObj.forceSprite);
+            var groupData = PsdExportUtility.CreatePictures(item as PsdLayer, atlasObj.atlasInfo,forceSprite);
             if (groupData != null)
             {
                 PsdExportUtility.ChargeTextures(atlasObj.atlasInfo, groupData);
@@ -267,12 +273,12 @@ public class PSDConfigWindow : EditorWindow
         if (System.IO.File.Exists(psdPath))
         {
             psd = PsdDocument.Create(psdPath);
-            data = new Data(psd);
+            data = new LayerNode(psd);
             LoadDataLayers(data);
         }
     }
 
-    void LoadDataLayers(Data data, int indent = 0)
+    void LoadDataLayers(LayerNode data, int indent = 0)
     {
         if (data.content != null)
         {
@@ -283,7 +289,7 @@ public class PSDConfigWindow : EditorWindow
         {
             if (data.content != null)
             {
-                Data child = new Data(layer);
+                LayerNode child = new LayerNode(layer);
                 child.indent = indent + 1;
                 data.childs.Add(child);
                 LoadDataLayers(child, child.indent);
