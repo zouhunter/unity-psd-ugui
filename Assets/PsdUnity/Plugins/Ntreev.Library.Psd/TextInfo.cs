@@ -13,7 +13,7 @@ namespace Ntreev.Library.Psd
         {
             this.text = text["Txt"].ToString();
             //颜色路径EngineData/EngineDict/StyleRun/RunArray/StyleSheet/StyleSheetData/FillColor
-            UnityEngine.Debug.Log(Newtonsoft.Json.JsonConvert.SerializeObject(text));
+            //UnityEngine.Debug.Log(Newtonsoft.Json.JsonConvert.SerializeObject(text));
             var engineData = text["EngineData"] as StructureEngineData;
             var engineDict = engineData["EngineDict"] as Properties;
           

@@ -268,12 +268,31 @@ namespace PSDUnity
             Channel alpha = Array.Find(layer.Channels, i => i.Type == ChannelType.Alpha);
             Channel mask = Array.Find(layer.Channels, i => i.Type == ChannelType.Mask);
 
-            byte r = red.Data[0];
-            byte g = green.Data[0];
-            byte b = blue.Data[0];
-            byte a = alpha.Data[0];
+            Color[] pixels = new Color[layer.Width * layer.Height];
 
-            return new Color32(r, g, b, a);
+            for (int i = 0; i < pixels.Length; i++)
+            {
+                byte r = red.Data[i];
+                byte g = green.Data[i];
+                byte b = blue.Data[i];
+                byte a = 255;
+
+                if (alpha != null && alpha.Data[i] != 0)
+                    a = (byte)alpha.Data[i];
+                //if (mask != null)
+                //    a *= mask.Data[i];
+
+                int mod = i % layer.Width;
+                int n = ((layer.Width - mod - 1) + i) - mod;
+                pixels[pixels.Length - n - 1] = new Color(r/255f, g / 255f, b / 255f, a/255f);
+            }
+            Color color = Color.white;
+            foreach (var item in pixels)
+            {
+                color += item;
+                color *= 0.5f;
+            }
+            return color;
         }
         /// <summary>
         /// 转换为组

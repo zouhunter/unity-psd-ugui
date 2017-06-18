@@ -35,7 +35,7 @@ namespace PSDUnity
             for (int i = 0; i < layer.images.Count; i++)
             {
                 ImgNode image = layer.images[i];
-                string lowerName = image.sprite.name.ToLower();
+                string lowerName = image.Name.ToLower();
                 UnityEngine.UI.Image graph = null;
                 
                 if (lowerName.StartsWith("b_"))
@@ -52,7 +52,7 @@ namespace PSDUnity
                 {
                     graph = slider.handleRect.GetComponent<UnityEngine.UI.Image>();
                     RectTransform rect = graph.GetComponent<RectTransform>();
-                    rect.name = image.sprite.name;
+                    rect.name = image.Name;
                     rect.sizeDelta = new Vector2(image.rect.width,image.rect.height);
                     rect.anchoredPosition = Vector2.zero;
                     haveHandle = true;

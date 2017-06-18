@@ -40,7 +40,7 @@ namespace PSDUnity
             for (int i = 0; i < layer.images.Count; i++)
             {
                 ImgNode image = layer.images[i];
-                string lowerName = image.sprite.name.ToLower();
+                string lowerName = image.Name.ToLower();
                 UnityEngine.UI.Image graph = null;
 
                 if (lowerName.StartsWith("b_"))

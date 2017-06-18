@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a85e6810dbfff7146ba1b535dcff47c2
-timeCreated: 1497773624
+timeCreated: 1497774936
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -363,341 +363,81 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: "b_\u80CC\u666F\u6216@Size2134114304"
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 384
-        height: 429
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -192, y: 214.5}
-        - {x: -192, y: -214.5}
-        - {x: 192, y: -214.5}
-        - {x: 192, y: 214.5}
-    - name: "b_\u80CC\u666F22814720"
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 431
-        width: 324
-        height: 308
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -162, y: 154}
-        - {x: -162, y: -154}
-        - {x: 162, y: -154}
-        - {x: 162, y: 154}
-    - name: "b_\u80CC\u666F58847232"
-      rect:
-        serializedVersion: 2
-        x: 386
-        y: 255
-        width: 321
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: "h_\u624B\u67C458847232"
-      rect:
-        serializedVersion: 2
-        x: 386
-        y: 270
-        width: 321
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: "b_\u80CC\u666F394510336"
-      rect:
-        serializedVersion: 2
-        x: 326
-        y: 431
-        width: 15
-        height: 304
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: "h_\u624B\u67C4394510336"
-      rect:
-        serializedVersion: 2
-        x: 343
-        y: 431
-        width: 15
-        height: 304
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: '@Size-502661120'
-      rect:
-        serializedVersion: 2
-        x: 594
-        y: 83
-        width: 306
-        height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -153, y: 24.5}
-        - {x: -153, y: -24.5}
-        - {x: 153, y: -24.5}
-        - {x: 153, y: 24.5}
-    - name: '@Size-497909760'
-      rect:
-        serializedVersion: 2
-        x: 386
-        y: 166
-        width: 306
-        height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -153, y: 24.5}
-        - {x: -153, y: -24.5}
-        - {x: 153, y: -24.5}
-        - {x: 153, y: 24.5}
-    - name: '@Size45383680'
-      rect:
-        serializedVersion: 2
-        x: 694
-        y: 166
-        width: 306
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -153, y: 24}
-        - {x: -153, y: -24}
-        - {x: 153, y: -24}
-        - {x: 153, y: 24}
-    - name: "b_\u80CC\u666F-1645322240"
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 990
-        width: 218
-        height: 30
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: "f_\u524D\u666F-1645322240"
-      rect:
-        serializedVersion: 2
-        x: 594
-        y: 134
-        width: 218
-        height: 30
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: "h_\u624B\u67C4-1690198016"
-      rect:
-        serializedVersion: 2
-        x: 319
-        y: 741
-        width: 27
-        height: 30
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: "m_\u906E\u7F69-19001344"
-      rect:
-        serializedVersion: 2
-        x: 221
-        y: 741
-        width: 96
-        height: 82
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -48, y: 41}
-        - {x: -48, y: -41}
-        - {x: 48, y: -41}
-        - {x: 48, y: 41}
-    - name: "b_\u80CC\u666F-19001344"
-      rect:
-        serializedVersion: 2
-        x: 221
-        y: 825
-        width: 96
-        height: 82
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -48, y: 41}
-        - {x: -48, y: -41}
-        - {x: 48, y: -41}
-        - {x: 48, y: 41}
-    - name: "m_\u9009\u9879\u906E\u7F692025013248"
-      rect:
-        serializedVersion: 2
-        x: 360
-        y: 595
-        width: 23
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: "b3_\u9009\u9879\u80CC\u666F2108489728"
-      rect:
-        serializedVersion: 2
-        x: 386
-        y: 217
-        width: 219
-        height: 36
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -109.5, y: 18}
-        - {x: -109.5, y: -18}
-        - {x: 109.5, y: -18}
-        - {x: 109.5, y: 18}
-    - name: "b2_\u6846\u80CC\u666F2101936128"
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 741
-        width: 219
-        height: 162
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -109.5, y: 81}
-        - {x: -109.5, y: -81}
-        - {x: 109.5, y: -81}
-        - {x: 109.5, y: 81}
     - name: "b1_\u4E3B\u80CC\u666F2110382080"
       rect:
         serializedVersion: 2
-        x: 607
-        y: 217
-        width: 217
-        height: 33
+        x: 0
+        y: 584
+        width: 387
+        height: 61
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -108.5, y: 16.5}
-        - {x: -108.5, y: -16.5}
-        - {x: 108.5, y: -16.5}
-        - {x: 108.5, y: 16.5}
-    - name: "b_\u80CC\u666F1960624128"
-      rect:
-        serializedVersion: 2
-        x: 360
-        y: 431
-        width: 9
-        height: 162
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: "h_\u524D\u666F1950228480"
-      rect:
-        serializedVersion: 2
-        x: 371
-        y: 431
-        width: 9
-        height: 36
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      - - {x: -193.5, y: 30.5}
+        - {x: -193.5, y: -30.5}
+        - {x: 193.5, y: -30.5}
+        - {x: 193.5, y: 30.5}
     - name: "h_\u79FB\u5165\u72B6\u6001-61079552"
       rect:
         serializedVersion: 2
-        x: 386
+        x: 0
         y: 0
-        width: 206
-        height: 81
+        width: 367
+        height: 144
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -103, y: 40.5}
-        - {x: -103, y: -40.5}
-        - {x: 103, y: -40.5}
-        - {x: 103, y: 40.5}
+      - - {x: -183.5, y: 72}
+        - {x: -183.5, y: -72}
+        - {x: 183.5, y: -72}
+        - {x: 183.5, y: 72}
     - name: "p_\u70B9\u51FB\u72B6\u6001-61079552"
       rect:
         serializedVersion: 2
-        x: 594
-        y: 0
-        width: 206
-        height: 81
+        x: 0
+        y: 146
+        width: 367
+        height: 144
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -103, y: 40.5}
-        - {x: -103, y: -40.5}
-        - {x: 103, y: -40.5}
-        - {x: 103, y: 40.5}
+      - - {x: -183.5, y: 72}
+        - {x: -183.5, y: -72}
+        - {x: 183.5, y: -72}
+        - {x: 183.5, y: 72}
     - name: "d_\u7981\u7528\u72B6\u6001-61079552"
       rect:
         serializedVersion: 2
-        x: 802
-        y: 0
-        width: 206
-        height: 81
+        x: 0
+        y: 292
+        width: 367
+        height: 144
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -103, y: 40.5}
-        - {x: -103, y: -40.5}
-        - {x: 103, y: -40.5}
-        - {x: 103, y: 40.5}
+      - - {x: -183.5, y: 72}
+        - {x: -183.5, y: -72}
+        - {x: 183.5, y: -72}
+        - {x: 183.5, y: 72}
     - name: "n_\u666E\u901A\u72B6\u6001-61079552"
       rect:
         serializedVersion: 2
-        x: 386
-        y: 83
-        width: 206
-        height: 81
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -103, y: 40.5}
-        - {x: -103, y: -40.5}
-        - {x: 103, y: -40.5}
-        - {x: 103, y: 40.5}
-    - name: "b_\u80CC\u666F-1654112256"
-      rect:
-        serializedVersion: 2
         x: 0
-        y: 905
-        width: 216
-        height: 83
+        y: 438
+        width: 367
+        height: 144
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -108, y: 41.5}
-        - {x: -108, y: -41.5}
-        - {x: 108, y: -41.5}
-        - {x: 108, y: 41.5}
+      - - {x: -183.5, y: 72}
+        - {x: -183.5, y: -72}
+        - {x: 183.5, y: -72}
+        - {x: 183.5, y: 72}
     outline: []
   spritePackingTag: 
   userData: 
