@@ -36,12 +36,12 @@ namespace PSDUnity
             UGUINode[] nodes = pSDImportCtrl.DrawImages(layer.images.ToArray(),node);
             foreach (var item in nodes)
             {
-                item.anchoType = UGUINode.AnchoType.Left | UGUINode.AnchoType.Up;
+                item.anchoType = AnchoType.Left | AnchoType.Up;
             }
             nodes = pSDImportCtrl.DrawLayers(layer.groups.ToArray(), node);
             foreach (var item in nodes)
             {
-                item.anchoType = UGUINode.AnchoType.Left | UGUINode.AnchoType.Up;
+                item.anchoType = AnchoType.Left | AnchoType.Up;
             }
             return node;
         }

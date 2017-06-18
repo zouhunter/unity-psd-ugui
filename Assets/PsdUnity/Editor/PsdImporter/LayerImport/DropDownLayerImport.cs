@@ -24,7 +24,7 @@ namespace PSDUnity
 
             UGUINode childNode = new UGUINode(dropdown.template, node);
             childNode.transform.SetParent(PSDImportUtility.canvas.transform);
-            childNode.anchoType = UGUINode.AnchoType.Down | UGUINode.AnchoType.XStretch;
+            childNode.anchoType = AnchoType.Down | AnchoType.XStretch;
             //由于设置相对坐标需要，所以修改了部分预制体的状态
             childNode.ReprocessEvent = () => {
                 RectTransform rt = childNode.InitComponent<RectTransform>();

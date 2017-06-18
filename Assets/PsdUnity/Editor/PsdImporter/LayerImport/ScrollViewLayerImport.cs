@@ -29,7 +29,7 @@ namespace PSDUnity
                 Debug.Log(color);
             }
             childNode.InitComponent<Mask>();
-            childNode.anchoType = UGUINode.AnchoType.XStretch | UGUINode.AnchoType.YStretch;
+            childNode.anchoType = AnchoType.XStretch | AnchoType.YStretch;
 
             bool havebg = false;
             for (int i = 0; i < layer.images.Count; i++)

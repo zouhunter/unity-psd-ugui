@@ -51,7 +51,6 @@ namespace PSDUnity
             var pictureData = new List<ImgNode>();
             groupnode.GetImgNodes(pictureData);
 
-
             //创建atlas
             var textures = pictureData.FindAll(x => x.type == ImgType.AtlasImage).ConvertAll<Texture2D>(x => x.texture);
             SaveToAtlas(textures.ToArray(), pictureInfo);

@@ -89,7 +89,7 @@ namespace PSDUnity
 
             switch (node.anchoType)
             {
-                case UGUINode.AnchoType.Custom:
+                case AnchoType.Custom:
                     SetCustomAnchor(p_rt, c_rt);
                     break;
                 default:
@@ -117,7 +117,7 @@ namespace PSDUnity
             rectt.sizeDelta = new Vector2(xSize, ySize);
             rectt.anchoredPosition = new Vector2(xanchored, yanchored);
         }
-        public static void SetNormalAnchor(UGUINode.AnchoType anchoType, RectTransform parentRectt, RectTransform rectt)
+        public static void SetNormalAnchor(AnchoType anchoType, RectTransform parentRectt, RectTransform rectt)
         {
             Vector2 sizeDelta = rectt.sizeDelta;
             Vector2 p_sizeDelta = parentRectt.sizeDelta;
@@ -132,49 +132,49 @@ namespace PSDUnity
             float xanchored = 0;
             float yanchored = 0;
 
-            if ((anchoType & UGUINode.AnchoType.Up) == UGUINode.AnchoType.Up)
+            if ((anchoType & AnchoType.Up) == AnchoType.Up)
             {
                 ymin = ymax = 1;
                 yanchored = anchoredPosition.y - p_sizeDelta.y * 0.5f;
                 ySize = sizeDelta.y;
             }
-            if ((anchoType & UGUINode.AnchoType.Down) == UGUINode.AnchoType.Down)
+            if ((anchoType & AnchoType.Down) == AnchoType.Down)
             {
                 ymin = ymax = 0;
                 yanchored = anchoredPosition.y + p_sizeDelta.y * 0.5f;
                 ySize = sizeDelta.y;
             }
-            if ((anchoType & UGUINode.AnchoType.Left) == UGUINode.AnchoType.Left)
+            if ((anchoType & AnchoType.Left) == AnchoType.Left)
             {
                 xmin = xmax = 0;
                 xanchored = anchoredPosition.x + p_sizeDelta.x * 0.5f;
                 xSize = sizeDelta.x;
             }
-            if ((anchoType & UGUINode.AnchoType.Right) == UGUINode.AnchoType.Right)
+            if ((anchoType & AnchoType.Right) == AnchoType.Right)
             {
                 xmin = xmax = 1;
                 xanchored = anchoredPosition.x - p_sizeDelta.x * 0.5f;
                 xSize = sizeDelta.x;
             }
-            if ((anchoType & UGUINode.AnchoType.XStretch) == UGUINode.AnchoType.XStretch)
+            if ((anchoType & AnchoType.XStretch) == AnchoType.XStretch)
             {
                 xmin = 0; xmax = 1;
                 xanchored = anchoredPosition.x;
                 xSize = sizeDelta.x - p_sizeDelta.x;
             }
-            if ((anchoType & UGUINode.AnchoType.YStretch) == UGUINode.AnchoType.YStretch)
+            if ((anchoType & AnchoType.YStretch) == AnchoType.YStretch)
             {
                 ymin = 0; ymax = 1;
                 yanchored = anchoredPosition.y;
                 ySize = sizeDelta.y - p_sizeDelta.y;
             }
-            if ((anchoType & UGUINode.AnchoType.XCenter) == UGUINode.AnchoType.XCenter)
+            if ((anchoType & AnchoType.XCenter) == AnchoType.XCenter)
             {
                 xmin = xmax = 0.5f;
                 xanchored = anchoredPosition.x;
                 xSize = sizeDelta.x;
             }
-            if ((anchoType & UGUINode.AnchoType.YCenter) == UGUINode.AnchoType.YCenter)
+            if ((anchoType & AnchoType.YCenter) == AnchoType.YCenter)
             {
                 ymin = ymax = 0.5f;
                 yanchored = anchoredPosition.y;
