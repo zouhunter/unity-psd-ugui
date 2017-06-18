@@ -19,11 +19,11 @@ namespace PSDUnity
             switch (layer.direction)
             {
                 case Direction.Horizontal:
-                    group = node.InitComponent<UnityEngine.UI.VerticalLayoutGroup>();
+                    group = node.InitComponent<UnityEngine.UI.HorizontalLayoutGroup>();
                     group.childAlignment = TextAnchor.UpperLeft;
                     break;
                 case Direction.Vertical:
-                    group = node.InitComponent<UnityEngine.UI.HorizontalLayoutGroup>();
+                    group = node.InitComponent<UnityEngine.UI.VerticalLayoutGroup>();
                     group.childAlignment = TextAnchor.UpperLeft;
                     break;
                 default:

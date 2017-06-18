@@ -28,7 +28,7 @@ namespace PSDUnity
                 {
                     ImgNode image = layer.images[imageIndex];
                     string lowerName = image.Name.ToLower();
-                    if (image.type == ImgType.Image && lowerName.StartsWith("n_") || lowerName.StartsWith("p_") || lowerName.StartsWith("d_") || lowerName.StartsWith("h_"))
+                    if (lowerName.StartsWith("n_") || lowerName.StartsWith("p_") || lowerName.StartsWith("d_") || lowerName.StartsWith("h_"))
                     {
                         if (image.color == UnityEngine.Color.white)
                         {

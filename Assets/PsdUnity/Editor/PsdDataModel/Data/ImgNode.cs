@@ -100,6 +100,8 @@ namespace PSDUnity
             else
             {
                 this.Name = name;
+                type = ImgType.AtlasImage;
+                source = ImgSource.Custom;
             }
         }
     }

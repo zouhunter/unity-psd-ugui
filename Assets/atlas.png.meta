@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a85e6810dbfff7146ba1b535dcff47c2
-timeCreated: 1497672816
+timeCreated: 1497770276
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -313,6 +313,10 @@ TextureImporter:
     21300612: "d_\u7981\u7528\u72B6\u6001-60305408"
     21300614: "n_\u666E\u901A\u72B6\u6001-60305408"
     21300616: "b_\u80CC\u666F-1654112256"
+    21300618: "h_\u79FB\u5165\u72B6\u6001-61079552"
+    21300620: "p_\u70B9\u51FB\u72B6\u6001-61079552"
+    21300622: "d_\u7981\u7528\u72B6\u6001-61079552"
+    21300624: "n_\u666E\u901A\u72B6\u6001-61079552"
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -393,7 +397,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 386
-        y: 257
+        y: 255
         width: 321
         height: 13
       alignment: 0
@@ -404,7 +408,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 386
-        y: 272
+        y: 270
         width: 321
         height: 13
       alignment: 0
@@ -436,8 +440,8 @@ TextureImporter:
     - name: '@Size-502661120'
       rect:
         serializedVersion: 2
-        x: 595
-        y: 84
+        x: 594
+        y: 83
         width: 306
         height: 49
       alignment: 0
@@ -452,7 +456,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 386
-        y: 168
+        y: 166
         width: 306
         height: 49
       alignment: 0
@@ -467,7 +471,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 694
-        y: 168
+        y: 166
         width: 306
         height: 48
       alignment: 0
@@ -492,8 +496,8 @@ TextureImporter:
     - name: "f_\u524D\u666F-1645322240"
       rect:
         serializedVersion: 2
-        x: 595
-        y: 135
+        x: 594
+        y: 134
         width: 218
         height: 30
       alignment: 0
@@ -556,7 +560,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 386
-        y: 219
+        y: 217
         width: 219
         height: 36
       alignment: 0
@@ -586,7 +590,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 607
-        y: 219
+        y: 217
         width: 217
         height: 33
       alignment: 0
@@ -619,66 +623,66 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: "h_\u79FB\u5165\u72B6\u6001-60305408"
+    - name: "h_\u79FB\u5165\u72B6\u6001-61079552"
       rect:
         serializedVersion: 2
         x: 386
         y: 0
-        width: 207
-        height: 82
+        width: 206
+        height: 81
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -103.5, y: 41}
-        - {x: -103.5, y: -41}
-        - {x: 103.5, y: -41}
-        - {x: 103.5, y: 41}
-    - name: "p_\u70B9\u51FB\u72B6\u6001-60305408"
+      - - {x: -103, y: 40.5}
+        - {x: -103, y: -40.5}
+        - {x: 103, y: -40.5}
+        - {x: 103, y: 40.5}
+    - name: "p_\u70B9\u51FB\u72B6\u6001-61079552"
       rect:
         serializedVersion: 2
-        x: 595
+        x: 594
         y: 0
-        width: 207
-        height: 82
+        width: 206
+        height: 81
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -103.5, y: 41}
-        - {x: -103.5, y: -41}
-        - {x: 103.5, y: -41}
-        - {x: 103.5, y: 41}
-    - name: "d_\u7981\u7528\u72B6\u6001-60305408"
+      - - {x: -103, y: 40.5}
+        - {x: -103, y: -40.5}
+        - {x: 103, y: -40.5}
+        - {x: 103, y: 40.5}
+    - name: "d_\u7981\u7528\u72B6\u6001-61079552"
       rect:
         serializedVersion: 2
-        x: 804
+        x: 802
         y: 0
-        width: 207
-        height: 82
+        width: 206
+        height: 81
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -103.5, y: 41}
-        - {x: -103.5, y: -41}
-        - {x: 103.5, y: -41}
-        - {x: 103.5, y: 41}
-    - name: "n_\u666E\u901A\u72B6\u6001-60305408"
+      - - {x: -103, y: 40.5}
+        - {x: -103, y: -40.5}
+        - {x: 103, y: -40.5}
+        - {x: 103, y: 40.5}
+    - name: "n_\u666E\u901A\u72B6\u6001-61079552"
       rect:
         serializedVersion: 2
         x: 386
-        y: 84
-        width: 207
-        height: 82
+        y: 83
+        width: 206
+        height: 81
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -103.5, y: 41}
-        - {x: -103.5, y: -41}
-        - {x: 103.5, y: -41}
-        - {x: 103.5, y: 41}
+      - - {x: -103, y: 40.5}
+        - {x: -103, y: -40.5}
+        - {x: 103, y: -40.5}
+        - {x: 103, y: 40.5}
     - name: "b_\u80CC\u666F-1654112256"
       rect:
         serializedVersion: 2

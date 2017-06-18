@@ -209,7 +209,7 @@ public class PSDConfigWindow : EditorWindow
 
     private void DrawTools()
     {
-        if (GUILayout.Button("生成图片"))
+        if (GUILayout.Button("解析PSD"))
         {
             SwitchLayerToTexture();
         }

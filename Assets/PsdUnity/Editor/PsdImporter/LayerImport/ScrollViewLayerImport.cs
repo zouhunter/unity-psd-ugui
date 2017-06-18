@@ -36,7 +36,7 @@ namespace PSDUnity
             {
                 ImgNode image = layer.images[i];
 
-                if (image.sprite.name.ToLower().StartsWith("b_"))
+                if (image.Name.ToLower().StartsWith("b_"))
                 {
                     havebg = true;
                     UnityEngine.UI.Image graph = node.InitComponent<UnityEngine.UI.Image>();

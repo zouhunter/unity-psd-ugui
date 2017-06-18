@@ -47,6 +47,7 @@ namespace PSDUnity
             UGUINode node = null;
             switch (layer.groupType)
             {
+                case GroupType.EMPTY:
                 case GroupType.IMAGE:
                     node= panelImport.DrawLayer(layer, parent);
                     break;
@@ -140,7 +141,6 @@ namespace PSDUnity
         {
             spriteImport = new SpriteImport();
             textImport = new TextImport();
-
             sliderImport = new SliderLayerImport();
             inputFiledImport = new InputFieldLayerImport();
             buttonImport = new ButtonLayerImport(this);
@@ -156,7 +156,7 @@ namespace PSDUnity
 
         public void BeginDrawUILayers()
         {
-            UGUINode empty = PSDImportUtility.InstantiateItem(GroupType.EMPTY,psdUI.exportPath, PSDImportUtility.uinode);
+            UGUINode empty = PSDImportUtility.InstantiateItem(GroupType.EMPTY,psdUI.name, PSDImportUtility.uinode);
             RectTransform rt = empty.InitComponent<RectTransform>();
             rt.sizeDelta = new Vector2(psdUI.uiSize.x, psdUI.uiSize.y);
             for (int layerIndex = 0; layerIndex < psdUI.groups.Count; layerIndex++)
