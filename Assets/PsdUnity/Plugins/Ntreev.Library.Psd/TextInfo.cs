@@ -12,16 +12,20 @@ namespace Ntreev.Library.Psd
         public TextInfo(DescriptorStructure text)
         {
             this.text = text["Txt"].ToString();
-            //EngineData/DocumentResources/StyleSheetSet/StyleSheetData
-
+            //颜色路径EngineData/EngineDict/StyleRun/RunArray/StyleSheet/StyleSheetData/FillColor
+            UnityEngine.Debug.Log(Newtonsoft.Json.JsonConvert.SerializeObject(text));
             var engineData = text["EngineData"] as StructureEngineData;
-            var document = engineData["DocumentResources"] as Properties;
-            var styleSheets = document["StyleSheetSet"] as ArrayList;
-            var styleSheetsData = (styleSheets[0] as Properties)["StyleSheetData"] as Properties;
+            var engineDict = engineData["EngineDict"] as Properties;
+          
+            var stylerun = engineDict["StyleRun"] as Properties;
+            var runarray = stylerun["RunArray"] as ArrayList;
+            var styleSheet = (runarray[0] as Properties)["StyleSheet"] as Properties;
+            var styleSheetsData = (styleSheet as Properties)["StyleSheetData"] as Properties;
             fontSize = (int)(System.Single)styleSheetsData["FontSize"];
-            var strokeColorProp = styleSheetsData["StrokeColor"] as Properties;
+            var strokeColorProp = styleSheetsData["FillColor"] as Properties;
             var strokeColor = strokeColorProp["Values"] as ArrayList;
-            color = new UnityEngine.Color(float.Parse(strokeColor[0].ToString()), float.Parse(strokeColor[1].ToString()), float.Parse(strokeColor[2].ToString()), float.Parse(strokeColor[3].ToString()));
+            color = new UnityEngine.Color(float.Parse(strokeColor[1].ToString()), float.Parse(strokeColor[2].ToString()), float.Parse(strokeColor[3].ToString()), float.Parse(strokeColor[0].ToString()));
+
         }
     }
 }
