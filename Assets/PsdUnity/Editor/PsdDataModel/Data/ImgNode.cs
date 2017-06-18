@@ -4,16 +4,15 @@ using UnityEngine;
 namespace PSDUnity
 {
     [Serializable]
-    public class ImgNode
+    public class ImgNode: INameAnalyzing
     {
-        public string picturename = "";
-        public string clampname = "";
-        public int hashImage = 0;
+        public string Name;
+        private int hashImage = 0;
         public string TextureName
         {
             get
             {
-                return clampname + hashImage;
+                return Name + hashImage;
             }
         }
         public ImgType type;
@@ -27,40 +26,37 @@ namespace PSDUnity
         public Color color = UnityEngine.Color.white;
 
         public ImgNode() { }
-        public ImgNode(string name, Rect rect, Texture2D texture) : this(name, rect)
+
+        public ImgNode(string name, Rect rect, Texture2D texture) : this(rect)
         {
-            //利用name 解析type和source
-            type = ImgType.AtlasImage;
-            //type = ImgType.Image;
-            //type = ImgType.Texture;
-            source = ImgSource.Custom;
+            Analyzing(name);
             this.rect = rect;
             this.texture = texture;
             //添加后缀
             if (texture != null)
             {
-                hashImage = rect.GetHashCode();
-                texture.name = TextureName;
+                this.hashImage = rect.GetHashCode();
+                this.texture.name = TextureName;
             }
         }
-        public ImgNode(string name, Rect rect, Color color) : this(name, rect)
+        public ImgNode(string name, Rect rect, Color color) : this(rect)
         {
-            type = ImgType.Color;
+            this.Name = name;
+            this.type = ImgType.Color;
             this.color = color;
         }
-        public ImgNode(string name, Rect rect, string font, int fontSize, string text, Color color) : this(name, rect)
+        public ImgNode(string name, Rect rect, string font, int fontSize, string text, Color color) : this(rect)
         {
-            type = ImgType.Label;
+            this.type = ImgType.Label;
+            this.Name = name;
             this.font = font;
             this.fontSize = fontSize;
             this.text = text;
             this.color = color;
         }
 
-        private ImgNode(string name, Rect rect)
+        private ImgNode(Rect rect)
         {
-            this.picturename = name;
-            this.clampname = ClampName(name);
             this.rect = rect;
         }
 
@@ -68,17 +64,45 @@ namespace PSDUnity
         /// 将名字转换（去除标记性字符）
         /// </summary>
         /// <returns></returns>
-        public static string ClampName(string name)
+        public void Analyzing(string name)
         {
-            string clampName = name;
-            if (clampName.Contains("#"))
+            if (name.Contains("#"))
             {
-                var index = clampName.IndexOf("#");
-                clampName.Remove(index);
-            }
+                var index = name.IndexOf("#");
+                this.Name = name.Remove(index);
 
-            return clampName;
+                name = name.ToUpper();
+                if (name.Contains("#G")) {
+                    source = ImgSource.Globle;
+                }
+                else if (name.Contains("#N"))
+                {
+                    source = ImgSource.Normal;
+                }
+                else
+                {
+                    source = ImgSource.Custom;
+                }
+
+                if (name.Contains("#S"))
+                {
+                    type = ImgType.Image;
+                }
+                else if(name.Contains("#T"))
+                {
+                    type = ImgType.Texture;
+                }
+                else
+                {
+                    type = ImgType.AtlasImage;
+                }
+            }
+            else
+            {
+                this.Name = name;
+            }
         }
     }
 
+   
 }

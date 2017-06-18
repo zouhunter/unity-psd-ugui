@@ -45,36 +45,36 @@ namespace PSDUnity
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
             UGUINode node = null;
-            switch (layer.controltype)
+            switch (layer.groupType)
             {
-                case ControlType.Panel:
+                case GroupType.IMAGE:
                     node= panelImport.DrawLayer(layer, parent);
                     break;
-                case ControlType.Button:
+                case GroupType.BUTTON:
                     node = buttonImport.DrawLayer(layer, parent);
                     break;
-                case ControlType.Toggle:
+                case GroupType.TOGGLE:
                     node = toggleImport.DrawLayer(layer, parent);
                     break;
-                case ControlType.Grid:
+                case GroupType.GRID:
                     node = gridImport.DrawLayer(layer, parent);
                     break;
-                case ControlType.ScrollView:
+                case GroupType.SCROLLVIEW:
                     node = scrollViewImport.DrawLayer(layer, parent);
                     break;
-                case ControlType.Slider:
+                case GroupType.SLIDER:
                     node = sliderImport.DrawLayer(layer, parent);
                     break;
-                case ControlType.Group:
+                case GroupType.GROUP:
                     node = groupImport.DrawLayer(layer, parent);
                     break;
-                case ControlType.InputField:
+                case GroupType.INPUTFIELD:
                     node = inputFiledImport.DrawLayer(layer, parent);
                     break;
-                case ControlType.ScrollBar:
+                case GroupType.SCROLLBAR:
                     node = scrollBarImport.DrawLayer(layer, parent);
                     break;
-                case ControlType.Dropdown:
+                case GroupType.DROPDOWN:
                     node = dropdownImport.DrawLayer(layer, parent);
                     break;
                 default:
@@ -156,7 +156,7 @@ namespace PSDUnity
 
         public void BeginDrawUILayers()
         {
-            UGUINode empty = PSDImportUtility.InstantiateItem(PrefabName.PREFAB_EMPTY,psdUI.exportPath, PSDImportUtility.uinode);
+            UGUINode empty = PSDImportUtility.InstantiateItem(GroupType.EMPTY,psdUI.exportPath, PSDImportUtility.uinode);
             RectTransform rt = empty.InitComponent<RectTransform>();
             rt.sizeDelta = new Vector2(psdUI.uiSize.x, psdUI.uiSize.y);
             for (int layerIndex = 0; layerIndex < psdUI.groups.Count; layerIndex++)

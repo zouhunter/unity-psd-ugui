@@ -7,10 +7,10 @@ using System.Runtime.Serialization;
 
 namespace PSDUnity
 {
-    public abstract class GroupNode
+    public abstract class GroupNode : INameAnalyzing
     {
-        public string name;
-        public ControlType controltype;
+        public string Name;
+        public GroupType groupType;
         public Direction direction;
         public int constraintCount;
         public float spacing;
@@ -20,7 +20,7 @@ namespace PSDUnity
         public abstract GroupNode InsertChild(string name, Rect rect);
         public void GetImgNodes(List<ImgNode> imgNodes)
         {
-            if(images != null)
+            if (images != null)
             {
                 imgNodes.AddRange(images);
             }
@@ -33,12 +33,58 @@ namespace PSDUnity
             }
         }
 
-        public GroupNode(string name,Rect rect)
+        public void Analyzing(string name)
+        {
+            string[] areguments = null;
+            this.Name = PsdExportUtility.PrefabObj.AnalysisName(name, out groupType, out areguments);
+            switch (groupType)
+            {
+                case GroupType.GRID:
+                    if (areguments != null && areguments.Length > 1)
+                    {
+                        var key = areguments[0];
+                        direction = RouleObject.GetDirectionByKey(key);
+                    }
+                    if (areguments != null && areguments.Length > 2)
+                    {
+                        var key = areguments[1];
+                        constraintCount = int.Parse(key);
+                    }
+                    break;
+                case GroupType.SCROLLVIEW:
+                case GroupType.SLIDER:
+                case GroupType.SCROLLBAR:
+                    if (areguments != null && areguments.Length > 0)
+                    {
+                        var key = areguments[0];
+                        direction = RouleObject.GetDirectionByKey(key);
+                    }
+                    break;
+                case GroupType.GROUP:
+                    if (areguments != null && areguments.Length > 1)
+                    {
+                        var key = areguments[0];
+                        direction = RouleObject.GetDirectionByKey(key);
+                    }
+                    if (areguments != null && areguments.Length > 2)
+                    {
+                        var key = areguments[1];
+                        spacing = float.Parse(key);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public GroupNode(string name, Rect rect)
         {
             //利用名字解析controlType和arguments
-            this.name = name;
+            Analyzing(name);
             this.rect = rect;
         }
+
+       
     }
     [System.Serializable]
     public class GroupNode1 : GroupNode
@@ -78,7 +124,7 @@ namespace PSDUnity
 
         public override GroupNode InsertChild(string name, Rect rect)
         {
-            GroupNode2 node = new PSDUnity.GroupNode2(name,rect);
+            GroupNode2 node = new PSDUnity.GroupNode2(name, rect);
             _groups.Add(node);
             return node;
         }

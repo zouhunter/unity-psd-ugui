@@ -22,7 +22,7 @@ namespace PSDUnity
 
         public void RefeshProp(SerializedProperty property)
         {
-            nameProp = property.FindPropertyRelative("name");//
+            nameProp = property.FindPropertyRelative("Name");//
             typeProp = property.FindPropertyRelative("imageType");//
             rectProp = property.FindPropertyRelative("rect");//
             sourceProp = property.FindPropertyRelative("source");

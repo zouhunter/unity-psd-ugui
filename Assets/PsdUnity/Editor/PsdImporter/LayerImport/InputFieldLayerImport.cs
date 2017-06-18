@@ -8,7 +8,7 @@ namespace PSDUnity
     {
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImportUtility.InstantiateItem(PrefabName.PREFAB_INPUTFIELD, layer.name, parent);
+            UGUINode node = PSDImportUtility.InstantiateItem(GroupType.INPUTFIELD, layer.Name, parent);
             UnityEngine.UI.InputField inputfield = node.InitComponent<UnityEngine.UI.InputField>();
 
             if (layer.images != null)
@@ -16,7 +16,7 @@ namespace PSDUnity
                 for (int imageIndex = 0; imageIndex < layer.images.Count; imageIndex++)
                 {
                     ImgNode image = layer.images[imageIndex];
-                    string lowerName = image.clampname.ToLower();
+                    string lowerName = image.Name.ToLower();
 
                     if (image.type == ImgType.Label)
                     {

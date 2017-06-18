@@ -16,7 +16,7 @@ namespace PSDUnity
         }
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImportUtility.InstantiateItem(PrefabName.PREFAB_DROPDOWN, layer.name, parent);
+            UGUINode node = PSDImportUtility.InstantiateItem(GroupType.DROPDOWN, layer.Name, parent);
             Dropdown dropdown = node.InitComponent<Dropdown>();
             ScrollRect scrllRect = dropdown.template.GetComponent<ScrollRect>();
             RectTransform content = scrllRect.content;
@@ -34,12 +34,12 @@ namespace PSDUnity
             for (int i = 0; i < layer.images.Count; i++)
             {
                 ImgNode image = layer.images[i];
-                string lowerName = image.clampname.ToLower();
+                string lowerName = image.Name.ToLower();
                 if (lowerName.StartsWith("b1_"))
                 {
                     PSDImportUtility.SetPictureOrLoadColor(image, dropdown.image);
                     PSDImportUtility.SetRectTransform(image, dropdown.GetComponent<RectTransform>());
-                    dropdown.name = layer.name;
+                    dropdown.name = layer.Name;
                 }
                 else if(lowerName.StartsWith("b2_"))
                 {
@@ -74,7 +74,7 @@ namespace PSDUnity
             for (int i = 0; i < layer.groups.Count; i++)
             {
                 GroupNode child = layer.groups[i] as GroupNode;
-                string lowerName = child.name;
+                string lowerName = child.Name;
                 if (lowerName.StartsWith("vb_"))
                 {
                     UGUINode barNode = ctrl.DrawLayer(child, childNode);

@@ -10,7 +10,7 @@ namespace PSDUnity
     public class GroupNodeDrawer : PropertyDrawer
     {
         SerializedProperty nameProp;
-        SerializedProperty controltypeProp;
+        SerializedProperty groupTypeProp;
         SerializedProperty rectProp;
         SerializedProperty groupsProp;
         SerializedProperty imagesProp;
@@ -18,8 +18,8 @@ namespace PSDUnity
 
         public void RefeshProp(SerializedProperty property)
         {
-            nameProp = property.FindPropertyRelative("name");//
-            controltypeProp = property.FindPropertyRelative("controltype");//
+            nameProp = property.FindPropertyRelative("Name");//
+            groupTypeProp = property.FindPropertyRelative("groupType");//
             rectProp = property.FindPropertyRelative("rect");//
             groupsProp = property.FindPropertyRelative("_groups");
             imagesProp = property.FindPropertyRelative("_images");
@@ -31,29 +31,29 @@ namespace PSDUnity
             RefeshProp(property);
             //float height = 3;
             //Debug.Log(nameProp.stringValue);
-            switch ((ControlType)controltypeProp.intValue)
+            switch ((GroupType)groupTypeProp.intValue)
             {
-                case ControlType.Panel:
+                case GroupType.IMAGE:
                     break;
-                case ControlType.ScrollView:
+                case GroupType.SCROLLVIEW:
                     break;
-                case ControlType.Grid:
+                case GroupType.GRID:
                     break;
-                case ControlType.Button:
+                case GroupType.BUTTON:
                     break;
-                case ControlType.Label:
+                case GroupType.TEXT:
                     break;
-                case ControlType.Toggle:
+                case GroupType.TOGGLE:
                     break;
-                case ControlType.Slider:
+                case GroupType.SLIDER:
                     break;
-                case ControlType.Group:
+                case GroupType.GROUP:
                     break;
-                case ControlType.InputField:
+                case GroupType.INPUTFIELD:
                     break;
-                case ControlType.ScrollBar:
+                case GroupType.SCROLLBAR:
                     break;
-                case ControlType.Dropdown:
+                case GroupType.DROPDOWN:
                     break;
                 default:
                     break;

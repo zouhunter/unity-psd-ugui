@@ -17,7 +17,7 @@ namespace PSDUnity
         public static void InitEnviroment(AtlasObject arg)
         {
             atlasObj = arg;
-            var canvasPfb = atlasObj.prefabObj.prefabs.Find(x => x.prefabName == PrefabName.PREFAB_CANVAS).prefab;
+            var canvasPfb = atlasObj.prefabObj.prefabs.Find(x => x.groupType == GroupType.CANVAS).prefab;
             canvas =  GameObject.Instantiate(canvasPfb).GetComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
@@ -25,9 +25,9 @@ namespace PSDUnity
             scaler.referenceResolution = new Vector2(atlasObj.uiSize.x, atlasObj.uiSize.y);
         }
 
-        public static UGUINode InstantiateItem(PrefabName prefabname, string name, UGUINode parent)
+        public static UGUINode InstantiateItem(GroupType prefabname, string name, UGUINode parent)
         {
-            GameObject prefab = atlasObj.prefabObj.prefabs.Find(x=>x.prefabName == prefabname).prefab;
+            GameObject prefab = atlasObj.prefabObj.prefabs.Find(x=>x.groupType == prefabname).prefab;
             GameObject item = GameObject.Instantiate(prefab) as GameObject;
             item.name = name;
             item.transform.SetParent(canvas.transform, false);

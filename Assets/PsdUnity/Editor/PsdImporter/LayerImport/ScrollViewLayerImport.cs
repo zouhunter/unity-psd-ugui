@@ -17,10 +17,10 @@ namespace PSDUnity
         }
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImportUtility.InstantiateItem(PrefabName.PREFAB_SCROLLVIEW,layer.name,parent);
+            UGUINode node = PSDImportUtility.InstantiateItem(GroupType.SCROLLVIEW,layer.Name,parent);
             UnityEngine.UI.ScrollRect scrollRect = node.InitComponent<UnityEngine.UI.ScrollRect>();
 
-            UGUINode childNode = PSDImportUtility.InstantiateItem(PrefabName.PREFAB_IMAGE, "Viewport", node);
+            UGUINode childNode = PSDImportUtility.InstantiateItem(GroupType.IMAGE, "Viewport", node);
             scrollRect.viewport = childNode.InitComponent<RectTransform>();
             Color color;
             if (ColorUtility.TryParseHtmlString("#FFFFFF01",out color))
@@ -84,7 +84,7 @@ namespace PSDUnity
                 for (int i = 0; i < layer.groups.Count; i++)
                 {
                     GroupNode child = layer.groups[i];
-                    string childLowerName = child.name;
+                    string childLowerName = child.Name;
                     UGUINode c_Node = ctrl.DrawLayer(child, childNode);
 
                     if (childLowerName.StartsWith("c_"))

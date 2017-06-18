@@ -17,7 +17,7 @@ namespace PSDUnity
 
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImportUtility.InstantiateItem(PrefabName.PREFAB_IMAGE, layer.name, parent);//GameObject.Instantiate(temp) as UnityEngine.UI.Image;
+            UGUINode node = PSDImportUtility.InstantiateItem(GroupType.IMAGE, layer.Name, parent);//GameObject.Instantiate(temp) as UnityEngine.UI.Image;
             UnityEngine.UI.Image panel = node.InitComponent<UnityEngine.UI.Image>();
 
             ctrl.DrawLayers(layer.groups.ToArray(), node);//子节点
@@ -26,12 +26,12 @@ namespace PSDUnity
             {
                 ImgNode image = layer.images[i];
 
-                if (image.clampname.ToLower().StartsWith("b_"))
+                if (image.Name.ToLower().StartsWith("b_"))
                 {
                     havebg = true;
                     PSDImportUtility.SetPictureOrLoadColor(image, panel);
                     PSDImportUtility.SetRectTransform(image, panel.GetComponent<RectTransform>());
-                    panel.name = layer.name;
+                    panel.name = layer.Name;
                 }
                 else
                 {
@@ -46,7 +46,7 @@ namespace PSDUnity
                 {
                     panel.GetComponent<UnityEngine.UI.Image>().color = color;
                 }
-                panel.name = layer.name;
+                panel.name = layer.Name;
             }
             return node;
 

@@ -245,6 +245,8 @@ public class PSDConfigWindow : EditorWindow
 
     private void SwitchLayerToTexture()
     {
+        //设置名称规则
+        PsdExportUtility.PrefabObj = atlasObj.prefabObj;
         atlasObj.groups.Clear();
         for (int i = 0; i < psd.Childs.Length; i++)
         {

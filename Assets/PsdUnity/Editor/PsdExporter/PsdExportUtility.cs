@@ -11,6 +11,8 @@ namespace PSDUnity
 {
     public static class PsdExportUtility
     {
+        public static RouleObject PrefabObj { get; set; }
+
         public static Rect GetRectFromLayer(Vector2 rootSize,PsdLayer psdLayer)
         {
             var xMin = (psdLayer.Right + psdLayer.Left - rootSize.x) * 0.5f;
@@ -35,6 +37,7 @@ namespace PSDUnity
             }
             return id;
         }
+
         public static GroupNode1 CreatePictures(PsdLayer rootLayer, PictureExportInfo pictureInfo, bool forceSprite = false)
         {
             if (!rootLayer.IsGroup){

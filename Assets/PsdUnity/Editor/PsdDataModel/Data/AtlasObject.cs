@@ -17,7 +17,7 @@ namespace PSDUnity
         public Vector2 uiSize;
         public bool forceSprite;
         public PictureExportInfo atlasInfo;
-        public PrefabObject prefabObj;
+        public RouleObject prefabObj;
         public List<GroupNode1> groups = new List<GroupNode1>();
         internal bool forceMove;
     }

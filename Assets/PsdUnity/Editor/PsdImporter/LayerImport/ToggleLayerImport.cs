@@ -16,14 +16,14 @@ namespace PSDUnity
         }
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImportUtility.InstantiateItem(PrefabName.PREFAB_TOGGLE,layer.name,parent);// GameObject.Instantiate(temp) as UnityEngine.UI.Toggle;
+            UGUINode node = PSDImportUtility.InstantiateItem(GroupType.TOGGLE,layer.Name,parent);// GameObject.Instantiate(temp) as UnityEngine.UI.Toggle;
             UnityEngine.UI.Toggle toggle = node.InitComponent<UnityEngine.UI.Toggle>();
             if (layer.images != null)
             {
                 for (int imageIndex = 0; imageIndex < layer.images.Count; imageIndex++)
                 {
                     ImgNode image = layer.images[imageIndex];
-                    string lowerName = image.clampname.ToLower();
+                    string lowerName = image.Name.ToLower();
                     if (lowerName.StartsWith("b_"))
                     {
                         PSDImportUtility.SetPictureOrLoadColor(image, toggle.targetGraphic);

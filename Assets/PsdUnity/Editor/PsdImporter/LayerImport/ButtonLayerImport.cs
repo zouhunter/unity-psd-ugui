@@ -18,7 +18,7 @@ namespace PSDUnity
 
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImportUtility.InstantiateItem(PrefabName.PREFAB_BUTTON, layer.name, parent);
+            UGUINode node = PSDImportUtility.InstantiateItem(GroupType.BUTTON, layer.Name, parent);
             UnityEngine.UI.Button button = node.InitComponent<UnityEngine.UI.Button>();
             PSDImportUtility.SetRectTransform(layer, button.GetComponent<RectTransform>(),parent.transform as RectTransform);
 
@@ -27,7 +27,7 @@ namespace PSDUnity
                 for (int imageIndex = 0; imageIndex < layer.images.Count; imageIndex++)
                 {
                     ImgNode image = layer.images[imageIndex];
-                    string lowerName = image.picturename.ToLower();
+                    string lowerName = image.Name.ToLower();
                     if (image.type == ImgType.Image && lowerName.StartsWith("n_") || lowerName.StartsWith("p_") || lowerName.StartsWith("d_") || lowerName.StartsWith("h_"))
                     {
                         if (image.color == UnityEngine.Color.white)
@@ -49,7 +49,7 @@ namespace PSDUnity
         }
         private void SetSpriteSwipe(ImgNode image,UnityEngine.UI.Button button)
         {
-            string lowerName = image.clampname.ToLower();
+            string lowerName = image.Name.ToLower();
 
             if (lowerName.StartsWith("n_"))
             {

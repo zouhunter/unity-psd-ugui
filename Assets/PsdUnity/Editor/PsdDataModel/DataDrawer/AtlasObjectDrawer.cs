@@ -57,7 +57,7 @@ namespace PSDUnity
             EditorGUILayout.PropertyField(prefabObjProp, true);
             if (GUILayout.Button("创建规则"))
             {
-                var obj = PrefabObject.CreateInstance<PrefabObject>();
+                var obj = RouleObject.CreateInstance<RouleObject>();
                 ProjectWindowUtil.CreateAsset(obj, "prefabObj.asset");
             }
         }

@@ -11,7 +11,7 @@ namespace PSDUnity
     {
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImportUtility.InstantiateItem(PrefabName.PREFAB_SLIDER,layer.name,parent); //GameObject.Instantiate(temp) as UnityEngine.UI.Slider;
+            UGUINode node = PSDImportUtility.InstantiateItem(GroupType.SLIDER,layer.Name,parent); //GameObject.Instantiate(temp) as UnityEngine.UI.Slider;
             UnityEngine.UI.Slider slider = node.InitComponent<UnityEngine.UI.Slider>();
             switch (layer.direction)
             {
@@ -42,7 +42,7 @@ namespace PSDUnity
                 {
                     graph = slider.transform.Find("Background").GetComponent<UnityEngine.UI.Image>();
                     PSDImportUtility.SetRectTransform(image, slider.GetComponent<RectTransform>());
-                    slider.name = layer.name;
+                    slider.name = layer.Name;
                 }
                 else if (lowerName.StartsWith("f_"))
                 {
