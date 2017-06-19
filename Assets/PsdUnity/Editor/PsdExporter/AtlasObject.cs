@@ -13,6 +13,7 @@ namespace PSDUnity
         public string exportPath;
         public string globalPath = "Assets/Common/Images";
         public bool maskAsColor;
+        public bool forceSprite;
         public string fileExt = ".png";
         public Vector2 uiSize;
         public PictureExportInfo atlasInfo;

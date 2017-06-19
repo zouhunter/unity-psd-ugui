@@ -6,7 +6,7 @@ using UnityEditor;
 using Ntreev.Library.Psd;
 using System;
 using PSDUnity;
-public class PSDConfigWindow : EditorWindow
+public class PSDPreviewWindow : EditorWindow
 {
     public class LayerNode
     {
@@ -75,78 +75,37 @@ public class PSDConfigWindow : EditorWindow
     [MenuItem("PsdUnity/ConfigWindow")]
     static void OpenPSDConfigWindow()
     {
-        window = GetWindow<PSDConfigWindow>();
+        window = GetWindow<PSDPreviewWindow>();
         window.position = new Rect(100, 100, 800, 600);
         window.Repaint();
     }
+
     private const string Prefs_pdfPath = "Prefs_pdfPath";
-    private const string Prefs_atlasID = "Prefs_atlasID";
-    private AtlasObject atlasObj;
-    private string psdPath { get { return atlasObj.psdFile; } set { atlasObj.psdFile = value; } }
+    private string psdPath;
     private Ntreev.Library.Psd.PsdDocument psd;
     private LayerNode data;
-    private bool forceSprite;
 
-    private static PSDConfigWindow window;
+    private static PSDPreviewWindow window;
     private SerializedProperty scriptProp;
 
     private void OnEnable()
     {
         scriptProp = new SerializedObject(this).FindProperty("m_Script");
-        var guid = EditorPrefs.GetString(Prefs_atlasID);
-        if (!string.IsNullOrEmpty(guid))
-        {
-            var path = AssetDatabase.GUIDToAssetPath(guid);
-            if (!string.IsNullOrEmpty(path))
-            {
-                atlasObj = AssetDatabase.LoadAssetAtPath<AtlasObject>(path);
-
-            }
-        }
+        psdPath = EditorPrefs.GetString(Prefs_pdfPath);
     }
     private void OnGUI()
     {
         EditorGUILayout.PropertyField(scriptProp);
-        if (DrawAtlasObj())
+        if (DrawFileSelect())
         {
-            if (DrawFileSelect())
-            {
-                DrawData(data);
-                DrawTools();
-            }
-            else
-            {
-                DrawErrBox("请先选择正确的PDF文件路径");
-            }
+            DrawData(data);
+            DrawTools();
         }
         else
         {
             DrawErrBox("请先选择正确的PDF文件路径");
         }
     }
-    private bool DrawAtlasObj()
-    {
-        using (var hor = new EditorGUILayout.HorizontalScope())
-        {
-            EditorGUILayout.LabelField("AtlasObj:");
-            EditorGUI.BeginChangeCheck();
-            atlasObj = EditorGUILayout.ObjectField(atlasObj, typeof(AtlasObject), false) as AtlasObject;
-            if (GUILayout.Button("创建"))
-            {
-                atlasObj = ScriptableObject.CreateInstance<AtlasObject>();
-                ProjectWindowUtil.CreateAsset(atlasObj, "atlasObj.asset");
-            }
-            var change = EditorGUI.EndChangeCheck();
-            if (change)
-            {
-                var path = AssetDatabase.GetAssetPath(atlasObj);
-                EditorPrefs.SetString(Prefs_atlasID, AssetDatabase.AssetPathToGUID(path));
-            }
-        }
-
-        return atlasObj != null;
-    }
-
     private bool DrawFileSelect()
     {
         using (var hor = new EditorGUILayout.HorizontalScope())
@@ -167,7 +126,6 @@ public class PSDConfigWindow : EditorWindow
             if (change)
             {
                 EditorPrefs.SetString(Prefs_pdfPath, psdPath);
-                EditorUtility.SetDirty(atlasObj);
             }
         }
         if (!string.IsNullOrEmpty(psdPath) && psd == null)
@@ -212,11 +170,11 @@ public class PSDConfigWindow : EditorWindow
     {
         using (var hor = new EditorGUILayout.HorizontalScope())
         {
-            EditorGUILayout.LabelField("颜色区域转换为图片？");
-            forceSprite = EditorGUILayout.Toggle(forceSprite);
-            if (GUILayout.Button("解析PSD"))
+            if (GUILayout.Button("创建模板"))
             {
-                SwitchLayerToTexture();
+                var atlasObj = ScriptableObject.CreateInstance<AtlasObject>();
+                atlasObj.psdFile = psdPath;
+                ProjectWindowUtil.CreateAsset(atlasObj, "atlasObj.asset");
             }
         }
     }
@@ -247,25 +205,6 @@ public class PSDConfigWindow : EditorWindow
         }
 
         EditorGUI.LabelField(rt, data.content);
-    }
-
-    private void SwitchLayerToTexture()
-    {
-        //设置名称规则
-        PsdExportUtility.PrefabObj = atlasObj.prefabObj;
-        atlasObj.groups.Clear();
-        for (int i = 0; i < psd.Childs.Length; i++)
-        {
-            var item = psd.Childs[i];
-            var groupData = PsdExportUtility.CreatePictures(item as PsdLayer, atlasObj.atlasInfo,forceSprite);
-            if (groupData != null)
-            {
-                PsdExportUtility.ChargeTextures(atlasObj.atlasInfo, groupData);
-                atlasObj.groups.Add(groupData);
-            }
-       
-        }
-        EditorUtility.SetDirty(atlasObj);
     }
 
     private void OpenPsdDocument()

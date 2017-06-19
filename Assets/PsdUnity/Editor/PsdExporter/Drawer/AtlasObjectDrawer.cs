@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using Rotorz.ReorderableList;
 using System;
+using Ntreev.Library.Psd;
 
 namespace PSDUnity
 {
@@ -17,11 +18,11 @@ namespace PSDUnity
         SerializedProperty groupsProp;
         SerializedProperty atlasInfoProp;
         SerializedProperty prefabObjProp;
-        AtlasObject obj;
+        AtlasObject atlasObj;
         readonly GUIContent pageSizeContent = new GUIContent("界面尺寸", EditorGUIUtility.IconContent("AnimationKeyframeBackground").image, "界面尺寸");
         private void OnEnable()
         {
-            obj = target as AtlasObject;
+            atlasObj = target as AtlasObject;
             scriptProp = serializedObject.FindProperty("m_Script");
             psdFileProp = serializedObject.FindProperty("psdFile");
             uiSizeProp = serializedObject.FindProperty("uiSize");
@@ -33,7 +34,7 @@ namespace PSDUnity
         {
             base.OnHeaderGUI();
             EditorGUI.BeginDisabledGroup(true);
-            EditorGUILayout.ObjectField(obj, typeof(AtlasObject), false);
+            EditorGUILayout.ObjectField(atlasObj, typeof(AtlasObject), false);
             EditorGUILayout.PropertyField(scriptProp);
             EditorGUI.EndDisabledGroup();
         }
@@ -62,12 +63,57 @@ namespace PSDUnity
 
         private void DrawPictureData()
         {
-            EditorGUILayout.PropertyField(atlasInfoProp,true);
+            EditorGUILayout.PropertyField(atlasInfoProp, true);
+            if (GUILayout.Button("读取层级"))
+            {
+                SwitchLayerToTexture();
+            }
         }
+
+
+        private void SwitchLayerToTexture()
+        {
+            if (!string.IsNullOrEmpty(atlasObj.psdFile))
+            {
+                var psd = PsdDocument.Create(atlasObj.psdFile);
+                if (psd != null)
+                {
+                    //设置名称规则
+                    PsdExportUtility.PrefabObj = atlasObj.prefabObj;
+                    atlasObj.groups.Clear();
+                    for (int i = 0; i < psd.Childs.Length; i++)
+                    {
+                        var item = psd.Childs[i];
+                        var groupData = PsdExportUtility.CreatePictures(item as PsdLayer, atlasObj.atlasInfo, atlasObj.forceSprite);
+                        if (groupData != null)
+                        {
+                            PsdExportUtility.ChargeTextures(atlasObj.atlasInfo, groupData);
+                            atlasObj.groups.Add(groupData);
+                        }
+
+                    }
+                    EditorUtility.SetDirty(atlasObj);
+                }
+            }
+        }
+
 
         private void DrawPageSize()
         {
-            psdFileProp.stringValue = EditorGUILayout.TextField("PSD路径：",psdFileProp.stringValue);
+
+            using (var hor = new EditorGUILayout.HorizontalScope())
+            {
+                psdFileProp.stringValue = EditorGUILayout.TextField("PSD路径：", psdFileProp.stringValue);
+
+                if (GUILayout.Button("选择"))
+                {
+                    var psdPath = EditorUtility.OpenFilePanel("选择一个pdf文件", psdFileProp.stringValue, "psd");
+                    if (!string.IsNullOrEmpty(psdPath))
+                    {
+                        psdFileProp.stringValue = psdPath;
+                    }
+                }
+            }
             uiSizeProp.vector2Value = EditorGUILayout.Vector2Field(pageSizeContent, uiSizeProp.vector2Value);
         }
         private void DrawPictureOption()

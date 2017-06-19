@@ -36,9 +36,9 @@ namespace PSDUnity
         public char sepraterChar = '@';
         public char argumentChar = ':';
 
-        public RouleObject()
+        public void Reset()
         {
-            //LoadDefultDatas(prefabs);
+            LoadDefultDatas(prefabs);
         }
 
         public string AnalysisName(string name,out GroupType groupType,out string[] areguments)

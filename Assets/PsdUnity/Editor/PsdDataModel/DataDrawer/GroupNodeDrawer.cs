@@ -85,7 +85,7 @@ namespace PSDUnity
                 EditorGUI.PropertyField(rect, nameProp);
 
                 rect.y += SingleHeight;
-                groupTypeProp.intValue = (int)((GroupType)EditorGUI.EnumPopup(rect, (GroupType)groupTypeProp.intValue));
+                EditorGUI.PropertyField(rect, groupTypeProp);
 
                 rect.y += SingleHeight;
                 EditorGUI.PropertyField(rect, groupsProp, true);
