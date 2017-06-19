@@ -6,8 +6,10 @@ using UnityEditor;
 using Rotorz.ReorderableList;
 using System;
 using Ntreev.Library.Psd;
+using PSDUnity.Data;
+using PSDUnity.Import;
 
-namespace PSDUnity
+namespace PSDUnity.Exprot
 {
     [CustomEditor(typeof(AtlasObject))]
     public class AtlasObjectDrawer : Editor
@@ -79,7 +81,7 @@ namespace PSDUnity
                 if (psd != null)
                 {
                     //设置名称规则
-                    PsdExportUtility.PrefabObj = atlasObj.prefabObj;
+                    PsdExportUtility.rouleObj = atlasObj.prefabObj;
                     atlasObj.groups.Clear();
                     for (int i = 0; i < psd.Childs.Length; i++)
                     {
@@ -128,14 +130,11 @@ namespace PSDUnity
         {
             if (GUILayout.Button("导出到UI"))
             {
-                PSDImportCtrl import = new PSDImportCtrl((AtlasObject)target);
-                import.BeginDrawUILayers();
-                import.BeginSetUIParents(PSDImportUtility.uinode);
-                import.BeginSetAnchers(PSDImportUtility.uinode.childs[0]);
-                //最外层的要单独处理
-                var rt = PSDImportUtility.uinode.childs[0].InitComponent<RectTransform>();
-                PSDImportUtility.SetCustomAnchor(rt, rt);
-                import.BeginReprocess(PSDImportUtility.uinode.childs[0]);//后处理
+                var atlasObj = (AtlasObject)target;
+                PSDImportUtility.InitEnviroment(atlasObj.prefabObj, atlasObj.uiSize);
+                PSDImportCtrl import = new PSDImportCtrl();
+                import.Import(atlasObj.groups.ToArray(),atlasObj.uiSize);
+               
             }
         }
     }

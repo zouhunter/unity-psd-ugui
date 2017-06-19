@@ -6,12 +6,12 @@ using Ntreev.Library.Psd;
 using System.Linq;
 using System.IO;
 using System;
-
-namespace PSDUnity
+using PSDUnity.Data;
+namespace PSDUnity.Exprot
 {
     public static class PsdExportUtility
     {
-        public static RouleObject PrefabObj { get; set; }
+        public static RouleObject rouleObj { get; set; }
 
         public static Rect GetRectFromLayer(Vector2 rootSize,PsdLayer psdLayer)
         {
@@ -30,7 +30,7 @@ namespace PSDUnity
             }
             var rootSize = new Vector2(rootLayer.Width, rootLayer.Height);
 
-            var groupnode = new GroupNode1(rootLayer.Name, GetRectFromLayer(rootSize, rootLayer));// (rootLayer,rootLayer));
+            var groupnode = new GroupNode1(GetRectFromLayer(rootSize, rootLayer)).Analyzing(PsdExportUtility.rouleObj,rootLayer.Name) as GroupNode1;// (rootLayer,rootLayer));
 
             RetriveLayerToSwitchModle(rootSize,rootLayer, groupnode,forceSprite);
 
@@ -185,12 +185,12 @@ namespace PSDUnity
             switch (layer.LayerType)
             {
                 case LayerType.Normal:
-                    data = new ImgNode(layer.Name, rect, CreateTexture(layer));
+                    data = new ImgNode(rect, CreateTexture(layer)).Analyzing(PsdExportUtility.rouleObj,layer.Name);
                     break;
                 case LayerType.SolidImage:
                     if (forceSprite)
                     {
-                        data = new ImgNode(layer.Name, rect, CreateTexture(layer));
+                        data = new ImgNode(rect, CreateTexture(layer)).Analyzing(PsdExportUtility.rouleObj,layer.Name);
                     }
                     else
                     {
@@ -294,7 +294,7 @@ namespace PSDUnity
                 {
                     if (child.IsGroup)
                     {
-                        GroupNode childNode = group.InsertChild(child.Name, GetRectFromLayer(rootSize, child));
+                        GroupNode childNode = group.InsertChild(GetRectFromLayer(rootSize, child)).Analyzing(rouleObj,child.Name);
 
                         if (childNode != null)
                         {

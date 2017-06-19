@@ -4,7 +4,7 @@ using UnityEngine.Events;
 using System.Collections.Generic;
 using UnityEditor;
 
-namespace PSDUnity
+namespace PSDUnity.Data
 {
     [CustomPropertyDrawer(typeof(GroupNode),true)]
     public class GroupNodeDrawer : PropertyDrawer

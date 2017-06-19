@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
-namespace PSDUnity
+using PSDUnity.Data;
+namespace PSDUnity.Import
 {
     public class UGUINode
     {

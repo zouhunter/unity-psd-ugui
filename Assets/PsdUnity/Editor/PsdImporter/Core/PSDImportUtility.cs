@@ -6,28 +6,32 @@ using System.Xml.Serialization;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-namespace PSDUnity
+using PSDUnity.Data;
+namespace PSDUnity.Import
 {
     public static class PSDImportUtility
     {
-        public static AtlasObject atlasObj { get;private set; }
+        public static RouleObject rouleObject { get; private set; }
         public static Canvas canvas { get;private set; }
-        public static UGUINode uinode { get; set; }
+        public static UGUINode uinode { get;private set; }
 
-        public static void InitEnviroment(AtlasObject arg)
+        public static Canvas InitEnviroment(RouleObject arg,Vector2 uiSize)
         {
-            atlasObj = arg;
-            var canvasPfb = atlasObj.prefabObj.prefabs.Find(x => x.groupType == GroupType.CANVAS).prefab;
+            rouleObject = arg;
+            var canvasPfb = rouleObject.prefabs.Find(x => x.groupType == GroupType.CANVAS).prefab;
             canvas =  GameObject.Instantiate(canvasPfb).GetComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
             UnityEngine.UI.CanvasScaler scaler = PSDImportUtility.canvas.GetComponent<UnityEngine.UI.CanvasScaler>();
-            scaler.referenceResolution = new Vector2(atlasObj.uiSize.x, atlasObj.uiSize.y);
+            scaler.referenceResolution = new Vector2(uiSize.x, uiSize.y);
+
+            uinode = new UGUINode(PSDImportUtility.canvas.transform, null);
+            return canvas;
         }
 
         public static UGUINode InstantiateItem(GroupType groupType, string name, UGUINode parent)
         {
-            GameObject prefab = atlasObj.prefabObj.prefabs.Find(x=>x.groupType == groupType).prefab;
+            GameObject prefab = rouleObject.prefabs.Find(x=>x.groupType == groupType).prefab;
             GameObject item = GameObject.Instantiate(prefab) as GameObject;
             item.name = name;
             item.transform.SetParent(canvas.transform, false);

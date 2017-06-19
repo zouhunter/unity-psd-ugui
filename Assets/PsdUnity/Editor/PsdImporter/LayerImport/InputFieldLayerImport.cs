@@ -1,8 +1,8 @@
 ﻿using System;
 using UnityEngine;
 using UnityEditor;
-
-namespace PSDUnity
+using PSDUnity.Data;
+namespace PSDUnity.Import
 {
     internal class InputFieldLayerImport : ILayerImport
     {

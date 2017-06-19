@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-namespace PSDUnity
+namespace PSDUnity.Data
 {
     public enum GroupType
     {

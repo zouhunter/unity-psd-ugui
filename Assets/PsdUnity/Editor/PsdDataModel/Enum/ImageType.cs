@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace PSDUnity
+namespace PSDUnity.Data
 {
     public enum ImgType:int
     {

@@ -11,7 +11,7 @@ using UnityEngine.Assertions.Comparers;
 using System.Collections.Generic;
 using UnityEditor;
 
-namespace PSDUnity
+namespace PSDUnity.Data
 {
     public class RouleObject : ScriptableObject
     {
@@ -39,6 +39,8 @@ namespace PSDUnity
         public void Reset()
         {
             LoadDefultDatas(prefabs);
+            var path = UnityEditor.AssetDatabase.GetAssetPath(this);
+            Debug.Log(UnityEditor.AssetDatabase.AssetPathToGUID(path));
         }
 
         public string AnalysisName(string name,out GroupType groupType,out string[] areguments)

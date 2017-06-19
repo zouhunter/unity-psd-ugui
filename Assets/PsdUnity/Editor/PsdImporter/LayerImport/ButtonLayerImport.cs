@@ -4,9 +4,8 @@ using UnityEditor;
 using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
-
-
-namespace PSDUnity
+using PSDUnity.Data;
+namespace PSDUnity.Import
 {
     public class ButtonLayerImport : ILayerImport
     {

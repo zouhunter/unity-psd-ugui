@@ -9,12 +9,11 @@ using System.Xml;
 using System.Xml.Serialization;
 using UnityEditor.SceneManagement;
 
-namespace PSDUnity
+using PSDUnity.Data;
+namespace PSDUnity.Import
 {
     public class PSDImportCtrl
     {
-        private AtlasObject psdUI;
-
         private IImageImport spriteImport;
         private IImageImport textImport;
         private IImageImport textureImport;
@@ -32,14 +31,20 @@ namespace PSDUnity
         private ILayerImport dropdownImport;
 
 
-        public PSDImportCtrl(AtlasObject psdUI)
+        public PSDImportCtrl()
         {
-            this.psdUI = psdUI;
-            PSDImportUtility.InitEnviroment(psdUI);
-            LoadLayers();
-            MoveLayers();
             InitDrawers();
-            PSDImportUtility.uinode = new UGUINode(PSDImportUtility.canvas.transform,null);
+        }
+
+        public void Import(GroupNode1[] gourps,Vector2 uiSize)
+        {
+            BeginDrawUILayers(gourps, uiSize);
+            BeginSetUIParents(PSDImportUtility.uinode);
+            BeginSetAnchers(PSDImportUtility.uinode.childs[0]);
+            //最外层的要单独处理
+            var rt = PSDImportUtility.uinode.childs[0].InitComponent<RectTransform>();
+            PSDImportUtility.SetCustomAnchor(rt, rt);
+            BeginReprocess(PSDImportUtility.uinode.childs[0]);//后处理
         }
 
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
@@ -96,6 +101,7 @@ namespace PSDUnity
             }
             return nodes;
         }
+
         public UGUINode[] DrawImages(ImgNode[] images,UGUINode parent)
         {
             UGUINode[] nodes = new UGUINode[images.Length];
@@ -128,15 +134,6 @@ namespace PSDUnity
             return node;
         }
 
-
-        private void LoadLayers()
-        {
-            for (int layerIndex = 0; layerIndex < psdUI.groups.Count; layerIndex++)
-            {
-                ImportLayer(psdUI.groups[layerIndex] as GroupNode, psdUI.exportPath);
-            }
-        }
-
         private void InitDrawers()
         {
             spriteImport = new SpriteImport();
@@ -154,14 +151,14 @@ namespace PSDUnity
 
         }
 
-        public void BeginDrawUILayers()
+        public void BeginDrawUILayers(GroupNode1[] groups,Vector2 uiSize)
         {
-            UGUINode empty = PSDImportUtility.InstantiateItem(GroupType.EMPTY,psdUI.name, PSDImportUtility.uinode);
+            UGUINode empty = PSDImportUtility.InstantiateItem(GroupType.EMPTY,"PSDUnity", PSDImportUtility.uinode);
             RectTransform rt = empty.InitComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(psdUI.uiSize.x, psdUI.uiSize.y);
-            for (int layerIndex = 0; layerIndex < psdUI.groups.Count; layerIndex++)
+            rt.sizeDelta = new Vector2(uiSize.x, uiSize.y);
+            for (int layerIndex = 0; layerIndex < groups.Length; layerIndex++)
             {
-                DrawLayer(psdUI.groups[layerIndex] as GroupNode, empty);
+                DrawLayer(groups[layerIndex] as GroupNode, empty);
             }
             AssetDatabase.Refresh();
         }
@@ -192,115 +189,6 @@ namespace PSDUnity
                 if (node.ReprocessEvent != null)
                 {
                     node.ReprocessEvent.Invoke();
-                }
-            }
-        }
-
-        private void MoveLayers()
-        {
-            for (int layerIndex = 0; layerIndex < psdUI.groups.Count; layerIndex++)
-            {
-                //如果文件名有Globle，将强制全部移动到指定文件夹
-                psdUI.forceMove = psdUI.exportPath.Contains("Globle");
-                MoveAsset(psdUI.groups[layerIndex] as GroupNode, psdUI.exportPath);
-            }
-
-            AssetDatabase.Refresh();
-        }
-
-        //--------------------------------------------------------------------------
-        // private methods,按texture或image的要求导入图片到unity可加载的状态
-        //-------------------------------------------------------------------------
-
-        private void ImportLayer(GroupNode layer, string baseDirectory)
-        {
-            if (layer.images != null)
-            {
-                for (int imageIndex = 0; imageIndex < layer.images.Count; imageIndex++)
-                {
-                    // we need to fixup all images that were exported from PS
-                    ImgNode image = layer.images[imageIndex];
-                    if (image.type != ImgType.Label)
-                    {
-                        string texturePathName = psdUI.exportPath + layer.images[imageIndex].sprite + psdUI.fileExt;
-                        TextureImporter textureImporter = AssetImporter.GetAtPath(texturePathName) as TextureImporter;
-
-                        if (textureImporter == null) {
-                            continue;//图片不存在，可能是颜色区域
-                        }
-
-                        
-                        if (image.type == ImgType.Texture)
-                        {
-                            textureImporter.textureType = TextureImporterType.Image;
-                        }
-                        else
-                        {
-                            // modify the importer settings
-                            textureImporter.textureType = TextureImporterType.Sprite;
-                            textureImporter.spriteImportMode = SpriteImportMode.Single;
-                            textureImporter.spritePackingTag = psdUI.name;
-
-                            if (image.type == ImgType.AtlasImage) {
-                                textureImporter.spriteBorder = new Vector4(3, 3, 3, 3);   // Set Default Slice type  UnityEngine.UI.Image's border to Vector4 (3, 3, 3, 3)
-                            }
-                        }
-                        textureImporter.maxTextureSize = 2048;
-                        AssetDatabase.WriteImportSettingsIfDirty(texturePathName);
-                        AssetDatabase.ImportAsset(texturePathName);
-                    }
-                }
-            }
-
-            if (layer.groups != null)
-            {
-                for (int layerIndex = 0; layerIndex < layer.groups.Count; layerIndex++)
-                {
-                    ImportLayer(layer.groups[layerIndex] as GroupNode, psdUI.exportPath);
-                }
-            }
-        }
-
-        //------------------------------------------------------------------
-        //when it's a common psd, then move the asset to special folder
-        //------------------------------------------------------------------
-        private void MoveAsset(GroupNode layer, string baseDirectory)
-        {
-            if (layer.images != null)
-            {
-                string newPath = psdUI.globalPath;
-
-                if (!Directory.Exists(newPath))
-                {
-                    Debug.Log("creating new folder : " + newPath);
-                    Directory.CreateDirectory(newPath);
-                }
-
-                AssetDatabase.Refresh();
-
-                for (int imageIndex = 0; imageIndex < layer.images.Count; imageIndex++)
-                {
-                    // we need to fixup all images that were exported from PS
-                    ImgNode image = layer.images[imageIndex];
-
-                    if (image.source == ImgSource.Globle || psdUI.forceMove)
-                    {
-                        string texturePathName = psdUI.exportPath + image.sprite + psdUI.fileExt;
-                        string targetPathName = newPath + image.sprite + psdUI.fileExt;
-
-                        Debug.Log(texturePathName);
-                        Debug.Log(targetPathName);
-
-                        AssetDatabase.MoveAsset(texturePathName, targetPathName);
-                    }
-                }
-            }
-
-            if (layer.groups != null)
-            {
-                for (int layerIndex = 0; layerIndex < layer.groups.Count; layerIndex++)
-                {
-                    MoveAsset(layer.groups[layerIndex] as GroupNode, psdUI.exportPath);
                 }
             }
         }

@@ -13,7 +13,7 @@ using UnityEditor;
 using Rotorz.ReorderableList;
 using System;
 
-namespace PSDUnity
+namespace PSDUnity.Data
 {
 
     [CustomEditor(typeof(RouleObject))]

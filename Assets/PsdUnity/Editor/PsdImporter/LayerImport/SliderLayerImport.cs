@@ -5,7 +5,8 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-namespace PSDUnity
+using PSDUnity.Data;
+namespace PSDUnity.Import
 {
     public class SliderLayerImport : ILayerImport
     {

@@ -5,10 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
-
-
-
-namespace PSDUnity
+using PSDUnity.Data;
+namespace PSDUnity.Import
 {
     public class SpriteImport : IImageImport
     {
@@ -53,7 +51,7 @@ namespace PSDUnity
 
         private UGUINode DrawSliceImage(ImgNode image, UGUINode parent)
         {
-            UGUINode node = PSDImportUtility.InstantiateItem(GroupType.IMAGE, image.sprite.name, parent);
+            UGUINode node = PSDImportUtility.InstantiateItem(GroupType.IMAGE, image.Name, parent);
             UnityEngine.UI.Image pic = node.InitComponent<UnityEngine.UI.Image>();
             PSDImportUtility.SetPictureOrLoadColor(image, pic);
             pic.type = UnityEngine.UI.Image.Type.Sliced;

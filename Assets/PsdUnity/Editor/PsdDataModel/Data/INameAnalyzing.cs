@@ -1,4 +1,7 @@
-﻿public interface INameAnalyzing
+﻿namespace PSDUnity.Data
 {
-    void Analyzing(string name);
+    public interface INameAnalyzing<T>
+    {
+        T Analyzing(RouleObject roule, string name);
+    }
 }

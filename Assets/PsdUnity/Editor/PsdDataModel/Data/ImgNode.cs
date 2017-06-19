@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-namespace PSDUnity
+namespace PSDUnity.Data
 {
     [Serializable]
-    public class ImgNode: INameAnalyzing
+    public class ImgNode: INameAnalyzing<ImgNode>
     {
         public string Name;
         private int hashImage = 0;
@@ -27,17 +27,10 @@ namespace PSDUnity
 
         public ImgNode() { }
 
-        public ImgNode(string name, Rect rect, Texture2D texture) : this(rect)
+        public ImgNode(Rect rect, Texture2D texture) : this(rect)
         {
-            Analyzing(name);
             this.rect = rect;
             this.texture = texture;
-            //添加后缀
-            if (texture != null)
-            {
-                this.hashImage = rect.GetHashCode();
-                this.texture.name = TextureName;
-            }
         }
         public ImgNode(string name, Rect rect, Color color) : this(rect)
         {
@@ -64,7 +57,7 @@ namespace PSDUnity
         /// 将名字转换（去除标记性字符）
         /// </summary>
         /// <returns></returns>
-        public void Analyzing(string name)
+        public ImgNode Analyzing(RouleObject roule,string name)
         {
             if (name.Contains("#"))
             {
@@ -103,6 +96,13 @@ namespace PSDUnity
                 type = ImgType.AtlasImage;
                 source = ImgSource.Custom;
             }
+            //添加后缀
+            if (texture != null)
+            {
+                this.hashImage = rect.GetHashCode();
+                this.texture.name = TextureName;
+            }
+            return this;
         }
     }
 

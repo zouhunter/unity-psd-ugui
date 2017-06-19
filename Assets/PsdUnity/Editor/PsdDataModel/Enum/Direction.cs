@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Assertions.Must;
 using UnityEngine.Assertions.Comparers;
 using System.Collections;
-namespace PSDUnity
+namespace PSDUnity.Data
 {
     public enum Direction
     {
