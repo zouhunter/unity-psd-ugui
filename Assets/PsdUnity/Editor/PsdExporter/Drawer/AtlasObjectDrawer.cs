@@ -80,13 +80,13 @@ namespace PSDUnity.Exprot
                 var psd = PsdDocument.Create(atlasObj.psdFile);
                 if (psd != null)
                 {
-                    //设置名称规则
-                    PsdExportUtility.rouleObj = atlasObj.prefabObj;
+                    PsdExportUtility.InitPsdExportEnvrioment(atlasObj.atlasInfo, atlasObj.prefabObj,new Vector2(psd.Width,psd.Height));
+
                     atlasObj.groups.Clear();
                     for (int i = 0; i < psd.Childs.Length; i++)
                     {
                         var item = psd.Childs[i];
-                        var groupData = PsdExportUtility.CreatePictures(item as PsdLayer, atlasObj.atlasInfo, atlasObj.forceSprite);
+                        var groupData = PsdExportUtility.CreatePictures(item as PsdLayer, atlasObj.uiSize, atlasObj.forceSprite);
                         if (groupData != null)
                         {
                             PsdExportUtility.ChargeTextures(atlasObj.atlasInfo, groupData);

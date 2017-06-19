@@ -11,18 +11,21 @@ namespace PSDUnity.Exprot
 {
     public static class PsdExportUtility
     {
+        private static Vector2 maxSize { get; set; }
         public static RouleObject rouleObj { get; set; }
-
-        public static Rect GetRectFromLayer(Vector2 rootSize,PsdLayer psdLayer)
+        public static PictureExportInfo pictureInfo { get; set; }
+        private static Vector2 rootSize { get; set; }
+        public static void InitPsdExportEnvrioment(PictureExportInfo pictureInfo0, RouleObject rouleObj0,Vector2 rootSize0)
         {
-            var xMin = (psdLayer.Right + psdLayer.Left - rootSize.x) * 0.5f;
-            var yMin = -(psdLayer.Top + psdLayer.Bottom - rootSize.y) * 0.5f;
-            return new Rect(xMin,yMin, psdLayer.Width,psdLayer.Height);
+            pictureInfo = pictureInfo0;
+            rouleObj = rouleObj0;
+            rootSize = rootSize0;
         }
 
 
-        public static GroupNode1 CreatePictures(PsdLayer rootLayer, PictureExportInfo pictureInfo, bool forceSprite = false)
+        public static GroupNode1 CreatePictures(PsdLayer rootLayer, Vector2 uiSize, bool forceSprite = false)
         {
+            maxSize = uiSize;
             if (!rootLayer.IsGroup){
                 Debug.LogWarning("[rootLayer不是组]");
                 return null;
@@ -30,7 +33,7 @@ namespace PSDUnity.Exprot
             }
             var rootSize = new Vector2(rootLayer.Width, rootLayer.Height);
 
-            var groupnode = new GroupNode1(GetRectFromLayer(rootSize, rootLayer)).Analyzing(PsdExportUtility.rouleObj,rootLayer.Name) as GroupNode1;// (rootLayer,rootLayer));
+            var groupnode = new GroupNode1(GetRectFromLayer(rootLayer)).Analyzing(PsdExportUtility.rouleObj,rootLayer.Name) as GroupNode1;// (rootLayer,rootLayer));
 
             RetriveLayerToSwitchModle(rootSize,rootLayer, groupnode,forceSprite);
 
@@ -177,20 +180,27 @@ namespace PSDUnity.Exprot
             }
 
         }
-
+        /// <summary>
+        /// 将图层解析为imgNode
+        /// </summary>
+        /// <param name="rootSize"></param>
+        /// <param name="layer"></param>
+        /// <param name="forceSprite"></param>
+        /// <returns></returns>
         public static ImgNode AnalysisLayer(Vector2 rootSize,PsdLayer layer, bool forceSprite = false)
         {
             ImgNode data = null;
-            var rect = GetRectFromLayer(rootSize,layer);
+            var texture = CreateTexture(layer);
+            var rect = GetRectFromLayer(layer);
             switch (layer.LayerType)
             {
                 case LayerType.Normal:
-                    data = new ImgNode(rect, CreateTexture(layer)).Analyzing(PsdExportUtility.rouleObj,layer.Name);
+                    data = new ImgNode(rect, texture).Analyzing(PsdExportUtility.rouleObj,layer.Name);
                     break;
                 case LayerType.SolidImage:
                     if (forceSprite)
                     {
-                        data = new ImgNode(rect, CreateTexture(layer)).Analyzing(PsdExportUtility.rouleObj,layer.Name);
+                        data = new ImgNode(rect, texture).Analyzing(PsdExportUtility.rouleObj,layer.Name);
                     }
                     else
                     {
@@ -210,16 +220,21 @@ namespace PSDUnity.Exprot
             }
             return data;
         }
-
+        /// <summary>
+        /// 从layer解析图片
+        /// </summary>
+        /// <param name="layer"></param>
+        /// <returns></returns>
         public static Texture2D CreateTexture(PsdLayer layer)
         {
             Texture2D texture = new Texture2D(layer.Width, layer.Height);
             Color32[] pixels = new Color32[layer.Width * layer.Height];
+
             Channel red = Array.Find(layer.Channels, i => i.Type == ChannelType.Red);
             Channel green = Array.Find(layer.Channels, i => i.Type == ChannelType.Green);
             Channel blue = Array.Find(layer.Channels, i => i.Type == ChannelType.Blue);
             Channel alpha = Array.Find(layer.Channels, i => i.Type == ChannelType.Alpha);
-            //Channel mask = Array.Find(layer.Channels, i => i.Type == ChannelType.Mask);
+            Channel mask = Array.Find(layer.Channels, i => i.Type == ChannelType.Mask);
             for (int i = 0; i < pixels.Length; i++)
             {
                 byte r = red.Data[i];
@@ -229,8 +244,8 @@ namespace PSDUnity.Exprot
 
                 if (alpha != null)
                     a = alpha.Data[i];
-                //if (mask != null)
-                //    a *= mask.Data[i];
+                if (mask != null)
+                    a *= mask.Data[i];
 
                 int mod = i % texture.width;
                 int n = ((texture.width - mod - 1) + i) - mod;
@@ -241,7 +256,11 @@ namespace PSDUnity.Exprot
             texture.Apply();
             return texture;
         }
-
+        /// <summary>
+        /// 计算平均颜色
+        /// </summary>
+        /// <param name="layer"></param>
+        /// <returns></returns>
         public static Color GetLayerColor(PsdLayer layer)
         {
             Channel red = Array.Find(layer.Channels, i => i.Type == ChannelType.Red);
@@ -294,7 +313,7 @@ namespace PSDUnity.Exprot
                 {
                     if (child.IsGroup)
                     {
-                        GroupNode childNode = group.InsertChild(GetRectFromLayer(rootSize, child)).Analyzing(rouleObj,child.Name);
+                        GroupNode childNode = group.InsertChild(GetRectFromLayer(child)).Analyzing(rouleObj,child.Name);
 
                         if (childNode != null)
                         {
@@ -314,5 +333,27 @@ namespace PSDUnity.Exprot
                 }
             }
         }
+       
+        /// <summary>
+        /// 解析Layer中的尺寸信息
+        /// </summary>
+        /// <param name="psdLayer"></param>
+        /// <returns></returns>
+        private static Rect GetRectFromLayer(PsdLayer psdLayer)
+        {
+            //rootSize = new Vector2(rootSize.x > maxSize.x ? maxSize.x : rootSize.x, rootSize.y > maxSize.y ? maxSize.y : rootSize.y);
+
+            var left = psdLayer.Left;// psdLayer.Left <= 0 ? 0 : psdLayer.Left;
+            var bottom = psdLayer.Bottom;// psdLayer.Bottom <= 0 ? 0 : psdLayer.Bottom;
+            var top = psdLayer.Top;// psdLayer.Top >= rootSize.y ? rootSize.y : psdLayer.Top;
+            var rigtht = psdLayer.Right;// psdLayer.Right >= rootSize.x ? rootSize.x : psdLayer.Right;
+            var width = psdLayer.Width;// psdLayer.Width > rootSize.x ? rootSize.x : psdLayer.Width;
+            var height = psdLayer.Height;// psdLayer.Height > rootSize.y ? rootSize.y : psdLayer.Height;
+
+            var xMin = (rigtht + left - rootSize.x) * 0.5f;
+            var yMin = -(top + bottom - rootSize.y) * 0.5f;
+            return new Rect(xMin,yMin, width,height);
+        }
+        
     }
 }

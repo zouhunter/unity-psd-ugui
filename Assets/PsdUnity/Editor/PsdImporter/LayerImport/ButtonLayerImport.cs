@@ -29,6 +29,10 @@ namespace PSDUnity.Import
                     string lowerName = image.Name.ToLower();
                     if (lowerName.StartsWith("n_") || lowerName.StartsWith("p_") || lowerName.StartsWith("d_") || lowerName.StartsWith("h_"))
                     {
+                        if (lowerName.StartsWith("n_"))
+                        {
+                            PSDImportUtility.SetRectTransform(image, button.GetComponent<RectTransform>());
+                        }
                         if (image.color == UnityEngine.Color.white)
                         {
                             SetSpriteSwipe(image, button);
