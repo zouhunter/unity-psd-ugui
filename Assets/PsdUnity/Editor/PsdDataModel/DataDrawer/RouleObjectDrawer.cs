@@ -32,10 +32,13 @@ namespace PSDUnity.Data
         }
         public override void OnInspectorGUI()
         {
+            base.OnInspectorGUI();
             serializedObject.Update();
-            EditorGUILayout.PropertyField(scriptProp);
-            EditorGUILayout.PropertyField(sepraterCharProp);
-            EditorGUILayout.PropertyField(argumentCharProp);
+            //EditorGUILayout.PropertyField(scriptProp);
+            //ReorderableListGUI.Title("组合命名规则");
+            //EditorGUILayout.PropertyField(sepraterCharProp);
+            //EditorGUILayout.PropertyField(argumentCharProp);
+            //ReorderableListGUI.Title("图层命名规则");
 
             ReorderableListGUI.Title("预制体列表");
             ReorderableListGUI.ListField<RouleObject.PrefabItem>(obj.prefabs,OnDrawItem,OnDrawEmpte,EditorGUIUtility.singleLineHeight);

@@ -59,43 +59,7 @@ namespace PSDUnity.Data
         /// <returns></returns>
         public ImgNode Analyzing(RouleObject roule,string name)
         {
-            if (name.Contains("#"))
-            {
-                var index = name.IndexOf("#");
-                this.Name = name.Remove(index);
-
-                name = name.ToUpper();
-                if (name.Contains("#G")) {
-                    source = ImgSource.Globle;
-                }
-                else if (name.Contains("#N"))
-                {
-                    source = ImgSource.Normal;
-                }
-                else
-                {
-                    source = ImgSource.Custom;
-                }
-
-                if (name.Contains("#S"))
-                {
-                    type = ImgType.Image;
-                }
-                else if(name.Contains("#T"))
-                {
-                    type = ImgType.Texture;
-                }
-                else
-                {
-                    type = ImgType.AtlasImage;
-                }
-            }
-            else
-            {
-                this.Name = name;
-                type = ImgType.AtlasImage;
-                source = ImgSource.Custom;
-            }
+            this.Name = roule.AnalySisImgName(name, out source, out type);
             //添加后缀
             if (texture != null)
             {

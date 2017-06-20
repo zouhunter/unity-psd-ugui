@@ -36,7 +36,7 @@ namespace PSDUnity.Data
         public GroupNode Analyzing(RouleObject roule,string name)
         {
             string[] areguments = null;
-            this.Name = roule.AnalysisName(name, out groupType, out areguments);
+            this.Name = roule.AnalysisGroupName(name, out groupType, out areguments);
             switch (groupType)
             {
                 case GroupType.GRID:

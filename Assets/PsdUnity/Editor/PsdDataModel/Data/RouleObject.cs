@@ -32,9 +32,20 @@ namespace PSDUnity.Data
                 this.keyName = groupType.ToString().ToLower();
             }
         }
+        [HideInInspector]
         public List<PrefabItem> prefabs = new List<PrefabItem>();
-        public char sepraterChar = '@';
+
+        [Header("图层标记"), Space(10)]
+        public char sepraterCharimg = '#';
+        public string asSingleMark = "S";
+        public string asTextureMark = "T";
+        public string asGoubleMark = "G";
+        public string asNoRepetMark = "N";
+
+        [Header("组名分割"), Space(10)]
+        public char sepraterChargroup = '@';
         public char argumentChar = ':';
+       
 
         public void Reset()
         {
@@ -43,7 +54,7 @@ namespace PSDUnity.Data
             Debug.Log(UnityEditor.AssetDatabase.AssetPathToGUID(path));
         }
 
-        public string AnalysisName(string name,out GroupType groupType,out string[] areguments)
+        public string AnalysisGroupName(string name,out GroupType groupType,out string[] areguments)
         {
             areguments = null;
             string clampName = name;
@@ -56,9 +67,9 @@ namespace PSDUnity.Data
             {
                 groupType = item.groupType;
             }
-            if (name.Contains(sepraterChar.ToString()))
+            if (name.Contains(sepraterChargroup.ToString()))
             {
-                var index = name.IndexOf(sepraterChar);
+                var index = name.IndexOf(sepraterChargroup);
                 clampName = name.Remove(index);
             }
             if (name.Contains(argumentChar.ToString()))
@@ -75,6 +86,52 @@ namespace PSDUnity.Data
             }
             return clampName;
         }
+
+        public string AnalySisImgName(string name,out ImgSource source, out ImgType type)
+        {
+            string clampName = name;
+
+            if (name.Contains(sepraterCharimg.ToString()))
+            {
+                var index = name.IndexOf(sepraterCharimg);
+                clampName = name.Remove(index);
+
+                name = name.ToUpper();
+                if (name.Contains((sepraterCharimg + asGoubleMark).ToUpper()))
+                {
+                    source = ImgSource.Globle;
+                }
+                else if (name.Contains((sepraterCharimg + asNoRepetMark).ToUpper()))
+                {
+                    source = ImgSource.Normal;
+                }
+                else
+                {
+                    source = ImgSource.Custom;
+                }
+
+                if (name.Contains((sepraterCharimg + asSingleMark).ToUpper()))
+                {
+                    type = ImgType.Image;
+                }
+                else if (name.Contains((sepraterCharimg + asTextureMark).ToUpper()))
+                {
+                    type = ImgType.Texture;
+                }
+                else
+                {
+                    type = ImgType.AtlasImage;
+                }
+            }
+            else
+            {
+                clampName = name;
+                type = ImgType.AtlasImage;
+                source = ImgSource.Custom;
+            }
+            return clampName;
+        }
+
         public static Direction GetDirectionByKey(string key)
         {
             var dir = Direction.None;
