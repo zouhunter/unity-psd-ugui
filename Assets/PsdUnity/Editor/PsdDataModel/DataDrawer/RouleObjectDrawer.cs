@@ -34,7 +34,7 @@ namespace PSDUnity.Data
         {
             base.OnInspectorGUI();
             serializedObject.Update();
-            //EditorGUILayout.PropertyField(scriptProp);
+            EditorGUILayout.PropertyField(scriptProp);
             //ReorderableListGUI.Title("组合命名规则");
             //EditorGUILayout.PropertyField(sepraterCharProp);
             //EditorGUILayout.PropertyField(argumentCharProp);

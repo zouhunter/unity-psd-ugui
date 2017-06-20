@@ -7,9 +7,10 @@ using Ntreev.Library.Psd;
 using System;
 using PSDUnity;
 using PSDUnity.Data;
+using Rotorz.ReorderableList;
 namespace PSDUnity.Exprot
 {
-    public class PSDPreviewWindow : EditorWindow
+    public partial class PSDPreviewWindow
     {
         public class LayerNode
         {
@@ -55,7 +56,8 @@ namespace PSDUnity.Exprot
                         break;
                 }
 
-                content = layerType == LayerType.Group ? _groupff : _spritenormal;
+                content = layerType == LayerType.Group ? _groupOn : _spritenormal;
+                isExpanded = true;
             }
 
             public void Expland(bool on)
@@ -75,6 +77,10 @@ namespace PSDUnity.Exprot
             }
         }
 
+    }
+
+    public partial class PSDPreviewWindow : EditorWindow
+    {
         [MenuItem("PsdUnity/ConfigWindow")]
         static void OpenPSDConfigWindow()
         {
@@ -85,14 +91,18 @@ namespace PSDUnity.Exprot
 
         private const string Prefs_pdfPath = "Prefs_pdfPath";
         private string psdPath;
-        private Ntreev.Library.Psd.PsdDocument psd;
+        private PsdDocument psd;
         private LayerNode data;
-
         private static PSDPreviewWindow window;
         private SerializedProperty scriptProp;
-
+        private List<Texture2D> both;
+        private List<Texture2D> generated;
+        private Vector2 nodesVec;
+        private Vector2 previewVec;
         private void OnEnable()
         {
+            both = new List<Texture2D>();
+            generated = new List<Texture2D>();
             scriptProp = new SerializedObject(this).FindProperty("m_Script");
             psdPath = EditorPrefs.GetString(Prefs_pdfPath);
         }
@@ -101,14 +111,31 @@ namespace PSDUnity.Exprot
             EditorGUILayout.PropertyField(scriptProp);
             if (DrawFileSelect())
             {
-                DrawData(data);
+                using (var vec = new EditorGUILayout.ScrollViewScope(nodesVec, GUILayout.Height(300)))
+                {
+                    nodesVec = vec.scrollPosition;
+                    DrawData(data);
+                    EditorGUI.indentLevel = 0;
+                }
                 DrawTools();
+                using (var vec = new EditorGUILayout.ScrollViewScope(previewVec))
+                {
+                    previewVec = vec.scrollPosition;
+                    Rotorz.ReorderableList.ReorderableListGUI.ListField<Texture2D>(generated, DrawTextureItem, DrawEmpty, 100);
+                    if(both != null)
+                    {
+                        Rotorz.ReorderableList.ReorderableListGUI.ListField<Texture2D>(both, DrawTextureItem, ()=>{ }, 300);
+                    }
+                }
             }
             else
             {
                 DrawErrBox("请先选择正确的PDF文件路径");
             }
         }
+
+
+
         private bool DrawFileSelect()
         {
             using (var hor = new EditorGUILayout.HorizontalScope())
@@ -141,9 +168,7 @@ namespace PSDUnity.Exprot
         {
             EditorGUILayout.HelpBox(str, MessageType.Error);
         }
-
-
-        void DrawData(LayerNode data)
+        private void DrawData(LayerNode data)
         {
             if (data.content != null)
             {
@@ -168,21 +193,7 @@ namespace PSDUnity.Exprot
                     }
                 }
         }
-
-        private void DrawTools()
-        {
-            using (var hor = new EditorGUILayout.HorizontalScope())
-            {
-                if (GUILayout.Button("创建模板"))
-                {
-                    var atlasObj = ScriptableObject.CreateInstance<AtlasObject>();
-                    atlasObj.psdFile = psdPath;
-                    ProjectWindowUtil.CreateAsset(atlasObj, "atlasObj.asset");
-                }
-            }
-        }
-
-        void DrawGUIData(LayerNode data)
+        private void DrawGUIData(LayerNode data)
         {
             GUIStyle style = "Label";
             Rect rt = GUILayoutUtility.GetRect(data.content, style);
@@ -210,6 +221,115 @@ namespace PSDUnity.Exprot
             EditorGUI.LabelField(rt, data.content);
         }
 
+        private void DrawTools()
+        {
+            EditorGUI.indentLevel = 0;
+            using (var hor = new EditorGUILayout.HorizontalScope())
+            {
+                if (GUILayout.Button("预览图片"))
+                {
+                    RetriveArtLayer(data, (item) =>
+                    {
+                        if (item.selected)
+                        {
+                            var texture = PsdExportUtility.CreateTexture((PsdLayer)item.layer);
+                            texture.name = item.layer.Name;
+                            generated.Add(texture);
+                        }
+
+                    });
+                }
+
+                if (GUILayout.Button("所有图片"))
+                {
+                    RetriveArtLayer(data, (item) =>
+                    {
+                        var texture = PsdExportUtility.CreateTexture((PsdLayer)item.layer);
+                        texture.name = item.layer.Name;
+                        generated.Add(texture);
+                    });
+                }
+                if (GUILayout.Button("整体效果"))
+                {
+                    RetriveRootLayer(data, (root) =>
+                    {
+                        Texture2D texture = new Texture2D(psd.Width, psd.Height);
+                        RetriveArtLayer(root, (item) => {
+                            var titem = PsdExportUtility.CreateTexture((PsdLayer)item.layer);
+                            for (int x = 0; x < titem.width; x++)
+                            {
+                                for (int y = 0; y < titem.height; y++)
+                                {
+                                    var color = titem.GetPixel(x, y);
+                                    texture.SetPixel(x + item.layer.Left,psd.Height -(y + item.layer.Top), color);
+                                }
+                            }
+                        });
+                        texture.Apply();
+                        both.Add(texture);
+                    });
+                }
+                if (GUILayout.Button("清空预览"))
+                {
+                    generated.Clear();
+                    both.Clear();
+                    EditorUtility.SetDirty(this);
+                }
+                if (GUILayout.Button("创建模板"))
+                {
+                    var atlasObj = ScriptableObject.CreateInstance<AtlasObject>();
+                    atlasObj.psdFile = psdPath;
+                    ProjectWindowUtil.CreateAsset(atlasObj, "atlasObj.asset");
+                }
+            }
+        }
+
+        private void RetriveArtLayer(LayerNode data, UnityAction<LayerNode> onRetrive)
+        {
+            if (data.layerType != LayerType.Group && data.layerType != LayerType.Divider)
+            {
+                onRetrive(data);
+            }
+            else
+            {
+                if (data.childs != null)
+                    foreach (var item in data.childs)
+                    {
+                        RetriveArtLayer(item, onRetrive);
+                    }
+            }
+        }
+        private void RetriveRootLayer(LayerNode data, UnityAction<LayerNode> onRetrive)
+        {
+            if (data.selected && data.layerType == LayerType.Group)
+            {
+                onRetrive(data);
+            }
+            else
+            {
+                if (data.childs != null)
+                    foreach (var item in data.childs)
+                    {
+                        RetriveRootLayer(item, onRetrive);
+                    }
+            }
+        }
+
+        private void DrawEmpty()
+        {
+            DrawErrBox("请先选择层级");
+        }
+
+        private Texture2D DrawTextureItem(Rect position, Texture2D item)
+        {
+            var width = (item.width / (item.height + 0f)) * position.height;
+            var posx = (position.width - width) * 0.5f;
+            var rect = new Rect(posx, position.y, width, position.height);
+            EditorGUI.DrawTextureTransparent(rect, item, ScaleMode.ScaleToFit);
+            EditorGUI.LabelField(position, new GUIContent(item.name));
+            return item;
+        }
+
         private void OpenPsdDocument()
         {
             if (System.IO.File.Exists(psdPath))
@@ -219,8 +339,7 @@ namespace PSDUnity.Exprot
                 LoadDataLayers(data);
             }
         }
-
-        void LoadDataLayers(LayerNode data, int indent = 0)
+        private void LoadDataLayers(LayerNode data, int indent = 0)
         {
             if (data.content != null)
             {
@@ -238,7 +357,6 @@ namespace PSDUnity.Exprot
                 }
             }
         }
-
         void OnDisable()
         {
             if (psd != null) psd.Dispose();
