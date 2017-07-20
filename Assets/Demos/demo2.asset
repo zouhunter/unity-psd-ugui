@@ -71,7 +71,7 @@ MonoBehaviour:
       color: {r: 1, g: 1, b: 1, a: 1}
   - Name: progress
     groupType: 8
-    direction: 16
+    direction: 32
     constraintCount: 0
     spacing: 0
     rect:
@@ -147,8 +147,8 @@ MonoBehaviour:
         serializedVersion: 2
         x: -109.5
         y: -58
-        width: 150
-        height: 50
+        width: 98
+        height: 38
       sprite: {fileID: 0}
       texture: {fileID: 0}
       text: "Enter text\u2026"
@@ -232,10 +232,10 @@ MonoBehaviour:
       rect:
         serializedVersion: 2
         x: -12
-        y: 1
+        y: 1.5
         width: 281
-        height: 14
-      sprite: {fileID: 21300014, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+        height: 15
+      sprite: {fileID: 21300040, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -258,7 +258,7 @@ MonoBehaviour:
       color: {r: 1, g: 1, b: 1, a: 1}
   - Name: slider
     groupType: 8
-    direction: 16
+    direction: 32
     constraintCount: 0
     spacing: 0
     rect:
@@ -379,8 +379,8 @@ MonoBehaviour:
         serializedVersion: 2
         x: -113
         y: 56
-        width: 119
-        height: 50
+        width: 67
+        height: 38
       sprite: {fileID: 0}
       texture: {fileID: 0}
       text: Button
@@ -395,12 +395,12 @@ MonoBehaviour:
     rect:
       serializedVersion: 2
       x: 65
-      y: 100.5
+      y: 67
       width: 153
-      height: 37
+      height: 104
     _groups: []
     _images:
-    - Name: b1
+    - Name: b1_
       type: 2
       source: 1
       rect:
@@ -409,7 +409,37 @@ MonoBehaviour:
         y: 99.5
         width: 151
         height: 35
-      sprite: {fileID: 21300030, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      sprite: {fileID: 21300044, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: b2_
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 62.5
+        y: 52
+        width: 148
+        height: 74
+      sprite: {fileID: 21300048, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: b3_
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 51.5
+        y: 75.5
+        width: 118
+        height: 25
+      sprite: {fileID: 21300050, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -422,6 +452,21 @@ MonoBehaviour:
         serializedVersion: 2
         x: 45
         y: 101.5
+        width: 41
+        height: 13
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Option
+      font: {fileID: 0}
+      fontSize: 14
+      color: {r: 0.79999, g: 0.79999, b: 0.79999, a: 1}
+    - Name: t2_
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 74.5
         width: 41
         height: 13
       sprite: {fileID: 0}
