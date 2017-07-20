@@ -10,68 +10,130 @@ namespace PSDUnity.Import
 {
     public class SliderLayerImport : ILayerImport
     {
+        private PSDImportCtrl ctrl;
+        public SliderLayerImport(PSDImportCtrl ctrl)
+        {
+            this.ctrl = ctrl;
+        }
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImportUtility.InstantiateItem(GroupType.SLIDER,layer.Name,parent); //GameObject.Instantiate(temp) as UnityEngine.UI.Slider;
+            UGUINode node = PSDImportUtility.InstantiateItem(GroupType.SLIDER, layer.Name, parent); //GameObject.Instantiate(temp) as UnityEngine.UI.Slider;
             UnityEngine.UI.Slider slider = node.InitComponent<UnityEngine.UI.Slider>();
-            switch (layer.direction)
+            PSDImportUtility.SetRectTransform(layer, slider.GetComponent<RectTransform>());
+            slider.value = 1;
+
+            ImgNode bg = layer.images.Find(x => x.Name.ToLower().StartsWith("b_"));
+            ImgNode fill = layer.images.Find(x => x.Name.ToLower().StartsWith("f_"));
+            ImgNode handle = layer.images.Find(x => x.Name.ToLower().StartsWith("h_"));
+
+            if (bg != null)
+            {
+                var graph = node.InitComponent<UnityEngine.UI.Image>();
+                PSDImportUtility.SetPictureOrLoadColor(bg, graph);
+            }
+
+            if (fill != null)
+            {
+                var fillAreaNode = PSDImportUtility.InstantiateItem(GroupType.EMPTY, "Fill Area", node);
+                var fileNode = ctrl.DrawImage(fill, fillAreaNode);
+                fileNode.InitComponent<Image>().type = Image.Type.Tiled;
+                PSDImportUtility.SetRectTransform(fill, fillAreaNode.InitComponent<RectTransform>());
+
+                fillAreaNode.ReprocessEvent = () =>
+                {
+                    slider.fillRect = fileNode.InitComponent<RectTransform>();
+                };
+            }
+
+            if (handle != null && bg != null)
+            {
+                var tempRect = fill != null ? fill : bg;
+                SetSlider(slider, handle, layer);
+                var handAreaNode = PSDImportUtility.InstantiateItem(GroupType.EMPTY, "Handle Slide Area", node);
+                var handNode = ctrl.DrawImage(handle, handAreaNode);
+                PSDImportUtility.SetRectTransform(tempRect, handAreaNode.InitComponent<RectTransform>());
+
+                switch (layer.direction)
+                {
+                    case Direction.LeftToRight:
+                        handNode.anchoType = AnchoType.Right|AnchoType.YStretch;
+                        break;
+                    case Direction.BottomToTop:
+                        handNode.anchoType = AnchoType.Up | AnchoType.XStretch;
+                        break;
+                    case Direction.TopToBottom:
+                        handNode.anchoType = AnchoType.Down | AnchoType.XStretch;
+                        break;
+                    case Direction.RightToLeft:
+                        handNode.anchoType = AnchoType.Left | AnchoType.YStretch;
+                        break;
+                    default:
+                        break;
+                }
+                handNode.ReprocessEvent = () =>
+                {
+                    slider.handleRect = handNode.InitComponent<RectTransform>();
+                    slider.handleRect.anchoredPosition = Vector3.zero;
+                };
+            }
+            else
+            {
+                SetSlider(slider, layer.direction);
+            }
+           
+
+            return node;
+        }
+        private void SetSlider(Slider slider,Direction dir)
+        {
+            switch (dir)
             {
                 case Direction.LeftToRight:
                     slider.direction = Slider.Direction.LeftToRight;
                     break;
+                case Direction.RightToLeft:
+                    slider.direction = Slider.Direction.RightToLeft;
+                    break;
+
                 case Direction.BottomToTop:
                     slider.direction = Slider.Direction.BottomToTop;
                     break;
                 case Direction.TopToBottom:
                     slider.direction = Slider.Direction.TopToBottom;
                     break;
-                case Direction.RightToLeft:
-                    slider.direction = Slider.Direction.RightToLeft;
-                    break;
                 default:
                     break;
             }
-            
-            bool haveHandle = false;
-            for (int i = 0; i < layer.images.Count; i++)
+        }
+
+        private void SetSlider(Slider slider, ImgNode handlePos, GroupNode groupPos)
+        {
+            var hRect = handlePos.rect;
+            var gRect = groupPos.rect;
+
+            if (gRect.width > gRect.height)
             {
-                ImgNode image = layer.images[i];
-                string lowerName = image.Name.ToLower();
-                UnityEngine.UI.Image graph = null;
-                
-                if (lowerName.StartsWith("b_"))
+                if (hRect.x > gRect.x)
                 {
-                    graph = slider.transform.Find("Background").GetComponent<UnityEngine.UI.Image>();
-                    PSDImportUtility.SetRectTransform(image, slider.GetComponent<RectTransform>());
-                    slider.name = layer.Name;
+                    slider.direction = Slider.Direction.LeftToRight;
                 }
-                else if (lowerName.StartsWith("f_"))
+                else
                 {
-                    graph = slider.fillRect.GetComponent<UnityEngine.UI.Image>();
+                    slider.direction = Slider.Direction.RightToLeft;
                 }
-                else if (lowerName.StartsWith("h_"))
+            }
+            else
+            {
+                if (hRect.y > gRect.y)
                 {
-                    graph = slider.handleRect.GetComponent<UnityEngine.UI.Image>();
-                    RectTransform rect = graph.GetComponent<RectTransform>();
-                    rect.name = image.Name;
-                    rect.sizeDelta = new Vector2(image.rect.width,image.rect.height);
-                    rect.anchoredPosition = Vector2.zero;
-                    haveHandle = true;
+                    slider.direction = Slider.Direction.BottomToTop;
                 }
-
-                if (graph == null)
+                else
                 {
-                    continue;
+                    slider.direction = Slider.Direction.TopToBottom;
                 }
-
-                PSDImportUtility.SetPictureOrLoadColor(image, graph);
             }
 
-            if (!haveHandle)
-            {
-                UnityEngine.Object.DestroyImmediate(slider.handleRect.parent.gameObject);
-            }
-            return node;
         }
     }
 }

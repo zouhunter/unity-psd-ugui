@@ -36,14 +36,17 @@ namespace PSDUnity.Import
             InitDrawers();
         }
 
-        public void Import(GroupNode1[] gourps,Vector2 uiSize)
+        public void Import(GroupNode1[] gourps, Vector2 uiSize)
         {
             BeginDrawUILayers(gourps, uiSize);
             BeginSetUIParents(PSDImportUtility.uinode);
             BeginSetAnchers(PSDImportUtility.uinode.childs[0]);
+
             //最外层的要单独处理
+            var rp = PSDImportUtility.uinode.InitComponent<RectTransform>();
             var rt = PSDImportUtility.uinode.childs[0].InitComponent<RectTransform>();
-            PSDImportUtility.SetCustomAnchor(rt, rt);
+            PSDImportUtility.SetNormalAnchor(AnchoType.XCenter|AnchoType.YCenter,rt, rp);
+
             BeginReprocess(PSDImportUtility.uinode.childs[0]);//后处理
         }
 
@@ -54,7 +57,7 @@ namespace PSDUnity.Import
             {
                 case GroupType.EMPTY:
                 case GroupType.IMAGE:
-                    node= panelImport.DrawLayer(layer, parent);
+                    node = panelImport.DrawLayer(layer, parent);
                     break;
                 case GroupType.BUTTON:
                     node = buttonImport.DrawLayer(layer, parent);
@@ -102,7 +105,7 @@ namespace PSDUnity.Import
             return nodes;
         }
 
-        public UGUINode[] DrawImages(ImgNode[] images,UGUINode parent)
+        public UGUINode[] DrawImages(ImgNode[] images, UGUINode parent)
         {
             UGUINode[] nodes = new UGUINode[images.Length];
             if (images != null)
@@ -138,7 +141,7 @@ namespace PSDUnity.Import
         {
             spriteImport = new SpriteImport();
             textImport = new TextImport();
-            sliderImport = new SliderLayerImport();
+            sliderImport = new SliderLayerImport(this);
             inputFiledImport = new InputFieldLayerImport();
             buttonImport = new ButtonLayerImport(this);
             toggleImport = new ToggleLayerImport(this);
@@ -151,9 +154,9 @@ namespace PSDUnity.Import
 
         }
 
-        public void BeginDrawUILayers(GroupNode1[] groups,Vector2 uiSize)
+        public void BeginDrawUILayers(GroupNode1[] groups, Vector2 uiSize)
         {
-            UGUINode empty = PSDImportUtility.InstantiateItem(GroupType.EMPTY,"PSDUnity", PSDImportUtility.uinode);
+            UGUINode empty = PSDImportUtility.InstantiateItem(GroupType.EMPTY, "PSDUnity", PSDImportUtility.uinode);
             RectTransform rt = empty.InitComponent<RectTransform>();
             rt.sizeDelta = new Vector2(uiSize.x, uiSize.y);
             for (int layerIndex = 0; layerIndex < groups.Length; layerIndex++)
@@ -186,10 +189,10 @@ namespace PSDUnity.Import
             foreach (var item in node.childs)
             {
                 BeginReprocess(item);
-                if (node.ReprocessEvent != null)
-                {
-                    node.ReprocessEvent.Invoke();
-                }
+            }
+            if (node.ReprocessEvent != null)
+            {
+                node.ReprocessEvent();
             }
         }
     }

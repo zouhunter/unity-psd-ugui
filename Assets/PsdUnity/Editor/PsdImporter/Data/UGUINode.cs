@@ -12,18 +12,23 @@ namespace PSDUnity.Import
         public AnchoType anchoType = AnchoType.Custom;
         public List<UGUINode> childs = new List<UGUINode>();
         public Transform transform;
-        public UnityAction ReprocessEvent;
+        public UnityAction ReprocessEvent { get; set; }
         public UGUINode(Transform transform, UGUINode parent)
         {
             this.transform = transform;
             this.parent = parent;
-            if (parent != null) parent.childs.Add(this);
+            if (parent != null)
+            {
+                parent.childs.Add(this);
+            }
         }
         public T InitComponent<T>() where T : Component
         {
             var t = transform.gameObject.GetComponent<T>();
             if (t == null)
-                transform.gameObject.AddComponent<T>();
+            {
+                t = transform.gameObject.AddComponent<T>();
+            }
             return t;
         }
     }

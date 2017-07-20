@@ -12,14 +12,14 @@ namespace PSDUnity.Import
     public static class PSDImportUtility
     {
         public static RouleObject rouleObject { get; private set; }
-        public static Canvas canvas { get;private set; }
-        public static UGUINode uinode { get;private set; }
+        public static Canvas canvas { get; private set; }
+        public static UGUINode uinode { get; private set; }
 
-        public static Canvas InitEnviroment(RouleObject arg,Vector2 uiSize)
+        public static Canvas InitEnviroment(RouleObject arg, Vector2 uiSize)
         {
             rouleObject = arg;
             var canvasPfb = rouleObject.prefabs.Find(x => x.groupType == GroupType.CANVAS).prefab;
-            canvas =  GameObject.Instantiate(canvasPfb).GetComponent<Canvas>();
+            canvas = GameObject.Instantiate(canvasPfb).GetComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
             UnityEngine.UI.CanvasScaler scaler = PSDImportUtility.canvas.GetComponent<UnityEngine.UI.CanvasScaler>();
@@ -31,7 +31,7 @@ namespace PSDUnity.Import
 
         public static UGUINode InstantiateItem(GroupType groupType, string name, UGUINode parent)
         {
-            GameObject prefab = rouleObject.prefabs.Find(x=>x.groupType == groupType).prefab;
+            GameObject prefab = rouleObject.prefabs.Find(x => x.groupType == groupType).prefab;
             GameObject item = GameObject.Instantiate(prefab) as GameObject;
             item.name = name;
             item.transform.SetParent(canvas.transform, false);

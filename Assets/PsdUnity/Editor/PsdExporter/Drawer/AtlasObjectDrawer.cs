@@ -79,19 +79,17 @@ namespace PSDUnity.Exprot
                 if (psd != null)
                 {
                     PsdExportUtility.InitPsdExportEnvrioment(atlasObj.atlasInfo, atlasObj.prefabObj,new Vector2(psd.Width,psd.Height));
-
                     atlasObj.groups.Clear();
-                    for (int i = 0; i < psd.Childs.Length; i++)
+                    var groupDatas = PsdExportUtility.CreatePictures(psd.Childs,new Vector2(psd.Width,psd.Height), atlasObj.uiSize, atlasObj.forceSprite);
+                    if (groupDatas != null)
                     {
-                        var item = psd.Childs[i];
-                        var groupData = PsdExportUtility.CreatePictures(item as PsdLayer, atlasObj.uiSize, atlasObj.forceSprite);
-                        if (groupData != null)
+                        foreach (var groupData in groupDatas)
                         {
                             PsdExportUtility.ChargeTextures(atlasObj.atlasInfo, groupData);
                             atlasObj.groups.Add(groupData);
                         }
-
                     }
+
                     EditorUtility.SetDirty(atlasObj);
                 }
             }

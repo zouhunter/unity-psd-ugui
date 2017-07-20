@@ -21,7 +21,7 @@ namespace PSDUnity.Exprot
         public PictureExportInfo atlasInfo;
         public RouleObject prefabObj;
         public List<GroupNode1> groups = new List<GroupNode1>();
-        public bool forceMove;
+        //public bool forceMove;
 
         public void Reset()
         {

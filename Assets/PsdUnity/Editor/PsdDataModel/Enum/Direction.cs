@@ -21,5 +21,14 @@ namespace PSDUnity.Data
         TopToBottom = 1<<5,
         RightToLeft = 1<<6
     }
-
+    public enum DirectionID
+    {
+        None = 0,
+        Horizontal = 1,
+        Vertical = 2,
+        LeftToRight = 3,
+        BottomToTop = 4,
+        TopToBottom = 5,
+        RightToLeft = 6
+    }
 }

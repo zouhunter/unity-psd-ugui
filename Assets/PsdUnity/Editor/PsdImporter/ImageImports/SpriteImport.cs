@@ -16,13 +16,11 @@ namespace PSDUnity.Import
             switch (image.type)
             {
                 case ImgType.Image:
+                case ImgType.AtlasImage:
                     node = DrawNormalImage(image, parent);
                     break;
                 case ImgType.Texture:
                     node = DrawRawImage(image, parent);
-                    break;
-                case ImgType.AtlasImage:
-                    node = DrawSliceImage(image, parent);
                     break;
                 default:
                     break;
@@ -45,16 +43,6 @@ namespace PSDUnity.Import
             UnityEngine.UI.Image pic = node.InitComponent<UnityEngine.UI.Image>();
             PSDImportUtility.SetPictureOrLoadColor(image, pic);
             pic.type = UnityEngine.UI.Image.Type.Simple;
-            PSDImportUtility.SetRectTransform(image, pic.GetComponent<RectTransform>());
-            return node;
-        }
-
-        private UGUINode DrawSliceImage(ImgNode image, UGUINode parent)
-        {
-            UGUINode node = PSDImportUtility.InstantiateItem(GroupType.IMAGE, image.Name, parent);
-            UnityEngine.UI.Image pic = node.InitComponent<UnityEngine.UI.Image>();
-            PSDImportUtility.SetPictureOrLoadColor(image, pic);
-            pic.type = UnityEngine.UI.Image.Type.Sliced;
             PSDImportUtility.SetRectTransform(image, pic.GetComponent<RectTransform>());
             return node;
         }

@@ -94,7 +94,7 @@ namespace PSDUnity.Data
                 EditorGUI.PropertyField(rect, imagesProp, true);
                 rect.y += EditorGUI.GetPropertyHeight(imagesProp, new GUIContent("Images"), true);
 
-                var lastDir = directionProp.enumValueIndex > 0 ? (Direction)directionProp.enumValueIndex : Direction.None;
+                var lastDir = enumIndexToDirection(directionProp.enumValueIndex);
                 switch ((GroupType)groupTypeProp.enumValueIndex)
                 {
                     case GroupType.EMPTY:
@@ -106,7 +106,7 @@ namespace PSDUnity.Data
                     case GroupType.CANVAS:
                         break;
                     case GroupType.GRID:
-                        directionProp.enumValueIndex = (int)(Direction)EditorGUI.EnumPopup(rect,new GUIContent("方向"), lastDir);
+                        directionProp.enumValueIndex = enumDirectionToIndex((Direction)EditorGUI.EnumPopup(rect,new GUIContent("方向"), lastDir));
                         rect.y += SingleHeight;
                         EditorGUI.PropertyField(rect,constraintCountProp);
                         rect.y += SingleHeight;
@@ -121,7 +121,7 @@ namespace PSDUnity.Data
                         break;
                     case GroupType.SLIDER:
                     case GroupType.SCROLLBAR:
-                        directionProp.enumValueIndex = (int)(Direction)EditorGUI.EnumPopup(rect, new GUIContent("方向"), lastDir);
+                        directionProp.enumValueIndex = enumDirectionToIndex((Direction)EditorGUI.EnumPopup(rect, new GUIContent("方向"), lastDir));
                         rect.y += SingleHeight;
                         break;
                     case GroupType.TEXT:
@@ -143,5 +143,60 @@ namespace PSDUnity.Data
                 EditorGUI.PropertyField(rect, rectProp);
             }
         }
+
+        private static Direction enumIndexToDirection(int index)
+        {
+            switch ((DirectionID)index)
+            {
+                case DirectionID.None:
+                    return Direction.None;
+                case DirectionID.Horizontal:
+                    return Direction.Horizontal;
+                case DirectionID.Vertical:
+                    return Direction.Vertical;
+                case DirectionID.LeftToRight:
+                    return Direction.LeftToRight;
+                case DirectionID.BottomToTop:
+                    return Direction.BottomToTop;
+                case DirectionID.TopToBottom:
+                    return Direction.TopToBottom;
+                case DirectionID.RightToLeft:
+                    return Direction.RightToLeft;
+                default:
+                    return Direction.None;
+            }
+        }
+        private static int enumDirectionToIndex(Direction direction)
+        {
+            DirectionID id = DirectionID.None;
+            switch (direction)
+            {
+                case Direction.None:
+                    id = DirectionID.None;
+                    break;
+                case Direction.Horizontal:
+                    id = DirectionID.Horizontal;
+                    break;
+                case Direction.Vertical:
+                    id = DirectionID.Vertical;
+                    break;
+                case Direction.LeftToRight:
+                    id = DirectionID.LeftToRight;
+                    break;
+                case Direction.BottomToTop:
+                    id = DirectionID.BottomToTop;
+                    break;
+                case Direction.TopToBottom:
+                    id = DirectionID.TopToBottom;
+                    break;
+                case Direction.RightToLeft:
+                    id = DirectionID.RightToLeft;
+                    break;
+                default:
+                    return 0;
+            }
+            return (int)id;
+        }
+        
     }
 }

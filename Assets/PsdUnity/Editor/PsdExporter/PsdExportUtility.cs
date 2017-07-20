@@ -23,22 +23,26 @@ namespace PSDUnity.Exprot
         }
 
 
-        public static GroupNode1 CreatePictures(PsdLayer rootLayer, Vector2 uiSize, bool forceSprite = false)
+        public static GroupNode1[] CreatePictures(IPsdLayer[] rootLayers,Vector2 rootSize, Vector2 uiSize, bool forceSprite = false)
         {
             maxSize = uiSize;
-            if (!rootLayer.IsGroup){
-                Debug.LogWarning("[rootLayer不是组]");
-                return null;
-
+            List<GroupNode1> nodes = new List<GroupNode1>();
+            foreach (PsdLayer rootLayer in rootLayers)
+            {
+                if (rootLayer.IsGroup)
+                {
+                    var groupnode = new GroupNode1(GetRectFromLayer(rootLayer)).Analyzing(PsdExportUtility.rouleObj, rootLayer.Name) as GroupNode1;// (rootLayer,rootLayer));
+                    RetriveLayerToSwitchModle(rootSize, rootLayer, groupnode, forceSprite);
+                    nodes.Add(groupnode);
+                }
             }
-            var rootSize = new Vector2(rootLayer.Width, rootLayer.Height);
-
-            var groupnode = new GroupNode1(GetRectFromLayer(rootLayer)).Analyzing(PsdExportUtility.rouleObj,rootLayer.Name) as GroupNode1;// (rootLayer,rootLayer));
-
-            RetriveLayerToSwitchModle(rootSize,rootLayer, groupnode,forceSprite);
 
             var pictureData = new List<ImgNode>();
-            groupnode.GetImgNodes(pictureData);
+
+            foreach (var groupnode in nodes)
+            {
+                groupnode.GetImgNodes(pictureData);
+            }
 
             //创建atlas
             var textures = pictureData.FindAll(x => x.type == ImgType.AtlasImage).ConvertAll<Texture2D>(x => x.texture);
@@ -50,7 +54,7 @@ namespace PSDUnity.Exprot
             pictures = pictureData.FindAll(x => x.type == ImgType.Texture).ConvertAll<Texture2D>(x => x.texture);
             SaveToTextures(ImgType.Texture, pictures.ToArray(), pictureInfo);
 
-            return groupnode;
+            return nodes.ToArray();
         }
 
         public static void ChargeTextures(PictureExportInfo pictureInfo, GroupNode1 groupnode)

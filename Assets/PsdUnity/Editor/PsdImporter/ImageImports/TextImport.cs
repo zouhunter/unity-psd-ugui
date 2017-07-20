@@ -28,8 +28,8 @@ namespace PSDUnity.Import
         /// <returns></returns>
         private void AdjustImage(ImgNode image,int fontSize)
         {
-            image.rect.width += 40;
-            image.rect.height += 20;
+            image.rect.width += fontSize;
+            image.rect.height += fontSize;
         }
     }
 }
