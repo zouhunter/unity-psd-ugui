@@ -122,9 +122,9 @@ namespace PSDUnity.Exprot
                 {
                     previewVec = vec.scrollPosition;
                     Rotorz.ReorderableList.ReorderableListGUI.ListField<Texture2D>(generated, DrawTextureItem, DrawEmpty, 100);
-                    if(both != null)
+                    if (both != null)
                     {
-                        Rotorz.ReorderableList.ReorderableListGUI.ListField<Texture2D>(both, DrawTextureItem, ()=>{ }, 300);
+                        Rotorz.ReorderableList.ReorderableListGUI.ListField<Texture2D>(both, DrawTextureItem, () => { }, 300);
                     }
                 }
             }
@@ -254,14 +254,15 @@ namespace PSDUnity.Exprot
                     RetriveRootLayer(data, (root) =>
                     {
                         Texture2D texture = new Texture2D(psd.Width, psd.Height);
-                        RetriveArtLayer(root, (item) => {
+                        RetriveArtLayer(root, (item) =>
+                        {
                             var titem = PsdExportUtility.CreateTexture((PsdLayer)item.layer);
                             for (int x = 0; x < titem.width; x++)
                             {
                                 for (int y = 0; y < titem.height; y++)
                                 {
                                     var color = titem.GetPixel(x, y);
-                                if (color != Color.clear) texture.SetPixel(x + item.layer.Left,psd.Height -(y + item.layer.Top), color);
+                                    if (color != Color.clear) texture.SetPixel(x + item.layer.Left, psd.Height - (titem.height - y + item.layer.Top), color);
                                 }
                             }
                         });
