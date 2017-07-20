@@ -20,6 +20,7 @@ namespace PSDUnity.Exprot
         SerializedProperty groupsProp;
         SerializedProperty atlasInfoProp;
         SerializedProperty prefabObjProp;
+        SerializedProperty forceSpriteProp;
         AtlasObject atlasObj;
         readonly GUIContent pageSizeContent = new GUIContent("界面尺寸", EditorGUIUtility.IconContent("AnimationKeyframeBackground").image, "界面尺寸");
         private void OnEnable()
@@ -31,6 +32,7 @@ namespace PSDUnity.Exprot
             groupsProp = serializedObject.FindProperty("groups");
             atlasInfoProp = serializedObject.FindProperty("atlasInfo");
             prefabObjProp = serializedObject.FindProperty("prefabObj");
+            forceSpriteProp = serializedObject.FindProperty("forceSprite");
         }
         protected override void OnHeaderGUI()
         {
@@ -66,10 +68,6 @@ namespace PSDUnity.Exprot
         private void DrawPictureData()
         {
             EditorGUILayout.PropertyField(atlasInfoProp, true);
-            if (GUILayout.Button("读取层级"))
-            {
-                SwitchLayerToTexture();
-            }
         }
 
 
@@ -120,6 +118,11 @@ namespace PSDUnity.Exprot
         }
         private void DrawPictureOption()
         {
+            EditorGUILayout.PropertyField(forceSpriteProp);
+            if (GUILayout.Button("读取层级"))
+            {
+                SwitchLayerToTexture();
+            }
         }
         private void DrawGroupNode()
         {

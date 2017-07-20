@@ -261,7 +261,7 @@ namespace PSDUnity.Exprot
                                 for (int y = 0; y < titem.height; y++)
                                 {
                                     var color = titem.GetPixel(x, y);
-                                    texture.SetPixel(x + item.layer.Left,psd.Height -(y + item.layer.Top), color);
+                                if (color != Color.clear) texture.SetPixel(x + item.layer.Left,psd.Height -(y + item.layer.Top), color);
                                 }
                             }
                         });

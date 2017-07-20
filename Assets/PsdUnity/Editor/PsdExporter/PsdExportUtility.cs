@@ -234,7 +234,7 @@ namespace PSDUnity.Exprot
             Channel green = Array.Find(layer.Channels, i => i.Type == ChannelType.Green);
             Channel blue = Array.Find(layer.Channels, i => i.Type == ChannelType.Blue);
             Channel alpha = Array.Find(layer.Channels, i => i.Type == ChannelType.Alpha);
-            Channel mask = Array.Find(layer.Channels, i => i.Type == ChannelType.Mask);
+            //Channel mask = Array.Find(layer.Channels, i => i.Type == ChannelType.Mask);
             for (int i = 0; i < pixels.Length; i++)
             {
                 byte r = red.Data[i];
@@ -244,8 +244,8 @@ namespace PSDUnity.Exprot
 
                 if (alpha != null)
                     a = alpha.Data[i];
-                if (mask != null)
-                    a *= mask.Data[i];
+                //if (mask != null)
+                //    a *= mask.Data[i];
 
                 int mod = i % texture.width;
                 int n = ((texture.width - mod - 1) + i) - mod;
@@ -267,7 +267,7 @@ namespace PSDUnity.Exprot
             Channel green = Array.Find(layer.Channels, i => i.Type == ChannelType.Green);
             Channel blue = Array.Find(layer.Channels, i => i.Type == ChannelType.Blue);
             Channel alpha = Array.Find(layer.Channels, i => i.Type == ChannelType.Alpha);
-            Channel mask = Array.Find(layer.Channels, i => i.Type == ChannelType.Mask);
+            //Channel mask = Array.Find(layer.Channels, i => i.Type == ChannelType.Mask);
 
             Color[] pixels = new Color[layer.Width * layer.Height];
 
@@ -280,8 +280,8 @@ namespace PSDUnity.Exprot
 
                 if (alpha != null && alpha.Data[i] != 0)
                     a = (byte)alpha.Data[i];
-                if (mask != null && mask.Data[i] != 0)
-                    a *= mask.Data[i];
+                //if (mask != null && mask.Data[i] != 0)
+                //    a *= mask.Data[i];
 
                 int mod = i % layer.Width;
                 int n = ((layer.Width - mod - 1) + i) - mod;

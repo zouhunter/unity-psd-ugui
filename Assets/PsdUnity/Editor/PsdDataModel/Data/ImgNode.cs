@@ -42,7 +42,7 @@ namespace PSDUnity.Data
         {
             this.type = ImgType.Label;
             this.Name = name;
-            this.font = null; Debug.Log(font);
+            this.font = null; /*Debug.Log(font);*/
             this.fontSize = fontSize;
             this.text = text;
             this.color = color;

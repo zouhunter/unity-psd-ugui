@@ -1,0 +1,216 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885e115a8f1c1e04b88b4a1204eba2ee, type: 3}
+  m_Name: uimakeTemp
+  m_EditorClassIdentifier: 
+  psdFile: "//10.0.0.41/root/department/VR/\u8FDB\u884C\u9879\u76EE/\u5357\u9633\u7406\u5DE5/3.\u7D20\u6750\u5F52\u6863/2.UI\u754C\u9762/\u6E90\u6587\u4EF6/\u5357\u9633\u7406\u5DE5\u5B66\u9662\u571F\u6728\u5DE5\u7A0B\u767B\u5F55-\u5207.psd"
+  exportPath: 
+  globalPath: Assets/Common/Images
+  maskAsColor: 0
+  forceSprite: 1
+  fileExt: .png
+  uiSize: {x: 1600, y: 900}
+  atlasInfo:
+    atlasName: demos/atlas.png
+    picNameTemp: '{0}.png'
+    exportPath: Assets
+    pixelsToUnitSize: 100
+    atlassize: 4096
+  prefabObj: {fileID: 11400000, guid: 993779c0603e6564db4973f34e385cc1, type: 2}
+  groups:
+  - Name: "\u9762\u677F"
+    groupType: 0
+    direction: 0
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -1018
+      y: 4
+      width: 3752
+      height: 912
+    _groups:
+    - Name: "\u8F93\u5165\u6846"
+      groupType: 12
+      direction: 0
+      constraintCount: 0
+      spacing: 0
+      rect:
+        serializedVersion: 2
+        x: -105
+        y: 49.5
+        width: 344
+        height: 55
+      _groups: []
+      _images:
+      - Name: "b_\u80CC\u666F"
+        type: 2
+        source: 1
+        rect:
+          serializedVersion: 2
+          x: -105
+          y: 49.5
+          width: 342
+          height: 53
+        sprite: {fileID: 21300014, guid: f545b171984696b45b1cc7d33500f73f, type: 3}
+        texture: {fileID: 0}
+        text: 
+        font: {fileID: 0}
+        fontSize: 0
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - Name: "t_\u5185\u5BB9"
+        type: 0
+        source: 0
+        rect:
+          serializedVersion: 2
+          x: -167
+          y: 49.5
+          width: 66
+          height: 15
+        sprite: {fileID: 0}
+        texture: {fileID: 0}
+        text: "\u8F93\u5165\u8D26\u53F7"
+        font: {fileID: 0}
+        fontSize: 16
+        color: {r: 0.41177, g: 0.85883, b: 0.99606, a: 1}
+      - Name: "p_\u7A7A\u5360\u4F4D"
+        type: 0
+        source: 0
+        rect:
+          serializedVersion: 2
+          x: -100.5
+          y: 49.5
+          width: 199
+          height: 15
+        sprite: {fileID: 0}
+        texture: {fileID: 0}
+        text: "\u8F93\u5165\u554A\u79D1\u6280\u65F6\u4EE3\u5361\u5FB7\u52A0\u5BC6\u7801"
+        font: {fileID: 0}
+        fontSize: 16
+        color: {r: 0.41177, g: 0.85883, b: 0.99606, a: 1}
+    - Name: "\u8F93\u5165\u6846"
+      groupType: 12
+      direction: 0
+      constraintCount: 0
+      spacing: 0
+      rect:
+        serializedVersion: 2
+        x: -105
+        y: -30.5
+        width: 344
+        height: 55
+      _groups: []
+      _images:
+      - Name: "b_\u80CC\u666F"
+        type: 2
+        source: 1
+        rect:
+          serializedVersion: 2
+          x: -105
+          y: -30.5
+          width: 342
+          height: 53
+        sprite: {fileID: 21300016, guid: f545b171984696b45b1cc7d33500f73f, type: 3}
+        texture: {fileID: 0}
+        text: 
+        font: {fileID: 0}
+        fontSize: 0
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - Name: "p_\u7A7A\u5360\u4F4D"
+        type: 0
+        source: 0
+        rect:
+          serializedVersion: 2
+          x: -100.5
+          y: -30.5
+          width: 199
+          height: 15
+        sprite: {fileID: 0}
+        texture: {fileID: 0}
+        text: "\u8F93\u5165\u554A\u79D1\u6280\u65F6\u4EE3\u5361\u5FB7\u52A0\u5BC6\u7801"
+        font: {fileID: 0}
+        fontSize: 16
+        color: {r: 0.41177, g: 0.85883, b: 0.99606, a: 1}
+      - Name: "t_\u5185\u5BB9"
+        type: 0
+        source: 0
+        rect:
+          serializedVersion: 2
+          x: -167.5
+          y: -30.5
+          width: 65
+          height: 15
+        sprite: {fileID: 0}
+        texture: {fileID: 0}
+        text: "\u8F93\u5165\u5BC6\u7801"
+        font: {fileID: 0}
+        fontSize: 16
+        color: {r: 0.41177, g: 0.85883, b: 0.99606, a: 1}
+    - Name: "\u6309\u626D"
+      groupType: 1
+      direction: 0
+      constraintCount: 0
+      spacing: 0
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 4.5
+        width: 254
+        height: 255
+      _groups: []
+      _images:
+      - Name: "n_\u666E\u901A\u72B6\u6001"
+        type: 2
+        source: 1
+        rect:
+          serializedVersion: 2
+          x: 245
+          y: 4.5
+          width: 254
+          height: 255
+        sprite: {fileID: 21300018, guid: f545b171984696b45b1cc7d33500f73f, type: 3}
+        texture: {fileID: 0}
+        text: 
+        font: {fileID: 0}
+        fontSize: 0
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - Name: "h_\u79FB\u5165\u72B6\u6001"
+        type: 2
+        source: 1
+        rect:
+          serializedVersion: 2
+          x: 245
+          y: 4.5
+          width: 254
+          height: 255
+        sprite: {fileID: 21300020, guid: f545b171984696b45b1cc7d33500f73f, type: 3}
+        texture: {fileID: 0}
+        text: 
+        font: {fileID: 0}
+        fontSize: 0
+        color: {r: 1, g: 1, b: 1, a: 1}
+    _images:
+    - Name: "b_\u80CC\u666F"
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -1018
+        y: 4
+        width: 3752
+        height: 912
+      sprite: {fileID: 21300012, guid: f545b171984696b45b1cc7d33500f73f, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  forceMove: 0
