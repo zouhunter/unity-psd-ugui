@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 885e115a8f1c1e04b88b4a1204eba2ee, type: 3}
-  m_Name: uimakeTemp
+  m_Name: demo1
   m_EditorClassIdentifier: 
-  psdFile: "//10.0.0.41/root/department/VR/\u8FDB\u884C\u9879\u76EE/\u5357\u9633\u7406\u5DE5/3.\u7D20\u6750\u5F52\u6863/2.UI\u754C\u9762/\u6E90\u6587\u4EF6/\u5357\u9633\u7406\u5DE5\u5B66\u9662\u571F\u6728\u5DE5\u7A0B\u767B\u5F55-\u5207.psd"
+  psdFile: "E:/Githubs/PsdUnity/PSDDemo/UI\u5236\u4F5C\u6A21\u677F.psd"
   exportPath: 
   globalPath: Assets/Common/Images
   maskAsColor: 0
