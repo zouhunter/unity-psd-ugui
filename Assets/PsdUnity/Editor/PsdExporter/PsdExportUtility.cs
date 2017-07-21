@@ -62,8 +62,9 @@ namespace PSDUnity.Exprot
             //重新加载
             var atlaspath = pictureInfo.exportPath + "/" + pictureInfo.atlasName;
             Sprite[] fileSprites = AssetDatabase.LoadAllAssetsAtPath(atlaspath).OfType<Sprite>().ToArray();
-            Texture2D[] fileTextures = AssetDatabase.LoadAllAssetsAtPath(pictureInfo.exportPath).OfType<Texture2D>().ToArray();
-            Sprite[] fileSingleSprites = AssetDatabase.LoadAllAssetsAtPath(pictureInfo.exportPath).OfType<Sprite>().ToArray();
+
+            Texture2D[] fileTextures = LoadAllObjectFromDir<Texture2D>(pictureInfo.exportPath);// AssetDatabase.LoadAllAssetsAtPath(pictureInfo.exportPath).OfType<Texture2D>().ToArray();
+            Sprite[] fileSingleSprites = LoadAllObjectFromDir<Sprite>(pictureInfo.exportPath);// AssetDatabase.LoadAllAssetsAtPath(pictureInfo.exportPath).OfType<Sprite>().ToArray();
 
             var pictureData = new List<ImgNode>();
             groupnode.GetImgNodes(pictureData);
@@ -86,6 +87,25 @@ namespace PSDUnity.Exprot
                 }
             }
            
+        }
+
+        private static T[] LoadAllObjectFromDir<T>(string dirName) where T:UnityEngine.Object
+        {
+            List<T> assets = new List<T>();
+            if (!string.IsNullOrEmpty(dirName))
+            {
+                var textures = Directory.GetFiles(dirName, "*.png", SearchOption.TopDirectoryOnly);
+                foreach (var item in textures)
+                {
+                    var assetPath = item.Replace("\\", "/").Replace(Application.dataPath, "Assets");
+                    T obj = AssetDatabase.LoadAssetAtPath<T>(assetPath);
+                    if (obj != null)
+                    {
+                        assets.Add(obj);
+                    }
+                }
+            }
+            return assets.ToArray();
         }
         /// <summary>
         /// 将一组图片保存为atlas

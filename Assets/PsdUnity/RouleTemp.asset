@@ -55,9 +55,13 @@ MonoBehaviour:
     keyName: toggle
     prefab: {fileID: 182414, guid: f4c3d75106f0b944faa6f14731cec415, type: 2}
   sepraterCharimg: 35
+  asAtalsMark: A
   asSingleMark: S
   asTextureMark: T
+  defultImgType: 2
   asGoubleMark: G
   asNoRepetMark: N
+  asCustomMark: C
+  defultImgSource: 1
   sepraterChargroup: 64
   argumentChar: 58

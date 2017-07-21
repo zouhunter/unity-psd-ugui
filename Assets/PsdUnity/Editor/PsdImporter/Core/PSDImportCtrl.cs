@@ -16,8 +16,6 @@ namespace PSDUnity.Import
     {
         private IImageImport spriteImport;
         private IImageImport textImport;
-        private IImageImport textureImport;
-        private IImageImport slicedSpriteImport;
 
         private ILayerImport buttonImport;
         private ILayerImport toggleImport;

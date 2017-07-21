@@ -39,13 +39,12 @@ namespace PSDUnity.Import
 
         private UGUINode DrawNormalImage(ImgNode image, UGUINode parent)
         {
-            UGUINode node = PSDImportUtility.InstantiateItem(GroupType.IMAGE, image.sprite.name, parent);
+            UGUINode node = PSDImportUtility.InstantiateItem(GroupType.IMAGE, image.Name, parent);
             UnityEngine.UI.Image pic = node.InitComponent<UnityEngine.UI.Image>();
             PSDImportUtility.SetPictureOrLoadColor(image, pic);
             pic.type = UnityEngine.UI.Image.Type.Simple;
             PSDImportUtility.SetRectTransform(image, pic.GetComponent<RectTransform>());
             return node;
         }
-
     }
 }

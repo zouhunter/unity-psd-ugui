@@ -18,10 +18,10 @@ namespace PSDUnity.Exprot
         public bool forceSprite;
         public string fileExt = ".png";
         public Vector2 uiSize = new Vector2(1600,900);
-        public PictureExportInfo atlasInfo;
+        public PictureExportInfo exportInfo;
         public RouleObject prefabObj;
         public List<GroupNode1> groups = new List<GroupNode1>();
-        //public bool forceMove;
+        public ImgType defultImgType = ImgType.AtlasImage;
 
         public void Reset()
         {

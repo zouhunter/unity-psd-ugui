@@ -37,11 +37,14 @@ namespace PSDUnity.Data
 
         [Header("图层标记"), Space(10)]
         public char sepraterCharimg = '#';
+        public string asAtalsMark = "A";
         public string asSingleMark = "S";
         public string asTextureMark = "T";
+        public ImgType defultImgType = ImgType.AtlasImage;
         public string asGoubleMark = "G";
         public string asNoRepetMark = "N";
-
+        public string asCustomMark = "C";
+        public ImgSource defultImgSource = ImgSource.Custom;
         [Header("组名分割"), Space(10)]
         public char sepraterChargroup = '@';
         public char argumentChar = ':';
@@ -105,9 +108,13 @@ namespace PSDUnity.Data
                 {
                     source = ImgSource.Normal;
                 }
-                else
+                else if(name.Contains((sepraterCharimg + asCustomMark).ToUpper()))
                 {
                     source = ImgSource.Custom;
+                }
+                else
+                {
+                    source = defultImgSource;
                 }
 
                 if (name.Contains((sepraterCharimg + asSingleMark).ToUpper()))
@@ -118,16 +125,20 @@ namespace PSDUnity.Data
                 {
                     type = ImgType.Texture;
                 }
-                else
+                else if(name.Contains((sepraterCharimg + asAtalsMark).ToUpper()))
                 {
                     type = ImgType.AtlasImage;
+                }
+                else
+                {
+                    type = defultImgType;
                 }
             }
             else
             {
                 clampName = name;
-                type = ImgType.AtlasImage;
-                source = ImgSource.Custom;
+                type = defultImgType;
+                source = defultImgSource;
             }
             return clampName;
         }

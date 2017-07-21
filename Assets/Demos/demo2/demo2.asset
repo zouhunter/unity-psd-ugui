@@ -18,14 +18,42 @@ MonoBehaviour:
   forceSprite: 1
   fileExt: .png
   uiSize: {x: 1600, y: 900}
-  atlasInfo:
-    atlasName: demos/atlasdemo2.png
+  exportInfo:
+    atlasName: atlas.png
     picNameTemp: '{0}.png'
     exportPath: Assets
-    pixelsToUnitSize: 100
-    atlassize: 2048
+    pixelsToUnitSize: 1
+    atlassize: 1024
   prefabObj: {fileID: 11400000, guid: 993779c0603e6564db4973f34e385cc1, type: 2}
   groups:
+  - Name: panel
+    groupType: 0
+    direction: 0
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 1
+      y: -0
+      width: 387
+      height: 298
+    _groups: []
+    _images:
+    - Name: b_
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: -0
+        width: 387
+        height: 298
+      sprite: {fileID: 21300000, guid: f7ccd7badb42dd549ad4adff4178f6a4, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
   - Name: progress
     groupType: 8
     direction: 8
@@ -48,7 +76,7 @@ MonoBehaviour:
         y: -110.5
         width: 304
         height: 27
-      sprite: {fileID: 21300000, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      sprite: {fileID: 21300002, guid: f7ccd7badb42dd549ad4adff4178f6a4, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -63,7 +91,7 @@ MonoBehaviour:
         y: -108.5
         width: 297
         height: 15
-      sprite: {fileID: 21300002, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      sprite: {fileID: 21300004, guid: f7ccd7badb42dd549ad4adff4178f6a4, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -91,7 +119,7 @@ MonoBehaviour:
         y: -0
         width: 27
         height: 300
-      sprite: {fileID: 21300004, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      sprite: {fileID: 21300006, guid: f7ccd7badb42dd549ad4adff4178f6a4, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -106,7 +134,7 @@ MonoBehaviour:
         y: 0.5
         width: 15
         height: 291
-      sprite: {fileID: 21300006, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      sprite: {fileID: 21300008, guid: f7ccd7badb42dd549ad4adff4178f6a4, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -134,7 +162,7 @@ MonoBehaviour:
         y: -59.5
         width: 149
         height: 45
-      sprite: {fileID: 21300008, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      sprite: {fileID: 21300010, guid: f7ccd7badb42dd549ad4adff4178f6a4, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -147,8 +175,8 @@ MonoBehaviour:
         serializedVersion: 2
         x: -109.5
         y: -58
-        width: 98
-        height: 38
+        width: 70
+        height: 10
       sprite: {fileID: 0}
       texture: {fileID: 0}
       text: "Enter text\u2026"
@@ -177,7 +205,7 @@ MonoBehaviour:
         y: -59.5
         width: 149
         height: 45
-      sprite: {fileID: 21300010, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      sprite: {fileID: 21300012, guid: f7ccd7badb42dd549ad4adff4178f6a4, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -220,7 +248,7 @@ MonoBehaviour:
         y: -2.5
         width: 304
         height: 39
-      sprite: {fileID: 21300012, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      sprite: {fileID: 21300014, guid: f7ccd7badb42dd549ad4adff4178f6a4, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -235,7 +263,7 @@ MonoBehaviour:
         y: 1.5
         width: 281
         height: 15
-      sprite: {fileID: 21300040, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      sprite: {fileID: 21300016, guid: f7ccd7badb42dd549ad4adff4178f6a4, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -250,7 +278,7 @@ MonoBehaviour:
         y: -0.5
         width: 23
         height: 23
-      sprite: {fileID: 21300016, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      sprite: {fileID: 21300018, guid: f7ccd7badb42dd549ad4adff4178f6a4, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -278,7 +306,7 @@ MonoBehaviour:
         y: -0
         width: 39
         height: 300
-      sprite: {fileID: 21300018, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      sprite: {fileID: 21300020, guid: f7ccd7badb42dd549ad4adff4178f6a4, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -293,7 +321,7 @@ MonoBehaviour:
         y: 3
         width: 14
         height: 274
-      sprite: {fileID: 21300020, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      sprite: {fileID: 21300022, guid: f7ccd7badb42dd549ad4adff4178f6a4, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -308,7 +336,7 @@ MonoBehaviour:
         y: -127.5
         width: 23
         height: 23
-      sprite: {fileID: 21300022, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      sprite: {fileID: 21300024, guid: f7ccd7badb42dd549ad4adff4178f6a4, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -336,7 +364,7 @@ MonoBehaviour:
         y: 51.5
         width: 98
         height: 39
-      sprite: {fileID: 21300024, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      sprite: {fileID: 21300026, guid: f7ccd7badb42dd549ad4adff4178f6a4, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -351,7 +379,7 @@ MonoBehaviour:
         y: 51.5
         width: 98
         height: 39
-      sprite: {fileID: 21300026, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      sprite: {fileID: 21300028, guid: f7ccd7badb42dd549ad4adff4178f6a4, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -366,7 +394,7 @@ MonoBehaviour:
         y: 51.5
         width: 98
         height: 39
-      sprite: {fileID: 21300028, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      sprite: {fileID: 21300030, guid: f7ccd7badb42dd549ad4adff4178f6a4, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -379,8 +407,8 @@ MonoBehaviour:
         serializedVersion: 2
         x: -113
         y: 56
-        width: 67
-        height: 38
+        width: 39
+        height: 10
       sprite: {fileID: 0}
       texture: {fileID: 0}
       text: Button
@@ -394,9 +422,9 @@ MonoBehaviour:
     spacing: 0
     rect:
       serializedVersion: 2
-      x: 65
+      x: 64.5
       y: 67
-      width: 153
+      width: 154
       height: 104
     _groups: []
     _images:
@@ -409,7 +437,7 @@ MonoBehaviour:
         y: 99.5
         width: 151
         height: 35
-      sprite: {fileID: 21300044, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      sprite: {fileID: 21300032, guid: f7ccd7badb42dd549ad4adff4178f6a4, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -420,11 +448,11 @@ MonoBehaviour:
       source: 1
       rect:
         serializedVersion: 2
-        x: 62.5
-        y: 52
-        width: 148
-        height: 74
-      sprite: {fileID: 21300048, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+        x: 62
+        y: 52.5
+        width: 149
+        height: 75
+      sprite: {fileID: 21300034, guid: f7ccd7badb42dd549ad4adff4178f6a4, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -439,7 +467,7 @@ MonoBehaviour:
         y: 75.5
         width: 118
         height: 25
-      sprite: {fileID: 21300050, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      sprite: {fileID: 21300036, guid: f7ccd7badb42dd549ad4adff4178f6a4, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -497,7 +525,7 @@ MonoBehaviour:
         y: 99.5
         width: 26
         height: 27
-      sprite: {fileID: 21300032, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      sprite: {fileID: 21300038, guid: f7ccd7badb42dd549ad4adff4178f6a4, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -512,7 +540,7 @@ MonoBehaviour:
         y: 102.5
         width: 13
         height: 13
-      sprite: {fileID: 21300034, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      sprite: {fileID: 21300040, guid: f7ccd7badb42dd549ad4adff4178f6a4, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -540,7 +568,7 @@ MonoBehaviour:
         y: 99.5
         width: 22
         height: 27
-      sprite: {fileID: 21300036, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      sprite: {fileID: 21300042, guid: f7ccd7badb42dd549ad4adff4178f6a4, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -555,9 +583,10 @@ MonoBehaviour:
         y: 102.5
         width: 15
         height: 15
-      sprite: {fileID: 21300038, guid: a789cf68f521dfb48a625c470ee1f57e, type: 3}
+      sprite: {fileID: 21300044, guid: f7ccd7badb42dd549ad4adff4178f6a4, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
       fontSize: 0
       color: {r: 1, g: 1, b: 1, a: 1}
+  defultImgType: 2

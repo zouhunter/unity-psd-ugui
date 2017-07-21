@@ -18,7 +18,7 @@ namespace PSDUnity.Exprot
         SerializedProperty psdFileProp;
         SerializedProperty uiSizeProp;
         SerializedProperty groupsProp;
-        SerializedProperty atlasInfoProp;
+        SerializedProperty exportInfoProp;
         SerializedProperty prefabObjProp;
         SerializedProperty forceSpriteProp;
         AtlasObject atlasObj;
@@ -30,7 +30,7 @@ namespace PSDUnity.Exprot
             psdFileProp = serializedObject.FindProperty("psdFile");
             uiSizeProp = serializedObject.FindProperty("uiSize");
             groupsProp = serializedObject.FindProperty("groups");
-            atlasInfoProp = serializedObject.FindProperty("atlasInfo");
+            exportInfoProp = serializedObject.FindProperty("exportInfo");
             prefabObjProp = serializedObject.FindProperty("prefabObj");
             forceSpriteProp = serializedObject.FindProperty("forceSprite");
         }
@@ -62,12 +62,13 @@ namespace PSDUnity.Exprot
             {
                 var obj = RouleObject.CreateInstance<RouleObject>();
                 ProjectWindowUtil.CreateAsset(obj, "prefabObj.asset");
+                prefabObjProp.objectReferenceValue = obj;
             }
         }
 
         private void DrawPictureData()
         {
-            EditorGUILayout.PropertyField(atlasInfoProp, true);
+            EditorGUILayout.PropertyField(exportInfoProp, true);
         }
 
 
@@ -78,14 +79,14 @@ namespace PSDUnity.Exprot
                 var psd = PsdDocument.Create(atlasObj.psdFile);
                 if (psd != null)
                 {
-                    PsdExportUtility.InitPsdExportEnvrioment(atlasObj.atlasInfo, atlasObj.prefabObj,new Vector2(psd.Width,psd.Height));
+                    PsdExportUtility.InitPsdExportEnvrioment(atlasObj.exportInfo, atlasObj.prefabObj,new Vector2(psd.Width,psd.Height));
                     atlasObj.groups.Clear();
                     var groupDatas = PsdExportUtility.CreatePictures(psd.Childs,new Vector2(psd.Width,psd.Height), atlasObj.uiSize, atlasObj.forceSprite);
                     if (groupDatas != null)
                     {
                         foreach (var groupData in groupDatas)
                         {
-                            PsdExportUtility.ChargeTextures(atlasObj.atlasInfo, groupData);
+                            PsdExportUtility.ChargeTextures(atlasObj.exportInfo, groupData);
                             atlasObj.groups.Add(groupData);
                         }
                     }
