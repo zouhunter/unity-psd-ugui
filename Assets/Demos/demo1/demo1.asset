@@ -18,12 +18,12 @@ MonoBehaviour:
   forceSprite: 1
   fileExt: .png
   uiSize: {x: 1600, y: 900}
-  atlasInfo:
-    atlasName: demos/atlas.png
+  exportInfo:
+    atlasName: atlas.png
     picNameTemp: '{0}.png'
     exportPath: Assets
-    pixelsToUnitSize: 100
-    atlassize: 2048
+    pixelsToUnitSize: 1
+    atlassize: 1024
   prefabObj: {fileID: 11400000, guid: 993779c0603e6564db4973f34e385cc1, type: 2}
   groups:
   - Name: "\u9762\u677F"
@@ -673,3 +673,4 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 0
       color: {r: 1, g: 1, b: 1, a: 1}
+  defultImgType: 2
