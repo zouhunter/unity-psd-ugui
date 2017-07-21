@@ -58,7 +58,7 @@ MonoBehaviour:
   asAtalsMark: A
   asSingleMark: S
   asTextureMark: T
-  defultImgType: 1
+  defultImgType: 3
   asGoubleMark: G
   asNoRepetMark: N
   asCustomMark: C
