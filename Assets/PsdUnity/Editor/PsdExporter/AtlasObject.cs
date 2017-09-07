@@ -11,24 +11,30 @@ namespace PSDUnity.Exprot
 {
     public class AtlasObject : ScriptableObject
     {
+        public string atlasName { get { return name + settingObj.fileExt; } }
+        public string _exportPath;
+        [HideInInspector]
         public string psdFile;
-        public string exportPath;
-        public string globalPath = "Assets/Common/Images";
-        public bool maskAsColor;
-        public bool forceSprite;
-        public string fileExt = ".png";
-        public Vector2 uiSize = new Vector2(1600,900);
-        public PictureExportInfo exportInfo;
+        public string exportPath {
+            get {
+                _exportPath = AssetDatabase.GetAssetPath(this).Replace("/" + name + ".asset", "");
+                return _exportPath;
+            }
+        }
+        [HideInInspector]
+        public SettingObject settingObj;
+        [HideInInspector]
         public RouleObject prefabObj;
         public List<GroupNode1> groups = new List<GroupNode1>();
-        public ImgType defultImgType = ImgType.AtlasImage;
-
         public void Reset()
         {
             if (prefabObj == null)
             {
-                var path = AssetDatabase.GUIDToAssetPath("993779c0603e6564db4973f34e385cc1");
+                var path = AssetDatabase.GUIDToAssetPath("f7d3181f5b8957245adfabda058c8541");
                 prefabObj = AssetDatabase.LoadAssetAtPath<RouleObject>(path);
+
+                path = AssetDatabase.GUIDToAssetPath("79102a4c6ecda994b9437a6c701177a2");
+                settingObj = AssetDatabase.LoadAssetAtPath<SettingObject>(path);
             }
         }
     }

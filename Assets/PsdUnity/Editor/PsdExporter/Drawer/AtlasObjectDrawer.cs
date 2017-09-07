@@ -16,23 +16,18 @@ namespace PSDUnity.Exprot
     {
         SerializedProperty scriptProp;
         SerializedProperty psdFileProp;
-        SerializedProperty uiSizeProp;
         SerializedProperty groupsProp;
-        SerializedProperty exportInfoProp;
         SerializedProperty prefabObjProp;
-        SerializedProperty forceSpriteProp;
+        SerializedProperty settingObjProp;
         AtlasObject atlasObj;
-        readonly GUIContent pageSizeContent = new GUIContent("界面尺寸", EditorGUIUtility.IconContent("AnimationKeyframeBackground").image, "界面尺寸");
         private void OnEnable()
         {
             atlasObj = target as AtlasObject;
             scriptProp = serializedObject.FindProperty("m_Script");
             psdFileProp = serializedObject.FindProperty("psdFile");
-            uiSizeProp = serializedObject.FindProperty("uiSize");
             groupsProp = serializedObject.FindProperty("groups");
-            exportInfoProp = serializedObject.FindProperty("exportInfo");
             prefabObjProp = serializedObject.FindProperty("prefabObj");
-            forceSpriteProp = serializedObject.FindProperty("forceSprite");
+            settingObjProp = serializedObject.FindProperty("settingObj");
         }
         protected override void OnHeaderGUI()
         {
@@ -46,31 +41,39 @@ namespace PSDUnity.Exprot
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
-            DrawPageSize();
-            DrawPictureData();
+            DrawPathOption();
             DrawPictureOption();
             DrawGroupNode();
             DrawUICreateOption();
-            DrawToolButtons();
             serializedObject.ApplyModifiedProperties();
         }
 
         private void DrawUICreateOption()
         {
-            EditorGUILayout.PropertyField(prefabObjProp, true);
-            if (GUILayout.Button("创建规则"))
+            using (var hor = new EditorGUILayout.HorizontalScope())
             {
-                var obj = RouleObject.CreateInstance<RouleObject>();
-                ProjectWindowUtil.CreateAsset(obj, "prefabObj.asset");
-                prefabObjProp.objectReferenceValue = obj;
+                EditorGUILayout.PropertyField(prefabObjProp, true);
+                if (GUILayout.Button("创建规则"))
+                {
+                    var obj = RouleObject.CreateInstance<RouleObject>();
+                    ProjectWindowUtil.CreateAsset(obj, "Roule.asset");
+                    prefabObjProp.objectReferenceValue = obj;
+                }
+                if (GUILayout.Button("导出到UI"))
+                {
+                    var atlasObj = (AtlasObject)target;
+                    PSDImportUtility.InitEnviroment(atlasObj.prefabObj, atlasObj.settingObj.uiSize);
+                    PSDImportCtrl import = new PSDImportCtrl();
+                    import.Import(atlasObj.groups.ToArray(), atlasObj.settingObj.uiSize);
+                }
             }
-        }
 
-        private void DrawPictureData()
+        }
+        private void DrawGroupNode()
         {
-            EditorGUILayout.PropertyField(exportInfoProp, true);
+            ReorderableListGUI.Title("信息列表");
+            ReorderableListGUI.ListField(groupsProp);
         }
-
 
         private void SwitchLayerToTexture()
         {
@@ -79,14 +82,14 @@ namespace PSDUnity.Exprot
                 var psd = PsdDocument.Create(atlasObj.psdFile);
                 if (psd != null)
                 {
-                    PsdExportUtility.InitPsdExportEnvrioment(atlasObj.exportInfo, atlasObj.prefabObj,new Vector2(psd.Width,psd.Height));
+                    PsdExportUtility.InitPsdExportEnvrioment(atlasObj, new Vector2(psd.Width, psd.Height));
                     atlasObj.groups.Clear();
-                    var groupDatas = PsdExportUtility.CreatePictures(psd.Childs,new Vector2(psd.Width,psd.Height), atlasObj.uiSize, atlasObj.forceSprite);
+                    var groupDatas = PsdExportUtility.CreatePictures(psd.Childs, new Vector2(psd.Width, psd.Height), atlasObj.settingObj.uiSize, atlasObj.settingObj.forceSprite);
                     if (groupDatas != null)
                     {
                         foreach (var groupData in groupDatas)
                         {
-                            PsdExportUtility.ChargeTextures(atlasObj.exportInfo, groupData);
+                            PsdExportUtility.ChargeTextures(atlasObj, groupData);
                             atlasObj.groups.Add(groupData);
                         }
                     }
@@ -97,48 +100,54 @@ namespace PSDUnity.Exprot
         }
 
 
-        private void DrawPageSize()
+        private void DrawPathOption()
         {
-
             using (var hor = new EditorGUILayout.HorizontalScope())
             {
-                psdFileProp.stringValue = EditorGUILayout.TextField("PSD路径：", psdFileProp.stringValue);
-
-                if (GUILayout.Button("选择"))
+                EditorGUILayout.SelectableLabel("文档路径:",GUILayout.Width(60));
+                if (GUILayout.Button(new GUIContent(psdFileProp.stringValue, "点击此处选择文件夹！"), EditorStyles.textField))
                 {
-                    var psdPath = EditorUtility.OpenFilePanel("选择一个pdf文件", psdFileProp.stringValue, "psd");
-                    if (!string.IsNullOrEmpty(psdPath))
+                    var dir = string.IsNullOrEmpty(psdFileProp.stringValue) ? Application.dataPath : System.IO.Path.GetDirectoryName(psdFileProp.stringValue);
+                    var path = EditorUtility.OpenFilePanel("选择一个pdf文件", dir, "psd");
+                    if (!string.IsNullOrEmpty(path))
                     {
-                        psdFileProp.stringValue = psdPath;
+                        psdFileProp.stringValue = path;
                     }
                 }
             }
-            uiSizeProp.vector2Value = EditorGUILayout.Vector2Field(pageSizeContent, uiSizeProp.vector2Value);
-        }
+
+            //using (var hor = new EditorGUILayout.HorizontalScope())
+            //{
+            //    EditorGUILayout.SelectableLabel("导出路径:", GUILayout.Width(60));
+            //    if (GUILayout.Button(new GUIContent(exportProp.stringValue,"选中文件夹后点击此处！"), EditorStyles.textField))
+            //    {
+            //        if (Selection.activeObject != null && ProjectWindowUtil.IsFolder(Selection.activeInstanceID))
+            //        {
+            //            exportProp.stringValue = AssetDatabase.GetAssetPath(Selection.activeInstanceID);
+            //        }
+            //    }
+            //}
+        } 
         private void DrawPictureOption()
         {
-            EditorGUILayout.PropertyField(forceSpriteProp);
-            if (GUILayout.Button("读取层级"))
+            using (var hor = new EditorGUILayout.HorizontalScope())
             {
-                SwitchLayerToTexture();
+                EditorGUILayout.PropertyField(settingObjProp, true);
+                if (GUILayout.Button("创建规则"))
+                {
+                    var obj = RouleObject.CreateInstance<SettingObject>();
+                    ProjectWindowUtil.CreateAsset(obj, "Setting.asset");
+                    settingObjProp.objectReferenceValue = obj;
+                }
+                if (GUILayout.Button("读取层级"))
+                {
+                    SwitchLayerToTexture();
+                }
             }
+
+          
         }
-        private void DrawGroupNode()
-        {
-            ReorderableListGUI.Title("信息列表");
-            ReorderableListGUI.ListField(groupsProp);
-        }
-        private void DrawToolButtons()
-        {
-            if (GUILayout.Button("导出到UI"))
-            {
-                var atlasObj = (AtlasObject)target;
-                PSDImportUtility.InitEnviroment(atlasObj.prefabObj, atlasObj.uiSize);
-                PSDImportCtrl import = new PSDImportCtrl();
-                import.Import(atlasObj.groups.ToArray(),atlasObj.uiSize);
-               
-            }
-        }
+      
     }
 
 }

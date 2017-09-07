@@ -124,6 +124,7 @@ namespace PSDUnity.Import
                 case ImgType.Image:
                 case ImgType.Texture:
                 case ImgType.AtlasImage:
+                case ImgType.Color:
                     node = spriteImport.DrawImage(image, parent);
                     break;
                 case ImgType.Label:
@@ -131,6 +132,12 @@ namespace PSDUnity.Import
                     break;
                 default:
                     break;
+            }
+            if(node == null)
+            {
+                Debug.Log(image.type);
+                Debug.Log(image);
+                Debug.Log(parent);
             }
             return node;
         }

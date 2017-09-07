@@ -81,7 +81,7 @@ namespace PSDUnity.Exprot
 
     public partial class PSDPreviewWindow : EditorWindow
     {
-        [MenuItem("PsdUnity/ConfigWindow")]
+        [MenuItem("PsdUnity/PSDView")]
         static void OpenPSDConfigWindow()
         {
             window = GetWindow<PSDPreviewWindow>();
@@ -89,6 +89,11 @@ namespace PSDUnity.Exprot
             window.Repaint();
         }
 
+        [MenuItem("PsdUnity/AtlasObj")]
+        static void CreateTemp()
+        {
+            CreateAtlasObj("");
+        }
         private const string Prefs_pdfPath = "Prefs_pdfPath";
         private string psdPath;
         private PsdDocument psd;
@@ -278,11 +283,15 @@ namespace PSDUnity.Exprot
                 }
                 if (GUILayout.Button("创建模板"))
                 {
-                    var atlasObj = ScriptableObject.CreateInstance<AtlasObject>();
-                    atlasObj.psdFile = psdPath;
-                    ProjectWindowUtil.CreateAsset(atlasObj, "atlasObj.asset");
+                    CreateAtlasObj(psdPath);
                 }
             }
+        }
+        private static void CreateAtlasObj(string path)
+        {
+            var atlasObj = ScriptableObject.CreateInstance<AtlasObject>();
+            atlasObj.psdFile = path;
+            ProjectWindowUtil.CreateAsset(atlasObj, "atlasObj.asset");
         }
 
         private void RetriveArtLayer(LayerNode data, UnityAction<LayerNode> onRetrive)

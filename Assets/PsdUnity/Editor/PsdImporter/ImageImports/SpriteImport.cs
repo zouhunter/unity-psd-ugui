@@ -17,6 +17,7 @@ namespace PSDUnity.Import
             {
                 case ImgType.Image:
                 case ImgType.AtlasImage:
+                case ImgType.Color:
                     node = DrawNormalImage(image, parent);
                     break;
                 case ImgType.Texture:

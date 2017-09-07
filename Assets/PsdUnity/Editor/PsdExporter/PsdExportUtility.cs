@@ -12,13 +12,13 @@ namespace PSDUnity.Exprot
     public static class PsdExportUtility
     {
         private static Vector2 maxSize { get; set; }
-        public static RouleObject rouleObj { get; set; }
-        public static PictureExportInfo pictureInfo { get; set; }
+        public static RouleObject rouleObj { get { return atlasObj.prefabObj; } }
+        public static SettingObject settingObj { get { return atlasObj.settingObj; } }
+        public static AtlasObject atlasObj { get; set; }
         private static Vector2 rootSize { get; set; }
-        public static void InitPsdExportEnvrioment(PictureExportInfo pictureInfo0, RouleObject rouleObj0,Vector2 rootSize0)
+        public static void InitPsdExportEnvrioment(AtlasObject obj,Vector2 rootSize0)
         {
-            pictureInfo = pictureInfo0;
-            rouleObj = rouleObj0;
+            atlasObj = obj;
             rootSize = rootSize0;
         }
 
@@ -46,18 +46,18 @@ namespace PSDUnity.Exprot
 
             //创建atlas
             var textures = pictureData.FindAll(x => x.type == ImgType.AtlasImage).ConvertAll<Texture2D>(x => x.texture);
-            SaveToAtlas(textures.ToArray(), pictureInfo);
+            SaveToAtlas(textures.ToArray(), atlasObj);
             //创建Sprites
             var pictures = pictureData.FindAll(x => x.type == ImgType.Image).ConvertAll<Texture2D>(x => x.texture);
-            SaveToTextures(ImgType.Image, pictures.ToArray(), pictureInfo);
+            SaveToTextures(ImgType.Image, pictures.ToArray(), atlasObj);
             //创建Sprites
             pictures = pictureData.FindAll(x => x.type == ImgType.Texture).ConvertAll<Texture2D>(x => x.texture);
-            SaveToTextures(ImgType.Texture, pictures.ToArray(), pictureInfo);
+            SaveToTextures(ImgType.Texture, pictures.ToArray(), atlasObj);
 
             return nodes.ToArray();
         }
 
-        public static void ChargeTextures(PictureExportInfo pictureInfo, GroupNode1 groupnode)
+        public static void ChargeTextures(AtlasObject pictureInfo, GroupNode1 groupnode)
         {
             //重新加载
             var atlaspath = pictureInfo.exportPath + "/" + pictureInfo.atlasName;
@@ -114,13 +114,13 @@ namespace PSDUnity.Exprot
         /// <param name="pictureInfo"></param>
         /// <param name="atlasName"></param>
         /// <returns></returns>
-        public static void SaveToAtlas(Texture2D[] textureArray, PictureExportInfo pictureInfo)
+        public static void SaveToAtlas(Texture2D[] textureArray, AtlasObject pictureInfo)
         {
             if (textureArray.Length == 0) return;
             // The output of PackTextures returns a Rect array from which we can create our sprites
             Rect[] rects;
-            Texture2D atlas = new Texture2D(pictureInfo.atlassize, pictureInfo.atlassize);
-            rects = atlas.PackTextures(textureArray, 2, pictureInfo.atlassize);
+            Texture2D atlas = new Texture2D(pictureInfo.settingObj.atlassize, pictureInfo.settingObj.atlassize);
+            rects = atlas.PackTextures(textureArray, 2, pictureInfo.settingObj.atlassize);
             List<SpriteMetaData> Sprites = new List<SpriteMetaData>();
 
             // For each rect in the Rect Array create the sprite and assign to the SpriteMetaData
@@ -145,12 +145,12 @@ namespace PSDUnity.Exprot
             TextureImporter textureImporter = AssetImporter.GetAtPath(atlaspath) as TextureImporter;
 
             // Make sure the size is the same as our atlas then create the spritesheet
-            textureImporter.maxTextureSize = pictureInfo.atlassize;
+            textureImporter.maxTextureSize = pictureInfo.settingObj.atlassize;
             textureImporter.spritesheet = Sprites.ToArray();
             textureImporter.textureType = TextureImporterType.Sprite;
             textureImporter.spriteImportMode = SpriteImportMode.Multiple;
             textureImporter.spritePivot = new Vector2(0.5f, 0.5f);
-            textureImporter.spritePixelsPerUnit = pictureInfo.pixelsToUnitSize;
+            textureImporter.spritePixelsPerUnit = pictureInfo.settingObj.pixelsToUnitSize;
             AssetDatabase.ImportAsset(atlaspath, ImportAssetOptions.ForceUpdate);
 
             foreach (Texture2D tex in textureArray)
@@ -164,12 +164,12 @@ namespace PSDUnity.Exprot
         /// <param name="imgType"></param>
         /// <param name="textureArray"></param>
         /// <param name="pictureInfo"></param>
-        public static void SaveToTextures(ImgType imgType, Texture2D[] textureArray, PictureExportInfo pictureInfo)
+        public static void SaveToTextures(ImgType imgType, Texture2D[] textureArray, AtlasObject pictureInfo)
         {
             foreach (var texture in textureArray)
             {
                 byte[] buf = texture.EncodeToPNG();
-                var atlaspath = pictureInfo.exportPath + "/" + string.Format(pictureInfo.picNameTemp, texture.name);
+                var atlaspath = pictureInfo.exportPath + "/" + string.Format(pictureInfo.settingObj.picNameTemp, texture.name);
                 File.WriteAllBytes(Path.GetFullPath(atlaspath), buf);
                 AssetDatabase.Refresh();
 
@@ -177,7 +177,7 @@ namespace PSDUnity.Exprot
                 TextureImporter textureImporter = AssetImporter.GetAtPath(atlaspath) as TextureImporter;
 
                 // Make sure the size is the same as our atlas then create the spritesheet
-                textureImporter.maxTextureSize = pictureInfo.atlassize;
+                textureImporter.maxTextureSize = pictureInfo.settingObj.atlassize;
 
                 switch (imgType)
                 {
@@ -185,7 +185,7 @@ namespace PSDUnity.Exprot
                         textureImporter.textureType = TextureImporterType.Sprite;
                         textureImporter.spriteImportMode = SpriteImportMode.Single;
                         textureImporter.spritePivot = new Vector2(0.5f, 0.5f);
-                        textureImporter.spritePixelsPerUnit = pictureInfo.pixelsToUnitSize;
+                        textureImporter.spritePixelsPerUnit = pictureInfo.settingObj.pixelsToUnitSize;
                         break;
                     case ImgType.Texture:
                         textureImporter.textureType = TextureImporterType.Image;

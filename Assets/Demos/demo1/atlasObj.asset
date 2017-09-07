@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 885e115a8f1c1e04b88b4a1204eba2ee, type: 3}
-  m_Name: demo1
+  m_Name: atlasObj
   m_EditorClassIdentifier: 
+  _exportPath: Assets/Demos/demo1
   psdFile: "E:/Githubs/PsdUnity/PSDDemo/UI\u5236\u4F5C\u6A21\u677F.psd"
-  exportPath: Assets/Demos/demo1
   settingObj: {fileID: 11400000, guid: 79102a4c6ecda994b9437a6c701177a2, type: 2}
   prefabObj: {fileID: 11400000, guid: f7d3181f5b8957245adfabda058c8541, type: 2}
   groups:
@@ -54,35 +54,35 @@ MonoBehaviour:
         _groups: []
         _images:
         - Name: "b_\u80CC\u666F"
-          type: 2
-          source: 1
+          type: 4
+          source: 0
           rect:
             serializedVersion: 2
             x: -226
             y: -341.5
             width: 573
             height: 25
-          sprite: {fileID: 21300014, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+          sprite: {fileID: 0}
           texture: {fileID: 0}
           text: 
           font: {fileID: 0}
           fontSize: 0
           color: {r: 1, g: 1, b: 1, a: 1}
         - Name: "h_\u624B\u67C4"
-          type: 2
-          source: 1
+          type: 4
+          source: 0
           rect:
             serializedVersion: 2
             x: -226
             y: -341.5
             width: 573
             height: 25
-          sprite: {fileID: 21300016, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+          sprite: {fileID: 0}
           texture: {fileID: 0}
           text: 
           font: {fileID: 0}
           fontSize: 0
-          color: {r: 1, g: 1, b: 1, a: 1}
+          color: {r: 0, g: 1, b: 1, a: 1}
       - Name: "vb_\u5782\u76F4\u6ED1\u52A8\u6761"
         groupType: 10
         direction: 16
@@ -97,35 +97,35 @@ MonoBehaviour:
         _groups: []
         _images:
         - Name: "b_\u80CC\u666F"
-          type: 2
-          source: 1
+          type: 4
+          source: 0
           rect:
             serializedVersion: 2
             x: 46.5
             y: -76
             width: 28
             height: 542
-          sprite: {fileID: 21300018, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+          sprite: {fileID: 0}
           texture: {fileID: 0}
           text: 
           font: {fileID: 0}
           fontSize: 0
-          color: {r: 1, g: 1, b: 1, a: 1}
+          color: {r: 0.9333334, g: 0.9333334, b: 0.9333334, a: 1}
         - Name: "h_\u624B\u67C4"
-          type: 2
-          source: 1
+          type: 4
+          source: 0
           rect:
             serializedVersion: 2
             x: 46.5
             y: -76
             width: 28
             height: 542
-          sprite: {fileID: 21300020, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+          sprite: {fileID: 0}
           texture: {fileID: 0}
           text: 
           font: {fileID: 0}
           fontSize: 0
-          color: {r: 1, g: 1, b: 1, a: 1}
+          color: {r: 0.27843142, g: 0.92941177, b: 0.8313726, a: 1}
       - Name: "c_\u7EC4"
         groupType: 11
         direction: 4
@@ -152,20 +152,20 @@ MonoBehaviour:
           _groups: []
           _images:
           - Name: '@Size'
-            type: 2
-            source: 1
+            type: 4
+            source: 0
             rect:
               serializedVersion: 2
               x: -237
               y: 148
               width: 545
               height: 88
-            sprite: {fileID: 21300022, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+            sprite: {fileID: 0}
             texture: {fileID: 0}
             text: 
             font: {fileID: 0}
             fontSize: 0
-            color: {r: 1, g: 1, b: 1, a: 1}
+            color: {r: 0.86274517, g: 0.86274517, b: 0.86274517, a: 1}
         - Name: "\u9762\u677F"
           groupType: 0
           direction: 0
@@ -180,20 +180,20 @@ MonoBehaviour:
           _groups: []
           _images:
           - Name: '@Size'
-            type: 2
-            source: 1
+            type: 4
+            source: 0
             rect:
               serializedVersion: 2
               x: -237
               y: 62
               width: 545
               height: 88
-            sprite: {fileID: 21300024, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+            sprite: {fileID: 0}
             texture: {fileID: 0}
             text: 
             font: {fileID: 0}
             fontSize: 0
-            color: {r: 1, g: 1, b: 1, a: 1}
+            color: {r: 0.86274517, g: 0.86274517, b: 0.86274517, a: 1}
         - Name: "\u9762\u677F"
           groupType: 0
           direction: 0
@@ -208,37 +208,37 @@ MonoBehaviour:
           _groups: []
           _images:
           - Name: '@Size'
-            type: 2
-            source: 1
+            type: 4
+            source: 0
             rect:
               serializedVersion: 2
               x: -237
               y: -24.5
               width: 545
               height: 87
-            sprite: {fileID: 21300026, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+            sprite: {fileID: 0}
             texture: {fileID: 0}
             text: 
             font: {fileID: 0}
             fontSize: 0
-            color: {r: 1, g: 1, b: 1, a: 1}
+            color: {r: 0.86274517, g: 0.86274517, b: 0.86274517, a: 1}
         _images: []
       _images:
       - Name: "b_\u80CC\u666F"
-        type: 2
-        source: 1
+        type: 4
+        source: 0
         rect:
           serializedVersion: 2
           x: -227.5
           y: -78.5
           width: 578
           height: 549
-        sprite: {fileID: 21300012, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+        sprite: {fileID: 0}
         texture: {fileID: 0}
         text: 
         font: {fileID: 0}
         fontSize: 0
-        color: {r: 1, g: 1, b: 1, a: 1}
+        color: {r: 0, g: 0.6, b: 0.2666667, a: 1}
     - Name: "\u8FDB\u5EA6\u6761"
       groupType: 8
       direction: 4
@@ -253,50 +253,50 @@ MonoBehaviour:
       _groups: []
       _images:
       - Name: "b_\u80CC\u666F"
-        type: 2
-        source: 1
+        type: 4
+        source: 0
         rect:
           serializedVersion: 2
           x: 304
           y: -305
           width: 389
           height: 54
-        sprite: {fileID: 21300028, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+        sprite: {fileID: 0}
         texture: {fileID: 0}
         text: 
         font: {fileID: 0}
         fontSize: 0
-        color: {r: 1, g: 1, b: 1, a: 1}
+        color: {r: 0.8862746, g: 0.8941177, b: 0.6313726, a: 1}
       - Name: "f_\u524D\u666F"
-        type: 2
-        source: 1
+        type: 4
+        source: 0
         rect:
           serializedVersion: 2
           x: 304
           y: -305
           width: 389
           height: 54
-        sprite: {fileID: 21300030, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+        sprite: {fileID: 0}
         texture: {fileID: 0}
         text: 
         font: {fileID: 0}
         fontSize: 0
-        color: {r: 1, g: 1, b: 1, a: 1}
+        color: {r: 0.050980397, g: 0.70588243, b: 0.6352942, a: 1}
       - Name: "h_\u624B\u67C4"
-        type: 2
-        source: 1
+        type: 4
+        source: 0
         rect:
           serializedVersion: 2
           x: 473.5
           y: -305
           width: 50
           height: 54
-        sprite: {fileID: 21300032, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+        sprite: {fileID: 0}
         texture: {fileID: 0}
         text: 
         font: {fileID: 0}
         fontSize: 0
-        color: {r: 1, g: 1, b: 1, a: 1}
+        color: {r: 0.9490197, g: 0.14117649, b: 0.33333337, a: 1}
     - Name: "\u72B6\u6001"
       groupType: 2
       direction: 0
@@ -311,35 +311,35 @@ MonoBehaviour:
       _groups: []
       _images:
       - Name: "m_\u906E\u7F69"
-        type: 2
-        source: 1
+        type: 4
+        source: 0
         rect:
           serializedVersion: 2
           x: -22
           y: 286.5
           width: 171
           height: 147
-        sprite: {fileID: 21300034, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+        sprite: {fileID: 0}
         texture: {fileID: 0}
         text: 
         font: {fileID: 0}
         fontSize: 0
-        color: {r: 1, g: 1, b: 1, a: 1}
+        color: {r: 1, g: 0.94509804, b: 0, a: 1}
       - Name: "b_\u80CC\u666F"
-        type: 2
-        source: 1
+        type: 4
+        source: 0
         rect:
           serializedVersion: 2
           x: -22
           y: 286.5
           width: 171
           height: 147
-        sprite: {fileID: 21300036, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+        sprite: {fileID: 0}
         texture: {fileID: 0}
         text: 
         font: {fileID: 0}
         fontSize: 0
-        color: {r: 1, g: 1, b: 1, a: 1}
+        color: {r: 0, g: 1, b: 0, a: 1}
       - Name: "\u6807\u9898"
         type: 0
         source: 0
@@ -347,8 +347,8 @@ MonoBehaviour:
           serializedVersion: 2
           x: -21.5
           y: 281
-          width: 66
-          height: 34
+          width: 50
+          height: 18
         sprite: {fileID: 0}
         texture: {fileID: 0}
         text: Toggle
@@ -381,81 +381,81 @@ MonoBehaviour:
         _groups: []
         _images:
         - Name: "b_\u80CC\u666F"
-          type: 2
-          source: 1
+          type: 4
+          source: 0
           rect:
             serializedVersion: 2
             x: 490.5
             y: 67
             width: 16
             height: 288
-          sprite: {fileID: 21300044, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+          sprite: {fileID: 0}
           texture: {fileID: 0}
           text: 
           font: {fileID: 0}
           fontSize: 0
-          color: {r: 1, g: 1, b: 1, a: 1}
+          color: {r: 0.15686277, g: 0.27450985, b: 0.6627451, a: 1}
         - Name: "h_\u524D\u666F"
-          type: 2
-          source: 1
+          type: 4
+          source: 0
           rect:
             serializedVersion: 2
             x: 490.5
             y: 175.5
             width: 16
             height: 65
-          sprite: {fileID: 21300046, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+          sprite: {fileID: 0}
           texture: {fileID: 0}
           text: 
           font: {fileID: 0}
           fontSize: 0
-          color: {r: 1, g: 1, b: 1, a: 1}
+          color: {r: 0.909804, g: 0.21176472, b: 0.40784317, a: 1}
       _images:
       - Name: "m_\u9009\u9879\u906E\u7F69"
-        type: 2
-        source: 1
+        type: 4
+        source: 0
         rect:
           serializedVersion: 2
           x: 132.5
           y: 175
           width: 42
           height: 30
-        sprite: {fileID: 21300038, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+        sprite: {fileID: 0}
         texture: {fileID: 0}
         text: 
         font: {fileID: 0}
         fontSize: 0
-        color: {r: 1, g: 1, b: 1, a: 1}
+        color: {r: 0.019607846, g: 0.13333336, b: 0.011764707, a: 1}
       - Name: "b3_\u9009\u9879\u80CC\u666F"
-        type: 2
-        source: 1
+        type: 4
+        source: 0
         rect:
           serializedVersion: 2
           x: 303.5
           y: 180
           width: 390
           height: 64
-        sprite: {fileID: 21300040, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+        sprite: {fileID: 0}
         texture: {fileID: 0}
         text: 
         font: {fileID: 0}
         fontSize: 0
-        color: {r: 1, g: 1, b: 1, a: 1}
+        color: {r: 0.15686277, g: 0.27450985, b: 0.6627451, a: 1}
       - Name: "b2_\u6846\u80CC\u666F"
-        type: 2
-        source: 1
+        type: 4
+        source: 0
         rect:
           serializedVersion: 2
           x: 303.5
           y: 67.5
           width: 390
           height: 289
-        sprite: {fileID: 21300042, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+        sprite: {fileID: 0}
         texture: {fileID: 0}
         text: 
         font: {fileID: 0}
         fontSize: 0
-        color: {r: 1, g: 1, b: 1, a: 1}
+        color: {r: 0.24313727, g: 0.682353, b: 0.20784315, a: 1}
       - Name: "b1_\u4E3B\u80CC\u666F"
         type: 2
         source: 1
@@ -465,7 +465,7 @@ MonoBehaviour:
           y: 241.5
           width: 387
           height: 61
-        sprite: {fileID: 21300000, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+        sprite: {fileID: 21300000, guid: 152e1836ea18bf949a57bb0b92fbd293, type: 3}
         texture: {fileID: 0}
         text: 
         font: {fileID: 0}
@@ -523,7 +523,7 @@ MonoBehaviour:
           y: 286
           width: 367
           height: 144
-        sprite: {fileID: 21300002, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+        sprite: {fileID: 21300002, guid: 152e1836ea18bf949a57bb0b92fbd293, type: 3}
         texture: {fileID: 0}
         text: 
         font: {fileID: 0}
@@ -538,7 +538,7 @@ MonoBehaviour:
           y: 286
           width: 367
           height: 144
-        sprite: {fileID: 21300004, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+        sprite: {fileID: 21300004, guid: 152e1836ea18bf949a57bb0b92fbd293, type: 3}
         texture: {fileID: 0}
         text: 
         font: {fileID: 0}
@@ -553,7 +553,7 @@ MonoBehaviour:
           y: 286
           width: 367
           height: 144
-        sprite: {fileID: 21300006, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+        sprite: {fileID: 21300006, guid: 152e1836ea18bf949a57bb0b92fbd293, type: 3}
         texture: {fileID: 0}
         text: 
         font: {fileID: 0}
@@ -568,7 +568,7 @@ MonoBehaviour:
           y: 286
           width: 367
           height: 144
-        sprite: {fileID: 21300008, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+        sprite: {fileID: 21300008, guid: 152e1836ea18bf949a57bb0b92fbd293, type: 3}
         texture: {fileID: 0}
         text: 
         font: {fileID: 0}
@@ -581,8 +581,8 @@ MonoBehaviour:
           serializedVersion: 2
           x: -342
           y: 280.5
-          width: 65
-          height: 29
+          width: 49
+          height: 13
         sprite: {fileID: 0}
         texture: {fileID: 0}
         text: Button
@@ -603,20 +603,20 @@ MonoBehaviour:
       _groups: []
       _images:
       - Name: "b_\u80CC\u666F"
-        type: 2
-        source: 1
+        type: 4
+        source: 0
         rect:
           serializedVersion: 2
           x: 302.5
           y: -169
           width: 386
           height: 148
-        sprite: {fileID: 21300048, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+        sprite: {fileID: 0}
         texture: {fileID: 0}
         text: 
         font: {fileID: 0}
         fontSize: 0
-        color: {r: 1, g: 1, b: 1, a: 1}
+        color: {r: 0.96470594, g: 0.7019608, b: 0.49803925, a: 1}
       - Name: "p_\u7A7A\u5360\u4F4D"
         type: 0
         source: 0
@@ -649,17 +649,17 @@ MonoBehaviour:
         color: {r: 0.87843, g: 0.19292, b: 0.28975, a: 1}
     _images:
     - Name: "b_\u80CC\u666F\u6216@Size"
-      type: 2
-      source: 1
+      type: 4
+      source: 0
       rect:
         serializedVersion: 2
         x: 129
         y: -0
         width: 1367
         height: 764
-      sprite: {fileID: 21300010, guid: 7732fec9ce1ec4b4cacbe7e220aa5c85, type: 3}
+      sprite: {fileID: 0}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
       fontSize: 0
-      color: {r: 1, g: 1, b: 1, a: 1}
+      color: {r: 0.27843142, g: 0.92941177, b: 0.8313726, a: 1}
