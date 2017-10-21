@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 using PSDUnity.Data;
+using UnityEngineInternal;
 namespace PSDUnity.Import
 {
     public class ButtonLayerImport : ILayerImport
@@ -50,13 +51,21 @@ namespace PSDUnity.Import
             }
             return node;
         }
-        private void SetSpriteSwipe(ImgNode image,UnityEngine.UI.Button button)
+        private void SetSpriteSwipe(ImgNode image, UnityEngine.UI.Button button)
         {
             string lowerName = image.Name.ToLower();
+            InitButton(image,button);
 
             if (lowerName.StartsWith("n_"))
             {
-                button.image.sprite = image.sprite;
+                if (image.type == ImgType.Label)
+                {
+                    (button.targetGraphic as UnityEngine.UI.Text).text = image.text;
+                }
+                else
+                {
+                    button.image.sprite = image.sprite;
+                }
             }
             else if (lowerName.StartsWith("p_"))
             {
@@ -81,44 +90,75 @@ namespace PSDUnity.Import
             }
         }
 
+        private void InitButton(ImgNode image, UnityEngine.UI.Button button)
+        {
+            if (image.type == ImgType.Label)
+            {
+                var text = button.GetComponent<UnityEngine.UI.Text>();
+                if (text == null)
+                {
+                    text = button.gameObject.AddComponent<UnityEngine.UI.Text>();
+                    button.targetGraphic = text;
+                    UnityEditorInternal.ComponentUtility.MoveComponentUp(text);
+                }
+            }
+            else
+            {
+                var img = button.GetComponent<UnityEngine.UI.Image>();
+                if (img == null)
+                {
+                    img = button.gameObject.AddComponent<UnityEngine.UI.Image>();
+                    button.targetGraphic = img;
+                    UnityEditorInternal.ComponentUtility.MoveComponentUp(img);
+                }
+            }
+        }
+
         private void SetColorSwipe(ImgNode image, UnityEngine.UI.Button button)
         {
-            string lowerName = image.sprite.name.ToLower();
+            string lowerName = image.Name.ToLower();
             Color color = image.color;
-           
-                if (lowerName.StartsWith("n_"))
-                {
-                    RectTransform rectTransform = button.GetComponent<RectTransform>();
-                    rectTransform.sizeDelta = new Vector2(image.rect.width, image.rect.height);
-                    rectTransform.anchoredPosition = new Vector2(image.rect.x, image.rect.y);
 
-                    button.image.color = color;
-                    button.transition = UnityEngine.UI.Selectable.Transition.ColorTint;
-                    UnityEngine.UI.ColorBlock state = button.colors;
-                    state.normalColor = color;
-                    button.colors = state;
-                }
-                else if (lowerName.StartsWith("p_"))
+            InitButton(image, button);
+
+            if (lowerName.StartsWith("n_"))
+            {
+                if (image.type == ImgType.Label)
                 {
-                    button.transition = UnityEngine.UI.Selectable.Transition.ColorTint;
-                    UnityEngine.UI.ColorBlock state = button.colors;
-                    state.pressedColor = color;
-                    button.colors = state;
+                    (button.targetGraphic as UnityEngine.UI.Text).text = image.text;
                 }
-                else if (lowerName.StartsWith("d_"))
-                {
-                    button.transition = UnityEngine.UI.Selectable.Transition.ColorTint;
-                    UnityEngine.UI.ColorBlock state = button.colors;
-                    state.disabledColor = color;
-                    button.colors = state;
-                }
-                else if (lowerName.StartsWith("h_"))
-                {
-                    button.transition = UnityEngine.UI.Selectable.Transition.ColorTint;
-                    UnityEngine.UI.ColorBlock state = button.colors;
-                    state.highlightedColor = color;
-                    button.colors = state;
-                }
+
+                RectTransform rectTransform = button.GetComponent<RectTransform>();
+                rectTransform.sizeDelta = new Vector2(image.rect.width, image.rect.height);
+                rectTransform.anchoredPosition = new Vector2(image.rect.x, image.rect.y);
+
+                button.targetGraphic.color = color;
+                button.transition = UnityEngine.UI.Selectable.Transition.ColorTint;
+                UnityEngine.UI.ColorBlock state = button.colors;
+                state.normalColor = color;
+                button.colors = state;
+            }
+            else if (lowerName.StartsWith("p_"))
+            {
+                button.transition = UnityEngine.UI.Selectable.Transition.ColorTint;
+                UnityEngine.UI.ColorBlock state = button.colors;
+                state.pressedColor = color;
+                button.colors = state;
+            }
+            else if (lowerName.StartsWith("d_"))
+            {
+                button.transition = UnityEngine.UI.Selectable.Transition.ColorTint;
+                UnityEngine.UI.ColorBlock state = button.colors;
+                state.disabledColor = color;
+                button.colors = state;
+            }
+            else if (lowerName.StartsWith("h_"))
+            {
+                button.transition = UnityEngine.UI.Selectable.Transition.ColorTint;
+                UnityEngine.UI.ColorBlock state = button.colors;
+                state.highlightedColor = color;
+                button.colors = state;
+            }
         }
     }
 }
