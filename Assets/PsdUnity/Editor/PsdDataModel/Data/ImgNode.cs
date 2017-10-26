@@ -4,14 +4,18 @@ using UnityEngine;
 namespace PSDUnity.Data
 {
     [Serializable]
-    public class ImgNode: INameAnalyzing<ImgNode>
+    public class ImgNode : INameAnalyzing<ImgNode>
     {
         public string Name;
         private int hashImage = 0;
+        private bool forceHashName;
         public string TextureName
         {
             get
             {
+                if (source != ImgSource.Custom && !forceHashName){
+                    return Name;
+                }
                 return Name + hashImage;
             }
         }
@@ -57,12 +61,12 @@ namespace PSDUnity.Data
         /// 将名字转换（去除标记性字符）
         /// </summary>
         /// <returns></returns>
-        public ImgNode Analyzing(RuleObject Rule,string name)
+        public ImgNode Analyzing(RuleObject Rule, string name)
         {
             this.Name = Rule.AnalySisImgName(name, out source, out type);
+            this.forceHashName = Rule.forceHashName;
             //添加后缀
-            if (texture != null)
-            {
+            if (texture != null){
                 this.hashImage = rect.GetHashCode();
                 this.texture.name = TextureName;
             }
@@ -70,5 +74,5 @@ namespace PSDUnity.Data
         }
     }
 
-   
+
 }

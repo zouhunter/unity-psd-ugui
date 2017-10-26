@@ -44,12 +44,11 @@ namespace PSDUnity.Data
         public string asGoubleMark = "G";
         public string asNoRepetMark = "N";
         public string asCustomMark = "C";
+        public bool forceHashName = false;
         public ImgSource defultImgSource = ImgSource.Custom;
         [Header("组名分割"), Space(10)]
         public char sepraterChargroup = '@';
         public char argumentChar = ':';
-       
-
         public void Reset()
         {
             LoadDefultDatas(prefabs);

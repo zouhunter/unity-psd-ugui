@@ -39,14 +39,33 @@ namespace PSDUnity.Exprot
 
             var pictureData = new List<ImgNode>();
 
-            foreach (var groupnode in nodes)
-            {
+            foreach (var groupnode in nodes){
                 groupnode.GetImgNodes(pictureData);
             }
+            SwitchCreateTexture(pictureData);
 
+            return nodes.ToArray();
+        }
+
+        private  static void SwitchCreateTexture(List<ImgNode> pictureData)
+        {
             //创建atlas
-            var textures = pictureData.FindAll(x => x.type == ImgType.AtlasImage).ConvertAll<Texture2D>(x => x.texture);
+            var textures = new List<Texture2D>();
+            foreach (var item in pictureData)
+            {
+                if (item.type == ImgType.AtlasImage)
+                {
+                    var tx = textures.Find(x => x.name == item.TextureName);
+                    if (tx == null){
+                        textures.Add(item.texture);
+                    }
+                    else{
+                        item.texture = tx;
+                    }
+                }
+            }
             SaveToAtlas(textures.ToArray(), atlasObj);
+
             //创建Sprites
             var pictures = pictureData.FindAll(x => x.type == ImgType.Image).ConvertAll<Texture2D>(x => x.texture);
             SaveToTextures(ImgType.Image, pictures.ToArray(), atlasObj);
@@ -54,7 +73,6 @@ namespace PSDUnity.Exprot
             pictures = pictureData.FindAll(x => x.type == ImgType.Texture).ConvertAll<Texture2D>(x => x.texture);
             SaveToTextures(ImgType.Texture, pictures.ToArray(), atlasObj);
 
-            return nodes.ToArray();
         }
 
         public static void ChargeTextures(AtlasObject pictureInfo, GroupNode1 groupnode)
