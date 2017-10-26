@@ -57,9 +57,9 @@ namespace PSDUnity.Data
         /// 将名字转换（去除标记性字符）
         /// </summary>
         /// <returns></returns>
-        public ImgNode Analyzing(RouleObject roule,string name)
+        public ImgNode Analyzing(RuleObject Rule,string name)
         {
-            this.Name = roule.AnalySisImgName(name, out source, out type);
+            this.Name = Rule.AnalySisImgName(name, out source, out type);
             //添加后缀
             if (texture != null)
             {

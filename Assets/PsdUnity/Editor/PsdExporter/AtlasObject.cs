@@ -24,14 +24,14 @@ namespace PSDUnity.Exprot
         [HideInInspector]
         public SettingObject settingObj;
         [HideInInspector]
-        public RouleObject prefabObj;
+        public RuleObject prefabObj;
         public List<GroupNode1> groups = new List<GroupNode1>();
         public void Reset()
         {
             if (prefabObj == null)
             {
                 var path = AssetDatabase.GUIDToAssetPath("f7d3181f5b8957245adfabda058c8541");
-                prefabObj = AssetDatabase.LoadAssetAtPath<RouleObject>(path);
+                prefabObj = AssetDatabase.LoadAssetAtPath<RuleObject>(path);
 
                 path = AssetDatabase.GUIDToAssetPath("79102a4c6ecda994b9437a6c701177a2");
                 settingObj = AssetDatabase.LoadAssetAtPath<SettingObject>(path);

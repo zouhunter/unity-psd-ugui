@@ -12,7 +12,7 @@ namespace PSDUnity.Exprot
     public static class PsdExportUtility
     {
         private static Vector2 maxSize { get; set; }
-        public static RouleObject rouleObj { get { return atlasObj.prefabObj; } }
+        public static RuleObject RuleObj { get { return atlasObj.prefabObj; } }
         public static SettingObject settingObj { get { return atlasObj.settingObj; } }
         public static AtlasObject atlasObj { get; set; }
         private static Vector2 rootSize { get; set; }
@@ -31,7 +31,7 @@ namespace PSDUnity.Exprot
             {
                 if (rootLayer.IsGroup)
                 {
-                    var groupnode = new GroupNode1(GetRectFromLayer(rootLayer)).Analyzing(PsdExportUtility.rouleObj, rootLayer.Name) as GroupNode1;// (rootLayer,rootLayer));
+                    var groupnode = new GroupNode1(GetRectFromLayer(rootLayer)).Analyzing(PsdExportUtility.RuleObj, rootLayer.Name) as GroupNode1;// (rootLayer,rootLayer));
                     RetriveLayerToSwitchModle(rootSize, rootLayer, groupnode, forceSprite);
                     nodes.Add(groupnode);
                 }
@@ -119,8 +119,8 @@ namespace PSDUnity.Exprot
             if (textureArray.Length == 0) return;
             // The output of PackTextures returns a Rect array from which we can create our sprites
             Rect[] rects;
-            Texture2D atlas = new Texture2D(pictureInfo.settingObj.atlassize, pictureInfo.settingObj.atlassize);
-            rects = atlas.PackTextures(textureArray, 2, pictureInfo.settingObj.atlassize);
+            Texture2D atlas = new Texture2D(pictureInfo.settingObj.maxSize, pictureInfo.settingObj.maxSize);
+            rects = atlas.PackTextures(textureArray, 2, pictureInfo.settingObj.maxSize);
             List<SpriteMetaData> Sprites = new List<SpriteMetaData>();
 
             // For each rect in the Rect Array create the sprite and assign to the SpriteMetaData
@@ -134,9 +134,7 @@ namespace PSDUnity.Exprot
                 smd.alignment = (int)SpriteAlignment.Center;
                 Sprites.Add(smd);
             }
-
             // Need to load the image first
-
             byte[] buf = atlas.EncodeToPNG();
             var atlaspath = pictureInfo.exportPath + "/" + pictureInfo.atlasName;
             File.WriteAllBytes(Path.GetFullPath(atlaspath), buf);
@@ -145,7 +143,7 @@ namespace PSDUnity.Exprot
             TextureImporter textureImporter = AssetImporter.GetAtPath(atlaspath) as TextureImporter;
 
             // Make sure the size is the same as our atlas then create the spritesheet
-            textureImporter.maxTextureSize = pictureInfo.settingObj.atlassize;
+            textureImporter.maxTextureSize = pictureInfo.settingObj.maxSize;
             textureImporter.spritesheet = Sprites.ToArray();
             textureImporter.textureType = TextureImporterType.Sprite;
             textureImporter.spriteImportMode = SpriteImportMode.Multiple;
@@ -177,7 +175,7 @@ namespace PSDUnity.Exprot
                 TextureImporter textureImporter = AssetImporter.GetAtPath(atlaspath) as TextureImporter;
 
                 // Make sure the size is the same as our atlas then create the spritesheet
-                textureImporter.maxTextureSize = pictureInfo.settingObj.atlassize;
+                textureImporter.maxTextureSize = pictureInfo.settingObj.maxSize;
 
                 switch (imgType)
                 {
@@ -188,7 +186,7 @@ namespace PSDUnity.Exprot
                         textureImporter.spritePixelsPerUnit = pictureInfo.settingObj.pixelsToUnitSize;
                         break;
                     case ImgType.Texture:
-                        textureImporter.textureType = TextureImporterType.Image;
+                        textureImporter.textureType = TextureImporterType.Default;
                         break;
                     default:
                         break;
@@ -219,12 +217,12 @@ namespace PSDUnity.Exprot
             switch (layer.LayerType)
             {
                 case LayerType.Normal:
-                    data = new ImgNode(rect, texture).Analyzing(PsdExportUtility.rouleObj,layer.Name);
+                    data = new ImgNode(rect, texture).Analyzing(PsdExportUtility.RuleObj,layer.Name);
                     break;
                 case LayerType.SolidImage:
                     if (forceSprite)
                     {
-                        data = new ImgNode(rect, texture).Analyzing(PsdExportUtility.rouleObj,layer.Name);
+                        data = new ImgNode(rect, texture).Analyzing(PsdExportUtility.RuleObj,layer.Name);
                     }
                     else
                     {
@@ -333,11 +331,15 @@ namespace PSDUnity.Exprot
             }
             else
             {
+                float index = 0;
                 foreach (var child in layer.Childs)
                 {
+                    var progress = ++index / layer.Childs.Length;
+                    EditorUtility.DisplayProgressBar(layer.Name,"转换进度:" +progress, progress);
+
                     if (child.IsGroup)
                     {
-                        GroupNode childNode = group.InsertChild(GetRectFromLayer(child)).Analyzing(rouleObj,child.Name);
+                        GroupNode childNode = group.InsertChild(GetRectFromLayer(child)).Analyzing(RuleObj,child.Name);
 
                         if (childNode != null)
                         {
@@ -355,6 +357,7 @@ namespace PSDUnity.Exprot
                     }
 
                 }
+                EditorUtility.ClearProgressBar();
             }
         }
        

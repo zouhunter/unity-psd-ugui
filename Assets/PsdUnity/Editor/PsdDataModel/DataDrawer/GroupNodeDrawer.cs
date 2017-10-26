@@ -116,7 +116,7 @@ namespace PSDUnity.Data
                     case GroupType.RawIMAGE:
                         break;
                     case GroupType.SCROLLVIEW:
-                        directionProp.enumValueIndex = (int)(Direction)EditorGUI.EnumMaskPopup(rect, new GUIContent("方向"), lastDir);
+                        directionProp.enumValueIndex = enumDirectionToIndex((Direction)EditorGUI.EnumMaskPopup(rect, new GUIContent("方向"), lastDir));
                         rect.y += SingleHeight;
                         break;
                     case GroupType.SLIDER:
@@ -127,7 +127,7 @@ namespace PSDUnity.Data
                     case GroupType.TEXT:
                         break;
                     case GroupType.GROUP:
-                        directionProp.enumValueIndex = (int)(Direction)EditorGUI.EnumPopup(rect, new GUIContent("方向"), lastDir);
+                        directionProp.enumValueIndex = enumDirectionToIndex((Direction)EditorGUI.EnumPopup(rect, new GUIContent("方向"), lastDir));
                         rect.y += SingleHeight;
                         EditorGUI.PropertyField(rect, spacingProp);
                         rect.y += SingleHeight;

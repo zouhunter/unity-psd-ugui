@@ -13,7 +13,7 @@ using UnityEditor;
 
 namespace PSDUnity.Data
 {
-    public class RouleObject : ScriptableObject
+    public class RuleObject : ScriptableObject
     {
         [System.Serializable]
         public class PrefabItem

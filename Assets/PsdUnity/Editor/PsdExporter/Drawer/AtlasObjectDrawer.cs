@@ -20,6 +20,7 @@ namespace PSDUnity.Exprot
         SerializedProperty prefabObjProp;
         SerializedProperty settingObjProp;
         AtlasObject atlasObj;
+        private const string Prefs_LastPsdsDir = "lastPsdFileDir";
         private void OnEnable()
         {
             atlasObj = target as AtlasObject;
@@ -55,8 +56,8 @@ namespace PSDUnity.Exprot
                 EditorGUILayout.PropertyField(prefabObjProp, true);
                 if (GUILayout.Button("创建规则"))
                 {
-                    var obj = RouleObject.CreateInstance<RouleObject>();
-                    ProjectWindowUtil.CreateAsset(obj, "Roule.asset");
+                    var obj = RuleObject.CreateInstance<RuleObject>();
+                    ProjectWindowUtil.CreateAsset(obj, "Rule.asset");
                     prefabObjProp.objectReferenceValue = obj;
                 }
                 if (GUILayout.Button("导出到UI"))
@@ -107,26 +108,20 @@ namespace PSDUnity.Exprot
                 EditorGUILayout.SelectableLabel("文档路径:",GUILayout.Width(60));
                 if (GUILayout.Button(new GUIContent(psdFileProp.stringValue, "点击此处选择文件夹！"), EditorStyles.textField))
                 {
-                    var dir = string.IsNullOrEmpty(psdFileProp.stringValue) ? Application.dataPath : System.IO.Path.GetDirectoryName(psdFileProp.stringValue);
+                    var oldDir = PlayerPrefs.GetString(Prefs_LastPsdsDir);
+                    if(string.IsNullOrEmpty(oldDir)) {
+                        oldDir = Application.dataPath;
+                    }
+
+                    var dir = string.IsNullOrEmpty(psdFileProp.stringValue) ? oldDir : System.IO.Path.GetDirectoryName(psdFileProp.stringValue);
                     var path = EditorUtility.OpenFilePanel("选择一个pdf文件", dir, "psd");
                     if (!string.IsNullOrEmpty(path))
                     {
                         psdFileProp.stringValue = path;
+                        PlayerPrefs.SetString(Prefs_LastPsdsDir, System.IO.Path.GetDirectoryName(path));
                     }
                 }
             }
-
-            //using (var hor = new EditorGUILayout.HorizontalScope())
-            //{
-            //    EditorGUILayout.SelectableLabel("导出路径:", GUILayout.Width(60));
-            //    if (GUILayout.Button(new GUIContent(exportProp.stringValue,"选中文件夹后点击此处！"), EditorStyles.textField))
-            //    {
-            //        if (Selection.activeObject != null && ProjectWindowUtil.IsFolder(Selection.activeInstanceID))
-            //        {
-            //            exportProp.stringValue = AssetDatabase.GetAssetPath(Selection.activeInstanceID);
-            //        }
-            //    }
-            //}
         } 
         private void DrawPictureOption()
         {
@@ -135,7 +130,7 @@ namespace PSDUnity.Exprot
                 EditorGUILayout.PropertyField(settingObjProp, true);
                 if (GUILayout.Button("创建规则"))
                 {
-                    var obj = RouleObject.CreateInstance<SettingObject>();
+                    var obj = RuleObject.CreateInstance<SettingObject>();
                     ProjectWindowUtil.CreateAsset(obj, "Setting.asset");
                     settingObjProp.objectReferenceValue = obj;
                 }

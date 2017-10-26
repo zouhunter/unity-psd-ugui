@@ -13,10 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   globalPath: Assets/Common/Images
   maskAsColor: 0
-  forceSprite: 0
+  forceSprite: 1
   fileExt: .png
   uiSize: {x: 1600, y: 900}
   picNameTemp: '{0}.png'
-  pixelsToUnitSize: 1
-  defultImgType: 2
-  atlassize: 1024
+  pixelsToUnitSize: 100
+  maxSize: 4096

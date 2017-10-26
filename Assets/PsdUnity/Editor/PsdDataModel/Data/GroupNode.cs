@@ -33,17 +33,17 @@ namespace PSDUnity.Data
             }
         }
 
-        public GroupNode Analyzing(RouleObject roule,string name)
+        public GroupNode Analyzing(RuleObject Rule,string name)
         {
             string[] areguments = null;
-            this.Name = roule.AnalysisGroupName(name, out groupType, out areguments);
+            this.Name = Rule.AnalysisGroupName(name, out groupType, out areguments);
             switch (groupType)
             {
                 case GroupType.GRID:
                     if (areguments != null && areguments.Length > 1)
                     {
                         var key = areguments[0];
-                        direction = RouleObject.GetDirectionByKey(key);
+                        direction = RuleObject.GetDirectionByKey(key);
                     }
                     if (areguments != null && areguments.Length > 2)
                     {
@@ -57,14 +57,14 @@ namespace PSDUnity.Data
                     if (areguments != null && areguments.Length > 0)
                     {
                         var key = areguments[0];
-                        direction = RouleObject.GetDirectionByKey(key);
+                        direction = RuleObject.GetDirectionByKey(key);
                     }
                     break;
                 case GroupType.GROUP:
                     if (areguments != null && areguments.Length > 1)
                     {
                         var key = areguments[0];
-                        direction = RouleObject.GetDirectionByKey(key);
+                        direction = RuleObject.GetDirectionByKey(key);
                     }
                     if (areguments != null && areguments.Length > 2)
                     {
@@ -216,7 +216,7 @@ namespace PSDUnity.Data
     [System.Serializable]
     public class GroupNode4 : GroupNode
     {
-        public List<GroupNode5> _groups;
+        public List<GroupNode5> _groups = new List<GroupNode5>();
         public List<ImgNode> _images = new List<ImgNode>();
 
         public GroupNode4(Rect rect) : base(rect)

@@ -16,10 +16,10 @@ using System;
 namespace PSDUnity.Data
 {
 
-    [CustomEditor(typeof(RouleObject))]
-    public class RouleObjectDrawer : Editor
+    [CustomEditor(typeof(RuleObject))]
+    public class RuleObjectDrawer : Editor
     {
-        RouleObject obj;
+        RuleObject obj;
         SerializedProperty scriptProp;
         public SerializedProperty sepraterCharProp;
         public SerializedProperty argumentCharProp;
@@ -28,7 +28,7 @@ namespace PSDUnity.Data
             scriptProp = serializedObject.FindProperty("m_Script");
             sepraterCharProp = serializedObject.FindProperty("sepraterChar");
             argumentCharProp= serializedObject.FindProperty("argumentChar");
-            obj = target as RouleObject;
+            obj = target as RuleObject;
         }
         public override void OnInspectorGUI()
         {
@@ -41,7 +41,7 @@ namespace PSDUnity.Data
             //ReorderableListGUI.Title("图层命名规则");
 
             ReorderableListGUI.Title("预制体列表");
-            ReorderableListGUI.ListField<RouleObject.PrefabItem>(obj.prefabs,OnDrawItem,OnDrawEmpte,EditorGUIUtility.singleLineHeight);
+            ReorderableListGUI.ListField<RuleObject.PrefabItem>(obj.prefabs,OnDrawItem,OnDrawEmpte,EditorGUIUtility.singleLineHeight);
             serializedObject.Update();
         }
 
@@ -50,7 +50,7 @@ namespace PSDUnity.Data
 
         }
 
-        private RouleObject.PrefabItem OnDrawItem(Rect position, RouleObject.PrefabItem item)
+        private RuleObject.PrefabItem OnDrawItem(Rect position, RuleObject.PrefabItem item)
         {
             var rect = new Rect(position.x, position.y, position.width * 0.3f, position.height);
             item.groupType = (GroupType)EditorGUI.EnumPopup(rect, item.groupType);
