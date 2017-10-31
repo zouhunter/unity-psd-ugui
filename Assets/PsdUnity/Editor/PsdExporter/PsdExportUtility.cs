@@ -204,7 +204,7 @@ namespace PSDUnity.Exprot
                         textureImporter.spritePixelsPerUnit = pictureInfo.settingObj.pixelsToUnitSize;
                         break;
                     case ImgType.Texture:
-                        textureImporter.textureType = TextureImporterType.Default;
+                        textureImporter.textureType = TextureImporterType.Image;
                         break;
                     default:
                         break;

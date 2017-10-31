@@ -126,16 +126,15 @@ namespace PSDUnity.Exprot
                 using (var vec = new EditorGUILayout.ScrollViewScope(previewVec))
                 {
                     previewVec = vec.scrollPosition;
-                    Rotorz.ReorderableList.ReorderableListGUI.ListField<Texture2D>(generated, DrawTextureItem, DrawEmpty, 100);
-                    if (both != null)
-                    {
-                        Rotorz.ReorderableList.ReorderableListGUI.ListField<Texture2D>(both, DrawTextureItem, () => { }, 300);
+                    Rotorz.ReorderableList.ReorderableListGUI.ListField<Texture2D>(generated, DrawTextureItem, DrawEmpty, 100,ReorderableListFlags.HideAddButton);
+                    if (both != null){
+                        Rotorz.ReorderableList.ReorderableListGUI.ListField<Texture2D>(both, DrawTextureItem, () => { }, 300,ReorderableListFlags.HideAddButton);
                     }
                 }
             }
             else
             {
-                DrawErrBox("请先选择正确的PDF文件路径");
+                EditorGUILayout.HelpBox("请先选择正确的PDF文件路径", MessageType.Warning);
             }
         }
 
@@ -168,10 +167,6 @@ namespace PSDUnity.Exprot
                 OpenPsdDocument();
             }
             return psd != null;
-        }
-        private void DrawErrBox(string str)
-        {
-            EditorGUILayout.HelpBox(str, MessageType.Error);
         }
         private void DrawData(LayerNode data)
         {
@@ -233,6 +228,7 @@ namespace PSDUnity.Exprot
             {
                 if (GUILayout.Button("预览图片"))
                 {
+                    generated.Clear();
                     RetriveArtLayer(data, (item) =>
                     {
                         if (item.selected)
@@ -247,6 +243,7 @@ namespace PSDUnity.Exprot
 
                 if (GUILayout.Button("所有图片"))
                 {
+                    generated.Clear();
                     RetriveArtLayer(data, (item) =>
                     {
                         var texture = PsdExportUtility.CreateTexture((PsdLayer)item.layer);
@@ -256,6 +253,8 @@ namespace PSDUnity.Exprot
                 }
                 if (GUILayout.Button("整体效果"))
                 {
+                    generated.Clear();
+                    both.Clear();
                     RetriveRootLayer(data, (root) =>
                     {
                         Texture2D texture = new Texture2D(psd.Width, psd.Height);
@@ -275,12 +274,7 @@ namespace PSDUnity.Exprot
                         both.Add(texture);
                     });
                 }
-                if (GUILayout.Button("清空预览"))
-                {
-                    generated.Clear();
-                    both.Clear();
-                    EditorUtility.SetDirty(this);
-                }
+                
                 if (GUILayout.Button("创建模板"))
                 {
                     CreateAtlasObj(psdPath);
@@ -327,7 +321,7 @@ namespace PSDUnity.Exprot
 
         private void DrawEmpty()
         {
-            DrawErrBox("请先选择层级");
+            //EditorGUILayout.HelpBox("请先选择层级", MessageType.Warning);
         }
 
         private Texture2D DrawTextureItem(Rect position, Texture2D item)
