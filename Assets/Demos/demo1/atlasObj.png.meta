@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 152e1836ea18bf949a57bb0b92fbd293
-timeCreated: 1504782586
+timeCreated: 1513933865
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
@@ -52,7 +52,7 @@ TextureImporter:
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 1024
+  maxTextureSize: 4096
   textureSettings:
     filterMode: -1
     aniso: 16
@@ -69,17 +69,263 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 1
+  spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
     sprites:
+    - name: "b_\u80CC\u666F\u6216@Size-1816854528"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1367
+        height: 764
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -683.5, y: 382}
+        - {x: -683.5, y: -382}
+        - {x: 683.5, y: -382}
+        - {x: 683.5, y: 382}
+    - name: "b_\u80CC\u666F25321472"
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 0
+        width: 578
+        height: 549
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -289, y: 274.5}
+        - {x: -289, y: -274.5}
+        - {x: 289, y: -274.5}
+        - {x: 289, y: 274.5}
+    - name: "b_\u80CC\u666F55685120"
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 856
+        width: 573
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: "h_\u624B\u67C455685120"
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 856
+        width: 573
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: "b_\u80CC\u666F-1759526912"
+      rect:
+        serializedVersion: 2
+        x: 1949
+        y: 0
+        width: 28
+        height: 542
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: "h_\u624B\u67C4-1759526912"
+      rect:
+        serializedVersion: 2
+        x: 1979
+        y: 0
+        width: 28
+        height: 542
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: '@Size-489619456'
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 766
+        width: 545
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -272.5, y: 44}
+        - {x: -272.5, y: -44}
+        - {x: 272.5, y: -44}
+        - {x: 272.5, y: 43}
+        - {x: 271.5, y: 44}
+    - name: '@Size-494272512'
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 766
+        width: 545
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -272.5, y: 44}
+        - {x: -272.5, y: -44}
+        - {x: 272.5, y: -44}
+        - {x: 272.5, y: 43}
+        - {x: 271.5, y: 44}
+    - name: '@Size40501248'
+      rect:
+        serializedVersion: 2
+        x: 1486
+        y: 766
+        width: 545
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -272.5, y: 43.5}
+        - {x: -272.5, y: -43.5}
+        - {x: 272.5, y: -43.5}
+        - {x: 272.5, y: 43.5}
+    - name: "b_\u80CC\u666F-1655169024"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1919
+        width: 389
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -194.5, y: 27}
+        - {x: -194.5, y: -26}
+        - {x: -193.5, y: -27}
+        - {x: 194.5, y: -27}
+        - {x: 194.5, y: 27}
+    - name: "f_\u524D\u666F-1655169024"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1975
+        width: 389
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -194.5, y: 27}
+        - {x: -194.5, y: -26}
+        - {x: -193.5, y: -27}
+        - {x: 194.5, y: -27}
+        - {x: 194.5, y: 27}
+    - name: "h_\u624B\u67C4-1694048256"
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 701
+        width: 50
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25, y: 27}
+        - {x: -25, y: -26}
+        - {x: -24, y: -27}
+        - {x: 25, y: -27}
+        - {x: 25, y: 27}
+    - name: "m_\u906E\u7F69-59355136"
+      rect:
+        serializedVersion: 2
+        x: 1757
+        y: 551
+        width: 171
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -83.5, y: 73.5}
+        - {x: -85.5, y: 71.5}
+        - {x: -85.5, y: -72.5}
+        - {x: -84.5, y: -73.5}
+        - {x: 85.5, y: -73.5}
+        - {x: 85.5, y: 73.5}
+    - name: "b_\u80CC\u666F-59355136"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1641
+        width: 171
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -83.5, y: 73.5}
+        - {x: -85.5, y: 71.5}
+        - {x: -85.5, y: -72.5}
+        - {x: -84.5, y: -73.5}
+        - {x: 85.5, y: -73.5}
+        - {x: 85.5, y: 73.5}
+    - name: "m_\u9009\u9879\u906E\u7F692073509888"
+      rect:
+        serializedVersion: 2
+        x: 1421
+        y: 701
+        width: 42
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: "b3_\u9009\u9879\u80CC\u666F2098642944"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1790
+        width: 390
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -195, y: 32}
+        - {x: -195, y: -32}
+        - {x: 194, y: -32}
+        - {x: 195, y: -31}
+        - {x: 195, y: 32}
+    - name: "b2_\u6846\u80CC\u666F2113028096"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 766
+        width: 390
+        height: 289
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -194, y: 144.5}
+        - {x: -195, y: 143.5}
+        - {x: -195, y: -144.5}
+        - {x: 195, y: -144.5}
+        - {x: 195, y: 144.5}
     - name: "b1_\u4E3B\u80CC\u666F2105040896"
       rect:
         serializedVersion: 2
         x: 0
-        y: 584
+        y: 1856
         width: 387
         height: 61
       alignment: 0
@@ -90,11 +336,33 @@ TextureImporter:
         - {x: -193.5, y: -30.5}
         - {x: 193.5, y: -30.5}
         - {x: 193.5, y: 30.5}
+    - name: "b_\u80CC\u666F1956429824"
+      rect:
+        serializedVersion: 2
+        x: 2009
+        y: 0
+        width: 16
+        height: 288
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: "h_\u524D\u666F1954521088"
+      rect:
+        serializedVersion: 2
+        x: 2027
+        y: 0
+        width: 16
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: "h_\u79FB\u5165\u72B6\u6001-65191936"
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 1057
         width: 367
         height: 144
       alignment: 0
@@ -109,7 +377,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 146
+        y: 1203
         width: 367
         height: 144
       alignment: 0
@@ -124,7 +392,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 292
+        y: 1349
         width: 367
         height: 144
       alignment: 0
@@ -139,7 +407,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 438
+        y: 1495
         width: 367
         height: 144
       alignment: 0
@@ -150,6 +418,22 @@ TextureImporter:
         - {x: -183.5, y: -72}
         - {x: 183.5, y: -72}
         - {x: 183.5, y: 72}
+    - name: "b_\u80CC\u666F-1647116288"
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 551
+        width: 386
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -193, y: 74}
+        - {x: -193, y: -73}
+        - {x: -192, y: -74}
+        - {x: 193, y: -74}
+        - {x: 193, y: 74}
     outline: []
   spritePackingTag: 
   userData: 
