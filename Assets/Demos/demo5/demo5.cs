@@ -15,11 +15,14 @@ using PSDUnity.Import;
 
 public class demo5 : MonoBehaviour {
     public AtlasObject atlasObj;
-
+    public Canvas canvas;
     private void Start()
     {
-        PSDImportUtility.InitEnviroment(atlasObj.prefabObj, atlasObj.settingObj.uiSize);
-        PSDImportCtrl import = new PSDImportCtrl();
-        import.Import(atlasObj.groups.ToArray(), atlasObj.settingObj.uiSize);
+        var rule = atlasObj.ruleObj;
+        var defultUiSize = atlasObj.settingObj.defultUISize;
+        var groupNodes = atlasObj.groups.ToArray();
+
+        PSDImporter.InitEnviroment(rule, defultUiSize,canvas);
+        PSDImporter.StartBuild(groupNodes);
     }
 }

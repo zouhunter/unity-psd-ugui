@@ -17,7 +17,7 @@ namespace PSDUnity.Exprot
         SerializedProperty scriptProp;
         SerializedProperty psdFileProp;
         SerializedProperty groupsProp;
-        SerializedProperty prefabObjProp;
+        SerializedProperty ruleObjProp;
         SerializedProperty settingObjProp;
         AtlasObject atlasObj;
         private const string Prefs_LastPsdsDir = "lastPsdFileDir";
@@ -27,17 +27,17 @@ namespace PSDUnity.Exprot
             scriptProp = serializedObject.FindProperty("m_Script");
             psdFileProp = serializedObject.FindProperty("psdFile");
             groupsProp = serializedObject.FindProperty("groups");
-            prefabObjProp = serializedObject.FindProperty("prefabObj");
+            ruleObjProp = serializedObject.FindProperty("ruleObj");
             settingObjProp = serializedObject.FindProperty("settingObj");
             AutoChargeRule();
         }
 
         private void AutoChargeRule()
         {
-            if (atlasObj.prefabObj == null)
+            if (atlasObj.ruleObj == null)
             {
                 var path = AssetDatabase.GUIDToAssetPath("f7d3181f5b8957245adfabda058c8541");
-                atlasObj.prefabObj = AssetDatabase.LoadAssetAtPath<RuleObject>(path);
+                atlasObj.ruleObj = AssetDatabase.LoadAssetAtPath<RuleObject>(path);
             }
 
             if (atlasObj.settingObj == null)
@@ -69,19 +69,19 @@ namespace PSDUnity.Exprot
         {
             using (var hor = new EditorGUILayout.HorizontalScope())
             {
-                EditorGUILayout.PropertyField(prefabObjProp, true);
+                EditorGUILayout.PropertyField(ruleObjProp, true);
                 if (GUILayout.Button("创建规则"))
                 {
                     var obj = RuleObject.CreateInstance<RuleObject>();
                     ProjectWindowUtil.CreateAsset(obj, "Rule.asset");
-                    prefabObjProp.objectReferenceValue = obj;
+                    ruleObjProp.objectReferenceValue = obj;
                 }
                 if (GUILayout.Button("导出到UI"))
                 {
                     var atlasObj = (AtlasObject)target;
-                    PSDImportUtility.InitEnviroment(atlasObj.prefabObj, atlasObj.settingObj.uiSize);
-                    PSDImportCtrl import = new PSDImportCtrl();
-                    import.Import(atlasObj.groups.ToArray(), atlasObj.settingObj.uiSize);
+                    var canvasObj = Array.Find(Selection.objects,x=>x is GameObject && (x as GameObject).GetComponent<Canvas>()!= null);
+                    PSDImporter.InitEnviroment(atlasObj.ruleObj, atlasObj.settingObj.defultUISize, canvasObj == null ? null: (canvasObj as GameObject).GetComponent<Canvas>());
+                    PSDImporter.StartBuild(atlasObj.groups.ToArray());
                     AssetDatabase.Refresh();
                 }
             }
@@ -102,7 +102,7 @@ namespace PSDUnity.Exprot
                 {
                     PsdExportUtility.InitPsdExportEnvrioment(atlasObj, new Vector2(psd.Width, psd.Height));
                     atlasObj.groups.Clear();
-                    var groupDatas = PsdExportUtility.CreatePictures(psd.Childs, new Vector2(psd.Width, psd.Height), atlasObj.settingObj.uiSize, atlasObj.settingObj.forceSprite);
+                    var groupDatas = PsdExportUtility.CreatePictures(psd.Childs, new Vector2(psd.Width, psd.Height), atlasObj.settingObj.defultUISize, atlasObj.settingObj.forceSprite);
                     if (groupDatas != null)
                     {
                         foreach (var groupData in groupDatas)

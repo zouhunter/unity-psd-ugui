@@ -14,7 +14,7 @@ namespace PSDUnity.Import
 
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImportUtility.InstantiateItem(GroupType.GROUP, layer.Name, parent);
+            UGUINode node = PSDImporter.InstantiateItem(GroupType.GROUP, layer.Name, parent);
             UnityEngine.UI.LayoutGroup group = null;
             switch (layer.direction)
             {
@@ -31,7 +31,7 @@ namespace PSDUnity.Import
             }
             ((UnityEngine.UI.VerticalLayoutGroup)group).spacing = layer.spacing;
 
-            PSDImportUtility.SetRectTransform(layer, group.GetComponent<RectTransform>());
+            PSDImporter.SetRectTransform(layer, group.GetComponent<RectTransform>());
 
             UGUINode[] nodes = pSDImportCtrl.DrawImages(layer.images.ToArray(),node);
             foreach (var item in nodes)

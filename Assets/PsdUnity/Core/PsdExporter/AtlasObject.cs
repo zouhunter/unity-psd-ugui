@@ -18,7 +18,7 @@ namespace PSDUnity.Exprot
         [HideInInspector]
         public SettingObject settingObj;
         [HideInInspector]
-        public RuleObject prefabObj;
+        public RuleObject ruleObj;
         public List<GroupNode1> groups = new List<GroupNode1>();
     }
 }

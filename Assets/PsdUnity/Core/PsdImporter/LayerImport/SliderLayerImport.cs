@@ -16,9 +16,9 @@ namespace PSDUnity.Import
         }
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImportUtility.InstantiateItem(GroupType.SLIDER, layer.Name, parent); //GameObject.Instantiate(temp) as UnityEngine.UI.Slider;
+            UGUINode node = PSDImporter.InstantiateItem(GroupType.SLIDER, layer.Name, parent); //GameObject.Instantiate(temp) as UnityEngine.UI.Slider;
             UnityEngine.UI.Slider slider = node.InitComponent<UnityEngine.UI.Slider>();
-            PSDImportUtility.SetRectTransform(layer, slider.GetComponent<RectTransform>());
+            PSDImporter.SetRectTransform(layer, slider.GetComponent<RectTransform>());
             slider.value = 1;
 
             ImgNode bg = layer.images.Find(x => x.Name.ToLower().StartsWith("b_"));
@@ -28,15 +28,15 @@ namespace PSDUnity.Import
             if (bg != null)
             {
                 var graph = node.InitComponent<UnityEngine.UI.Image>();
-                PSDImportUtility.SetPictureOrLoadColor(bg, graph);
+                PSDImporter.SetPictureOrLoadColor(bg, graph);
             }
 
             if (fill != null)
             {
-                var fillAreaNode = PSDImportUtility.InstantiateItem(GroupType.EMPTY, "Fill Area", node);
+                var fillAreaNode = PSDImporter.InstantiateItem(GroupType.EMPTY, "Fill Area", node);
                 var fileNode = ctrl.DrawImage(fill, fillAreaNode);
                 fileNode.InitComponent<Image>().type = Image.Type.Tiled;
-                PSDImportUtility.SetRectTransform(fill, fillAreaNode.InitComponent<RectTransform>());
+                PSDImporter.SetRectTransform(fill, fillAreaNode.InitComponent<RectTransform>());
 
                 fillAreaNode.ReprocessEvent = () =>
                 {
@@ -48,9 +48,9 @@ namespace PSDUnity.Import
             {
                 var tempRect = fill != null ? fill : bg;
                 SetSlider(slider, handle, layer);
-                var handAreaNode = PSDImportUtility.InstantiateItem(GroupType.EMPTY, "Handle Slide Area", node);
+                var handAreaNode = PSDImporter.InstantiateItem(GroupType.EMPTY, "Handle Slide Area", node);
                 var handNode = ctrl.DrawImage(handle, handAreaNode);
-                PSDImportUtility.SetRectTransform(tempRect, handAreaNode.InitComponent<RectTransform>());
+                PSDImporter.SetRectTransform(tempRect, handAreaNode.InitComponent<RectTransform>());
 
                 switch (layer.direction)
                 {

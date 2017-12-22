@@ -16,14 +16,14 @@ namespace PSDUnity.Import
         }
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImportUtility.InstantiateItem(GroupType.DROPDOWN, layer.Name, parent);
+            UGUINode node = PSDImporter.InstantiateItem(GroupType.DROPDOWN, layer.Name, parent);
             Dropdown dropdown = node.InitComponent<Dropdown>();
             ScrollRect scrllRect = dropdown.template.GetComponent<ScrollRect>();
             RectTransform content = scrllRect.content;
             Toggle toggle = content.GetComponentInChildren<Toggle>();
 
             UGUINode childNode = new UGUINode(dropdown.template, node);
-            childNode.transform.SetParent(PSDImportUtility.canvas.transform);
+            childNode.transform.SetParent(PSDImporter.canvas.transform);
             childNode.anchoType = AnchoType.Down | AnchoType.XStretch;
             //由于设置相对坐标需要，所以修改了部分预制体的状态
             childNode.ReprocessEvent = () => {
@@ -37,33 +37,33 @@ namespace PSDUnity.Import
                 string lowerName = image.Name.ToLower();
                 if (lowerName.StartsWith("b1_"))
                 {
-                    PSDImportUtility.SetPictureOrLoadColor(image, dropdown.image);
-                    PSDImportUtility.SetRectTransform(image, dropdown.GetComponent<RectTransform>());
+                    PSDImporter.SetPictureOrLoadColor(image, dropdown.image);
+                    PSDImporter.SetRectTransform(image, dropdown.GetComponent<RectTransform>());
                     dropdown.name = layer.Name;
                 }
                 else if(lowerName.StartsWith("b2_"))
                 {
-                    PSDImportUtility.SetPictureOrLoadColor(image, dropdown.template.GetComponent<Graphic>());
-                    PSDImportUtility.SetRectTransform(image, dropdown.template);
+                    PSDImporter.SetPictureOrLoadColor(image, dropdown.template.GetComponent<Graphic>());
+                    PSDImporter.SetRectTransform(image, dropdown.template);
                 }
                 else if (lowerName.StartsWith("b3_"))
                 {
                     UnityEngine.UI.Image itemimage = (UnityEngine.UI.Image)toggle.targetGraphic;
-                    PSDImportUtility.SetPictureOrLoadColor(image, itemimage);
+                    PSDImporter.SetPictureOrLoadColor(image, itemimage);
                     content.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, image.rect.height);
                 }
                 else if (lowerName.StartsWith("t1_"))
                 {
-                    PSDImportUtility.SetPictureOrLoadColor(image, dropdown.captionText);
+                    PSDImporter.SetPictureOrLoadColor(image, dropdown.captionText);
                 }
                 else if (lowerName.StartsWith("t2_"))
                 {
-                    PSDImportUtility.SetPictureOrLoadColor(image, dropdown.itemText);
+                    PSDImporter.SetPictureOrLoadColor(image, dropdown.itemText);
                 }
                 else if (lowerName.StartsWith("m_"))
                 {
                     UnityEngine.UI.Image mask = (UnityEngine.UI.Image)toggle.graphic;
-                    PSDImportUtility.SetPictureOrLoadColor(image, mask);
+                    PSDImporter.SetPictureOrLoadColor(image, mask);
                 }
                 else
                 {

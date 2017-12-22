@@ -37,19 +37,13 @@ namespace PSDUnity.Data
             serializedObject.Update();
             EditorGUILayout.PropertyField(scriptProp);
             ReorderableListGUI.Title("预制体列表");
-            ReorderableListGUI.ListField<RuleObject.PrefabItem>(obj.prefabs,OnDrawItem,OnDrawEmpte,EditorGUIUtility.singleLineHeight);
+            ReorderableListGUI.ListField<RuleObject.PrefabItem>(obj.prefabs,OnDrawItem,EditorGUIUtility.singleLineHeight);
             if(GUILayout.Button("重置",EditorStyles.toolbarButton))
             {
                 ResetObject();
             }
             serializedObject.Update();
         }
-
-        private void OnDrawEmpte()
-        {
-
-        }
-
         private RuleObject.PrefabItem OnDrawItem(Rect position, RuleObject.PrefabItem item)
         {
             var rect = new Rect(position.x, position.y, position.width * 0.3f, position.height);

@@ -17,10 +17,10 @@ namespace PSDUnity.Import
         }
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImportUtility.InstantiateItem(GroupType.SCROLLVIEW,layer.Name,parent);
+            UGUINode node = PSDImporter.InstantiateItem(GroupType.SCROLLVIEW,layer.Name,parent);
             UnityEngine.UI.ScrollRect scrollRect = node.InitComponent<UnityEngine.UI.ScrollRect>();
 
-            UGUINode childNode = PSDImportUtility.InstantiateItem(GroupType.IMAGE, "Viewport", node);
+            UGUINode childNode = PSDImporter.InstantiateItem(GroupType.IMAGE, "Viewport", node);
             scrollRect.viewport = childNode.InitComponent<RectTransform>();
             Color color;
             if (ColorUtility.TryParseHtmlString("#FFFFFF01",out color))
@@ -40,9 +40,9 @@ namespace PSDUnity.Import
                     havebg = true;
                     UnityEngine.UI.Image graph = node.InitComponent<UnityEngine.UI.Image>();
 
-                    PSDImportUtility.SetPictureOrLoadColor(image, graph);
+                    PSDImporter.SetPictureOrLoadColor(image, graph);
 
-                    PSDImportUtility.SetRectTransform(image, scrollRect.GetComponent<RectTransform>());
+                    PSDImporter.SetRectTransform(image, scrollRect.GetComponent<RectTransform>());
                 }
                 else
                 {
@@ -52,10 +52,10 @@ namespace PSDUnity.Import
 
             if (!havebg)
             {
-                PSDImportUtility.SetRectTransform(layer, scrollRect.GetComponent<RectTransform>());
+                PSDImporter.SetRectTransform(layer, scrollRect.GetComponent<RectTransform>());
             }
 
-            PSDImportUtility.SetRectTransform(layer, childNode.InitComponent<RectTransform>());
+            PSDImporter.SetRectTransform(layer, childNode.InitComponent<RectTransform>());
 
             switch (layer.direction)
             {

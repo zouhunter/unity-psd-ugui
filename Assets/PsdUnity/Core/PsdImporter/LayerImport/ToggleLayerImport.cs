@@ -15,7 +15,7 @@ namespace PSDUnity.Import
         }
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImportUtility.InstantiateItem(GroupType.TOGGLE,layer.Name,parent);// GameObject.Instantiate(temp) as UnityEngine.UI.Toggle;
+            UGUINode node = PSDImporter.InstantiateItem(GroupType.TOGGLE,layer.Name,parent);// GameObject.Instantiate(temp) as UnityEngine.UI.Toggle;
             UnityEngine.UI.Toggle toggle = node.InitComponent<UnityEngine.UI.Toggle>();
             if (layer.images != null)
             {
@@ -25,12 +25,12 @@ namespace PSDUnity.Import
                     string lowerName = image.Name.ToLower();
                     if (lowerName.StartsWith("b_"))
                     {
-                        PSDImportUtility.SetPictureOrLoadColor(image, toggle.targetGraphic);
-                        PSDImportUtility.SetRectTransform(image, toggle.GetComponent<RectTransform>());
+                        PSDImporter.SetPictureOrLoadColor(image, toggle.targetGraphic);
+                        PSDImporter.SetRectTransform(image, toggle.GetComponent<RectTransform>());
                     }
                     else if (lowerName.StartsWith("m_"))
                     {
-                        PSDImportUtility.SetPictureOrLoadColor(image, toggle.graphic);
+                        PSDImporter.SetPictureOrLoadColor(image, toggle.graphic);
                     }
                     else
                     {

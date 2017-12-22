@@ -17,9 +17,9 @@ namespace PSDUnity.Import
 
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImportUtility.InstantiateItem(GroupType.BUTTON, layer.Name, parent);
+            UGUINode node = PSDImporter.InstantiateItem(GroupType.BUTTON, layer.Name, parent);
             UnityEngine.UI.Button button = node.InitComponent<UnityEngine.UI.Button>();
-            PSDImportUtility.SetRectTransform(layer, button.GetComponent<RectTransform>());
+            PSDImporter.SetRectTransform(layer, button.GetComponent<RectTransform>());
 
             if (layer.images != null)
             {
@@ -31,7 +31,7 @@ namespace PSDUnity.Import
                     {
                         if (lowerName.StartsWith("n_"))
                         {
-                            PSDImportUtility.SetRectTransform(image, button.GetComponent<RectTransform>());
+                            PSDImporter.SetRectTransform(image, button.GetComponent<RectTransform>());
                         }
                         if (image.color == UnityEngine.Color.white)
                         {

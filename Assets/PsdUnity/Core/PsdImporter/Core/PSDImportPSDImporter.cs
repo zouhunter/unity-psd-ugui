@@ -7,29 +7,38 @@ using UnityEngine;
 using PSDUnity.Data;
 namespace PSDUnity.Import
 {
-    public static class PSDImportUtility
+    public static class PSDImporter
     {
         public static RuleObject RuleObject { get; private set; }
         public static Canvas canvas { get; private set; }
         public static UGUINode uinode { get; private set; }
+        public static Vector2 canvasSize { get; private set; }
 
-        public static Canvas InitEnviroment(RuleObject arg, Vector2 uiSize)
+        public static Canvas InitEnviroment(RuleObject arg, Vector2 uiSize, Canvas defultCanvas = null)
         {
             RuleObject = arg;
-            var canvasPfb = RuleObject.prefabs.Find(x => x.groupType == GroupType.CANVAS).prefab;
-            canvas = GameObject.Instantiate(canvasPfb).GetComponent<Canvas>();
-            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
-            UnityEngine.UI.CanvasScaler scaler = PSDImportUtility.canvas.GetComponent<UnityEngine.UI.CanvasScaler>();
-            scaler.referenceResolution = new Vector2(uiSize.x, uiSize.y);
-
-            uinode = new UGUINode(PSDImportUtility.canvas.transform, null);
+            if (defultCanvas != null)
+            {
+                canvas = defultCanvas;
+            }
+            else
+            {
+                var canvasPfb = RuleObject.prefabs.Find(x => x.groupType == GroupType.CANVAS).prefab;
+                canvas = GameObject.Instantiate(canvasPfb).GetComponent<Canvas>();
+                canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+                UnityEngine.UI.CanvasScaler scaler = PSDImporter.canvas.GetComponent<UnityEngine.UI.CanvasScaler>();
+                scaler.referenceResolution = new Vector2(uiSize.x, uiSize.y);
+            }
+            canvasSize = canvas.GetComponent<UnityEngine.UI.CanvasScaler>().referenceResolution;
+            uinode = new UGUINode(canvas.transform, null);
             return canvas;
         }
 
-        private static Canvas TrySelectCanvas()
+        public static void StartBuild(GroupNode1[] groupNodes)
         {
-            return null;
+            PSDImportCtrl import = new PSDImportCtrl();
+            import.Import(groupNodes, canvasSize);
         }
 
         public static UGUINode InstantiateItem(GroupType groupType, string name, UGUINode parent)
@@ -92,6 +101,7 @@ namespace PSDUnity.Import
                     break;
             }
         }
+
         public static void SetCustomAnchor(RectTransform parentRectt, RectTransform rectt)
         {
             Vector2 sizeDelta = rectt.sizeDelta;
@@ -112,6 +122,7 @@ namespace PSDUnity.Import
             rectt.sizeDelta = new Vector2(xSize, ySize);
             rectt.anchoredPosition = new Vector2(xanchored, yanchored);
         }
+
         public static void SetNormalAnchor(AnchoType anchoType, RectTransform parentRectt, RectTransform rectt)
         {
             Vector2 sizeDelta = rectt.sizeDelta;

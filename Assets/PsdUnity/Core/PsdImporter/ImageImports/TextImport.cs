@@ -11,9 +11,9 @@ namespace PSDUnity.Import
     {
         public UGUINode DrawImage(ImgNode image, UGUINode parent)
         {
-            UGUINode node = PSDImportUtility.InstantiateItem(GroupType.TEXT, image.Name, parent);
+            UGUINode node = PSDImporter.InstantiateItem(GroupType.TEXT, image.Name, parent);
             UnityEngine.UI.Text myText = node.InitComponent<Text>();
-            PSDImportUtility.SetPictureOrLoadColor(image, myText);
+            PSDImporter.SetPictureOrLoadColor(image, myText);
             RectTransform rectTransform = myText.GetComponent<RectTransform>();
             AdjustImage(image, myText.fontSize);
             rectTransform.sizeDelta = new Vector2(image.rect.width, image.rect.height);

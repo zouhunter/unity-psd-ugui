@@ -12,7 +12,7 @@ namespace PSDUnity.Exprot
     public static class PsdExportUtility
     {
         private static Vector2 maxSize { get; set; }
-        public static RuleObject RuleObj { get { return atlasObj.prefabObj; } }
+        public static RuleObject RuleObj { get { return atlasObj.ruleObj; } }
         public static SettingObject settingObj { get { return atlasObj.settingObj; } }
         public static AtlasObject atlasObj { get; set; }
         private static Vector2 rootSize { get; set; }

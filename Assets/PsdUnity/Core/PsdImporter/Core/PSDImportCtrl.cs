@@ -35,15 +35,15 @@ namespace PSDUnity.Import
         public void Import(GroupNode1[] gourps, Vector2 uiSize)
         {
             BeginDrawUILayers(gourps, uiSize);
-            BeginSetUIParents(PSDImportUtility.uinode);
-            BeginSetAnchers(PSDImportUtility.uinode.childs[0]);
+            BeginSetUIParents(PSDImporter.uinode);
+            BeginSetAnchers(PSDImporter.uinode.childs[0]);
 
             //最外层的要单独处理
-            var rp = PSDImportUtility.uinode.InitComponent<RectTransform>();
-            var rt = PSDImportUtility.uinode.childs[0].InitComponent<RectTransform>();
-            PSDImportUtility.SetNormalAnchor(AnchoType.XCenter|AnchoType.YCenter,rt, rp);
+            var rp = PSDImporter.uinode.InitComponent<RectTransform>();
+            var rt = PSDImporter.uinode.childs[0].InitComponent<RectTransform>();
+            PSDImporter.SetNormalAnchor(AnchoType.XCenter|AnchoType.YCenter,rt, rp);
 
-            BeginReprocess(PSDImportUtility.uinode.childs[0]);//后处理
+            BeginReprocess(PSDImporter.uinode.childs[0]);//后处理
         }
 
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
@@ -159,7 +159,7 @@ namespace PSDUnity.Import
 
         public void BeginDrawUILayers(GroupNode1[] groups, Vector2 uiSize)
         {
-            UGUINode empty = PSDImportUtility.InstantiateItem(GroupType.EMPTY, "PSDUnity", PSDImportUtility.uinode);
+            UGUINode empty = PSDImporter.InstantiateItem(GroupType.EMPTY, "PSDUnity", PSDImporter.uinode);
             RectTransform rt = empty.InitComponent<RectTransform>();
             rt.sizeDelta = new Vector2(uiSize.x, uiSize.y);
             for (int layerIndex = 0; layerIndex < groups.Length; layerIndex++)
@@ -183,7 +183,7 @@ namespace PSDUnity.Import
             foreach (var item in node.childs)
             {
                 BeginSetAnchers(item);
-                PSDImportUtility.SetAnchorByNode(item);
+                PSDImporter.SetAnchorByNode(item);
             }
         }
 
