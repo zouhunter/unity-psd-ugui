@@ -2,21 +2,34 @@
 using UnityEngine;
 
 namespace PSDUnity.Data
-{
+{public enum NameType
+    {
+        appendHash,
+        appendIndex,
+        donothing,
+    }
     [Serializable]
     public class ImgNode : INameAnalyzing<ImgNode>
     {
         public string Name;
         private int hashImage = 0;
-        private bool forceHashName;
+        private int index = 0;
+        private NameType customNameType;
         public string TextureName
         {
             get
             {
-                if (source != ImgSource.Custom && !forceHashName){
+                if (source != ImgSource.Custom && customNameType == NameType.donothing){
                     return Name;
                 }
-                return Name + hashImage;
+                else if(customNameType == NameType.appendHash)
+                {
+                    return Name + hashImage;
+                }
+                else//appendIndex
+                {
+                    return Name + index;
+                }
             }
         }
         public ImgType type;
@@ -57,6 +70,12 @@ namespace PSDUnity.Data
             this.rect = rect;
         }
 
+        public ImgNode SetIndex(int index)
+        {
+            this.index = index;
+            return this;
+        }
+
         /// <summary>
         /// 将名字转换（去除标记性字符）
         /// </summary>
@@ -64,11 +83,12 @@ namespace PSDUnity.Data
         public ImgNode Analyzing(RuleObject Rule, string name)
         {
             this.Name = Rule.AnalySisImgName(name, out source, out type);
-            this.forceHashName = Rule.forceHashName;
+            this.customNameType = Rule.nameType;
             //添加后缀
             if (texture != null){
                 this.hashImage = rect.GetHashCode();
                 this.texture.name = TextureName;
+                Debug.Log(TextureName);
             }
             return this;
         }

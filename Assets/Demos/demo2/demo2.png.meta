@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 9af55436abaf0ee46ac41da55c382e81
-timeCreated: 1511177046
-licenseType: Pro
+timeCreated: 1516527279
+licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: b_521355264
@@ -20,6 +20,38 @@ TextureImporter:
     21300026: b1_2137636864
     21300028: b_-181420032
     21300030: b_-194199552
+    21300032: b_0
+    21300034: f_0
+    21300036: h_0
+    21300038: p_0
+    21300040: n_0
+    21300042: b1_0
+    21300044: b_0
+    21300046: f_0
+    21300048: b_0
+    21300050: b_0
+    21300052: b_0
+    21300054: b_0
+    21300056: h_0
+    21300058: h_0
+    21300060: b_0
+    21300062: b_0
+    21300064: b_10
+    21300066: f_11
+    21300068: b_20
+    21300070: f_21
+    21300072: b_30
+    21300074: b_40
+    21300076: b_50
+    21300078: h_52
+    21300080: b_60
+    21300082: h_62
+    21300084: p_70
+    21300086: h_71
+    21300088: n_72
+    21300090: b1_80
+    21300092: b_90
+    21300094: b_100
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -46,7 +78,7 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -66,7 +98,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: b_521355264
+    - name: b_10
       rect:
         serializedVersion: 2
         x: 41
@@ -77,7 +109,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: f_528236544
+    - name: f_11
       rect:
         serializedVersion: 2
         x: 70
@@ -88,7 +120,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: b_93847552
+    - name: b_20
       rect:
         serializedVersion: 2
         x: 41
@@ -99,7 +131,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: f_-386285568
+    - name: f_21
       rect:
         serializedVersion: 2
         x: 70
@@ -110,7 +142,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: b_526745600
+    - name: b_30
       rect:
         serializedVersion: 2
         x: 70
@@ -125,7 +157,7 @@ TextureImporter:
         - {x: -74.5, y: -22.5}
         - {x: 74.5, y: -22.5}
         - {x: 74.5, y: 22.5}
-    - name: b_-1621917696
+    - name: b_40
       rect:
         serializedVersion: 2
         x: 221
@@ -140,7 +172,7 @@ TextureImporter:
         - {x: -74.5, y: -22.5}
         - {x: 74.5, y: -22.5}
         - {x: 74.5, y: 22.5}
-    - name: b_508428288
+    - name: b_50
       rect:
         serializedVersion: 2
         x: 0
@@ -158,7 +190,7 @@ TextureImporter:
         - {x: 152, y: -18.5}
         - {x: 152, y: 16.5}
         - {x: 151, y: 19.5}
-    - name: h_-1962803200
+    - name: h_52
       rect:
         serializedVersion: 2
         x: 0
@@ -169,7 +201,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: b_-1969881088
+    - name: b_60
       rect:
         serializedVersion: 2
         x: 0
@@ -186,7 +218,7 @@ TextureImporter:
         - {x: 19.5, y: -150}
         - {x: 19.5, y: 145}
         - {x: 16.5, y: 150}
-    - name: h_-1783382016
+    - name: h_62
       rect:
         serializedVersion: 2
         x: 0
@@ -197,7 +229,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: p_-128548864
+    - name: p_70
       rect:
         serializedVersion: 2
         x: 372
@@ -214,7 +246,7 @@ TextureImporter:
         - {x: 49, y: -19.5}
         - {x: 49, y: 16.5}
         - {x: 46, y: 19.5}
-    - name: h_-128811008
+    - name: h_71
       rect:
         serializedVersion: 2
         x: 87
@@ -231,7 +263,7 @@ TextureImporter:
         - {x: 49, y: -19.5}
         - {x: 49, y: 16.5}
         - {x: 46, y: 19.5}
-    - name: n_-128942080
+    - name: n_72
       rect:
         serializedVersion: 2
         x: 187
@@ -248,7 +280,7 @@ TextureImporter:
         - {x: 49, y: -19.5}
         - {x: 49, y: 16.5}
         - {x: 46, y: 19.5}
-    - name: b1_2137636864
+    - name: b1_80
       rect:
         serializedVersion: 2
         x: 306
@@ -264,7 +296,7 @@ TextureImporter:
         - {x: -74.5, y: -17.5}
         - {x: 75.5, y: -17.5}
         - {x: 75.5, y: 17.5}
-    - name: b_-181420032
+    - name: b_90
       rect:
         serializedVersion: 2
         x: 459
@@ -275,7 +307,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: b_-194199552
+    - name: b_100
       rect:
         serializedVersion: 2
         x: 487

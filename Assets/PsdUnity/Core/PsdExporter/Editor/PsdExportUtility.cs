@@ -250,16 +250,16 @@ namespace PSDUnity.Exprot
             switch (layer.LayerType)
             {
                 case LayerType.Normal:
-                    data = new ImgNode(rect, texture).Analyzing(PsdExportUtility.RuleObj,layer.Name);
+                    data = new ImgNode(rect, texture).SetIndex(GetLayerID(layer)).Analyzing(PsdExportUtility.RuleObj,layer.Name);
                     break;
                 case LayerType.SolidImage:
                     if (forceSprite)
                     {
-                        data = new ImgNode(rect, texture).Analyzing(PsdExportUtility.RuleObj,layer.Name);
+                        data = new ImgNode(rect, texture).SetIndex(GetLayerID(layer)).Analyzing(PsdExportUtility.RuleObj,layer.Name);
                     }
                     else
                     {
-                        data = new ImgNode(layer.Name, rect, GetLayerColor(layer));
+                        data = new ImgNode(layer.Name, rect, GetLayerColor(layer)).SetIndex(GetLayerID(layer));
                     }
                     break;
                 case LayerType.Text:
@@ -275,7 +275,21 @@ namespace PSDUnity.Exprot
             }
             return data;
         }
-        /// <summary>
+
+        private static int GetLayerID(PsdLayer layer)
+        {
+            int id = 0;
+            var parent = layer.Parent;
+            if(parent != null){
+                id = Array.IndexOf(parent.Childs, layer);
+                id += 10 * GetLayerID(parent);
+            }
+            else
+            {
+                id = Array.IndexOf(layer.Document.Childs, layer);
+            }
+            return id;
+        }
         /// 从layer解析图片
         /// </summary>
         /// <param name="layer"></param>

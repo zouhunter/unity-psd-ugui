@@ -62,6 +62,7 @@ MonoBehaviour:
   asGoubleMark: G
   asNoRepetMark: N
   asCustomMark: C
+  nameType: 0
   defultImgSource: 1
   sepraterChargroup: 64
   argumentChar: 58

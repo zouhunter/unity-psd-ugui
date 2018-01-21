@@ -8,8 +8,8 @@ namespace PSDUnity.Data
 {
     public enum ImgSource
     {
-        Normal,
-        Custom,
-        Globle
+        Normal,//普通
+        Custom,//唯一图片（唯一命名）
+        Globle//全局图片
     }
 }

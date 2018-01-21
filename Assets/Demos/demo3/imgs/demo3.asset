@@ -11,20 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 885e115a8f1c1e04b88b4a1204eba2ee, type: 3}
   m_Name: demo3
   m_EditorClassIdentifier: 
-  psdFile: E:/Githubs/PsdUnity/PSDDemo/Demo2.psd
-  exportPath: 
-  globalPath: Assets/Common/Images
-  maskAsColor: 0
-  forceSprite: 1
-  fileExt: .png
-  uiSize: {x: 1600, y: 900}
-  exportInfo:
-    atlasName: atlas.png
-    picNameTemp: '{0}.png'
-    exportPath: Assets/Demos/demo3/imgs
-    pixelsToUnitSize: 1
-    atlassize: 1024
-  prefabObj: {fileID: 11400000, guid: ca982a8b7b7d70a469df7a1f42c2c303, type: 2}
+  _exportPath: 
+  psdFile: E:/Github/PsdUnity/PSDDemo/Demo2.psd
+  settingObj: {fileID: 11400000, guid: 79102a4c6ecda994b9437a6c701177a2, type: 2}
+  ruleObj: {fileID: 11400000, guid: ca982a8b7b7d70a469df7a1f42c2c303, type: 2}
   groups:
   - Name: panel
     groupType: 0
@@ -49,7 +39,7 @@ MonoBehaviour:
         width: 387
         height: 298
       sprite: {fileID: 0}
-      texture: {fileID: 2800000, guid: 77408742024288040a49ab6e77d003df, type: 3}
+      texture: {fileID: 2800000, guid: 319a06b0ff17521409e32219dd594a95, type: 3}
       text: 
       font: {fileID: 0}
       fontSize: 0
@@ -77,7 +67,7 @@ MonoBehaviour:
         width: 304
         height: 27
       sprite: {fileID: 0}
-      texture: {fileID: 2800000, guid: 5c6a3680ea96d58458239e2edd4f1a88, type: 3}
+      texture: {fileID: 2800000, guid: c39ef0c1dabe5944fb87283078a79877, type: 3}
       text: 
       font: {fileID: 0}
       fontSize: 0
@@ -92,7 +82,7 @@ MonoBehaviour:
         width: 297
         height: 15
       sprite: {fileID: 0}
-      texture: {fileID: 2800000, guid: 4cc946591474f034f891d9229cc98463, type: 3}
+      texture: {fileID: 2800000, guid: a91ec9c1e1cbacc478185558443d66b0, type: 3}
       text: 
       font: {fileID: 0}
       fontSize: 0
@@ -120,7 +110,7 @@ MonoBehaviour:
         width: 27
         height: 300
       sprite: {fileID: 0}
-      texture: {fileID: 2800000, guid: 1219525ae2dcc704c84b258151fb5905, type: 3}
+      texture: {fileID: 2800000, guid: a855f0113f960944ba97d07134b42e2c, type: 3}
       text: 
       font: {fileID: 0}
       fontSize: 0
@@ -135,7 +125,7 @@ MonoBehaviour:
         width: 15
         height: 291
       sprite: {fileID: 0}
-      texture: {fileID: 2800000, guid: d35cc43fbb77f7a4ab504e6c2fc18d65, type: 3}
+      texture: {fileID: 2800000, guid: 04659d66346f723499acc0bc60693f38, type: 3}
       text: 
       font: {fileID: 0}
       fontSize: 0
@@ -163,7 +153,7 @@ MonoBehaviour:
         width: 149
         height: 45
       sprite: {fileID: 0}
-      texture: {fileID: 2800000, guid: a440df2215208d84a95a9e14dc25de93, type: 3}
+      texture: {fileID: 2800000, guid: 200099b64b1170e4bbd00ff7f7ec23a2, type: 3}
       text: 
       font: {fileID: 0}
       fontSize: 0
@@ -206,7 +196,7 @@ MonoBehaviour:
         width: 149
         height: 45
       sprite: {fileID: 0}
-      texture: {fileID: 2800000, guid: 83b5ccaa9e445ac4a8e5cc2350b46052, type: 3}
+      texture: {fileID: 2800000, guid: 38d33575e40364843b0023d8501c6152, type: 3}
       text: 
       font: {fileID: 0}
       fontSize: 0
@@ -249,7 +239,7 @@ MonoBehaviour:
         width: 304
         height: 39
       sprite: {fileID: 0}
-      texture: {fileID: 2800000, guid: 3f127d1ba05b21f45976149c05fe858f, type: 3}
+      texture: {fileID: 2800000, guid: fa3310f11f5dc7a4896b758c5d55236a, type: 3}
       text: 
       font: {fileID: 0}
       fontSize: 0
@@ -264,7 +254,7 @@ MonoBehaviour:
         width: 281
         height: 15
       sprite: {fileID: 0}
-      texture: {fileID: 2800000, guid: b154d66649cdb8645998bc0b1e108c83, type: 3}
+      texture: {fileID: 2800000, guid: 31214d9ad0e50db439ab93e874d4863d, type: 3}
       text: 
       font: {fileID: 0}
       fontSize: 0
@@ -279,7 +269,7 @@ MonoBehaviour:
         width: 23
         height: 23
       sprite: {fileID: 0}
-      texture: {fileID: 2800000, guid: 3774ec9f0a96bd048882aba5a3d28a49, type: 3}
+      texture: {fileID: 2800000, guid: d4cbc6c661fd57149bd6a9a0cb2127f8, type: 3}
       text: 
       font: {fileID: 0}
       fontSize: 0
@@ -307,7 +297,7 @@ MonoBehaviour:
         width: 39
         height: 300
       sprite: {fileID: 0}
-      texture: {fileID: 2800000, guid: 0ada149fe39715d489a754396a2892f1, type: 3}
+      texture: {fileID: 2800000, guid: a67df0f1758ea564f81b691e193f08ad, type: 3}
       text: 
       font: {fileID: 0}
       fontSize: 0
@@ -322,7 +312,7 @@ MonoBehaviour:
         width: 14
         height: 274
       sprite: {fileID: 0}
-      texture: {fileID: 2800000, guid: 57043daaa0cbb4840b222c186474c88a, type: 3}
+      texture: {fileID: 2800000, guid: 43fc4fcf485ee7b4baad89053388f10f, type: 3}
       text: 
       font: {fileID: 0}
       fontSize: 0
@@ -337,7 +327,7 @@ MonoBehaviour:
         width: 23
         height: 23
       sprite: {fileID: 0}
-      texture: {fileID: 2800000, guid: 8cd1162e4acd8bd448a5aa3f8c87e9d7, type: 3}
+      texture: {fileID: 2800000, guid: 93297f59724d4f54288bdb17d303f2f5, type: 3}
       text: 
       font: {fileID: 0}
       fontSize: 0
@@ -365,7 +355,7 @@ MonoBehaviour:
         width: 98
         height: 39
       sprite: {fileID: 0}
-      texture: {fileID: 2800000, guid: f3e4d8b6046d59c449c135b2ff7793a2, type: 3}
+      texture: {fileID: 2800000, guid: 91e3e49dc63c24247b4aae23cead4d54, type: 3}
       text: 
       font: {fileID: 0}
       fontSize: 0
@@ -380,7 +370,7 @@ MonoBehaviour:
         width: 98
         height: 39
       sprite: {fileID: 0}
-      texture: {fileID: 2800000, guid: d21f3c6e496eb284db288f16f1fec0d1, type: 3}
+      texture: {fileID: 2800000, guid: 113b675cf5c02654d961a41bba7539ad, type: 3}
       text: 
       font: {fileID: 0}
       fontSize: 0
@@ -395,7 +385,7 @@ MonoBehaviour:
         width: 98
         height: 39
       sprite: {fileID: 0}
-      texture: {fileID: 2800000, guid: 04b80b97dd9f74c4892637b0f8aed1a2, type: 3}
+      texture: {fileID: 2800000, guid: ca5c09e54b1c9154bbfd3d97b72bb1e9, type: 3}
       text: 
       font: {fileID: 0}
       fontSize: 0
@@ -438,7 +428,7 @@ MonoBehaviour:
         width: 151
         height: 35
       sprite: {fileID: 0}
-      texture: {fileID: 2800000, guid: a4e9e18c085ea514681c9b135ded571e, type: 3}
+      texture: {fileID: 2800000, guid: 42fa27fe4662c044dbf43d341df71101, type: 3}
       text: 
       font: {fileID: 0}
       fontSize: 0
@@ -453,7 +443,7 @@ MonoBehaviour:
         width: 149
         height: 75
       sprite: {fileID: 0}
-      texture: {fileID: 2800000, guid: 8e13f732db4c281408bcb3006994f890, type: 3}
+      texture: {fileID: 2800000, guid: 0383efb0f7875d244b4c6b876c68c991, type: 3}
       text: 
       font: {fileID: 0}
       fontSize: 0
@@ -468,7 +458,7 @@ MonoBehaviour:
         width: 118
         height: 25
       sprite: {fileID: 0}
-      texture: {fileID: 2800000, guid: b03703c230af6084b84c8845e8c49ca6, type: 3}
+      texture: {fileID: 2800000, guid: f000ccd1b2e65414dbc989eedcb1dae6, type: 3}
       text: 
       font: {fileID: 0}
       fontSize: 0
@@ -526,7 +516,7 @@ MonoBehaviour:
         width: 26
         height: 27
       sprite: {fileID: 0}
-      texture: {fileID: 2800000, guid: caf67545d8bf3104cb63068fc4a64ac1, type: 3}
+      texture: {fileID: 2800000, guid: 7759535c64ec59f46a89d9822da0bfc7, type: 3}
       text: 
       font: {fileID: 0}
       fontSize: 0
@@ -541,7 +531,7 @@ MonoBehaviour:
         width: 13
         height: 13
       sprite: {fileID: 0}
-      texture: {fileID: 2800000, guid: 50faf9d9e5892db428fef8354d090e1d, type: 3}
+      texture: {fileID: 2800000, guid: 4aa6e4ac0f7786349a8bd4ee0e2d36d6, type: 3}
       text: 
       font: {fileID: 0}
       fontSize: 0
@@ -569,7 +559,7 @@ MonoBehaviour:
         width: 22
         height: 27
       sprite: {fileID: 0}
-      texture: {fileID: 2800000, guid: 4ec2e14c4a171d1418154ec91a933c53, type: 3}
+      texture: {fileID: 2800000, guid: 553c60a8aa1a3fa4ebc767258ce50c65, type: 3}
       text: 
       font: {fileID: 0}
       fontSize: 0
@@ -584,9 +574,8 @@ MonoBehaviour:
         width: 15
         height: 15
       sprite: {fileID: 0}
-      texture: {fileID: 2800000, guid: c560f62ddec79084981f05202018e9e6, type: 3}
+      texture: {fileID: 2800000, guid: 2b28e756cdcb67f418177bee45171a2b, type: 3}
       text: 
       font: {fileID: 0}
       fontSize: 0
       color: {r: 1, g: 1, b: 1, a: 1}
-  defultImgType: 2
