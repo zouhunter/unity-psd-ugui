@@ -38,14 +38,14 @@ namespace tarfmagougou
 		public static void DisableLogging()
 		{
 			#if UNITY_5_3_AND_UP
-			Debug.logger.logEnabled = false;
+			Debug.unityLogger.logEnabled = false;
 			#endif
 		}
 		
 		public static void EnableLogging()
 		{
 			#if UNITY_5_3_AND_UP
-			Debug.logger.logEnabled = true;
+			Debug.unityLogger.logEnabled = true;
 			#endif
 		}
 		
