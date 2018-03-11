@@ -10,8 +10,8 @@ using UnityEngine.Assertions.Must;
 using UnityEngine.Assertions.Comparers;
 using System.Collections;
 using System.Collections.Generic;
-using PSDUnity.Exprot;
-using PSDUnity.Import;
+using PSDUnity;
+using PSDUnity.PSD2UGUI;
 
 public class demo5 : MonoBehaviour {
     public AtlasObject atlasObj;
