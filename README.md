@@ -12,12 +12,10 @@
 *  generate UGUI gameobject automaticly;
 
 ## 2.very simple to use.
- * "PsdUnity/ConfigWindow" show preview psd in unity
- ![previewindow](PSDDemo/imagecreater.png)
- *  in this window "创建模板" will show you how to make sprites and GameObjects quickly
- ![imagecreater](PSDDemo/psdpreviewWindow.png)
- * you can define some roule about pslayer name
- ![rouledefine](PSDDemo/rouleobject.png)
+ * "Window/psd-preview" show preview psd in unity
+ ![previewindow](Pics/psd-preview.png)
+ * "Assets/Create/Psd-Exproter" can define you ui holder
+ ![export](PSDDemo/psd-exporter.png)
 
 ## 3.what next update?
  * script attachd prefab,when you change pictures,this link will continue exist,but rect and position will update

@@ -11,10 +11,10 @@ using UnityEngine.Assertions.Comparers;
 using System.Collections;
 using System.Collections.Generic;
 using PSDUnity;
-using PSDUnity.PSD2UGUI;
+using PSDUnity.UGUI;
 
 public class demo5 : MonoBehaviour {
-    public AtlasObject atlasObj;
+    public Exporter atlasObj;
     public Canvas canvas;
     private void Start()
     {

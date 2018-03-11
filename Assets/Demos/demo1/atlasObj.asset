@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: atlasObj
   m_EditorClassIdentifier: 
   _exportPath: Assets/Demos/demo1
-  psdFile: "E:/GitHub/PsdUnity/PSDDemo/UI\u5236\u4F5C\u6A21\u677F.psd"
+  psdFile: "E:/Github/PsdUnity/PsdFiles/UI\u5236\u4F5C\u6A21\u677F.psd"
   settingObj: {fileID: 11400000, guid: 423cb678ee9954a458f62e5469938102, type: 2}
   ruleObj: {fileID: 11400000, guid: f7d3181f5b8957245adfabda058c8541, type: 2}
   groups:
