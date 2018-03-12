@@ -15,7 +15,7 @@ namespace PSDUnity.Analysis
     {
         SerializedProperty scriptProp;
         SerializedProperty psdFileProp;
-        SerializedProperty groupsProp;
+        //SerializedProperty groupsProp;
         SerializedProperty ruleObjProp;
         SerializedProperty settingObjProp;
         Exporter exporter;
@@ -25,7 +25,7 @@ namespace PSDUnity.Analysis
             exporter = target as Exporter;
             scriptProp = serializedObject.FindProperty("m_Script");
             psdFileProp = serializedObject.FindProperty("psdFile");
-            groupsProp = serializedObject.FindProperty("groups");
+            //groupsProp = serializedObject.FindProperty("groups");
             ruleObjProp = serializedObject.FindProperty("ruleObj");
             settingObjProp = serializedObject.FindProperty("settingObj");
             AutoChargeRule();
@@ -35,14 +35,12 @@ namespace PSDUnity.Analysis
         {
             if (exporter.ruleObj == null)
             {
-                var path = AssetDatabase.GUIDToAssetPath("f7d3181f5b8957245adfabda058c8541");
-                exporter.ruleObj = AssetDatabase.LoadAssetAtPath<RuleObject>(path);
+                exporter.ruleObj = PsdResourceUtil.GetRuleObj();
             }
 
             if (exporter.settingObj == null)
             {
-                var path = AssetDatabase.GUIDToAssetPath("79102a4c6ecda994b9437a6c701177a2");
-                exporter.settingObj = AssetDatabase.LoadAssetAtPath<SettingObject>(path);
+                exporter.settingObj = PsdResourceUtil.GetSettingObj();
             }
         }
         protected override void OnHeaderGUI()

@@ -18,12 +18,15 @@ namespace PSDUnity.Analysis
 
         public PreviewItem(int id,int depth,IPsdLayer layer):base(id,depth,layer.Name){
             this.layer = layer;
-            if (layer is PsdDocument)
-            {
+            InitTypes();
+        }
+
+        private void InitTypes()
+        {
+            if (layer is PsdDocument){
                 layerType = LayerType.Group;
             }
-            else
-            {
+            else{
                 layerType = (layer as PsdLayer).LayerType;
             }
         }

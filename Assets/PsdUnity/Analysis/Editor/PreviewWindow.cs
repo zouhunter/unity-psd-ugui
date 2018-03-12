@@ -19,11 +19,12 @@ namespace PSDUnity.Analysis
         PsdPreviewer m_TreeView;
         string psdPath;
         PsdDocument psd;
-
+        float menuRetio = 0.3f;
+        RuleObject ruleObj;
         private void OnEnable()
         {
-          
             psdPath = EditorPrefs.GetString(Prefs_pdfPath);
+            ruleObj = PsdResourceUtil.GetRuleObj();
         }
 
         private void OnGUI()
@@ -33,14 +34,23 @@ namespace PSDUnity.Analysis
             if (psd != null)
             {
                 TryInitTreeView();
-
-                var rect = GUILayoutUtility.GetRect(position.width, position.height - 2 * EditorGUIUtility.singleLineHeight);
-                var searchRect = new Rect(rect.position.x, rect.position.y, 200, EditorGUIUtility.singleLineHeight);
+                var width = position.width * menuRetio;
+                var searchRect = new Rect(0, EditorGUIUtility.singleLineHeight, width, EditorGUIUtility.singleLineHeight);
                 m_TreeView.searchString = m_SearchField.OnGUI(searchRect, m_TreeView.searchString);
-                var treeViewRect = new Rect(rect.position.x, rect.position.y + EditorGUIUtility.singleLineHeight, rect.width * 0.3f, rect.height - EditorGUIUtility.singleLineHeight);
+                var treeViewRect = new Rect(0,EditorGUIUtility.singleLineHeight, width, position.height - 2 * EditorGUIUtility.singleLineHeight);
 
                 GUI.Box(treeViewRect, "");
                 m_TreeView.OnGUI(treeViewRect);
+
+                var tooRect = new Rect(0, position.height - EditorGUIUtility.singleLineHeight, width, EditorGUIUtility.singleLineHeight);
+                BottomToolBar(tooRect);
+
+                var rightWidth = position.width * (1 - menuRetio);
+                var viewRect = new Rect(width, EditorGUIUtility.singleLineHeight, rightWidth, position.height - 2 * EditorGUIUtility.singleLineHeight);
+                DrawTexturePreview(viewRect);
+
+                var previewRect = new Rect(width, position.height - EditorGUIUtility.singleLineHeight, rightWidth, EditorGUIUtility.singleLineHeight);
+                PreviewToolBar(previewRect);
             }
             else
             {
@@ -48,11 +58,56 @@ namespace PSDUnity.Analysis
             }
 
         }
+
+        private void DrawTexturePreview(Rect viewRect)
+        {
+            if (m_TreeView.currentTexture != null)
+            {
+                GUI.Label(viewRect, new GUIContent(m_TreeView.currentTexture), EditorStyles.centeredGreyMiniLabel);
+            }
+        }
+
+        private void BottomToolBar(Rect rect)
+        {
+            GUILayout.BeginArea(rect);
+
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                var style = "miniButton";
+                if (GUILayout.Button("Expand All", style))
+                {
+                    m_TreeView.ExpandAll();
+                }
+
+                if (GUILayout.Button("Collapse All", style))
+                {
+                    m_TreeView.CollapseAll();
+                }
+            }
+
+            GUILayout.EndArea();
+        }
+
+        private void PreviewToolBar(Rect rect)
+        {
+            GUILayout.BeginArea(rect);
+
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                if (GUILayout.Button("Draw"))
+                {
+                    m_TreeView.GenerateTexture(true);
+                }
+
+            }
+            GUILayout.EndArea();
+        }
         private void TryInitTreeView()
         {
             if(m_TreeView == null)
             {
                 m_TreeView = new PsdPreviewer(m_TreeViewState, psd);
+                m_TreeView.rule = ruleObj;
                 m_TreeView.Reload();
        
                 m_SearchField = new SearchField();
@@ -70,7 +125,12 @@ namespace PSDUnity.Analysis
                 psdPath = EditorGUILayout.TextField(psdPath);
                 if (GUILayout.Button("选择",EditorStyles.miniButtonRight,GUILayout.Width(40)))
                 {
-                    psdPath = EditorUtility.OpenFilePanel("选择一个pdf文件", psdPath, "psd");
+                    string dir = Application.dataPath;
+                    if (!string.IsNullOrEmpty(psdPath))
+                    {
+                        dir = System.IO.Path.GetDirectoryName(psdPath);
+                    }
+                    psdPath = EditorUtility.OpenFilePanel("选择一个pdf文件", dir, "psd");
                     if (!string.IsNullOrEmpty(psdPath)){
                         OpenPsdDocument();
                     }

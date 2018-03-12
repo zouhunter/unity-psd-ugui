@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
 using System.Collections;
@@ -13,11 +14,13 @@ namespace PSDUnity.Analysis
     public class PsdPreviewer : TreeView
     {
         private PsdDocument psd;
+        public RuleObject rule { get; set; }
         private static int id;
         List<PreviewItem> m_Rows = new List<PreviewItem>();
         const float kRowHeights = 20f;
         const float kToggleWidth = 18f;
-
+        public Texture currentTexture { get; private set; }
+        private List<PreviewItem> selected = new List<PreviewItem>();
         public PsdPreviewer(TreeViewState state, PsdDocument psd) : base(state)
         {
             this.psd = psd;
@@ -31,16 +34,13 @@ namespace PSDUnity.Analysis
             this.showBorder = true;
             this.customFoldoutYOffset = (kRowHeights - EditorGUIUtility.singleLineHeight) * 0.5f; // center foldout in the row since we also center content. See RowGUI
             this.extraSpaceBeforeIconAndLabel = kToggleWidth;
-
             Reload();
-
         }
 
         protected override TreeViewItem BuildRoot()
         {
             var root = new PreviewItem(id, -1, psd);
             GenerateRowsRecursive(root, 0);
-
             return root;
         }
 
@@ -68,6 +68,7 @@ namespace PSDUnity.Analysis
             var list = m_Rows.ConvertAll<TreeViewItem>(x => x);
             return list;
         }
+
         void Search(PreviewItem searchFromThis, string search, List<PreviewItem> result)
         {
             if (string.IsNullOrEmpty(search))
@@ -143,7 +144,6 @@ namespace PSDUnity.Analysis
         protected override void BeforeRowsGUI()
         {
             base.BeforeRowsGUI();
-            EditorGUILayout.LabelField("列表");
         }
         protected override void AfterRowsGUI()
         {
@@ -179,6 +179,7 @@ namespace PSDUnity.Analysis
         protected override void ContextClickedItem(int id)
         {
             base.ContextClickedItem(id);
+            Debug.Log(id);
         }
 
         protected override bool DoesItemMatchSearch(TreeViewItem item, string search)
@@ -236,6 +237,10 @@ namespace PSDUnity.Analysis
         protected override void RowGUI(RowGUIArgs args)
         {
             var item = (PreviewItem)args.item;
+
+            if (Event.current.type == EventType.MouseDown && args.rowRect.Contains(Event.current.mousePosition))
+                SelectionClick(args.item, false);
+
             for (int i = 0; i < args.GetNumVisibleColumns(); ++i)
             {
                 var rect = args.GetCellRect(i);
@@ -244,16 +249,23 @@ namespace PSDUnity.Analysis
                 var clums = args.GetColumn(i);
                 if (clums == 0)
                 {
-                    var texture = AnalysisUtility.previewIcons[item.layerType];
-                    GUI.Label(rect, texture);
-                    GUILayoutUtility.GetRect(rect.width, rect.height);
+                    GUI.Label(rect, args.row.ToString());
                 }
                 else if (clums == 1)
                 {
+                    Rect toggleRect = rect;
+                    toggleRect.x += GetContentIndent(item);
+                    toggleRect.width = kToggleWidth;
+
+                    var texture = AnalysisUtility.GetPreviewIcon(item,rule);
+                    GUI.DrawTexture(toggleRect, texture);
+
                     args.rowRect = rect;
                     base.RowGUI(args);
                 }
             }
+
+           
         }
         protected override void RenameEnded(RenameEndedArgs args)
         {
@@ -268,8 +280,18 @@ namespace PSDUnity.Analysis
         protected override void SelectionChanged(IList<int> selectedIds)
         {
             base.SelectionChanged(selectedIds);
+            selected.Clear();
+            for (int i = 0; i < selectedIds.Count; i++)
+            {
+                var item = m_Rows.Find(x => x.id == selectedIds[i]);
+                if(item != null && item.layer != null)
+                {
+                    selected.Add(item);
+                }
+            }
+            GenerateTexture(false);
         }
-
+        
         protected override void SetupDragAndDrop(SetupDragAndDropArgs args)
         {
             base.SetupDragAndDrop(args);
@@ -319,5 +341,80 @@ namespace PSDUnity.Analysis
             var state = new MultiColumnHeaderState(columns);
             return state;
         }
+
+        public void GenerateTexture(bool all)
+        {
+            if (selected.Count == 0) return;
+
+            selected.Sort((x,y)=> { return -string.Compare(x.depth.ToString(), y.depth.ToString()); });
+            List<KeyValuePair<PsdLayer, Texture2D>> textureList = new List<KeyValuePair<PsdLayer, Texture2D>>();
+            int maxWidth=0,maxHeight = 0;
+            List<PreviewItem> artItems = new List<PreviewItem>();
+
+            for (int i = 0; i < selected.Count; i++)
+            {
+                var root = selected[i];
+                if(all)
+                {
+                    RetriveArtLayer(root, (x) =>
+                    {
+                        if (!artItems.Contains(x))
+                        {
+                            artItems.Add(x);
+                        }
+                    });
+                }
+                else if(root.layerType != LayerType.Group && root.layerType != LayerType.Divider)
+                {
+                    artItems.Add(root);
+                }
+            }
+
+            if (artItems.Count == 0) return;
+
+            for (int i = 0; i < artItems.Count; i++)
+            {
+                var root = artItems[i];
+                var titem = ExportUtility.CreateTexture((PsdLayer)root.layer);
+                textureList.Add(new KeyValuePair<PsdLayer, Texture2D>((PsdLayer)root.layer, titem));
+                maxHeight = titem.height > maxHeight ? titem.height : maxHeight;
+                maxWidth = titem.width > maxWidth ? titem.width : maxWidth;
+            }
+
+            Texture2D texture = new Texture2D(psd.Width, psd.Height);
+
+            foreach (var titem in textureList)
+            {
+                for (int x = 0; x < titem.Value.width; x++)
+                {
+                    for (int y = 0; y < titem.Value.height; y++)
+                    {
+                        var color = titem.Value.GetPixel(x, y);
+                        if (color != Color.clear)
+                            texture.SetPixel(x + titem.Key.Left, psd.Height - (titem.Value.height - y + titem.Key.Top), color);
+                    }
+                }
+            }
+            texture.Apply();
+            currentTexture = texture;
+
+        }
+
+        private void RetriveArtLayer(PreviewItem data, UnityAction<PreviewItem> onRetrive)
+        {
+            if (data.layerType != LayerType.Group && data.layerType != LayerType.Divider)
+            {
+                onRetrive(data);
+            }
+            else
+            {
+                if (data.children != null)
+                    foreach (var item in data.children)
+                    {
+                        RetriveArtLayer((PreviewItem)item, onRetrive);
+                    }
+            }
+        }
+
     }
 }
