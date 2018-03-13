@@ -223,7 +223,6 @@ namespace UnityEditor.TreeViewExamples
 			SetSelection(selectedIDs, TreeViewSelectionOptions.RevealAndFrame);
 		}
 
-
 		bool ValidDrag(TreeViewItem parent, List<TreeViewItem> draggedItems)
 		{
 			TreeViewItem currentParent = parent;

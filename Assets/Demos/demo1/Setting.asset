@@ -15,7 +15,7 @@ MonoBehaviour:
   maskAsColor: 0
   forceSprite: 0
   fileExt: .png
-  defultUISize: {x: 800, y: 600}
+  defultUISize: {x: 1600, y: 900}
   picNameTemp: '{0}.png'
   pixelsToUnitSize: 1
   maxSize: 4096
