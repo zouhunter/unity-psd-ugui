@@ -91,7 +91,7 @@ namespace PSDUnity
             {
                 this.hashImage = rect.GetHashCode();
                 this.texture.name = TextureName;
-                Debug.Log(TextureName);
+                //Debug.Log(TextureName);
             }
             return this;
         }

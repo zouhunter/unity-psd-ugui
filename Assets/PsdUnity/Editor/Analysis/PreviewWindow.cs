@@ -15,13 +15,14 @@ namespace PSDUnity.Analysis
         const string Prefs_pdfPath = "Prefs_pdfPath";
         [SerializeField] TreeViewState m_TreeViewState = new TreeViewState();
         [SerializeField] MultiColumnHeaderState m_MultiColumnHeaderState;
-        SearchField m_SearchField;
-        PsdPreviewer m_TreeView;
-        string psdPath;
-        PsdDocument psd;
-        float menuRetio = 0.3f;
-        RuleObject ruleObj;
-        SettingObject settingObj;
+        private SearchField m_SearchField;
+        private PsdPreviewer m_TreeView;
+        private string psdPath;
+        private PsdDocument psd;
+        private float menuRetio = 0.3f;
+        private RuleObject ruleObj;
+        private SettingObject settingObj;
+        private Exporter exporter;
         private void OnEnable()
         {
             psdPath = EditorPrefs.GetString(Prefs_pdfPath);
@@ -39,7 +40,7 @@ namespace PSDUnity.Analysis
                 var width = position.width * menuRetio;
                 var searchRect = new Rect(0, EditorGUIUtility.singleLineHeight, width, EditorGUIUtility.singleLineHeight);
                 m_TreeView.searchString = m_SearchField.OnGUI(searchRect, m_TreeView.searchString);
-                var treeViewRect = new Rect(0,EditorGUIUtility.singleLineHeight, width, position.height - 2 * EditorGUIUtility.singleLineHeight);
+                var treeViewRect = new Rect(0, EditorGUIUtility.singleLineHeight, width, position.height - 2 * EditorGUIUtility.singleLineHeight);
 
                 GUI.Box(treeViewRect, "");
                 m_TreeView.OnGUI(treeViewRect);
@@ -51,7 +52,7 @@ namespace PSDUnity.Analysis
                 var configRect = new Rect(width, EditorGUIUtility.singleLineHeight, rightWidth, EditorGUIUtility.singleLineHeight);
                 DrawConfigs(configRect);
 
-                var viewRect = new Rect(width,2 * EditorGUIUtility.singleLineHeight, rightWidth, position.height - 3 * EditorGUIUtility.singleLineHeight);
+                var viewRect = new Rect(width, 2 * EditorGUIUtility.singleLineHeight, rightWidth, position.height - 3 * EditorGUIUtility.singleLineHeight);
                 DrawTexturePreview(viewRect);
 
                 var previewToolRect = new Rect(width, position.height - EditorGUIUtility.singleLineHeight, rightWidth, EditorGUIUtility.singleLineHeight);
@@ -82,7 +83,7 @@ namespace PSDUnity.Analysis
             var contentRect = new Rect(configRect.x + configRect.width * 0.1f, configRect.y, groupWidth * 0.7f, configRect.height);
             ruleObj = EditorGUI.ObjectField(contentRect, ruleObj, typeof(RuleObject), false) as RuleObject;
 
-            
+
 
             titleRect.x += configRect.width - groupWidth;
             contentRect.x += configRect.width - groupWidth;
@@ -132,45 +133,80 @@ namespace PSDUnity.Analysis
 
             using (new EditorGUILayout.HorizontalScope())
             {
-                var style = EditorStyles.miniButton;
-                if (GUILayout.Button("Draw Groups", style))
+                var style = EditorStyles.miniButtonRight;
+                var layout = GUILayout.Width(100);
+                m_TreeView.autoGroupTexture = GUILayout.Toggle(m_TreeView.autoGroupTexture, "Auto Draw Group", EditorStyles.toggle);
+                if (!m_TreeView.autoGroupTexture)
                 {
-                    m_TreeView.GenerateTexture(true);
+                    if (GUILayout.Button("Draw Groups", style, layout))
+                    {
+                        m_TreeView.GenerateTexture(true);
+                    }
                 }
-                if(GUILayout.Button("Gen Textures", style))
+                if (GUILayout.Button("Gen Assets", style, layout))
                 {
-
+                    RecordSelectedInformation();
                 }
-                if(GUILayout.Button("Create UGUI", style))
-                {
-
-                }
-
             }
             GUILayout.EndArea();
         }
+
+        private void RecordSelectedInformation()
+        {
+            if (m_TreeView == null || m_TreeView.selected.Count == 0) return;
+            var psdLayers = m_TreeView.selected.ConvertAll(x => x.layer as IPsdLayer).ToArray();
+
+            if (exporter == null)
+            {
+                exporter = ScriptableObject.CreateInstance<Exporter>();
+            }
+            exporter.settingObj = settingObj;
+            exporter.ruleObj = ruleObj;
+            exporter.name = "exporter" + System.DateTime.Now.Second.ToString();
+            ProjectWindowUtil.CreateAsset(exporter, exporter.name + ".asset");
+            EditorUtility.SetDirty(exporter);
+
+            ExportUtility.InitPsdExportEnvrioment(exporter, new Vector2(psd.Width, psd.Height));
+            var rootNode = new GroupNode(new Rect(Vector2.zero, exporter.settingObj.defultUISize), 0, -1);
+            rootNode.Name = exporter.name;
+
+            var groupDatas = ExportUtility.CreatePictures(psdLayers, new Vector2(psd.Width, psd.Height), exporter.settingObj.defultUISize, exporter.settingObj.forceSprite);
+
+            if (groupDatas != null)
+            {
+                foreach (var groupData in groupDatas)
+                {
+                    rootNode.AddChild(groupData);
+                    ExportUtility.ChargeTextures(exporter, groupData);
+                }
+            }
+            TreeViewUtility.TreeToList<GroupNode>(rootNode, exporter.groups, true);
+            EditorUtility.SetDirty(exporter);
+        }
+
+
         private void TryInitTreeView()
         {
-            if(m_TreeView == null)
+            if (m_TreeView == null)
             {
                 m_TreeView = new PsdPreviewer(m_TreeViewState, psd);
                 m_TreeView.SetRule(ruleObj);
                 m_TreeView.Reload();
-       
+
                 m_SearchField = new SearchField();
                 m_SearchField.downOrUpArrowKeyPressed += m_TreeView.SetFocusAndEnsureSelectedItem;
             }
-          
+
         }
 
         private void DrawFileSelect()
         {
             using (var hor = new EditorGUILayout.HorizontalScope())
             {
-                EditorGUILayout.LabelField("PSD文件路径：",GUILayout.Width(30));
+                EditorGUILayout.LabelField("PSD文件路径：", GUILayout.Width(30));
                 EditorGUI.BeginChangeCheck();
                 psdPath = EditorGUILayout.TextField(psdPath);
-                if (GUILayout.Button("选择",EditorStyles.miniButtonRight,GUILayout.Width(40)))
+                if (GUILayout.Button("选择", EditorStyles.miniButtonRight, GUILayout.Width(40)))
                 {
                     string dir = Application.dataPath;
                     if (!string.IsNullOrEmpty(psdPath))
@@ -178,7 +214,8 @@ namespace PSDUnity.Analysis
                         dir = System.IO.Path.GetDirectoryName(psdPath);
                     }
                     psdPath = EditorUtility.OpenFilePanel("选择一个pdf文件", dir, "psd");
-                    if (!string.IsNullOrEmpty(psdPath)){
+                    if (!string.IsNullOrEmpty(psdPath))
+                    {
                         OpenPsdDocument();
                     }
                 }

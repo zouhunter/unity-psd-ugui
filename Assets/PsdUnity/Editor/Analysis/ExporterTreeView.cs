@@ -87,7 +87,6 @@ namespace PSDUnity
             foreach (var item in selectedIds)
             {
                 selected.Add(rows.Find(x => x.id == item));
-                Debug.Log(item);
             }
         }
 

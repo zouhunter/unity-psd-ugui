@@ -20,7 +20,8 @@ namespace PSDUnity.Analysis
         const float kRowHeights = 20f;
         const float kToggleWidth = 18f;
         public Texture currentTexture { get; private set; }
-        private List<PreviewItem> selected = new List<PreviewItem>();
+        public List<PreviewItem> selected = new List<PreviewItem>();
+        public bool autoGroupTexture;
         public PsdPreviewer(TreeViewState state, PsdDocument psd) : base(state)
         {
             this.psd = psd;
@@ -297,7 +298,7 @@ namespace PSDUnity.Analysis
                     selected.Add(item);
                 }
             }
-            GenerateTexture(false);
+            GenerateTexture(autoGroupTexture);
         }
         
         protected override void SetupDragAndDrop(SetupDragAndDropArgs args)
