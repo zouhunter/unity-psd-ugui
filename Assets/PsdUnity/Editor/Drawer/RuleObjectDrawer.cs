@@ -13,6 +13,7 @@ using System.Collections;
 using UnityEditor;
 using System;
 using PrefabItem = PSDUnity.RuleObject.PrefabItem;
+using UnityEditorInternal;
 
 namespace PSDUnity.Data
 {
@@ -23,35 +24,45 @@ namespace PSDUnity.Data
         SerializedProperty scriptProp;
         public SerializedProperty sepraterCharProp;
         public SerializedProperty argumentCharProp;
+        private ReorderableList list;
         void OnEnable()
         {
             scriptProp = serializedObject.FindProperty("m_Script");
             sepraterCharProp = serializedObject.FindProperty("sepraterChar");
             argumentCharProp= serializedObject.FindProperty("argumentChar");
             obj = target as RuleObject;
+            InitReorderList();
         }
+     
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
             serializedObject.Update();
             EditorGUILayout.PropertyField(scriptProp);
-            //ReorderableListGUI.Title("预制体列表");
-            //ReorderableListGUI.ListField<RuleObject.PrefabItem>(obj.prefabs,OnDrawItem,EditorGUIUtility.singleLineHeight);
-            if(GUILayout.Button("重置",EditorStyles.toolbarButton))
-            {
+            if(GUILayout.Button("重置",EditorStyles.toolbarButton)){
                 ResetObject();
             }
+            list.DoLayoutList();
             serializedObject.Update();
         }
-        private RuleObject.PrefabItem OnDrawItem(Rect position, RuleObject.PrefabItem item)
+
+        private void InitReorderList()
         {
+            list = new ReorderableList(obj.prefabs, typeof(GameObject));
+            list.drawElementCallback = DrawItem;
+            list.drawHeaderCallback = (r) => { EditorGUI.LabelField(r, "预制体列表"); };
+            list.elementHeight = EditorGUIUtility.singleLineHeight;
+        }
+
+        private void DrawItem(Rect position, int index, bool isActive, bool isFocused)
+        {
+            var item = obj.prefabs[index];
             var rect = new Rect(position.x, position.y, position.width * 0.3f, position.height);
             item.groupType = (GroupType)EditorGUI.EnumPopup(rect, item.groupType);
             rect.x += rect.width + 5;
             item.keyName = EditorGUI.TextField(rect, item.keyName);
             rect.x += rect.width + 5;
             item.prefab = EditorGUI.ObjectField(rect, item.prefab, typeof(GameObject), false) as GameObject;
-            return item;
         }
         public void ResetObject()
         {

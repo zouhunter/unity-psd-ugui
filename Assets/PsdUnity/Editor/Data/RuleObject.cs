@@ -10,7 +10,6 @@ using UnityEngine.Assertions.Must;
 using UnityEngine.Assertions.Comparers;
 using System.Collections.Generic;
 
-
 namespace PSDUnity
 {
     public class RuleObject : ScriptableObject
