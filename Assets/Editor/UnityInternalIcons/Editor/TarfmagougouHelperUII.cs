@@ -53,7 +53,7 @@ namespace tarfmagougou
 #elif UNITY_5_6
             Debug.logger.logEnabled = true;
 #else
-            Debug.logger.logEnabled = true;
+            Debug.unityLogger.logEnabled = true;
 #endif
         }
 
