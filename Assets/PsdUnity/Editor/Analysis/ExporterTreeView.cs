@@ -223,7 +223,14 @@ namespace PSDUnity
                     item.constraintCount = EditorGUI.IntField(constenctCountRect, item.constraintCount, EditorStyles.label);
                     break;
                 case GroupType.SCROLLVIEW:
+//#向下不兼容的写法
+#if UNITY_5_6
+                    dir = (Direction)EditorGUI.EnumMaskField(dirRect, item.direction);
+#elif UNITY_2017
                     dir = (Direction)EditorGUI.EnumFlagsField(dirRect, item.direction);
+#else
+                    dir = (Direction)EditorGUI.EnumFlagsField(dirRect, item.direction);
+#endif
                     if (dir == Direction.Horizontal || dir == Direction.Vertical || dir == (Direction.Horizontal | Direction.Vertical))
                     {
                         item.direction = dir;

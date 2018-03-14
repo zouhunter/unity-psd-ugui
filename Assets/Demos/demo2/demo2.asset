@@ -12,12 +12,22 @@ MonoBehaviour:
   m_Name: demo2
   m_EditorClassIdentifier: 
   _exportPath: Assets/Demos/demo2
-  psdFile: E:/GitHub/PsdUnity/PSDDemo/Demo2.psd
+  psdFile: E:/GitHub/PsdUnity/PsdFiles/Demo2.psd
   settingObj: {fileID: 11400000, guid: c98523c2ec9b06746a21c506d25b36ee, type: 2}
   ruleObj: {fileID: 11400000, guid: f7d3181f5b8957245adfabda058c8541, type: 2}
   groups:
-  - Name: panel
-    groupType: 0
+  - groupType: 0
+    direction: 0
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1600
+      height: 900
+    images: []
+  - groupType: 0
     direction: 0
     constraintCount: 0
     spacing: 0
@@ -27,8 +37,7 @@ MonoBehaviour:
       y: -0
       width: 387
       height: 298
-    _groups: []
-    _images:
+    images:
     - Name: b_
       type: 4
       source: 0
@@ -44,8 +53,7 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 0
       color: {r: 0.12941179, g: 0.5725491, b: 0.9176471, a: 1}
-  - Name: progress
-    groupType: 8
+  - groupType: 8
     direction: 8
     constraintCount: 0
     spacing: 0
@@ -55,8 +63,7 @@ MonoBehaviour:
       y: -110.5
       width: 304
       height: 27
-    _groups: []
-    _images:
+    images:
     - Name: b_
       type: 2
       source: 1
@@ -87,8 +94,7 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 0
       color: {r: 1, g: 1, b: 1, a: 1}
-  - Name: progress
-    groupType: 8
+  - groupType: 8
     direction: 32
     constraintCount: 0
     spacing: 0
@@ -98,8 +104,7 @@ MonoBehaviour:
       y: -0
       width: 27
       height: 300
-    _groups: []
-    _images:
+    images:
     - Name: b_
       type: 2
       source: 1
@@ -130,8 +135,7 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 0
       color: {r: 1, g: 1, b: 1, a: 1}
-  - Name: input
-    groupType: 0
+  - groupType: 0
     direction: 0
     constraintCount: 0
     spacing: 0
@@ -141,8 +145,7 @@ MonoBehaviour:
       y: -58.5
       width: 151
       height: 47
-    _groups: []
-    _images:
+    images:
     - Name: b_
       type: 2
       source: 1
@@ -173,8 +176,7 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 14
       color: {r: 0.60001, g: 0.60001, b: 0.60001, a: 1}
-  - Name: textpanel
-    groupType: 9
+  - groupType: 9
     direction: 0
     constraintCount: 0
     spacing: 0
@@ -184,8 +186,7 @@ MonoBehaviour:
       y: -58.5
       width: 151
       height: 47
-    _groups: []
-    _images:
+    images:
     - Name: b_
       type: 2
       source: 1
@@ -216,8 +217,7 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 14
       color: {r: 0.99608, g: 0.99608, b: 0.99608, a: 1}
-  - Name: slider
-    groupType: 8
+  - groupType: 8
     direction: 8
     constraintCount: 0
     spacing: 0
@@ -227,8 +227,7 @@ MonoBehaviour:
       y: -2.5
       width: 304
       height: 39
-    _groups: []
-    _images:
+    images:
     - Name: b_
       type: 2
       source: 1
@@ -274,8 +273,7 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 0
       color: {r: 1, g: 1, b: 1, a: 1}
-  - Name: slider
-    groupType: 8
+  - groupType: 8
     direction: 32
     constraintCount: 0
     spacing: 0
@@ -285,8 +283,7 @@ MonoBehaviour:
       y: -0
       width: 40
       height: 300
-    _groups: []
-    _images:
+    images:
     - Name: b_
       type: 2
       source: 1
@@ -332,8 +329,7 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 0
       color: {r: 1, g: 1, b: 1, a: 1}
-  - Name: buttons
-    groupType: 1
+  - groupType: 1
     direction: 0
     constraintCount: 0
     spacing: 0
@@ -343,8 +339,7 @@ MonoBehaviour:
       y: 52.5
       width: 101
       height: 41
-    _groups: []
-    _images:
+    images:
     - Name: p_
       type: 2
       source: 1
@@ -405,8 +400,7 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 14
       color: {r: 0.79999, g: 0.79999, b: 0.79999, a: 1}
-  - Name: select
-    groupType: 13
+  - groupType: 13
     direction: 0
     constraintCount: 0
     spacing: 0
@@ -416,8 +410,7 @@ MonoBehaviour:
       y: 67
       width: 154
       height: 104
-    _groups: []
-    _images:
+    images:
     - Name: b1_
       type: 2
       source: 1
@@ -493,8 +486,7 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 14
       color: {r: 0.79999, g: 0.79999, b: 0.79999, a: 1}
-  - Name: input
-    groupType: 2
+  - groupType: 2
     direction: 0
     constraintCount: 0
     spacing: 0
@@ -504,8 +496,7 @@ MonoBehaviour:
       y: 100.5
       width: 26
       height: 29
-    _groups: []
-    _images:
+    images:
     - Name: b_
       type: 2
       source: 1
@@ -536,8 +527,7 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 0
       color: {r: 0, g: 0, b: 0, a: 1}
-  - Name: input
-    groupType: 2
+  - groupType: 2
     direction: 0
     constraintCount: 0
     spacing: 0
@@ -547,8 +537,7 @@ MonoBehaviour:
       y: 100.5
       width: 26
       height: 29
-    _groups: []
-    _images:
+    images:
     - Name: b_
       type: 2
       source: 1

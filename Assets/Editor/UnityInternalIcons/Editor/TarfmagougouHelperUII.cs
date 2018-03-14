@@ -37,19 +37,27 @@ namespace tarfmagougou
 		
 		public static void DisableLogging()
 		{
-			#if UNITY_5_3_AND_UP
+#if UNITY_5_3
 			Debug.unityLogger.logEnabled = false;
-			#endif
-		}
-		
-		public static void EnableLogging()
+#elif UNITY_5_6
+            Debug.logger.logEnabled = false;
+#else
+           	Debug.unityLogger.logEnabled = false;
+#endif
+        }
+
+        public static void EnableLogging()
 		{
-			#if UNITY_5_3_AND_UP
-			Debug.unityLogger.logEnabled = true;
-			#endif
-		}
-		
-		public static void SetWindowTitle(EditorWindow w, string s)
+#if UNITY_5_3
+            Debug.unityLogger.logEnabled = true;
+#elif UNITY_5_6
+            Debug.logger.logEnabled = true;
+#else
+            Debug.logger.logEnabled = true;
+#endif
+        }
+
+        public static void SetWindowTitle(EditorWindow w, string s)
 		{
 			#if UNITY_5_0
 			w.title = s;

@@ -16,6 +16,6 @@ MonoBehaviour:
   forceSprite: 1
   fileExt: .png
   defultUISize: {x: 1600, y: 900}
-  picNameTemp: Pics/{0}.png
+  picNameTemp: '{0}.png'
   pixelsToUnitSize: 100
   maxSize: 4096
