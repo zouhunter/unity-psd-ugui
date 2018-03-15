@@ -1,0 +1,570 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -338152995, guid: 07870984dd9b7504794a7da2d58ae1bd, type: 3}
+  m_Name: exporter
+  m_EditorClassIdentifier: 
+  _exportPath: 
+  psdFile: E:/GitHub/PsdUnity/PsdFiles/DarkGroup.psd
+  settingObj: {fileID: 0}
+  ruleObj: {fileID: 11400000, guid: 2981577b72979aa4b9f5cc8693da936f, type: 2}
+  groups:
+  - groupType: 0
+    direction: 0
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1600
+      height: 900
+    images: []
+  - groupType: 0
+    direction: 0
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 1
+      y: -0
+      width: 387
+      height: 298
+    images:
+    - Name: b_
+      type: 4
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: -0
+        width: 387
+        height: 298
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 0.12941179, g: 0.5725491, b: 0.9176471, a: 1}
+  - groupType: 8
+    direction: 8
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -10.5
+      y: -110.5
+      width: 304
+      height: 27
+    images:
+    - Name: b_
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -10.5
+        y: -110.5
+        width: 304
+        height: 27
+      sprite: {fileID: 21300000, guid: 578aeae9527bfc3448bb3fccfc1ea1d3, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: f_
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -10
+        y: -108.5
+        width: 297
+        height: 15
+      sprite: {fileID: 21300002, guid: 578aeae9527bfc3448bb3fccfc1ea1d3, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - groupType: 8
+    direction: 32
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -179
+      y: -0
+      width: 27
+      height: 300
+    images:
+    - Name: b_
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -179
+        y: -0
+        width: 27
+        height: 300
+      sprite: {fileID: 21300004, guid: 578aeae9527bfc3448bb3fccfc1ea1d3, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: f_
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -177
+        y: 0.5
+        width: 15
+        height: 291
+      sprite: {fileID: 21300006, guid: 578aeae9527bfc3448bb3fccfc1ea1d3, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - groupType: 0
+    direction: 0
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -88
+      y: -58.5
+      width: 151
+      height: 47
+    images:
+    - Name: b_
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -88
+        y: -59.5
+        width: 149
+        height: 45
+      sprite: {fileID: 21300008, guid: 578aeae9527bfc3448bb3fccfc1ea1d3, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: title
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -109.5
+        y: -58
+        width: 84
+        height: 24
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: "Enter text\u2026"
+      font: {fileID: 0}
+      fontSize: 14
+      color: {r: 0.60001, g: 0.60001, b: 0.60001, a: 1}
+  - groupType: 9
+    direction: 0
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 67
+      y: -58.5
+      width: 151
+      height: 47
+    images:
+    - Name: b_
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: -59.5
+        width: 149
+        height: 45
+      sprite: {fileID: 21300010, guid: 578aeae9527bfc3448bb3fccfc1ea1d3, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Title
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 52.5
+        y: -58
+        width: 86
+        height: 10
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Text is entered
+      font: {fileID: 0}
+      fontSize: 14
+      color: {r: 0.99608, g: 0.99608, b: 0.99608, a: 1}
+  - groupType: 8
+    direction: 8
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -10.5
+      y: -2.5
+      width: 304
+      height: 39
+    images:
+    - Name: b_
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -10.5
+        y: -2.5
+        width: 304
+        height: 39
+      sprite: {fileID: 21300012, guid: 578aeae9527bfc3448bb3fccfc1ea1d3, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: f_
+      type: 4
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -12
+        y: 1.5
+        width: 281
+        height: 15
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 0, g: 0.509804, b: 0.90588236, a: 1}
+    - Name: h_
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: -0.5
+        width: 23
+        height: 23
+      sprite: {fileID: 21300014, guid: 578aeae9527bfc3448bb3fccfc1ea1d3, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - groupType: 8
+    direction: 32
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 173.5
+      y: -0
+      width: 40
+      height: 300
+    images:
+    - Name: b_
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: -0
+        width: 39
+        height: 300
+      sprite: {fileID: 21300016, guid: 578aeae9527bfc3448bb3fccfc1ea1d3, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: f_
+      type: 4
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 175.5
+        y: 3
+        width: 14
+        height: 274
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 0, g: 0.509804, b: 0.90588236, a: 1}
+    - Name: h_
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: -127.5
+        width: 23
+        height: 23
+      sprite: {fileID: 21300018, guid: 578aeae9527bfc3448bb3fccfc1ea1d3, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - groupType: 1
+    direction: 0
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -110
+      y: 52.5
+      width: 101
+      height: 41
+    images:
+    - Name: p_
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -109.5
+        y: 51.5
+        width: 98
+        height: 39
+      sprite: {fileID: 21300020, guid: 578aeae9527bfc3448bb3fccfc1ea1d3, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: h_
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -111.5
+        y: 51.5
+        width: 98
+        height: 39
+      sprite: {fileID: 21300022, guid: 578aeae9527bfc3448bb3fccfc1ea1d3, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: n_
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -110.5
+        y: 51.5
+        width: 98
+        height: 39
+      sprite: {fileID: 21300024, guid: 578aeae9527bfc3448bb3fccfc1ea1d3, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: title
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -113
+        y: 56
+        width: 39
+        height: 10
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Button
+      font: {fileID: 0}
+      fontSize: 14
+      color: {r: 0.79999, g: 0.79999, b: 0.79999, a: 1}
+  - groupType: 13
+    direction: 0
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 64.5
+      y: 67
+      width: 154
+      height: 104
+    images:
+    - Name: b1_
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 99.5
+        width: 151
+        height: 35
+      sprite: {fileID: 21300026, guid: 578aeae9527bfc3448bb3fccfc1ea1d3, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: b2_
+      type: 4
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 52.5
+        width: 149
+        height: 75
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 0.12941179, g: 0.5725491, b: 0.9176471, a: 1}
+    - Name: b3_
+      type: 4
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 51.5
+        y: 75.5
+        width: 118
+        height: 25
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 0.06666668, g: 0.06666668, b: 0.06666668, a: 1}
+    - Name: t1_
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 101.5
+        width: 41
+        height: 13
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Option
+      font: {fileID: 0}
+      fontSize: 14
+      color: {r: 0.79999, g: 0.79999, b: 0.79999, a: 1}
+    - Name: t2_
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 74.5
+        width: 41
+        height: 13
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Option
+      font: {fileID: 0}
+      fontSize: 14
+      color: {r: 0.79999, g: 0.79999, b: 0.79999, a: 1}
+  - groupType: 2
+    direction: 0
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -44.5
+      y: 100.5
+      width: 26
+      height: 29
+    images:
+    - Name: b_
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -44.5
+        y: 99.5
+        width: 26
+        height: 27
+      sprite: {fileID: 21300028, guid: 578aeae9527bfc3448bb3fccfc1ea1d3, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: m_
+      type: 4
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -45
+        y: 102.5
+        width: 13
+        height: 13
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 0, g: 0, b: 0, a: 1}
+  - groupType: 2
+    direction: 0
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -120.5
+      y: 100.5
+      width: 26
+      height: 29
+    images:
+    - Name: b_
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -120.5
+        y: 99.5
+        width: 22
+        height: 27
+      sprite: {fileID: 21300030, guid: 578aeae9527bfc3448bb3fccfc1ea1d3, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: m_
+      type: 4
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -121
+        y: 102.5
+        width: 15
+        height: 15
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 0, g: 0.509804, b: 0.90588236, a: 1}
