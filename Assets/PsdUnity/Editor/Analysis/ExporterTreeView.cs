@@ -121,7 +121,7 @@ namespace PSDUnity
             if (args.acceptedRename)
             {
                 var element = rows.Find(x => x.id == args.itemID);
-                element.Name = args.newName;
+                element.displayName = args.newName;
                 Reload();
             }
         }
@@ -229,7 +229,7 @@ namespace PSDUnity
 #elif UNITY_2017
                     dir = (Direction)EditorGUI.EnumFlagsField(dirRect, item.direction);
 #else
-                    dir = (Direction)EditorGUI.EnumFlagsField(dirRect, item.direction);
+                    dir = (Direction)EditorGUI.EnumMaskField(dirRect, item.direction);
 #endif
                     if (dir == Direction.Horizontal || dir == Direction.Vertical || dir == (Direction.Horizontal | Direction.Vertical))
                     {

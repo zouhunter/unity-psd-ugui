@@ -14,26 +14,6 @@ namespace PSDUnity
 {
     public class RuleObject : ScriptableObject
     {
-        [System.Serializable]
-        public class PrefabItem
-        {
-            public GroupType groupType;
-            public string keyName;
-            public GameObject prefab;
-            public PrefabItem()
-            {
-            }
-
-            public PrefabItem(GroupType groupType,GameObject prefab)
-            {
-                this.groupType = groupType;
-                this.prefab = prefab;
-                this.keyName = groupType.ToString().ToLower();
-            }
-        }
-        [HideInInspector]
-        public List<PrefabItem> prefabs = new List<PrefabItem>();
-
         [Header("图层标记"), Space(10)]
         public char sepraterCharimg = '#';
         public string asAtalsMark = "A";
@@ -49,28 +29,40 @@ namespace PSDUnity
         public char sepraterChargroup = '@';
         public char argumentChar = ':';
 
+        private static string[] groupNames;
+        static RuleObject()
+        {
+            groupNames = System.Enum.GetNames(typeof(GroupType));
+        }
 
         public string AnalysisGroupName(string name,out GroupType groupType,out string[] areguments)
         {
             areguments = null;
             string clampName = name;
-            groupType = GroupType.EMPTY;
-            var item = prefabs.Find(x =>
-            {
-                return name.ToLower().Contains(x.keyName.ToLower());
-            });
-            if (item != null)
-            {
-                groupType = item.groupType;
-            }
+            string typeName = "";
+
             if (name.Contains(sepraterChargroup.ToString()))
             {
                 var index = name.IndexOf(sepraterChargroup);
-                clampName = name.Remove(index);
+                typeName = name.Substring(index + 1, name.Length - 1 - index);
+                clampName = name.Substring(0,index);
             }
-            if (name.Contains(argumentChar.ToString()))
+
+            groupType = GroupType.EMPTY;
+
+
+            var item = System.Array.Find(groupNames, x =>
             {
-                var oldarg = name.Split(argumentChar);
+                return typeName.ToLower().Contains(x.ToLower());
+            });
+            if (item != null)
+            {
+                groupType = (GroupType)System.Enum.Parse(typeof(GroupType),item);
+            }
+           
+            if (typeName.Contains(argumentChar.ToString()))
+            {
+                var oldarg = typeName.Split(argumentChar);
                 if (oldarg.Length > 1)
                 {
                     areguments = new string[oldarg.Length -1];

@@ -16,7 +16,10 @@ MonoBehaviour:
   settingObj: {fileID: 11400000, guid: 423cb678ee9954a458f62e5469938102, type: 2}
   ruleObj: {fileID: 11400000, guid: f7d3181f5b8957245adfabda058c8541, type: 2}
   groups:
-  - groupType: 0
+  - _id: 0
+    _depth: -1
+    _displayName: atlasObj
+    groupType: 0
     direction: 0
     constraintCount: 0
     spacing: 0
@@ -27,7 +30,10 @@ MonoBehaviour:
       width: 1600
       height: 900
     images: []
-  - groupType: 0
+  - _id: 1
+    _depth: 0
+    _displayName: "\u9762\u677F"
+    groupType: 0
     direction: 0
     constraintCount: 0
     spacing: 0
@@ -53,7 +59,10 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 0
       color: {r: 0.27843142, g: 0.92941177, b: 0.8313726, a: 1}
-  - groupType: 7
+  - _id: 2
+    _depth: 1
+    _displayName: "\u6ED1\u52A8\u533A"
+    groupType: 7
     direction: 6
     constraintCount: 0
     spacing: 0
@@ -79,7 +88,10 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 0
       color: {r: 0, g: 0.6, b: 0.2666667, a: 1}
-  - groupType: 10
+  - _id: 3
+    _depth: 2
+    _displayName: "hb_\u6C34\u5E73\u6ED1\u52A8\u6761"
+    groupType: 10
     direction: 8
     constraintCount: 0
     spacing: 0
@@ -120,7 +132,10 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 0
       color: {r: 0, g: 1, b: 1, a: 1}
-  - groupType: 10
+  - _id: 4
+    _depth: 2
+    _displayName: "vb_\u5782\u76F4\u6ED1\u52A8\u6761"
+    groupType: 10
     direction: 16
     constraintCount: 0
     spacing: 0
@@ -161,7 +176,10 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 0
       color: {r: 0.27843142, g: 0.92941177, b: 0.8313726, a: 1}
-  - groupType: 11
+  - _id: 5
+    _depth: 2
+    _displayName: "c_\u7EC4"
+    groupType: 11
     direction: 4
     constraintCount: 0
     spacing: 0
@@ -172,7 +190,10 @@ MonoBehaviour:
       width: 545
       height: 260
     images: []
-  - groupType: 0
+  - _id: 6
+    _depth: 3
+    _displayName: "\u9762\u677F"
+    groupType: 0
     direction: 0
     constraintCount: 0
     spacing: 0
@@ -198,7 +219,10 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 0
       color: {r: 0.86274517, g: 0.86274517, b: 0.86274517, a: 1}
-  - groupType: 0
+  - _id: 7
+    _depth: 3
+    _displayName: "\u9762\u677F"
+    groupType: 0
     direction: 0
     constraintCount: 0
     spacing: 0
@@ -224,7 +248,10 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 0
       color: {r: 0.86274517, g: 0.86274517, b: 0.86274517, a: 1}
-  - groupType: 0
+  - _id: 8
+    _depth: 3
+    _displayName: "\u9762\u677F"
+    groupType: 0
     direction: 0
     constraintCount: 0
     spacing: 0
@@ -250,7 +277,10 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 0
       color: {r: 0.86274517, g: 0.86274517, b: 0.86274517, a: 1}
-  - groupType: 8
+  - _id: 9
+    _depth: 1
+    _displayName: "\u8FDB\u5EA6\u6761"
+    groupType: 8
     direction: 4
     constraintCount: 0
     spacing: 0
@@ -306,7 +336,10 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 0
       color: {r: 0.9490197, g: 0.14117649, b: 0.33333337, a: 1}
-  - groupType: 2
+  - _id: 10
+    _depth: 1
+    _displayName: "\u72B6\u6001"
+    groupType: 2
     direction: 0
     constraintCount: 0
     spacing: 0
@@ -362,7 +395,10 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 16
       color: {r: 1, g: 0, b: 0, a: 1}
-  - groupType: 13
+  - _id: 11
+    _depth: 1
+    _displayName: "\u4E0B\u62C9\u6846"
+    groupType: 13
     direction: 0
     constraintCount: 0
     spacing: 0
@@ -463,7 +499,10 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 22
       color: {r: 0.10704, g: 0.31485, b: 0.9098, a: 1}
-  - groupType: 10
+  - _id: 12
+    _depth: 2
+    _displayName: "vb_\u4E0B\u62C9\u6761"
+    groupType: 10
     direction: 16
     constraintCount: 0
     spacing: 0
@@ -504,7 +543,10 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 0
       color: {r: 0.909804, g: 0.21176472, b: 0.40784317, a: 1}
-  - groupType: 1
+  - _id: 13
+    _depth: 1
+    _displayName: "\u6309\u626D"
+    groupType: 1
     direction: 0
     constraintCount: 0
     spacing: 0
@@ -590,7 +632,10 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 16
       color: {r: 0.92938, g: 0.277, b: 0.38451, a: 1}
-  - groupType: 12
+  - _id: 14
+    _depth: 2
+    _displayName: "\u8F93\u5165\u6846"
+    groupType: 12
     direction: 0
     constraintCount: 0
     spacing: 0

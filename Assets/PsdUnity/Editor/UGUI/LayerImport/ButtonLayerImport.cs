@@ -1,10 +1,6 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Events;
-using System.Collections;
-using System.Collections.Generic;
-using PSDUnity;
-using UnityEngineInternal;
+using UnityEngine.UI;
 namespace PSDUnity.UGUI
 {
     public class ButtonLayerImport : ILayerImport
@@ -17,10 +13,10 @@ namespace PSDUnity.UGUI
 
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImporter.InstantiateItem(GroupType.BUTTON, layer.Name, parent);
+            UGUINode node = PSDImporter.InstantiateItem(GroupType.BUTTON, layer.displayName, parent);
             UnityEngine.UI.Button button = node.InitComponent<UnityEngine.UI.Button>();
             PSDImporter.SetRectTransform(layer, button.GetComponent<RectTransform>());
-
+            
             if (layer.images != null)
             {
                 for (int imageIndex = 0; imageIndex < layer.images.Count; imageIndex++)
@@ -46,6 +42,17 @@ namespace PSDUnity.UGUI
                     {
                         ctrl.DrawImage(image, node);
                     }
+
+                    if (image.type == ImgType.Label)
+                    {
+                        node.inversionReprocess += () => {
+                           var texts =  button.GetComponentsInChildren<Text>();
+                            foreach (var item in texts)
+                            {
+                                PSDImporter.SetNormalAnchor(AnchoType.XStretch | AnchoType.YStretch, button.transform as RectTransform, item.transform as RectTransform);
+                            }
+                        };
+                    }
                 }
             }
             return node;
@@ -53,6 +60,7 @@ namespace PSDUnity.UGUI
         private void SetSpriteSwipe(ImgNode image, UnityEngine.UI.Button button)
         {
             string lowerName = image.Name.ToLower();
+
             InitButton(image,button);
 
             if (lowerName.StartsWith("n_"))
@@ -97,6 +105,7 @@ namespace PSDUnity.UGUI
                 if (text == null)
                 {
                     text = button.gameObject.AddComponent<UnityEngine.UI.Text>();
+
                     button.targetGraphic = text;
 #if UNITY_EDITOR
                     UnityEditorInternal.ComponentUtility.MoveComponentUp(text);

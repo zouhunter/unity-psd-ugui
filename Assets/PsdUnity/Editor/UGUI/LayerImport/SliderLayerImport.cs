@@ -16,7 +16,7 @@ namespace PSDUnity.UGUI
         }
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImporter.InstantiateItem(GroupType.SLIDER, layer.Name, parent); //GameObject.Instantiate(temp) as UnityEngine.UI.Slider;
+            UGUINode node = PSDImporter.InstantiateItem(GroupType.SLIDER, layer.displayName, parent); //GameObject.Instantiate(temp) as UnityEngine.UI.Slider;
             UnityEngine.UI.Slider slider = node.InitComponent<UnityEngine.UI.Slider>();
             PSDImporter.SetRectTransform(layer, slider.GetComponent<RectTransform>());
             slider.value = 1;
@@ -38,7 +38,7 @@ namespace PSDUnity.UGUI
                 fileNode.InitComponent<Image>().type = Image.Type.Tiled;
                 PSDImporter.SetRectTransform(fill, fillAreaNode.InitComponent<RectTransform>());
 
-                fillAreaNode.ReprocessEvent = () =>
+                fillAreaNode.inversionReprocess += () =>
                 {
                     slider.fillRect = fileNode.InitComponent<RectTransform>();
                 };
@@ -49,8 +49,9 @@ namespace PSDUnity.UGUI
                 var tempRect = fill != null ? fill : bg;
                 SetSlider(slider, handle, layer);
                 var handAreaNode = PSDImporter.InstantiateItem(GroupType.EMPTY, "Handle Slide Area", node);
-                var handNode = ctrl.DrawImage(handle, handAreaNode);
                 PSDImporter.SetRectTransform(tempRect, handAreaNode.InitComponent<RectTransform>());
+
+                var handNode = ctrl.DrawImage(handle, handAreaNode);
 
                 switch (layer.direction)
                 {
@@ -69,7 +70,7 @@ namespace PSDUnity.UGUI
                     default:
                         break;
                 }
-                handNode.ReprocessEvent = () =>
+                handNode.inversionReprocess += () =>
                 {
                     slider.handleRect = handNode.InitComponent<RectTransform>();
                     slider.handleRect.anchoredPosition = Vector3.zero;

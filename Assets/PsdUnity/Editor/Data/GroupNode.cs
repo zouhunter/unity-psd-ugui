@@ -11,17 +11,58 @@ namespace PSDUnity
     [System.Serializable]
     public class GroupNode :TreeViewItem
     {
-        public string Name { get { return displayName; } set { displayName = value; } }
+        public int _id;
+        public int _depth;
+        public string _displayName;
         public GroupType groupType;
         public Direction direction;
         public int constraintCount;
         public float spacing;
         public Rect rect;   //利用名字解析controlType和arguments
         public List<ImgNode> images = new List<ImgNode>();
+
         public GroupNode(Rect rect, int id, int depth):base(id,depth)
         {
             this.rect = rect;
             children = new List<TreeViewItem>();
+            this._id = id;
+            this._depth = depth;
+        }
+        public override int id
+        {
+            get
+            {
+                return _id;
+            }
+
+            set
+            {
+                _id = value;
+            }
+        }
+        public override int depth
+        {
+            get
+            {
+                return _depth;
+            }
+
+            set
+            {
+               _depth = value;
+            }
+        }
+        public override string displayName
+        {
+            get
+            {
+                return _displayName;
+            }
+
+            set
+            {
+                _displayName = value;
+            }
         }
         public void GetImgNodes(List<ImgNode> imgNodes)
         {
@@ -40,7 +81,7 @@ namespace PSDUnity
         public GroupNode Analyzing(RuleObject Rule, string name)
         {
             string[] areguments = null;
-            this.Name = Rule.AnalysisGroupName(name, out groupType, out areguments);
+            this.displayName = Rule.AnalysisGroupName(name, out groupType, out areguments);
             switch (groupType)
             {
                 case GroupType.GRID:

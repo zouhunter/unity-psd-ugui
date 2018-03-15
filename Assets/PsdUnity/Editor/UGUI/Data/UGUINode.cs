@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using PSDUnity;
+using System;
+
 namespace PSDUnity.UGUI
 {
     public class UGUINode
@@ -12,7 +14,7 @@ namespace PSDUnity.UGUI
         public AnchoType anchoType = AnchoType.Custom;
         public List<UGUINode> childs = new List<UGUINode>();
         public Transform transform;
-        public UnityAction ReprocessEvent { get; set; }
+        public event UnityAction inversionReprocess;//从树的末端开始处理
         public UGUINode(Transform transform, UGUINode parent)
         {
             this.transform = transform;
@@ -30,6 +32,14 @@ namespace PSDUnity.UGUI
                 t = transform.gameObject.AddComponent<T>();
             }
             return t;
+        }
+
+        internal void InversionReprocess()
+        {
+            if(inversionReprocess != null)
+            {
+                inversionReprocess.Invoke();
+            }
         }
     }
 }

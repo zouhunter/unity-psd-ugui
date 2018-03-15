@@ -10,9 +10,10 @@ namespace PSDUnity.UGUI
 {
     public class TextImport : IImageImport
     {
+
         public UGUINode DrawImage(ImgNode image, UGUINode parent)
         {
-            UGUINode node = PSDImporter.InstantiateItem(GroupType.TEXT, image.Name, parent);
+            UGUINode node = PSDImporter.InstantiateItem(GroupType.TEXT,image.Name, parent);
             UnityEngine.UI.Text myText = node.InitComponent<Text>();
             PSDImporter.SetPictureOrLoadColor(image, myText);
             RectTransform rectTransform = myText.GetComponent<RectTransform>();

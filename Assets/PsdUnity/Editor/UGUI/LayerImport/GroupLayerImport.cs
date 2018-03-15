@@ -14,7 +14,7 @@ namespace PSDUnity.UGUI
 
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImporter.InstantiateItem(GroupType.GROUP, layer.Name, parent);
+            UGUINode node = PSDImporter.InstantiateItem(GroupType.GROUP, layer.displayName, parent);
             UnityEngine.UI.LayoutGroup group = null;
             switch (layer.direction)
             {

@@ -16,7 +16,7 @@ namespace PSDUnity.UGUI
         }
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImporter.InstantiateItem(GroupType.DROPDOWN, layer.Name, parent);
+            UGUINode node = PSDImporter.InstantiateItem(GroupType.DROPDOWN, layer.displayName, parent);
             Dropdown dropdown = node.InitComponent<Dropdown>();
             ScrollRect scrllRect = dropdown.template.GetComponent<ScrollRect>();
             RectTransform content = scrllRect.content;
@@ -26,7 +26,7 @@ namespace PSDUnity.UGUI
             childNode.transform.SetParent(PSDImporter.canvas.transform);
             childNode.anchoType = AnchoType.Down | AnchoType.XStretch;
             //由于设置相对坐标需要，所以修改了部分预制体的状态
-            childNode.ReprocessEvent = () => {
+            childNode.inversionReprocess += () => {
                 RectTransform rt = childNode.InitComponent<RectTransform>();
                 rt.pivot = new Vector2(0.5f, 1);
                 rt.anchoredPosition = Vector3.zero;
@@ -39,7 +39,7 @@ namespace PSDUnity.UGUI
                 {
                     PSDImporter.SetPictureOrLoadColor(image, dropdown.image);
                     PSDImporter.SetRectTransform(image, dropdown.GetComponent<RectTransform>());
-                    dropdown.name = layer.Name;
+                    dropdown.name = layer.displayName;
                 }
                 else if(lowerName.StartsWith("b2_"))
                 {
@@ -74,12 +74,13 @@ namespace PSDUnity.UGUI
             for (int i = 0; i < layer.children.Count; i++)
             {
                 GroupNode child = layer.children[i] as GroupNode;
-                string lowerName = child.Name;
+                string lowerName = child.displayName;
                 if (lowerName.StartsWith("vb_"))
                 {
                     UGUINode barNode = ctrl.DrawLayer(child, childNode);
                     scrllRect.verticalScrollbar = barNode.InitComponent<Scrollbar>();
                     scrllRect.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHide;
+                    barNode.anchoType = AnchoType.Right | AnchoType.YCenter;
                 }
                 else
                 {

@@ -5,13 +5,9 @@ namespace PSDUnity.UGUI
 {
     public class ScrollBarLayerImport : ILayerImport
     {
-        public ScrollBarLayerImport()
-        {
-        }
-
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImporter.InstantiateItem(GroupType.SCROLLBAR, layer.Name, parent);
+            UGUINode node = PSDImporter.InstantiateItem(GroupType.SCROLLBAR, layer.displayName, parent);
             Scrollbar scrollBar = node.InitComponent<Scrollbar>();
 
             switch (layer.direction)
@@ -42,13 +38,16 @@ namespace PSDUnity.UGUI
                 {
                     graph = scrollBar.GetComponent<UnityEngine.UI.Image>();
                     PSDImporter.SetRectTransform(image, scrollBar.GetComponent<RectTransform>());
-                    scrollBar.name = layer.Name;
+                    scrollBar.name = layer.displayName;
                 }
                 else if (lowerName.StartsWith("h_"))
                 {
                     graph = scrollBar.handleRect.GetComponent<UnityEngine.UI.Image>();
+                    node.inversionReprocess += () =>
+                    {
+                        PSDImporter.SetCustomAnchor(scrollBar.GetComponent<RectTransform>(),scrollBar.handleRect);
+                    };
                 }
-
                 if (graph == null)
                 {
                     //忽略Scorllbar其他的artLayer

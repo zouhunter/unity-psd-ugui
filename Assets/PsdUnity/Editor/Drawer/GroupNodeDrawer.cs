@@ -121,7 +121,7 @@ namespace PSDUnity.Data
 #elif UNITY_2017
                         directionProp.enumValueIndex = enumDirectionToIndex((Direction)EditorGUI.EnumFlagsField(rect, new GUIContent("方向"), lastDir));
 #else
-                        directionProp.enumValueIndex = enumDirectionToIndex((Direction)EditorGUI.EnumFlagsField(rect, new GUIContent("方向"), lastDir));
+                        directionProp.enumValueIndex = enumDirectionToIndex((Direction)EditorGUI.EnumMaskField(rect, new GUIContent("方向"), lastDir));
 #endif
                         rect.y += SingleHeight;
                         break;

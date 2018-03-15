@@ -15,7 +15,7 @@ namespace PSDUnity.UGUI
         }
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImporter.InstantiateItem(GroupType.TOGGLE,layer.Name,parent);// GameObject.Instantiate(temp) as UnityEngine.UI.Toggle;
+            UGUINode node = PSDImporter.InstantiateItem(GroupType.TOGGLE,layer.displayName,parent);// GameObject.Instantiate(temp) as UnityEngine.UI.Toggle;
             UnityEngine.UI.Toggle toggle = node.InitComponent<UnityEngine.UI.Toggle>();
             if (layer.images != null)
             {

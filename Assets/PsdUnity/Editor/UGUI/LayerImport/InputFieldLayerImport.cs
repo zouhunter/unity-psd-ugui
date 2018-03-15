@@ -7,7 +7,7 @@ namespace PSDUnity.UGUI
     {
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImporter.InstantiateItem(GroupType.INPUTFIELD, layer.Name, parent);
+            UGUINode node = PSDImporter.InstantiateItem(GroupType.INPUTFIELD, layer.displayName, parent);
             UnityEngine.UI.InputField inputfield = node.InitComponent<UnityEngine.UI.InputField>();
 
             if (layer.images != null)

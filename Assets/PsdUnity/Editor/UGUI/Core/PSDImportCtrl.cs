@@ -12,79 +12,49 @@ namespace PSDUnity.UGUI
 {
     public class PSDImportCtrl
     {
-        private IImageImport spriteImport;
-        private IImageImport textImport;
-
-        private ILayerImport buttonImport;
-        private ILayerImport toggleImport;
-        private ILayerImport panelImport;
-        private ILayerImport scrollViewImport;
-        private ILayerImport scrollBarImport;
-        private ILayerImport sliderImport;
-        private ILayerImport gridImport;
-        private ILayerImport groupImport;
-        private ILayerImport inputFiledImport;
-        private ILayerImport dropdownImport;
-
+        private Dictionary<ImgType, IImageImport> imgImporterDic;
+        private Dictionary<GroupType, ILayerImport> layerImporterDic;
 
         public PSDImportCtrl()
         {
             InitDrawers();
         }
 
+        private void InitDrawers()
+        {
+            imgImporterDic = new Dictionary<ImgType, IImageImport>();
+
+            imgImporterDic.Add(ImgType.Texture, new TextureImport());
+            imgImporterDic.Add(ImgType.Image, new SpriteImport());
+            imgImporterDic.Add(ImgType.AtlasImage, new SpriteImport());
+            imgImporterDic.Add(ImgType.Color, new SpriteImport());
+            imgImporterDic.Add(ImgType.Label, new TextImport());
+
+            layerImporterDic = new Dictionary<GroupType, ILayerImport>();
+            layerImporterDic.Add(GroupType.SLIDER, new SliderLayerImport(this));
+            layerImporterDic.Add(GroupType.INPUTFIELD, new InputFieldLayerImport());
+            layerImporterDic.Add(GroupType.BUTTON, new ButtonLayerImport(this));
+            layerImporterDic.Add(GroupType.TOGGLE, new ToggleLayerImport(this));
+            layerImporterDic.Add(GroupType.IMAGE, new PanelLayerImport(this));
+            layerImporterDic.Add(GroupType.EMPTY, new PanelLayerImport(this));
+            layerImporterDic.Add(GroupType.SCROLLVIEW, new ScrollViewLayerImport(this));
+            layerImporterDic.Add(GroupType.SCROLLBAR, new ScrollBarLayerImport());
+            layerImporterDic.Add(GroupType.GRID, new GridLayerImport(this));
+            layerImporterDic.Add(GroupType.GROUP, new GroupLayerImport(this));
+            layerImporterDic.Add(GroupType.DROPDOWN, new DropDownLayerImport(this));
+        }
+
         public void Import(GroupNode[] gourps, Vector2 uiSize)
         {
-            BeginDrawUILayers(gourps, uiSize);
-            BeginSetUIParents(PSDImporter.uinode);
-            BeginSetAnchers(PSDImporter.uinode.childs[0]);
-
-            //最外层的要单独处理
-            var rp = PSDImporter.uinode.InitComponent<RectTransform>();
-            var rt = PSDImporter.uinode.childs[0].InitComponent<RectTransform>();
-            PSDImporter.SetNormalAnchor(AnchoType.XCenter|AnchoType.YCenter,rt, rp);
-
-            BeginReprocess(PSDImporter.uinode.childs[0]);//后处理
+            BeginDrawUILayers(gourps, uiSize);//直接绘制所有层级
+            BeginSetUIParents(PSDImporter.uinode);//设置层级之前的父子关系
+            BeginSetAnchers(PSDImporter.uinode);//设置层级的锚点
+            BeginReprocess(PSDImporter.uinode);//后处理
         }
 
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = null;
-            switch (layer.groupType)
-            {
-                case GroupType.EMPTY:
-                case GroupType.IMAGE:
-                    node = panelImport.DrawLayer(layer, parent);
-                    break;
-                case GroupType.BUTTON:
-                    node = buttonImport.DrawLayer(layer, parent);
-                    break;
-                case GroupType.TOGGLE:
-                    node = toggleImport.DrawLayer(layer, parent);
-                    break;
-                case GroupType.GRID:
-                    node = gridImport.DrawLayer(layer, parent);
-                    break;
-                case GroupType.SCROLLVIEW:
-                    node = scrollViewImport.DrawLayer(layer, parent);
-                    break;
-                case GroupType.SLIDER:
-                    node = sliderImport.DrawLayer(layer, parent);
-                    break;
-                case GroupType.GROUP:
-                    node = groupImport.DrawLayer(layer, parent);
-                    break;
-                case GroupType.INPUTFIELD:
-                    node = inputFiledImport.DrawLayer(layer, parent);
-                    break;
-                case GroupType.SCROLLBAR:
-                    node = scrollBarImport.DrawLayer(layer, parent);
-                    break;
-                case GroupType.DROPDOWN:
-                    node = dropdownImport.DrawLayer(layer, parent);
-                    break;
-                default:
-                    break;
-            }
+            UGUINode node = layerImporterDic[layer.groupType].DrawLayer(layer, parent);
             return node;
         }
 
@@ -116,21 +86,7 @@ namespace PSDUnity.UGUI
 
         public UGUINode DrawImage(ImgNode image, UGUINode parent)
         {
-            UGUINode node = null;
-            switch (image.type)
-            {
-                case ImgType.Image:
-                case ImgType.Texture:
-                case ImgType.AtlasImage:
-                case ImgType.Color:
-                    node = spriteImport.DrawImage(image, parent);
-                    break;
-                case ImgType.Label:
-                    node = textImport.DrawImage(image, parent);
-                    break;
-                default:
-                    break;
-            }
+            UGUINode node = imgImporterDic[image.type].DrawImage(image,parent);
             if(node == null)
             {
                 Debug.Log(image.type);
@@ -140,31 +96,14 @@ namespace PSDUnity.UGUI
             return node;
         }
 
-        private void InitDrawers()
-        {
-            spriteImport = new SpriteImport();
-            textImport = new TextImport();
-            sliderImport = new SliderLayerImport(this);
-            inputFiledImport = new InputFieldLayerImport();
-            buttonImport = new ButtonLayerImport(this);
-            toggleImport = new ToggleLayerImport(this);
-            panelImport = new PanelLayerImport(this);
-            scrollViewImport = new ScrollViewLayerImport(this);
-            scrollBarImport = new ScrollBarLayerImport();
-            gridImport = new GridLayerImport(this);
-            groupImport = new GroupLayerImport(this);
-            dropdownImport = new DropDownLayerImport(this);
-
-        }
-
         public void BeginDrawUILayers(GroupNode[] groups, Vector2 uiSize)
         {
-            UGUINode empty = PSDImporter.InstantiateItem(GroupType.EMPTY, "PSDUnity", PSDImporter.uinode);
-            RectTransform rt = empty.InitComponent<RectTransform>();
+            //UGUINode empty = PSDImporter.InstantiateItem(new GameObject("",typeof(RectTransform)), "PSDUnity", PSDImporter.uinode);
+            RectTransform rt = PSDImporter.uinode.InitComponent<RectTransform>();
             rt.sizeDelta = new Vector2(uiSize.x, uiSize.y);
             for (int layerIndex = 0; layerIndex < groups.Length; layerIndex++)
             {
-                DrawLayer(groups[layerIndex] as GroupNode, empty);
+                DrawLayer(groups[layerIndex] as GroupNode, PSDImporter.uinode);
             }
 
         }
@@ -193,10 +132,7 @@ namespace PSDUnity.UGUI
             {
                 BeginReprocess(item);
             }
-            if (node.ReprocessEvent != null)
-            {
-                node.ReprocessEvent();
-            }
+            node.InversionReprocess();
         }
     }
 }

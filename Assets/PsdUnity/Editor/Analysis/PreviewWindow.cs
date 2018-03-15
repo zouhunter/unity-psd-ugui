@@ -26,8 +26,8 @@ namespace PSDUnity.Analysis
         private void OnEnable()
         {
             psdPath = EditorPrefs.GetString(Prefs_pdfPath);
-            ruleObj = PsdResourceUtil.GetRuleObj();
-            settingObj = PsdResourceUtil.GetSettingObj();
+            ruleObj = PsdResourceUtil.DefultRuleObj();
+            settingObj = PsdResourceUtil.DefultSettingObj();
         }
 
         private void OnGUI()
@@ -77,7 +77,7 @@ namespace PSDUnity.Analysis
                 if (EditorUtility.DisplayDialog("创建新规则", "确认后将生成新的规则文件！", "确认", "取消"))
                 {
                     ruleObj = ScriptableObject.CreateInstance<RuleObject>();
-                    ProjectWindowUtil.CreateAsset(ruleObj, "new rule");
+                    ProjectWindowUtil.CreateAsset(ruleObj, "new rule.asset");
                 }
             }
             var contentRect = new Rect(configRect.x + configRect.width * 0.1f, configRect.y, groupWidth * 0.7f, configRect.height);
@@ -92,7 +92,7 @@ namespace PSDUnity.Analysis
                 if (EditorUtility.DisplayDialog("创建新设置", "确认后将生成新的设置文件！", "确认", "取消"))
                 {
                     settingObj = ScriptableObject.CreateInstance<SettingObject>();
-                    ProjectWindowUtil.CreateAsset(settingObj, "new setting");
+                    ProjectWindowUtil.CreateAsset(settingObj, "new setting.asset");
                 }
             }
             settingObj = EditorGUI.ObjectField(contentRect, settingObj, typeof(SettingObject), false) as SettingObject;
@@ -168,7 +168,7 @@ namespace PSDUnity.Analysis
 
             ExportUtility.InitPsdExportEnvrioment(exporter, new Vector2(psd.Width, psd.Height));
             var rootNode = new GroupNode(new Rect(Vector2.zero, exporter.settingObj.defultUISize), 0, -1);
-            rootNode.Name = exporter.name;
+            rootNode.displayName = exporter.name;
 
             var groupDatas = ExportUtility.CreatePictures(psdLayers, new Vector2(psd.Width, psd.Height), exporter.settingObj.defultUISize, exporter.settingObj.forceSprite);
 

@@ -7,17 +7,15 @@ using System.Collections.Generic;
 using PSDUnity;
 namespace PSDUnity.UGUI
 {
-    public class SpriteImport : IImageImport
+    public class TextureImport : IImageImport
     {
         public UGUINode DrawImage(ImgNode image, UGUINode parent)
         {
-            UGUINode node = PSDImporter.InstantiateItem(GroupType.IMAGE, image.Name, parent);
-            UnityEngine.UI.Image pic = node.InitComponent<UnityEngine.UI.Image>();
+            UGUINode node = PSDImporter.InstantiateItem(GroupType.RawIMAGE, image.sprite.name, parent);
+            UnityEngine.UI.RawImage pic = node.InitComponent<UnityEngine.UI.RawImage>();
             PSDImporter.SetPictureOrLoadColor(image, pic);
-            pic.type = UnityEngine.UI.Image.Type.Simple;
             PSDImporter.SetRectTransform(image, pic.GetComponent<RectTransform>());
             return node;
         }
     }
-    
 }

@@ -286,7 +286,8 @@ namespace PSDUnity.Analysis
                     break;
                 case LayerType.Text:
                     var textInfo = layer.Records.TextInfo;
-                    data = new ImgNode(layer.Name, rect, textInfo.fontName, textInfo.fontSize, textInfo.text, textInfo.color);
+                    var color = new Color(textInfo.color[0], textInfo.color[1], textInfo.color[2], textInfo.color[3]);
+                    data = new ImgNode(layer.Name, rect, textInfo.fontName, textInfo.fontSize, textInfo.text, color);
                     break;
                 case LayerType.Group:
                     break;

@@ -1,10 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Xml.Serialization;
-using UnityEngine;
-using PSDUnity;
+﻿using UnityEngine;
 namespace PSDUnity.UGUI
 {
     public static class PSDImporter
@@ -24,8 +18,7 @@ namespace PSDUnity.UGUI
             }
             else
             {
-                var canvasPfb = RuleObject.prefabs.Find(x => x.groupType == GroupType.CANVAS).prefab;
-                canvas = GameObject.Instantiate(canvasPfb).GetComponent<Canvas>();
+                canvas = GameObjectGenerater.CreateTemplate(GroupType.CANVAS).GetComponent<Canvas>();
                 canvas.renderMode = RenderMode.ScreenSpaceOverlay;
                 UnityEngine.UI.CanvasScaler scaler = PSDImporter.canvas.GetComponent<UnityEngine.UI.CanvasScaler>();
                 scaler.referenceResolution = new Vector2(uiSize.x, uiSize.y);
@@ -41,15 +34,20 @@ namespace PSDUnity.UGUI
             import.Import(groupNodes, canvasSize);
         }
 
-        public static UGUINode InstantiateItem(GroupType groupType, string name, UGUINode parent)
+        public static UGUINode InstantiateItem(GroupType groupType,string name, UGUINode parent)
         {
-            GameObject prefab = RuleObject.prefabs.Find(x => x.groupType == groupType).prefab;
-            GameObject item = GameObject.Instantiate(prefab) as GameObject;
+            var item = GameObjectGenerater.CreateTemplate(groupType);
+            return InstantiateItem(item, name, parent);
+        }
+
+        public static UGUINode InstantiateItem(GameObject item, string name, UGUINode parent)
+        {
             item.name = name;
             item.transform.SetParent(canvas.transform, false);
             UGUINode node = new UGUINode(item.transform, parent);
             return node;
         }
+
 
         public static void SetPictureOrLoadColor(ImgNode image, UnityEngine.UI.Graphic graph)
         {
@@ -123,6 +121,12 @@ namespace PSDUnity.UGUI
             rectt.anchoredPosition = new Vector2(xanchored, yanchored);
         }
 
+        /// <summary>
+        /// 使用的前提是rectt的类型为双局中
+        /// </summary>
+        /// <param name="anchoType"></param>
+        /// <param name="parentRectt"></param>
+        /// <param name="rectt"></param>
         public static void SetNormalAnchor(AnchoType anchoType, RectTransform parentRectt, RectTransform rectt)
         {
             Vector2 sizeDelta = rectt.sizeDelta;

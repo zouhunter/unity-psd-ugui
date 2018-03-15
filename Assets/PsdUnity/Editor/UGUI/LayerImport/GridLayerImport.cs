@@ -16,7 +16,7 @@ namespace PSDUnity.UGUI
         }
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImporter.InstantiateItem(GroupType.GRID, layer.Name, parent);
+            UGUINode node = PSDImporter.InstantiateItem(GroupType.GRID, layer.displayName, parent);
             node.anchoType = AnchoType.Up | AnchoType.Left;
             GridLayoutGroup gridLayoutGroup = node.InitComponent<GridLayoutGroup>();
             PSDImporter.SetRectTransform(layer, gridLayoutGroup.GetComponent<RectTransform>());

@@ -13,7 +13,7 @@ namespace PSDUnity.UGUI
 
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImporter.InstantiateItem(GroupType.EMPTY, layer.Name, parent);//GameObject.Instantiate(temp) as UnityEngine.UI.Image;
+            UGUINode node = PSDImporter.InstantiateItem(GroupType.EMPTY, layer.displayName, parent);//GameObject.Instantiate(temp) as UnityEngine.UI.Image;
             UnityEngine.UI.Graphic panel = null;
 
             if (layer.children!=null)
@@ -33,10 +33,9 @@ namespace PSDUnity.UGUI
                     {
                         panel = node.InitComponent<UnityEngine.UI.Image>();
                     }
-
                     PSDImporter.SetPictureOrLoadColor(image, panel);
                     PSDImporter.SetRectTransform(image, panel.GetComponent<RectTransform>());
-                    panel.name = layer.Name;
+                    panel.name = layer.displayName;
                 }
                 else
                 {
@@ -52,7 +51,7 @@ namespace PSDUnity.UGUI
                 {
                     panel.color = color;
                 }
-                panel.name = layer.Name;
+                panel.name = layer.displayName;
             }
             return node;
 
