@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f44798a39079fd84687a523272440725, type: 3}
+  m_Name: RuleTemp
+  m_EditorClassIdentifier: 
+  prefabs:
+  - groupType: 1
+    keyName: button
+    prefab: {fileID: 100002, guid: 9a94c0cbaca3a48468b0b1e51fefcbfb, type: 2}
+  - groupType: 3
+    keyName: canvas
+    prefab: {fileID: 100000, guid: dec381fc4475a4a33bcfd41351b26fcc, type: 2}
+  - groupType: 13
+    keyName: dropdown
+    prefab: {fileID: 191044, guid: d6eef6649ab97db4f900c0f6a896a73e, type: 2}
+  - groupType: 0
+    keyName: empty
+    prefab: {fileID: 172186, guid: a47d3ef1adf404641b6d23a93e59ee53, type: 2}
+  - groupType: 11
+    keyName: group
+    prefab: {fileID: 145382, guid: 25904f280417ef748977530a357b5fb0, type: 2}
+  - groupType: 4
+    keyName: grid
+    prefab: {fileID: 100000, guid: ed417986c539a4fc7b09f220ff4ceef6, type: 2}
+  - groupType: 5
+    keyName: image
+    prefab: {fileID: 100000, guid: 9d52d80f2b2a64fbe96cd04604170d32, type: 2}
+  - groupType: 12
+    keyName: inputfield
+    prefab: {fileID: 177172, guid: 2e48a2d5b2f2ccb439d0cf1eeba3e6dd, type: 2}
+  - groupType: 6
+    keyName: rawimage
+    prefab: {fileID: 185780, guid: b22710b4e94fd4947ae6eebd62b8ac32, type: 2}
+  - groupType: 10
+    keyName: scrollbar
+    prefab: {fileID: 107768, guid: 2b101ae8ff3e18e4eb5aca168965d85c, type: 2}
+  - groupType: 7
+    keyName: scrollview
+    prefab: {fileID: 100000, guid: ca7d801212b074407a4fc212216da328, type: 2}
+  - groupType: 8
+    keyName: slider
+    prefab: {fileID: 122746, guid: 95fdb08286306794583b6e1d19021aaa, type: 2}
+  - groupType: 9
+    keyName: text
+    prefab: {fileID: 100000, guid: 0f5f099613ddb4155b4c775d8db5984d, type: 2}
+  - groupType: 2
+    keyName: toggle
+    prefab: {fileID: 182414, guid: f4c3d75106f0b944faa6f14731cec415, type: 2}
+  sepraterCharimg: 35
+  asAtalsMark: A
+  asSingleMark: S
+  asTextureMark: T
+  defultImgType: 2
+  asGoubleMark: G
+  asNoRepetMark: N
+  asCustomMark: C
+  nameType: 2
+  defultImgSource: 1
+  sepraterChargroup: 64
+  argumentChar: 58
