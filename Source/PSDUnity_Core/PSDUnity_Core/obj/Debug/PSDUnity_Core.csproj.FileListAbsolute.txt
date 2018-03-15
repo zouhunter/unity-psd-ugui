@@ -1,6 +1,0 @@
-E:\GitHub\PsdUnity\Source\PSDUnity_Core\PSDUnity_Core\bin\Debug\PSDUnity_Core.dll
-E:\GitHub\PsdUnity\Source\PSDUnity_Core\PSDUnity_Core\bin\Debug\PSDUnity_Core.pdb
-E:\GitHub\PsdUnity\Assets\PsdUnity\PSDUnity_Core.dll
-E:\GitHub\PsdUnity\Assets\PsdUnity\PSDUnity_Core.pdb
-E:\GitHub\PsdUnity\Source\PSDUnity_Core\PSDUnity_Core\obj\Debug\PSDUnity_Core.dll
-E:\GitHub\PsdUnity\Source\PSDUnity_Core\PSDUnity_Core\obj\Debug\PSDUnity_Core.pdb
