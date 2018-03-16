@@ -29,7 +29,10 @@ namespace PSDUnity.Analysis
             ruleObj = PsdResourceUtil.DefultRuleObj();
             settingObj = PsdResourceUtil.DefultSettingObj();
         }
-
+        private void OnDisable()
+        {
+           if(psd!=null) psd.Dispose();
+        }
         private void OnGUI()
         {
             DrawFileSelect();
@@ -162,7 +165,7 @@ namespace PSDUnity.Analysis
             }
             exporter.settingObj = settingObj;
             exporter.ruleObj = ruleObj;
-            exporter.name = "exporter" + System.DateTime.Now.Second.ToString();
+            exporter.name = "exporter" + System.DateTime.UtcNow.ToFileTimeUtc();
             ProjectWindowUtil.CreateAsset(exporter, exporter.name + ".asset");
             EditorUtility.SetDirty(exporter);
 
@@ -206,14 +209,22 @@ namespace PSDUnity.Analysis
                 EditorGUILayout.LabelField("PSD文件路径：", GUILayout.Width(30));
                 EditorGUI.BeginChangeCheck();
                 psdPath = EditorGUILayout.TextField(psdPath);
+
                 if (GUILayout.Button("选择", EditorStyles.miniButtonRight, GUILayout.Width(40)))
                 {
                     string dir = Application.dataPath;
-                    if (!string.IsNullOrEmpty(psdPath))
-                    {
+                    if (!string.IsNullOrEmpty(psdPath)){
                         dir = System.IO.Path.GetDirectoryName(psdPath);
                     }
+
                     psdPath = EditorUtility.OpenFilePanel("选择一个pdf文件", dir, "psd");
+
+                    if (psdPath.Contains(Application.dataPath))
+                    {
+                        psdPath = psdPath.Replace("\\", "/").Replace(Application.dataPath, "Assets");
+                    }
+                    Debug.Log(psdPath);
+
                     if (!string.IsNullOrEmpty(psdPath))
                     {
                         OpenPsdDocument();

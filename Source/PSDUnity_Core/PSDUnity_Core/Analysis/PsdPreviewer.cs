@@ -340,8 +340,8 @@ namespace PSDUnity.Analysis
                     headerTextAlignment = TextAlignment.Left,
                     sortedAscending = true,
                     sortingArrowAlignment = TextAlignment.Center,
-                    width = 150,
-                    minWidth = 60,
+                    width = 300,
+                    minWidth = 100,
                     autoResize = false,
                     allowToggleVisibility = true
                 }

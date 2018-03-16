@@ -136,6 +136,7 @@ namespace PSDUnity.Analysis
                     }
                     TreeViewUtility.TreeToList<GroupNode>(rootNode, exporter.groups, true);
                     EditorUtility.SetDirty(exporter);
+                    psd.Dispose();
                 }
             }
         }
@@ -145,7 +146,9 @@ namespace PSDUnity.Analysis
             using (var hor = new EditorGUILayout.HorizontalScope())
             {
                 EditorGUILayout.LabelField("文档路径:", GUILayout.Width(60));
-                if (GUILayout.Button(new GUIContent(exporter.psdFile, "点击此处选择文件夹！"), EditorStyles.textField))
+                exporter.psdFile = EditorGUILayout.TextField(exporter.psdFile);
+
+                if (GUILayout.Button("选择", GUILayout.Width(60)))
                 {
                     var dir = PlayerPrefs.GetString(Prefs_LastPsdsDir);
                     if (string.IsNullOrEmpty(dir))
@@ -165,6 +168,9 @@ namespace PSDUnity.Analysis
 
                     if (!string.IsNullOrEmpty(path))
                     {
+                        if (path.Contains(Application.dataPath)){
+                            path = path.Replace("\\", "/").Replace(Application.dataPath,"Assets");
+                        }
                         exporter.psdFile = path;
                         PlayerPrefs.SetString(Prefs_LastPsdsDir, System.IO.Path.GetDirectoryName(path));
                     }
