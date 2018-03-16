@@ -32,7 +32,7 @@ namespace PSDUnity.Analysis
 
         private static Vector2 maxSize { get; set; }
         public static RuleObject RuleObj { get { return exporter.ruleObj; } }
-        public static RuleObject  settingObj { get { return exporter.ruleObj; } }
+        public static RuleObject settingObj { get { return exporter.ruleObj; } }
         public static Exporter exporter { get; set; }
         private static Vector2 rootSize { get; set; }
 
@@ -274,7 +274,7 @@ namespace PSDUnity.Analysis
                 case LayerType.Normal:
                     data = new ImgNode(rect, texture).SetIndex(GetLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
                     break;
-                case LayerType.SolidImage:
+                case LayerType.Color:
                     if (forceSprite)
                     {
                         data = new ImgNode(rect, texture).SetIndex(GetLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
@@ -290,8 +290,9 @@ namespace PSDUnity.Analysis
                     data = new ImgNode(layer.Name, rect, textInfo.fontName, textInfo.fontSize, textInfo.text, color);
                     break;
                 case LayerType.Group:
-                    break;
-                case LayerType.Divider:
+                case LayerType.Other:
+                    Debug.LogError("you psd have some not supported layer.(defult layer is not supported)! \n make sure your layers is Intelligent object or color lump.");
+                    data = new ImgNode(rect, texture).SetIndex(GetLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
                     break;
                 default:
                     break;
@@ -314,6 +315,8 @@ namespace PSDUnity.Analysis
             }
             return id;
         }
+
+        /// <summary>
         /// 从layer解析图片
         /// </summary>
         /// <param name="layer"></param>
@@ -327,7 +330,14 @@ namespace PSDUnity.Analysis
             Channel green = Array.Find(layer.Channels, i => i.Type == ChannelType.Green);
             Channel blue = Array.Find(layer.Channels, i => i.Type == ChannelType.Blue);
             Channel alpha = Array.Find(layer.Channels, i => i.Type == ChannelType.Alpha);
+
             //Channel mask = Array.Find(layer.Channels, i => i.Type == ChannelType.Mask);
+
+            //if (layer.HasMask && alpha != null && alpha.Data != null)
+            //{
+            //    Debug.Log(mask.Data.Length + ":" + alpha.Data.Length);
+            //}
+
             for (int i = 0; i < pixels.Length; i++)
             {
                 byte r = red.Data[i];
@@ -336,9 +346,9 @@ namespace PSDUnity.Analysis
                 byte a = 255;
 
                 if (alpha != null)
+                {
                     a = alpha.Data[i];
-                //if (mask != null)
-                //    a *= mask.Data[i];
+                }
 
                 int mod = i % texture.width;
                 int n = ((texture.width - mod - 1) + i) - mod;
@@ -441,7 +451,6 @@ namespace PSDUnity.Analysis
         public static Rect GetRectFromLayer(IPsdLayer psdLayer)
         {
             //rootSize = new Vector2(rootSize.x > maxSize.x ? maxSize.x : rootSize.x, rootSize.y > maxSize.y ? maxSize.y : rootSize.y);
-
             var left = psdLayer.Left;// psdLayer.Left <= 0 ? 0 : psdLayer.Left;
             var bottom = psdLayer.Bottom;// psdLayer.Bottom <= 0 ? 0 : psdLayer.Bottom;
             var top = psdLayer.Top;// psdLayer.Top >= rootSize.y ? rootSize.y : psdLayer.Top;

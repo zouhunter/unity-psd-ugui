@@ -21,9 +21,9 @@ public class AnalysisUtility
     {
         previewIcons.Add(LayerType.Group.ToString(), EditorGUIUtility.FindTexture("GameObject Icon"));
         previewIcons.Add(LayerType.Normal.ToString(), EditorGUIUtility.IconContent("Image Icon").image);
-        previewIcons.Add(LayerType.SolidImage.ToString(), EditorGUIUtility.FindTexture("Material Icon"));
+        previewIcons.Add(LayerType.Color.ToString(), EditorGUIUtility.FindTexture("Material Icon"));
         previewIcons.Add(LayerType.Text.ToString(), EditorGUIUtility.IconContent("Text Icon").image);
-        previewIcons.Add(LayerType.Divider.ToString(), EditorGUIUtility.FindTexture("Favorite Icon"));
+        previewIcons.Add(LayerType.Other.ToString(), EditorGUIUtility.FindTexture("Favorite Icon"));
         previewIcons.Add(GroupType.BUTTON.ToString(), EditorGUIUtility.IconContent("Button Icon").image);
         previewIcons.Add(GroupType.TOGGLE.ToString(), EditorGUIUtility.IconContent("Toggle Icon").image);
         previewIcons.Add(GroupType.SLIDER.ToString(), EditorGUIUtility.IconContent("Slider Icon").image);

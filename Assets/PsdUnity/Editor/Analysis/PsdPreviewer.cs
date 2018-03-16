@@ -376,7 +376,7 @@ namespace PSDUnity.Analysis
                         }
                     });
                 }
-                else if(root.layerType != LayerType.Group && root.layerType != LayerType.Divider)
+                else if(root.layerType != LayerType.Group && root.layerType != LayerType.Other)
                 {
                     artItems.Add(root);
                 }
@@ -414,7 +414,7 @@ namespace PSDUnity.Analysis
 
         private void RetriveArtLayer(PreviewItem data, UnityAction<PreviewItem> onRetrive)
         {
-            if (data.layerType != LayerType.Group && data.layerType != LayerType.Divider)
+            if (data.layerType != LayerType.Group && data.layerType != LayerType.Other)
             {
                 onRetrive(data);
             }

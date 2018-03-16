@@ -206,7 +206,6 @@ namespace PSDUnity.Analysis
                     {
                         psdPath = psdPath.Replace("\\", "/").Replace(Application.dataPath, "Assets");
                     }
-                    Debug.Log(psdPath);
 
                     if (!string.IsNullOrEmpty(psdPath))
                     {

@@ -30,7 +30,6 @@ namespace PSDUnity
 
         [Header("图片生成配制"), Space(10)]
         public string globalPath = "Assets/Common/Images";
-        public bool maskAsColor = false;
         public bool forceSprite = true;
         public string fileExt = ".png";
         public Vector2 defultUISize = new Vector2(1600, 900);

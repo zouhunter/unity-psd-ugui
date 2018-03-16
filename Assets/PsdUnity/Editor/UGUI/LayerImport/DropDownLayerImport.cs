@@ -71,20 +71,23 @@ namespace PSDUnity.UGUI
                 }
             }
 
-            for (int i = 0; i < layer.children.Count; i++)
+            if(layer.children != null)
             {
-                GroupNode child = layer.children[i] as GroupNode;
-                string lowerName = child.displayName;
-                if (lowerName.StartsWith("vb_"))
+                for (int i = 0; i < layer.children.Count; i++)
                 {
-                    UGUINode barNode = ctrl.DrawLayer(child, childNode);
-                    scrllRect.verticalScrollbar = barNode.InitComponent<Scrollbar>();
-                    scrllRect.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHide;
-                    barNode.anchoType = AnchoType.Right | AnchoType.YCenter;
-                }
-                else
-                {
-                    ctrl.DrawLayer(child,node);
+                    GroupNode child = layer.children[i] as GroupNode;
+                    string lowerName = child.displayName;
+                    if (lowerName.StartsWith("vb_"))
+                    {
+                        UGUINode barNode = ctrl.DrawLayer(child, childNode);
+                        scrllRect.verticalScrollbar = barNode.InitComponent<Scrollbar>();
+                        scrllRect.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHide;
+                        barNode.anchoType = AnchoType.Right | AnchoType.YCenter;
+                    }
+                    else
+                    {
+                        ctrl.DrawLayer(child, node);
+                    }
                 }
             }
 

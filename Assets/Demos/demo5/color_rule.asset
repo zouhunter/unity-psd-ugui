@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f44798a39079fd84687a523272440725, type: 3}
+  m_Name: new rule
+  m_EditorClassIdentifier: 
+  sepraterCharimg: 35
+  asAtalsMark: A
+  asSingleMark: S
+  asTextureMark: T
+  createAtlas: 1
+  asGoubleMark: G
+  asNoRepetMark: N
+  asCustomMark: C
+  nameType: 2
+  defultImgSource: 1
+  sepraterChargroup: 64
+  argumentChar: 58
+  globalPath: Assets/Common/Images
+  forceSprite: 1
+  fileExt: .png
+  defultUISize: {x: 1600, y: 900}
+  picNameTemp: '{0}.png'
+  pixelsToUnitSize: 100
+  maxSize: 4096
