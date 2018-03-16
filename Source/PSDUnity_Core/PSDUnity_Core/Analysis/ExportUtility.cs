@@ -32,7 +32,7 @@ namespace PSDUnity.Analysis
 
         private static Vector2 maxSize { get; set; }
         public static RuleObject RuleObj { get { return exporter.ruleObj; } }
-        public static SettingObject settingObj { get { return exporter.settingObj; } }
+        public static RuleObject settingObj { get { return exporter.ruleObj; } }
         public static Exporter exporter { get; set; }
         private static Vector2 rootSize { get; set; }
 
@@ -174,8 +174,8 @@ namespace PSDUnity.Analysis
             if (textureArray.Length == 0) return;
             // The output of PackTextures returns a Rect array from which we can create our sprites
             Rect[] rects;
-            Texture2D atlas = new Texture2D(pictureInfo.settingObj.maxSize, pictureInfo.settingObj.maxSize);
-            rects = atlas.PackTextures(textureArray, 2, pictureInfo.settingObj.maxSize);
+            Texture2D atlas = new Texture2D(pictureInfo.ruleObj.maxSize, pictureInfo.ruleObj.maxSize);
+            rects = atlas.PackTextures(textureArray, 2, pictureInfo.ruleObj.maxSize);
             List<SpriteMetaData> Sprites = new List<SpriteMetaData>();
 
             // For each rect in the Rect Array create the sprite and assign to the SpriteMetaData
@@ -198,12 +198,12 @@ namespace PSDUnity.Analysis
             TextureImporter textureImporter = AssetImporter.GetAtPath(atlaspath) as TextureImporter;
 
             // Make sure the size is the same as our atlas then create the spritesheet
-            textureImporter.maxTextureSize = pictureInfo.settingObj.maxSize;
+            textureImporter.maxTextureSize = pictureInfo.ruleObj.maxSize;
             textureImporter.spritesheet = Sprites.ToArray();
             textureImporter.textureType = TextureImporterType.Sprite;
             textureImporter.spriteImportMode = SpriteImportMode.Multiple;
             textureImporter.spritePivot = new Vector2(0.5f, 0.5f);
-            textureImporter.spritePixelsPerUnit = pictureInfo.settingObj.pixelsToUnitSize;
+            textureImporter.spritePixelsPerUnit = pictureInfo.ruleObj.pixelsToUnitSize;
             AssetDatabase.ImportAsset(atlaspath, ImportAssetOptions.ForceUpdate);
 
             foreach (Texture2D tex in textureArray)
@@ -222,7 +222,7 @@ namespace PSDUnity.Analysis
             foreach (var texture in textureArray)
             {
                 byte[] buf = texture.EncodeToPNG();
-                var atlaspath = exportPath + "/" + string.Format(pictureInfo.settingObj.picNameTemp, texture.name);
+                var atlaspath = exportPath + "/" + string.Format(pictureInfo.ruleObj.picNameTemp, texture.name);
                 File.WriteAllBytes(Path.GetFullPath(atlaspath), buf);
                 AssetDatabase.Refresh();
 
@@ -230,7 +230,7 @@ namespace PSDUnity.Analysis
                 TextureImporter textureImporter = AssetImporter.GetAtPath(atlaspath) as TextureImporter;
 
                 // Make sure the size is the same as our atlas then create the spritesheet
-                textureImporter.maxTextureSize = pictureInfo.settingObj.maxSize;
+                textureImporter.maxTextureSize = pictureInfo.ruleObj.maxSize;
 
                 switch (imgType)
                 {
@@ -238,7 +238,7 @@ namespace PSDUnity.Analysis
                         textureImporter.textureType = TextureImporterType.Sprite;
                         textureImporter.spriteImportMode = SpriteImportMode.Single;
                         textureImporter.spritePivot = new Vector2(0.5f, 0.5f);
-                        textureImporter.spritePixelsPerUnit = pictureInfo.settingObj.pixelsToUnitSize;
+                        textureImporter.spritePixelsPerUnit = pictureInfo.ruleObj.pixelsToUnitSize;
                         break;
                     case ImgType.Texture:
                         textureImporter.textureType = TextureImporterType.Default;
@@ -274,7 +274,7 @@ namespace PSDUnity.Analysis
                 case LayerType.Normal:
                     data = new ImgNode(rect, texture).SetIndex(GetLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
                     break;
-                case LayerType.SolidImage:
+                case LayerType.Color:
                     if (forceSprite)
                     {
                         data = new ImgNode(rect, texture).SetIndex(GetLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
@@ -290,8 +290,9 @@ namespace PSDUnity.Analysis
                     data = new ImgNode(layer.Name, rect, textInfo.fontName, textInfo.fontSize, textInfo.text, color);
                     break;
                 case LayerType.Group:
-                    break;
-                case LayerType.Divider:
+                case LayerType.Other:
+                    Debug.LogError("you psd have some not supported layer.(defult layer is not supported)! \n make sure your layers is Intelligent object or color lump.");
+                    data = new ImgNode(rect, texture).SetIndex(GetLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
                     break;
                 default:
                     break;
@@ -314,6 +315,8 @@ namespace PSDUnity.Analysis
             }
             return id;
         }
+
+        /// <summary>
         /// 从layer解析图片
         /// </summary>
         /// <param name="layer"></param>
@@ -327,7 +330,14 @@ namespace PSDUnity.Analysis
             Channel green = Array.Find(layer.Channels, i => i.Type == ChannelType.Green);
             Channel blue = Array.Find(layer.Channels, i => i.Type == ChannelType.Blue);
             Channel alpha = Array.Find(layer.Channels, i => i.Type == ChannelType.Alpha);
+
             //Channel mask = Array.Find(layer.Channels, i => i.Type == ChannelType.Mask);
+
+            //if (layer.HasMask && alpha != null && alpha.Data != null)
+            //{
+            //    Debug.Log(mask.Data.Length + ":" + alpha.Data.Length);
+            //}
+
             for (int i = 0; i < pixels.Length; i++)
             {
                 byte r = red.Data[i];
@@ -336,9 +346,9 @@ namespace PSDUnity.Analysis
                 byte a = 255;
 
                 if (alpha != null)
+                {
                     a = alpha.Data[i];
-                //if (mask != null)
-                //    a *= mask.Data[i];
+                }
 
                 int mod = i % texture.width;
                 int n = ((texture.width - mod - 1) + i) - mod;
@@ -441,7 +451,6 @@ namespace PSDUnity.Analysis
         public static Rect GetRectFromLayer(IPsdLayer psdLayer)
         {
             //rootSize = new Vector2(rootSize.x > maxSize.x ? maxSize.x : rootSize.x, rootSize.y > maxSize.y ? maxSize.y : rootSize.y);
-
             var left = psdLayer.Left;// psdLayer.Left <= 0 ? 0 : psdLayer.Left;
             var bottom = psdLayer.Bottom;// psdLayer.Bottom <= 0 ? 0 : psdLayer.Bottom;
             var top = psdLayer.Top;// psdLayer.Top >= rootSize.y ? rootSize.y : psdLayer.Top;

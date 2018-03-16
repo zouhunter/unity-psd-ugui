@@ -34,11 +34,6 @@ namespace PSDUnity.Analysis
             {
                 exporter.ruleObj = PsdResourceUtil.DefultRuleObj();
             }
-
-            if (exporter.settingObj == null)
-            {
-                exporter.settingObj = PsdResourceUtil.DefultSettingObj();
-            }
         }
 
         private void InitTreeView()
@@ -85,7 +80,7 @@ namespace PSDUnity.Analysis
                 if (GUILayout.Button("Build-All", style, layout))
                 {
                     var canvasObj = Array.Find(Selection.objects, x => x is GameObject && (x as GameObject).GetComponent<Canvas>() != null);
-                    PSDImporter.InitEnviroment(exporter.ruleObj, exporter.settingObj.defultUISize, canvasObj == null ? FindObjectOfType<Canvas>() : (canvasObj as GameObject).GetComponent<Canvas>());
+                    PSDImporter.InitEnviroment(exporter.ruleObj, exporter.ruleObj.defultUISize, canvasObj == null ? FindObjectOfType<Canvas>() : (canvasObj as GameObject).GetComponent<Canvas>());
                     PSDImporter.StartBuild(rootNode);
                     AssetDatabase.Refresh();
                 }
@@ -93,8 +88,9 @@ namespace PSDUnity.Analysis
                 if (GUILayout.Button("Build-Sel", style, layout))
                 {
                     var canvasObj = Array.Find(Selection.objects, x => x is GameObject && (x as GameObject).GetComponent<Canvas>() != null);
-                    PSDImporter.InitEnviroment(exporter.ruleObj, exporter.settingObj.defultUISize, canvasObj == null ? FindObjectOfType<Canvas>() : (canvasObj as GameObject).GetComponent<Canvas>());
-                    foreach (var node in m_TreeView.selected){
+                    PSDImporter.InitEnviroment(exporter.ruleObj, exporter.ruleObj.defultUISize, canvasObj == null ? FindObjectOfType<Canvas>() : (canvasObj as GameObject).GetComponent<Canvas>());
+                    foreach (var node in m_TreeView.selected)
+                    {
                         PSDImporter.StartBuild(node);
                     }
                     AssetDatabase.Refresh();
@@ -123,9 +119,9 @@ namespace PSDUnity.Analysis
                 if (psd != null)
                 {
                     ExportUtility.InitPsdExportEnvrioment(exporter, new Vector2(psd.Width, psd.Height));
-                    rootNode = new GroupNode(new Rect(Vector2.zero, exporter.settingObj.defultUISize), 0, -1);
-                    rootNode.displayName =  exporter.name;
-                    var groupDatas = ExportUtility.CreatePictures(psd.Childs, new Vector2(psd.Width, psd.Height), exporter.settingObj.defultUISize, exporter.settingObj.forceSprite);
+                    rootNode = new GroupNode(new Rect(Vector2.zero, exporter.ruleObj.defultUISize), 0, -1);
+                    rootNode.displayName = exporter.name;
+                    var groupDatas = ExportUtility.CreatePictures(psd.Childs, new Vector2(psd.Width, psd.Height), exporter.ruleObj.defultUISize, exporter.ruleObj.forceSprite);
                     if (groupDatas != null)
                     {
                         foreach (var groupData in groupDatas)
@@ -168,8 +164,9 @@ namespace PSDUnity.Analysis
 
                     if (!string.IsNullOrEmpty(path))
                     {
-                        if (path.Contains(Application.dataPath)){
-                            path = path.Replace("\\", "/").Replace(Application.dataPath,"Assets");
+                        if (path.Contains(Application.dataPath))
+                        {
+                            path = path.Replace("\\", "/").Replace(Application.dataPath, "Assets");
                         }
                         exporter.psdFile = path;
                         PlayerPrefs.SetString(Prefs_LastPsdsDir, System.IO.Path.GetDirectoryName(path));
@@ -182,9 +179,9 @@ namespace PSDUnity.Analysis
         {
             using (var hor = new EditorGUILayout.HorizontalScope())
             {
-                GUILayout.Label("用户定义: ");
-
-                if (GUILayout.Button("[规则]", EditorStyles.label))
+                GUILayout.Label("使用规则: " + "  [psd文件导出 + ui界面生成]");
+                exporter.ruleObj = EditorGUILayout.ObjectField(exporter.ruleObj, typeof(RuleObject), false) as RuleObject;
+                if (GUILayout.Button("创建", GUILayout.Width(60)))
                 {
                     if (EditorUtility.DisplayDialog("创建新规则", "确认后将生成新的规则文件！", "确认", "取消"))
                     {
@@ -192,29 +189,17 @@ namespace PSDUnity.Analysis
                         ProjectWindowUtil.CreateAsset(exporter.ruleObj, "new rule.asset");
                     }
                 }
-                exporter.ruleObj = EditorGUILayout.ObjectField(exporter.ruleObj, typeof(RuleObject), false) as RuleObject;
-
-
-                if (GUILayout.Button("[设置]", EditorStyles.label))
-                {
-                    if (EditorUtility.DisplayDialog("创建新设置", "确认后将生成新的设置文件！", "确认", "取消"))
-                    {
-                        exporter.settingObj = ScriptableObject.CreateInstance<SettingObject>();
-                        ProjectWindowUtil.CreateAsset(exporter.settingObj, "new setting.asset");
-                    }
-                }
-                exporter.settingObj = EditorGUILayout.ObjectField(exporter.settingObj, typeof(SettingObject), false) as SettingObject;
             }
 
             if (GUILayout.Button("转换层级为图片，并记录索引", EditorStyles.toolbarButton))
             {
-                if (EditorUtility.DisplayDialog("温馨提示","重新加载目前将重写以下配制，继续请按确认！","确认"))
+                if (EditorUtility.DisplayDialog("温馨提示", "重新加载目前将重写以下配制，继续请按确认！", "确认"))
                 {
                     RecordAllPsdInformation();
                     m_TreeView = new ExporterTreeView(m_TreeViewState);
                     m_TreeView.root = rootNode;
                 }
-            
+
             }
         }
 

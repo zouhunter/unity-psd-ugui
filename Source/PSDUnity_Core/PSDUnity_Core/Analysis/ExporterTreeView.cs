@@ -19,7 +19,11 @@ namespace PSDUnity
         }
 
         private GroupNode _root;
-        public GroupNode root { get { return _root; } set { _root = value; Reload(); } }
+        public GroupNode root { get {
+                return _root;
+            } set {
+                _root = value; Reload(); }
+        }
         private Dictionary<int, bool> imgDic = new Dictionary<int, bool>();
         private List<GroupNode> rows = new List<GroupNode>();
         private Dictionary<int, ReorderableList> imgListDic = new Dictionary<int, ReorderableList>();
@@ -33,8 +37,7 @@ namespace PSDUnity
         }
         protected override TreeViewItem BuildRoot()
         {
-            if (root == null)
-            {
+            if (root == null){
                 root = new GroupNode(new Rect(), 0, -1);
             }
             return root;
@@ -46,7 +49,7 @@ namespace PSDUnity
                 Debug.LogError("tree model root is null. did you call SetData()?");
             }
             rows.Clear();
-            AddChildrenRecursive<GroupNode>(root, 0, rows, (x) => { return new GroupNode(x.rect, x.id, x.depth); });
+            AddChildrenRecursive<GroupNode>(rootItem as GroupNode, 0, rows, (x) => { return new GroupNode(x.rect, x.id, x.depth); });
             var list = rows.ConvertAll<TreeViewItem>(x => x);
             return list;
         }
@@ -61,6 +64,8 @@ namespace PSDUnity
 
         void AddChildrenRecursive<T>(T parent, int depth, IList<T> newRows, System.Func<T, T> Copy) where T : TreeViewItem
         {
+            if (parent.children == null) return;
+
             foreach (T child in parent.children)
             {
                 var item = Copy(child);

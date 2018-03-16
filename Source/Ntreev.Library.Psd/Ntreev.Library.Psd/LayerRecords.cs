@@ -45,27 +45,22 @@ namespace Ntreev.Library.Psd
             this.resources = resources;
             this.name = name;
 
-
             this.resources.TryGetValue<string>(ref this.name, "luni.Name");
+
             this.resources.TryGetValue<SectionType>(ref this.sectionType, "lsct.SectionType");
 
-            if(SectionType == SectionType.Divider)
-            {
-                layerType = LayerType.Divider;
-            }
-            else if (SectionType == SectionType.Closed || SectionType == SectionType.Opend)
+            if (SectionType == SectionType.Closed || SectionType == SectionType.Opend)
             {
                 layerType = LayerType.Group;
             }
-            else  if (this.resources.Contains("SoLd.Idnt") == true)
+            else if (this.resources.Contains("SoLd.Idnt"))
             {
-                this.placedID = this.resources.ToGuid("SoLd.Idnt");
                 layerType = LayerType.Normal;
+                this.placedID = this.resources.ToGuid("SoLd.Idnt");
             }
-            else if (this.resources.Contains("SoLE.Idnt") == true)
+            else if (this.resources.Contains("SoCo") == true)
             {
-                this.placedID = this.resources.ToGuid("SoLE.Idnt");
-                throw new Exception("WaitDefine");
+                layerType = LayerType.Color;
             }
             else if (this.resources.Contains("TySh.Idnt"))
             {
@@ -78,10 +73,16 @@ namespace Ntreev.Library.Psd
 
                 layerType = LayerType.Text;
             }
-            else
+            else 
             {
-                layerType = LayerType.SolidImage;
+                layerType = LayerType.Other;
+
+                if (this.resources.Contains("SoLE.Idnt") == true)
+                {
+                    this.placedID = this.resources.ToGuid("SoLE.Idnt");
+                }
             }
+          
 
             foreach (var item in this.channels)
             {

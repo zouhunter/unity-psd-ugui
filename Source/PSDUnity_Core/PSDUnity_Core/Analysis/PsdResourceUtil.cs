@@ -11,11 +11,5 @@ namespace PSDUnity
         {
             return ScriptableObject.CreateInstance<RuleObject>();
         }
-
-        public static SettingObject DefultSettingObj()
-        {
-            return ScriptableObject.CreateInstance<SettingObject>();
-        }
-
     }
 }

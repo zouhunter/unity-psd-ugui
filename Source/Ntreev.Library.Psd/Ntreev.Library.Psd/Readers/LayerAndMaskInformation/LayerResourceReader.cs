@@ -21,7 +21,7 @@
 
 namespace Ntreev.Library.Psd.Readers.LayerAndMaskInformation
 {
-    class LayerResourceReader : LazyProperties
+    public class LayerResourceReader : LazyProperties
     {
         public LayerResourceReader(PsdReader reader, long length)
             : base(reader, length, null)
