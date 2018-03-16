@@ -32,7 +32,7 @@ namespace PSDUnity.Analysis
 
         private static Vector2 maxSize { get; set; }
         public static RuleObject RuleObj { get { return exporter.ruleObj; } }
-        public static SettingObject settingObj { get { return exporter.settingObj; } }
+        public static RuleObject  settingObj { get { return exporter.ruleObj; } }
         public static Exporter exporter { get; set; }
         private static Vector2 rootSize { get; set; }
 
@@ -174,8 +174,8 @@ namespace PSDUnity.Analysis
             if (textureArray.Length == 0) return;
             // The output of PackTextures returns a Rect array from which we can create our sprites
             Rect[] rects;
-            Texture2D atlas = new Texture2D(pictureInfo.settingObj.maxSize, pictureInfo.settingObj.maxSize);
-            rects = atlas.PackTextures(textureArray, 2, pictureInfo.settingObj.maxSize);
+            Texture2D atlas = new Texture2D(pictureInfo.ruleObj.maxSize, pictureInfo.ruleObj.maxSize);
+            rects = atlas.PackTextures(textureArray, 2, pictureInfo.ruleObj.maxSize);
             List<SpriteMetaData> Sprites = new List<SpriteMetaData>();
 
             // For each rect in the Rect Array create the sprite and assign to the SpriteMetaData
@@ -198,12 +198,12 @@ namespace PSDUnity.Analysis
             TextureImporter textureImporter = AssetImporter.GetAtPath(atlaspath) as TextureImporter;
 
             // Make sure the size is the same as our atlas then create the spritesheet
-            textureImporter.maxTextureSize = pictureInfo.settingObj.maxSize;
+            textureImporter.maxTextureSize = pictureInfo.ruleObj.maxSize;
             textureImporter.spritesheet = Sprites.ToArray();
             textureImporter.textureType = TextureImporterType.Sprite;
             textureImporter.spriteImportMode = SpriteImportMode.Multiple;
             textureImporter.spritePivot = new Vector2(0.5f, 0.5f);
-            textureImporter.spritePixelsPerUnit = pictureInfo.settingObj.pixelsToUnitSize;
+            textureImporter.spritePixelsPerUnit = pictureInfo.ruleObj.pixelsToUnitSize;
             AssetDatabase.ImportAsset(atlaspath, ImportAssetOptions.ForceUpdate);
 
             foreach (Texture2D tex in textureArray)
@@ -222,7 +222,7 @@ namespace PSDUnity.Analysis
             foreach (var texture in textureArray)
             {
                 byte[] buf = texture.EncodeToPNG();
-                var atlaspath = exportPath + "/" + string.Format(pictureInfo.settingObj.picNameTemp, texture.name);
+                var atlaspath = exportPath + "/" + string.Format(pictureInfo.ruleObj.picNameTemp, texture.name);
                 File.WriteAllBytes(Path.GetFullPath(atlaspath), buf);
                 AssetDatabase.Refresh();
 
@@ -230,7 +230,7 @@ namespace PSDUnity.Analysis
                 TextureImporter textureImporter = AssetImporter.GetAtPath(atlaspath) as TextureImporter;
 
                 // Make sure the size is the same as our atlas then create the spritesheet
-                textureImporter.maxTextureSize = pictureInfo.settingObj.maxSize;
+                textureImporter.maxTextureSize = pictureInfo.ruleObj.maxSize;
 
                 switch (imgType)
                 {
@@ -238,7 +238,7 @@ namespace PSDUnity.Analysis
                         textureImporter.textureType = TextureImporterType.Sprite;
                         textureImporter.spriteImportMode = SpriteImportMode.Single;
                         textureImporter.spritePivot = new Vector2(0.5f, 0.5f);
-                        textureImporter.spritePixelsPerUnit = pictureInfo.settingObj.pixelsToUnitSize;
+                        textureImporter.spritePixelsPerUnit = pictureInfo.ruleObj.pixelsToUnitSize;
                         break;
                     case ImgType.Texture:
                         textureImporter.textureType = TextureImporterType.Default;

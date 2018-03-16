@@ -13,13 +13,12 @@ namespace PSDUnity
     {
         public string _exportPath;
         public string psdFile;
-        public SettingObject settingObj;
         public RuleObject ruleObj;
         public List<GroupNode> groups = new List<GroupNode>();
 
         public string CalcAtlasName()
         {
-            return name + settingObj.fileExt;
+            return name + ruleObj.fileExt;
         }
     }
 }

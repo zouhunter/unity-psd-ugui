@@ -14,22 +14,32 @@ namespace PSDUnity
 {
     public class RuleObject : ScriptableObject
     {
-        [Header("图层标记"), Space(10)]
+        [Header("图层解析标记"), Space(10)]
         public char sepraterCharimg = '#';
         public string asAtalsMark = "A";
         public string asSingleMark = "S";
         public string asTextureMark = "T";
-        public ImgType defultImgType = ImgType.AtlasImage;
+        public bool createAtlas = true;
         public string asGoubleMark = "G";
         public string asNoRepetMark = "N";
         public string asCustomMark = "C";
         public NameType nameType = NameType.donothing;
         public ImgSource defultImgSource = ImgSource.Custom;
-        [Header("组名分割"), Space(10)]
         public char sepraterChargroup = '@';
         public char argumentChar = ':';
 
+        [Header("图片生成配制"), Space(10)]
+        public string globalPath = "Assets/Common/Images";
+        public bool maskAsColor = false;
+        public bool forceSprite = true;
+        public string fileExt = ".png";
+        public Vector2 defultUISize = new Vector2(1600, 900);
+        public string picNameTemp = "{0}.png";
+        public float pixelsToUnitSize = 100;
+        public int maxSize = 4096;
+
         private static string[] groupNames;
+
         static RuleObject()
         {
             groupNames = System.Enum.GetNames(typeof(GroupType));
@@ -116,13 +126,13 @@ namespace PSDUnity
                 }
                 else
                 {
-                    type = defultImgType;
+                    type = createAtlas ? ImgType.AtlasImage : ImgType.Image ;
                 }
             }
             else
             {
                 clampName = name;
-                type = defultImgType;
+                type = createAtlas ? ImgType.AtlasImage : ImgType.Image;
                 source = defultImgSource;
             }
             return clampName;
