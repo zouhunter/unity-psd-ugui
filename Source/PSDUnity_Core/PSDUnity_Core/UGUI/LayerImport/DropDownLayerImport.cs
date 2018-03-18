@@ -18,6 +18,7 @@ namespace PSDUnity.UGUI
         {
             UGUINode node = PSDImporter.InstantiateItem(GroupType.DROPDOWN, layer.displayName, parent);
             Dropdown dropdown = node.InitComponent<Dropdown>();
+            PSDImporter.SetRectTransform(layer, dropdown.GetComponent<RectTransform>());
             ScrollRect scrllRect = dropdown.template.GetComponent<ScrollRect>();
             RectTransform content = scrllRect.content;
             Toggle toggle = content.GetComponentInChildren<Toggle>();

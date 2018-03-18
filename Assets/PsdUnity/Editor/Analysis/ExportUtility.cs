@@ -1,12 +1,13 @@
-﻿using UnityEngine;
-using UnityEngine.Events;
-using UnityEditor;
-using System.Collections.Generic;
-using Ntreev.Library.Psd;
-using System.Linq;
-using System.IO;
+﻿using Ntreev.Library.Psd;
+
 using System;
-using PSDUnity.Data;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+using UnityEditor;
+
+using UnityEngine;
 namespace PSDUnity.Analysis
 {
     public static class ExportUtility
@@ -32,7 +33,6 @@ namespace PSDUnity.Analysis
 
         private static Vector2 maxSize { get; set; }
         public static RuleObject RuleObj { get { return exporter.ruleObj; } }
-        public static RuleObject settingObj { get { return exporter.ruleObj; } }
         public static Exporter exporter { get; set; }
         private static Vector2 rootSize { get; set; }
 
@@ -78,46 +78,34 @@ namespace PSDUnity.Analysis
                 groupnode.GetImgNodes(pictureData);
             }
             SwitchCreateTexture(pictureData);
-
             return nodes.ToArray();
         }
 
         private static void SwitchCreateTexture(List<ImgNode> pictureData)
         {
-            //创建atlas
-            var textures = new List<Texture2D>();
-            foreach (var item in pictureData)
-            {
-                if (item.type == ImgType.AtlasImage)
-                {
-                    var tx = textures.Find(x => x.name == item.TextureName);
-                    if (tx == null)
-                    {
-                        textures.Add(item.texture);
-                    }
-                    else
-                    {
-                        item.texture = tx;
-                    }
-                }
-            }
-            SaveToAtlas(textures.ToArray(), exporter);
+            //创建atlas(非全局)
+            var atlasTextures = pictureData.FindAll(x => x.type == ImgType.AtlasImage && x.source != ImgSource.Globle).ConvertAll<Texture2D>(x => x.texture);
+            SaveToAtlas(atlasTextures.ToArray(), exporter);
+            //创建atlas（全局）
+            var globleAtlas = pictureData.FindAll(x => x.type == ImgType.AtlasImage && x.source == ImgSource.Globle);
+            SaveToTextures(ImgType.Image, globleAtlas.ToArray(), exporter);
+            //创建Sprites
+            var singleNodes = pictureData.FindAll(x => x.type == ImgType.Image);
+            SaveToTextures(ImgType.Image, singleNodes.ToArray(), exporter);
+            //创建Textures
+            singleNodes = pictureData.FindAll(x => x.type == ImgType.Texture);
+            SaveToTextures(ImgType.Texture, singleNodes.ToArray(), exporter);
 
-            //创建Sprites
-            var pictures = pictureData.FindAll(x => x.type == ImgType.Image).ConvertAll<Texture2D>(x => x.texture);
-            SaveToTextures(ImgType.Image, pictures.ToArray(), exporter);
-            //创建Sprites
-            pictures = pictureData.FindAll(x => x.type == ImgType.Texture).ConvertAll<Texture2D>(x => x.texture);
-            SaveToTextures(ImgType.Texture, pictures.ToArray(), exporter);
 
         }
 
-        public static void ChargeTextures(Exporter pictureInfo, GroupNode groupnode)
+        public static void ChargeTextures(Exporter exporter, GroupNode groupnode)
         {
             //重新加载
-            var atlaspath = exportPath + "/" + pictureInfo.CalcAtlasName();
+            var atlaspath = string.Format(exportPath + "/{0}.png", exporter.name);
+            Texture2D[] globleTextures = LoadAllObjectFromDir<Texture2D>(exporter.ruleObj.globalTexture);
+            Sprite[] globleSprites = LoadAllObjectFromDir<Sprite>(exporter.ruleObj.globalSprite);
             Sprite[] fileSprites = AssetDatabase.LoadAllAssetsAtPath(atlaspath).OfType<Sprite>().ToArray();
-
             Texture2D[] fileTextures = LoadAllObjectFromDir<Texture2D>(exportPath);// AssetDatabase.LoadAllAssetsAtPath(pictureInfo.exportPath).OfType<Texture2D>().ToArray();
             Sprite[] fileSingleSprites = LoadAllObjectFromDir<Sprite>(exportPath);// AssetDatabase.LoadAllAssetsAtPath(pictureInfo.exportPath).OfType<Sprite>().ToArray();
 
@@ -126,20 +114,39 @@ namespace PSDUnity.Analysis
 
             foreach (var item in pictureData)
             {
-                switch (item.type)
+                if (item.source == ImgSource.Globle)
                 {
-                    case ImgType.Image:
-                        item.sprite = Array.Find(fileSingleSprites, x => x.name == item.TextureName);
-                        break;
-                    case ImgType.AtlasImage:
-                        item.sprite = Array.Find(fileSprites, x => x.name == item.TextureName);
-                        break;
-                    case ImgType.Texture:
-                        item.texture = Array.Find(fileTextures, x => x.name == item.TextureName);
-                        break;
-                    default:
-                        break;
+                    switch (item.type)
+                    {
+                        case ImgType.Image:
+                        case ImgType.AtlasImage:
+                            item.sprite = Array.Find(globleSprites, x => x.name == item.TextureName);
+                            break;
+                        case ImgType.Texture:
+                            item.texture = Array.Find(globleTextures, x => x.name == item.TextureName);
+                            break;
+                        default:
+                            break;
+                    }
                 }
+                else
+                {
+                    switch (item.type)
+                    {
+                        case ImgType.Image:
+                            item.sprite = Array.Find(fileSingleSprites, x => x.name == item.TextureName);
+                            break;
+                        case ImgType.AtlasImage:
+                            item.sprite = Array.Find(fileSprites, x => x.name == item.TextureName);
+                            break;
+                        case ImgType.Texture:
+                            item.texture = Array.Find(fileTextures, x => x.name == item.TextureName);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
             }
 
         }
@@ -166,16 +173,16 @@ namespace PSDUnity.Analysis
         /// 将一组图片保存为atlas
         /// </summary>
         /// <param name="textureArray"></param>
-        /// <param name="pictureInfo"></param>
+        /// <param name="exporter"></param>
         /// <param name="atlasName"></param>
         /// <returns></returns>
-        public static void SaveToAtlas(Texture2D[] textureArray, Exporter pictureInfo)
+        public static void SaveToAtlas(Texture2D[] textureArray, Exporter exporter)
         {
             if (textureArray.Length == 0) return;
             // The output of PackTextures returns a Rect array from which we can create our sprites
             Rect[] rects;
-            Texture2D atlas = new Texture2D(pictureInfo.ruleObj.maxSize, pictureInfo.ruleObj.maxSize);
-            rects = atlas.PackTextures(textureArray, 2, pictureInfo.ruleObj.maxSize);
+            Texture2D atlas = new Texture2D(exporter.ruleObj.maxSize, exporter.ruleObj.maxSize);
+            rects = atlas.PackTextures(textureArray, 2, exporter.ruleObj.maxSize);
             List<SpriteMetaData> Sprites = new List<SpriteMetaData>();
 
             // For each rect in the Rect Array create the sprite and assign to the SpriteMetaData
@@ -191,19 +198,19 @@ namespace PSDUnity.Analysis
             }
             // Need to load the image first
             byte[] buf = atlas.EncodeToPNG();
-            var atlaspath = exportPath + "/" + pictureInfo.CalcAtlasName();
+            var atlaspath = string.Format(exportPath + "/{0}.png", exporter.name);
             File.WriteAllBytes(Path.GetFullPath(atlaspath), buf);
             AssetDatabase.Refresh();
             // Get our texture that we loaded
             TextureImporter textureImporter = AssetImporter.GetAtPath(atlaspath) as TextureImporter;
 
             // Make sure the size is the same as our atlas then create the spritesheet
-            textureImporter.maxTextureSize = pictureInfo.ruleObj.maxSize;
+            textureImporter.maxTextureSize = exporter.ruleObj.maxSize;
             textureImporter.spritesheet = Sprites.ToArray();
             textureImporter.textureType = TextureImporterType.Sprite;
             textureImporter.spriteImportMode = SpriteImportMode.Multiple;
             textureImporter.spritePivot = new Vector2(0.5f, 0.5f);
-            textureImporter.spritePixelsPerUnit = pictureInfo.ruleObj.pixelsToUnitSize;
+            textureImporter.spritePixelsPerUnit = exporter.ruleObj.pixelsToUnitSize;
             AssetDatabase.ImportAsset(atlaspath, ImportAssetOptions.ForceUpdate);
 
             foreach (Texture2D tex in textureArray)
@@ -211,18 +218,37 @@ namespace PSDUnity.Analysis
                 UnityEngine.Object.DestroyImmediate(tex);
             }
         }
+
         /// <summary>
         /// 将图片分别保存到本地
         /// </summary>
         /// <param name="imgType"></param>
-        /// <param name="textureArray"></param>
+        /// <param name="singleNodes"></param>
         /// <param name="pictureInfo"></param>
-        public static void SaveToTextures(ImgType imgType, Texture2D[] textureArray, Exporter pictureInfo)
+        public static void SaveToTextures(ImgType imgType, ImgNode[] singleNodes, Exporter pictureInfo)
         {
-            foreach (var texture in textureArray)
+            foreach (var node in singleNodes)
             {
-                byte[] buf = texture.EncodeToPNG();
-                var atlaspath = exportPath + "/" + string.Format(pictureInfo.ruleObj.picNameTemp, texture.name);
+                byte[] buf = node.texture.EncodeToPNG();
+
+                var rootPath = exportPath;
+
+                if (node.source == ImgSource.Globle)
+                {
+                    if (node.type == ImgType.Image || node.type == ImgType.AtlasImage)
+                    {
+                        rootPath = pictureInfo.ruleObj.globalSprite;
+                    }
+                    else
+                    {
+                        rootPath = pictureInfo.ruleObj.globalTexture;
+                    }
+
+                    if (!Directory.Exists(rootPath))
+                        Directory.CreateDirectory(rootPath);
+                }
+
+                var atlaspath = rootPath + "/" + string.Format("{0}.png", node.texture.name);
                 File.WriteAllBytes(Path.GetFullPath(atlaspath), buf);
                 AssetDatabase.Refresh();
 
@@ -251,9 +277,9 @@ namespace PSDUnity.Analysis
             }
 
 
-            foreach (Texture2D tex in textureArray)
+            foreach (ImgNode node in singleNodes)
             {
-                UnityEngine.Object.DestroyImmediate(tex);
+                UnityEngine.Object.DestroyImmediate(node.texture);
             }
 
         }
@@ -289,9 +315,11 @@ namespace PSDUnity.Analysis
                     var color = new Color(textInfo.color[0], textInfo.color[1], textInfo.color[2], textInfo.color[3]);
                     data = new ImgNode(layer.Name, rect, textInfo.fontName, textInfo.fontSize, textInfo.text, color);
                     break;
-                case LayerType.Group:
                 case LayerType.Other:
-                    Debug.LogError("you psd have some not supported layer.(defult layer is not supported)! \n make sure your layers is Intelligent object or color lump.");
+                    if (!RuleObj.forceSprite)
+                    {
+                        Debug.LogError("you psd have some not supported layer.(defult layer is not supported)! \n make sure your layers is Intelligent object or color lump." + "\n ->Detail:" + layer.Name);
+                    }
                     data = new ImgNode(rect, texture).SetIndex(GetLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
                     break;
                 default:

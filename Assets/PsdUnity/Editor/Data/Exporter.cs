@@ -15,10 +15,5 @@ namespace PSDUnity
         public string psdFile;
         public RuleObject ruleObj;
         public List<GroupNode> groups = new List<GroupNode>();
-
-        public string CalcAtlasName()
-        {
-            return name + ruleObj.fileExt;
-        }
     }
 }

@@ -9,6 +9,7 @@ namespace PSDUnity.UGUI
         {
             UGUINode node = PSDImporter.InstantiateItem(GroupType.INPUTFIELD, layer.displayName, parent);
             UnityEngine.UI.InputField inputfield = node.InitComponent<UnityEngine.UI.InputField>();
+            PSDImporter.SetRectTransform(layer, inputfield.GetComponent<RectTransform>());
 
             if (layer.images != null)
             {

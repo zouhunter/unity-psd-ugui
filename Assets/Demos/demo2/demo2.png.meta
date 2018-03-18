@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 9af55436abaf0ee46ac41da55c382e81
-timeCreated: 1520988605
-licenseType: Pro
+timeCreated: 1521343900
+licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: b_521355264
@@ -52,6 +52,13 @@ TextureImporter:
     21300090: b1_80
     21300092: b_90
     21300094: b_100
+    21300096: f_51
+    21300098: f_61
+    21300100: b2_81
+    21300102: b3_82
+    21300104: m_91
+    21300106: m_101
+  externalObjects: {}
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -60,6 +67,8 @@ TextureImporter:
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
     mipMapFadeDistanceEnd: 3
   bumpmap:
@@ -75,10 +84,13 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 1024
   textureSettings:
+    serializedVersion: 2
     filterMode: -1
     aniso: 16
     mipBias: -1
-    wrapMode: 1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -88,7 +100,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 1
+  spritePixelsToUnits: 100
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -99,203 +111,289 @@ TextureImporter:
   textureFormatSet: 0
   platformSettings:
   - buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
+      name: b_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 387
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
       name: b_10
       rect:
         serializedVersion: 2
-        x: 41
-        y: 41
+        x: 192
+        y: 341
         width: 304
         height: 27
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: f_11
       rect:
         serializedVersion: 2
-        x: 70
-        y: 117
+        x: 41
+        y: 418
         width: 297
         height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: b_20
       rect:
         serializedVersion: 2
-        x: 41
-        y: 70
+        x: 0
+        y: 643
         width: 27
         height: 300
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: f_21
       rect:
         serializedVersion: 2
-        x: 70
-        y: 134
+        x: 389
+        y: 0
         width: 15
         height: 291
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: b_30
       rect:
         serializedVersion: 2
-        x: 70
-        y: 70
+        x: 192
+        y: 370
         width: 149
         height: 45
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: b_40
       rect:
         serializedVersion: 2
-        x: 221
-        y: 70
+        x: 343
+        y: 370
         width: 149
         height: 45
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: b_50
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 300
         width: 304
         height: 39
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: f_51
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 435
+        width: 281
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: h_52
       rect:
         serializedVersion: 2
-        x: 0
-        y: 343
+        x: 474
+        y: 0
         width: 23
         height: 23
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: b_60
       rect:
         serializedVersion: 2
         x: 0
-        y: 41
+        y: 341
         width: 39
         height: 300
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: f_61
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 0
+        width: 14
+        height: 274
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: h_62
       rect:
         serializedVersion: 2
-        x: 0
-        y: 368
+        x: 422
+        y: 29
         width: 23
         height: 23
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: p_70
       rect:
         serializedVersion: 2
-        x: 372
-        y: 70
+        x: 41
+        y: 452
         width: 98
         height: 39
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: h_71
       rect:
         serializedVersion: 2
-        x: 87
-        y: 134
+        x: 141
+        y: 452
         width: 98
         height: 39
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: n_72
       rect:
         serializedVersion: 2
-        x: 187
-        y: 134
+        x: 241
+        y: 452
         width: 98
         height: 39
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: b1_80
       rect:
         serializedVersion: 2
         x: 306
-        y: 0
+        y: 300
         width: 151
         height: 35
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b2_81
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 341
+        width: 149
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b3_82
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 452
+        width: 118
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: b_90
       rect:
         serializedVersion: 2
-        x: 459
+        x: 422
         y: 0
         width: 26
         height: 27
@@ -303,12 +401,27 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: m_91
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 276
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: b_100
       rect:
         serializedVersion: 2
-        x: 487
+        x: 450
         y: 0
         width: 22
         height: 27
@@ -316,8 +429,24 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: m_101
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 29
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
       tessellationDetail: -1
     outline: []
+    physicsShape: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

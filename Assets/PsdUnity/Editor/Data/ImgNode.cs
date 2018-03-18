@@ -7,7 +7,7 @@ namespace PSDUnity
     {
         appendHash,
         appendIndex,
-        donothing,
+        Defult,
     }
     [Serializable]
     public class ImgNode : INameAnalyzing<ImgNode>
@@ -20,7 +20,7 @@ namespace PSDUnity
         {
             get
             {
-                if (source != ImgSource.Custom && customNameType == NameType.donothing)
+                if (source != ImgSource.Custom && customNameType == NameType.Defult)
                 {
                     return Name;
                 }

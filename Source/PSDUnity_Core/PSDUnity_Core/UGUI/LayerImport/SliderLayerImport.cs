@@ -29,6 +29,7 @@ namespace PSDUnity.UGUI
             {
                 var graph = node.InitComponent<UnityEngine.UI.Image>();
                 PSDImporter.SetPictureOrLoadColor(bg, graph);
+                PSDImporter.SetRectTransform(bg, slider.GetComponent<RectTransform>());
             }
 
             if (fill != null)

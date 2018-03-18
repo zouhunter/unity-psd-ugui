@@ -231,6 +231,9 @@ namespace PSDUnity.UGUI
             (item_bg.transform as RectTransform).sizeDelta = Vector2.zero;
             (item_cm.transform as RectTransform).sizeDelta = new Vector2(20,20);
             (item_lb.transform as RectTransform).sizeDelta = Vector2.zero;
+
+            item_lb.alignment = label.alignment = TextAnchor.MiddleCenter;
+            viewport.GetComponent<Image>().color = new Color(0,0,0,0.1f);
             return dropdown.gameObject;
         }
     }

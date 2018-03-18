@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Name: demo2
   m_EditorClassIdentifier: 
   _exportPath: Assets/Demos/demo2
-  psdFile: E:/GitHub/PsdUnity/PsdFiles/Demo2.psd
-  settingObj: {fileID: 11400000, guid: c98523c2ec9b06746a21c506d25b36ee, type: 2}
+  psdFile: E:/GitHub/PsdUnity/PsdFiles/DarkGroup.psd
   ruleObj: {fileID: 11400000, guid: f7d3181f5b8957245adfabda058c8541, type: 2}
   groups:
-  - groupType: 0
+  - _id: 0
+    _depth: -1
+    _displayName: demo2
+    groupType: 0
     direction: 0
     constraintCount: 0
     spacing: 0
@@ -27,7 +29,10 @@ MonoBehaviour:
       width: 1600
       height: 900
     images: []
-  - groupType: 0
+  - _id: 1
+    _depth: 0
+    _displayName: panel
+    groupType: 0
     direction: 0
     constraintCount: 0
     spacing: 0
@@ -39,21 +44,24 @@ MonoBehaviour:
       height: 298
     images:
     - Name: b_
-      type: 4
-      source: 0
+      type: 2
+      source: 1
       rect:
         serializedVersion: 2
         x: 1
         y: -0
         width: 387
         height: 298
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300032, guid: 9af55436abaf0ee46ac41da55c382e81, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
       fontSize: 0
-      color: {r: 0.12941179, g: 0.5725491, b: 0.9176471, a: 1}
-  - groupType: 8
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 2
+    _depth: 0
+    _displayName: progress
+    groupType: 8
     direction: 8
     constraintCount: 0
     spacing: 0
@@ -94,7 +102,10 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 0
       color: {r: 1, g: 1, b: 1, a: 1}
-  - groupType: 8
+  - _id: 3
+    _depth: 0
+    _displayName: progress
+    groupType: 8
     direction: 32
     constraintCount: 0
     spacing: 0
@@ -135,7 +146,10 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 0
       color: {r: 1, g: 1, b: 1, a: 1}
-  - groupType: 0
+  - _id: 4
+    _depth: 0
+    _displayName: input
+    groupType: 0
     direction: 0
     constraintCount: 0
     spacing: 0
@@ -168,15 +182,18 @@ MonoBehaviour:
         serializedVersion: 2
         x: -109.5
         y: -58
-        width: 70
-        height: 10
+        width: 98
+        height: 38
       sprite: {fileID: 0}
       texture: {fileID: 0}
       text: "Enter text\u2026"
       font: {fileID: 0}
       fontSize: 14
       color: {r: 0.60001, g: 0.60001, b: 0.60001, a: 1}
-  - groupType: 9
+  - _id: 5
+    _depth: 0
+    _displayName: textpanel
+    groupType: 0
     direction: 0
     constraintCount: 0
     spacing: 0
@@ -209,15 +226,18 @@ MonoBehaviour:
         serializedVersion: 2
         x: 52.5
         y: -58
-        width: 86
-        height: 10
+        width: 114
+        height: 38
       sprite: {fileID: 0}
       texture: {fileID: 0}
       text: Text is entered
       font: {fileID: 0}
       fontSize: 14
       color: {r: 0.99608, g: 0.99608, b: 0.99608, a: 1}
-  - groupType: 8
+  - _id: 6
+    _depth: 0
+    _displayName: slider
+    groupType: 8
     direction: 8
     constraintCount: 0
     spacing: 0
@@ -244,20 +264,20 @@ MonoBehaviour:
       fontSize: 0
       color: {r: 1, g: 1, b: 1, a: 1}
     - Name: f_
-      type: 4
-      source: 0
+      type: 2
+      source: 1
       rect:
         serializedVersion: 2
         x: -12
         y: 1.5
         width: 281
         height: 15
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300096, guid: 9af55436abaf0ee46ac41da55c382e81, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
       fontSize: 0
-      color: {r: 0, g: 0.509804, b: 0.90588236, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}
     - Name: h_
       type: 2
       source: 1
@@ -273,7 +293,10 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 0
       color: {r: 1, g: 1, b: 1, a: 1}
-  - groupType: 8
+  - _id: 7
+    _depth: 0
+    _displayName: slider
+    groupType: 8
     direction: 32
     constraintCount: 0
     spacing: 0
@@ -300,20 +323,20 @@ MonoBehaviour:
       fontSize: 0
       color: {r: 1, g: 1, b: 1, a: 1}
     - Name: f_
-      type: 4
-      source: 0
+      type: 2
+      source: 1
       rect:
         serializedVersion: 2
         x: 175.5
         y: 3
         width: 14
         height: 274
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300098, guid: 9af55436abaf0ee46ac41da55c382e81, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
       fontSize: 0
-      color: {r: 0, g: 0.509804, b: 0.90588236, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}
     - Name: h_
       type: 2
       source: 1
@@ -329,7 +352,10 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 0
       color: {r: 1, g: 1, b: 1, a: 1}
-  - groupType: 1
+  - _id: 8
+    _depth: 0
+    _displayName: buttons
+    groupType: 1
     direction: 0
     constraintCount: 0
     spacing: 0
@@ -392,15 +418,18 @@ MonoBehaviour:
         serializedVersion: 2
         x: -113
         y: 56
-        width: 39
-        height: 10
+        width: 67
+        height: 38
       sprite: {fileID: 0}
       texture: {fileID: 0}
       text: Button
       font: {fileID: 0}
       fontSize: 14
       color: {r: 0.79999, g: 0.79999, b: 0.79999, a: 1}
-  - groupType: 13
+  - _id: 9
+    _depth: 0
+    _displayName: select
+    groupType: 13
     direction: 0
     constraintCount: 0
     spacing: 0
@@ -427,35 +456,35 @@ MonoBehaviour:
       fontSize: 0
       color: {r: 1, g: 1, b: 1, a: 1}
     - Name: b2_
-      type: 4
-      source: 0
+      type: 2
+      source: 1
       rect:
         serializedVersion: 2
         x: 62
         y: 52.5
         width: 149
         height: 75
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300100, guid: 9af55436abaf0ee46ac41da55c382e81, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
       fontSize: 0
-      color: {r: 0.12941179, g: 0.5725491, b: 0.9176471, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}
     - Name: b3_
-      type: 4
-      source: 0
+      type: 2
+      source: 1
       rect:
         serializedVersion: 2
         x: 51.5
         y: 75.5
         width: 118
         height: 25
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300102, guid: 9af55436abaf0ee46ac41da55c382e81, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
       fontSize: 0
-      color: {r: 0.06666668, g: 0.06666668, b: 0.06666668, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}
     - Name: t1_
       type: 0
       source: 0
@@ -486,7 +515,10 @@ MonoBehaviour:
       font: {fileID: 0}
       fontSize: 14
       color: {r: 0.79999, g: 0.79999, b: 0.79999, a: 1}
-  - groupType: 2
+  - _id: 10
+    _depth: 0
+    _displayName: input
+    groupType: 2
     direction: 0
     constraintCount: 0
     spacing: 0
@@ -513,21 +545,24 @@ MonoBehaviour:
       fontSize: 0
       color: {r: 1, g: 1, b: 1, a: 1}
     - Name: m_
-      type: 4
-      source: 0
+      type: 2
+      source: 1
       rect:
         serializedVersion: 2
         x: -45
         y: 102.5
         width: 13
         height: 13
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300104, guid: 9af55436abaf0ee46ac41da55c382e81, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
       fontSize: 0
-      color: {r: 0, g: 0, b: 0, a: 1}
-  - groupType: 2
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 11
+    _depth: 0
+    _displayName: input
+    groupType: 2
     direction: 0
     constraintCount: 0
     spacing: 0
@@ -554,17 +589,17 @@ MonoBehaviour:
       fontSize: 0
       color: {r: 1, g: 1, b: 1, a: 1}
     - Name: m_
-      type: 4
-      source: 0
+      type: 2
+      source: 1
       rect:
         serializedVersion: 2
         x: -121
         y: 102.5
         width: 15
         height: 15
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300106, guid: 9af55436abaf0ee46ac41da55c382e81, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
       fontSize: 0
-      color: {r: 0, g: 0.509804, b: 0.90588236, a: 1}
+      color: {r: 1, g: 1, b: 1, a: 1}

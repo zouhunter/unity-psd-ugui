@@ -11,7 +11,7 @@ namespace PSDUnity.UGUI
     {
         public UGUINode DrawImage(ImgNode image, UGUINode parent)
         {
-            UGUINode node = PSDImporter.InstantiateItem(GroupType.RawIMAGE, image.sprite.name, parent);
+            UGUINode node = PSDImporter.InstantiateItem(GroupType.RawIMAGE, image.texture.name, parent);
             UnityEngine.UI.RawImage pic = node.InitComponent<UnityEngine.UI.RawImage>();
             PSDImporter.SetPictureOrLoadColor(image, pic);
             PSDImporter.SetRectTransform(image, pic.GetComponent<RectTransform>());

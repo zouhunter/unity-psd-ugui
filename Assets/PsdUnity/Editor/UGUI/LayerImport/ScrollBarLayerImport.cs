@@ -25,6 +25,14 @@ namespace PSDUnity.UGUI
                     scrollBar.direction = Scrollbar.Direction.RightToLeft;
                     break;
                 default:
+                    if(layer.rect.width > layer.rect.height)
+                    {
+                        scrollBar.direction = Scrollbar.Direction.LeftToRight;
+                    }
+                    else
+                    {
+                        scrollBar.direction = Scrollbar.Direction.BottomToTop;
+                    }
                     break;
             }
 

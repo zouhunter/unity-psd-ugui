@@ -35,8 +35,8 @@ namespace PSDUnity.UGUI
             layerImporterDic.Add(GroupType.INPUTFIELD, new InputFieldLayerImport());
             layerImporterDic.Add(GroupType.BUTTON, new ButtonLayerImport(this));
             layerImporterDic.Add(GroupType.TOGGLE, new ToggleLayerImport(this));
-            layerImporterDic.Add(GroupType.IMAGE, new PanelLayerImport(this));
-            layerImporterDic.Add(GroupType.EMPTY, new PanelLayerImport(this));
+            layerImporterDic.Add(GroupType.IMAGE, new PanelLayerImport(this,true));
+            layerImporterDic.Add(GroupType.EMPTY, new PanelLayerImport(this,false));
             layerImporterDic.Add(GroupType.SCROLLVIEW, new ScrollViewLayerImport(this));
             layerImporterDic.Add(GroupType.SCROLLBAR, new ScrollBarLayerImport());
             layerImporterDic.Add(GroupType.GRID, new GridLayerImport(this));

@@ -84,6 +84,13 @@ namespace PSDUnity.UGUI
             rectTransform.sizeDelta = new Vector2(layer.rect.width, layer.rect.height);
             rectTransform.anchoredPosition = new Vector2(layer.rect.x, layer.rect.y);
         }
+
+        public static void SetRectTransform(Rect rect,RectTransform rectTransform)
+        {
+            rectTransform.sizeDelta = new Vector2(rect.width, rect.height);
+            rectTransform.anchoredPosition = new Vector2(rect.x, rect.y);
+        }
+
         public static void SetAnchorByNode(UGUINode node)
         {
             RectTransform p_rt = node.parent.InitComponent<RectTransform>();

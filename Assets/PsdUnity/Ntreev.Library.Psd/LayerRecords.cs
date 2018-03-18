@@ -46,43 +46,15 @@ namespace Ntreev.Library.Psd
             this.name = name;
 
             this.resources.TryGetValue<string>(ref this.name, "luni.Name");
-
             this.resources.TryGetValue<SectionType>(ref this.sectionType, "lsct.SectionType");
 
-            if (SectionType == SectionType.Closed || SectionType == SectionType.Opend)
-            {
-                layerType = LayerType.Group;
-            }
-            else if (this.resources.Contains("SoLd.Idnt"))
-            {
-                layerType = LayerType.Normal;
+
+            if (this.resources.Contains("SoLd.Idnt") == true)
                 this.placedID = this.resources.ToGuid("SoLd.Idnt");
-            }
-            else if (this.resources.Contains("SoCo") == true)
-            {
-                layerType = LayerType.Color;
-            }
-            else if (this.resources.Contains("TySh.Idnt"))
-            {
-                Readers.LayerResources.Reader_TySh reader = resources["TySh"] as Readers.LayerResources.Reader_TySh;
-                DescriptorStructure text = null;
-                if (reader.TryGetValue<DescriptorStructure>(ref text, "Text"))
-                {
-                    textinfo = new TextInfo(text);
-                }
+            else if (this.resources.Contains("SoLE.Idnt") == true)
+                this.placedID = this.resources.ToGuid("SoLE.Idnt");
 
-                layerType = LayerType.Text;
-            }
-            else 
-            {
-                layerType = LayerType.Other;
-
-                if (this.resources.Contains("SoLE.Idnt") == true)
-                {
-                    this.placedID = this.resources.ToGuid("SoLE.Idnt");
-                }
-            }
-          
+            JudgeType();
 
             foreach (var item in this.channels)
             {
@@ -107,6 +79,37 @@ namespace Ntreev.Library.Psd
                         }
                         break;
                 }
+            }
+        }
+
+        private void JudgeType()
+        {
+            if (SectionType == SectionType.Closed || SectionType == SectionType.Opend)
+            {
+                layerType = LayerType.Group;
+            }
+            else if (this.resources.Contains("SoLd.Idnt"))
+            {
+                layerType = LayerType.Normal;
+            }
+            else if (this.resources.Contains("SoCo") == true)
+            {
+                layerType = LayerType.Color;
+            }
+            else if (this.resources.Contains("TySh.Idnt"))
+            {
+                layerType = LayerType.Text;
+
+                Readers.LayerResources.Reader_TySh reader = resources["TySh"] as Readers.LayerResources.Reader_TySh;
+                DescriptorStructure text = null;
+                if (reader.TryGetValue<DescriptorStructure>(ref text, "Text"))
+                {
+                    textinfo = new TextInfo(text);
+                }
+            }
+            else
+            {
+                layerType = LayerType.Other;
             }
         }
 

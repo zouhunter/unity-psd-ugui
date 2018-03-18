@@ -6,15 +6,17 @@ namespace PSDUnity.UGUI
     public class PanelLayerImport : ILayerImport
     {
         PSDImportCtrl ctrl;
-        public PanelLayerImport(PSDImportCtrl ctrl)
+        public bool createMask;
+        public PanelLayerImport(PSDImportCtrl ctrl,bool createMask)
         {
             this.ctrl = ctrl;
+            this.createMask = createMask;
         }
 
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
             UGUINode node = PSDImporter.InstantiateItem(GroupType.EMPTY, layer.displayName, parent);//GameObject.Instantiate(temp) as UnityEngine.UI.Image;
-            UnityEngine.UI.Graphic panel = null;
+            UnityEngine.UI.Graphic graph = null;
 
             if (layer.children!=null)
                 ctrl.DrawLayers(layer.children.ConvertAll(x=>x as GroupNode).ToArray(), node);//子节点
@@ -27,31 +29,31 @@ namespace PSDUnity.UGUI
                 {
                     if(image.type == ImgType.Texture)
                     {
-                        panel = node.InitComponent<UnityEngine.UI.RawImage>();
+                        graph = node.InitComponent<UnityEngine.UI.RawImage>();
                     }
                     else
                     {
-                        panel = node.InitComponent<UnityEngine.UI.Image>();
+                        graph = node.InitComponent<UnityEngine.UI.Image>();
                     }
-                    PSDImporter.SetPictureOrLoadColor(image, panel);
-                    PSDImporter.SetRectTransform(image, panel.GetComponent<RectTransform>());
-                    panel.name = layer.displayName;
+                    PSDImporter.SetPictureOrLoadColor(image, graph);
+                    PSDImporter.SetRectTransform(image, graph.GetComponent<RectTransform>());
+                    graph.name = layer.displayName;
                 }
                 else
                 {
                     ctrl.DrawImage(image, node);
                 }
             }
-            if (panel == null)
+            if (graph == null && createMask)
             {
-                panel = node.InitComponent<UnityEngine.UI.Image>();
-                PSDImporter.SetRectTransform(layer, panel.GetComponent<RectTransform>());
+                graph = node.InitComponent<UnityEngine.UI.Image>();
+                PSDImporter.SetRectTransform(layer, graph.GetComponent<RectTransform>());
                 Color color;
                 if (ColorUtility.TryParseHtmlString("#FFFFFF01", out color))
                 {
-                    panel.color = color;
+                    graph.color = color;
                 }
-                panel.name = layer.displayName;
+                graph.name = layer.displayName;
             }
             return node;
 

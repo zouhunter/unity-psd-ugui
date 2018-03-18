@@ -17,6 +17,8 @@ namespace PSDUnity.UGUI
         {
             UGUINode node = PSDImporter.InstantiateItem(GroupType.TOGGLE,layer.displayName,parent);// GameObject.Instantiate(temp) as UnityEngine.UI.Toggle;
             UnityEngine.UI.Toggle toggle = node.InitComponent<UnityEngine.UI.Toggle>();
+            PSDImporter.SetRectTransform(layer, toggle.GetComponent<RectTransform>());
+
             if (layer.images != null)
             {
                 for (int imageIndex = 0; imageIndex < layer.images.Count; imageIndex++)

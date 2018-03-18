@@ -72,7 +72,11 @@ namespace PSDUnity.UGUI
                     break;
             }
         }
-
+        public static void SetRectTransform(Rect rect, RectTransform rectTransform)
+        {
+            rectTransform.sizeDelta = new Vector2(rect.width, rect.height);
+            rectTransform.anchoredPosition = new Vector2(rect.x, rect.y);
+        }
         public static void SetRectTransform(ImgNode image, RectTransform rectTransform)
         {
             rectTransform.sizeDelta = new Vector2(image.rect.width, image.rect.height);

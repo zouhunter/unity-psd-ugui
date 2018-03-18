@@ -27,7 +27,8 @@ namespace PSDUnity.UGUI
 
             if (bg != null)
             {
-                var graph = node.InitComponent<UnityEngine.UI.Image>();
+                var bgnode = ctrl.DrawImage(bg, node);
+                var graph = bgnode.InitComponent<UnityEngine.UI.Image>();
                 PSDImporter.SetPictureOrLoadColor(bg, graph);
             }
 
@@ -35,24 +36,22 @@ namespace PSDUnity.UGUI
             {
                 var fillAreaNode = PSDImporter.InstantiateItem(GroupType.EMPTY, "Fill Area", node);
                 var fileNode = ctrl.DrawImage(fill, fillAreaNode);
+                slider.fillRect = fileNode.InitComponent<RectTransform>();
                 fileNode.InitComponent<Image>().type = Image.Type.Tiled;
                 PSDImporter.SetRectTransform(fill, fillAreaNode.InitComponent<RectTransform>());
-
-                fillAreaNode.inversionReprocess += () =>
-                {
-                    slider.fillRect = fileNode.InitComponent<RectTransform>();
-                };
             }
 
             if (handle != null && bg != null)
             {
                 var tempRect = fill != null ? fill : bg;
-                SetSlider(slider, handle, layer);
+                SetSliderDirection(slider, handle, layer);
                 var handAreaNode = PSDImporter.InstantiateItem(GroupType.EMPTY, "Handle Slide Area", node);
-                PSDImporter.SetRectTransform(tempRect, handAreaNode.InitComponent<RectTransform>());
+                var rect = new Rect(tempRect.rect.x, tempRect.rect.y, tempRect.rect.width - handle.rect.width, tempRect.rect.height);//x,y 为中心点的坐标！
+                PSDImporter.SetRectTransform(rect, handAreaNode.InitComponent<RectTransform>());
 
                 var handNode = ctrl.DrawImage(handle, handAreaNode);
 
+                ///设置handle最后的锚点类型
                 switch (layer.direction)
                 {
                     case Direction.LeftToRight:
@@ -70,22 +69,26 @@ namespace PSDUnity.UGUI
                     default:
                         break;
                 }
+
+                ///修复handleRect
                 handNode.inversionReprocess += () =>
                 {
                     slider.handleRect = handNode.InitComponent<RectTransform>();
                     slider.handleRect.anchoredPosition = Vector3.zero;
+                    slider.handleRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, handle.rect.width);
+                    slider.handleRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, handle.rect.height);
                 };
             }
             else
             {
-                SetSlider(slider, layer.direction);
+                SetSliderDirection(slider, layer);
             }
-           
-
             return node;
         }
-        private void SetSlider(Slider slider,Direction dir)
+      
+        private void SetSliderDirection(Slider slider,GroupNode layer)
         {
+            var dir = layer.direction;
             switch (dir)
             {
                 case Direction.LeftToRight:
@@ -102,11 +105,19 @@ namespace PSDUnity.UGUI
                     slider.direction = Slider.Direction.TopToBottom;
                     break;
                 default:
+                    if (layer.rect.width > layer.rect.height)
+                    {
+                        slider.direction = Slider.Direction.LeftToRight;
+                    }
+                    else
+                    {
+                        slider.direction = Slider.Direction.BottomToTop;
+                    }
                     break;
             }
         }
 
-        private void SetSlider(Slider slider, ImgNode handlePos, GroupNode groupPos)
+        private void SetSliderDirection(Slider slider, ImgNode handlePos, GroupNode groupPos)
         {
             var hRect = handlePos.rect;
             var gRect = groupPos.rect;

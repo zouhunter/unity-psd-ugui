@@ -9,6 +9,7 @@ namespace PSDUnity.UGUI
         {
             UGUINode node = PSDImporter.InstantiateItem(GroupType.SCROLLBAR, layer.displayName, parent);
             Scrollbar scrollBar = node.InitComponent<Scrollbar>();
+            PSDImporter.SetRectTransform(layer, scrollBar.GetComponent<RectTransform>());
 
             switch (layer.direction)
             {
