@@ -30,15 +30,15 @@ namespace Ntreev.Library.Psd.Readers.LayerAndMaskInformation
         public LayerInfoReader(PsdReader reader, PsdDocument document)
             : base(reader, true, document)
         {
-            
+
         }
 
         protected override void ReadValue(PsdReader reader, object userData, out PsdLayer[] value)
         {
             PsdDocument document = userData as PsdDocument;
             int layerCount = Math.Abs((int)reader.ReadInt16());
-
             PsdLayer[] layers = new PsdLayer[layerCount];
+          
             for (int i = 0; i < layerCount; i++)
             {
                 layers[i] = new PsdLayer(reader, document);
@@ -64,7 +64,6 @@ namespace Ntreev.Library.Psd.Readers.LayerAndMaskInformation
             Stack<PsdLayer> stack = new Stack<PsdLayer>();
             List<PsdLayer> rootLayers = new List<PsdLayer>();
             Dictionary<PsdLayer, List<PsdLayer>> layerToChilds = new Dictionary<PsdLayer, List<PsdLayer>>();
-
             foreach (var item in layers.Reverse())
             {
                 if (item.SectionType == SectionType.Divider)
@@ -96,12 +95,26 @@ namespace Ntreev.Library.Psd.Readers.LayerAndMaskInformation
                 }
             }
 
-            foreach (var item in layerToChilds)
+            foreach (var item in rootLayers)
             {
-                item.Key.Childs = item.Value.ToArray();
+                item.Deepth = 1;
+                InitStrure(item, layerToChilds);
             }
 
             return rootLayers.ToArray();
+        }
+
+        private static void InitStrure(PsdLayer parent, Dictionary<PsdLayer, List<PsdLayer>> dic)
+        {
+            if(dic.ContainsKey(parent))
+            {
+                parent.Childs= dic[parent].ToArray();
+                foreach (var child in dic[parent])
+                {
+                    child.Deepth = parent.Deepth + 1;
+                    InitStrure(child, dic);
+                }
+            }
         }
     }
 }

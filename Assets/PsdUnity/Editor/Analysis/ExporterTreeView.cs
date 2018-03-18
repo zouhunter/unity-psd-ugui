@@ -167,7 +167,6 @@ namespace PSDUnity
         {
             var rectRect = new Rect(controlsRect.x, controlsRect.y, 120, controlsRect.width * 0.2f);
             item.rect = EditorGUI.RectField(rectRect, item.rect);
-
             if (!imgListDic.ContainsKey(item.id))
             {
                 var reorder = new ReorderableList(item.images, typeof(ImgNode),true,true,true,true);
@@ -177,7 +176,7 @@ namespace PSDUnity
                 reorder.onChangedCallback = (x) => { Reload(); };
                 imgListDic.Add(item.id, reorder);
             }
-            var imgsRect = new Rect(controlsRect.width * 0.3f, controlsRect.y, EditorGUIUtility.currentViewWidth - controlsRect.width * 0.35f, controlsRect.height);
+            var imgsRect = new Rect(controlsRect.x + 120, controlsRect.y, EditorGUIUtility.currentViewWidth - 120, controlsRect.height);
             imgListDic[item.id].DoList(imgsRect);
         }
         void HeaderGUI(Rect headerRect, string label, GroupNode item)

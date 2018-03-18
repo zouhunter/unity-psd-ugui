@@ -1,0 +1,303 @@
+fileFormatVersion: 2
+guid: 9b9aa8f0c40b6bf49bb1cf2bc56e972c
+timeCreated: 1521370923
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: H-LINE
+    21300002: H-Line
+    21300004: </Layer group>2
+    21300006: n_Icon3
+    21300008: b_BG1
+    21300010: </Layer group>2
+    21300012: H_LINE
+    21300014: b_Arrow5
+    21300016: </Layer group>1
+    21300018: Avatar2
+    21300020: H_LINE
+    21300022: </Layer group>1
+    21300024: Avatar2
+    21300026: </Layer group>1
+    21300028: Avatar2
+    21300030: H_LINE
+    21300032: </Layer group>1
+    21300034: Avatar2
+    21300036: H_LINE
+    21300038: </Layer group>1
+    21300040: Avatar2
+    21300042: H_LINE
+    21300044: </Layer group>1
+    21300046: Avatar2
+    21300048: H_LINE
+    21300050: </Layer group>2
+    21300052: Avatar3
+    21300054: H_LINE
+    21300056: b_EDIT0
+    21300058: </Layer group>13
+    21300060: Avatar14
+    21300062: H_LINE
+    21300064: n_ICON1000
+    21300066: b_BG1010
+    21300068: b_BG1020
+    21300070: Arrow1021
+    21300072: b_BG1030
+    21300074: ICON1032
+    21300076: Arrow1033
+    21300078: b_G1100
+    21300080: b_ICON110101
+    21300082: </Layer group>110102
+    21300084: b_BG110103
+    21300086: b_BG11020
+    21300088: ICON11022
+    21300090: </Layer group>11023
+    21300092: b_BG11024
+    21300094: </Layer group>121
+    21300096: Avatar122
+    21300098: H_LINE
+    21300100: </Layer group>1200
+    21300102: Avatar1201
+    21300104: H_LINE
+    21300106: f_Scrollbar10
+    21300108: b_11
+    21300110: b_BG10
+    21300112: </Layer group>12
+    21300114: b_BG13
+    21300116: Arrow15
+    21300118: </Layer group>110
+    21300120: b_Scrollbar10
+    21300122: h_Scrollbar11
+    21300124: </Layer group>20
+    21300126: H-LINE
+    21300128: </Layer group>23
+    21300130: b_precent
+    21300132: Precent26
+    21300134: </Layer group>27
+    21300136: b_update
+    21300138: Update@Button30
+    21300140: </Layer group>31
+    21300142: b_arrow
+    21300144: Arrow33
+    21300146: </Layer group>34
+    21300148: b_Vektor-Smartobjekt
+    21300150: EDIT@Button36
+    21300152: H-LINE
+    21300154: n_Arrow12
+    21300156: b_BG10
+    21300158: n_Logout_Icon111
+    21300160: Trenner
+    21300162: Trenner
+    21300164: Trenner
+    21300166: Trenner
+    21300168: n_Upgrad_Icon131
+    21300170: b_BG140
+    21300172: n_Settings_Icon151
+    21300174: n_Projects Icon161
+    21300176: b_BG1620
+    21300178: b_Aktiv171
+    21300180: m_Aktiv172
+    21300182: n_IMG180
+    21300184: BG1810
+    21300186: </Layer group>0
+    21300188: </Layer group>3
+    21300190: "\u56FE\u5C42 14"
+    21300192: "\u7EC4 15"
+    21300194: "\u56FE\u5C42 26"
+    21300196: "\u7EC4 27"
+    21300198: "\u7EC4 38"
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: </Layer group>0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 342
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 344
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 346
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 348
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: "\u56FE\u5C42 14"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 454
+        height: 340
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: "\u7EC4 15"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 350
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: "\u56FE\u5C42 26"
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 0
+        width: 454
+        height: 340
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: "\u7EC4 27"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 352
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: "\u7EC4 38"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 354
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

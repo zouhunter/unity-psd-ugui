@@ -1,0 +1,1558 @@
+fileFormatVersion: 2
+guid: ddfb8f815d4c5784d9a366fb83f1f32a
+timeCreated: 1521369908
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: </Layer group>14
+    21300002: n_Icon15
+    21300004: H-LINE
+    21300006: b_precent
+    21300008: b_update
+    21300010: b_arrow
+    21300012: b_Vektor-Smartobjekt
+    21300014: Avatar10
+    21300016: H_LINE
+    21300018: Avatar20
+    21300020: H_LINE
+    21300022: Avatar30
+    21300024: H_LINE
+    21300026: Avatar40
+    21300028: H_LINE
+    21300030: Avatar50
+    21300032: H_LINE
+    21300034: Avatar60
+    21300036: H_LINE
+    21300038: Avatar70
+    21300040: H_LINE
+    21300042: Avatar80
+    21300044: H_LINE
+    21300046: Avatar90
+    21300048: Avatar100
+    21300050: H_LINE
+    21300052: b_EDIT110
+    21300054: n_ICON12000
+    21300056: b_BG12010
+    21300058: b_BG12020
+    21300060: Arrow12021
+    21300062: b_BG12030
+    21300064: ICON12032
+    21300066: Arrow12033
+    21300068: b_G12100
+    21300070: b_ICON1210101
+    21300072: </Layer group>1210102
+    21300074: b_BG1210103
+    21300076: b_BG121020
+    21300078: ICON121022
+    21300080: </Layer group>121023
+    21300082: b_BG121024
+    21300084: b_BG12200
+    21300086: </Layer group>12201
+    21300088: H_LINE
+    21300090: b_Arrow12204
+    21300092: f_Scrollbar1230
+    21300094: b_1231
+    21300096: b_BG130
+    21300098: </Layer group>132
+    21300100: b_BG133
+    21300102: Arrow135
+    21300104: H-Line
+    21300106: </Layer group>1311
+    21300108: b_Scrollbar10
+    21300110: h_Scrollbar11
+    21300112: H-LINE
+    21300114: n_Arrow32
+    21300116: b_BG10
+    21300118: n_Logout_Icon111
+    21300120: Trenner
+    21300122: Trenner
+    21300124: Trenner
+    21300126: Trenner
+    21300128: n_Upgrad_Icon131
+    21300130: b_BG140
+    21300132: n_Settings_Icon151
+    21300134: n_Projects Icon161
+    21300136: b_BG1620
+    21300138: b_Aktiv171
+    21300140: m_Aktiv172
+    21300142: n_IMG180
+    21300144: BG1810
+    21300146: b_ICON1301
+    21300148: b_BG13020
+    21300150: b_BG1310
+    21300152: ICON1312
+    21300154: b_BG13130
+    21300156: b_BG1400
+    21300158: b_Arrow14012
+    21300160: f_Scrollbar1410
+    21300162: b_1411
+    21300164: b_BG150
+    21300166: b_BG15120
+    21300168: Arrow15122
+    21300170: n_Icon15130
+    21300172: b_Scrollbar1520
+    21300174: h_Scrollbar1521
+    21300176: n_Arrow1542
+    21300178: b_BG160
+    21300180: n_Logout_Icon1611
+    21300182: n_Upgrad_Icon1631
+    21300184: b_BG1640
+    21300186: n_Settings_Icon1651
+    21300188: n_Projects Icon1661
+    21300190: b_BG16620
+    21300192: b_Aktiv1671
+    21300194: m_Aktiv1672
+    21300196: n_IMG1680
+    21300198: BG16810
+    21300200: </Layer group>2
+    21300202: n_Icon3
+    21300204: b_BG1
+    21300206: </Layer group>2
+    21300208: b_Arrow5
+    21300210: </Layer group>1
+    21300212: Avatar2
+    21300214: </Layer group>1
+    21300216: Avatar2
+    21300218: </Layer group>1
+    21300220: Avatar2
+    21300222: </Layer group>1
+    21300224: Avatar2
+    21300226: </Layer group>1
+    21300228: Avatar2
+    21300230: </Layer group>1
+    21300232: Avatar2
+    21300234: </Layer group>2
+    21300236: Avatar3
+    21300238: b_EDIT0
+    21300240: </Layer group>13
+    21300242: Avatar14
+    21300244: n_ICON1000
+    21300246: b_BG1010
+    21300248: b_BG1020
+    21300250: Arrow1021
+    21300252: b_BG1030
+    21300254: ICON1032
+    21300256: Arrow1033
+    21300258: b_G1100
+    21300260: b_ICON110101
+    21300262: </Layer group>110102
+    21300264: b_BG110103
+    21300266: b_BG11020
+    21300268: ICON11022
+    21300270: </Layer group>11023
+    21300272: b_BG11024
+    21300274: </Layer group>121
+    21300276: Avatar122
+    21300278: </Layer group>1200
+    21300280: Avatar1201
+    21300282: f_Scrollbar10
+    21300284: b_11
+    21300286: </Layer group>12
+    21300288: b_BG13
+    21300290: Arrow15
+    21300292: </Layer group>110
+    21300294: </Layer group>20
+    21300296: </Layer group>23
+    21300298: Precent26
+    21300300: </Layer group>27
+    21300302: Update@Button30
+    21300304: </Layer group>31
+    21300306: Arrow33
+    21300308: </Layer group>34
+    21300310: EDIT@Button36
+    21300312: H-LINE
+    21300314: n_Arrow12
+    21300316: b_BG10
+    21300318: n_Next100
+    21300320: n_Break110
+    21300322: n_Outside_Black_Border20
+    21300324: d_Outside_Black_Border21
+    21300326: h_Outside_Black_Border22
+    21300328: b_Background300
+    21300330: f_Blue_Bar301
+    21300332: h_Circle302
+    21300334: b_Inside_Background310
+    21300336: f_Luminous_Effect311
+    21300338: h_Circle312
+    21300340: b_Part_1500
+    21300342: f_Part_2501
+    21300344: b_Black_Border510
+    21300346: b2_60
+    21300348: b3_61
+    21300350: b1_62
+    21300352: m_66
+    21300354: b_Part_1650
+    21300356: h_Part_2651
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: H-LINE
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1990
+        width: 753
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H-Line
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1986
+        width: 752
+        height: 2
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>2
+      rect:
+        serializedVersion: 2
+        x: 2006
+        y: 669
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_Icon3
+      rect:
+        serializedVersion: 2
+        x: 1954
+        y: 817
+        width: 33
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG1
+      rect:
+        serializedVersion: 2
+        x: 1702
+        y: 0
+        width: 300
+        height: 677
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>2
+      rect:
+        serializedVersion: 2
+        x: 2008
+        y: 667
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H_LINE
+      rect:
+        serializedVersion: 2
+        x: 1734
+        y: 910
+        width: 295
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_Arrow5
+      rect:
+        serializedVersion: 2
+        x: 2004
+        y: 647
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>1
+      rect:
+        serializedVersion: 2
+        x: 2006
+        y: 665
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar2
+      rect:
+        serializedVersion: 2
+        x: 1702
+        y: 817
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H_LINE
+      rect:
+        serializedVersion: 2
+        x: 1734
+        y: 907
+        width: 295
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>1
+      rect:
+        serializedVersion: 2
+        x: 2008
+        y: 673
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar2
+      rect:
+        serializedVersion: 2
+        x: 1738
+        y: 817
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>1
+      rect:
+        serializedVersion: 2
+        x: 2045
+        y: 21
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar2
+      rect:
+        serializedVersion: 2
+        x: 2011
+        y: 647
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H_LINE
+      rect:
+        serializedVersion: 2
+        x: 1734
+        y: 901
+        width: 295
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>1
+      rect:
+        serializedVersion: 2
+        x: 2043
+        y: 21
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar2
+      rect:
+        serializedVersion: 2
+        x: 1810
+        y: 817
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H_LINE
+      rect:
+        serializedVersion: 2
+        x: 1734
+        y: 895
+        width: 295
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>1
+      rect:
+        serializedVersion: 2
+        x: 2039
+        y: 23
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar2
+      rect:
+        serializedVersion: 2
+        x: 1864
+        y: 770
+        width: 34
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H_LINE
+      rect:
+        serializedVersion: 2
+        x: 1734
+        y: 892
+        width: 295
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>1
+      rect:
+        serializedVersion: 2
+        x: 2039
+        y: 21
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar2
+      rect:
+        serializedVersion: 2
+        x: 1846
+        y: 817
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H_LINE
+      rect:
+        serializedVersion: 2
+        x: 1734
+        y: 884
+        width: 295
+        height: 2
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>2
+      rect:
+        serializedVersion: 2
+        x: 2008
+        y: 675
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar3
+      rect:
+        serializedVersion: 2
+        x: 1882
+        y: 817
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H_LINE
+      rect:
+        serializedVersion: 2
+        x: 1734
+        y: 888
+        width: 295
+        height: 2
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_EDIT0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1700
+        height: 1202
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>13
+      rect:
+        serializedVersion: 2
+        x: 2006
+        y: 675
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar14
+      rect:
+        serializedVersion: 2
+        x: 1918
+        y: 817
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H_LINE
+      rect:
+        serializedVersion: 2
+        x: 1734
+        y: 880
+        width: 295
+        height: 2
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_ICON1000
+      rect:
+        serializedVersion: 2
+        x: 1702
+        y: 849
+        width: 33
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG1010
+      rect:
+        serializedVersion: 2
+        x: 1775
+        y: 770
+        width: 87
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG1020
+      rect:
+        serializedVersion: 2
+        x: 1989
+        y: 817
+        width: 33
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Arrow1021
+      rect:
+        serializedVersion: 2
+        x: 2039
+        y: 15
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG1030
+      rect:
+        serializedVersion: 2
+        x: 1910
+        y: 679
+        width: 132
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ICON1032
+      rect:
+        serializedVersion: 2
+        x: 2030
+        y: 0
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Arrow1033
+      rect:
+        serializedVersion: 2
+        x: 2030
+        y: 15
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_G1100
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1204
+        width: 1308
+        height: 773
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_ICON110101
+      rect:
+        serializedVersion: 2
+        x: 1737
+        y: 849
+        width: 30
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>110102
+      rect:
+        serializedVersion: 2
+        x: 2004
+        y: 675
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG110103
+      rect:
+        serializedVersion: 2
+        x: 2019
+        y: 769
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG11020
+      rect:
+        serializedVersion: 2
+        x: 1702
+        y: 679
+        width: 206
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ICON11022
+      rect:
+        serializedVersion: 2
+        x: 1856
+        y: 849
+        width: 34
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>11023
+      rect:
+        serializedVersion: 2
+        x: 2008
+        y: 671
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG11024
+      rect:
+        serializedVersion: 2
+        x: 1769
+        y: 849
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>121
+      rect:
+        serializedVersion: 2
+        x: 2008
+        y: 669
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar122
+      rect:
+        serializedVersion: 2
+        x: 1900
+        y: 770
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H_LINE
+      rect:
+        serializedVersion: 2
+        x: 1734
+        y: 904
+        width: 295
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>1200
+      rect:
+        serializedVersion: 2
+        x: 2006
+        y: 673
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar1201
+      rect:
+        serializedVersion: 2
+        x: 1774
+        y: 817
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H_LINE
+      rect:
+        serializedVersion: 2
+        x: 1734
+        y: 898
+        width: 295
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: f_Scrollbar10
+      rect:
+        serializedVersion: 2
+        x: 2011
+        y: 0
+        width: 5
+        height: 645
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_11
+      rect:
+        serializedVersion: 2
+        x: 2004
+        y: 0
+        width: 5
+        height: 645
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1979
+        width: 758
+        height: 677
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>12
+      rect:
+        serializedVersion: 2
+        x: 2041
+        y: 21
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG13
+      rect:
+        serializedVersion: 2
+        x: 1775
+        y: 738
+        width: 174
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Arrow15
+      rect:
+        serializedVersion: 2
+        x: 2030
+        y: 21
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>110
+      rect:
+        serializedVersion: 2
+        x: 2041
+        y: 23
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_Scrollbar10
+      rect:
+        serializedVersion: 2
+        x: 2024
+        y: 0
+        width: 4
+        height: 597
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: h_Scrollbar11
+      rect:
+        serializedVersion: 2
+        x: 2018
+        y: 0
+        width: 4
+        height: 597
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>20
+      rect:
+        serializedVersion: 2
+        x: 2004
+        y: 665
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H-LINE
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1979
+        width: 752
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>23
+      rect:
+        serializedVersion: 2
+        x: 2008
+        y: 665
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_precent
+      rect:
+        serializedVersion: 2
+        x: 1995
+        y: 710
+        width: 44
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Precent26
+      rect:
+        serializedVersion: 2
+        x: 2004
+        y: 667
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>27
+      rect:
+        serializedVersion: 2
+        x: 2006
+        y: 667
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_update
+      rect:
+        serializedVersion: 2
+        x: 1910
+        y: 710
+        width: 83
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Update@Button30
+      rect:
+        serializedVersion: 2
+        x: 2004
+        y: 669
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>31
+      rect:
+        serializedVersion: 2
+        x: 2043
+        y: 23
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_arrow
+      rect:
+        serializedVersion: 2
+        x: 1798
+        y: 849
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Arrow33
+      rect:
+        serializedVersion: 2
+        x: 2004
+        y: 671
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: </Layer group>34
+      rect:
+        serializedVersion: 2
+        x: 2006
+        y: 671
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_Vektor-Smartobjekt
+      rect:
+        serializedVersion: 2
+        x: 1827
+        y: 849
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: EDIT@Button36
+      rect:
+        serializedVersion: 2
+        x: 2004
+        y: 673
+        width: 0
+        height: 0
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H-LINE
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1993
+        width: 753
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_Arrow12
+      rect:
+        serializedVersion: 2
+        x: 2004
+        y: 656
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2658
+        width: 163
+        height: 906
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_Logout_Icon111
+      rect:
+        serializedVersion: 2
+        x: 1702
+        y: 880
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Trenner
+      rect:
+        serializedVersion: 2
+        x: 1821
+        y: 801
+        width: 21
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Trenner
+      rect:
+        serializedVersion: 2
+        x: 1775
+        y: 801
+        width: 21
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Trenner
+      rect:
+        serializedVersion: 2
+        x: 1798
+        y: 801
+        width: 21
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Trenner
+      rect:
+        serializedVersion: 2
+        x: 2018
+        y: 633
+        width: 21
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_Upgrad_Icon131
+      rect:
+        serializedVersion: 2
+        x: 2018
+        y: 599
+        width: 30
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG140
+      rect:
+        serializedVersion: 2
+        x: 1892
+        y: 849
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_Settings_Icon151
+      rect:
+        serializedVersion: 2
+        x: 2019
+        y: 738
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_Projects Icon161
+      rect:
+        serializedVersion: 2
+        x: 2019
+        y: 796
+        width: 23
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG1620
+      rect:
+        serializedVersion: 2
+        x: 1918
+        y: 849
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_Aktiv171
+      rect:
+        serializedVersion: 2
+        x: 1702
+        y: 912
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: m_Aktiv172
+      rect:
+        serializedVersion: 2
+        x: 1702
+        y: 738
+        width: 71
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_IMG180
+      rect:
+        serializedVersion: 2
+        x: 1951
+        y: 738
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: BG1810
+      rect:
+        serializedVersion: 2
+        x: 2024
+        y: 817
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,2742 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885e115a8f1c1e04b88b4a1204eba2ee, type: 3}
+  m_Name: exporter
+  m_EditorClassIdentifier: 
+  _exportPath: 
+  psdFile: E:/GitHub/PsdUnity/PsdFiles/demoui.psd
+  ruleObj: {fileID: 0}
+  groups:
+  - _id: 0
+    _depth: -1
+    _displayName: exporter
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1600
+      height: 900
+    images: []
+  - _id: 1
+    _depth: 0
+    _displayName: Content
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 1
+      width: 1700
+      height: 1202
+    images: []
+  - _id: 2
+    _depth: 1
+    _displayName: Tabs
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 1
+      width: 1700
+      height: 1202
+    images: []
+  - _id: 3
+    _depth: 2
+    _displayName: Active Projects
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 1
+      width: 1700
+      height: 1202
+    images: []
+  - _id: 4
+    _depth: 3
+    _displayName: Projects
+    groupType: 7
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 1
+      width: 1700
+      height: 1202
+    images: []
+  - _id: 5
+    _depth: 4
+    _displayName: c_list
+    groupType: 11
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 1
+      width: 1700
+      height: 1202
+    images: []
+  - _id: 6
+    _depth: 5
+    _displayName: Head
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 1
+      width: 1700
+      height: 1202
+    images:
+    - Name: H-LINE
+      type: 2
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -203.5
+        y: 257.5
+        width: 753
+        height: 1
+      sprite: {fileID: 21300312, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: H-Line
+      type: 2
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -203
+        y: 257
+        width: 752
+        height: 2
+      sprite: {fileID: 21300104, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 7
+    _depth: 6
+    _displayName: Add
+    groupType: 1
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 1
+      width: 1700
+      height: 1202
+    images:
+    - Name: </Layer group>
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300200, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: n_Icon
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 134.5
+        y: 289
+        width: 33
+        height: 30
+      sprite: {fileID: 21300202, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 8
+    _depth: 7
+    _displayName: view
+    groupType: 7
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 1
+      width: 1700
+      height: 1202
+    images: []
+  - _id: 9
+    _depth: 8
+    _displayName: c_Activity
+    groupType: 11
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 1
+      width: 1700
+      height: 1202
+    images: []
+  - _id: 10
+    _depth: 9
+    _displayName: Button
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 1
+      width: 1700
+      height: 1202
+    images:
+    - Name: b_BG
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: -15.5
+        width: 300
+        height: 677
+      sprite: {fileID: 21300204, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: </Layer group>
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300200, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: H_LINE
+      type: 2
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 335.5
+        y: -312.5
+        width: 295
+        height: 1
+      sprite: {fileID: 21300040, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Activity Archiv
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: -332
+        width: 78
+        height: 12
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Activity Archiv
+      font: {fileID: 0}
+      fontSize: 18
+      color: {r: 0.29413, g: 0.29413, b: 0.29413, a: 1}
+    - Name: b_Arrow
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: -332.5
+        width: 4
+        height: 7
+      sprite: {fileID: 21300208, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 11
+    _depth: 10
+    _displayName: Line
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 1
+      width: 1700
+      height: 1202
+    images:
+    - Name: </Layer group>
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300218, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Avatar
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 290
+        width: 34
+        height: 30
+      sprite: {fileID: 21300212, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Mark P. add an Image into Worlda
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 338.5
+        y: 296
+        width: 179
+        height: 12
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Mark P. add an Image into Worlda
+      font: {fileID: 0}
+      fontSize: 18
+      color: {r: 0.29413, g: 0.29413, b: 0.29413, a: 1}
+    - Name: Today, 10:30 PM
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 280.5
+        width: 70
+        height: 9
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Today, 10:30 PM
+      font: {fileID: 0}
+      fontSize: 14
+      color: {r: 0.55295, g: 0.64706, b: 0.71371, a: 1}
+    - Name: H_LINE
+      type: 2
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 335.5
+        y: 257.5
+        width: 295
+        height: 1
+      sprite: {fileID: 21300040, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 12
+    _depth: 11
+    _displayName: Line
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 1
+      width: 1700
+      height: 1202
+    images:
+    - Name: </Layer group>
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300218, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Avatar
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: -293
+        width: 34
+        height: 30
+      sprite: {fileID: 21300212, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Benni I. add an Image into Worlda
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: -288
+        width: 180
+        height: 12
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Benni I. add an Image into Worlda
+      font: {fileID: 0}
+      fontSize: 18
+      color: {r: 0.29413, g: 0.29413, b: 0.29413, a: 1}
+    - Name: Today, 10:30 PM
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: -302.5
+        width: 70
+        height: 9
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Today, 10:30 PM
+      font: {fileID: 0}
+      fontSize: 14
+      color: {r: 0.55295, g: 0.64706, b: 0.71371, a: 1}
+  - _id: 13
+    _depth: 12
+    _displayName: Line
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 1
+      width: 1700
+      height: 1202
+    images:
+    - Name: </Layer group>
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300218, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Avatar
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: -228
+        width: 34
+        height: 30
+      sprite: {fileID: 21300212, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Benni I. add an Image into Worlda
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: -222
+        width: 180
+        height: 12
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Benni I. add an Image into Worlda
+      font: {fileID: 0}
+      fontSize: 18
+      color: {r: 0.29413, g: 0.29413, b: 0.29413, a: 1}
+    - Name: Today, 10:30 PM
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: -236.5
+        width: 70
+        height: 9
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Today, 10:30 PM
+      font: {fileID: 0}
+      fontSize: 14
+      color: {r: 0.55295, g: 0.64706, b: 0.71371, a: 1}
+    - Name: H_LINE
+      type: 2
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 335.5
+        y: -259.5
+        width: 295
+        height: 1
+      sprite: {fileID: 21300040, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 14
+    _depth: 13
+    _displayName: Line
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 1
+      width: 1700
+      height: 1202
+    images:
+    - Name: </Layer group>
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300218, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Avatar
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: -162
+        width: 34
+        height: 30
+      sprite: {fileID: 21300212, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Benni I. add an Image into Worlda
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: -157
+        width: 180
+        height: 12
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Benni I. add an Image into Worlda
+      font: {fileID: 0}
+      fontSize: 18
+      color: {r: 0.29413, g: 0.29413, b: 0.29413, a: 1}
+    - Name: Today, 10:30 PM
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: -171.5
+        width: 70
+        height: 9
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Today, 10:30 PM
+      font: {fileID: 0}
+      fontSize: 14
+      color: {r: 0.55295, g: 0.64706, b: 0.71371, a: 1}
+    - Name: H_LINE
+      type: 2
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 335.5
+        y: -194.5
+        width: 295
+        height: 1
+      sprite: {fileID: 21300040, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 15
+    _depth: 14
+    _displayName: Line
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 1
+      width: 1700
+      height: 1202
+    images:
+    - Name: </Layer group>
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300218, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Avatar
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: -96.5
+        width: 34
+        height: 31
+      sprite: {fileID: 21300212, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Benni I. add an Image into Worlda
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: -91
+        width: 180
+        height: 12
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Benni I. add an Image into Worlda
+      font: {fileID: 0}
+      fontSize: 18
+      color: {r: 0.29413, g: 0.29413, b: 0.29413, a: 1}
+    - Name: Today, 10:30 PM
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: -105.5
+        width: 70
+        height: 9
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Today, 10:30 PM
+      font: {fileID: 0}
+      fontSize: 14
+      color: {r: 0.55295, g: 0.64706, b: 0.71371, a: 1}
+    - Name: H_LINE
+      type: 2
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 335.5
+        y: -128.5
+        width: 295
+        height: 1
+      sprite: {fileID: 21300040, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 16
+    _depth: 15
+    _displayName: Line
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 1
+      width: 1700
+      height: 1202
+    images:
+    - Name: </Layer group>
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300218, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Avatar
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: -32
+        width: 34
+        height: 30
+      sprite: {fileID: 21300212, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Mark P. add an Image into Worlda
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 338.5
+        y: -27
+        width: 179
+        height: 12
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Mark P. add an Image into Worlda
+      font: {fileID: 0}
+      fontSize: 18
+      color: {r: 0.29413, g: 0.29413, b: 0.29413, a: 1}
+    - Name: Today, 10:30 PM
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: -41.5
+        width: 70
+        height: 9
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Today, 10:30 PM
+      font: {fileID: 0}
+      fontSize: 14
+      color: {r: 0.55295, g: 0.64706, b: 0.71371, a: 1}
+    - Name: H_LINE
+      type: 2
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 335.5
+        y: -65
+        width: 295
+        height: 2
+      sprite: {fileID: 21300040, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 17
+    _depth: 16
+    _displayName: Line
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 1
+      width: 1700
+      height: 1202
+    images:
+    - Name: </Layer group>
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300200, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Avatar
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 32
+        width: 34
+        height: 30
+      sprite: {fileID: 21300236, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Philip O. add an Image into Worlda
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 342.5
+        y: 37
+        width: 185
+        height: 12
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Philip O. add an Image into Worlda
+      font: {fileID: 0}
+      fontSize: 18
+      color: {r: 0.29413, g: 0.29413, b: 0.29413, a: 1}
+    - Name: Today, 10:30 PM
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 22.5
+        width: 70
+        height: 9
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Today, 10:30 PM
+      font: {fileID: 0}
+      fontSize: 14
+      color: {r: 0.55295, g: 0.64706, b: 0.71371, a: 1}
+    - Name: H_LINE
+      type: 2
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 335.5
+        y: -1
+        width: 295
+        height: 2
+      sprite: {fileID: 21300040, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 18
+    _depth: 17
+    _displayName: BG
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 1
+      width: 1700
+      height: 1202
+    images:
+    - Name: b_EDIT
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 1
+        width: 1700
+        height: 1202
+      sprite: {fileID: 21300238, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 19
+    _depth: 17
+    _displayName: Line
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 16
+      y: 36
+      width: 1310
+      height: 824
+    images:
+    - Name: </Layer group>
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300240, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Avatar
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 96
+        width: 34
+        height: 30
+      sprite: {fileID: 21300242, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Mark P. add an Image into Worlda
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 338.5
+        y: 102
+        width: 179
+        height: 12
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Mark P. add an Image into Worlda
+      font: {fileID: 0}
+      fontSize: 18
+      color: {r: 0.29413, g: 0.29413, b: 0.29413, a: 1}
+    - Name: Today, 10:30 PM
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 86.5
+        width: 70
+        height: 9
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Today, 10:30 PM
+      font: {fileID: 0}
+      fontSize: 14
+      color: {r: 0.55295, g: 0.64706, b: 0.71371, a: 1}
+    - Name: H_LINE
+      type: 2
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 335.5
+        y: 64
+        width: 295
+        height: 2
+      sprite: {fileID: 21300040, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 20
+    _depth: 18
+    _displayName: Head
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -47.5
+      y: 431
+      width: 1067
+      height: 34
+    images: []
+  - _id: 21
+    _depth: 19
+    _displayName: Update
+    groupType: 1
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -564.5
+      y: 430.5
+      width: 33
+      height: 29
+    images:
+    - Name: n_ICON
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -564.5
+        y: 430.5
+        width: 33
+        height: 29
+      sprite: {fileID: 21300244, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 22
+    _depth: 19
+    _displayName: Bredcrumb
+    groupType: 12
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -497.5
+      y: 431
+      width: 93
+      height: 34
+    images:
+    - Name: b_BG
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -497.5
+        y: 430.5
+        width: 87
+        height: 29
+      sprite: {fileID: 21300246, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: t_Dashboard
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -499
+        y: 431
+        width: 52
+        height: 8
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Dashboard
+      font: {fileID: 0}
+      fontSize: 16
+      color: {r: 0.29413, g: 0.29413, b: 0.29413, a: 1}
+  - _id: 23
+    _depth: 19
+    _displayName: Status
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 329.5
+      y: 431
+      width: 33
+      height: 30
+    images:
+    - Name: b_BG
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 329.5
+        y: 431
+        width: 33
+        height: 30
+      sprite: {fileID: 21300248, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Arrow
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 329.5
+        y: 430
+        width: 7
+        height: 4
+      sprite: {fileID: 21300250, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 24
+    _depth: 19
+    _displayName: Chat
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 417
+      y: 431
+      width: 138
+      height: 34
+    images:
+    - Name: b_BG
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 430.5
+        width: 132
+        height: 29
+      sprite: {fileID: 21300252, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: 5 User ONLINE
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 431.5
+        width: 64
+        height: 7
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: 5 User ONLINE
+      font: {fileID: 0}
+      fontSize: 13
+      color: {r: 0.55295, g: 0.64706, b: 0.71371, a: 1}
+    - Name: ICON
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 430.5
+        width: 14
+        height: 13
+      sprite: {fileID: 21300254, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Arrow
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 465.5
+        y: 430
+        width: 7
+        height: 4
+      sprite: {fileID: 21300256, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 25
+    _depth: 18
+    _displayName: TabsSearch
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 16
+      y: 12
+      width: 1310
+      height: 776
+    images: []
+  - _id: 26
+    _depth: 19
+    _displayName: Messenger
+    groupType: 2
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 16
+      y: 12
+      width: 1310
+      height: 776
+    images:
+    - Name: b_G
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 11.5
+        width: 1308
+        height: 773
+      sprite: {fileID: 21300258, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 27
+    _depth: 20
+    _displayName: Active Projects
+    groupType: 2
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -490.5
+      y: 371.5
+      width: 177
+      height: 35
+    images: []
+  - _id: 28
+    _depth: 21
+    _displayName: Projects
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -490.5
+      y: 371.5
+      width: 177
+      height: 35
+    images:
+    - Name: Active Projects
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -482.5
+        y: 367
+        width: 105
+        height: 16
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Active Projects
+      font: {fileID: 0}
+      fontSize: 24
+      color: {r: 0.29413, g: 0.29413, b: 0.29413, a: 1}
+    - Name: b_ICON
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -564
+        y: 368
+        width: 30
+        height: 28
+      sprite: {fileID: 21300260, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: </Layer group>
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300262, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: b_BG
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -415.5
+        y: 376.5
+        width: 27
+        height: 25
+      sprite: {fileID: 21300264, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: 9
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -416
+        y: 377
+        width: 6
+        height: 8
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: 9
+      font: {fileID: 0}
+      fontSize: 16
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 29
+    _depth: 20
+    _displayName: Messenges
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -275
+      y: 369.5
+      width: 210
+      height: 61
+    images:
+    - Name: b_BG
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -275
+        y: 369.5
+        width: 206
+        height: 57
+      sprite: {fileID: 21300266, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Messenger
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -266.5
+        y: 367
+        width: 79
+        height: 16
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Messenger
+      font: {fileID: 0}
+      fontSize: 24
+      color: {r: 0.29413, g: 0.29413, b: 0.29413, a: 1}
+    - Name: ICON
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -332
+        y: 367.5
+        width: 34
+        height: 19
+      sprite: {fileID: 21300268, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: </Layer group>
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300270, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: b_BG
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -216.5
+        y: 376.5
+        width: 27
+        height: 25
+      sprite: {fileID: 21300272, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: 2
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -216
+        y: 377
+        width: 6
+        height: 8
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: 2
+      font: {fileID: 0}
+      fontSize: 16
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 30
+    _depth: 19
+    _displayName: Search
+    groupType: 12
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 309
+      y: 368
+      width: 198
+      height: 14
+    images:
+    - Name: t_Search Project, User, Task, etc...
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 368
+        width: 198
+        height: 14
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Search Project, User, Task, etc...
+      font: {fileID: 0}
+      fontSize: 22
+      color: {r: 0.75686, g: 0.75686, b: 0.75686, a: 1}
+  - _id: 31
+    _depth: 18
+    _displayName: Line
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 323.5
+      y: 122.5
+      width: 319
+      height: 251
+    images:
+    - Name: </Layer group>
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300274, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Avatar
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 161
+        width: 34
+        height: 30
+      sprite: {fileID: 21300276, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Sebastian K. add an Image into Worlda
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 352.5
+        y: 166
+        width: 207
+        height: 12
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Sebastian K. add an Image into Worlda
+      font: {fileID: 0}
+      fontSize: 18
+      color: {r: 0.29413, g: 0.29413, b: 0.29413, a: 1}
+    - Name: Today, 10:30 PM
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 151.5
+        width: 70
+        height: 9
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Today, 10:30 PM
+      font: {fileID: 0}
+      fontSize: 14
+      color: {r: 0.55295, g: 0.64706, b: 0.71371, a: 1}
+    - Name: H_LINE
+      type: 2
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 335.5
+        y: 128.5
+        width: 295
+        height: 1
+      sprite: {fileID: 21300040, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 32
+    _depth: 19
+    _displayName: Line
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 323.5
+      y: 160.5
+      width: 319
+      height: 175
+    images:
+    - Name: </Layer group>
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300278, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Avatar
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 226
+        width: 34
+        height: 30
+      sprite: {fileID: 21300280, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Marvin S. add an Image into Worlda
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 344.5
+        y: 231
+        width: 191
+        height: 12
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Marvin S. add an Image into Worlda
+      font: {fileID: 0}
+      fontSize: 18
+      color: {r: 0.29413, g: 0.29413, b: 0.29413, a: 1}
+    - Name: Today, 10:30 PM
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 216.5
+        width: 70
+        height: 9
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Today, 10:30 PM
+      font: {fileID: 0}
+      fontSize: 14
+      color: {r: 0.55295, g: 0.64706, b: 0.71371, a: 1}
+    - Name: H_LINE
+      type: 2
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 335.5
+        y: 193.5
+        width: 295
+        height: 1
+      sprite: {fileID: 21300040, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 33
+    _depth: 8
+    _displayName: vb_
+    groupType: 10
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 471.5
+      y: -9.5
+      width: 5
+      height: 645
+    images:
+    - Name: f_Scrollbar
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 471.5
+        y: -9.5
+        width: 5
+        height: 645
+      sprite: {fileID: 21300282, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: b_
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 471.5
+        y: -9.5
+        width: 5
+        height: 645
+      sprite: {fileID: 21300284, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 34
+    _depth: 7
+    _displayName: Filter
+    groupType: 12
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -203.5
+      y: -15.5
+      width: 759
+      height: 679
+    images:
+    - Name: b_BG
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -204
+        y: -15.5
+        width: 758
+        height: 677
+      sprite: {fileID: 21300116, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: </Layer group>
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300286, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: b_BG
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 289
+        width: 174
+        height: 30
+      sprite: {fileID: 21300288, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: t_New Projects (descending)
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 15.5
+        y: 288.5
+        width: 127
+        height: 11
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: New Projects (descending)
+      font: {fileID: 0}
+      fontSize: 16
+      color: {r: 0.29413, g: 0.29413, b: 0.29413, a: 1}
+    - Name: Arrow
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 92.5
+        y: 288
+        width: 7
+        height: 4
+      sprite: {fileID: 21300290, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 35
+    _depth: 8
+    _displayName: Search
+    groupType: 12
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -427
+      y: 287
+      width: 258
+      height: 14
+    images:
+    - Name: </Layer group>
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300292, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: t_Search a Project with Name, Task, User...
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -427
+        y: 287
+        width: 258
+        height: 14
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Search a Project with Name, Task, User...
+      font: {fileID: 0}
+      fontSize: 22
+      color: {r: 0.75686, g: 0.75686, b: 0.75686, a: 1}
+  - _id: 36
+    _depth: 5
+    _displayName: vb_
+    groupType: 10
+    direction: 16
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 162
+      y: -51.5
+      width: 4
+      height: 597
+    images:
+    - Name: b_Scrollbar
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: -51.5
+        width: 4
+        height: 597
+      sprite: {fileID: 21300108, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: h_Scrollbar
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: -51.5
+        width: 4
+        height: 597
+      sprite: {fileID: 21300110, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 37
+    _depth: 5
+    _displayName: Project0
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -203
+      y: 214.5
+      width: 752
+      height: 65
+    images:
+    - Name: </Layer group>
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300294, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: H-LINE
+      type: 2
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -203
+        y: 184.5
+        width: 752
+        height: 5
+      sprite: {fileID: 21300312, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Lorem ipsum dolor sit amet, elitr, sed diam  nonumy eirmod temp
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -363
+        y: 224.5
+        width: 276
+        height: 33
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: "Lorem ipsum dolor sit amet, elitr, sed diam \rnonumy eirmod tempor"
+      font: {fileID: 0}
+      fontSize: 22
+      color: {r: 0.15023, g: 0.31138, b: 0.43529, a: 1}
+    - Name: </Layer group>
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300296, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: b_precent
+      type: 2
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -534
+        y: 236
+        width: 44
+        height: 22
+      sprite: {fileID: 21300006, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: 23%
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -535
+        y: 235.5
+        width: 28
+        height: 13
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: 23%
+      font: {fileID: 0}
+      fontSize: 24
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Precent
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300298, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: </Layer group>
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300300, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: b_update
+      type: 2
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 45.5
+        y: 224.5
+        width: 83
+        height: 23
+      sprite: {fileID: 21300008, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Panorama
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 44.5
+        y: 224.5
+        width: 51
+        height: 7
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Panorama
+      font: {fileID: 0}
+      fontSize: 14
+      color: {r: 0.39973, g: 0.55232, b: 0.67059, a: 1}
+    - Name: Update@Button
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300302, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: </Layer group>
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300304, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: b_arrow
+      type: 2
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 137.5
+        y: 224.5
+        width: 27
+        height: 25
+      sprite: {fileID: 21300010, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Arrow
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300306, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: </Layer group>
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300308, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: b_Vektor-Smartobjekt
+      type: 2
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: 105.5
+        y: 224.5
+        width: 27
+        height: 25
+      sprite: {fileID: 21300012, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: EDIT@Button
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -800
+        y: 450
+        width: 0
+        height: 0
+      sprite: {fileID: 21300310, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 38
+    _depth: 4
+    _displayName: BTN
+    groupType: 1
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -203.5
+      y: -325.5
+      width: 753
+      height: 27
+    images:
+    - Name: H-LINE
+      type: 2
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -203.5
+        y: -312.5
+        width: 753
+        height: 1
+      sprite: {fileID: 21300312, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Project Archiv
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -518.5
+        y: -333
+        width: 75
+        height: 12
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Project Archiv
+      font: {fileID: 0}
+      fontSize: 18
+      color: {r: 0.29413, g: 0.29413, b: 0.29413, a: 1}
+    - Name: n_Arrow
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -470
+        y: -333.5
+        width: 4
+        height: 7
+      sprite: {fileID: 21300314, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 39
+    _depth: 0
+    _displayName: Navigation
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -706
+      y: -2
+      width: 186
+      height: 906
+    images:
+    - Name: b_BG
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -717.5
+        y: -2
+        width: 163
+        height: 906
+      sprite: {fileID: 21300116, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 40
+    _depth: 1
+    _displayName: Logout
+    groupType: 1
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -681
+      y: -318.5
+      width: 32
+      height: 47
+    images:
+    - Name: Logout
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -681
+        y: -336.5
+        width: 32
+        height: 11
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Logout
+      font: {fileID: 0}
+      fontSize: 16
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: n_Logout_Icon
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -681
+        y: -310
+        width: 30
+        height: 30
+      sprite: {fileID: 21300118, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 41
+    _depth: 1
+    _displayName: Trenner
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -680.5
+      y: 37
+      width: 21
+      height: 626
+    images:
+    - Name: Trenner
+      type: 2
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -680.5
+        y: -273
+        width: 21
+        height: 6
+      sprite: {fileID: 21300124, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Trenner
+      type: 2
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -680.5
+        y: 159.5
+        width: 21
+        height: 7
+      sprite: {fileID: 21300124, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Trenner
+      type: 2
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -680.5
+        y: 250.5
+        width: 21
+        height: 7
+      sprite: {fileID: 21300124, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: Trenner
+      type: 2
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -680.5
+        y: 346.5
+        width: 21
+        height: 7
+      sprite: {fileID: 21300124, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 42
+    _depth: 1
+    _displayName: Upgrade
+    groupType: 1
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -681
+      y: -228.5
+      width: 42
+      height: 49
+    images:
+    - Name: Upgrade
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -681
+        y: -247
+        width: 42
+        height: 12
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Upgrade
+      font: {fileID: 0}
+      fontSize: 18
+      color: {r: 0.47058, g: 0.47058, b: 0.47058, a: 1}
+    - Name: n_Upgrad_Icon
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -681
+        y: -220
+        width: 30
+        height: 32
+      sprite: {fileID: 21300128, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 43
+    _depth: 1
+    _displayName: Upgrades
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -661
+      y: -205
+      width: 24
+      height: 24
+    images:
+    - Name: b_BG
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -661
+        y: -205
+        width: 24
+        height: 24
+      sprite: {fileID: 21300130, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: 3
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -661.5
+        y: -204
+        width: 5
+        height: 8
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: 3
+      font: {fileID: 0}
+      fontSize: 16
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 44
+    _depth: 1
+    _displayName: Settings
+    groupType: 1
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -681
+      y: 111
+      width: 40
+      height: 48
+    images:
+    - Name: Settings
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -681
+        y: 93
+        width: 40
+        height: 12
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Settings
+      font: {fileID: 0}
+      fontSize: 18
+      color: {r: 0.47058, g: 0.47058, b: 0.47058, a: 1}
+    - Name: n_Settings_Icon
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -680.5
+        y: 120.5
+        width: 29
+        height: 29
+      sprite: {fileID: 21300132, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 45
+    _depth: 1
+    _displayName: Projects
+    groupType: 1
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -675
+      y: 211
+      width: 50
+      height: 60
+    images:
+    - Name: Projects
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -681
+        y: 187
+        width: 38
+        height: 12
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Projects
+      font: {fileID: 0}
+      fontSize: 18
+      color: {r: 0.47059, g: 0.47059, b: 0.47059, a: 1}
+    - Name: n_Projects Icon
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -681.5
+        y: 214.5
+        width: 23
+        height: 19
+      sprite: {fileID: 21300134, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 46
+    _depth: 2
+    _displayName: Projects_Number
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -662
+      y: 229
+      width: 24
+      height: 24
+    images:
+    - Name: b_BG
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -662
+        y: 229
+        width: 24
+        height: 24
+      sprite: {fileID: 21300136, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: 9
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -662
+        y: 229
+        width: 6
+        height: 8
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: 9
+      font: {fileID: 0}
+      fontSize: 16
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 47
+    _depth: 1
+    _displayName: Borad
+    groupType: 2
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -701.5
+      y: 297.5
+      width: 71
+      height: 77
+    images:
+    - Name: Board
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -681
+        y: 282.5
+        width: 28
+        height: 9
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: Board
+      font: {fileID: 0}
+      fontSize: 18
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: b_Aktiv
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -681
+        y: 308
+        width: 30
+        height: 30
+      sprite: {fileID: 21300138, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: m_Aktiv
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -701.5
+        y: 297.5
+        width: 71
+        height: 77
+      sprite: {fileID: 21300140, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 48
+    _depth: 1
+    _displayName: Avatar
+    groupType: 1
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -693
+      y: 297
+      width: 160
+      height: 280
+    images:
+    - Name: n_IMG
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -680
+        y: 399
+        width: 66
+        height: 66
+      sprite: {fileID: 21300142, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+  - _id: 49
+    _depth: 2
+    _displayName: Mails
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: -661
+      y: 425
+      width: 24
+      height: 24
+    images:
+    - Name: BG
+      type: 2
+      source: 1
+      rect:
+        serializedVersion: 2
+        x: -661
+        y: 425
+        width: 24
+        height: 24
+      sprite: {fileID: 21300144, guid: ddfb8f815d4c5784d9a366fb83f1f32a, type: 3}
+      texture: {fileID: 0}
+      text: 
+      font: {fileID: 0}
+      fontSize: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: 2
+      type: 0
+      source: 0
+      rect:
+        serializedVersion: 2
+        x: -661
+        y: 426
+        width: 6
+        height: 8
+      sprite: {fileID: 0}
+      texture: {fileID: 0}
+      text: 2
+      font: {fileID: 0}
+      fontSize: 16
+      color: {r: 1, g: 1, b: 1, a: 1}

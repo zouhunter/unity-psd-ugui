@@ -47,8 +47,7 @@ namespace Ntreev.Library.Psd
 
             this.resources.TryGetValue<string>(ref this.name, "luni.Name");
             this.resources.TryGetValue<SectionType>(ref this.sectionType, "lsct.SectionType");
-
-
+           
             if (this.resources.Contains("SoLd.Idnt") == true)
                 this.placedID = this.resources.ToGuid("SoLd.Idnt");
             else if (this.resources.Contains("SoLE.Idnt") == true)
@@ -84,7 +83,7 @@ namespace Ntreev.Library.Psd
 
         private void JudgeType()
         {
-            if (SectionType == SectionType.Closed || SectionType == SectionType.Opend)
+            if (SectionType == SectionType.Closed || SectionType == SectionType.Opend )
             {
                 layerType = LayerType.Group;
             }
@@ -188,6 +187,7 @@ namespace Ntreev.Library.Psd
         public SectionType SectionType
         {
             get { return this.sectionType; }
+            set { this.sectionType = value; }
         }
 
         public Guid PlacedID

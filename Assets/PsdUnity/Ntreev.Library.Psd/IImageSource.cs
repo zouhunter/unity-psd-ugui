@@ -27,7 +27,7 @@ namespace Ntreev.Library.Psd
 
         int Height { get; }
 
-        int Depth { get; }
+        int DocDepth { get; }
 
         IChannel[] Channels { get; }
 

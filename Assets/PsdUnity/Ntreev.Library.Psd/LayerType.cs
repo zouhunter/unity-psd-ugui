@@ -8,6 +8,7 @@ namespace Ntreev.Library.Psd
         Color,//纯色块
         Text,//文字
         Group,//文件夹
+        Divider,//</LayerGroup>
         Other//其他层级不支持
     }
 }

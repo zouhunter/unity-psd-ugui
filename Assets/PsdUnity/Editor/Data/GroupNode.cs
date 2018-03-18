@@ -14,8 +14,8 @@ namespace PSDUnity
         public int _id;
         public int _depth;
         public string _displayName;
-        public GroupType groupType;
-        public Direction direction;
+        public GroupType groupType = GroupType.EMPTY;
+        public Direction direction = Direction.Vertical;
         public int constraintCount;
         public float spacing;
         public Rect rect;   //利用名字解析controlType和arguments

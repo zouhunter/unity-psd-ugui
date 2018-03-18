@@ -232,5 +232,10 @@ namespace PSDUnity.Analysis
                 m_TreeView = null;
             }
         }
+
+        private void JudgePSDFile()
+        {
+        
+        }
     }
 }

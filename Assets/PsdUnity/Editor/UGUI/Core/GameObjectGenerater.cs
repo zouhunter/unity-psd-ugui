@@ -150,7 +150,7 @@ namespace PSDUnity.UGUI
 
         private static GameObject CreateGroup()
         {
-            var group = new GameObject("VerticalGroup",typeof(VerticalLayoutGroup),typeof(ContentSizeFitter));
+            var group = new GameObject("Group",typeof(ContentSizeFitter));
             return group;
         }
 

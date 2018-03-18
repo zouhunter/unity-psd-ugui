@@ -98,7 +98,7 @@ namespace Ntreev.Library.Psd
             get { return this.fileHeaderSection.Value.Height; }
         }
 
-        public int Depth
+        public int DocDepth
         {
             get { return this.fileHeaderSection.Value.Depth; }
         }

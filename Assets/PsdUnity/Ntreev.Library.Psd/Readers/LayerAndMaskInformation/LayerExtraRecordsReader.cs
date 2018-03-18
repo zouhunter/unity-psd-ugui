@@ -47,10 +47,8 @@ namespace Ntreev.Library.Psd.Readers.LayerAndMaskInformation
             LayerMask mask = LayerMaskReader.Read(reader);
             LayerBlendingRanges blendingRanges = LayerBlendingRangesReader.Read(reader);
             string name = reader.ReadPascalString(4);
-
             IProperties resources = new LayerResourceReader(reader, this.EndPosition - reader.Position);
             records.SetExtraRecords(mask, blendingRanges, resources, name);
-
             value = records;
         }
     }

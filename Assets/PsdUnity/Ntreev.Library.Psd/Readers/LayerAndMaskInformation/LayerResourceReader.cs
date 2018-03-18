@@ -43,6 +43,7 @@ namespace Ntreev.Library.Psd.Readers.LayerAndMaskInformation
                 string resourceName = ReaderCollector.GetDisplayName(resourceID);
 
                 props[resourceName] = resourceReader;
+
             }
 
             value = props;

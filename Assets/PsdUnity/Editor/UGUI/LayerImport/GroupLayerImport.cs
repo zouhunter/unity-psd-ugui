@@ -16,20 +16,21 @@ namespace PSDUnity.UGUI
         {
             UGUINode node = PSDImporter.InstantiateItem(GroupType.GROUP, layer.displayName, parent);
             UnityEngine.UI.LayoutGroup group = null;
+
             switch (layer.direction)
             {
                 case Direction.Horizontal:
                     group = node.InitComponent<UnityEngine.UI.HorizontalLayoutGroup>();
                     group.childAlignment = TextAnchor.UpperLeft;
+                    (group as UnityEngine.UI.HorizontalLayoutGroup).spacing = layer.spacing;
                     break;
                 case Direction.Vertical:
+                default:
                     group = node.InitComponent<UnityEngine.UI.VerticalLayoutGroup>();
+                    (group as UnityEngine.UI.VerticalLayoutGroup).spacing = layer.spacing;
                     group.childAlignment = TextAnchor.UpperLeft;
                     break;
-                default:
-                    break;
             }
-            ((UnityEngine.UI.VerticalLayoutGroup)group).spacing = layer.spacing;
 
             PSDImporter.SetRectTransform(layer, group.GetComponent<RectTransform>());
 

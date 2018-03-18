@@ -35,8 +35,8 @@ namespace Ntreev.Library.Psd
         private PsdLayer[] childs;
         private PsdLayer parent;
         private ILinkedLayer linkedLayer;
-
         private ChannelsReader channels;
+        private int deepth;
 
         private static PsdLayer[] emptyChilds = new PsdLayer[] { };
 
@@ -60,6 +60,7 @@ namespace Ntreev.Library.Psd
         public SectionType SectionType
         {
             get { return this.records.SectionType; }
+            set { this.records.SectionType = value; }
         }
 
         public string Name
@@ -67,31 +68,35 @@ namespace Ntreev.Library.Psd
             get { return this.records.Name; }
         }
 
-	    public bool IsVisible
-	    {
-			get { return (this.records.Flags & LayerFlags.Visible) != LayerFlags.Visible; }
-	    }
+        public bool IsVisible
+        {
+            get { return (this.records.Flags & LayerFlags.Visible) != LayerFlags.Visible; }
+        }
 
-	    public bool IsGroup
-	    {
-			get { return (records.SectionType == SectionType.Closed || records.SectionType == SectionType.Opend); }
-	    }
+        public bool IsGroup
+        {
+            get { return (records.SectionType == SectionType.Closed || records.SectionType == SectionType.Opend); }
+        }
 
-	    public bool IsFolderClosed
-	    {
-			get { return records.SectionType == SectionType.Closed; }
-	    }
+        public bool IsFolderClosed
+        {
+            get { return records.SectionType == SectionType.Closed; }
+        }
 
-	    public bool IsFolderOpen
-	    {
-		    get { return records.SectionType == SectionType.Opend; }
-	    }
+        public bool IsFolderOpen
+        {
+            get { return records.SectionType == SectionType.Opend; }
+        }
 
         public float Opacity
         {
             get { return (((float)this.records.Opacity) / 255f); }
         }
-
+        public int Deepth
+        {
+            get { return deepth; }
+            set { deepth = value; }
+        }
         public int Left
         {
             get { return this.left; }
@@ -122,7 +127,7 @@ namespace Ntreev.Library.Psd
             get { return this.bottom - this.top; }
         }
 
-        public int Depth
+        public int DocDepth
         {
             get { return this.document.FileHeaderSection.Depth; }
         }
@@ -199,7 +204,8 @@ namespace Ntreev.Library.Psd
         }
         public LayerType LayerType
         {
-            get {
+            get
+            {
                 return records.LayerType;
             }
         }
@@ -278,14 +284,17 @@ namespace Ntreev.Library.Psd
             }
         }
 
-        IChannel[] IImageSource.Channels
-        {
-            get { return this.channels.Value; }
-        }
-
         IPsdLayer[] IPsdLayer.Childs
         {
             get { return this.Childs; }
+        }
+
+        IChannel[] IImageSource.Channels
+        {
+            get
+            {
+                return this.channels.Value;
+            }
         }
 
         #endregion

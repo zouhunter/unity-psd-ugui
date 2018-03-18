@@ -40,7 +40,7 @@ namespace Ntreev.Library.Psd.Readers.LayerAndMaskInformation
             using (PsdReader r = new PsdReader(stream, reader.Resolver, reader.Uri))
             {
                 r.Version = reader.Version;
-                this.ReadValue(r, layer.Depth, records.Channels);
+                this.ReadValue(r, layer.DocDepth, records.Channels);
             }
 
             value = records.Channels;

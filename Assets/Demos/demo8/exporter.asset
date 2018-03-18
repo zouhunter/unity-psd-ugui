@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885e115a8f1c1e04b88b4a1204eba2ee, type: 3}
+  m_Name: exporter
+  m_EditorClassIdentifier: 
+  _exportPath: 
+  psdFile: E:/GitHub/PsdUnity/PsdFiles/deepUI.psd
+  ruleObj: {fileID: 0}
+  groups:
+  - _id: 0
+    _depth: -1
+    _displayName: exporter
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1600
+      height: 900
+    images: []
+  - _id: 1
+    _depth: 0
+    _displayName: "\u7EC4 9"
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: -0
+      width: 454
+      height: 340
+    images: []
+  - _id: 2
+    _depth: 1
+    _displayName: "\u7EC4 8"
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: -0
+      width: 454
+      height: 340
+    images: []
+  - _id: 3
+    _depth: 2
+    _displayName: "\u7EC4 7"
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: -0
+      width: 454
+      height: 340
+    images: []
+  - _id: 4
+    _depth: 3
+    _displayName: "\u7EC4 6"
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: -0
+      width: 454
+      height: 340
+    images: []
+  - _id: 5
+    _depth: 4
+    _displayName: "\u7EC4 5"
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: -0
+      width: 454
+      height: 340
+    images: []
+  - _id: 6
+    _depth: 5
+    _displayName: "\u7EC4 4"
+    groupType: 0
+    direction: 4
+    constraintCount: 0
+    spacing: 0
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: -0
+      width: 454
+      height: 340
+    images: []
