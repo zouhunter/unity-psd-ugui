@@ -59,12 +59,12 @@ namespace PSDUnity.UGUI
             switch (layer.direction)
             {
                 case Direction.Horizontal:
-                    scrollRect.vertical = true;
-                    scrollRect.horizontal = false;
-                    break;
-                case Direction.Vertical:
                     scrollRect.vertical = false;
                     scrollRect.horizontal = true;
+                    break;
+                case Direction.Vertical:
+                    scrollRect.vertical = true;
+                    scrollRect.horizontal = false;
                     break;
                 case Direction.Horizontal | Direction.Vertical:
                     scrollRect.vertical = true;
@@ -87,16 +87,25 @@ namespace PSDUnity.UGUI
                     if (childLowerName.StartsWith("c_"))
                     {
                         scrollRect.content = c_Node.InitComponent<RectTransform>();
+                        c_Node.anchoType = AnchoType.Up | AnchoType.Left;
+                        c_Node.inversionReprocess += () =>
+                        {
+                            c_Node.InitComponent<ContentSizeFitter>().horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
+                            c_Node.InitComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+                            c_Node.InitComponent<RectTransform>().localPosition = Vector2.zero;
+                        };
                     }
                     else if (childLowerName.StartsWith("vb_"))
                     {
                         scrollRect.verticalScrollbar = c_Node.InitComponent<Scrollbar>();
                         scrollRect.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHide;
+                        c_Node.anchoType = AnchoType.Right | AnchoType.YCenter;
                     }
                     else if (childLowerName.StartsWith("hb_"))
                     {
                         scrollRect.horizontalScrollbar = c_Node.InitComponent<Scrollbar>();
                         scrollRect.horizontalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHide;
+                        c_Node.anchoType = AnchoType.Down | AnchoType.XCenter;
                     }
                 }
             }

@@ -43,16 +43,16 @@ namespace PSDUnity.UGUI
                         ctrl.DrawImage(image, node);
                     }
 
-                    if (image.type == ImgType.Label)
-                    {
-                        node.inversionReprocess += () => {
-                           var texts =  button.GetComponentsInChildren<Text>();
-                            foreach (var item in texts)
-                            {
-                                PSDImporter.SetNormalAnchor(AnchoType.XStretch | AnchoType.YStretch, button.transform as RectTransform, item.transform as RectTransform);
-                            }
-                        };
-                    }
+                    //if (image.type == ImgType.Label)
+                    //{
+                    //    node.inversionReprocess += () => {
+                    //       var texts =  button.GetComponentsInChildren<Text>();
+                    //        foreach (var item in texts)
+                    //        {
+                    //            PSDImporter.SetNormalAnchor(AnchoType.XStretch | AnchoType.YStretch, button.transform as RectTransform, item.transform as RectTransform);
+                    //        }
+                    //    };
+                    //}
                 }
             }
             return node;

@@ -17,6 +17,12 @@ namespace PSDUnity.UGUI
             UGUINode node = PSDImporter.InstantiateItem(GroupType.GROUP, layer.displayName, parent);
             UnityEngine.UI.LayoutGroup group = null;
 
+            var nodes = pSDImportCtrl.DrawLayers(layer.children.ConvertAll(x => x as GroupNode).ToArray(), node);
+            foreach (var item in nodes)
+            {
+                item.anchoType = AnchoType.Left | AnchoType.Up;
+            }
+
             switch (layer.direction)
             {
                 case Direction.Horizontal:
@@ -34,16 +40,12 @@ namespace PSDUnity.UGUI
 
             PSDImporter.SetRectTransform(layer, group.GetComponent<RectTransform>());
 
-            UGUINode[] nodes = pSDImportCtrl.DrawImages(layer.images.ToArray(),node);
+            nodes = pSDImportCtrl.DrawImages(layer.images.ToArray(), node);
             foreach (var item in nodes)
             {
                 item.anchoType = AnchoType.Left | AnchoType.Up;
             }
-            nodes = pSDImportCtrl.DrawLayers(layer.children.ConvertAll(x=>x as GroupNode).ToArray(), node);
-            foreach (var item in nodes)
-            {
-                item.anchoType = AnchoType.Left | AnchoType.Up;
-            }
+
             return node;
         }
     }
