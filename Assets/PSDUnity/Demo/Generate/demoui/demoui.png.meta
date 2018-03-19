@@ -1,0 +1,1580 @@
+fileFormatVersion: 2
+guid: ca22e0239de35f8458189aa42455c8a6
+timeCreated: 1521427432
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: b_EDIT0
+    21300002: H-LINE
+    21300004: H-Line
+    21300006: b_BG110
+    21300008: Arrow112
+    21300010: n_Icon120
+    21300012: n_ICON2000
+    21300014: b_BG2010
+    21300016: b_BG2020
+    21300018: Arrow2021
+    21300020: b_BG2030
+    21300022: ICON2032
+    21300024: Arrow2033
+    21300026: b_G2100
+    21300028: b_ICON301
+    21300030: b_BG3020
+    21300032: b_BG310
+    21300034: ICON312
+    21300036: b_BG3130
+    21300038: b_BG40
+    21300040: b_Scrollbar410
+    21300042: h_Scrollbar411
+    21300044: H-LINE
+    21300046: b_precent
+    21300048: b_update
+    21300050: b_arrow
+    21300052: b_Vektor-Smartobjekt
+    21300054: H-LINE
+    21300056: b_precent
+    21300058: b_update
+    21300060: b_arrow
+    21300062: b_Vektor-Smartobjekt
+    21300064: H-LINE
+    21300066: b_precent
+    21300068: b_update
+    21300070: b_arrow
+    21300072: b_Vektor-Smartobjekt
+    21300074: H-LINE
+    21300076: b_precent
+    21300078: b_update
+    21300080: b_arrow
+    21300082: b_Vektor-Smartobjekt
+    21300084: H-LINE
+    21300086: b_precent
+    21300088: b_update
+    21300090: b_arrow
+    21300092: b_Vektor-Smartobjekt
+    21300094: H-LINE
+    21300096: b_precent
+    21300098: b_update
+    21300100: b_arrow
+    21300102: b_Vektor-Smartobjekt
+    21300104: H-LINE
+    21300106: b_precent
+    21300108: b_update
+    21300110: b_arrow
+    21300112: b_Vektor-Smartobjekt
+    21300114: H-LINE
+    21300116: b_precent
+    21300118: b_update
+    21300120: b_arrow
+    21300122: b_Vektor-Smartobjekt
+    21300124: H-LINE
+    21300126: b_precent
+    21300128: b_update
+    21300130: b_arrow
+    21300132: b_Vektor-Smartobjekt
+    21300134: H-LINE
+    21300136: n_Arrow432
+    21300138: f_Scrollbar500
+    21300140: b_501
+    21300142: b_BG510
+    21300144: Avatar5110
+    21300146: H_LINE
+    21300148: Avatar5120
+    21300150: H_LINE
+    21300152: Avatar5130
+    21300154: H_LINE
+    21300156: Avatar5140
+    21300158: H_LINE
+    21300160: Avatar5150
+    21300162: H_LINE
+    21300164: Avatar5160
+    21300166: H_LINE
+    21300168: Avatar5170
+    21300170: H_LINE
+    21300172: Avatar5180
+    21300174: H_LINE
+    21300176: Avatar5190
+    21300178: Avatar5200
+    21300180: H_LINE
+    21300182: H_LINE
+    21300184: b_Arrow5212
+    21300186: b_BG60
+    21300188: n_Logout_Icon611
+    21300190: Trenner
+    21300192: Trenner
+    21300194: Trenner
+    21300196: Trenner
+    21300198: n_Upgrad_Icon631
+    21300200: b_BG640
+    21300202: n_Settings_Icon651
+    21300204: n_Projects Icon661
+    21300206: b_BG670
+    21300208: b_Aktiv681
+    21300210: m_Aktiv682
+    21300212: n_IMG690
+    21300214: BG6910
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: b_EDIT0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1600
+        height: 900
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H-LINE
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1744
+        width: 753
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H-Line
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1740
+        width: 752
+        height: 2
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG110
+      rect:
+        serializedVersion: 2
+        x: 1602
+        y: 738
+        width: 174
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Arrow112
+      rect:
+        serializedVersion: 2
+        x: 2038
+        y: 79
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_Icon120
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 431
+        width: 33
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_ICON2000
+      rect:
+        serializedVersion: 2
+        x: 1936
+        y: 463
+        width: 33
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG2010
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 110
+        width: 87
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG2020
+      rect:
+        serializedVersion: 2
+        x: 2011
+        y: 431
+        width: 33
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Arrow2021
+      rect:
+        serializedVersion: 2
+        x: 2038
+        y: 85
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG2030
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 79
+        width: 132
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ICON2032
+      rect:
+        serializedVersion: 2
+        x: 2025
+        y: 497
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Arrow2033
+      rect:
+        serializedVersion: 2
+        x: 2038
+        y: 100
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_G2100
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 902
+        width: 1308
+        height: 773
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_ICON301
+      rect:
+        serializedVersion: 2
+        x: 1935
+        y: 497
+        width: 30
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG3020
+      rect:
+        serializedVersion: 2
+        x: 1962
+        y: 555
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG310
+      rect:
+        serializedVersion: 2
+        x: 1602
+        y: 679
+        width: 206
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ICON312
+      rect:
+        serializedVersion: 2
+        x: 1989
+        y: 341
+        width: 34
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG3130
+      rect:
+        serializedVersion: 2
+        x: 1933
+        y: 555
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1677
+        width: 758
+        height: 677
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_Scrollbar410
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 902
+        width: 4
+        height: 597
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: h_Scrollbar411
+      rect:
+        serializedVersion: 2
+        x: 1324
+        y: 902
+        width: 4
+        height: 597
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H-LINE
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1677
+        width: 752
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_precent
+      rect:
+        serializedVersion: 2
+        x: 1989
+        y: 291
+        width: 44
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_update
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 216
+        width: 83
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_arrow
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 609
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_Vektor-Smartobjekt
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 582
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H-LINE
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1705
+        width: 752
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_precent
+      rect:
+        serializedVersion: 2
+        x: 1989
+        y: 166
+        width: 44
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_update
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 291
+        width: 83
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_arrow
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 555
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_Vektor-Smartobjekt
+      rect:
+        serializedVersion: 2
+        x: 2020
+        y: 528
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H-LINE
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1712
+        width: 752
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_precent
+      rect:
+        serializedVersion: 2
+        x: 1993
+        y: 110
+        width: 44
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_update
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 341
+        width: 83
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_arrow
+      rect:
+        serializedVersion: 2
+        x: 1991
+        y: 528
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_Vektor-Smartobjekt
+      rect:
+        serializedVersion: 2
+        x: 1996
+        y: 497
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H-LINE
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1698
+        width: 752
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_precent
+      rect:
+        serializedVersion: 2
+        x: 1989
+        y: 266
+        width: 44
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_update
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 241
+        width: 83
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_arrow
+      rect:
+        serializedVersion: 2
+        x: 1967
+        y: 497
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_Vektor-Smartobjekt
+      rect:
+        serializedVersion: 2
+        x: 1962
+        y: 528
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H-LINE
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1691
+        width: 752
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_precent
+      rect:
+        serializedVersion: 2
+        x: 1989
+        y: 216
+        width: 44
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_update
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 166
+        width: 83
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_arrow
+      rect:
+        serializedVersion: 2
+        x: 1991
+        y: 582
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_Vektor-Smartobjekt
+      rect:
+        serializedVersion: 2
+        x: 1933
+        y: 609
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H-LINE
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1733
+        width: 752
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_precent
+      rect:
+        serializedVersion: 2
+        x: 1989
+        y: 141
+        width: 44
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_update
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 316
+        width: 83
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_arrow
+      rect:
+        serializedVersion: 2
+        x: 1933
+        y: 582
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_Vektor-Smartobjekt
+      rect:
+        serializedVersion: 2
+        x: 1991
+        y: 555
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H-LINE
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1719
+        width: 752
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_precent
+      rect:
+        serializedVersion: 2
+        x: 1989
+        y: 316
+        width: 44
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_update
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 141
+        width: 83
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_arrow
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 636
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_Vektor-Smartobjekt
+      rect:
+        serializedVersion: 2
+        x: 2020
+        y: 555
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H-LINE
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1726
+        width: 752
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_precent
+      rect:
+        serializedVersion: 2
+        x: 1989
+        y: 191
+        width: 44
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_update
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 266
+        width: 83
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_arrow
+      rect:
+        serializedVersion: 2
+        x: 1933
+        y: 636
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_Vektor-Smartobjekt
+      rect:
+        serializedVersion: 2
+        x: 1962
+        y: 582
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H-LINE
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1684
+        width: 752
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_precent
+      rect:
+        serializedVersion: 2
+        x: 1989
+        y: 241
+        width: 44
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_update
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 191
+        width: 83
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_arrow
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 528
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_Vektor-Smartobjekt
+      rect:
+        serializedVersion: 2
+        x: 1933
+        y: 528
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H-LINE
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1747
+        width: 753
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_Arrow432
+      rect:
+        serializedVersion: 2
+        x: 2044
+        y: 91
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: f_Scrollbar500
+      rect:
+        serializedVersion: 2
+        x: 1310
+        y: 902
+        width: 5
+        height: 645
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_501
+      rect:
+        serializedVersion: 2
+        x: 1317
+        y: 902
+        width: 5
+        height: 645
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG510
+      rect:
+        serializedVersion: 2
+        x: 1602
+        y: 0
+        width: 300
+        height: 677
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar5110
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 399
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H_LINE
+      rect:
+        serializedVersion: 2
+        x: 1633
+        y: 906
+        width: 295
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar5120
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 431
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H_LINE
+      rect:
+        serializedVersion: 2
+        x: 1336
+        y: 916
+        width: 295
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar5130
+      rect:
+        serializedVersion: 2
+        x: 1940
+        y: 431
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H_LINE
+      rect:
+        serializedVersion: 2
+        x: 1633
+        y: 902
+        width: 295
+        height: 2
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar5140
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 366
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H_LINE
+      rect:
+        serializedVersion: 2
+        x: 1336
+        y: 906
+        width: 295
+        height: 2
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar5150
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 399
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H_LINE
+      rect:
+        serializedVersion: 2
+        x: 1336
+        y: 902
+        width: 295
+        height: 2
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar5160
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 366
+        width: 34
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H_LINE
+      rect:
+        serializedVersion: 2
+        x: 1633
+        y: 916
+        width: 295
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar5170
+      rect:
+        serializedVersion: 2
+        x: 1940
+        y: 399
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H_LINE
+      rect:
+        serializedVersion: 2
+        x: 1633
+        y: 910
+        width: 295
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar5180
+      rect:
+        serializedVersion: 2
+        x: 1940
+        y: 366
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H_LINE
+      rect:
+        serializedVersion: 2
+        x: 1336
+        y: 910
+        width: 295
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar5190
+      rect:
+        serializedVersion: 2
+        x: 2012
+        y: 399
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar5200
+      rect:
+        serializedVersion: 2
+        x: 2012
+        y: 366
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H_LINE
+      rect:
+        serializedVersion: 2
+        x: 1336
+        y: 913
+        width: 295
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H_LINE
+      rect:
+        serializedVersion: 2
+        x: 1633
+        y: 913
+        width: 295
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_Arrow5212
+      rect:
+        serializedVersion: 2
+        x: 2038
+        y: 91
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2356
+        width: 163
+        height: 906
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_Logout_Icon611
+      rect:
+        serializedVersion: 2
+        x: 1971
+        y: 463
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Trenner
+      rect:
+        serializedVersion: 2
+        x: 2025
+        y: 512
+        width: 21
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Trenner
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 68
+        width: 21
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Trenner
+      rect:
+        serializedVersion: 2
+        x: 2023
+        y: 68
+        width: 21
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Trenner
+      rect:
+        serializedVersion: 2
+        x: 1977
+        y: 68
+        width: 21
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_Upgrad_Icon631
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 463
+        width: 30
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG640
+      rect:
+        serializedVersion: 2
+        x: 1962
+        y: 609
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_Settings_Icon651
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 497
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_Projects Icon661
+      rect:
+        serializedVersion: 2
+        x: 2025
+        y: 341
+        width: 23
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG670
+      rect:
+        serializedVersion: 2
+        x: 1962
+        y: 635
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_Aktiv681
+      rect:
+        serializedVersion: 2
+        x: 2003
+        y: 463
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: m_Aktiv682
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 0
+        width: 71
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_IMG690
+      rect:
+        serializedVersion: 2
+        x: 1977
+        y: 0
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: BG6910
+      rect:
+        serializedVersion: 2
+        x: 2020
+        y: 582
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
