@@ -414,7 +414,7 @@ namespace PSDUnity.Analysis
 
         private void RetriveArtLayer(PreviewItem data, UnityAction<PreviewItem> onRetrive)
         {
-            if (data.layerType != LayerType.Group && data.layerType != LayerType.Complex)
+            if (data.layerType != LayerType.Group && data.layerType != LayerType.Overflow)
             {
                 onRetrive(data);
             }
