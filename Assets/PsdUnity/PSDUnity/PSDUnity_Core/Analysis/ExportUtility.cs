@@ -77,7 +77,19 @@ namespace PSDUnity.Analysis
             {
                 groupnode.GetImgNodes(pictureData);
             }
-            SwitchCreateTexture(pictureData);
+
+            #region 去除名称重复
+            var simplyed = new List<ImgNode>();
+            foreach (var item in pictureData)
+            {
+                if(simplyed.Find(x=>x.TextureName == item.TextureName) == null)
+                {
+                    simplyed.Add(item);
+                }
+            }
+            #endregion
+
+            SwitchCreateTexture(simplyed);
             return nodes.ToArray();
         }
 
