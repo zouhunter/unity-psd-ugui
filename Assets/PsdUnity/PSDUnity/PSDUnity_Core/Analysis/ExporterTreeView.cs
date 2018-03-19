@@ -176,7 +176,7 @@ namespace PSDUnity
                 reorder.onChangedCallback = (x) => { Reload(); };
                 imgListDic.Add(item.id, reorder);
             }
-            var imgsRect = new Rect(controlsRect.x + 120, controlsRect.y, EditorGUIUtility.currentViewWidth - 120, controlsRect.height);
+            var imgsRect = new Rect(controlsRect.x + 120, controlsRect.y, controlsRect.width - 120, controlsRect.height);
             imgListDic[item.id].DoList(imgsRect);
         }
         void HeaderGUI(Rect headerRect, string label, GroupNode item)
