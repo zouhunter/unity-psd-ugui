@@ -147,15 +147,13 @@ namespace PSDUnity.Analysis
                 if (GUILayout.Button("选择", GUILayout.Width(60)))
                 {
                     var dir = PlayerPrefs.GetString(Prefs_LastPsdsDir);
-                    if (string.IsNullOrEmpty(dir))
+
+                    if (string.IsNullOrEmpty(dir) && !string.IsNullOrEmpty(exporter.psdFile))
                     {
-                        if (!string.IsNullOrEmpty(exporter.psdFile))
-                        {
-                            dir = System.IO.Path.GetDirectoryName(exporter.psdFile);
-                        }
+                        dir = System.IO.Path.GetDirectoryName(exporter.psdFile);
                     }
 
-                    if (string.IsNullOrEmpty(dir) || !System.IO.Directory.Exists(dir))
+                    if (string.IsNullOrEmpty(dir))//|| !System.IO.Directory.Exists(dir)
                     {
                         dir = Application.dataPath;
                     }
@@ -164,13 +162,13 @@ namespace PSDUnity.Analysis
 
                     if (!string.IsNullOrEmpty(path))
                     {
-                        if (path.Contains(Application.dataPath))
-                        {
+                        if (path.Contains(Application.dataPath)){
                             path = path.Replace("\\", "/").Replace(Application.dataPath, "Assets");
                         }
                         exporter.psdFile = path;
                         PlayerPrefs.SetString(Prefs_LastPsdsDir, System.IO.Path.GetDirectoryName(path));
                     }
+
                 }
             }
         }
