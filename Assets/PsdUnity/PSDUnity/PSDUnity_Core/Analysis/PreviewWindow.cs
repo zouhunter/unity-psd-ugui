@@ -25,7 +25,7 @@ namespace PSDUnity.Analysis
         private void OnEnable()
         {
             psdPath = EditorPrefs.GetString(Prefs_pdfPath);
-            ruleObj = PsdResourceUtil.DefultRuleObj();
+            ruleObj = RuleHelper.GetRuleObj();
         }
         private void OnDisable()
         {
@@ -79,7 +79,7 @@ namespace PSDUnity.Analysis
             {
                 if (EditorUtility.DisplayDialog("创建新规则", "确认后将生成新的规则文件！", "确认", "取消"))
                 {
-                    exporter.ruleObj = PsdResourceUtil.CreateRuleObject();
+                    exporter.ruleObj = RuleHelper.CreateRuleObject();
                 }
             }
         }

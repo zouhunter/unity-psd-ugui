@@ -18,22 +18,48 @@ namespace PSDUnity.Data
     [CustomEditor(typeof(RuleObject))]
     public class RuleObjectDrawer : Editor
     {
-        SerializedProperty scriptProp;
-        public SerializedProperty sepraterCharProp;
-        public SerializedProperty argumentCharProp;
-        void OnEnable()
+        private bool isGloble;
+        private void OnEnable()
         {
-            scriptProp = serializedObject.FindProperty("m_Script");
-            sepraterCharProp = serializedObject.FindProperty("sepraterChar");
-            argumentCharProp= serializedObject.FindProperty("argumentChar");
+            isGloble = RuleHelper.IsGlobleRule(target as RuleObject);
         }
-     
         public override void OnInspectorGUI()
         {
+            DrawerHeadTools();
             base.OnInspectorGUI();
-            serializedObject.Update();
-            EditorGUILayout.PropertyField(scriptProp);
-            serializedObject.Update();
+        }
+
+        private void DrawerHeadTools()
+        {
+            using (var hor = new EditorGUILayout.HorizontalScope())
+            {
+                if(isGloble)
+                {
+                    GUI.color = Color.red;
+                    EditorGUILayout.LabelField("Defult Rule", EditorStyles.largeLabel);
+                    GUI.color = Color.white;
+
+                    if (GUILayout.Button("[Clean]", EditorStyles.miniLabel, GUILayout.Width(60)))
+                    {
+                        RuleHelper.SetDefultRuleObject(null);
+                        isGloble = false;
+                    }
+                }
+                else
+                {
+                    if (GUILayout.Button("Set As Defult", EditorStyles.largeLabel))
+                    {
+                        var ok = EditorUtility.DisplayDialog("设为默认", "如果设置为默认规则，新建项将使用该规则，确认请按继续", "继续");
+                        if (ok)
+                        {
+                            RuleHelper.SetDefultRuleObject(target as RuleObject);
+                            isGloble = true;
+                        }
+                    }
+                }
+              
+              
+            }
         }
     }
 

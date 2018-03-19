@@ -32,7 +32,7 @@ namespace PSDUnity.Analysis
         {
             if (exporter.ruleObj == null)
             {
-                exporter.ruleObj = PsdResourceUtil.DefultRuleObj();
+                exporter.ruleObj = RuleHelper.GetRuleObj();
             }
         }
 
@@ -185,7 +185,7 @@ namespace PSDUnity.Analysis
                 {
                     if (EditorUtility.DisplayDialog("创建新规则", "确认后将生成新的规则文件！", "确认", "取消"))
                     {
-                        exporter.ruleObj = PsdResourceUtil.CreateRuleObject();
+                        exporter.ruleObj = RuleHelper.CreateRuleObject();
                     }
                 }
             }
