@@ -1,5 +1,0 @@
-E:\GitHub\PsdUnity\Source\Ntreev.Library.Psd\Ntreev.Library.Psd\bin\Debug\Ntreev.Library.Psd.dll
-E:\GitHub\PsdUnity\Source\Ntreev.Library.Psd\Ntreev.Library.Psd\bin\Debug\Ntreev.Library.Psd.pdb
-E:\GitHub\PsdUnity\Source\Ntreev.Library.Psd\Ntreev.Library.Psd\obj\Debug\Ntreev.Library.Psd.dll
-E:\GitHub\PsdUnity\Source\Ntreev.Library.Psd\Ntreev.Library.Psd\obj\Debug\Ntreev.Library.Psd.pdb
-E:\GitHub\PsdUnity\Source\Ntreev.Library.Psd\Ntreev.Library.Psd\obj\Debug\Ntreev.Library.Psd.csprojResolveAssemblyReference.cache
