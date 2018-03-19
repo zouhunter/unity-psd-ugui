@@ -21,21 +21,22 @@ namespace PSDUnity.UGUI
             {
                 canvas = GameObjectGenerater.CreateTemplate(GroupType.CANVAS).GetComponent<Canvas>();
                 canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-                UnityEngine.UI.CanvasScaler scaler = PSDImporter.canvas.GetComponent<UnityEngine.UI.CanvasScaler>();
-                scaler.referenceResolution = new Vector2(uiSize.x, uiSize.y);
             }
+
+            UnityEngine.UI.CanvasScaler scaler = canvas.GetComponent<UnityEngine.UI.CanvasScaler>();
+            scaler.referenceResolution = new Vector2(uiSize.x, uiSize.y);
             canvasSize = canvas.GetComponent<UnityEngine.UI.CanvasScaler>().referenceResolution;
             uinode = new UGUINode(canvas.transform, null);
             return canvas;
         }
 
-        public static void StartBuild(params GroupNode[] groupNodes)
+        public static void StartBuild(GroupNode rootNode)
         {
             PSDImportCtrl import = new PSDImportCtrl();
-            import.Import(groupNodes, canvasSize);
+            import.Import(rootNode, canvasSize);
         }
 
-        public static UGUINode InstantiateItem(GroupType groupType,string name, UGUINode parent)
+        public static UGUINode InstantiateItem(GroupType groupType, string name, UGUINode parent)
         {
             var item = GameObjectGenerater.CreateTemplate(groupType);
             return InstantiateItem(item, name, parent);

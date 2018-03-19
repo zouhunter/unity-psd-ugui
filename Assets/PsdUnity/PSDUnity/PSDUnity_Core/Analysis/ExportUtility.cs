@@ -535,7 +535,11 @@ namespace PSDUnity.Analysis
             return new Rect(xMin, yMin, width, height);
         }
 
-
+        /// <summary>
+        /// 兼容unity2017和unity5.6
+        /// </summary>
+        /// <param name="texture"></param>
+        /// <returns></returns>
         private static byte[] EncordToPng(this Texture2D texture)
         {
             try

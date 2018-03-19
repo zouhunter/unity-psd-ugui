@@ -44,15 +44,34 @@ namespace PSDUnity.UGUI
             layerImporterDic.Add(GroupType.DROPDOWN, new DropDownLayerImport(this));
         }
 
-        public void Import(GroupNode[] gourps, Vector2 uiSize)
+        public void Import(GroupNode rootNode, Vector2 uiSize)
         {
-            BeginDrawUILayers(gourps, uiSize);//直接绘制所有层级
+            InitBaseSize(PSDImporter.uinode,uiSize);
+            BeginDrawUILayer(rootNode, PSDImporter.uinode);//直接绘制所有层级
             BeginSetUIParents(PSDImporter.uinode);//设置层级之前的父子关系
             BeginSetAnchers(PSDImporter.uinode);//设置层级的锚点
             BeginReprocess(PSDImporter.uinode);//后处理
+            BeginScaleWithCanvas(PSDImporter.uinode, uiSize);//尺寸缩放
         }
 
-        public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
+        private void InitBaseSize(UGUINode uinode,Vector2 uiSize)
+        {
+            var rect = uinode.InitComponent<RectTransform>();
+            rect.sizeDelta = uiSize;
+        }
+
+        private void BeginScaleWithCanvas(UGUINode uinode,Vector2 uiSize)
+        {
+            foreach (var item in uinode.childs)
+            {
+                var child = item.InitComponent<RectTransform>();
+                child.anchorMin = Vector2.zero;
+                child.anchorMax = Vector2.one;
+                child.anchoredPosition = Vector2.zero;
+            }
+        }
+
+        public UGUINode BeginDrawUILayer(GroupNode layer, UGUINode parent)
         {
             UGUINode node = layerImporterDic[layer.groupType].DrawLayer(layer, parent);
             return node;
@@ -65,7 +84,7 @@ namespace PSDUnity.UGUI
             {
                 for (int layerIndex = 0; layerIndex < layers.Length; layerIndex++)
                 {
-                    nodes[layerIndex] = DrawLayer(layers[layerIndex], parent);
+                    nodes[layerIndex] = BeginDrawUILayer(layers[layerIndex], parent);
                 }
             }
             return nodes;
@@ -95,18 +114,7 @@ namespace PSDUnity.UGUI
             }
             return node;
         }
-
-        public void BeginDrawUILayers(GroupNode[] groups, Vector2 uiSize)
-        {
-            //UGUINode empty = PSDImporter.InstantiateItem(new GameObject("",typeof(RectTransform)), "PSDUnity", PSDImporter.uinode);
-            RectTransform rt = PSDImporter.uinode.InitComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(uiSize.x, uiSize.y);
-            for (int layerIndex = 0; layerIndex < groups.Length; layerIndex++)
-            {
-                DrawLayer(groups[layerIndex] as GroupNode, PSDImporter.uinode);
-            }
-
-        }
+        
 
         public void BeginSetUIParents(UGUINode node)
         {

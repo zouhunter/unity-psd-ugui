@@ -79,14 +79,14 @@ namespace PSDUnity.UGUI
                     string lowerName = child.displayName;
                     if (lowerName.StartsWith("vb_"))
                     {
-                        UGUINode barNode = ctrl.DrawLayer(child, childNode);
+                        UGUINode barNode = ctrl.BeginDrawUILayer(child, childNode);
                         scrllRect.verticalScrollbar = barNode.InitComponent<Scrollbar>();
                         scrllRect.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHide;
                         barNode.anchoType = AnchoType.Right | AnchoType.YCenter;
                     }
                     else
                     {
-                        ctrl.DrawLayer(child, node);
+                        ctrl.BeginDrawUILayer(child, node);
                     }
                 }
             }

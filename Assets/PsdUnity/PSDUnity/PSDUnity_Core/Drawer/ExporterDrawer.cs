@@ -12,14 +12,15 @@ using UnityEditor.IMGUI.Controls;
 namespace PSDUnity.Analysis
 {
     [CustomEditor(typeof(Exporter))]
-    public class ExporterDrawer : Editor
+    public  class ExporterDrawer : Editor
     {
         private SerializedProperty scriptProp;
         private Exporter exporter;
         private const string Prefs_LastPsdsDir = "lastPsdFileDir";
         private ExporterTreeView m_TreeView;
         private GroupNode rootNode;
-        [SerializeField] TreeViewState m_TreeViewState = new TreeViewState();
+        [SerializeField]
+        TreeViewState m_TreeViewState = new TreeViewState();
         private void OnEnable()
         {
             exporter = target as Exporter;
@@ -89,10 +90,12 @@ namespace PSDUnity.Analysis
                 {
                     var canvasObj = Array.Find(Selection.objects, x => x is GameObject && (x as GameObject).GetComponent<Canvas>() != null);
                     PSDImporter.InitEnviroment(exporter.ruleObj, exporter.ruleObj.defultUISize, canvasObj == null ? FindObjectOfType<Canvas>() : (canvasObj as GameObject).GetComponent<Canvas>());
-                    foreach (var node in m_TreeView.selected)
-                    {
-                        PSDImporter.StartBuild(node);
+                    var root = new GroupNode(new Rect(Vector2.zero, rootNode.rect.size), 0, -1);
+                    root.displayName = "partial build";
+                    foreach (var node in m_TreeView.selected){
+                        root.AddChild(node);
                     }
+                    PSDImporter.StartBuild(root);
                     AssetDatabase.Refresh();
                 }
 
@@ -118,10 +121,11 @@ namespace PSDUnity.Analysis
                 var psd = PsdDocument.Create(exporter.psdFile);
                 if (psd != null)
                 {
-                    ExportUtility.InitPsdExportEnvrioment(exporter, new Vector2(psd.Width, psd.Height));
-                    rootNode = new GroupNode(new Rect(Vector2.zero, exporter.ruleObj.defultUISize), 0, -1);
+                    var rootSize = new Vector2(psd.Width, psd.Height);
+                    ExportUtility.InitPsdExportEnvrioment(exporter, rootSize);
+                    rootNode = new GroupNode(new Rect(Vector2.zero, rootSize), 0, -1);
                     rootNode.displayName = exporter.name;
-                    var groupDatas = ExportUtility.CreatePictures(psd.Childs, new Vector2(psd.Width, psd.Height), exporter.ruleObj.defultUISize, exporter.ruleObj.forceSprite);
+                    var groupDatas = ExportUtility.CreatePictures(psd.Childs, rootSize, exporter.ruleObj.defultUISize, exporter.ruleObj.forceSprite);
                     if (groupDatas != null)
                     {
                         foreach (var groupData in groupDatas)
@@ -162,7 +166,8 @@ namespace PSDUnity.Analysis
 
                     if (!string.IsNullOrEmpty(path))
                     {
-                        if (path.Contains(Application.dataPath)){
+                        if (path.Contains(Application.dataPath))
+                        {
                             path = path.Replace("\\", "/").Replace(Application.dataPath, "Assets");
                         }
                         exporter.psdFile = path;

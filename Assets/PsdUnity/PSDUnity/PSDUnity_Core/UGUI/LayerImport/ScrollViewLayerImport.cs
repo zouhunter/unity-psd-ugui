@@ -82,7 +82,7 @@ namespace PSDUnity.UGUI
                     GroupNode child = layer.children[i] as GroupNode;
                     string childLowerName = child.displayName;
 
-                    UGUINode c_Node = ctrl.DrawLayer(child, childNode);
+                    UGUINode c_Node = ctrl.BeginDrawUILayer(child, childNode);
 
                     if (childLowerName.StartsWith("c_"))
                     {
