@@ -29,6 +29,7 @@ namespace PSDUnity.UGUI
             {
                 var bgnode = ctrl.DrawImage(bg, node);
                 var graph = bgnode.InitComponent<UnityEngine.UI.Image>();
+                slider.targetGraphic = graph;
                 PSDImporter.SetPictureOrLoadColor(bg, graph);
             }
 
