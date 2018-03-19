@@ -31,6 +31,7 @@ namespace PSDUnity
         [Header("图片生成配制"), Space(10)]
         public string globalSprite = "Assets/Common/Sprite";
         public string globalTexture = "Assets/Common/Texture";
+        public string subFolder = "Image";
         public bool forceSprite = true;
         public Vector2 defultUISize = new Vector2(1600, 900);
         public float pixelsToUnitSize = 100;

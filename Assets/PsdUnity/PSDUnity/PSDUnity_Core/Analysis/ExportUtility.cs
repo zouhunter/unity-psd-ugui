@@ -42,7 +42,12 @@ namespace PSDUnity.Analysis
             {
                 if (exporter != null)
                 {
-                    var _exportPath = AssetDatabase.GetAssetPath(exporter).Replace("/" + exporter.name + ".asset", "");
+                    var assetFolder = AssetDatabase.GetAssetPath(exporter).Replace("/" + exporter.name + ".asset", "");
+                    var _exportPath = System.IO.Path.Combine(assetFolder, exporter.ruleObj.subFolder);
+                    if(!Directory.Exists(_exportPath))
+                    {
+                        Directory.CreateDirectory(_exportPath);
+                    }
                     return _exportPath;
                 }
                 return null;
