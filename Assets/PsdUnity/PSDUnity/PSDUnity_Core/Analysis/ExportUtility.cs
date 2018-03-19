@@ -235,7 +235,7 @@ namespace PSDUnity.Analysis
         {
             foreach (var node in singleNodes)
             {
-                byte[] buf = EncordToPng( node.texture);
+                byte[] buf = EncordToPng(node.texture);
 
                 var rootPath = exportPath;
 
@@ -520,16 +520,24 @@ namespace PSDUnity.Analysis
 
         private static byte[] EncordToPng(this Texture2D texture)
         {
-            var assemble = typeof(UnityEngine.Texture2D).Assembly;
-            var imageConvention = assemble.GetType("ImageConversion");
-            if (imageConvention != null)
+            try
             {
-                return imageConvention.GetMethod("EncodeToPNG").Invoke(null, new object[] { texture }) as byte[];
+                var assemble = System.Reflection.Assembly.Load("UnityEngine.ImageConversionModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null");
+                if (assemble != null)
+                {
+                    var imageConvention = assemble.GetType("UnityEngine.ImageConversion");
+                    if (imageConvention != null)
+                    {
+                        return imageConvention.GetMethod("EncodeToPNG", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.InvokeMethod).Invoke(null, new object[] { texture }) as byte[];
+                    }
+                }
             }
-            else
+            catch (Exception)
             {
                 return texture.GetType().GetMethod("EncodeToPNG").Invoke(texture, null) as byte[];
             }
+           
+            return new byte[0];
         }
     }
 }
