@@ -22,13 +22,13 @@ namespace PSDUnity.UGUI
                         if (lowerName.StartsWith("t_"))
                         {
                             UnityEngine.UI.Text text = (UnityEngine.UI.Text)inputfield.textComponent;//inputfield.transform.Find("Text").GetComponent<UnityEngine.UI.Text>();
-                            text.alignment = TextAnchor.MiddleLeft;
+                          
                             PSDImporter.SetPictureOrLoadColor(image, text);
                         }
                         else if (lowerName.StartsWith("p_"))
                         {
                             UnityEngine.UI.Text text = (UnityEngine.UI.Text)inputfield.placeholder;//.transform.Find("Placeholder").GetComponent<UnityEngine.UI.Text>();
-                            text.alignment = TextAnchor.MiddleLeft;
+                
                             PSDImporter.SetPictureOrLoadColor(image, text);
                         }
                     }

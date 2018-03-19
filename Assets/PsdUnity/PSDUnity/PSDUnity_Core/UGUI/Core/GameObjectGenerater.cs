@@ -168,17 +168,21 @@ namespace PSDUnity.UGUI
             PSDUnity.UGUI.PSDImporter.SetNormalAnchor(AnchoType.XStretch | AnchoType.YStretch, inputfield.GetComponent<RectTransform>(), holder.transform as RectTransform);
             PSDUnity.UGUI.PSDImporter.SetNormalAnchor(AnchoType.XStretch | AnchoType.YStretch, inputfield.GetComponent<RectTransform>(), text.transform as RectTransform);
 
-            var holderText = inputfield.GetComponent<InputField>().placeholder = holder.GetComponent<Text>();
+            inputfield.GetComponent<InputField>().placeholder = holder;
+            holder.alignment = TextAnchor.MiddleLeft;
+            holder.supportRichText = false;
             Color color;
             if(ColorUtility.TryParseHtmlString("#32323280",out color)) {
-                holderText.color = color;
+                holder.color = color;
             }
 
 
-            inputfield.GetComponent<InputField>().textComponent = text.GetComponent<Text>();
+            inputfield.GetComponent<InputField>().textComponent = text;
+            text.alignment = TextAnchor.MiddleLeft;
+            text.supportRichText = false;
             if (ColorUtility.TryParseHtmlString("#32323280", out color))
             {
-                holderText.color = color;
+                text.color = color;
             }
             return inputfield.gameObject;
         }
