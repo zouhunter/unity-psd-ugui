@@ -114,7 +114,7 @@ namespace PSDUnity.UGUI
 
         private static GameObject CreateScrollView()
         {
-            var scroll = new GameObject("ScrollView",typeof(Image),typeof(ScrollRect));
+            var scroll = new GameObject("ScrollView",typeof(ScrollRect));
             return scroll;
         }
 
