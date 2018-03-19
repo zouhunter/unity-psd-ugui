@@ -3,11 +3,10 @@ using UnityEngine;
 
 namespace PSDUnity
 {
-    public enum NameType
+    public enum SuffixType
     {
         appendHash,
         appendIndex,
-        Defult,
     }
     [Serializable]
     public class ImgNode : INameAnalyzing<ImgNode>
@@ -15,27 +14,31 @@ namespace PSDUnity
         public string Name;
         private int hashImage = 0;
         private int index = 0;
-        private NameType customNameType;
+        private SuffixType customNameType;
         public string TextureName
         {
             get
             {
-                if (source != ImgSource.Custom && customNameType == NameType.Defult)
+                if(forceAddress || source == ImgSource.Custom)
+                {
+                    if (customNameType == SuffixType.appendHash)
+                    {
+                        return Name + hashImage;
+                    }
+                    else // customNameType == NameType.Index
+                    {
+                        return Name + index;
+                    }
+                }
+                else
                 {
                     return Name;
-                }
-                else if (customNameType == NameType.appendHash)
-                {
-                    return Name + hashImage;
-                }
-                else//appendIndex
-                {
-                    return Name + index;
                 }
             }
         }
         public ImgType type;
         public ImgSource source;
+        public bool forceAddress;
         public Rect rect;
         public Sprite sprite;
         public Texture2D texture;
@@ -86,6 +89,7 @@ namespace PSDUnity
         {
             this.Name = Rule.AnalySisImgName(name, out source, out type);
             this.customNameType = Rule.nameType;
+            this.forceAddress = Rule.forceAddress;
             //添加后缀
             if (texture != null)
             {

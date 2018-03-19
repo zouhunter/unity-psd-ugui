@@ -280,7 +280,7 @@ namespace PSDUnity.Analysis
 
                 // Make sure the size is the same as our atlas then create the spritesheet
                 textureImporter.maxTextureSize = pictureInfo.ruleObj.maxSize;
-
+                textureImporter.spritePackingTag = pictureInfo.name;
                 switch (imgType)
                 {
                     case ImgType.Image:

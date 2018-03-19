@@ -23,8 +23,9 @@ namespace PSDUnity
         public string asGoubleMark = "G";
         public string asNoRepetMark = "N";
         public string asCustomMark = "C";
-        public NameType nameType = NameType.Defult;
         public ImgSource defultImgSource = ImgSource.Custom;
+        public SuffixType nameType = SuffixType.appendIndex;
+        public bool forceAddress = false;
         public char sepraterChargroup = '@';
         public char argumentChar = ':';
 
