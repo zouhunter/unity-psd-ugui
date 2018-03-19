@@ -185,8 +185,7 @@ namespace PSDUnity.Analysis
                 {
                     if (EditorUtility.DisplayDialog("创建新规则", "确认后将生成新的规则文件！", "确认", "取消"))
                     {
-                        exporter.ruleObj = ScriptableObject.CreateInstance<RuleObject>();
-                        ProjectWindowUtil.CreateAsset(exporter.ruleObj, "new rule.asset");
+                        exporter.ruleObj = PsdResourceUtil.CreateRuleObject();
                     }
                 }
             }

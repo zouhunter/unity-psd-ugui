@@ -281,6 +281,7 @@ namespace PSDUnity.Analysis
                     case ImgType.Image:
                         textureImporter.textureType = TextureImporterType.Sprite;
                         textureImporter.spriteImportMode = SpriteImportMode.Single;
+                        textureImporter.alphaIsTransparency = true;
                         textureImporter.spritePivot = new Vector2(0.5f, 0.5f);
                         textureImporter.spritePixelsPerUnit = pictureInfo.ruleObj.pixelsToUnitSize;
                         break;
