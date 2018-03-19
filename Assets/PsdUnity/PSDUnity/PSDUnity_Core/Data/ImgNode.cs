@@ -7,6 +7,7 @@ namespace PSDUnity
     {
         appendHash,
         appendIndex,
+        appendBase
     }
     [Serializable]
     public class ImgNode : INameAnalyzing<ImgNode>
@@ -15,6 +16,7 @@ namespace PSDUnity
         private int hashImage = 0;
         private int index = 0;
         private SuffixType customNameType;
+        private string baseName;
         public string TextureName
         {
             get
@@ -25,9 +27,13 @@ namespace PSDUnity
                     {
                         return Name + hashImage;
                     }
-                    else // customNameType == NameType.Index
+                    else if( customNameType == SuffixType.appendIndex)
                     {
                         return Name + index;
+                    }
+                    else
+                    {
+                        return Name + baseName;
                     }
                 }
                 else
@@ -46,11 +52,11 @@ namespace PSDUnity
         public Font font;
         public int fontSize = 0;
         public Color color = UnityEngine.Color.white;
-
         public ImgNode() { }
 
-        public ImgNode(Rect rect, Texture2D texture) : this(rect)
+        public ImgNode(string baseName,Rect rect, Texture2D texture) : this(rect)
         {
+            this.baseName = baseName;
             this.rect = rect;
             this.texture = texture;
         }

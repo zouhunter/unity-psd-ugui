@@ -44,7 +44,7 @@ namespace PSDUnity.Analysis
                 {
                     var assetFolder = AssetDatabase.GetAssetPath(exporter).Replace("/" + exporter.name + ".asset", "");
                     var _exportPath = System.IO.Path.Combine(assetFolder, exporter.ruleObj.subFolder);
-                    if(!Directory.Exists(_exportPath))
+                    if (!Directory.Exists(_exportPath))
                     {
                         Directory.CreateDirectory(_exportPath);
                     }
@@ -87,7 +87,7 @@ namespace PSDUnity.Analysis
             var simplyed = new List<ImgNode>();
             foreach (var item in pictureData)
             {
-                if(simplyed.Find(x=>x.TextureName == item.TextureName) == null)
+                if (simplyed.Find(x => x.TextureName == item.TextureName) == null)
                 {
                     simplyed.Add(item);
                 }
@@ -314,7 +314,7 @@ namespace PSDUnity.Analysis
         /// <param name="layer"></param>
         /// <param name="forceSprite"></param>
         /// <returns></returns>
-        public static ImgNode AnalysisLayer(Vector2 rootSize, PsdLayer layer, bool forceSprite = false)
+        public static ImgNode AnalysisLayer(string baseName,Vector2 rootSize, PsdLayer layer, bool forceSprite = false)
         {
             ImgNode data = null;
             var texture = CreateTexture(layer);
@@ -322,12 +322,12 @@ namespace PSDUnity.Analysis
             switch (layer.LayerType)
             {
                 case LayerType.Normal:
-                    data = new ImgNode(rect, texture).SetIndex(GetLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
+                    data = new ImgNode(baseName, rect, texture).SetIndex(GetLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
                     break;
                 case LayerType.Color:
                     if (forceSprite)
                     {
-                        data = new ImgNode(rect, texture).SetIndex(GetLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
+                        data = new ImgNode(baseName, rect, texture).SetIndex(GetLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
                     }
                     else
                     {
@@ -344,7 +344,7 @@ namespace PSDUnity.Analysis
                     {
                         Debug.LogError("you psd have some not supported layer.(defult layer is not supported)! \n make sure your layers is Intelligent object or color lump." + "\n ->Detail:" + layer.Name);
                     }
-                    data = new ImgNode(rect, texture).SetIndex(GetLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
+                    data = new ImgNode(baseName, rect, texture).SetIndex(GetLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
                     break;
                 default:
                     break;
@@ -489,7 +489,7 @@ namespace PSDUnity.Analysis
 
                         else
                         {
-                            ImgNode imgnode = AnalysisLayer(rootSize, child, forceSprite);
+                            ImgNode imgnode = AnalysisLayer(group.displayName, rootSize, child, forceSprite);
                             if (imgnode != null)
                             {
                                 group.images.Add(imgnode);
@@ -554,7 +554,7 @@ namespace PSDUnity.Analysis
             {
                 return texture.GetType().GetMethod("EncodeToPNG").Invoke(texture, null) as byte[];
             }
-           
+
             return new byte[0];
         }
     }
