@@ -233,7 +233,9 @@ namespace PSDUnity.Analysis
             textureImporter.textureType = TextureImporterType.Sprite;
             textureImporter.spriteImportMode = SpriteImportMode.Multiple;
             textureImporter.spritePivot = new Vector2(0.5f, 0.5f);
-            textureImporter.spritePixelsPerUnit = exporter.ruleObj.pixelsToUnitSize;
+           
+            ChargeTextureImportRule(textureImporter, exporter.ruleObj);
+
             AssetDatabase.ImportAsset(atlaspath, ImportAssetOptions.ForceUpdate);
 
             foreach (var node in imgNodes)
@@ -288,7 +290,6 @@ namespace PSDUnity.Analysis
                         textureImporter.spriteImportMode = SpriteImportMode.Single;
                         textureImporter.alphaIsTransparency = true;
                         textureImporter.spritePivot = new Vector2(0.5f, 0.5f);
-                        textureImporter.spritePixelsPerUnit = pictureInfo.ruleObj.pixelsToUnitSize;
                         break;
                     case ImgType.Texture:
                         textureImporter.textureType = TextureImporterType.Default;
@@ -296,7 +297,7 @@ namespace PSDUnity.Analysis
                     default:
                         break;
                 }
-
+                ChargeTextureImportRule(textureImporter, exporter.ruleObj);
                 AssetDatabase.ImportAsset(atlaspath, ImportAssetOptions.ForceUpdate);
             }
 
@@ -307,6 +308,22 @@ namespace PSDUnity.Analysis
             }
 
         }
+
+        /// <summary>
+        /// 加载图片导入规则
+        /// </summary>
+        /// <param name="importer"></param>
+        /// <param name="rule"></param>
+        private static void ChargeTextureImportRule(TextureImporter textureImporter, RuleObject rule)
+        {
+            textureImporter.spritePixelsPerUnit = rule.spritePixelsPerUnit;
+            textureImporter.textureCompression = rule.textureCompression;
+            textureImporter.mipmapEnabled = rule.mipmapEnabled;
+            textureImporter.isReadable = rule.isReadable;
+            textureImporter.wrapMode = rule.wrapMode;
+            textureImporter.filterMode = rule.filterMode;
+        }
+       
         /// <summary>
         /// 将图层解析为imgNode
         /// </summary>
@@ -322,16 +339,16 @@ namespace PSDUnity.Analysis
             switch (layer.LayerType)
             {
                 case LayerType.Normal:
-                    data = new ImgNode(baseName, rect, texture).SetIndex(GetLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
+                    data = new ImgNode(baseName, rect, texture).SetIndex(CalcuteLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
                     break;
                 case LayerType.Color:
                     if (forceSprite)
                     {
-                        data = new ImgNode(baseName, rect, texture).SetIndex(GetLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
+                        data = new ImgNode(baseName, rect, texture).SetIndex(CalcuteLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
                     }
                     else
                     {
-                        data = new ImgNode(layer.Name, rect, GetLayerColor(layer)).SetIndex(GetLayerID(layer));
+                        data = new ImgNode(layer.Name, rect, GetLayerColor(layer)).SetIndex(CalcuteLayerID(layer));
                     }
                     break;
                 case LayerType.Text:
@@ -344,7 +361,7 @@ namespace PSDUnity.Analysis
                     {
                         Debug.LogError("you psd have some not supported layer.(defult layer is not supported)! \n make sure your layers is Intelligent object or color lump." + "\n ->Detail:" + layer.Name);
                     }
-                    data = new ImgNode(baseName, rect, texture).SetIndex(GetLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
+                    data = new ImgNode(baseName, rect, texture).SetIndex(CalcuteLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
                     break;
                 default:
                     break;
@@ -352,14 +369,19 @@ namespace PSDUnity.Analysis
             return data;
         }
 
-        private static int GetLayerID(PsdLayer layer)
+        /// <summary>
+        /// 计算layer的id
+        /// </summary>
+        /// <param name="layer"></param>
+        /// <returns></returns>
+        private static int CalcuteLayerID(PsdLayer layer)
         {
             int id = 0;
             var parent = layer.Parent;
             if (parent != null)
             {
                 id = Array.IndexOf(parent.Childs, layer);
-                id += 10 * GetLayerID(parent);
+                id += 10 * CalcuteLayerID(parent);
             }
             else
             {

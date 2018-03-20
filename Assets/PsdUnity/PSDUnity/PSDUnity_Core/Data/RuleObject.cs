@@ -9,6 +9,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Assertions.Must;
 using UnityEngine.Assertions.Comparers;
 using System.Collections.Generic;
+using UnityEditor;
 
 namespace PSDUnity
 {
@@ -35,11 +36,17 @@ namespace PSDUnity
         public string subFolder = "Image";
         public bool forceSprite = true;
         public Vector2 defultUISize = new Vector2(1600, 900);
-        public float pixelsToUnitSize = 100;
         public int maxSize = 4096;
 
-        private static string[] groupNames;
+        [Header("图片导入规则")]
+        public float spritePixelsPerUnit = 100;
+        public TextureImporterCompression textureCompression = TextureImporterCompression.Uncompressed;
+        public bool mipmapEnabled = true;
+        public bool isReadable = false;
+        public TextureWrapMode wrapMode = TextureWrapMode.Clamp;
+        public FilterMode filterMode = FilterMode.Trilinear;
 
+        private static string[] groupNames;
         static RuleObject()
         {
             groupNames = System.Enum.GetNames(typeof(GroupType));
