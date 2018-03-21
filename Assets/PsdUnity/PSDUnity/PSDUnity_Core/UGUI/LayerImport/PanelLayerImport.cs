@@ -1,61 +1,92 @@
 ﻿using System;
 using UnityEngine;
-using PSDUnity;
+using UnityEngine.UI;
+
 namespace PSDUnity.UGUI
 {
-    public class PanelLayerImport : ILayerImport
+    public class PanelLayerImport : LayerImport
     {
-        PSDImportCtrl ctrl;
-        public PanelLayerImport(PSDImportCtrl ctrl)
+        public PanelLayerImport(PSDImportCtrl ctrl) : base(ctrl) { }
+
+        public override GameObject CreateTemplate()
         {
-            this.ctrl = ctrl;
+            return new GameObject("Empty", typeof(RectTransform));
         }
 
-        public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
+        public override UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImporter.InstantiateItem(GroupType.EMPTY, layer.displayName, parent);//GameObject.Instantiate(temp) as UnityEngine.UI.Image;
-            UnityEngine.UI.Graphic panel = null;
+            UGUINode node = CreateRootNode(layer.displayName, layer.rect, parent);
 
-            if (layer.children!=null)
-                ctrl.DrawLayers(layer.children.ConvertAll(x=>x as GroupNode).ToArray(), node);//子节点
+            if (layer.children != null)
+                ctrl.DrawLayers(layer.children.ConvertAll(x => x as GroupNode).ToArray(), node);//子节点
 
+            Graphic background;
+
+            DrawImages(layer,node,out background);
+
+            TryDrawPanel(background, layer, node);
+
+            return node;
+
+        }
+
+        /// <summary>
+        /// 绘制图片
+        /// </summary>
+        /// <param name="layer"></param>
+        /// <param name="node"></param>
+        /// <param name="background"></param>
+        private void DrawImages(GroupNode layer, UGUINode node, out Graphic background)
+        {
+            background = null;
             for (int i = 0; i < layer.images.Count; i++)
             {
                 ImgNode image = layer.images[i];
 
-                if (image.Name.ToLower().StartsWith("b_"))
+                if (MatchAddress(image.Name,rule.backgroundAddress))
                 {
-                    if(image.type == ImgType.Texture)
+                    if (image.type == ImgType.Texture)
                     {
-                        panel = node.InitComponent<UnityEngine.UI.RawImage>();
+                        background = node.InitComponent<UnityEngine.UI.RawImage>();
                     }
                     else
                     {
-                        panel = node.InitComponent<UnityEngine.UI.Image>();
+                        background = node.InitComponent<UnityEngine.UI.Image>();
                     }
-                    PSDImporter.SetPictureOrLoadColor(image, panel);
-                    PSDImporter.SetRectTransform(image, panel.GetComponent<RectTransform>());
-                    panel.name = layer.displayName;
+
+                    if(background)
+                    {
+                        PSDImporterUtility.SetPictureOrLoadColor(image, background);
+                        SetRectTransform(image.rect, background.GetComponent<RectTransform>());
+                        background.name = layer.displayName;
+                    }
                 }
                 else
                 {
                     ctrl.DrawImage(image, node);
                 }
             }
-            if (panel == null)
+        }
+
+        /// <summary>
+        /// 试图为Panel类型的图片添加空背景
+        /// </summary>
+        /// <param name="background"></param>
+        /// <param name="layer"></param>
+        /// <param name="node"></param>
+        private void TryDrawPanel(Graphic background,GroupNode layer,UGUINode node)
+        {
+            if (layer.groupType == GroupType.PANEL && background == null)
             {
-                panel = node.InitComponent<UnityEngine.UI.Image>();
-                PSDImporter.SetRectTransform(layer, panel.GetComponent<RectTransform>());
+                background = node.InitComponent<UnityEngine.UI.Image>();
+                SetRectTransform(layer.rect, background.GetComponent<RectTransform>());
                 Color color;
                 if (ColorUtility.TryParseHtmlString("#FFFFFF01", out color))
                 {
-                    panel.color = color;
+                    background.color = color;
                 }
-                panel.name = layer.displayName;
+                background.name = layer.displayName;
             }
-            return node;
-
         }
-
     }
 }

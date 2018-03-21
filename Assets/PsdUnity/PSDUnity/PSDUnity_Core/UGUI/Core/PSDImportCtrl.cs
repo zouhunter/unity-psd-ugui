@@ -12,46 +12,55 @@ namespace PSDUnity.UGUI
 {
     public class PSDImportCtrl
     {
-        private Dictionary<ImgType, IImageImport> imgImporterDic;
-        private Dictionary<GroupType, ILayerImport> layerImporterDic;
+        private Dictionary<ImgType, ImageImport> imgImporterDic;
+        private Dictionary<GroupType, LayerImport> layerImporterDic;
+        public Canvas canvas { get; private set; }
+        public  RuleObject rule { get; private set; }
+        public  UGUINode uinode { get; private set; }
+        public Vector2 canvasSize { get; private set; }
 
-        public PSDImportCtrl()
+        public PSDImportCtrl(Canvas canvas,RuleObject rule,Vector2 canvasSize)
         {
+            this.canvas = canvas;
+            this.rule = rule;
+            this.canvas = canvas;
+            this.canvasSize = canvasSize;
+            uinode = new UGUINode(canvas.transform, null);
             InitDrawers();
         }
 
         private void InitDrawers()
         {
-            imgImporterDic = new Dictionary<ImgType, IImageImport>();
+            imgImporterDic = new Dictionary<ImgType, ImageImport>();
+            imgImporterDic.Add(ImgType.Texture, new TextureImport(this));
+            imgImporterDic.Add(ImgType.Image, new SpriteImport(this));
+            imgImporterDic.Add(ImgType.AtlasImage, new SpriteImport(this));
+            imgImporterDic.Add(ImgType.Color, new SpriteImport(this));
+            imgImporterDic.Add(ImgType.Label, new TextImport(this));
 
-            imgImporterDic.Add(ImgType.Texture, new TextureImport());
-            imgImporterDic.Add(ImgType.Image, new SpriteImport());
-            imgImporterDic.Add(ImgType.AtlasImage, new SpriteImport());
-            imgImporterDic.Add(ImgType.Color, new SpriteImport());
-            imgImporterDic.Add(ImgType.Label, new TextImport());
-
-            layerImporterDic = new Dictionary<GroupType, ILayerImport>();
+            layerImporterDic = new Dictionary<GroupType, LayerImport>();
             layerImporterDic.Add(GroupType.SLIDER, new SliderLayerImport(this));
-            layerImporterDic.Add(GroupType.INPUTFIELD, new InputFieldLayerImport());
+            layerImporterDic.Add(GroupType.INPUTFIELD, new InputFieldLayerImport(this));
             layerImporterDic.Add(GroupType.BUTTON, new ButtonLayerImport(this));
             layerImporterDic.Add(GroupType.TOGGLE, new ToggleLayerImport(this));
-            layerImporterDic.Add(GroupType.IMAGE, new PanelLayerImport(this));
+            layerImporterDic.Add(GroupType.PANEL, new PanelLayerImport(this));
             layerImporterDic.Add(GroupType.EMPTY, new PanelLayerImport(this));
             layerImporterDic.Add(GroupType.SCROLLVIEW, new ScrollViewLayerImport(this));
-            layerImporterDic.Add(GroupType.SCROLLBAR, new ScrollBarLayerImport());
+            layerImporterDic.Add(GroupType.SCROLLBAR, new ScrollBarLayerImport(this));
             layerImporterDic.Add(GroupType.GRID, new GridLayerImport(this));
             layerImporterDic.Add(GroupType.GROUP, new GroupLayerImport(this));
             layerImporterDic.Add(GroupType.DROPDOWN, new DropDownLayerImport(this));
         }
 
-        public void Import(GroupNode rootNode, Vector2 uiSize)
+        public void Import(GroupNode rootNode)
         {
-            InitBaseSize(PSDImporter.uinode,uiSize);
-            BeginDrawUILayer(rootNode, PSDImporter.uinode);//直接绘制所有层级
-            BeginSetUIParents(PSDImporter.uinode);//设置层级之前的父子关系
-            BeginSetAnchers(PSDImporter.uinode);//设置层级的锚点
-            BeginReprocess(PSDImporter.uinode);//后处理
-            BeginScaleWithCanvas(PSDImporter.uinode, uiSize);//尺寸缩放
+            InitBaseSize(uinode, canvasSize);
+            DrawLayer(rootNode, uinode);//直接绘制所有层级
+            BeginSetUIParents(uinode);//设置层级之前的父子关系
+            BeginSetAnchers(uinode);//设置层级的锚点
+            BeginReprocess(uinode);//后处理
+            if(rule.scale)
+                BeginScaleWithCanvas(uinode, canvasSize);//尺寸缩放
         }
 
         private void InitBaseSize(UGUINode uinode,Vector2 uiSize)
@@ -71,7 +80,7 @@ namespace PSDUnity.UGUI
             }
         }
 
-        public UGUINode BeginDrawUILayer(GroupNode layer, UGUINode parent)
+        public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
             UGUINode node = layerImporterDic[layer.groupType].DrawLayer(layer, parent);
             return node;
@@ -84,7 +93,7 @@ namespace PSDUnity.UGUI
             {
                 for (int layerIndex = 0; layerIndex < layers.Length; layerIndex++)
                 {
-                    nodes[layerIndex] = BeginDrawUILayer(layers[layerIndex], parent);
+                    nodes[layerIndex] = DrawLayer(layers[layerIndex], parent);
                 }
             }
             return nodes;
@@ -115,7 +124,6 @@ namespace PSDUnity.UGUI
             return node;
         }
         
-
         public void BeginSetUIParents(UGUINode node)
         {
             foreach (var item in node.childs)
@@ -130,7 +138,7 @@ namespace PSDUnity.UGUI
             foreach (var item in node.childs)
             {
                 BeginSetAnchers(item);
-                PSDImporter.SetAnchorByNode(item);
+                PSDImporterUtility.SetAnchorByNode(item);
             }
         }
 

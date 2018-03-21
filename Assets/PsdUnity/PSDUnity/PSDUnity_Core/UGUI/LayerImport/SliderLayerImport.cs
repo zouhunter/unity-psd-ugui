@@ -7,86 +7,102 @@ using System.Collections.Generic;
 using PSDUnity;
 namespace PSDUnity.UGUI
 {
-    public class SliderLayerImport : ILayerImport
+    public class SliderLayerImport : LayerImport
     {
-        private PSDImportCtrl ctrl;
-        public SliderLayerImport(PSDImportCtrl ctrl)
+        public SliderLayerImport(PSDImportCtrl ctrl) : base(ctrl) { }
+
+        public override GameObject CreateTemplate()
         {
-            this.ctrl = ctrl;
-        }
-        public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
-        {
-            UGUINode node = PSDImporter.InstantiateItem(GroupType.SLIDER, layer.displayName, parent); //GameObject.Instantiate(temp) as UnityEngine.UI.Slider;
-            UnityEngine.UI.Slider slider = node.InitComponent<UnityEngine.UI.Slider>();
-            PSDImporter.SetRectTransform(layer, slider.GetComponent<RectTransform>());
+            var slider = new GameObject("Slider", typeof(Slider)).GetComponent<Slider>();
             slider.value = 1;
+            return slider.gameObject;
+        }
 
-            ImgNode bg = layer.images.Find(x => x.Name.ToLower().StartsWith("b_"));
-            ImgNode fill = layer.images.Find(x => x.Name.ToLower().StartsWith("f_"));
-            ImgNode handle = layer.images.Find(x => x.Name.ToLower().StartsWith("h_"));
-
-            if (bg != null)
+        public override UGUINode DrawLayer(GroupNode layer, UGUINode parent)
+        {
+            UGUINode node = CreateRootNode(layer.displayName,layer.rect,parent); //GameObject.Instantiate(temp) as UnityEngine.UI.Slider;
+            UnityEngine.UI.Slider slider = node.InitComponent<UnityEngine.UI.Slider>();
+            SetSliderDirection(slider, layer);
+            for (int i = 0; i < layer.images.Count; i++)
             {
-                var bgnode = ctrl.DrawImage(bg, node);
-                var graph = bgnode.InitComponent<UnityEngine.UI.Image>();
-                slider.targetGraphic = graph;
-                PSDImporter.SetPictureOrLoadColor(bg, graph);
-            }
-
-            if (fill != null)
-            {
-                var fillAreaNode = PSDImporter.InstantiateItem(GroupType.EMPTY, "Fill Area", node);
-                var fileNode = ctrl.DrawImage(fill, fillAreaNode);
-                slider.fillRect = fileNode.InitComponent<RectTransform>();
-                fileNode.InitComponent<Image>().type = Image.Type.Tiled;
-                PSDImporter.SetRectTransform(fill, fillAreaNode.InitComponent<RectTransform>());
-            }
-
-            if (handle != null && bg != null)
-            {
-                var tempRect = fill != null ? fill : bg;
-                SetSliderDirection(slider, handle, layer);
-                var handAreaNode = PSDImporter.InstantiateItem(GroupType.EMPTY, "Handle Slide Area", node);
-                var rect = new Rect(tempRect.rect.x, tempRect.rect.y, tempRect.rect.width - handle.rect.width, tempRect.rect.height);//x,y 为中心点的坐标！
-                PSDImporter.SetRectTransform(rect, handAreaNode.InitComponent<RectTransform>());
-
-                var handNode = ctrl.DrawImage(handle, handAreaNode);
-
-                ///设置handle最后的锚点类型
-                switch (layer.direction)
+                var imgNode = layer.images[i];
+                if (MatchAddress(imgNode.Name, rule.backgroundAddress))
                 {
-                    case Direction.LeftToRight:
-                        handNode.anchoType = AnchoType.Right|AnchoType.YStretch;
-                        break;
-                    case Direction.BottomToTop:
-                        handNode.anchoType = AnchoType.Up | AnchoType.XStretch;
-                        break;
-                    case Direction.TopToBottom:
-                        handNode.anchoType = AnchoType.Down | AnchoType.XStretch;
-                        break;
-                    case Direction.RightToLeft:
-                        handNode.anchoType = AnchoType.Left | AnchoType.YStretch;
-                        break;
-                    default:
-                        break;
+                    DrawBackground(imgNode,node);
                 }
-
-                ///修复handleRect
-                handNode.inversionReprocess += () =>
+                else if (MatchAddress(imgNode.Name, rule.fillAddress))
                 {
-                    slider.handleRect = handNode.InitComponent<RectTransform>();
-                    slider.handleRect.anchoredPosition = Vector3.zero;
-                    slider.handleRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, handle.rect.width);
-                    slider.handleRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, handle.rect.height);
-                };
-            }
-            else
-            {
-                SetSliderDirection(slider, layer);
+                    DrawFill(imgNode,node);
+                }
+                else if (MatchAddress(imgNode.Name, rule.handleAddress))
+                {
+                    DrawHandle(imgNode, node,layer);
+                }
+                else
+                {
+                    ctrl.DrawImage(imgNode,node);
+                }
             }
             return node;
         }
-      
+
+        private void DrawHandle(ImgNode handle, UGUINode node,GroupNode layer)
+        {
+            var slider = node.InitComponent<Slider>();
+            ImgNode bg = layer.images.Find(x => MatchAddress(x.Name, rule.backgroundAddress));
+            ImgNode fill = layer.images.Find(x => MatchAddress(x.Name, rule.fillAddress));
+
+            var tempRect = fill != null ? fill : bg;
+            var rect = new Rect(tempRect.rect.x, tempRect.rect.y, tempRect.rect.width - handle.rect.width, tempRect.rect.height);//x,y 为中心点的坐标！
+            var handAreaNode = CreateNormalNode(new GameObject("Handle Slide Area", typeof(RectTransform)), rect,  node);
+            var handNode = ctrl.DrawImage(handle, handAreaNode);
+            slider.handleRect = handNode.InitComponent<RectTransform>();
+
+            ///设置handle最后的锚点类型
+            switch (layer.direction)
+            {
+                case Direction.LeftToRight:
+                    handNode.anchoType = AnchoType.Right | AnchoType.YStretch;
+                    break;
+                case Direction.BottomToTop:
+                    handNode.anchoType = AnchoType.Up | AnchoType.XStretch;
+                    break;
+                case Direction.TopToBottom:
+                    handNode.anchoType = AnchoType.Down | AnchoType.XStretch;
+                    break;
+                case Direction.RightToLeft:
+                    handNode.anchoType = AnchoType.Left | AnchoType.YStretch;
+                    break;
+                default:
+                    break;
+            }
+            
+            handNode.inversionReprocess += (n) =>
+            {
+                //写slider进行关联后,尺寸信息丢失
+                slider.handleRect.anchoredPosition = Vector3.zero;
+                slider.handleRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, handle.rect.width);
+                slider.handleRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, handle.rect.height);
+            };
+        }
+
+        private void DrawBackground(ImgNode bg,UGUINode node)
+        {
+            var bgnode = ctrl.DrawImage(bg, node);
+            var graph = bgnode.InitComponent<UnityEngine.UI.Image>();
+            node.InitComponent<Slider>().targetGraphic = graph;
+            PSDImporterUtility.SetPictureOrLoadColor(bg, graph);
+        }
+
+        private void DrawFill(ImgNode fill, UGUINode node)
+        {
+            var fillAreaNode = CreateNormalNode(new GameObject("Fill Area", typeof(RectTransform)), fill.rect,  node);
+            var fileNode = ctrl.DrawImage(fill, fillAreaNode);
+            fileNode.InitComponent<Image>().type = Image.Type.Tiled;
+
+            node.InitComponent<Slider>().fillRect = fileNode.InitComponent<RectTransform>();
+        }
+
         private void SetSliderDirection(Slider slider,GroupNode layer)
         {
             var dir = layer.direction;
@@ -116,36 +132,6 @@ namespace PSDUnity.UGUI
                     }
                     break;
             }
-        }
-
-        private void SetSliderDirection(Slider slider, ImgNode handlePos, GroupNode groupPos)
-        {
-            var hRect = handlePos.rect;
-            var gRect = groupPos.rect;
-
-            if (gRect.width > gRect.height)
-            {
-                if (hRect.x > gRect.x)
-                {
-                    slider.direction = Slider.Direction.LeftToRight;
-                }
-                else
-                {
-                    slider.direction = Slider.Direction.RightToLeft;
-                }
-            }
-            else
-            {
-                if (hRect.y > gRect.y)
-                {
-                    slider.direction = Slider.Direction.BottomToTop;
-                }
-                else
-                {
-                    slider.direction = Slider.Direction.TopToBottom;
-                }
-            }
-
         }
     }
 }

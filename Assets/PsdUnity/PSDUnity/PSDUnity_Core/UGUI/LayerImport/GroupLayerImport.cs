@@ -1,27 +1,63 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
-using PSDUnity;
+using UnityEngine.UI;
 namespace PSDUnity.UGUI
 {
-    internal class GroupLayerImport : ILayerImport
+    internal class GroupLayerImport : LayerImport
     {
-        private PSDImportCtrl pSDImportCtrl;
-
-        public GroupLayerImport(PSDImportCtrl pSDImportCtrl)
+        public override GameObject CreateTemplate()
         {
-            this.pSDImportCtrl = pSDImportCtrl;
+            return new GameObject("Group", typeof(ContentSizeFitter));
+        }
+        public GroupLayerImport(PSDImportCtrl ctrl) : base(ctrl)
+        {
         }
 
-        public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
+        public override UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImporter.InstantiateItem(GroupType.GROUP, layer.displayName, parent);
-            UnityEngine.UI.LayoutGroup group = null;
+            UGUINode node = CreateRootNode(layer.displayName, layer.rect, parent);
+            var nodeList = new List<UGUINode>();
 
-            var nodes = pSDImportCtrl.DrawLayers(layer.children.ConvertAll(x => x as GroupNode).ToArray(), node);
+            if (layer.children != null)
+            {
+                var nodes = ctrl.DrawLayers(layer.children.ConvertAll(x => x as GroupNode).ToArray(), node);
+                nodeList.AddRange(nodes);
+            }
+            if (layer.images != null)
+            {
+                var nodes = ctrl.DrawImages(layer.images.ToArray(), node);
+                nodeList.AddRange(nodes);
+            }
+
+
+            InitLayoutNodes(nodeList);
+            InitLayoutGroup(layer, node);
+            return node;
+        }
+
+        /// <summary>
+        /// 初始化内容节点 
+        /// </summary>
+        /// <param name="nodes"></param>
+        private void InitLayoutNodes(IList<UGUINode> nodes)
+        {
             foreach (var item in nodes)
             {
                 item.anchoType = AnchoType.Left | AnchoType.Up;
+                var layout = item.transform.gameObject.AddComponent<LayoutElement>();
+                layout.preferredWidth = item.InitComponent<RectTransform>().sizeDelta.x;
+                layout.preferredHeight = item.InitComponent<RectTransform>().sizeDelta.x;
             }
+        }
+        /// <summary>
+        /// 初始化组
+        /// </summary>
+        /// <param name="layer"></param>
+        /// <param name="node"></param>
+        private void InitLayoutGroup(GroupNode layer, UGUINode node)
+        {
+            LayoutGroup group = null;
 
             switch (layer.direction)
             {
@@ -37,16 +73,6 @@ namespace PSDUnity.UGUI
                     group.childAlignment = TextAnchor.UpperLeft;
                     break;
             }
-
-            PSDImporter.SetRectTransform(layer, group.GetComponent<RectTransform>());
-
-            nodes = pSDImportCtrl.DrawImages(layer.images.ToArray(), node);
-            foreach (var item in nodes)
-            {
-                item.anchoType = AnchoType.Left | AnchoType.Up;
-            }
-
-            return node;
         }
     }
 }

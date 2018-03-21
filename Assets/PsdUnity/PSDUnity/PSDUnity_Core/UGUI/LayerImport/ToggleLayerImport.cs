@@ -1,44 +1,85 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Events;
-using System.Collections;
-using System.Collections.Generic;
-using PSDUnity;
+using UnityEngine.UI;
+
 namespace PSDUnity.UGUI
 {
-    public class ToggleLayerImport : ILayerImport
+    public class ToggleLayerImport : LayerImport
     {
-        PSDImportCtrl ctrl;
-        public ToggleLayerImport(PSDImportCtrl ctrl)
+        public ToggleLayerImport(PSDImportCtrl ctrl) : base(ctrl) { }
+
+        public override GameObject CreateTemplate()
         {
-            this.ctrl = ctrl;
+            var toggle = new GameObject("Toggle", typeof(Toggle)).GetComponent<Toggle>();
+            var background = new GameObject("Background", typeof(Image)).GetComponent<Image>();
+            var mask = new GameObject("Mask", typeof(Image)).GetComponent<Image>();
+
+            background.transform.SetParent(toggle.transform, false);
+            mask.transform.SetParent(background.transform, false);
+
+            toggle.targetGraphic = background;
+            toggle.graphic = mask;
+
+            return toggle.gameObject;
         }
-        public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
+
+        public override UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImporter.InstantiateItem(GroupType.TOGGLE,layer.displayName,parent);// GameObject.Instantiate(temp) as UnityEngine.UI.Toggle;
+            UGUINode node = CreateRootNode(layer.displayName, layer.rect, parent);
             UnityEngine.UI.Toggle toggle = node.InitComponent<UnityEngine.UI.Toggle>();
             if (layer.images != null)
             {
-                for (int imageIndex = 0; imageIndex < layer.images.Count; imageIndex++)
-                {
-                    ImgNode image = layer.images[imageIndex];
-                    string lowerName = image.Name.ToLower();
-                    if (lowerName.StartsWith("b_"))
-                    {
-                        PSDImporter.SetPictureOrLoadColor(image, toggle.targetGraphic);
-                        PSDImporter.SetRectTransform(image, toggle.GetComponent<RectTransform>());
-                    }
-                    else if (lowerName.StartsWith("m_"))
-                    {
-                        PSDImporter.SetPictureOrLoadColor(image, toggle.graphic);
-                    }
-                    else
-                    {
-                        ctrl.DrawImage(image, node);
-                    }
-                }
+                var bgNode = DrawBackground(layer, toggle, node);
+                DrawMask(layer, toggle, bgNode);
+                DrawOtherLayers(layer, node);
             }
             return node;
+        }
+
+        private UGUINode DrawBackground(GroupNode layer, Toggle toggle, UGUINode node)
+        {
+            var bgImage = layer.images.Find(x => MatchAddress(x.Name, rule.backgroundAddress));
+
+            UGUINode bgNode = null;
+            if (bgImage != null)
+            {
+                bgNode = CreateNormalNode(toggle.targetGraphic.gameObject, bgImage.rect, node);
+                PSDImporterUtility.SetPictureOrLoadColor(bgImage, toggle.targetGraphic);
+                SetRectTransform(bgImage.rect, toggle.GetComponent<RectTransform>());
+            }
+            else
+            {
+                bgNode = CreateNormalNode(toggle.targetGraphic.gameObject, layer.rect, node);
+            }
+            return bgNode;
+        }
+
+        private void DrawMask(GroupNode layer, Toggle toggle, UGUINode bgNode)
+        {
+            var mask = layer.images.Find(x => MatchAddress(x.Name, rule.maskAddress));
+
+            if (mask != null)
+            {
+                PSDImporterUtility.SetPictureOrLoadColor(mask, toggle.graphic);
+                CreateNormalNode(toggle.graphic.gameObject, mask.rect, bgNode);
+            }
+        }
+
+        private void DrawOtherLayers(GroupNode layer, UGUINode node)
+        {
+            for (int imageIndex = 0; imageIndex < layer.images.Count; imageIndex++)
+            {
+                ImgNode image = layer.images[imageIndex];
+                if (!MatchAddress(image.Name, rule.backgroundAddress, rule.maskAddress))
+                {
+                    ctrl.DrawImage(image, node);
+                }
+            }
+        }
+        public override void AfterGenerate(UGUINode node)
+        {
+            base.AfterGenerate(node);
+            StretchTitle(node);
         }
     }
 }

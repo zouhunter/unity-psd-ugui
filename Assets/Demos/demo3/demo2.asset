@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 885e115a8f1c1e04b88b4a1204eba2ee, type: 3}
   m_Name: demo2
   m_EditorClassIdentifier: 
-  _exportPath: Assets/Demos/demo2
+  _exportPath: 
   psdFile: E:/GitHub/PsdUnity/PsdFiles/DarkGroup.psd
-  ruleObj: {fileID: 0}
+  ruleObj: {fileID: 11400000, guid: ca982a8b7b7d70a469df7a1f42c2c303, type: 2}
   groups:
   - _id: 0
     _depth: -1
@@ -53,7 +53,7 @@ MonoBehaviour:
         y: -0
         width: 387
         height: 298
-      sprite: {fileID: 21300000, guid: ef922917abe94334497fe8377922b5f5, type: 3}
+      sprite: {fileID: 21300000, guid: a73f1e0e753bcbc42bf0d3439febae4c, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -83,7 +83,7 @@ MonoBehaviour:
         y: -110.5
         width: 304
         height: 27
-      sprite: {fileID: 21300002, guid: ef922917abe94334497fe8377922b5f5, type: 3}
+      sprite: {fileID: 21300002, guid: a73f1e0e753bcbc42bf0d3439febae4c, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -99,7 +99,7 @@ MonoBehaviour:
         y: -108.5
         width: 297
         height: 15
-      sprite: {fileID: 21300004, guid: ef922917abe94334497fe8377922b5f5, type: 3}
+      sprite: {fileID: 21300004, guid: a73f1e0e753bcbc42bf0d3439febae4c, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -129,7 +129,7 @@ MonoBehaviour:
         y: -0
         width: 27
         height: 300
-      sprite: {fileID: 21300006, guid: ef922917abe94334497fe8377922b5f5, type: 3}
+      sprite: {fileID: 21300006, guid: a73f1e0e753bcbc42bf0d3439febae4c, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -145,7 +145,7 @@ MonoBehaviour:
         y: 0.5
         width: 15
         height: 291
-      sprite: {fileID: 21300008, guid: ef922917abe94334497fe8377922b5f5, type: 3}
+      sprite: {fileID: 21300008, guid: a73f1e0e753bcbc42bf0d3439febae4c, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -175,7 +175,7 @@ MonoBehaviour:
         y: -59.5
         width: 149
         height: 45
-      sprite: {fileID: 21300010, guid: ef922917abe94334497fe8377922b5f5, type: 3}
+      sprite: {fileID: 21300010, guid: a73f1e0e753bcbc42bf0d3439febae4c, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -189,8 +189,8 @@ MonoBehaviour:
         serializedVersion: 2
         x: -109.5
         y: -58
-        width: 84
-        height: 24
+        width: 70
+        height: 10
       sprite: {fileID: 0}
       texture: {fileID: 0}
       text: "Enter text\u2026"
@@ -221,7 +221,7 @@ MonoBehaviour:
         y: -59.5
         width: 149
         height: 45
-      sprite: {fileID: 21300012, guid: ef922917abe94334497fe8377922b5f5, type: 3}
+      sprite: {fileID: 21300012, guid: a73f1e0e753bcbc42bf0d3439febae4c, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -235,8 +235,8 @@ MonoBehaviour:
         serializedVersion: 2
         x: 52.5
         y: -58
-        width: 100
-        height: 24
+        width: 86
+        height: 10
       sprite: {fileID: 0}
       texture: {fileID: 0}
       text: Text is entered
@@ -267,7 +267,7 @@ MonoBehaviour:
         y: -2.5
         width: 304
         height: 39
-      sprite: {fileID: 21300014, guid: ef922917abe94334497fe8377922b5f5, type: 3}
+      sprite: {fileID: 21300014, guid: a73f1e0e753bcbc42bf0d3439febae4c, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -283,7 +283,7 @@ MonoBehaviour:
         y: 1.5
         width: 281
         height: 15
-      sprite: {fileID: 21300016, guid: ef922917abe94334497fe8377922b5f5, type: 3}
+      sprite: {fileID: 21300016, guid: a73f1e0e753bcbc42bf0d3439febae4c, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -299,7 +299,7 @@ MonoBehaviour:
         y: -0.5
         width: 23
         height: 23
-      sprite: {fileID: 21300018, guid: ef922917abe94334497fe8377922b5f5, type: 3}
+      sprite: {fileID: 21300018, guid: a73f1e0e753bcbc42bf0d3439febae4c, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -329,7 +329,7 @@ MonoBehaviour:
         y: -0
         width: 39
         height: 300
-      sprite: {fileID: 21300020, guid: ef922917abe94334497fe8377922b5f5, type: 3}
+      sprite: {fileID: 21300020, guid: a73f1e0e753bcbc42bf0d3439febae4c, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -345,7 +345,7 @@ MonoBehaviour:
         y: 3
         width: 14
         height: 274
-      sprite: {fileID: 21300022, guid: ef922917abe94334497fe8377922b5f5, type: 3}
+      sprite: {fileID: 21300022, guid: a73f1e0e753bcbc42bf0d3439febae4c, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -361,7 +361,7 @@ MonoBehaviour:
         y: -127.5
         width: 23
         height: 23
-      sprite: {fileID: 21300024, guid: ef922917abe94334497fe8377922b5f5, type: 3}
+      sprite: {fileID: 21300024, guid: a73f1e0e753bcbc42bf0d3439febae4c, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -391,7 +391,7 @@ MonoBehaviour:
         y: 51.5
         width: 98
         height: 39
-      sprite: {fileID: 21300026, guid: ef922917abe94334497fe8377922b5f5, type: 3}
+      sprite: {fileID: 21300026, guid: a73f1e0e753bcbc42bf0d3439febae4c, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -407,7 +407,7 @@ MonoBehaviour:
         y: 51.5
         width: 98
         height: 39
-      sprite: {fileID: 21300028, guid: ef922917abe94334497fe8377922b5f5, type: 3}
+      sprite: {fileID: 21300028, guid: a73f1e0e753bcbc42bf0d3439febae4c, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -423,7 +423,7 @@ MonoBehaviour:
         y: 51.5
         width: 98
         height: 39
-      sprite: {fileID: 21300030, guid: ef922917abe94334497fe8377922b5f5, type: 3}
+      sprite: {fileID: 21300030, guid: a73f1e0e753bcbc42bf0d3439febae4c, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -437,8 +437,8 @@ MonoBehaviour:
         serializedVersion: 2
         x: -113
         y: 56
-        width: 53
-        height: 24
+        width: 39
+        height: 10
       sprite: {fileID: 0}
       texture: {fileID: 0}
       text: Button
@@ -469,7 +469,7 @@ MonoBehaviour:
         y: 99.5
         width: 151
         height: 35
-      sprite: {fileID: 21300032, guid: ef922917abe94334497fe8377922b5f5, type: 3}
+      sprite: {fileID: 21300032, guid: a73f1e0e753bcbc42bf0d3439febae4c, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -485,7 +485,7 @@ MonoBehaviour:
         y: 52.5
         width: 149
         height: 75
-      sprite: {fileID: 21300034, guid: ef922917abe94334497fe8377922b5f5, type: 3}
+      sprite: {fileID: 21300034, guid: a73f1e0e753bcbc42bf0d3439febae4c, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -501,7 +501,7 @@ MonoBehaviour:
         y: 75.5
         width: 118
         height: 25
-      sprite: {fileID: 21300036, guid: ef922917abe94334497fe8377922b5f5, type: 3}
+      sprite: {fileID: 21300036, guid: a73f1e0e753bcbc42bf0d3439febae4c, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -563,7 +563,7 @@ MonoBehaviour:
         y: 99.5
         width: 26
         height: 27
-      sprite: {fileID: 21300038, guid: ef922917abe94334497fe8377922b5f5, type: 3}
+      sprite: {fileID: 21300038, guid: a73f1e0e753bcbc42bf0d3439febae4c, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -579,7 +579,7 @@ MonoBehaviour:
         y: 102.5
         width: 13
         height: 13
-      sprite: {fileID: 21300040, guid: ef922917abe94334497fe8377922b5f5, type: 3}
+      sprite: {fileID: 21300040, guid: a73f1e0e753bcbc42bf0d3439febae4c, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -609,7 +609,7 @@ MonoBehaviour:
         y: 99.5
         width: 22
         height: 27
-      sprite: {fileID: 21300042, guid: ef922917abe94334497fe8377922b5f5, type: 3}
+      sprite: {fileID: 21300042, guid: a73f1e0e753bcbc42bf0d3439febae4c, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}
@@ -625,7 +625,7 @@ MonoBehaviour:
         y: 102.5
         width: 15
         height: 15
-      sprite: {fileID: 21300044, guid: ef922917abe94334497fe8377922b5f5, type: 3}
+      sprite: {fileID: 21300044, guid: a73f1e0e753bcbc42bf0d3439febae4c, type: 3}
       texture: {fileID: 0}
       text: 
       font: {fileID: 0}

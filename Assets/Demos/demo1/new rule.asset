@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f44798a39079fd84687a523272440725, type: 3}
-  m_Name: userRule
+  m_Name: new rule
   m_EditorClassIdentifier: 
   titleAddress: t_
   normalAddress: n_
@@ -42,9 +42,9 @@ MonoBehaviour:
   asGoubleMark: G
   asNoRepetMark: N
   asCustomMark: C
-  createAtlas: 0
+  createAtlas: 1
   defultImgSource: 1
-  nameType: 0
+  nameType: 1
   forceAddress: 0
   globalSprite: Assets/Common/Sprite
   globalTexture: Assets/Common/Texture

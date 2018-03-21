@@ -5,15 +5,13 @@ namespace PSDUnity
     public enum GroupType
     {
         EMPTY,
+        PANEL,
         BUTTON,
         TOGGLE,
         CANVAS,
         GRID,
-        IMAGE,
-        RawIMAGE,
         SCROLLVIEW,
         SLIDER,
-        TEXT,
         SCROLLBAR,
         GROUP,
         INPUTFIELD,

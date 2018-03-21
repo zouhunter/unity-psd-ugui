@@ -15,30 +15,61 @@ namespace PSDUnity
 {
     public class RuleObject : ScriptableObject
     {
-        [Header("图层解析标记"), Space(10)]
+        [Header("前缀标记"), Space(10)]
+        public string titleAddress = "t_";
+        public string normalAddress = "n_";
+        public string pressedAddress = "p_";
+        public string highlightedAddress = "h_";
+        public string disableAddress = "d_";
+        public string backgroundAddress = "b_";
+        public string maskAddress = "m_";
+        public string handleAddress = "h_";
+        public string fillAddress = "f_";
+        public string placeAddress = "p_";
+        public string vbarAddress = "vb_";
+        public string hbarAddress = "hb_";
+        public string contentAddress = "c_";
+        public string backgroundsFormat = "b{0}_";
+        public string titlesFormat = "t{0}_";
+
+
+        [Header("分割标记"), Space(10)]
         public char sepraterCharimg = '#';
-        public string asAtalsMark = "A";
-        public string asSingleMark = "S";
-        public string asTextureMark = "T";
-        public bool createAtlas = true;
-        public string asGoubleMark = "G";
-        public string asNoRepetMark = "N";
-        public string asCustomMark = "C";
-        public ImgSource defultImgSource = ImgSource.Custom;
-        public SuffixType nameType = SuffixType.appendIndex;
-        public bool forceAddress = false;
         public char sepraterChargroup = '@';
         public char argumentChar = ':';
 
-        [Header("图片生成配制"), Space(10)]
+        [Header("参数标记"), Space(10)]
+        public string horizontal = "h";
+        public string vertical = "v";
+        public string veritcal_horizontal = "vh";
+        public string left_right = "l";
+        public string right_left = "r";
+        public string bottom_top = "b";
+        public string top_bottom = "l";
+
+
+        [Header("后缀标记"), Space(10)]
+        public string asAtalsMark = "A";
+        public string asSingleMark = "S";
+        public string asTextureMark = "T";
+        public string asGoubleMark = "G";
+        public string asNoRepetMark = "N";
+        public string asCustomMark = "C";
+
+        [Header("生成配制"), Space(10)]
+        public bool createAtlas = true;
+        public ImgSource defultImgSource = ImgSource.Custom;
+        public SuffixType nameType = SuffixType.appendIndex;
+        public bool forceAddress = false;
         public string globalSprite = "Assets/Common/Sprite";
         public string globalTexture = "Assets/Common/Texture";
         public string subFolder = "Image";
         public bool forceSprite = true;
+        public bool scale = false;
         public Vector2 defultUISize = new Vector2(1600, 900);
         public int maxSize = 4096;
 
-        [Header("图片导入规则")]
+        [Header("导入规则")]
         public float spritePixelsPerUnit = 100;
         public TextureImporterCompression textureCompression = TextureImporterCompression.Uncompressed;
         public bool mipmapEnabled = true;
@@ -47,6 +78,7 @@ namespace PSDUnity
         public FilterMode filterMode = FilterMode.Trilinear;
 
         private static string[] groupNames;
+
         static RuleObject()
         {
             groupNames = System.Enum.GetNames(typeof(GroupType));

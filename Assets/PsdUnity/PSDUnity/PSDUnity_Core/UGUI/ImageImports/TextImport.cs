@@ -8,27 +8,33 @@ using PSDUnity;
 
 namespace PSDUnity.UGUI
 {
-    public class TextImport : IImageImport
+    public class TextImport : ImageImport
     {
+        public TextImport(PSDImportCtrl ctrl) : base(ctrl) { }
 
-        public UGUINode DrawImage(ImgNode image, UGUINode parent)
+        public override GameObject CreateTemplate()
         {
-            UGUINode node = PSDImporter.InstantiateItem(GroupType.TEXT,image.Name, parent);
+            var text = new GameObject("Text", typeof(Text)).GetComponent<Text>();
+            text.alignment = TextAnchor.MiddleCenter;
+            return text.gameObject;
+        }
+
+        public override UGUINode DrawImage(ImgNode image, UGUINode parent)
+        {
+            UGUINode node = CreateRootNode(image.Name, image.rect, parent);
             UnityEngine.UI.Text myText = node.InitComponent<Text>();
-            PSDImporter.SetPictureOrLoadColor(image, myText);
-            RectTransform rectTransform = myText.GetComponent<RectTransform>();
-            AdjustImage(image, myText.fontSize);
-            rectTransform.sizeDelta = new Vector2(image.rect.width, image.rect.height);
-            rectTransform.anchoredPosition = new Vector2(image.rect.x, image.rect.y);
+            PSDImporterUtility.SetPictureOrLoadColor(image, myText);
+            AdjustTextRect(image, myText.fontSize);
             return node;
         }
+        
         /// <summary>
         /// 调节字边距
         /// </summary>
         /// <param name="image"></param>
         /// <param name="fontSize"></param>
         /// <returns></returns>
-        private void AdjustImage(ImgNode image,int fontSize)
+        private void AdjustTextRect(ImgNode image,int fontSize)
         {
             image.rect.width += fontSize;
             image.rect.height += fontSize;

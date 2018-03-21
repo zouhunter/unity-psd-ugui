@@ -31,7 +31,7 @@ public class AnalysisUtility
         previewIcons.Add(GroupType.SCROLLBAR.ToString(), EditorGUIUtility.IconContent("Scrollbar Icon").image);
         previewIcons.Add(GroupType.DROPDOWN.ToString(), EditorGUIUtility.IconContent("Dropdown Icon").image);
         previewIcons.Add(GroupType.CANVAS.ToString(), EditorGUIUtility.IconContent("Canvas Icon").image);
-        previewIcons.Add(GroupType.RawIMAGE.ToString(), EditorGUIUtility.IconContent("RawImage Icon").image);
+        previewIcons.Add(GroupType.PANEL.ToString(), EditorGUIUtility.IconContent("RawImage Icon").image);
         previewIcons.Add(GroupType.INPUTFIELD.ToString(), EditorGUIUtility.IconContent("InputField Icon").image);
         previewIcons.Add(GroupType.SCROLLVIEW.ToString(), EditorGUIUtility.IconContent("ScrollRect Icon").image);
         previewIcons.Add(GroupType.GRID.ToString(), EditorGUIUtility.IconContent("GridLayoutGroup Icon").image);

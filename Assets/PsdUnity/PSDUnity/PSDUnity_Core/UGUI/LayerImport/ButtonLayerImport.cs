@@ -1,69 +1,64 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+
 namespace PSDUnity.UGUI
 {
-    public class ButtonLayerImport : ILayerImport
+    public class ButtonLayerImport : LayerImport
     {
-        PSDImportCtrl ctrl;
-        public ButtonLayerImport(PSDImportCtrl ctrl)
+        public ButtonLayerImport(PSDImportCtrl ctrl) : base(ctrl) { }
+
+        public override GameObject CreateTemplate()
         {
-            this.ctrl = ctrl;
+            return new GameObject("Button", typeof(Button), typeof(RectTransform));
         }
 
-        public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
+        public override UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImporter.InstantiateItem(GroupType.BUTTON, layer.displayName, parent);
+            var node = base.CreateRootNode(layer.displayName,layer.rect, parent);
             UnityEngine.UI.Button button = node.InitComponent<UnityEngine.UI.Button>();
-            PSDImporter.SetRectTransform(layer, button.GetComponent<RectTransform>());
-            
+
             if (layer.images != null)
             {
                 for (int imageIndex = 0; imageIndex < layer.images.Count; imageIndex++)
                 {
                     ImgNode image = layer.images[imageIndex];
-                    string lowerName = image.Name.ToLower();
-                    if (lowerName.StartsWith("n_") || lowerName.StartsWith("p_") || lowerName.StartsWith("d_") || lowerName.StartsWith("h_"))
+
+                    if (MatchAddress(image.Name, rule.normalAddress, rule.pressedAddress, rule.disableAddress, rule.highlightedAddress))
                     {
-                        if (lowerName.StartsWith("n_"))
+                        if (MatchAddress(image.Name, rule.normalAddress))
                         {
-                            PSDImporter.SetRectTransform(image, button.GetComponent<RectTransform>());
+                            SetRectTransform(image.rect, button.transform as RectTransform);
                         }
-                        if (image.color == UnityEngine.Color.white)
+
+                        InitButton(image, button);
+
+                        if (image.type == ImgType.Color)
                         {
-                            SetSpriteSwipe(image, button);
+                            SetColorSwipe(image, button);
                         }
                         else
                         {
-                            SetColorSwipe(image, button);
+                            SetSpriteSwipe(image, button);
                         }
                     }
                     else
                     {
                         ctrl.DrawImage(image, node);
                     }
-
-                    //if (image.type == ImgType.Label)
-                    //{
-                    //    node.inversionReprocess += () => {
-                    //       var texts =  button.GetComponentsInChildren<Text>();
-                    //        foreach (var item in texts)
-                    //        {
-                    //            PSDImporter.SetNormalAnchor(AnchoType.XStretch | AnchoType.YStretch, button.transform as RectTransform, item.transform as RectTransform);
-                    //        }
-                    //    };
-                    //}
                 }
             }
             return node;
         }
+
+        /// <summary>
+        /// 设置图片切换规则
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="button"></param>
         private void SetSpriteSwipe(ImgNode image, UnityEngine.UI.Button button)
         {
-            string lowerName = image.Name.ToLower();
-
-            InitButton(image,button);
-
-            if (lowerName.StartsWith("n_"))
+            if (MatchAddress(image.Name, rule.normalAddress))
             {
                 if (image.type == ImgType.Label)
                 {
@@ -74,21 +69,21 @@ namespace PSDUnity.UGUI
                     button.image.sprite = image.sprite;
                 }
             }
-            else if (lowerName.StartsWith("p_"))
+            else if (MatchAddress(image.Name, rule.pressedAddress))
             {
                 button.transition = UnityEngine.UI.Selectable.Transition.SpriteSwap;
                 UnityEngine.UI.SpriteState state = button.spriteState;
                 state.pressedSprite = image.sprite;
                 button.spriteState = state;
             }
-            else if (lowerName.StartsWith("d_"))
+            else if (MatchAddress(image.Name, rule.disableAddress))
             {
                 button.transition = UnityEngine.UI.Selectable.Transition.SpriteSwap;
                 UnityEngine.UI.SpriteState state = button.spriteState;
                 state.disabledSprite = image.sprite;
                 button.spriteState = state;
             }
-            else if (lowerName.StartsWith("h_"))
+            else if (MatchAddress(image.Name, rule.highlightedAddress))
             {
                 button.transition = UnityEngine.UI.Selectable.Transition.SpriteSwap;
                 UnityEngine.UI.SpriteState state = button.spriteState;
@@ -97,6 +92,60 @@ namespace PSDUnity.UGUI
             }
         }
 
+        /// <summary>
+        /// 设置颜色切换规则
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="button"></param>
+        private void SetColorSwipe(ImgNode image, UnityEngine.UI.Button button)
+        {
+            Color color = image.color;
+
+            if (MatchAddress(image.Name,rule.normalAddress))
+            {
+                if (image.type == ImgType.Label)
+                {
+                    (button.targetGraphic as UnityEngine.UI.Text).text = image.text;
+                }
+
+                RectTransform rectTransform = button.GetComponent<RectTransform>();
+                rectTransform.sizeDelta = new Vector2(image.rect.width, image.rect.height);
+                rectTransform.anchoredPosition = new Vector2(image.rect.x, image.rect.y);
+
+                button.targetGraphic.color = color;
+                button.transition = UnityEngine.UI.Selectable.Transition.ColorTint;
+                UnityEngine.UI.ColorBlock state = button.colors;
+                state.normalColor = color;
+                button.colors = state;
+            }
+            else if (MatchAddress(image.Name, rule.pressedAddress))
+            {
+                button.transition = UnityEngine.UI.Selectable.Transition.ColorTint;
+                UnityEngine.UI.ColorBlock state = button.colors;
+                state.pressedColor = color;
+                button.colors = state;
+            }
+            else if (MatchAddress(image.Name, rule.disableAddress))
+            {
+                button.transition = UnityEngine.UI.Selectable.Transition.ColorTint;
+                UnityEngine.UI.ColorBlock state = button.colors;
+                state.disabledColor = color;
+                button.colors = state;
+            }
+            else if (MatchAddress(image.Name, rule.highlightedAddress))
+            {
+                button.transition = UnityEngine.UI.Selectable.Transition.ColorTint;
+                UnityEngine.UI.ColorBlock state = button.colors;
+                state.highlightedColor = color;
+                button.colors = state;
+            }
+        }
+
+        /// <summary>
+        /// 初始化按扭为text或image
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="button"></param>
         private void InitButton(ImgNode image, UnityEngine.UI.Button button)
         {
             if (image.type == ImgType.Label)
@@ -107,6 +156,8 @@ namespace PSDUnity.UGUI
                     text = button.gameObject.AddComponent<UnityEngine.UI.Text>();
 
                     button.targetGraphic = text;
+
+                    SetRectTransform(image.rect, text.rectTransform);
 #if UNITY_EDITOR
                     UnityEditorInternal.ComponentUtility.MoveComponentUp(text);
 #endif
@@ -126,51 +177,12 @@ namespace PSDUnity.UGUI
             }
         }
 
-        private void SetColorSwipe(ImgNode image, UnityEngine.UI.Button button)
+
+        public override void AfterGenerate(UGUINode node)
         {
-            string lowerName = image.Name.ToLower();
-            Color color = image.color;
-
-            InitButton(image, button);
-
-            if (lowerName.StartsWith("n_"))
-            {
-                if (image.type == ImgType.Label)
-                {
-                    (button.targetGraphic as UnityEngine.UI.Text).text = image.text;
-                }
-
-                RectTransform rectTransform = button.GetComponent<RectTransform>();
-                rectTransform.sizeDelta = new Vector2(image.rect.width, image.rect.height);
-                rectTransform.anchoredPosition = new Vector2(image.rect.x, image.rect.y);
-
-                button.targetGraphic.color = color;
-                button.transition = UnityEngine.UI.Selectable.Transition.ColorTint;
-                UnityEngine.UI.ColorBlock state = button.colors;
-                state.normalColor = color;
-                button.colors = state;
-            }
-            else if (lowerName.StartsWith("p_"))
-            {
-                button.transition = UnityEngine.UI.Selectable.Transition.ColorTint;
-                UnityEngine.UI.ColorBlock state = button.colors;
-                state.pressedColor = color;
-                button.colors = state;
-            }
-            else if (lowerName.StartsWith("d_"))
-            {
-                button.transition = UnityEngine.UI.Selectable.Transition.ColorTint;
-                UnityEngine.UI.ColorBlock state = button.colors;
-                state.disabledColor = color;
-                button.colors = state;
-            }
-            else if (lowerName.StartsWith("h_"))
-            {
-                button.transition = UnityEngine.UI.Selectable.Transition.ColorTint;
-                UnityEngine.UI.ColorBlock state = button.colors;
-                state.highlightedColor = color;
-                button.colors = state;
-            }
+            base.AfterGenerate(node);
+            StretchTitle(node);
         }
+
     }
 }

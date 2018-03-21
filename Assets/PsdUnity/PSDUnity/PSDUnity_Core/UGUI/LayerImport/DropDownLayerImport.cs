@@ -7,91 +7,168 @@ using System.Collections.Generic;
 using PSDUnity;
 namespace PSDUnity.UGUI
 {
-    public class DropDownLayerImport : ILayerImport
+    public class DropDownLayerImport : LayerImport
     {
-        PSDImportCtrl ctrl;
-        public DropDownLayerImport(PSDImportCtrl ctrl)
+        public DropDownLayerImport(PSDImportCtrl ctrl) : base(ctrl) { }
+
+        public override GameObject CreateTemplate()
         {
-            this.ctrl = ctrl;
+            var dropdown = new GameObject("DropDown", typeof(Dropdown), typeof(Image)).GetComponent<Dropdown>();
+            var label = new GameObject("Label", typeof(Text)).GetComponent<Text>();
+            var template = new GameObject("Template", typeof(ScrollRect), typeof(Image)).GetComponent<ScrollRect>();
+            var viewport = new GameObject("Viewport", typeof(Image), typeof(Mask)).GetComponent<Image>();
+            var content = new GameObject("Content", typeof(RectTransform)).GetComponent<RectTransform>();
+            var item = new GameObject("Item", typeof(Toggle)).GetComponent<Toggle>();
+            var item_bg = new GameObject("Item Background", typeof(Image)).GetComponent<Image>();
+            var item_cm = new GameObject("Item CheckMask", typeof(Image)).GetComponent<Image>();
+            var item_lb = new GameObject("Item Label", typeof(Text)).GetComponent<Text>();
+
+            label.transform.SetParent(dropdown.transform, false);
+            template.transform.SetParent(dropdown.transform, false);
+            viewport.transform.SetParent(template.transform, false);
+            content.transform.SetParent(viewport.transform, false);
+            item.transform.SetParent(content.transform, false);
+            item_bg.transform.SetParent(item.transform, false);
+            item_bg.transform.SetParent(item.transform, false);
+            item_cm.transform.SetParent(item.transform, false);
+            item_lb.transform.SetParent(item.transform, false);
+
+            dropdown.targetGraphic = dropdown.GetComponent<Image>();
+            dropdown.captionText = label;
+            dropdown.template = template.transform as RectTransform;
+            dropdown.itemText = item_lb;
+
+            template.viewport = viewport.transform as RectTransform;
+            template.content = content;
+
+            item.targetGraphic = item_bg;
+            item.graphic = item_cm;
+
+            PSDImporterUtility.SetNormalAnchor(AnchoType.XStretch | AnchoType.YStretch, dropdown.transform as RectTransform, label.transform as RectTransform);
+            PSDImporterUtility.SetNormalAnchor(AnchoType.XCenter | AnchoType.YCenter, dropdown.transform as RectTransform, template.transform as RectTransform);
+            PSDImporterUtility.SetNormalAnchor(AnchoType.XStretch | AnchoType.YStretch, template.transform as RectTransform, viewport.transform as RectTransform);
+            PSDImporterUtility.SetNormalAnchor(AnchoType.XStretch | AnchoType.Up, viewport.transform as RectTransform, content.transform as RectTransform);
+            PSDImporterUtility.SetNormalAnchor(AnchoType.XStretch | AnchoType.YStretch, content.transform as RectTransform, item.transform as RectTransform);
+            PSDImporterUtility.SetNormalAnchor(AnchoType.XStretch | AnchoType.YStretch, item.transform as RectTransform, item_bg.transform as RectTransform);
+            PSDImporterUtility.SetNormalAnchor(AnchoType.Left | AnchoType.YCenter, item.transform as RectTransform, item_cm.transform as RectTransform);
+            PSDImporterUtility.SetNormalAnchor(AnchoType.XStretch | AnchoType.YStretch, item.transform as RectTransform, item_lb.transform as RectTransform);
+
+            (template.transform as RectTransform).pivot = new Vector2(0.5f, 0.5f);
+            content.pivot = new Vector2(0.5f, 1);
+            content.sizeDelta = new Vector2(0, content.sizeDelta.y);
+            (item_bg.transform as RectTransform).sizeDelta = Vector2.zero;
+            (item_cm.transform as RectTransform).sizeDelta = new Vector2(20, 20);
+            (item_lb.transform as RectTransform).sizeDelta = Vector2.zero;
+
+            item_lb.alignment = label.alignment = TextAnchor.MiddleCenter;
+            viewport.GetComponent<Image>().color = new Color(0, 0, 0, 0.1f);
+            item_cm.enabled = false;
+            return dropdown.gameObject;
         }
-        public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
+
+        public override UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImporter.InstantiateItem(GroupType.DROPDOWN, layer.displayName, parent);
+            UGUINode node = CreateRootNode(layer.displayName, layer.rect, parent);
+
             Dropdown dropdown = node.InitComponent<Dropdown>();
             ScrollRect scrllRect = dropdown.template.GetComponent<ScrollRect>();
             RectTransform content = scrllRect.content;
             Toggle toggle = content.GetComponentInChildren<Toggle>();
 
-            UGUINode childNode = new UGUINode(dropdown.template, node);
-            childNode.transform.SetParent(PSDImporter.canvas.transform);
-            childNode.anchoType = AnchoType.Down | AnchoType.XStretch;
-            //由于设置相对坐标需要，所以修改了部分预制体的状态
-            childNode.inversionReprocess += () => {
-                RectTransform rt = childNode.InitComponent<RectTransform>();
-                rt.pivot = new Vector2(0.5f, 1);
-                rt.anchoredPosition = Vector3.zero;
-            };
+            UGUINode tempNode = CreateNormalNode(dropdown.template.gameObject,layer.rect, node);
+            tempNode.anchoType = AnchoType.Down | AnchoType.XStretch;
+            DrawImages(node,layer,dropdown,toggle,content);
+            DrawSubLayers(layer, tempNode, scrllRect);
+            return node;
+        }
+
+        public override void AfterGenerate(UGUINode node)
+        {
+            base.AfterGenerate(node);
+            var dropDown = node.InitComponent<Dropdown>();
+            RectTransform rt = dropDown.template;
+            rt.pivot = new Vector2(0.5f, 1);
+            rt.anchoredPosition = Vector3.zero;
+        }
+
+        /// <summary>
+        /// 绘制所有image
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="layer"></param>
+        /// <param name="dropdown"></param>
+        /// <param name="toggle"></param>
+        /// <param name="content"></param>
+        private void DrawImages(UGUINode node,GroupNode layer,Dropdown dropdown,Toggle toggle,RectTransform content)
+        {
             for (int i = 0; i < layer.images.Count; i++)
             {
                 ImgNode image = layer.images[i];
-                string lowerName = image.Name.ToLower();
-                if (lowerName.StartsWith("b1_"))
+                if (MatchIDAddress(image.Name, 1, rule.backgroundsFormat))
                 {
-                    PSDImporter.SetPictureOrLoadColor(image, dropdown.image);
-                    PSDImporter.SetRectTransform(image, dropdown.GetComponent<RectTransform>());
+                    PSDImporterUtility.SetPictureOrLoadColor(image, dropdown.image);
+                    SetRectTransform(image.rect, dropdown.GetComponent<RectTransform>());
                     dropdown.name = layer.displayName;
                 }
-                else if(lowerName.StartsWith("b2_"))
+                else if (MatchIDAddress(image.Name, 2, rule.backgroundsFormat))
                 {
-                    PSDImporter.SetPictureOrLoadColor(image, dropdown.template.GetComponent<Graphic>());
-                    PSDImporter.SetRectTransform(image, dropdown.template);
+                    PSDImporterUtility.SetPictureOrLoadColor(image, dropdown.template.GetComponent<Graphic>());
+                    SetRectTransform(image.rect, dropdown.template);
                 }
-                else if (lowerName.StartsWith("b3_"))
+                else if (MatchIDAddress(image.Name, 3, rule.backgroundsFormat))
                 {
                     UnityEngine.UI.Image itemimage = (UnityEngine.UI.Image)toggle.targetGraphic;
-                    PSDImporter.SetPictureOrLoadColor(image, itemimage);
+                    PSDImporterUtility.SetPictureOrLoadColor(image, itemimage);
                     content.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, image.rect.height);
                 }
-                else if (lowerName.StartsWith("t1_"))
+                else if (MatchIDAddress(image.Name, 1, rule.titlesFormat))
                 {
-                    PSDImporter.SetPictureOrLoadColor(image, dropdown.captionText);
+                    PSDImporterUtility.SetPictureOrLoadColor(image, dropdown.captionText);
                 }
-                else if (lowerName.StartsWith("t2_"))
+                else if (MatchIDAddress(image.Name, 2, rule.titlesFormat))
                 {
-                    PSDImporter.SetPictureOrLoadColor(image, dropdown.itemText);
+                    PSDImporterUtility.SetPictureOrLoadColor(image, dropdown.itemText);
                 }
-                else if (lowerName.StartsWith("m_"))
+                else if (MatchAddress(image.Name,rule.maskAddress))
                 {
                     UnityEngine.UI.Image mask = (UnityEngine.UI.Image)toggle.graphic;
-                    PSDImporter.SetPictureOrLoadColor(image, mask);
+                    mask.enabled = true;
+                    PSDImporterUtility.SetPictureOrLoadColor(image, mask);
                 }
                 else
                 {
-                    ctrl.DrawImage(image,node);
+                    ctrl.DrawImage(image, node);
                 }
             }
+        }
 
-            if(layer.children != null)
+        /// <summary>
+        /// 滑动条绘制
+        /// </summary>
+        /// <param name="layer"></param>
+        /// <param name="tempNode"></param>
+        /// <param name="scrollRect"></param>
+        private void DrawSubLayers(GroupNode layer,UGUINode tempNode,ScrollRect scrollRect)
+        {
+            if (layer.children != null)
             {
                 for (int i = 0; i < layer.children.Count; i++)
                 {
                     GroupNode child = layer.children[i] as GroupNode;
-                    string lowerName = child.displayName;
-                    if (lowerName.StartsWith("vb_"))
+                    if (MatchAddress(child.displayName,rule.vbarAddress))
                     {
-                        UGUINode barNode = ctrl.BeginDrawUILayer(child, childNode);
-                        scrllRect.verticalScrollbar = barNode.InitComponent<Scrollbar>();
-                        scrllRect.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHide;
+                        UGUINode barNode = ctrl.DrawLayer(child, tempNode);
+                        scrollRect.verticalScrollbar = barNode.InitComponent<Scrollbar>();
+                        scrollRect.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHide;
                         barNode.anchoType = AnchoType.Right | AnchoType.YCenter;
                     }
                     else
                     {
-                        ctrl.BeginDrawUILayer(child, node);
+                        ctrl.DrawLayer(child, tempNode);
                     }
                 }
             }
 
-            return node;
         }
     }
 }

@@ -7,21 +7,38 @@ using System.Collections.Generic;
 using PSDUnity;
 namespace PSDUnity.UGUI
 {
-    public class GridLayerImport : ILayerImport
+    public class GridLayerImport : LayerImport
     {
-        PSDImportCtrl ctrl;
-        public GridLayerImport(PSDImportCtrl ctrl)
+        public GridLayerImport(PSDImportCtrl ctrl) : base(ctrl) { }
+        public override GameObject CreateTemplate()
         {
-            this.ctrl = ctrl;
+            return new GameObject("Grid", typeof(GridLayoutGroup));
+            
         }
-        public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
+        public override UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = PSDImporter.InstantiateItem(GroupType.GRID, layer.displayName, parent);
+            UGUINode node = CreateRootNode(layer.displayName, layer.rect, parent);
             node.anchoType = AnchoType.Up | AnchoType.Left;
-            GridLayoutGroup gridLayoutGroup = node.InitComponent<GridLayoutGroup>();
-            PSDImporter.SetRectTransform(layer, gridLayoutGroup.GetComponent<RectTransform>());
 
-            gridLayoutGroup.padding = new RectOffset(1,1,1,1);
+            if (layer.children != null)
+            {
+                ctrl.DrawLayers(layer.children.ConvertAll(x => x as GroupNode).ToArray(), node);
+            }
+            if (layer.images != null)
+            {
+                ctrl.DrawImages(layer.images.ToArray(), node);
+            }
+
+            InitGrid(node, layer);
+
+            return node;
+        }
+
+        private void InitGrid(UGUINode node,GroupNode layer)
+        {
+            GridLayoutGroup gridLayoutGroup = node.InitComponent<GridLayoutGroup>();
+
+            gridLayoutGroup.padding = new RectOffset(1, 1, 1, 1);
             gridLayoutGroup.cellSize = new Vector2(layer.rect.width, layer.rect.height);
 
             switch (layer.direction)
@@ -37,11 +54,6 @@ namespace PSDUnity.UGUI
                     break;
             }
             gridLayoutGroup.constraintCount = layer.constraintCount;
-
-            ctrl.DrawImages(layer.images.ToArray(), node);
-            if (layer.children != null)
-                ctrl.DrawLayers(layer.children.ConvertAll(x=>x as GroupNode).ToArray() as GroupNode[], node);
-            return node;
         }
     }
 }

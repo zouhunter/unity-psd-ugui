@@ -7,14 +7,20 @@ using System.Collections.Generic;
 using PSDUnity;
 namespace PSDUnity.UGUI
 {
-    public class TextureImport : IImageImport
+    public class TextureImport : ImageImport
     {
-        public UGUINode DrawImage(ImgNode image, UGUINode parent)
+        public TextureImport(PSDImportCtrl ctrl) : base(ctrl) { }
+
+        public override GameObject CreateTemplate()
         {
-            UGUINode node = PSDImporter.InstantiateItem(GroupType.RawIMAGE, image.texture.name, parent);
+           return new GameObject("RawImage", typeof(RawImage));
+        }
+
+        public override UGUINode DrawImage(ImgNode image, UGUINode parent)
+        {
+            UGUINode node = CreateRootNode(image.Name, image.rect, parent);
             UnityEngine.UI.RawImage pic = node.InitComponent<UnityEngine.UI.RawImage>();
-            PSDImporter.SetPictureOrLoadColor(image, pic);
-            PSDImporter.SetRectTransform(image, pic.GetComponent<RectTransform>());
+            PSDImporterUtility.SetPictureOrLoadColor(image, pic);
             return node;
         }
     }

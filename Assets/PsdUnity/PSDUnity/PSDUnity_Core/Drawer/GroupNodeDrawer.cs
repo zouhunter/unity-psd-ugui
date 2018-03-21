@@ -42,8 +42,6 @@ namespace PSDUnity.Data
                 float height = 5;
                 switch ((GroupType)groupTypeProp.intValue)
                 {
-                    case GroupType.IMAGE:
-                        break;
                     case GroupType.SCROLLVIEW:
                         height +=1;
                         break;
@@ -52,7 +50,7 @@ namespace PSDUnity.Data
                         break;
                     case GroupType.BUTTON:
                         break;
-                    case GroupType.TEXT:
+                    case GroupType.PANEL:
                         break;
                     case GroupType.TOGGLE:
                         break;
@@ -111,9 +109,7 @@ namespace PSDUnity.Data
                         EditorGUI.PropertyField(rect,constraintCountProp);
                         rect.y += SingleHeight;
                         break;
-                    case GroupType.IMAGE:
-                        break;
-                    case GroupType.RawIMAGE:
+                    case GroupType.PANEL:
                         break;
                     case GroupType.SCROLLVIEW:
 #if UNITY_5_6
@@ -129,8 +125,6 @@ namespace PSDUnity.Data
                     case GroupType.SCROLLBAR:
                         directionProp.enumValueIndex = enumDirectionToIndex((Direction)EditorGUI.EnumPopup(rect, new GUIContent("方向"), lastDir));
                         rect.y += SingleHeight;
-                        break;
-                    case GroupType.TEXT:
                         break;
                     case GroupType.GROUP:
                         directionProp.enumValueIndex = enumDirectionToIndex((Direction)EditorGUI.EnumPopup(rect, new GUIContent("方向"), lastDir));

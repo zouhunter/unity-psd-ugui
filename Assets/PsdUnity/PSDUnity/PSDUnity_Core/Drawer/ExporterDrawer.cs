@@ -81,21 +81,21 @@ namespace PSDUnity.Analysis
                 if (GUILayout.Button("Build-All", style, layout))
                 {
                     var canvasObj = Array.Find(Selection.objects, x => x is GameObject && (x as GameObject).GetComponent<Canvas>() != null);
-                    PSDImporter.InitEnviroment(exporter.ruleObj, exporter.ruleObj.defultUISize, canvasObj == null ? FindObjectOfType<Canvas>() : (canvasObj as GameObject).GetComponent<Canvas>());
-                    PSDImporter.StartBuild(rootNode);
+                    var ctrl = PSDImporterUtility.CreatePsdImportCtrlSafty(exporter.ruleObj, exporter.ruleObj.defultUISize, canvasObj == null ? FindObjectOfType<Canvas>() : (canvasObj as GameObject).GetComponent<Canvas>());
+                    ctrl.Import(rootNode);
                     AssetDatabase.Refresh();
                 }
 
                 if (GUILayout.Button("Build-Sel", style, layout))
                 {
                     var canvasObj = Array.Find(Selection.objects, x => x is GameObject && (x as GameObject).GetComponent<Canvas>() != null);
-                    PSDImporter.InitEnviroment(exporter.ruleObj, exporter.ruleObj.defultUISize, canvasObj == null ? FindObjectOfType<Canvas>() : (canvasObj as GameObject).GetComponent<Canvas>());
+                    var ctrl = PSDImporterUtility.CreatePsdImportCtrlSafty(exporter.ruleObj, exporter.ruleObj.defultUISize, canvasObj == null ? FindObjectOfType<Canvas>() : (canvasObj as GameObject).GetComponent<Canvas>());
                     var root = new GroupNode(new Rect(Vector2.zero, rootNode.rect.size), 0, -1);
                     root.displayName = "partial build";
                     foreach (var node in m_TreeView.selected){
                         root.AddChild(node);
                     }
-                    PSDImporter.StartBuild(root);
+                    ctrl.Import(root);
                     AssetDatabase.Refresh();
                 }
 
