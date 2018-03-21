@@ -1,0 +1,814 @@
+fileFormatVersion: 2
+guid: 1cc049d858de44548a5e15149e3e0405
+timeCreated: 1521633599
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: b_EDIT0
+    21300002: H-LINE
+    21300004: H-Line
+    21300006: b_BG110
+    21300008: Arrow112
+    21300010: n_Icon120
+    21300012: n_ICON2000
+    21300014: b_BG2010
+    21300016: b_BG2020
+    21300018: Arrow2021
+    21300020: b_BG2030
+    21300022: ICON2032
+    21300024: Arrow2033
+    21300026: b_G2100
+    21300028: b_ICON301
+    21300030: b_BG3020
+    21300032: b_BG310
+    21300034: ICON312
+    21300036: b_BG3130
+    21300038: b_BG40
+    21300040: b_Scrollbar410
+    21300042: h_Scrollbar411
+    21300044: b_precent
+    21300046: b_update
+    21300048: b_arrow
+    21300050: b_Vektor-Smartobjekt
+    21300052: n_Arrow432
+    21300054: f_Scrollbar500
+    21300056: b_501
+    21300058: b_BG510
+    21300060: Avatar5110
+    21300062: H_LINE
+    21300064: Avatar5120
+    21300066: Avatar5130
+    21300068: Avatar5140
+    21300070: Avatar5150
+    21300072: Avatar5160
+    21300074: Avatar5170
+    21300076: Avatar5180
+    21300078: Avatar5190
+    21300080: Avatar5200
+    21300082: b_Arrow5212
+    21300084: b_BG60
+    21300086: n_Logout_Icon611
+    21300088: Trenner
+    21300090: n_Upgrad_Icon631
+    21300092: b_BG640
+    21300094: n_Settings_Icon651
+    21300096: n_Projects Icon661
+    21300098: b_BG670
+    21300100: b_Aktiv681
+    21300102: m_Aktiv682
+    21300104: n_IMG690
+    21300106: BG6910
+    21300108: f_Scrollbar210100
+    21300110: b_210101
+    21300112: b_BG210110
+    21300114: Avatar2101110
+    21300116: Avatar2101120
+    21300118: Avatar2101130
+    21300120: Avatar2101140
+    21300122: Avatar2101150
+    21300124: Avatar2101160
+    21300126: Avatar2101170
+    21300128: Avatar2101180
+    21300130: Avatar2101190
+    21300132: Avatar2101200
+    21300134: b_Arrow2101212
+    21300136: b_BG21020
+    21300138: b_Scrollbar210210
+    21300140: h_Scrollbar210211
+    21300142: n_Arrow210232
+    21300144: n_Logout_Icon411
+    21300146: n_Upgrad_Icon431
+    21300148: b_BG440
+    21300150: n_Settings_Icon451
+    21300152: n_Projects Icon461
+    21300154: b_BG470
+    21300156: b_Aktiv481
+    21300158: m_Aktiv482
+    21300160: n_IMG490
+    21300162: BG4910
+    21300164: b_Arrow2101182
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 2
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: b_EDIT0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1600
+        height: 900
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H-LINE
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1681
+        width: 753
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H-Line
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 1677
+        width: 752
+        height: 2
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG110
+      rect:
+        serializedVersion: 2
+        x: 1602
+        y: 738
+        width: 174
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Arrow112
+      rect:
+        serializedVersion: 2
+        x: 2009
+        y: 68
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_Icon120
+      rect:
+        serializedVersion: 2
+        x: 2012
+        y: 199
+        width: 33
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_ICON2000
+      rect:
+        serializedVersion: 2
+        x: 1993
+        y: 110
+        width: 33
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG2010
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 110
+        width: 87
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG2020
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 231
+        width: 33
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Arrow2021
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 68
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG2030
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 79
+        width: 132
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ICON2032
+      rect:
+        serializedVersion: 2
+        x: 2028
+        y: 110
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Arrow2033
+      rect:
+        serializedVersion: 2
+        x: 2030
+        y: 68
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_G2100
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 902
+        width: 1308
+        height: 773
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: f_Scrollbar210100
+      rect:
+        serializedVersion: 2
+        x: 1317
+        y: 902
+        width: 5
+        height: 645
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_210101
+      rect:
+        serializedVersion: 2
+        x: 1310
+        y: 902
+        width: 5
+        height: 645
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG210110
+      rect:
+        serializedVersion: 2
+        x: 1602
+        y: 0
+        width: 300
+        height: 677
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar2101110
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 199
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: H_LINE
+      rect:
+        serializedVersion: 2
+        x: 1336
+        y: 902
+        width: 295
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar2101120
+      rect:
+        serializedVersion: 2
+        x: 1940
+        y: 166
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar2101130
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 166
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar2101140
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 166
+        width: 34
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar2101150
+      rect:
+        serializedVersion: 2
+        x: 2012
+        y: 166
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar2101160
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 199
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Avatar2101170
+      rect:
+        serializedVersion: 2
+        x: 1940
+        y: 199
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_Arrow2101182
+      rect:
+        serializedVersion: 2
+        x: 2018
+        y: 68
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG21020
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1677
+        width: 758
+        height: 677
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_Scrollbar210210
+      rect:
+        serializedVersion: 2
+        x: 1324
+        y: 902
+        width: 4
+        height: 597
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: h_Scrollbar210211
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 902
+        width: 4
+        height: 597
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_precent
+      rect:
+        serializedVersion: 2
+        x: 1987
+        y: 141
+        width: 43
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_update
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 141
+        width: 81
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_arrow
+      rect:
+        serializedVersion: 2
+        x: 1932
+        y: 297
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_Vektor-Smartobjekt
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 297
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_Arrow210232
+      rect:
+        serializedVersion: 2
+        x: 2024
+        y: 68
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_ICON301
+      rect:
+        serializedVersion: 2
+        x: 1936
+        y: 263
+        width: 30
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG3020
+      rect:
+        serializedVersion: 2
+        x: 1997
+        y: 263
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG310
+      rect:
+        serializedVersion: 2
+        x: 1602
+        y: 679
+        width: 206
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: ICON312
+      rect:
+        serializedVersion: 2
+        x: 1960
+        y: 297
+        width: 34
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG3130
+      rect:
+        serializedVersion: 2
+        x: 1968
+        y: 263
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2356
+        width: 163
+        height: 906
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_Logout_Icon411
+      rect:
+        serializedVersion: 2
+        x: 1939
+        y: 231
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Trenner
+      rect:
+        serializedVersion: 2
+        x: 1977
+        y: 68
+        width: 21
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_Upgrad_Icon431
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 263
+        width: 30
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG440
+      rect:
+        serializedVersion: 2
+        x: 1996
+        y: 297
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_Settings_Icon451
+      rect:
+        serializedVersion: 2
+        x: 2003
+        y: 231
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_Projects Icon461
+      rect:
+        serializedVersion: 2
+        x: 1930
+        y: 324
+        width: 23
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_BG470
+      rect:
+        serializedVersion: 2
+        x: 2022
+        y: 297
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: b_Aktiv481
+      rect:
+        serializedVersion: 2
+        x: 1971
+        y: 231
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: m_Aktiv482
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 0
+        width: 71
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: n_IMG490
+      rect:
+        serializedVersion: 2
+        x: 1977
+        y: 0
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: BG4910
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 324
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
