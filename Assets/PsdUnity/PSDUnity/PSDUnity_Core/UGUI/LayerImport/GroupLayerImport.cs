@@ -8,7 +8,7 @@ namespace PSDUnity.UGUI
     {
         public override GameObject CreateTemplate()
         {
-            return new GameObject("Group", typeof(ContentSizeFitter));
+            return new GameObject("Group", typeof(RectTransform));
         }
         public GroupLayerImport(PSDImportCtrl ctrl) : base(ctrl)
         {
@@ -17,39 +17,35 @@ namespace PSDUnity.UGUI
         public override UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
             UGUINode node = CreateRootNode(layer.displayName, layer.rect, parent);
-            var nodeList = new List<UGUINode>();
 
             if (layer.children != null)
             {
-                var nodes = ctrl.DrawLayers(layer.children.ConvertAll(x => x as GroupNode).ToArray(), node);
-                nodeList.AddRange(nodes);
+                foreach (GroupNode item in layer.children)
+                {
+                   var childNode = ctrl.DrawLayer(item, node);
+                    SetLayoutItem(childNode, item.rect);
+                }
             }
             if (layer.images != null)
             {
-                var nodes = ctrl.DrawImages(layer.images.ToArray(), node);
-                nodeList.AddRange(nodes);
+                foreach (ImgNode item in layer.images)
+                {
+                    var childNode = ctrl.DrawImage(item, node);
+                    SetLayoutItem(childNode, item.rect);
+                }
             }
 
-
-            InitLayoutNodes(nodeList);
             InitLayoutGroup(layer, node);
             return node;
         }
-
-        /// <summary>
-        /// 初始化内容节点 
-        /// </summary>
-        /// <param name="nodes"></param>
-        private void InitLayoutNodes(IList<UGUINode> nodes)
+        private void SetLayoutItem(UGUINode childNode,Rect rect)
         {
-            foreach (var item in nodes)
-            {
-                item.anchoType = AnchoType.Left | AnchoType.Up;
-                var layout = item.transform.gameObject.AddComponent<LayoutElement>();
-                layout.preferredWidth = item.InitComponent<RectTransform>().sizeDelta.x;
-                layout.preferredHeight = item.InitComponent<RectTransform>().sizeDelta.x;
-            }
+            var layout = childNode.transform.gameObject.AddComponent<LayoutElement>();
+            layout.preferredWidth = rect.width;
+            layout.preferredHeight = rect.height;
+            childNode.anchoType = AnchoType.Left | AnchoType.Up;
         }
+        
         /// <summary>
         /// 初始化组
         /// </summary>
@@ -57,22 +53,30 @@ namespace PSDUnity.UGUI
         /// <param name="node"></param>
         private void InitLayoutGroup(GroupNode layer, UGUINode node)
         {
-            LayoutGroup group = null;
+            HorizontalOrVerticalLayoutGroup group = null;
 
             switch (layer.direction)
             {
                 case Direction.Horizontal:
                     group = node.InitComponent<UnityEngine.UI.HorizontalLayoutGroup>();
-                    group.childAlignment = TextAnchor.UpperLeft;
-                    (group as UnityEngine.UI.HorizontalLayoutGroup).spacing = layer.spacing;
                     break;
                 case Direction.Vertical:
                 default:
                     group = node.InitComponent<UnityEngine.UI.VerticalLayoutGroup>();
-                    (group as UnityEngine.UI.VerticalLayoutGroup).spacing = layer.spacing;
-                    group.childAlignment = TextAnchor.UpperLeft;
                     break;
             }
+            if(group)
+            {
+                (group as UnityEngine.UI.VerticalLayoutGroup).spacing = layer.spacing;
+                group.childAlignment = TextAnchor.UpperLeft;
+            }
+        }
+        public override void AfterGenerate(UGUINode node)
+        {
+            base.AfterGenerate(node);
+            ContentSizeFitter content = node.InitComponent<ContentSizeFitter>();
+            content.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
+            content.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
         }
     }
 }

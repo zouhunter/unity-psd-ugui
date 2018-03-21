@@ -21,23 +21,24 @@ namespace PSDUnity.UGUI
 
         public override UGUINode DrawImage(ImgNode image, UGUINode parent)
         {
-            UGUINode node = CreateRootNode(image.Name, image.rect, parent);
+            UGUINode node = CreateRootNode(image.Name, AdjustTextRect( image.rect,image.fontSize), parent);
             UnityEngine.UI.Text myText = node.InitComponent<Text>();
             PSDImporterUtility.SetPictureOrLoadColor(image, myText);
-            AdjustTextRect(image, myText.fontSize);
             return node;
         }
-        
+     
         /// <summary>
         /// 调节字边距
         /// </summary>
         /// <param name="image"></param>
         /// <param name="fontSize"></param>
         /// <returns></returns>
-        private void AdjustTextRect(ImgNode image,int fontSize)
+        private Rect AdjustTextRect(Rect oldRect,int fontSize)
         {
-            image.rect.width += fontSize;
-            image.rect.height += fontSize;
+            var rect = oldRect;
+            rect.width += fontSize;
+            rect.height += fontSize;
+            return rect;
         }
     }
 }

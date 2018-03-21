@@ -89,26 +89,26 @@ namespace PSDUnity.UGUI
         /// <param name="scrollRect"></param>
         private void DrawConent(UGUINode childNode, ScrollRect scrollRect)
         {
-            scrollRect.content = childNode.InitComponent<RectTransform>();
             childNode.inversionReprocess += (x) =>
             {
-                childNode.InitComponent<ContentSizeFitter>().horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
-                childNode.InitComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-                if(scrollRect.vertical)
+                var content = childNode.InitComponent<RectTransform>();
+
+                if (scrollRect.vertical)
                 {
-                    scrollRect.content.pivot = new Vector2(0.5f, 1);
-                    PSDImporterUtility.SetNormalAnchor(AnchoType.Up | AnchoType.XCenter, scrollRect.viewport, scrollRect.content);
+                    content.pivot = new Vector2(0.5f, 1);
+                    PSDImporterUtility.SetNormalAnchor(AnchoType.Up | AnchoType.XCenter, scrollRect.viewport, content);
                 }
                 else if(scrollRect.horizontal)
                 {
-                    scrollRect.content.pivot = new Vector2(0, 0.5f);
-                    PSDImporterUtility.SetNormalAnchor(AnchoType.YCenter | AnchoType.Left, scrollRect.viewport, scrollRect.content);
+                    content.pivot = new Vector2(0, 0.5f);
+                    PSDImporterUtility.SetNormalAnchor(AnchoType.YCenter | AnchoType.Left, scrollRect.viewport, content);
                 }
                 else
                 {
-                    scrollRect.content.pivot = Vector2.zero;
-                    PSDImporterUtility.SetNormalAnchor(AnchoType.Up | AnchoType.Left, scrollRect.viewport, scrollRect.content);
+                    content.pivot = Vector2.zero;
+                    PSDImporterUtility.SetNormalAnchor(AnchoType.Up | AnchoType.Left, scrollRect.viewport, content);
                 }
+                scrollRect.content = content;
                 scrollRect.content.anchoredPosition = Vector2.zero;
             };
         }
