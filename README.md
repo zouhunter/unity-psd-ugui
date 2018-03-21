@@ -12,15 +12,15 @@
 *  generate UGUI gameobject automaticly;
 
 ## 2.very simple to use.
- * "Window/psd-preview" show preview psd in unity
+ ### "Window/psd-preview" show preview psd in unity
  ![previewindow](Pics/psd-preview.png)
- * "Assets/Create/Psd-Exproter" can define you ui holder
+ ### "Assets/Create/Psd-Exproter" can define you ui holder
  ![export](Pics/psd-exporter.png)
- * Full Control Support
+ ### Full Control Support 
  ![control](Pics/controls.png)
- * Deep Enough Tree View
+ ### Deep Enough Tree View   
  ![Deepth](Pics/deep.png)
- * User Define
+ ### User Define 
  ![Define](Pics/rule.png)
 
 ## 3.what next update?
