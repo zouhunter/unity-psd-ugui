@@ -38,6 +38,7 @@ namespace Ntreev.Library.Psd
         private Guid placedID;
         private LayerType layerType;
         public int deepth;
+        private int version;
 
         public void SetExtraRecords(LayerMask layerMask, LayerBlendingRanges blendingRanges, IProperties resources, string name)
         {
@@ -47,8 +48,11 @@ namespace Ntreev.Library.Psd
             this.name = name;
 
             this.resources.TryGetValue<string>(ref this.name, "luni.Name");
-            this.resources.TryGetValue<SectionType>(ref this.sectionType, "lsct.SectionType");
-           
+            this.resources.TryGetValue<int>(ref this.version, "lyvr.Version");
+            if (this.resources.Contains("lsct.SectionType") == true)
+                this.sectionType = (SectionType)this.resources.ToInt32("lsct.SectionType");
+            if (this.resources.Contains("lsdk.SectionType") == true)
+                this.sectionType = (SectionType)this.resources.ToInt32("lsdk.SectionType");
             if (this.resources.Contains("SoLd.Idnt") == true)
                 this.placedID = this.resources.ToGuid("SoLd.Idnt");
             else if (this.resources.Contains("SoLE.Idnt") == true)
@@ -183,7 +187,10 @@ namespace Ntreev.Library.Psd
         public LayerFlags Flags { get; set; }
 
         public int Filter { get; set; }
-
+        public int Version
+        {
+            get { return this.version; }
+        }
         public long ChannelSize
         {
             get { return this.channels.Select(item => item.Size).Aggregate((v, n) => v + n); }

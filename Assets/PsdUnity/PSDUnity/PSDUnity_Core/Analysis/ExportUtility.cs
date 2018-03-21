@@ -233,7 +233,7 @@ namespace PSDUnity.Analysis
             textureImporter.textureType = TextureImporterType.Sprite;
             textureImporter.spriteImportMode = SpriteImportMode.Multiple;
             textureImporter.spritePivot = new Vector2(0.5f, 0.5f);
-           
+
             ChargeTextureImportRule(textureImporter, exporter.ruleObj);
 
             AssetDatabase.ImportAsset(atlaspath, ImportAssetOptions.ForceUpdate);
@@ -323,7 +323,7 @@ namespace PSDUnity.Analysis
             textureImporter.wrapMode = rule.wrapMode;
             textureImporter.filterMode = rule.filterMode;
         }
-       
+
         /// <summary>
         /// 将图层解析为imgNode
         /// </summary>
@@ -331,7 +331,7 @@ namespace PSDUnity.Analysis
         /// <param name="layer"></param>
         /// <param name="forceSprite"></param>
         /// <returns></returns>
-        public static ImgNode AnalysisLayer(string baseName,Vector2 rootSize, PsdLayer layer, bool forceSprite = false)
+        public static ImgNode AnalysisLayer(string baseName, Vector2 rootSize, PsdLayer layer, bool forceSprite = false)
         {
             ImgNode data = null;
             var texture = CreateTexture(layer);
@@ -489,51 +489,35 @@ namespace PSDUnity.Analysis
             }
             else
             {
-                if (layer.Deepth < 6)
+                float index = 0;
+                foreach (var child in layer.Childs)
                 {
-                    float index = 0;
-                    foreach (var child in layer.Childs)
+                    var progress = ++index / layer.Childs.Length;
+                    EditorUtility.DisplayProgressBar(layer.Name, "转换进度:" + progress, progress);
+
+                    if (child.IsGroup)
                     {
-                        var progress = ++index / layer.Childs.Length;
-                        EditorUtility.DisplayProgressBar(layer.Name, "转换进度:" + progress, progress);
+                        GroupNode childNode = new GroupNode(GetRectFromLayer(child), idSpan++, group.depth + 1);
+                        childNode.Analyzing(RuleObj, child.Name);
+                        group.AddChild(childNode);
 
-                        if (child.IsGroup)
+                        if (childNode != null)
                         {
-                            GroupNode childNode = new GroupNode(GetRectFromLayer(child), idSpan++, group.depth + 1);
-                            childNode.Analyzing(RuleObj, child.Name);
-                            group.AddChild(childNode);
-
-                            if (childNode != null)
-                            {
-                                RetriveLayerToSwitchModle(rootSize, child, childNode, forceSprite);
-                            }
+                            RetriveLayerToSwitchModle(rootSize, child, childNode, forceSprite);
                         }
-
-                        else
-                        {
-                            ImgNode imgnode = AnalysisLayer(group.displayName, rootSize, child, forceSprite);
-                            if (imgnode != null)
-                            {
-                                group.images.Add(imgnode);
-                            }
-                        }
-
                     }
-                }
-                else
-                {
-                    HandleExtreaLayers(rootSize, layer.Childs, group, forceSprite);
-                }
 
+                    else
+                    {
+                        ImgNode imgnode = AnalysisLayer(group.displayName, rootSize, child, forceSprite);
+                        if (imgnode != null)
+                        {
+                            group.images.Add(imgnode);
+                        }
+                    }
+
+                }
                 EditorUtility.ClearProgressBar();
-            }
-        }
-
-        private static void HandleExtreaLayers(Vector2 rootSize, PsdLayer[] layers, GroupNode group, bool forceSprite = false)
-        {
-            foreach (var layer in layers)
-            {
-                Debug.LogError("layer deepth max than 6:" + layer.Name);
             }
         }
 

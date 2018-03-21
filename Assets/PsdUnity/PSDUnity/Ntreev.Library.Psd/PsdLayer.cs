@@ -270,6 +270,10 @@ namespace Ntreev.Library.Psd
             this.right = right;
             this.bottom = bottom;
         }
+        public override string ToString()
+        {
+            return this.Name;
+        }
 
         #region IPsdLayer
 
