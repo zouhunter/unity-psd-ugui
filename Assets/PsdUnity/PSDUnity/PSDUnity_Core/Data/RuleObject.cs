@@ -10,72 +10,82 @@ using UnityEngine.Assertions.Must;
 using UnityEngine.Assertions.Comparers;
 using System.Collections.Generic;
 using UnityEditor;
-
+using System;
 namespace PSDUnity
 {
+    [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
+    public class RuleTypeAttribute : Attribute
+    {
+        public int id;
+        public RuleTypeAttribute(int id)
+        {
+            this.id = id;
+        }
+    }
+
     public class RuleObject : ScriptableObject
     {
-        [Header("前缀标记"), Space(10)]
-        public string titleAddress = "t_";
-        public string normalAddress = "n_";
-        public string pressedAddress = "p_";
-        public string highlightedAddress = "h_";
-        public string disableAddress = "d_";
-        public string backgroundAddress = "b_";
-        public string maskAddress = "m_";
-        public string handleAddress = "h_";
-        public string fillAddress = "f_";
-        public string placeAddress = "p_";
-        public string vbarAddress = "vb_";
-        public string hbarAddress = "hb_";
-        public string contentAddress = "c_";
-        public string backgroundsFormat = "b{0}_";
-        public string titlesFormat = "t{0}_";
+        //[Header("前缀标记"), Space(10)]
+        [RuleType(0)]public string titleAddress = "t_";
+        [RuleType(0)]public string normalAddress = "n_";
+        [RuleType(0)]public string pressedAddress = "p_";
+        [RuleType(0)]public string highlightedAddress = "h_";
+        [RuleType(0)]public string disableAddress = "d_";
+        [RuleType(0)]public string backgroundAddress = "b_";
+        [RuleType(0)]public string maskAddress = "m_";
+        [RuleType(0)]public string handleAddress = "h_";
+        [RuleType(0)]public string fillAddress = "f_";
+        [RuleType(0)]public string placeAddress = "p_";
+        [RuleType(0)]public string vbarAddress = "vb_";
+        [RuleType(0)]public string hbarAddress = "hb_";
+        [RuleType(0)]public string contentAddress = "c_";
+        [RuleType(0)]public string backgroundsFormat = "b{0}_";
+        [RuleType(0)] public string titlesFormat = "t{0}_";
 
 
-        [Header("分割标记"), Space(10)]
-        public char sepraterCharimg = '#';
-        public char sepraterChargroup = '@';
-        public char argumentChar = ':';
+        //[Header("分割标记"), Space(10)]
+        [RuleType(1)] public char sepraterCharimg = '#';
+        [RuleType(1)] public char sepraterChargroup = '@';
+        [RuleType(1)] public char argumentChar = ':';
 
-        [Header("参数标记"), Space(10)]
-        public string horizontal = "h";
-        public string vertical = "v";
-        public string veritcal_horizontal = "vh";
-        public string left_right = "l";
-        public string right_left = "r";
-        public string bottom_top = "b";
-        public string top_bottom = "l";
+        //[Header("参数标记"), Space(10)]
+        [RuleType(2)]public string horizontal = "h";
+        [RuleType(2)]public string vertical = "v";
+        [RuleType(2)]public string veritcal_horizontal = "vh";
+        [RuleType(2)]public string left_right = "l";
+        [RuleType(2)]public string right_left = "r";
+        [RuleType(2)]public string bottom_top = "b";
+        [RuleType(2)] public string top_bottom = "l";
 
 
-        [Header("后缀标记"), Space(10)]
-        public string asAtalsMark = "A";
-        public string asSingleMark = "S";
-        public string asTextureMark = "T";
-        public string asGoubleMark = "G";
-        public string asNoRepetMark = "N";
-        public string asCustomMark = "C";
+        //[Header("后缀标记"), Space(10)]
+        [RuleType(3)]public string asAtalsMark = "A";
+        [RuleType(3)]public string asSingleMark = "S";
+        [RuleType(3)]public string asTextureMark = "T";
+        [RuleType(3)]public string asGoubleMark = "G";
+        [RuleType(3)]public string asNoRepetMark = "N";
+        [RuleType(3)] public string asCustomMark = "C";
 
-        [Header("生成配制"), Space(10)]
-        public bool createAtlas = true;
-        public ImgSource defultImgSource = ImgSource.Custom;
-        public SuffixType nameType = SuffixType.appendIndex;
-        public bool forceAddress = false;
-        public string globalSprite = "Assets/Common/Sprite";
-        public string globalTexture = "Assets/Common/Texture";
-        public string subFolder = "Image";
-        public bool forceSprite = true;
-        public bool scale = false;
-        public Vector2 defultUISize = new Vector2(1600, 900);
-        public int maxSize = 4096;
+        //[Header("生成配制"), Space(10)]
+        [RuleType(4)]public bool createAtlas = true;
+        [RuleType(4)]public ImgSource defultImgSource = ImgSource.Custom;
+        [RuleType(4)]public SuffixType nameType = SuffixType.appendIndex;
+        [RuleType(4)]public bool forceAddress = false;
+        [RuleType(4)]public string globalSprite = "Assets/Common/Sprite";
+        [RuleType(4)]public string globalTexture = "Assets/Common/Texture";
+        [RuleType(4)]public string subFolder = "Image";
+        [RuleType(4)]public bool forceSprite = true;
+        [RuleType(4)]public bool scale = false;
+        [RuleType(4)]public Vector2 defultUISize = new Vector2(1600, 900);
+        [RuleType(4)] public int maxSize = 4096;
 
-        [Header("导入规则")]
-        public float spritePixelsPerUnit = 100;
-        public TextureImporterCompression textureCompression = TextureImporterCompression.Uncompressed;
-        public bool mipmapEnabled = true;
-        public bool isReadable = false;
-        public TextureWrapMode wrapMode = TextureWrapMode.Clamp;
-        public FilterMode filterMode = FilterMode.Trilinear;
+        //[Header("导入规则")]
+        [RuleType(5)]public float spritePixelsPerUnit = 100;
+        [RuleType(5)]public TextureImporterCompression textureCompression = TextureImporterCompression.Uncompressed;
+        [RuleType(5)]public bool mipmapEnabled = true;
+        [RuleType(5)]public bool isReadable = false;
+        [RuleType(5)]public TextureWrapMode wrapMode = TextureWrapMode.Clamp;
+        [RuleType(5)] public FilterMode filterMode = FilterMode.Trilinear;
 
         private static string[] groupNames;
 
@@ -84,7 +94,7 @@ namespace PSDUnity
             groupNames = System.Enum.GetNames(typeof(GroupType));
         }
 
-        public string AnalysisGroupName(string name,out GroupType groupType,out string[] areguments)
+        public string AnalysisGroupName(string name, out GroupType groupType, out string[] areguments)
         {
             areguments = null;
             string clampName = name;
@@ -94,7 +104,7 @@ namespace PSDUnity
             {
                 var index = name.IndexOf(sepraterChargroup);
                 typeName = name.Substring(index + 1, name.Length - 1 - index);
-                clampName = name.Substring(0,index);
+                clampName = name.Substring(0, index);
             }
 
             groupType = GroupType.EMPTY;
@@ -106,15 +116,15 @@ namespace PSDUnity
             });
             if (item != null)
             {
-                groupType = (GroupType)System.Enum.Parse(typeof(GroupType),item);
+                groupType = (GroupType)System.Enum.Parse(typeof(GroupType), item);
             }
-           
+
             if (typeName.Contains(argumentChar.ToString()))
             {
                 var oldarg = typeName.Split(argumentChar);
                 if (oldarg.Length > 1)
                 {
-                    areguments = new string[oldarg.Length -1];
+                    areguments = new string[oldarg.Length - 1];
                     for (int i = 0; i < areguments.Length; i++)
                     {
                         areguments[i] = oldarg[i + 1];
@@ -124,7 +134,7 @@ namespace PSDUnity
             return clampName;
         }
 
-        public string AnalySisImgName(string name,out ImgSource source, out ImgType type)
+        public string AnalySisImgName(string name, out ImgSource source, out ImgType type)
         {
             string clampName = name;
 
@@ -142,7 +152,7 @@ namespace PSDUnity
                 {
                     source = ImgSource.Normal;
                 }
-                else if(name.Contains((sepraterCharimg + asCustomMark).ToUpper()))
+                else if (name.Contains((sepraterCharimg + asCustomMark).ToUpper()))
                 {
                     source = ImgSource.Custom;
                 }
@@ -159,13 +169,13 @@ namespace PSDUnity
                 {
                     type = ImgType.Texture;
                 }
-                else if(name.Contains((sepraterCharimg + asAtalsMark).ToUpper()))
+                else if (name.Contains((sepraterCharimg + asAtalsMark).ToUpper()))
                 {
                     type = ImgType.AtlasImage;
                 }
                 else
                 {
-                    type = createAtlas ? ImgType.AtlasImage : ImgType.Image ;
+                    type = createAtlas ? ImgType.AtlasImage : ImgType.Image;
                 }
             }
             else

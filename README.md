@@ -16,6 +16,12 @@
  ![previewindow](Pics/psd-preview.png)
  * "Assets/Create/Psd-Exproter" can define you ui holder
  ![export](Pics/psd-exporter.png)
+ * Full Control Support
+ ![control](Pics/controls.png)
+ * Deep Enough Tree View
+ ![Deepth](Pics/deep.png)
+ * User Define
+ ![Define](Pics/rule.png)
 
 ## 3.what next update?
  * script attachd prefab,when you change pictures,this link will continue exist,but rect and position will update
