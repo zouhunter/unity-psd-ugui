@@ -82,5 +82,17 @@ namespace PSDUnity.UGUI
                 }
             }
         }
+
+        public override void AfterGenerate(UGUINode node)
+        {
+            base.AfterGenerate(node);
+            var inputField = node.InitComponent<InputField>();
+            var text = inputField.textComponent.GetComponent<RectTransform>();
+            var holder = inputField.placeholder.GetComponent<RectTransform>();
+            text.anchorMin = holder.anchorMin = Vector2.zero;
+            text.anchorMax = holder.anchorMax = Vector2.one;
+            text.anchoredPosition = holder.anchoredPosition = Vector2.zero;
+            text.sizeDelta = holder.sizeDelta = new Vector2(-10, -10);
+        }
     }
 }

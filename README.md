@@ -1,9 +1,5 @@
 ## about this project:
-   as a programmer,sometime I have to make ui in unity ,and program later. but it just not my work at all,
-   and the ui desiner dont think it is his job neither. last year we extend the Open Source project of PSD2UGUI
-   to support my work,it`s excellent and useful.but the question is I have to Open PS to Exprot Sprite and 
-   Import to Unity,that is so disappointed. however in github we fond some other Solution to use psd : 
-   read *.psd file by c# replace ps place;
+   As a programmer, sometimes I don't have to set up Userinterface first and then program, but it's not my job at all.The UI designer, like me, does not think it's his job, so there must be a program to combine the programmer with the UI designer.I got a lot of inspiration on GitHub, creating a PSDUnity that fully supports unity3d controls, which will change the process of making UI into a complete user interface. And all this will be done inside the unity3d engine
 
 ## 1.what this project can help you ?
 
@@ -27,10 +23,11 @@
  * script attachd prefab,when you change pictures,this link will continue exist,but rect and position will update
 
 ## 4.contact me.
+* (when you have any question,or find some bugs,thank you to made me know.)
 * this project path:[PsdUnity](https://github.com/zouhunter/PsdUnity)
-* QQ:1063627025 [when you have any question,or find some bugs,thank you to made me know.]
+* QQ群:476475016 
 
-## 5Thanks for this project
+## 5.Thanks for this project
 in this projects,I learned so much,mybe you need it also
 
 * [Psd2UnityImporter](https://github.com/SubjectNerd-Unity/Psd2UnityImporter) 
