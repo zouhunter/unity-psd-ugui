@@ -26,6 +26,7 @@ namespace PSDUnity.UGUI
         {
             var go = CreateTemplate();
             go.name = name;
+            go.layer = LayerMask.NameToLayer("UI");
             var node = CreateNormalNode(go, rect,  parent);
             node.inversionReprocess += AfterGenerate;
             return node;
