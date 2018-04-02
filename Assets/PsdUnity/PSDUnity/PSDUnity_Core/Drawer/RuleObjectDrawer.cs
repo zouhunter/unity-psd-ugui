@@ -48,9 +48,11 @@ namespace PSDUnity.Data
 
         public override void OnInspectorGUI()
         {
+            serializedObject.Update();
             DrawerHeadTools();
             DrawToolbar();
             DrawPropertys();
+            serializedObject.ApplyModifiedProperties();
         }
 
 
