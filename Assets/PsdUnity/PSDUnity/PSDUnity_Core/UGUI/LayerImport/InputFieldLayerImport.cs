@@ -33,6 +33,8 @@ namespace PSDUnity.UGUI
 
             inputfield.GetComponent<InputField>().textComponent = text;
             text.alignment = TextAnchor.MiddleLeft;
+            text.horizontalOverflow = HorizontalWrapMode.Wrap;
+            text.verticalOverflow = VerticalWrapMode.Overflow;
             text.supportRichText = false;
             if (ColorUtility.TryParseHtmlString("#32323280", out color)){
                 text.color = color;

@@ -15,12 +15,6 @@ namespace PSDUnity.UGUI
         public override GameObject CreateTemplate()
         {
             var scrollRect = new GameObject("ScrollView", typeof(ScrollRect)).GetComponent<ScrollRect>();
-            scrollRect.viewport = new GameObject("ViewPort",typeof(Mask),typeof(Image)).GetComponent<RectTransform>();
-            scrollRect.viewport.transform.SetParent(scrollRect.transform,false);
-            Color color;
-            if (ColorUtility.TryParseHtmlString("#FFFFFF01", out color)){
-                scrollRect.viewport.GetComponent<UnityEngine.UI.Image>().color = color;
-            }
             return scrollRect.gameObject;
         }
 
@@ -29,10 +23,34 @@ namespace PSDUnity.UGUI
             UGUINode node = CreateRootNode(layer.displayName, layer.rect, parent);
             ScrollRect scrollRect = node.InitComponent<UnityEngine.UI.ScrollRect>();
             SetScrollViewDirection(layer, scrollRect, layer.direction);
-            UGUINode viewNode = CreateNormalNode(scrollRect.viewport.gameObject, layer.rect, node);
+            var viewNode = DrawViewNode(layer, scrollRect, node);
             DrawImages(layer, node, scrollRect);
             DrawChildLayers(layer, viewNode, scrollRect);
             return node;
+        }
+
+        private UGUINode DrawViewNode(GroupNode layer, ScrollRect scrollRect,UGUINode node)
+        {
+            var viewPort = new GameObject("ViewPort", typeof(Mask), typeof(Image)).GetComponent<RectTransform>();
+            Color color;
+            if (ColorUtility.TryParseHtmlString("#FFFFFF01", out color))
+            {
+                viewPort.GetComponent<UnityEngine.UI.Image>().color = color;
+            }
+            UGUINode viewNode = CreateNormalNode(viewPort.gameObject, layer.rect, node);
+            if (scrollRect.vertical)
+            {
+                viewNode.anchoType = AnchoType.Up | AnchoType.XCenter;
+            }
+            else if (scrollRect.horizontal)
+            {
+                viewNode.anchoType = AnchoType.YCenter | AnchoType.Left;
+            }
+            else
+            {
+                viewNode.anchoType = AnchoType.Up | AnchoType.Left;
+            }
+            return viewNode;
         }
 
         private void DrawImages(GroupNode layer, UGUINode node, ScrollRect scrollRect)
@@ -92,22 +110,6 @@ namespace PSDUnity.UGUI
             childNode.inversionReprocess += (x) =>
             {
                 var content = childNode.InitComponent<RectTransform>();
-
-                if (scrollRect.vertical)
-                {
-                    content.pivot = new Vector2(0.5f, 1);
-                    PSDImporterUtility.SetNormalAnchor(AnchoType.Up | AnchoType.XCenter, scrollRect.viewport, content);
-                }
-                else if(scrollRect.horizontal)
-                {
-                    content.pivot = new Vector2(0, 0.5f);
-                    PSDImporterUtility.SetNormalAnchor(AnchoType.YCenter | AnchoType.Left, scrollRect.viewport, content);
-                }
-                else
-                {
-                    content.pivot = Vector2.zero;
-                    PSDImporterUtility.SetNormalAnchor(AnchoType.Up | AnchoType.Left, scrollRect.viewport, content);
-                }
                 scrollRect.content = content;
                 scrollRect.content.anchoredPosition = Vector2.zero;
             };
