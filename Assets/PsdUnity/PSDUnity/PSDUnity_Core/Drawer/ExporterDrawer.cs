@@ -119,23 +119,32 @@ namespace PSDUnity.Analysis
             if (!string.IsNullOrEmpty(exporter.psdFile))
             {
                 var psd = PsdDocument.Create(exporter.psdFile);
+              
                 if (psd != null)
                 {
-                    var rootSize = new Vector2(psd.Width, psd.Height);
-                    ExportUtility.InitPsdExportEnvrioment(exporter, rootSize);
-                    rootNode = new GroupNode(new Rect(Vector2.zero, rootSize), 0, -1);
-                    rootNode.displayName = exporter.name;
-                    var groupDatas = ExportUtility.CreatePictures(psd.Childs, rootSize, exporter.ruleObj.defultUISize, exporter.ruleObj.forceSprite);
-                    if (groupDatas != null)
+                    try
                     {
-                        foreach (var groupData in groupDatas)
+                        var rootSize = new Vector2(psd.Width, psd.Height);
+                        ExportUtility.InitPsdExportEnvrioment(exporter, rootSize);
+                        rootNode = new GroupNode(new Rect(Vector2.zero, rootSize), 0, -1);
+                        rootNode.displayName = exporter.name;
+                        var groupDatas = ExportUtility.CreatePictures(psd.Childs, rootSize, exporter.ruleObj.defultUISize, exporter.ruleObj.forceSprite);
+                        if (groupDatas != null)
                         {
-                            rootNode.AddChild(groupData);
-                            ExportUtility.ChargeTextures(exporter, groupData);
+                            foreach (var groupData in groupDatas)
+                            {
+                                rootNode.AddChild(groupData);
+                                ExportUtility.ChargeTextures(exporter, groupData);
+                            }
                         }
+                        TreeViewUtility.TreeToList<GroupNode>(rootNode, exporter.groups, true);
+                        EditorUtility.SetDirty(exporter);
                     }
-                    TreeViewUtility.TreeToList<GroupNode>(rootNode, exporter.groups, true);
-                    EditorUtility.SetDirty(exporter);
+                    catch (Exception e)
+                    {
+                        psd.Dispose();
+                        throw e;
+                    }
                     psd.Dispose();
                 }
             }
