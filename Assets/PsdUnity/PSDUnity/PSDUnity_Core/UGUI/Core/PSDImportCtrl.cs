@@ -59,8 +59,9 @@ namespace PSDUnity.UGUI
             BeginSetUIParents(uinode);//设置层级之前的父子关系
             BeginSetAnchers(uinode);//设置层级的锚点
             BeginReprocess(uinode);//后处理
-            if(rule.scale)
+            if (rule.scaleWithCanvas){
                 BeginScaleWithCanvas(uinode, canvasSize);//尺寸缩放
+            }
         }
 
         private void InitBaseSize(UGUINode uinode,Vector2 uiSize)

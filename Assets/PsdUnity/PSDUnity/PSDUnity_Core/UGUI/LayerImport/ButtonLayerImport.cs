@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 namespace PSDUnity.UGUI
 {
@@ -15,7 +16,7 @@ namespace PSDUnity.UGUI
 
         public override UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            var node = base.CreateRootNode(layer.displayName,layer.rect, parent);
+            var node = base.CreateRootNode(layer.displayName, layer.rect, parent);
             UnityEngine.UI.Button button = node.InitComponent<UnityEngine.UI.Button>();
 
             if (layer.images != null)
@@ -44,8 +45,17 @@ namespace PSDUnity.UGUI
                     }
                     else
                     {
+                        if (rule.autoButtonTitle && image.type == ImgType.Label && !image.Name.StartsWith(rule.titleAddress))
+                        {
+                            var array = layer.images.Where(x => x.type == ImgType.Label).ToList();
+                            if (array.Count > 0 && array.IndexOf(image) == 0){
+                                image.Name = rule.titleAddress + image.Name;
+                            }
+                        }
+                       
                         ctrl.DrawImage(image, node);
                     }
+
                 }
             }
             return node;
@@ -101,7 +111,7 @@ namespace PSDUnity.UGUI
         {
             Color color = image.color;
 
-            if (MatchAddress(image.Name,rule.normalAddress))
+            if (MatchAddress(image.Name, rule.normalAddress))
             {
                 if (image.type == ImgType.Label)
                 {

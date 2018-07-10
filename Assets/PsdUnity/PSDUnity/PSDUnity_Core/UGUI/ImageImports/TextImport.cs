@@ -15,9 +15,9 @@ namespace PSDUnity.UGUI
         public override GameObject CreateTemplate()
         {
             var text = new GameObject("Text", typeof(Text)).GetComponent<Text>();
-            text.alignment = TextAnchor.LowerLeft;
-            text.horizontalOverflow = HorizontalWrapMode.Wrap;
-            text.verticalOverflow = VerticalWrapMode.Overflow;
+            text.alignment = rule.textAnchor;// TextAnchor.UpperLeft;
+            text.horizontalOverflow = rule.text_h_wrapMode;// HorizontalWrapMode.Overflow;
+            text.verticalOverflow = rule.text_v_wrapMode;// VerticalWrapMode.Truncate;
             return text.gameObject;
         }
 
@@ -38,8 +38,8 @@ namespace PSDUnity.UGUI
         private Rect AdjustTextRect(Rect oldRect,int fontSize)
         {
             var rect = oldRect;
-            rect.width += fontSize * 0.6f;
-            rect.height += fontSize * 0.6f;
+            rect.width += fontSize * rule.textBorder;
+            rect.height += fontSize * rule.textBorder;
             return rect;
         }
     }

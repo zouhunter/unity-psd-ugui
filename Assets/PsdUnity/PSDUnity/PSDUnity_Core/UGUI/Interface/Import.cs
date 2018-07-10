@@ -112,6 +112,9 @@ namespace PSDUnity.UGUI
             {
                 PSDImporterUtility.SetNormalAnchor(AnchoType.XStretch | AnchoType.YStretch, node.transform as RectTransform, title.transform as RectTransform);
                 title.rectTransform.anchoredPosition = Vector3.zero;
+                title.alignment = TextAnchor.MiddleCenter;
+                title.horizontalOverflow = HorizontalWrapMode.Overflow;
+                title.verticalOverflow = VerticalWrapMode.Truncate;
             }
         }
     }

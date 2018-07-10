@@ -5,9 +5,9 @@ namespace PSDUnity
 {
     public enum SuffixType
     {
-        appendHash,
-        appendIndex,
-        appendBase
+        appendRectHash,//图片的Rect
+        appendIndex,//顺序
+        appendGroup//组的名字
     }
     [Serializable]
     public class ImgNode : INameAnalyzing<ImgNode>
@@ -23,7 +23,7 @@ namespace PSDUnity
             {
                 if(forceAddress || source == ImgSource.Custom)
                 {
-                    if (customNameType == SuffixType.appendHash)
+                    if (customNameType == SuffixType.appendRectHash)
                     {
                         return Name + hashImage;
                     }

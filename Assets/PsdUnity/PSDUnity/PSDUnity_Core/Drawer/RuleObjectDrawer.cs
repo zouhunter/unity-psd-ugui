@@ -19,11 +19,13 @@ namespace PSDUnity.Data
     public class RuleItem
     {
         public int id;
+        public string key;
         public string fieldName;
 
-        public RuleItem(int id, string fieldName)
+        public RuleItem(int id,string key, string fieldName)
         {
             this.id = id;
+            this.key = key;
             this.fieldName = fieldName;
         }
     }
@@ -32,22 +34,24 @@ namespace PSDUnity.Data
     {
         private bool isGloble;
         private int selected;
-        private string[] options = { "前缀", "分割", "参数", "后缀", "界面", "导入" };
-        private Dictionary<int, List<SerializedProperty>> propDic;
-        private ReorderableList reorderList;
-        private List<SerializedProperty> currentPropertys = new List<SerializedProperty>();
+        private string[] options = { "图片生成", "资源导入", "字符匹配"   };
+        private Dictionary<int, Dictionary<string, List<SerializedProperty>>> propDic;
+        private List<ReorderableList> reorderLists = new List<ReorderableList>();
         private SerializedObject tempObj;
+        private SerializedProperty scriptProp;
+        private Dictionary<string, List<SerializedProperty>> currentPropertys { get { return propDic[selected]; } }
+
         private void OnEnable()
         {
             isGloble = RuleHelper.IsGlobleRule(target as RuleObject);
             InitPropertys();
             ChargeCurrent();
-            InitReorderList();
         }
 
 
         public override void OnInspectorGUI()
         {
+            DrawScript();
             serializedObject.Update();
             DrawerHeadTools();
             DrawToolbar();
@@ -55,6 +59,12 @@ namespace PSDUnity.Data
             serializedObject.ApplyModifiedProperties();
         }
 
+        private void DrawScript()
+        {
+            EditorGUI.BeginDisabledGroup(true);
+            EditorGUILayout.PropertyField(scriptProp);
+            EditorGUI.EndDisabledGroup();
+        }
 
         private void DrawerHeadTools()
         {
@@ -100,35 +110,48 @@ namespace PSDUnity.Data
         }
         private void ChargeCurrent()
         {
-            currentPropertys.Clear();
-            if (propDic.ContainsKey(selected))
-            {
-                currentPropertys.AddRange(propDic[selected]);
-            }
+            if (reorderLists == null)
+                reorderLists = new List<ReorderableList>();
+            else reorderLists.Clear();
+
+            InitReorderLists();
         }
-        private void InitReorderList()
+
+        private void InitReorderLists()
         {
-            reorderList = new ReorderableList(currentPropertys, typeof(SerializedProperty), true, true, false, false);
-            reorderList.drawHeaderCallback = DrawHead;
-            reorderList.elementHeightCallback = GetElementHight;
-            reorderList.drawElementCallback = DrawPropertyItem;
-        }
-        private void DrawHead(Rect rect)
-        {
-            var resetRect = new Rect(rect.width - 60, rect.y, 60, rect.height);
-            if (GUI.Button(resetRect, "重置", EditorStyles.miniButtonRight))
+            foreach (var propDic in currentPropertys)
             {
-                if (tempObj == null)
-                {
-                    tempObj = new SerializedObject(ScriptableObject.CreateInstance<RuleObject>());
-                    foreach (var item in currentPropertys)
+                var key = propDic.Key;
+                var list = propDic.Value;
+                var reorderList = new ReorderableList(list, typeof(SerializedProperty), true, true, false, false);
+                reorderList.drawHeaderCallback = (rect)=> {
+                    var labelRect = new Rect(rect.x, rect.y, rect.width - 60, rect.height);
+                    EditorGUI.LabelField(labelRect,key);
+                    var resetRect = new Rect(rect.width - 60, rect.y, 60, rect.height);
+                    if (GUI.Button(resetRect, "重置", EditorStyles.miniButtonRight))
                     {
-                        var path = item.propertyPath;
-                        var tempProp = tempObj.FindProperty(path);
-                        CopyPropertyValue(item, tempProp);
+                        if (tempObj == null){
+                            tempObj = new SerializedObject(RuleHelper.GetRuleObj());
+                        }
+
+                        foreach (var item in currentPropertys[key])
+                        {
+                            var path = item.propertyPath;
+                            var tempProp = tempObj.FindProperty(path);
+                            CopyPropertyValue(item, tempProp);
+                        }
                     }
-                }
+                };
+                reorderList.elementHeightCallback = (index)=> {
+                    var property = currentPropertys[key][index];
+                    return EditorGUI.GetPropertyHeight(property);
+                };
+                reorderList.drawElementCallback = ( rect,  index,  isActive,  isFocused)=> {
+                    EditorGUI.PropertyField(rect, currentPropertys[key][index]);
+                };
+                reorderLists.Add(reorderList);
             }
+            
         }
 
         public static void CopyPropertyValue(SerializedProperty destProperty, SerializedProperty sourceProperty)
@@ -208,28 +231,26 @@ namespace PSDUnity.Data
                     break;
             }
         }
-        private float GetElementHight(int index)
-        {
-            var property = currentPropertys[index];
-            return EditorGUI.GetPropertyHeight(property);
-        }
-
-        private void DrawPropertyItem(Rect rect, int index, bool isActive, bool isFocused)
-        {
-            EditorGUI.PropertyField(rect, currentPropertys[index]);
-        }
-
         private void DrawPropertys()
         {
-            if (reorderList != null)
+            foreach (var reorderList in reorderLists)
             {
-                reorderList.DoLayoutList();
+                if (reorderList != null)
+                {
+                    reorderList.DoLayoutList();
+                }
+                else
+                {
+                    Debug.LogError(reorderList);
+                }
             }
+           
         }
 
         private void InitPropertys()
         {
-            propDic = new Dictionary<int, List<SerializedProperty>>();
+            scriptProp = serializedObject.FindProperty("m_Script");
+            propDic = new Dictionary<int,Dictionary<string, List<SerializedProperty>>>();
             var list = GetRuleItems();
             foreach (var item in list)
             {
@@ -238,11 +259,19 @@ namespace PSDUnity.Data
                 {
                     if (propDic.ContainsKey(item.id))
                     {
-                        propDic[item.id].Add(prop);
+                        if(propDic[item.id].ContainsKey(item.key))
+                        {
+                            propDic[item.id][item.key].Add(prop);
+                        }
+                        else
+                        {
+                            propDic[item.id][item.key] = new List<SerializedProperty>() { prop };
+                        }
                     }
                     else
                     {
-                        propDic.Add(item.id, new List<SerializedProperty>() { prop });
+                        propDic[item.id] = new Dictionary<string, List<SerializedProperty>>();
+                        propDic[item.id] [ item.key] = new List<SerializedProperty>() { prop };
                     }
                 }
             }
@@ -260,7 +289,8 @@ namespace PSDUnity.Data
                     var ruleAtt = Array.Find(atts, x => x is RuleTypeAttribute);
                     if (ruleAtt != null)
                     {
-                        list.Add(new RuleItem((ruleAtt as RuleTypeAttribute).id, item.Name));
+                        var att = (ruleAtt as RuleTypeAttribute);
+                        list.Add(new RuleItem(att.id, att.key,item.Name));
                     }
                 }
             }
