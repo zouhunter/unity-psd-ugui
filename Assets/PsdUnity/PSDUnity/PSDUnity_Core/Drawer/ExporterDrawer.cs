@@ -33,9 +33,45 @@ namespace PSDUnity.Analysis
         {
             if (exporter.ruleObj == null)
             {
-                exporter.ruleObj = RuleHelper.GetRuleObj();
+                LoadRuleObject();
             }
         }
+
+        private void LoadRuleObject()
+        {
+            var ruleObj = RuleHelper.GetRuleObj();
+            var path = AssetDatabase.GetAssetPath(ruleObj);
+            if(string.IsNullOrEmpty(path))
+            {
+                ruleObj.name = "内嵌规则";
+                var assetPath = AssetDatabase.GetAssetPath(target);
+                if(!string.IsNullOrEmpty(assetPath))
+                {
+                    var oldItem = AssetDatabase.LoadAssetAtPath<RuleObject>(assetPath);
+                    if (oldItem != null)
+                    {
+                        Debug.Log("use old RuleObj:" + target);
+                        exporter.ruleObj = oldItem;
+                    }
+                    else
+                    {
+                        Debug.Log("Add new rule Object To:" + target);
+                        exporter.ruleObj = ruleObj;
+                        AssetDatabase.AddObjectToAsset(ruleObj, target);
+                        AssetDatabase.Refresh();
+                    }
+                }
+               else
+                {
+                    //exporter.ruleObj = ruleObj;
+                }
+            }
+            else
+            {
+                exporter.ruleObj = ruleObj;
+            }
+        }
+
 
         private void InitTreeView()
         {
