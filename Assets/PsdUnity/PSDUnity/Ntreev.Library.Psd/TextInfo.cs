@@ -22,7 +22,10 @@ namespace Ntreev.Library.Psd
             var runarray = stylerun["RunArray"] as ArrayList;
             var styleSheet = (runarray[0] as Properties)["StyleSheet"] as Properties;
             var styleSheetsData = (styleSheet as Properties)["StyleSheetData"] as Properties;
-            fontSize = (int)(System.Single)styleSheetsData["FontSize"];
+            if (styleSheetsData.Contains("FontSize"))
+            {
+                fontSize = (int)(System.Single)styleSheetsData["FontSize"];
+            }
             if (styleSheetsData.Contains("Font"))
             {
                 fontName = styleSheetsData["Font"] as string;
@@ -32,7 +35,14 @@ namespace Ntreev.Library.Psd
             {
                 var strokeColorProp = styleSheetsData["FillColor"] as Properties;
                 var strokeColor = strokeColorProp["Values"] as ArrayList;
-                color = new UnityEngine.Color(float.Parse(strokeColor[1].ToString()), float.Parse(strokeColor[2].ToString()), float.Parse(strokeColor[3].ToString()), float.Parse(strokeColor[0].ToString()));
+                if (strokeColor != null && strokeColor.Count >= 4)
+                {
+                    color = new UnityEngine.Color(float.Parse(strokeColor[1].ToString()), float.Parse(strokeColor[2].ToString()), float.Parse(strokeColor[3].ToString()), float.Parse(strokeColor[0].ToString()));
+                }
+                else
+                {
+                    color = UnityEngine.Color.black;
+                }
             }
             else
             {

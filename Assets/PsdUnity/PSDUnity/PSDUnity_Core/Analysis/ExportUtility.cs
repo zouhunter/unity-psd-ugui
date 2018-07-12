@@ -414,24 +414,23 @@ namespace PSDUnity.Analysis
             //{
             //    Debug.Log(mask.Data.Length + ":" + alpha.Data.Length);
             //}
-
             for (int i = 0; i < pixels.Length; i++)
             {
-                byte r = red.Data[i];
-                byte g = green.Data[i];
-                byte b = blue.Data[i];
-                byte a = 255;
+                var redErr = red == null || red.Data == null || red.Data.Length <= i;
+                var greenErr = green == null || green.Data == null || green.Data.Length <= i;
+                var blueErr = blue == null || blue.Data == null || blue.Data.Length <= i;
+                var alphaErr = alpha == null || alpha.Data == null || alpha.Data.Length <= i;
 
-                if (alpha != null)
-                {
-                    a = alpha.Data[i];
-                }
+                byte r = redErr ? (byte)0 : red.Data[i];
+                byte g = greenErr ? (byte)0 : green.Data[i];
+                byte b = blueErr ? (byte)0 : blue.Data[i];
+                byte a = alphaErr ? (byte)255 : alpha.Data[i];
 
                 int mod = i % texture.width;
                 int n = ((texture.width - mod - 1) + i) - mod;
                 pixels[pixels.Length - n - 1] = new Color32(r, g, b, a);
             }
-
+            
             texture.SetPixels32(pixels);
             texture.Apply();
             return texture;
