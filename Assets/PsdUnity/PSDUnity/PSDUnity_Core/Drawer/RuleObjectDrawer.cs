@@ -13,6 +13,8 @@ using System.Collections;
 using UnityEditor;
 using System;
 using UnityEditorInternal;
+using System.Linq;
+using System.Reflection;
 
 namespace PSDUnity.Data
 {
@@ -46,8 +48,68 @@ namespace PSDUnity.Data
             isGloble = RuleHelper.IsGlobleRule(target as RuleObject);
             InitPropertys();
             ChargeCurrent();
+            LoadLayerImports();
         }
 
+        private void LoadLayerImports()
+        {
+            var assetPath = AssetDatabase.GetAssetPath(target);
+            if (string.IsNullOrEmpty(assetPath)) return;
+            
+
+            var ruleObj = target as RuleObject;
+            var types = LoadAllLayerImpoters();
+            foreach (var layerType in types)
+            {
+                var importer = ruleObj.layerImports.Find(x =>x != null &&  x.GetType() == layerType);
+                if (importer == null)
+                {
+                    var path = AssetDatabase.GetAssetPath(ruleObj);
+                    var oldItems = AssetDatabase.LoadAllAssetsAtPath(path);
+                    var oldItem = oldItems.Where(x => x is UGUI.LayerImport && x.name == layerType.Name).FirstOrDefault();
+                    if (oldItem == null)
+                    {
+                        importer = ScriptableObject.CreateInstance(layerType) as UGUI.LayerImport;
+                        importer.name = layerType.Name;
+                        Debug.Log("add new:" + layerType.Name);
+                        AssetDatabase.AddObjectToAsset(importer, path);
+                        ruleObj.layerImports.Add(importer);
+                    }
+                    else
+                    {
+                        ruleObj.layerImports.Add(oldItem as UGUI.LayerImport);
+                        //Debug.Log(oldItem);
+                    }
+                }
+                else
+                {
+                    //Debug.Log(importer);
+                }
+            }
+            EditorUtility.SetDirty(ruleObj);
+            AssetDatabase.Refresh();
+            AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
+        }
+
+        private Type[] LoadAllLayerImpoters()
+        {
+            var types = new List<Type>();
+            var innerTypes = typeof(UGUI.LayerImport).Assembly.GetTypes().Where(x => x.IsSubclassOf(typeof(UGUI.LayerImport)) && !x.IsAbstract).ToArray();
+            types.AddRange(innerTypes);
+            var userTypes = Assembly.Load("Assembly-CSharp").GetTypes().Where(x => x.IsSubclassOf(typeof(UGUI.LayerImport)) && !x.IsAbstract).ToArray();
+            foreach (var userType in userTypes)
+            {
+                if (!types.Contains(userType))
+                {
+                    types.Add(userType);
+                }
+                else
+                {
+                    Debug.Log("ignore:" + userType);
+                }
+            }
+            return types.ToArray() ;
+        }
 
         public override void OnInspectorGUI()
         {
@@ -144,10 +206,10 @@ namespace PSDUnity.Data
                 };
                 reorderList.elementHeightCallback = (index)=> {
                     var property = currentPropertys[key][index];
-                    return EditorGUI.GetPropertyHeight(property);
+                    return EditorGUI.GetPropertyHeight(property,null,true);
                 };
                 reorderList.drawElementCallback = ( rect,  index,  isActive,  isFocused)=> {
-                    EditorGUI.PropertyField(rect, currentPropertys[key][index]);
+                    EditorGUI.PropertyField(rect, currentPropertys[key][index],true);
                 };
                 reorderLists.Add(reorderList);
             }

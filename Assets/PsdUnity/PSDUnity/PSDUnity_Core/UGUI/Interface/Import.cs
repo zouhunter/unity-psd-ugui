@@ -8,11 +8,11 @@ using System.Collections.Generic;
 using PSDUnity;
 namespace PSDUnity.UGUI
 {
-    public abstract class Import
+    public abstract class Import:ScriptableObject
     {
         protected RuleObject rule { get { return ctrl.rule; } }
         protected PSDImportCtrl ctrl { get; private set; }
-        public Import(PSDImportCtrl ctrl)
+        public virtual void InitEnviroment(PSDImportCtrl ctrl)
         {
             this.ctrl = ctrl;
         }
@@ -107,7 +107,9 @@ namespace PSDUnity.UGUI
         protected void StretchTitle(UGUINode node)
         {
             var texts = node.transform.GetComponentsInChildren<Text>();
+
             var title = Array.Find(texts, x => MatchAddress(x.name, rule.titleAddress));
+
             if (title)
             {
                 PSDImporterUtility.SetNormalAnchor(AnchoType.XStretch | AnchoType.YStretch, node.transform as RectTransform, title.transform as RectTransform);

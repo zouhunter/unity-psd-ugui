@@ -8,9 +8,20 @@ using System.Collections.Generic;
 using PSDUnity;
 namespace PSDUnity.UGUI
 {
-    public abstract class LayerImport: Import
+    public class LayerImport: Import
     {
-        public LayerImport(PSDImportCtrl ctrl) : base(ctrl) { }
-        public abstract UGUINode DrawLayer(GroupNode layer, UGUINode parent);
+        [SerializeField]
+        protected string _suffix;
+        public virtual string Suffix { get { return _suffix; } }
+        public virtual UGUINode DrawLayer(GroupNode layer, UGUINode parent)
+        {
+            UGUINode node = CreateRootNode(layer.displayName, layer.rect, parent);
+            return node;
+        }
+        public virtual void AnalysisAreguments(GroupNode layer, string[] areguments) { }
+        public override GameObject CreateTemplate()
+        {
+            return new GameObject("empty");
+        }
     }
 }

@@ -10,8 +10,6 @@ namespace PSDUnity.UGUI
 {
     public class TextImport : ImageImport
     {
-        public TextImport(PSDImportCtrl ctrl) : base(ctrl) { }
-
         public override GameObject CreateTemplate()
         {
             var text = new GameObject("Text", typeof(Text)).GetComponent<Text>();

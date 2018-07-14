@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEditor.IMGUI.Controls;
+using System.Linq;
 
 namespace PSDUnity
 {
@@ -14,13 +15,15 @@ namespace PSDUnity
         public int _id;
         public int _depth;
         public string _displayName;
-        public GroupType groupType = GroupType.EMPTY;
+        public string suffix = emptySuffix;
         public Direction direction = Direction.Vertical;
         public int constraintCount;
         public float spacing;
         public Rect rect;   //利用名字解析controlType和arguments
         public List<ImgNode> images = new List<ImgNode>();
+        public UGUI.LayerImport layerImporter;
 
+        public const string emptySuffix = "[-inner empty suffix]";
         public GroupNode(Rect rect, int id, int depth):base(id,depth)
         {
             this.rect = rect;
@@ -81,44 +84,14 @@ namespace PSDUnity
         public GroupNode Analyzing(RuleObject Rule, string name)
         {
             string[] areguments = null;
-            this.displayName = Rule.AnalysisGroupName(name, out groupType, out areguments);
-            switch (groupType)
+            this.displayName = Rule.AnalysisGroupName(name, out suffix, out areguments);
+            layerImporter = Rule.layerImports.Where(x => x.Suffix == suffix).FirstOrDefault();
+            if(layerImporter != null){
+                layerImporter.AnalysisAreguments(this, areguments);
+            }
+            else
             {
-                case GroupType.GRID:
-                    if (areguments != null && areguments.Length > 1)
-                    {
-                        var key = areguments[0];
-                        direction = RuleObject.GetDirectionByKey(key);
-                    }
-                    if (areguments != null && areguments.Length > 2)
-                    {
-                        var key = areguments[1];
-                        constraintCount = int.Parse(key);
-                    }
-                    break;
-                case GroupType.SCROLLVIEW:
-                case GroupType.SLIDER:
-                case GroupType.SCROLLBAR:
-                    if (areguments != null && areguments.Length > 0)
-                    {
-                        var key = areguments[0];
-                        direction = RuleObject.GetDirectionByKey(key);
-                    }
-                    break;
-                case GroupType.GROUP:
-                    if (areguments != null && areguments.Length > 1)
-                    {
-                        var key = areguments[0];
-                        direction = RuleObject.GetDirectionByKey(key);
-                    }
-                    if (areguments != null && areguments.Length > 2)
-                    {
-                        var key = areguments[1];
-                        spacing = float.Parse(key);
-                    }
-                    break;
-                default:
-                    break;
+                layerImporter =ScriptableObject.CreateInstance < UGUI.PanelLayerImport>();
             }
             return this;
         }

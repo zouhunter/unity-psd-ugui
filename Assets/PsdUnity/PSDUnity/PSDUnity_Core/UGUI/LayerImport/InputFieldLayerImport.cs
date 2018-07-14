@@ -6,8 +6,10 @@ namespace PSDUnity.UGUI
 {
     internal class InputFieldLayerImport : LayerImport
     {
-        public InputFieldLayerImport(PSDImportCtrl ctrl) : base(ctrl) { }
-
+        public InputFieldLayerImport()
+        {
+            _suffix = "InputField";
+        }
         public override GameObject CreateTemplate()
         {
             var inputfield = new GameObject("InputField", typeof(InputField), typeof(Image)).GetComponent<InputField>();

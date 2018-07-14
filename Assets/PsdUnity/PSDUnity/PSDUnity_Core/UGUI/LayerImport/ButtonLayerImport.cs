@@ -7,13 +7,14 @@ namespace PSDUnity.UGUI
 {
     public class ButtonLayerImport : LayerImport
     {
-        public ButtonLayerImport(PSDImportCtrl ctrl) : base(ctrl) { }
-
         public override GameObject CreateTemplate()
         {
             return new GameObject("Button", typeof(Button), typeof(RectTransform));
         }
-
+        public ButtonLayerImport()
+        {
+            _suffix = "Button";
+        }
         public override UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
             var node = base.CreateRootNode(layer.displayName, layer.rect, parent);

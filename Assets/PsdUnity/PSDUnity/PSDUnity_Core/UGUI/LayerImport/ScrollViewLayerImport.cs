@@ -10,8 +10,19 @@ namespace PSDUnity.UGUI
 {
     public class ScrollViewLayerImport : LayerImport
     {
-        public ScrollViewLayerImport(PSDImportCtrl ctrl) : base(ctrl) { }
-
+        public ScrollViewLayerImport()
+        {
+            _suffix = "ScrollView";
+        }
+        public override void AnalysisAreguments(GroupNode layer, string[] areguments)
+        {
+            base.AnalysisAreguments(layer, areguments);
+            if (areguments != null && areguments.Length > 0)
+            {
+                var key = areguments[0];
+                layer.direction = RuleObject.GetDirectionByKey(key);
+            }
+        }
         public override GameObject CreateTemplate()
         {
             var scrollRect = new GameObject("ScrollView", typeof(ScrollRect)).GetComponent<ScrollRect>();

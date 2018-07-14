@@ -18,7 +18,7 @@ namespace PSDUnity
     {
         public int id;
         public string key;
-        public RuleTypeAttribute(int id,string key)
+        public RuleTypeAttribute(int id, string key)
         {
             this.id = id;
             this.key = key;
@@ -28,76 +28,78 @@ namespace PSDUnity
     public class RuleObject : ScriptableObject
     {
         /////////////////////////////////////////////////////////////
-        [RuleType(0,"生成配制")]public bool createAtlas = true;
-        [RuleType(0,"生成配制")]public bool forceAddress = false;
-        [RuleType(0,"生成配制")]public bool forceSprite = true;
+        [RuleType(0, "生成配制")] public bool createAtlas = true;
+        [RuleType(0, "生成配制")] public bool forceAddress = false;
+        [RuleType(0, "生成配制")] public bool forceSprite = true;
         [RuleType(0, "生成配制")] public int maxSize = 4096;
-        [RuleType(0,"生成配制")]public Vector2 defultUISize = new Vector2(1600, 900);
-        [RuleType(0,"生成配制")]public ImgSource defultImgSource = ImgSource.Custom;
-        [RuleType(0,"生成配制")]public SuffixType nameType = SuffixType.appendGroup;
-        [RuleType(0,"生成配制")]public string subFolder = "Image";
-        [RuleType(0,"生成配制")]public string globalSprite = "Assets/Common/Sprite";
-        [RuleType(0,"生成配制")]public string globalTexture = "Assets/Common/Texture";
+        [RuleType(0, "生成配制")] public Vector2 defultUISize = new Vector2(1600, 900);
+        [RuleType(0, "生成配制")] public ImgSource defultImgSource = ImgSource.Custom;
+        [RuleType(0, "生成配制")] public SuffixType nameType = SuffixType.appendGroup;
+        [RuleType(0, "生成配制")] public string subFolder = "Image";
+        [RuleType(0, "生成配制")] public string globalSprite = "Assets/Common/Sprite";
+        [RuleType(0, "生成配制")] public string globalTexture = "Assets/Common/Texture";
         /////////////////////////////////////////////////////////////
-        [RuleType(1, "图片导入")]public bool mipmapEnabled = true;
-        [RuleType(1, "图片导入")]public bool isReadable = false;
-        [RuleType(1, "图片导入")]public float spritePixelsPerUnit = 100;
-        [RuleType(1, "图片导入")]public TextureWrapMode wrapMode = TextureWrapMode.Clamp;
+        [RuleType(1, "图片导入")] public bool mipmapEnabled = true;
+        [RuleType(1, "图片导入")] public bool isReadable = false;
+        [RuleType(1, "图片导入")] public float spritePixelsPerUnit = 100;
+        [RuleType(1, "图片导入")] public TextureWrapMode wrapMode = TextureWrapMode.Clamp;
         [RuleType(1, "图片导入")] public FilterMode filterMode = FilterMode.Trilinear;
-        [RuleType(1, "图片导入")]public TextureImporterCompression textureCompression = TextureImporterCompression.Uncompressed;
+        [RuleType(1, "图片导入")] public TextureImporterCompression textureCompression = TextureImporterCompression.Uncompressed;
         /////////////////////////////////////////////////////////////
         [RuleType(1, "界面创建")] public float textBorder = 0.6f;//生成Text时,需要一定的边距
-        [RuleType(1, "界面创建")]public bool scaleWithCanvas = false;
-        [RuleType(1, "界面创建")]public TextAnchor textAnchor = TextAnchor.UpperLeft;
-        [RuleType(1, "界面创建")]public HorizontalWrapMode text_h_wrapMode = HorizontalWrapMode.Overflow;
-        [RuleType(1, "界面创建")]public VerticalWrapMode text_v_wrapMode = VerticalWrapMode.Truncate;
+        [RuleType(1, "界面创建")] public bool scaleWithCanvas = false;
+        [RuleType(1, "界面创建")] public TextAnchor textAnchor = TextAnchor.UpperLeft;
+        [RuleType(1, "界面创建")] public HorizontalWrapMode text_h_wrapMode = HorizontalWrapMode.Overflow;
+        [RuleType(1, "界面创建")] public VerticalWrapMode text_v_wrapMode = VerticalWrapMode.Truncate;
         [RuleType(1, "界面创建")] public bool autoButtonTitle = true;//自动将按扭下的文字当作标题
 
         /////////////////////////////////////////////////////////////
-        [RuleType(2,"前缀标记")]public string titleAddress = "t_";
-        [RuleType(2,"前缀标记")]public string normalAddress = "n_";
-        [RuleType(2,"前缀标记")]public string pressedAddress = "p_";
-        [RuleType(2,"前缀标记")]public string highlightedAddress = "h_";
-        [RuleType(2,"前缀标记")]public string disableAddress = "d_";
-        [RuleType(2,"前缀标记")]public string backgroundAddress = "b_";
-        [RuleType(2,"前缀标记")]public string maskAddress = "m_";
-        [RuleType(2,"前缀标记")]public string handleAddress = "h_";
-        [RuleType(2,"前缀标记")]public string fillAddress = "f_";
-        [RuleType(2,"前缀标记")]public string placeAddress = "p_";
-        [RuleType(2,"前缀标记")]public string vbarAddress = "vb_";
-        [RuleType(2,"前缀标记")]public string hbarAddress = "hb_";
-        [RuleType(2,"前缀标记")]public string contentAddress = "c_";
-        [RuleType(2,"前缀标记")]public string backgroundsFormat = "b{0}_";
-        [RuleType(2,"前缀标记")] public string titlesFormat = "t{0}_";
-        /////////////////////////////////////////////////////////////
-        [RuleType(2,"分割标记")] public char sepraterCharimg = '#';
-        [RuleType(2,"分割标记")] public char sepraterChargroup = '@';
-        [RuleType(2,"分割标记")] public char argumentChar = ':';
-        /////////////////////////////////////////////////////////////
-        [RuleType(2,"参数标记")]public string horizontal = "h";
-        [RuleType(2,"参数标记")]public string vertical = "v";
-        [RuleType(2,"参数标记")]public string veritcal_horizontal = "vh";
-        [RuleType(2,"参数标记")]public string left_right = "l";
-        [RuleType(2,"参数标记")]public string right_left = "r";
-        [RuleType(2,"参数标记")]public string bottom_top = "b";
-        [RuleType(2,"参数标记")] public string top_bottom = "l";
-        /////////////////////////////////////////////////////////////
-        [RuleType(2,"后缀标记")]public string asAtalsMark = "A";
-        [RuleType(2,"后缀标记")]public string asSingleMark = "S";
-        [RuleType(2,"后缀标记")]public string asTextureMark = "T";
-        [RuleType(2,"后缀标记")]public string asGoubleMark = "G";
-        [RuleType(2,"后缀标记")]public string asNoRepetMark = "N";
-        [RuleType(2,"后缀标记")] public string asCustomMark = "C";
+        [RuleType(2, "前缀标记")] public string titleAddress = "t_";
+        [RuleType(2, "前缀标记")] public string normalAddress = "n_";
+        [RuleType(2, "前缀标记")] public string pressedAddress = "p_";
+        [RuleType(2, "前缀标记")] public string highlightedAddress = "h_";
+        [RuleType(2, "前缀标记")] public string disableAddress = "d_";
+        [RuleType(2, "前缀标记")] public string backgroundAddress = "b_";
+        [RuleType(2, "前缀标记")] public string maskAddress = "m_";
+        [RuleType(2, "前缀标记")] public string handleAddress = "h_";
+        [RuleType(2, "前缀标记")] public string fillAddress = "f_";
+        [RuleType(2, "前缀标记")] public string placeAddress = "p_";
+        [RuleType(2, "前缀标记")] public string vbarAddress = "vb_";
+        [RuleType(2, "前缀标记")] public string hbarAddress = "hb_";
+        [RuleType(2, "前缀标记")] public string contentAddress = "c_";
+        [RuleType(2, "前缀标记")] public string backgroundsFormat = "b{0}_";
+        [RuleType(2, "前缀标记")] public string titlesFormat = "t{0}_";
+        ///////////////////////////////////////////////////////////////
+        [RuleType(2, "分割标记")] public char sepraterCharimg = '#';
+        [RuleType(2, "分割标记")] public char sepraterChargroup = '@';
+        [RuleType(2, "分割标记")] public char argumentChar = ':';
+        ///////////////////////////////////////////////////////////////
+        [RuleType(2, "参数标记")] public string horizontal = "h";
+        [RuleType(2, "参数标记")] public string vertical = "v";
+        [RuleType(2, "参数标记")] public string veritcal_horizontal = "vh";
+        [RuleType(2, "参数标记")] public string left_right = "l";
+        [RuleType(2, "参数标记")] public string right_left = "r";
+        [RuleType(2, "参数标记")] public string bottom_top = "b";
+        [RuleType(2, "参数标记")] public string top_bottom = "l";
+        ///////////////////////////////////////////////////////////////
+        [RuleType(2, "后缀标记")] public string asAtalsMark = "A";
+        [RuleType(2, "后缀标记")] public string asSingleMark = "S";
+        [RuleType(2, "后缀标记")] public string asTextureMark = "T";
+        [RuleType(2, "后缀标记")] public string asGoubleMark = "G";
+        [RuleType(2, "后缀标记")] public string asNoRepetMark = "N";
+        [RuleType(2, "后缀标记")] public string asCustomMark = "C";
 
-       
-        private static string[] groupNames;
+        [RuleType(2, "控件指定")]
+        public List<UGUI.LayerImport> layerImports = new List<UGUI.LayerImport>();
 
-        static RuleObject()
-        {
-            groupNames = System.Enum.GetNames(typeof(GroupType));
-        }
+        //private static string[] groupNames;
 
-        public string AnalysisGroupName(string name, out GroupType groupType, out string[] areguments)
+        //static RuleObject()
+        //{
+        //    groupNames = System.Enum.GetNames(typeof(GroupType));
+        //}
+
+        public string AnalysisGroupName(string name, out string groupType, out string[] areguments)
         {
             areguments = null;
             string clampName = name;
@@ -110,16 +112,16 @@ namespace PSDUnity
                 clampName = name.Substring(0, index);
             }
 
-            groupType = GroupType.EMPTY;
+            groupType = GroupNode.emptySuffix;
 
-
-            var item = System.Array.Find(groupNames, x =>
+            var item = layerImports.Find(x =>
             {
-                return typeName.ToLower().Contains(x.ToLower());
+                return typeName.ToLower().Contains(x.Suffix.ToLower());
             });
+
             if (item != null)
             {
-                groupType = (GroupType)System.Enum.Parse(typeof(GroupType), item);
+                groupType = item.Suffix;
             }
 
             if (typeName.Contains(argumentChar.ToString()))

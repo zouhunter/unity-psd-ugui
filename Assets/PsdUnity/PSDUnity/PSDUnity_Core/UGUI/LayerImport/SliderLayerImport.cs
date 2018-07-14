@@ -9,8 +9,20 @@ namespace PSDUnity.UGUI
 {
     public class SliderLayerImport : LayerImport
     {
-        public SliderLayerImport(PSDImportCtrl ctrl) : base(ctrl) { }
+        public SliderLayerImport()
+        {
+            _suffix = "Slider";
+        }
 
+        public override void AnalysisAreguments(GroupNode layer, string[] areguments)
+        {
+            base.AnalysisAreguments(layer, areguments);
+            if (areguments != null && areguments.Length > 0)
+            {
+                var key = areguments[0];
+                layer.direction = RuleObject.GetDirectionByKey(key);
+            }
+        }
         public override GameObject CreateTemplate()
         {
             var slider = new GameObject("Slider", typeof(Slider)).GetComponent<Slider>();

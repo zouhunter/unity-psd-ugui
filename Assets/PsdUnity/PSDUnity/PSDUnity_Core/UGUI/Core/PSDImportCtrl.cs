@@ -13,7 +13,7 @@ namespace PSDUnity.UGUI
     public class PSDImportCtrl
     {
         private Dictionary<ImgType, ImageImport> imgImporterDic;
-        private Dictionary<GroupType, LayerImport> layerImporterDic;
+        private Dictionary<string, LayerImport> layerImporterDic;
         public Canvas canvas { get; private set; }
         public  RuleObject rule { get; private set; }
         public  UGUINode uinode { get; private set; }
@@ -32,24 +32,19 @@ namespace PSDUnity.UGUI
         private void InitDrawers()
         {
             imgImporterDic = new Dictionary<ImgType, ImageImport>();
-            imgImporterDic.Add(ImgType.Texture, new TextureImport(this));
-            imgImporterDic.Add(ImgType.Image, new SpriteImport(this));
-            imgImporterDic.Add(ImgType.AtlasImage, new SpriteImport(this));
-            imgImporterDic.Add(ImgType.Color, new SpriteImport(this));
-            imgImporterDic.Add(ImgType.Label, new TextImport(this));
+            imgImporterDic.Add(ImgType.Texture, ScriptableObject.CreateInstance<TextureImport>());
+            imgImporterDic.Add(ImgType.Image, ScriptableObject.CreateInstance<SpriteImport>());
+            imgImporterDic.Add(ImgType.AtlasImage, ScriptableObject.CreateInstance<SpriteImport>());
+            imgImporterDic.Add(ImgType.Color, ScriptableObject.CreateInstance<SpriteImport>());
+            imgImporterDic.Add(ImgType.Label, ScriptableObject.CreateInstance<TextImport>());
+     
 
-            layerImporterDic = new Dictionary<GroupType, LayerImport>();
-            layerImporterDic.Add(GroupType.SLIDER, new SliderLayerImport(this));
-            layerImporterDic.Add(GroupType.INPUTFIELD, new InputFieldLayerImport(this));
-            layerImporterDic.Add(GroupType.BUTTON, new ButtonLayerImport(this));
-            layerImporterDic.Add(GroupType.TOGGLE, new ToggleLayerImport(this));
-            layerImporterDic.Add(GroupType.PANEL, new PanelLayerImport(this));
-            layerImporterDic.Add(GroupType.EMPTY, new PanelLayerImport(this));
-            layerImporterDic.Add(GroupType.SCROLLVIEW, new ScrollViewLayerImport(this));
-            layerImporterDic.Add(GroupType.SCROLLBAR, new ScrollBarLayerImport(this));
-            layerImporterDic.Add(GroupType.GRID, new GridLayerImport(this));
-            layerImporterDic.Add(GroupType.GROUP, new GroupLayerImport(this));
-            layerImporterDic.Add(GroupType.DROPDOWN, new DropDownLayerImport(this));
+            layerImporterDic = new Dictionary<string, LayerImport>();
+            layerImporterDic.Add(GroupNode. emptySuffix, ScriptableObject.CreateInstance<PanelLayerImport>());
+            foreach (var item in rule.layerImports)
+            {
+                layerImporterDic.Add(item.Suffix, item);
+            }
         }
 
         public void Import(GroupNode rootNode)
@@ -83,7 +78,7 @@ namespace PSDUnity.UGUI
 
         public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
-            UGUINode node = layerImporterDic[layer.groupType].DrawLayer(layer, parent);
+            UGUINode node = layerImporterDic[layer.suffix].DrawLayer(layer, parent);
             return node;
         }
 

@@ -9,7 +9,10 @@ namespace PSDUnity.UGUI
 {
     public class DropDownLayerImport : LayerImport
     {
-        public DropDownLayerImport(PSDImportCtrl ctrl) : base(ctrl) { }
+        public DropDownLayerImport()
+        {
+            _suffix = "DropDown";
+        }
 
         public override GameObject CreateTemplate()
         {

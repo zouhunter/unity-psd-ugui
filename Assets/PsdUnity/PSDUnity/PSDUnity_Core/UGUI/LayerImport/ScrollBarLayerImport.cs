@@ -5,7 +5,20 @@ namespace PSDUnity.UGUI
 {
     public class ScrollBarLayerImport : LayerImport
     {
-        public ScrollBarLayerImport(PSDImportCtrl ctrl) : base(ctrl) { }
+        public ScrollBarLayerImport()
+        {
+            _suffix = "ScrollBar";
+        }
+
+        public override void AnalysisAreguments(GroupNode layer, string[] areguments)
+        {
+            base.AnalysisAreguments(layer, areguments);
+            if (areguments != null && areguments.Length > 0)
+            {
+                var key = areguments[0];
+                layer.direction = RuleObject.GetDirectionByKey(key);
+            }
+        }
         public override GameObject CreateTemplate()
         {
             var scollbar = new GameObject("Scollbar", typeof(Scrollbar), typeof(Image)).GetComponent<Scrollbar>();

@@ -6,7 +6,9 @@ namespace PSDUnity.UGUI
 {
     public class ToggleLayerImport : LayerImport
     {
-        public ToggleLayerImport(PSDImportCtrl ctrl) : base(ctrl) { }
+        public ToggleLayerImport(){
+            _suffix = "Toggle";
+        }
 
         public override GameObject CreateTemplate()
         {

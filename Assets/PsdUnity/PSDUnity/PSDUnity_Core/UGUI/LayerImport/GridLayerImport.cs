@@ -9,11 +9,29 @@ namespace PSDUnity.UGUI
 {
     public class GridLayerImport : LayerImport
     {
-        public GridLayerImport(PSDImportCtrl ctrl) : base(ctrl) { }
+        public GridLayerImport()
+        {
+            _suffix = "Grid";
+        }
+
         public override GameObject CreateTemplate()
         {
             return new GameObject("Grid", typeof(GridLayoutGroup));
             
+        }
+        public override void AnalysisAreguments(GroupNode layer, string[] areguments)
+        {
+            base.AnalysisAreguments(layer, areguments);
+            if (areguments != null && areguments.Length > 1)
+            {
+                var key = areguments[0];
+                layer. direction = RuleObject.GetDirectionByKey(key);
+            }
+            if (areguments != null && areguments.Length > 2)
+            {
+                var key = areguments[1];
+                layer.constraintCount = int.Parse(key);
+            }
         }
         public override UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {

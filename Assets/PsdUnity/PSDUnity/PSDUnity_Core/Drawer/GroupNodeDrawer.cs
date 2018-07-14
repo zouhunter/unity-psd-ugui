@@ -40,36 +40,36 @@ namespace PSDUnity.Data
             else
             {
                 float height = 5;
-                switch ((GroupType)groupTypeProp.intValue)
-                {
-                    case GroupType.SCROLLVIEW:
-                        height +=1;
-                        break;
-                    case GroupType.GRID:
-                        height += 2;
-                        break;
-                    case GroupType.BUTTON:
-                        break;
-                    case GroupType.PANEL:
-                        break;
-                    case GroupType.TOGGLE:
-                        break;
-                    case GroupType.SLIDER:
-                        height += 1;
-                        break;
-                    case GroupType.GROUP:
-                        height += 2;
-                        break;
-                    case GroupType.INPUTFIELD:
-                        break;
-                    case GroupType.SCROLLBAR:
-                        height += 1;
-                        break;
-                    case GroupType.DROPDOWN:
-                        break;
-                    default:
-                        break;
-                }
+                //switch ((GroupType)groupTypeProp.intValue)
+                //{
+                //    case GroupType.SCROLLVIEW:
+                //        height +=1;
+                //        break;
+                //    case GroupType.GRID:
+                //        height += 2;
+                //        break;
+                //    case GroupType.BUTTON:
+                //        break;
+                //    case GroupType.PANEL:
+                //        break;
+                //    case GroupType.TOGGLE:
+                //        break;
+                //    case GroupType.SLIDER:
+                //        height += 1;
+                //        break;
+                //    case GroupType.GROUP:
+                //        height += 2;
+                //        break;
+                //    case GroupType.INPUTFIELD:
+                //        break;
+                //    case GroupType.SCROLLBAR:
+                //        height += 1;
+                //        break;
+                //    case GroupType.DROPDOWN:
+                //        break;
+                //    default:
+                //        break;
+                //}
                 return height * SingleHeight + EditorGUI.GetPropertyHeight(imagesProp,GUIContent.none,true) + EditorGUI.GetPropertyHeight(groupsProp, GUIContent.none, true);
             }
         }
@@ -93,52 +93,52 @@ namespace PSDUnity.Data
                 rect.y += EditorGUI.GetPropertyHeight(imagesProp, new GUIContent("Images"), true);
 
                 var lastDir = enumIndexToDirection(directionProp.enumValueIndex);
-                switch ((GroupType)groupTypeProp.enumValueIndex)
-                {
-                    case GroupType.EMPTY:
-                        break;
-                    case GroupType.BUTTON:
-                        break;
-                    case GroupType.TOGGLE:
-                        break;
-                    case GroupType.CANVAS:
-                        break;
-                    case GroupType.GRID:
-                        directionProp.enumValueIndex = enumDirectionToIndex((Direction)EditorGUI.EnumPopup(rect,new GUIContent("方向"), lastDir));
-                        rect.y += SingleHeight;
-                        EditorGUI.PropertyField(rect,constraintCountProp);
-                        rect.y += SingleHeight;
-                        break;
-                    case GroupType.PANEL:
-                        break;
-                    case GroupType.SCROLLVIEW:
-#if UNITY_5_6
-                        directionProp.enumValueIndex = enumDirectionToIndex((Direction)EditorGUI.EnumMaskField(rect, new GUIContent("方向"), lastDir));
-#elif UNITY_2017
-                        directionProp.enumValueIndex = enumDirectionToIndex((Direction)EditorGUI.EnumFlagsField(rect, new GUIContent("方向"), lastDir));
-#else
-                        directionProp.enumValueIndex = enumDirectionToIndex((Direction)EditorGUI.EnumMaskField(rect, new GUIContent("方向"), lastDir));
-#endif
-                        rect.y += SingleHeight;
-                        break;
-                    case GroupType.SLIDER:
-                    case GroupType.SCROLLBAR:
-                        directionProp.enumValueIndex = enumDirectionToIndex((Direction)EditorGUI.EnumPopup(rect, new GUIContent("方向"), lastDir));
-                        rect.y += SingleHeight;
-                        break;
-                    case GroupType.GROUP:
-                        directionProp.enumValueIndex = enumDirectionToIndex((Direction)EditorGUI.EnumPopup(rect, new GUIContent("方向"), lastDir));
-                        rect.y += SingleHeight;
-                        EditorGUI.PropertyField(rect, spacingProp);
-                        rect.y += SingleHeight;
-                        break;
-                    case GroupType.INPUTFIELD:
-                        break;
-                    case GroupType.DROPDOWN:
-                        break;
-                    default:
-                        break;
-                }
+//                switch ((GroupType)groupTypeProp.enumValueIndex)
+//                {
+//                    case GroupType.EMPTY:
+//                        break;
+//                    case GroupType.BUTTON:
+//                        break;
+//                    case GroupType.TOGGLE:
+//                        break;
+//                    case GroupType.CANVAS:
+//                        break;
+//                    case GroupType.GRID:
+//                        directionProp.enumValueIndex = enumDirectionToIndex((Direction)EditorGUI.EnumPopup(rect,new GUIContent("方向"), lastDir));
+//                        rect.y += SingleHeight;
+//                        EditorGUI.PropertyField(rect,constraintCountProp);
+//                        rect.y += SingleHeight;
+//                        break;
+//                    case GroupType.PANEL:
+//                        break;
+//                    case GroupType.SCROLLVIEW:
+//#if UNITY_5_6
+//                        directionProp.enumValueIndex = enumDirectionToIndex((Direction)EditorGUI.EnumMaskField(rect, new GUIContent("方向"), lastDir));
+//#elif UNITY_2017
+//                        directionProp.enumValueIndex = enumDirectionToIndex((Direction)EditorGUI.EnumFlagsField(rect, new GUIContent("方向"), lastDir));
+//#else
+//                        directionProp.enumValueIndex = enumDirectionToIndex((Direction)EditorGUI.EnumMaskField(rect, new GUIContent("方向"), lastDir));
+//#endif
+//                        rect.y += SingleHeight;
+//                        break;
+//                    case GroupType.SLIDER:
+//                    case GroupType.SCROLLBAR:
+//                        directionProp.enumValueIndex = enumDirectionToIndex((Direction)EditorGUI.EnumPopup(rect, new GUIContent("方向"), lastDir));
+//                        rect.y += SingleHeight;
+//                        break;
+//                    case GroupType.GROUP:
+//                        directionProp.enumValueIndex = enumDirectionToIndex((Direction)EditorGUI.EnumPopup(rect, new GUIContent("方向"), lastDir));
+//                        rect.y += SingleHeight;
+//                        EditorGUI.PropertyField(rect, spacingProp);
+//                        rect.y += SingleHeight;
+//                        break;
+//                    case GroupType.INPUTFIELD:
+//                        break;
+//                    case GroupType.DROPDOWN:
+//                        break;
+//                    default:
+//                        break;
+//                }
                
                 EditorGUI.PropertyField(rect, rectProp);
             }

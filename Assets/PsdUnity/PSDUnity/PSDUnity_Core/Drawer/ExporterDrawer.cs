@@ -50,7 +50,7 @@ namespace PSDUnity.Analysis
                     var oldItem = AssetDatabase.LoadAssetAtPath<RuleObject>(assetPath);
                     if (oldItem != null)
                     {
-                        Debug.Log("use old RuleObj:" + target);
+                        //Debug.Log("use old RuleObj:" + target);
                         exporter.ruleObj = oldItem;
                     }
                     else
@@ -59,6 +59,8 @@ namespace PSDUnity.Analysis
                         exporter.ruleObj = ruleObj;
                         AssetDatabase.AddObjectToAsset(ruleObj, target);
                         AssetDatabase.Refresh();
+                        AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
+                        Selection.activeObject = ruleObj;
                     }
                 }
                else
@@ -72,7 +74,7 @@ namespace PSDUnity.Analysis
             }
         }
 
-
+      
         private void InitTreeView()
         {
             if (exporter.groups != null && exporter.groups.Count > 0)

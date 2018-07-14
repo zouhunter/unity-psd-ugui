@@ -6,14 +6,30 @@ namespace PSDUnity.UGUI
 {
     internal class GroupLayerImport : LayerImport
     {
+        public GroupLayerImport()
+        {
+            _suffix = "Group";
+        }
+
+        public override void AnalysisAreguments(GroupNode layer, string[] areguments)
+        {
+            base.AnalysisAreguments(layer, areguments);
+            if (areguments != null && areguments.Length > 1)
+            {
+                var key = areguments[0];
+                layer. direction = RuleObject.GetDirectionByKey(key);
+            }
+            if (areguments != null && areguments.Length > 2)
+            {
+                var key = areguments[1];
+                layer.spacing = float.Parse(key);
+            }
+        }
         public override GameObject CreateTemplate()
         {
             return new GameObject("Group", typeof(RectTransform));
         }
-        public GroupLayerImport(PSDImportCtrl ctrl) : base(ctrl)
-        {
-        }
-
+    
         public override UGUINode DrawLayer(GroupNode layer, UGUINode parent)
         {
             UGUINode node = CreateRootNode(layer.displayName, layer.rect, parent);

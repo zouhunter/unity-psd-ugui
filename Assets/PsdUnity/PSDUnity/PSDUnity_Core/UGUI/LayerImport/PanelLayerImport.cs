@@ -6,8 +6,10 @@ namespace PSDUnity.UGUI
 {
     public class PanelLayerImport : LayerImport
     {
-        public PanelLayerImport(PSDImportCtrl ctrl) : base(ctrl) { }
-
+        public PanelLayerImport()
+        {
+            _suffix = "Panel";
+        }
         public override GameObject CreateTemplate()
         {
             return new GameObject("Empty", typeof(RectTransform));
@@ -22,7 +24,7 @@ namespace PSDUnity.UGUI
 
             Graphic background;
 
-            DrawImages(layer,node,out background);
+            DrawImages(layer, node, out background);
 
             TryDrawPanel(background, layer, node);
 
@@ -43,7 +45,7 @@ namespace PSDUnity.UGUI
             {
                 ImgNode image = layer.images[i];
 
-                if (MatchAddress(image.Name,rule.backgroundAddress))
+                if (MatchAddress(image.Name, rule.backgroundAddress))
                 {
                     if (image.type == ImgType.Texture)
                     {
@@ -54,7 +56,7 @@ namespace PSDUnity.UGUI
                         background = node.InitComponent<UnityEngine.UI.Image>();
                     }
 
-                    if(background)
+                    if (background)
                     {
                         PSDImporterUtility.SetPictureOrLoadColor(image, background);
                         SetRectTransform(image.rect, background.GetComponent<RectTransform>());
@@ -74,9 +76,9 @@ namespace PSDUnity.UGUI
         /// <param name="background"></param>
         /// <param name="layer"></param>
         /// <param name="node"></param>
-        private void TryDrawPanel(Graphic background,GroupNode layer,UGUINode node)
+        private void TryDrawPanel(Graphic background, GroupNode layer, UGUINode node)
         {
-            if (layer.groupType == GroupType.PANEL && background == null)
+            if (background == null)
             {
                 background = node.InitComponent<UnityEngine.UI.Image>();
                 SetRectTransform(layer.rect, background.GetComponent<RectTransform>());

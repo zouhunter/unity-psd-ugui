@@ -9,8 +9,6 @@ namespace PSDUnity.UGUI
 {
     public class SpriteImport : ImageImport
     {
-        public SpriteImport(PSDImportCtrl ctrl) : base(ctrl) { }
-
         public override GameObject CreateTemplate()
         {
            return new GameObject("Image", typeof(Image));

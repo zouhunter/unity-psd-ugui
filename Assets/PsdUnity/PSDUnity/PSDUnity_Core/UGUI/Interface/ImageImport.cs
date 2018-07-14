@@ -10,7 +10,6 @@ namespace PSDUnity.UGUI
 {
     public abstract class ImageImport: Import
     {
-        public ImageImport(PSDImportCtrl ctrl) : base(ctrl) { }
         public abstract UGUINode DrawImage(ImgNode image, UGUINode parent);
     }
 }

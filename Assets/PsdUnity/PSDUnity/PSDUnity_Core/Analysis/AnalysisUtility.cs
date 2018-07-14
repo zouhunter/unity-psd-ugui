@@ -25,17 +25,17 @@ public class AnalysisUtility
         previewIcons.Add(LayerType.Text.ToString(), EditorGUIUtility.IconContent("Text Icon").image);
         previewIcons.Add(LayerType.Complex.ToString(), EditorGUIUtility.IconContent("console.warnicon").image);
         previewIcons.Add(LayerType.Overflow.ToString(), EditorGUIUtility.IconContent("console.erroricon").image);
-        previewIcons.Add(GroupType.BUTTON.ToString(), EditorGUIUtility.IconContent("Button Icon").image);
-        previewIcons.Add(GroupType.TOGGLE.ToString(), EditorGUIUtility.IconContent("Toggle Icon").image);
-        previewIcons.Add(GroupType.SLIDER.ToString(), EditorGUIUtility.IconContent("Slider Icon").image);
-        previewIcons.Add(GroupType.SCROLLBAR.ToString(), EditorGUIUtility.IconContent("Scrollbar Icon").image);
-        previewIcons.Add(GroupType.DROPDOWN.ToString(), EditorGUIUtility.IconContent("Dropdown Icon").image);
-        previewIcons.Add(GroupType.CANVAS.ToString(), EditorGUIUtility.IconContent("Canvas Icon").image);
-        previewIcons.Add(GroupType.PANEL.ToString(), EditorGUIUtility.IconContent("RawImage Icon").image);
-        previewIcons.Add(GroupType.INPUTFIELD.ToString(), EditorGUIUtility.IconContent("InputField Icon").image);
-        previewIcons.Add(GroupType.SCROLLVIEW.ToString(), EditorGUIUtility.IconContent("ScrollRect Icon").image);
-        previewIcons.Add(GroupType.GRID.ToString(), EditorGUIUtility.IconContent("GridLayoutGroup Icon").image);
-        previewIcons.Add(GroupType.GROUP.ToString(), EditorGUIUtility.IconContent("GridLayoutGroup Icon").image);
+        //previewIcons.Add(GroupType.BUTTON.ToString(), EditorGUIUtility.IconContent("Button Icon").image);
+        //previewIcons.Add(GroupType.TOGGLE.ToString(), EditorGUIUtility.IconContent("Toggle Icon").image);
+        //previewIcons.Add(GroupType.SLIDER.ToString(), EditorGUIUtility.IconContent("Slider Icon").image);
+        //previewIcons.Add(GroupType.SCROLLBAR.ToString(), EditorGUIUtility.IconContent("Scrollbar Icon").image);
+        //previewIcons.Add(GroupType.DROPDOWN.ToString(), EditorGUIUtility.IconContent("Dropdown Icon").image);
+        //previewIcons.Add(GroupType.CANVAS.ToString(), EditorGUIUtility.IconContent("Canvas Icon").image);
+        //previewIcons.Add(GroupType.PANEL.ToString(), EditorGUIUtility.IconContent("RawImage Icon").image);
+        //previewIcons.Add(GroupType.INPUTFIELD.ToString(), EditorGUIUtility.IconContent("InputField Icon").image);
+        //previewIcons.Add(GroupType.SCROLLVIEW.ToString(), EditorGUIUtility.IconContent("ScrollRect Icon").image);
+        //previewIcons.Add(GroupType.GRID.ToString(), EditorGUIUtility.IconContent("GridLayoutGroup Icon").image);
+        //previewIcons.Add(GroupType.GROUP.ToString(), EditorGUIUtility.IconContent("GridLayoutGroup Icon").image);
     }
 
     internal static Texture GetPreviewIcon(PreviewItem item, RuleObject rule)
@@ -46,7 +46,7 @@ public class AnalysisUtility
         }
         else
         {
-            GroupType groupType = GroupType.EMPTY;
+            string groupType = GroupNode.emptySuffix;
             string[] args;
             /*string name = */rule.AnalysisGroupName(item.name, out groupType, out args);
             if(previewIcons.ContainsKey(groupType.ToString()) && previewIcons[groupType.ToString()] != null)

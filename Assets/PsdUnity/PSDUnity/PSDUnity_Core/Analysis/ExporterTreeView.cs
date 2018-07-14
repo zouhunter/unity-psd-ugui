@@ -201,66 +201,66 @@ namespace PSDUnity
         void HeaderInfos(Rect rect, GroupNode item)
         {
             var typeRect = new Rect(EditorGUIUtility.currentViewWidth - 110, rect.y, 100, rect.height);
-            var type = (GroupType)EditorGUI.EnumPopup(typeRect, item.groupType, EditorStyles.miniLabel);
-            if (type != item.groupType)
-            {
-                var ok = EditorUtility.DisplayDialog("修改类型", "强制修改组类型，可能会造成不可知错误，继续请点确认！", "确认");
-                if (ok)
-                {
-                    item.groupType = type;
-                }
-            }
+//            var type = (GroupType)EditorGUI.EnumPopup(typeRect, item.groupType, EditorStyles.miniLabel);
+//            if (type != item.groupType)
+//            {
+//                var ok = EditorUtility.DisplayDialog("修改类型", "强制修改组类型，可能会造成不可知错误，继续请点确认！", "确认");
+//                if (ok)
+//                {
+//                    item.groupType = type;
+//                }
+//            }
 
-            var dirRect = new Rect(EditorGUIUtility.currentViewWidth - 210, rect.y, 100, rect.height);
-            switch (item.groupType)
-            {
-                case GroupType.GRID:
-                    var dir = (Direction)EditorGUI.EnumPopup(dirRect, item.direction);
-                    if (dir == Direction.Horizontal || dir == Direction.Vertical)
-                    {
-                        item.direction = dir;
-                    }
-                    if (item.direction == 0) item.direction = Direction.Horizontal;
-                    var constenctCountRect = dirRect;
-                    constenctCountRect.width *= 0.5f;
-                    constenctCountRect.x -= 50;
-                    item.constraintCount = EditorGUI.IntField(constenctCountRect, item.constraintCount, EditorStyles.label);
-                    break;
-                case GroupType.SCROLLVIEW:
-//#向下不兼容的写法
-#if UNITY_5_6
-                    dir = (Direction)EditorGUI.EnumMaskField(dirRect, item.direction);
-#elif UNITY_2017
-                    dir = (Direction)EditorGUI.EnumFlagsField(dirRect, item.direction);
-#else
-                    dir = (Direction)EditorGUI.EnumMaskField(dirRect, item.direction);
-#endif
-                    if (dir == Direction.Horizontal || dir == Direction.Vertical || dir == (Direction.Horizontal | Direction.Vertical))
-                    {
-                        item.direction = dir;
-                    }
-                    break;
-                case GroupType.SLIDER:
-                case GroupType.SCROLLBAR:
-                    item.direction = ((Direction)EditorGUI.EnumPopup(dirRect, item.direction));
-                    break;
-                case GroupType.GROUP:
-                    dir = (Direction)EditorGUI.EnumPopup(dirRect, item.direction);
-                    if (dir == Direction.Horizontal || dir == Direction.Vertical)
-                    {
-                        item.direction = dir;
-                    }
-                    if (item.direction == 0) item.direction = Direction.Horizontal;
-                    var spanRect = dirRect;
-                    spanRect.width *= 0.5f;
-                    spanRect.x -= 50;
-                    spanRect.height *= 0.8f;
-                    spanRect.y += 2f;
-                    item.spacing = EditorGUI.Slider(spanRect, item.spacing, 0, 50);
-                    break;
-                default:
-                    break;
-            }
+//            var dirRect = new Rect(EditorGUIUtility.currentViewWidth - 210, rect.y, 100, rect.height);
+//            switch (item.groupType)
+//            {
+//                case GroupType.GRID:
+//                    var dir = (Direction)EditorGUI.EnumPopup(dirRect, item.direction);
+//                    if (dir == Direction.Horizontal || dir == Direction.Vertical)
+//                    {
+//                        item.direction = dir;
+//                    }
+//                    if (item.direction == 0) item.direction = Direction.Horizontal;
+//                    var constenctCountRect = dirRect;
+//                    constenctCountRect.width *= 0.5f;
+//                    constenctCountRect.x -= 50;
+//                    item.constraintCount = EditorGUI.IntField(constenctCountRect, item.constraintCount, EditorStyles.label);
+//                    break;
+//                case GroupType.SCROLLVIEW:
+////#向下不兼容的写法
+//#if UNITY_5_6
+//                    dir = (Direction)EditorGUI.EnumMaskField(dirRect, item.direction);
+//#elif UNITY_2017
+//                    dir = (Direction)EditorGUI.EnumFlagsField(dirRect, item.direction);
+//#else
+//                    dir = (Direction)EditorGUI.EnumMaskField(dirRect, item.direction);
+//#endif
+//                    if (dir == Direction.Horizontal || dir == Direction.Vertical || dir == (Direction.Horizontal | Direction.Vertical))
+//                    {
+//                        item.direction = dir;
+//                    }
+//                    break;
+//                case GroupType.SLIDER:
+//                case GroupType.SCROLLBAR:
+//                    item.direction = ((Direction)EditorGUI.EnumPopup(dirRect, item.direction));
+//                    break;
+//                case GroupType.GROUP:
+//                    dir = (Direction)EditorGUI.EnumPopup(dirRect, item.direction);
+//                    if (dir == Direction.Horizontal || dir == Direction.Vertical)
+//                    {
+//                        item.direction = dir;
+//                    }
+//                    if (item.direction == 0) item.direction = Direction.Horizontal;
+//                    var spanRect = dirRect;
+//                    spanRect.width *= 0.5f;
+//                    spanRect.x -= 50;
+//                    spanRect.height *= 0.8f;
+//                    spanRect.y += 2f;
+//                    item.spacing = EditorGUI.Slider(spanRect, item.spacing, 0, 50);
+//                    break;
+//                default:
+//                    break;
+//            }
         }
         void DrawItemBackground(Rect bgRect)
         {

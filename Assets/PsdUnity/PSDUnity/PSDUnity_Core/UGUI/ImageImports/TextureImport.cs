@@ -9,8 +9,6 @@ namespace PSDUnity.UGUI
 {
     public class TextureImport : ImageImport
     {
-        public TextureImport(PSDImportCtrl ctrl) : base(ctrl) { }
-
         public override GameObject CreateTemplate()
         {
            return new GameObject("RawImage", typeof(RawImage));
