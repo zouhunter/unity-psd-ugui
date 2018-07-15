@@ -11,14 +11,14 @@ using UnityEditor.IMGUI.Controls;
 
 namespace PSDUnity.Analysis
 {
-    [CustomEditor(typeof(Exporter))]
+    [CustomEditor(typeof(Data.Exporter))]
     public  class ExporterDrawer : Editor
     {
         private SerializedProperty scriptProp;
         private Exporter exporter;
         private const string Prefs_LastPsdsDir = "lastPsdFileDir";
         private ExporterTreeView m_TreeView;
-        private GroupNode rootNode;
+        private GroupNodeItem rootNode;
         [SerializeField]
         TreeViewState m_TreeViewState = new TreeViewState();
         private void OnEnable()
@@ -81,7 +81,8 @@ namespace PSDUnity.Analysis
             {
                 if (exporter.groups.Count > 0)
                 {
-                    rootNode = TreeViewUtility.ListToTree<GroupNode>(exporter.groups);
+                    var list = exporter.groups.ConvertAll(x=>new GroupNodeItem(x));
+                    rootNode = TreeViewUtility.ListToTree<GroupNodeItem>(list);
                     m_TreeView = new ExporterTreeView(m_TreeViewState);
                     m_TreeView.root = rootNode;
                 }
@@ -92,7 +93,7 @@ namespace PSDUnity.Analysis
         {
             base.OnHeaderGUI();
             EditorGUI.BeginDisabledGroup(true);
-            EditorGUILayout.ObjectField(exporter, typeof(Exporter), false);
+            EditorGUILayout.ObjectField(exporter, typeof(Data.Exporter), false);
             EditorGUILayout.PropertyField(scriptProp);
             EditorGUI.EndDisabledGroup();
         }
@@ -120,7 +121,7 @@ namespace PSDUnity.Analysis
                 {
                     var canvasObj = Array.Find(Selection.objects, x => x is GameObject && (x as GameObject).GetComponent<Canvas>() != null);
                     var ctrl = PSDImporterUtility.CreatePsdImportCtrlSafty(exporter.ruleObj, exporter.ruleObj.defultUISize, canvasObj == null ? FindObjectOfType<Canvas>() : (canvasObj as GameObject).GetComponent<Canvas>());
-                    ctrl.Import(rootNode);
+                    ctrl.Import(rootNode.data);
                     AssetDatabase.Refresh();
                 }
 
@@ -128,12 +129,12 @@ namespace PSDUnity.Analysis
                 {
                     var canvasObj = Array.Find(Selection.objects, x => x is GameObject && (x as GameObject).GetComponent<Canvas>() != null);
                     var ctrl = PSDImporterUtility.CreatePsdImportCtrlSafty(exporter.ruleObj, exporter.ruleObj.defultUISize, canvasObj == null ? FindObjectOfType<Canvas>() : (canvasObj as GameObject).GetComponent<Canvas>());
-                    var root = new GroupNode(new Rect(Vector2.zero, rootNode.rect.size), 0, -1);
+                    var root = new GroupNodeItem(new Rect(Vector2.zero, rootNode.rect.size), 0, -1);
                     root.displayName = "partial build";
                     foreach (var node in m_TreeView.selected){
                         root.AddChild(node);
                     }
-                    ctrl.Import(root);
+                    ctrl.Import(root.data);
                     AssetDatabase.Refresh();
                 }
 
@@ -164,7 +165,7 @@ namespace PSDUnity.Analysis
                     {
                         var rootSize = new Vector2(psd.Width, psd.Height);
                         ExportUtility.InitPsdExportEnvrioment(exporter, rootSize);
-                        rootNode = new GroupNode(new Rect(Vector2.zero, rootSize), 0, -1);
+                        rootNode = new GroupNodeItem(new Rect(Vector2.zero, rootSize), 0, -1);
                         rootNode.displayName = exporter.name;
                         var groupDatas = ExportUtility.CreatePictures(psd.Childs, rootSize, exporter.ruleObj.defultUISize, exporter.ruleObj.forceSprite);
                         if (groupDatas != null)
@@ -175,7 +176,9 @@ namespace PSDUnity.Analysis
                                 ExportUtility.ChargeTextures(exporter, groupData);
                             }
                         }
-                        TreeViewUtility.TreeToList<GroupNode>(rootNode, exporter.groups, true);
+                        var list = new List<GroupNodeItem>();
+                        TreeViewUtility.TreeToList<GroupNodeItem>(rootNode, list, true);
+                        exporter.groups = list.ConvertAll(x => x.data);
                         EditorUtility.SetDirty(exporter);
                     }
                     catch (Exception e)

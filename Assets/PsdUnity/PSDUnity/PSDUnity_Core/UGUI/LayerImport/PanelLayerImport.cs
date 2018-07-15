@@ -15,12 +15,12 @@ namespace PSDUnity.UGUI
             return new GameObject("Empty", typeof(RectTransform));
         }
 
-        public override UGUINode DrawLayer(GroupNode layer, UGUINode parent)
+        public override UGUINode DrawLayer(Data.GroupNode layer, UGUINode parent)
         {
             UGUINode node = CreateRootNode(layer.displayName, layer.rect, parent);
 
             if (layer.children != null)
-                ctrl.DrawLayers(layer.children.ConvertAll(x => x as GroupNode).ToArray(), node);//子节点
+                ctrl.DrawLayers(layer.children.ConvertAll(x => x as Data.GroupNode).ToArray(), node);//子节点
 
             Graphic background;
 
@@ -38,12 +38,12 @@ namespace PSDUnity.UGUI
         /// <param name="layer"></param>
         /// <param name="node"></param>
         /// <param name="background"></param>
-        private void DrawImages(GroupNode layer, UGUINode node, out Graphic background)
+        private void DrawImages(Data.GroupNode layer, UGUINode node, out Graphic background)
         {
             background = null;
             for (int i = 0; i < layer.images.Count; i++)
             {
-                ImgNode image = layer.images[i];
+                Data.ImgNode image = layer.images[i];
 
                 if (MatchAddress(image.Name, rule.backgroundAddress))
                 {
@@ -76,7 +76,7 @@ namespace PSDUnity.UGUI
         /// <param name="background"></param>
         /// <param name="layer"></param>
         /// <param name="node"></param>
-        private void TryDrawPanel(Graphic background, GroupNode layer, UGUINode node)
+        private void TryDrawPanel(Graphic background, Data.GroupNode layer, UGUINode node)
         {
             if (background == null)
             {

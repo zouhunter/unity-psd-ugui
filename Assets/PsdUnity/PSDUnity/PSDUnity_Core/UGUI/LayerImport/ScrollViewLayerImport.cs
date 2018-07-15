@@ -14,7 +14,7 @@ namespace PSDUnity.UGUI
         {
             _suffix = "ScrollView";
         }
-        public override void AnalysisAreguments(GroupNode layer, string[] areguments)
+        public override void AnalysisAreguments(Data.GroupNode layer, string[] areguments)
         {
             base.AnalysisAreguments(layer, areguments);
             if (areguments != null && areguments.Length > 0)
@@ -29,7 +29,7 @@ namespace PSDUnity.UGUI
             return scrollRect.gameObject;
         }
 
-        public override UGUINode DrawLayer(GroupNode layer, UGUINode parent)
+        public override UGUINode DrawLayer(Data.GroupNode layer, UGUINode parent)
         {
             UGUINode node = CreateRootNode(layer.displayName, layer.rect, parent);
             ScrollRect scrollRect = node.InitComponent<UnityEngine.UI.ScrollRect>();
@@ -40,7 +40,7 @@ namespace PSDUnity.UGUI
             return node;
         }
 
-        private UGUINode DrawViewNode(GroupNode layer, ScrollRect scrollRect,UGUINode node)
+        private UGUINode DrawViewNode(Data.GroupNode layer, ScrollRect scrollRect,UGUINode node)
         {
             var viewPort = new GameObject("ViewPort", typeof(Mask), typeof(Image)).GetComponent<RectTransform>();
             Color color;
@@ -64,11 +64,11 @@ namespace PSDUnity.UGUI
             return viewNode;
         }
 
-        private void DrawImages(GroupNode layer, UGUINode node, ScrollRect scrollRect)
+        private void DrawImages(Data.GroupNode layer, UGUINode node, ScrollRect scrollRect)
         {
             for (int i = 0; i < layer.images.Count; i++)
             {
-                ImgNode image = layer.images[i];
+                Data.ImgNode image = layer.images[i];
 
                 if (MatchAddress(image.Name, rule.backgroundAddress))
                 {
@@ -82,14 +82,14 @@ namespace PSDUnity.UGUI
 
         }
 
-        private void DrawChildLayers(GroupNode layer, UGUINode viewNode, ScrollRect scrollRect)
+        private void DrawChildLayers(Data.GroupNode layer, UGUINode viewNode, ScrollRect scrollRect)
         {
 
             if (layer.children != null)
             {
                 for (int i = 0; i < layer.children.Count; i++)
                 {
-                    GroupNode child = layer.children[i] as GroupNode;
+                    Data.GroupNode child = layer.children[i] as Data.GroupNode;
                     UGUINode childNode = ctrl.DrawLayer(child, viewNode);
 
                     if (MatchAddress(child.displayName, rule.contentAddress))
@@ -126,14 +126,14 @@ namespace PSDUnity.UGUI
             };
         }
 
-        private void InitScrollViewBackground(UGUINode node,ImgNode image,ScrollRect scrollRect)
+        private void InitScrollViewBackground(UGUINode node,Data.ImgNode image,ScrollRect scrollRect)
         {
             UnityEngine.UI.Image graph = node.InitComponent<UnityEngine.UI.Image>();
             PSDImporterUtility.SetPictureOrLoadColor(image, graph);
             SetRectTransform(image.rect, scrollRect.GetComponent<RectTransform>());
         }
 
-        private void SetScrollViewDirection(GroupNode node,ScrollRect scrollRect,Direction direction)
+        private void SetScrollViewDirection(Data.GroupNode node,ScrollRect scrollRect,Direction direction)
         {
             switch (direction)
             {

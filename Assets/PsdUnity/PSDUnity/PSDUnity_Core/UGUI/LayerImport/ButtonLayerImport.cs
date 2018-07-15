@@ -15,7 +15,7 @@ namespace PSDUnity.UGUI
         {
             _suffix = "Button";
         }
-        public override UGUINode DrawLayer(GroupNode layer, UGUINode parent)
+        public override UGUINode DrawLayer(Data.GroupNode layer, UGUINode parent)
         {
             var node = base.CreateRootNode(layer.displayName, layer.rect, parent);
             UnityEngine.UI.Button button = node.InitComponent<UnityEngine.UI.Button>();
@@ -24,7 +24,7 @@ namespace PSDUnity.UGUI
             {
                 for (int imageIndex = 0; imageIndex < layer.images.Count; imageIndex++)
                 {
-                    ImgNode image = layer.images[imageIndex];
+                    Data.ImgNode image = layer.images[imageIndex];
 
                     if (MatchAddress(image.Name, rule.normalAddress, rule.pressedAddress, rule.disableAddress, rule.highlightedAddress))
                     {
@@ -67,7 +67,7 @@ namespace PSDUnity.UGUI
         /// </summary>
         /// <param name="image"></param>
         /// <param name="button"></param>
-        private void SetSpriteSwipe(ImgNode image, UnityEngine.UI.Button button)
+        private void SetSpriteSwipe(Data.ImgNode image, UnityEngine.UI.Button button)
         {
             if (MatchAddress(image.Name, rule.normalAddress))
             {
@@ -108,7 +108,7 @@ namespace PSDUnity.UGUI
         /// </summary>
         /// <param name="image"></param>
         /// <param name="button"></param>
-        private void SetColorSwipe(ImgNode image, UnityEngine.UI.Button button)
+        private void SetColorSwipe(Data.ImgNode image, UnityEngine.UI.Button button)
         {
             Color color = image.color;
 
@@ -157,7 +157,7 @@ namespace PSDUnity.UGUI
         /// </summary>
         /// <param name="image"></param>
         /// <param name="button"></param>
-        private void InitButton(ImgNode image, UnityEngine.UI.Button button)
+        private void InitButton(Data.ImgNode image, UnityEngine.UI.Button button)
         {
             if (image.type == ImgType.Label)
             {

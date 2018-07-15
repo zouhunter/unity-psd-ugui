@@ -40,14 +40,14 @@ namespace PSDUnity.UGUI
      
 
             layerImporterDic = new Dictionary<string, LayerImport>();
-            layerImporterDic.Add(GroupNode. emptySuffix, ScriptableObject.CreateInstance<PanelLayerImport>());
+            layerImporterDic.Add(PSDUnityConst.emptySuffix, ScriptableObject.CreateInstance<PanelLayerImport>());
             foreach (var item in rule.layerImports)
             {
                 layerImporterDic.Add(item.Suffix, item);
             }
         }
 
-        public void Import(GroupNode rootNode)
+        public void Import(Data.GroupNode rootNode)
         {
             InitBaseSize(uinode, canvasSize);
             DrawLayer(rootNode, uinode);//直接绘制所有层级
@@ -76,13 +76,13 @@ namespace PSDUnity.UGUI
             }
         }
 
-        public UGUINode DrawLayer(GroupNode layer, UGUINode parent)
+        public UGUINode DrawLayer(Data.GroupNode layer, UGUINode parent)
         {
             UGUINode node = layerImporterDic[layer.suffix].DrawLayer(layer, parent);
             return node;
         }
 
-        public UGUINode[] DrawLayers(GroupNode[] layers, UGUINode parent)
+        public UGUINode[] DrawLayers(Data.GroupNode[] layers, UGUINode parent)
         {
             UGUINode[] nodes = new UGUINode[layers.Length];
             if (layers != null)
@@ -95,7 +95,7 @@ namespace PSDUnity.UGUI
             return nodes;
         }
 
-        public UGUINode[] DrawImages(ImgNode[] images, UGUINode parent)
+        public UGUINode[] DrawImages(Data.ImgNode[] images, UGUINode parent)
         {
             UGUINode[] nodes = new UGUINode[images.Length];
             if (images != null)
@@ -108,7 +108,7 @@ namespace PSDUnity.UGUI
             return nodes;
         }
 
-        public UGUINode DrawImage(ImgNode image, UGUINode parent)
+        public UGUINode DrawImage(Data.ImgNode image, UGUINode parent)
         {
             UGUINode node = imgImporterDic[image.type].DrawImage(image,parent);
             if(node == null)

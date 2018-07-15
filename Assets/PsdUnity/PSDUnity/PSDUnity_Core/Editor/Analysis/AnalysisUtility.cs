@@ -46,7 +46,7 @@ public class AnalysisUtility
         }
         else
         {
-            string groupType = GroupNode.emptySuffix;
+            string groupType = PSDUnityConst.emptySuffix;
             string[] args;
             /*string name = */rule.AnalysisGroupName(item.name, out groupType, out args);
             if(previewIcons.ContainsKey(groupType.ToString()) && previewIcons[groupType.ToString()] != null)

@@ -25,7 +25,7 @@ namespace PSDUnity.UGUI
             return toggle.gameObject;
         }
 
-        public override UGUINode DrawLayer(GroupNode layer, UGUINode parent)
+        public override UGUINode DrawLayer(Data.GroupNode layer, UGUINode parent)
         {
             UGUINode node = CreateRootNode(layer.displayName, layer.rect, parent);
             UnityEngine.UI.Toggle toggle = node.InitComponent<UnityEngine.UI.Toggle>();
@@ -38,7 +38,7 @@ namespace PSDUnity.UGUI
             return node;
         }
 
-        private UGUINode DrawBackground(GroupNode layer, Toggle toggle, UGUINode node)
+        private UGUINode DrawBackground(Data.GroupNode layer, Toggle toggle, UGUINode node)
         {
             var bgImage = layer.images.Find(x => MatchAddress(x.Name, rule.backgroundAddress));
 
@@ -56,7 +56,7 @@ namespace PSDUnity.UGUI
             return bgNode;
         }
 
-        private void DrawMask(GroupNode layer, Toggle toggle, UGUINode bgNode)
+        private void DrawMask(Data.GroupNode layer, Toggle toggle, UGUINode bgNode)
         {
             var mask = layer.images.Find(x => MatchAddress(x.Name, rule.maskAddress));
 
@@ -67,11 +67,11 @@ namespace PSDUnity.UGUI
             }
         }
 
-        private void DrawOtherLayers(GroupNode layer, UGUINode node)
+        private void DrawOtherLayers(Data.GroupNode layer, UGUINode node)
         {
             for (int imageIndex = 0; imageIndex < layer.images.Count; imageIndex++)
             {
-                ImgNode image = layer.images[imageIndex];
+                Data.ImgNode image = layer.images[imageIndex];
                 if (!MatchAddress(image.Name, rule.backgroundAddress, rule.maskAddress))
                 {
                     ctrl.DrawImage(image, node);

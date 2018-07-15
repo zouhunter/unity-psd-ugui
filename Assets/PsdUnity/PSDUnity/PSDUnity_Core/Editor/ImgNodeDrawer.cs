@@ -6,7 +6,7 @@ using UnityEditor;
 
 namespace PSDUnity.Data
 {
-    [CustomPropertyDrawer(typeof(ImgNode))]
+    [CustomPropertyDrawer(typeof(Data.ImgNode))]
     public class ImgNodeDrawer : PropertyDrawer
     {
         SerializedProperty typeProp;

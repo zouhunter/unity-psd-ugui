@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+
 namespace PSDUnity.UGUI
 {
     public class ScrollBarLayerImport : LayerImport
@@ -10,7 +11,7 @@ namespace PSDUnity.UGUI
             _suffix = "ScrollBar";
         }
 
-        public override void AnalysisAreguments(GroupNode layer, string[] areguments)
+        public override void AnalysisAreguments(Data.GroupNode layer, string[] areguments)
         {
             base.AnalysisAreguments(layer, areguments);
             if (areguments != null && areguments.Length > 0)
@@ -36,7 +37,7 @@ namespace PSDUnity.UGUI
             return scollbar.gameObject;
         }
 
-        public override UGUINode DrawLayer(GroupNode layer, UGUINode parent)
+        public override UGUINode DrawLayer(Data.GroupNode layer, UGUINode parent)
         {
             UGUINode node = CreateRootNode(layer.displayName,layer.rect, parent);
             Scrollbar scrollbar = node.InitComponent<Scrollbar>();
@@ -45,11 +46,11 @@ namespace PSDUnity.UGUI
             return node;
         }
 
-        private void DrawImages(List<ImgNode> images, Scrollbar scrollbar,UGUINode node)
+        private void DrawImages(List<Data.ImgNode> images, Scrollbar scrollbar,UGUINode node)
         {
             for (int i = 0; i < images.Count; i++)
             {
-                ImgNode image = images[i];
+                Data.ImgNode image = images[i];
                 UnityEngine.UI.Image graph = null;
 
                 if (MatchAddress(image.Name,rule.backgroundAddress))
@@ -79,7 +80,7 @@ namespace PSDUnity.UGUI
         /// </summary>
         /// <param name="scrollbar"></param>
         /// <param name="layer"></param>
-        private void SetScrollBarDirection(Scrollbar scrollbar,GroupNode layer)
+        private void SetScrollBarDirection(Scrollbar scrollbar,Data.GroupNode layer)
         {
             switch (layer.direction)
             {

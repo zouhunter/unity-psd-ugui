@@ -11,7 +11,7 @@ namespace PSDUnity.UGUI
             _suffix = "Group";
         }
 
-        public override void AnalysisAreguments(GroupNode layer, string[] areguments)
+        public override void AnalysisAreguments(Data.GroupNode layer, string[] areguments)
         {
             base.AnalysisAreguments(layer, areguments);
             if (areguments != null && areguments.Length > 1)
@@ -30,13 +30,13 @@ namespace PSDUnity.UGUI
             return new GameObject("Group", typeof(RectTransform));
         }
     
-        public override UGUINode DrawLayer(GroupNode layer, UGUINode parent)
+        public override UGUINode DrawLayer(Data.GroupNode layer, UGUINode parent)
         {
             UGUINode node = CreateRootNode(layer.displayName, layer.rect, parent);
 
             if (layer.children != null)
             {
-                foreach (GroupNode item in layer.children)
+                foreach (Data.GroupNode item in layer.children)
                 {
                    var childNode = ctrl.DrawLayer(item, node);
                     SetLayoutItem(childNode, item.rect);
@@ -44,7 +44,7 @@ namespace PSDUnity.UGUI
             }
             if (layer.images != null)
             {
-                foreach (ImgNode item in layer.images)
+                foreach (Data.ImgNode item in layer.images)
                 {
                     var childNode = ctrl.DrawImage(item, node);
                     SetLayoutItem(childNode, item.rect);
@@ -67,7 +67,7 @@ namespace PSDUnity.UGUI
         /// </summary>
         /// <param name="layer"></param>
         /// <param name="node"></param>
-        private void InitLayoutGroup(GroupNode layer, UGUINode node)
+        private void InitLayoutGroup(Data.GroupNode layer, UGUINode node)
         {
             HorizontalOrVerticalLayoutGroup group = null;
 

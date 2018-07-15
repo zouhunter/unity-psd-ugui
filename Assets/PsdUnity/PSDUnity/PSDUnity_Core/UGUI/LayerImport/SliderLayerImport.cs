@@ -14,7 +14,7 @@ namespace PSDUnity.UGUI
             _suffix = "Slider";
         }
 
-        public override void AnalysisAreguments(GroupNode layer, string[] areguments)
+        public override void AnalysisAreguments(Data.GroupNode layer, string[] areguments)
         {
             base.AnalysisAreguments(layer, areguments);
             if (areguments != null && areguments.Length > 0)
@@ -30,7 +30,7 @@ namespace PSDUnity.UGUI
             return slider.gameObject;
         }
 
-        public override UGUINode DrawLayer(GroupNode layer, UGUINode parent)
+        public override UGUINode DrawLayer(Data.GroupNode layer, UGUINode parent)
         {
             UGUINode node = CreateRootNode(layer.displayName,layer.rect,parent); //GameObject.Instantiate(temp) as UnityEngine.UI.Slider;
             UnityEngine.UI.Slider slider = node.InitComponent<UnityEngine.UI.Slider>();
@@ -58,11 +58,11 @@ namespace PSDUnity.UGUI
             return node;
         }
 
-        private void DrawHandle(ImgNode handle, UGUINode node,GroupNode layer)
+        private void DrawHandle(Data.ImgNode handle, UGUINode node,Data.GroupNode layer)
         {
             var slider = node.InitComponent<Slider>();
-            ImgNode bg = layer.images.Find(x => MatchAddress(x.Name, rule.backgroundAddress));
-            ImgNode fill = layer.images.Find(x => MatchAddress(x.Name, rule.fillAddress));
+            Data.ImgNode bg = layer.images.Find(x => MatchAddress(x.Name, rule.backgroundAddress));
+            Data.ImgNode fill = layer.images.Find(x => MatchAddress(x.Name, rule.fillAddress));
 
             var tempRect = fill != null ? fill : bg;
             var rect = new Rect(tempRect.rect.x, tempRect.rect.y, tempRect.rect.width - handle.rect.width, tempRect.rect.height);//x,y 为中心点的坐标！
@@ -98,7 +98,7 @@ namespace PSDUnity.UGUI
             };
         }
 
-        private void DrawBackground(ImgNode bg,UGUINode node)
+        private void DrawBackground(Data.ImgNode bg,UGUINode node)
         {
             var bgnode = ctrl.DrawImage(bg, node);
             var graph = bgnode.InitComponent<UnityEngine.UI.Image>();
@@ -106,7 +106,7 @@ namespace PSDUnity.UGUI
             PSDImporterUtility.SetPictureOrLoadColor(bg, graph);
         }
 
-        private void DrawFill(ImgNode fill, UGUINode node)
+        private void DrawFill(Data.ImgNode fill, UGUINode node)
         {
             var fillAreaNode = CreateNormalNode(new GameObject("Fill Area", typeof(RectTransform)), fill.rect,  node);
             var fileNode = ctrl.DrawImage(fill, fillAreaNode);
@@ -115,7 +115,7 @@ namespace PSDUnity.UGUI
             node.InitComponent<Slider>().fillRect = fileNode.InitComponent<RectTransform>();
         }
 
-        private void SetSliderDirection(Slider slider,GroupNode layer)
+        private void SetSliderDirection(Slider slider,Data.GroupNode layer)
         {
             var dir = layer.direction;
             switch (dir)

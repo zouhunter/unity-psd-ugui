@@ -19,7 +19,7 @@ namespace PSDUnity.UGUI
             return text.gameObject;
         }
 
-        public override UGUINode DrawImage(ImgNode image, UGUINode parent)
+        public override UGUINode DrawImage(Data.ImgNode image, UGUINode parent)
         {
             UGUINode node = CreateRootNode(image.Name, AdjustTextRect( image.rect,image.fontSize), parent);
             UnityEngine.UI.Text myText = node.InitComponent<Text>();

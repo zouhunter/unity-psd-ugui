@@ -10,27 +10,15 @@ using UnityEngine.EventSystems;
 using UnityEngine.Assertions.Must;
 using UnityEngine.Assertions.Comparers;
 using System.Collections;
-using UnityEditor;
 using System;
+using UnityEditor;
 using UnityEditorInternal;
 using System.Linq;
 using System.Reflection;
 
 namespace PSDUnity.Data
 {
-    public class RuleItem
-    {
-        public int id;
-        public string key;
-        public string fieldName;
-
-        public RuleItem(int id,string key, string fieldName)
-        {
-            this.id = id;
-            this.key = key;
-            this.fieldName = fieldName;
-        }
-    }
+  
     [CustomEditor(typeof(RuleObject))]
     public class RuleObjectDrawer : Editor
     {

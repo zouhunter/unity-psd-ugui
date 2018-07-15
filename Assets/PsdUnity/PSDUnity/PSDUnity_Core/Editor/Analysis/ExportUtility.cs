@@ -25,7 +25,7 @@ namespace PSDUnity.Analysis
         [MenuItem("Assets/Create/Psd-Exporter")]
         static void CreateTemp()
         {
-            var exporter = ScriptableObject.CreateInstance<Exporter>();
+            var exporter = ScriptableObject.CreateInstance<Data.Exporter>();
             exporter.psdFile = "";
             ProjectWindowUtil.CreateAsset(exporter, "exporter.asset");
         }
@@ -33,7 +33,7 @@ namespace PSDUnity.Analysis
 
         private static Vector2 maxSize { get; set; }
         public static RuleObject RuleObj { get { return exporter.ruleObj; } }
-        public static Exporter exporter { get; set; }
+        public static Data.Exporter exporter { get; set; }
         private static Vector2 rootSize { get; set; }
 
         private static string exportPath
@@ -53,7 +53,7 @@ namespace PSDUnity.Analysis
                 return null;
             }
         }
-        public static void InitPsdExportEnvrioment(Exporter obj, Vector2 rootSize0)
+        public static void InitPsdExportEnvrioment(Data.Exporter obj, Vector2 rootSize0)
         {
             exporter = obj;
             rootSize = rootSize0;
@@ -61,22 +61,22 @@ namespace PSDUnity.Analysis
         }
 
         private static int idSpan;
-        public static GroupNode[] CreatePictures(IPsdLayer[] rootLayers, Vector2 rootSize, Vector2 uiSize, bool forceSprite = false)
+        public static GroupNodeItem[] CreatePictures(IPsdLayer[] rootLayers, Vector2 rootSize, Vector2 uiSize, bool forceSprite = false)
         {
             maxSize = uiSize;
-            List<GroupNode> nodes = new List<GroupNode>();
+            List<GroupNodeItem> nodes = new List<GroupNodeItem>();
             foreach (PsdLayer rootLayer in rootLayers)
             {
                 if (rootLayer.IsGroup)
                 {
-                    var groupnode = new GroupNode(GetRectFromLayer(rootLayer), idSpan++, 0);
+                    var groupnode = new GroupNodeItem(GetRectFromLayer(rootLayer), idSpan++, 0);
                     groupnode.Analyzing(ExportUtility.RuleObj, rootLayer.Name);// (rootLayer,rootLayer));
                     RetriveLayerToSwitchModle(rootSize, rootLayer, groupnode, forceSprite);
                     nodes.Add(groupnode);
                 }
             }
 
-            var pictureData = new List<ImgNode>();
+            var pictureData = new List<Data.ImgNode>();
 
             foreach (var groupnode in nodes)
             {
@@ -84,7 +84,7 @@ namespace PSDUnity.Analysis
             }
 
             #region 去除名称重复
-            var simplyed = new List<ImgNode>();
+            var simplyed = new List<Data.ImgNode>();
             foreach (var item in pictureData)
             {
                 if (simplyed.Find(x => x.TextureName == item.TextureName) == null)
@@ -98,7 +98,7 @@ namespace PSDUnity.Analysis
             return nodes.ToArray();
         }
 
-        private static void SwitchCreateTexture(List<ImgNode> pictureData)
+        private static void SwitchCreateTexture(List<Data.ImgNode> pictureData)
         {
             //创建atlas(非全局)
             var atlasTextures = pictureData.FindAll(x => x.type == ImgType.AtlasImage && x.source != ImgSource.Globle);
@@ -114,7 +114,7 @@ namespace PSDUnity.Analysis
             SaveToTextures(ImgType.Texture, singleNodes.ToArray(), exporter);
         }
 
-        public static void ChargeTextures(Exporter exporter, GroupNode groupnode)
+        public static void ChargeTextures(Data.Exporter exporter, GroupNodeItem groupnode)
         {
             //重新加载
             var atlaspath = string.Format(exportPath + "/{0}.png", exporter.name);
@@ -124,7 +124,7 @@ namespace PSDUnity.Analysis
             Texture2D[] fileTextures = LoadAllObjectFromDir<Texture2D>(exportPath);// AssetDatabase.LoadAllAssetsAtPath(pictureInfo.exportPath).OfType<Texture2D>().ToArray();
             Sprite[] fileSingleSprites = LoadAllObjectFromDir<Sprite>(exportPath);// AssetDatabase.LoadAllAssetsAtPath(pictureInfo.exportPath).OfType<Sprite>().ToArray();
 
-            var pictureData = new List<ImgNode>();
+            var pictureData = new List<Data.ImgNode>();
             groupnode.GetImgNodes(pictureData);
 
             foreach (var item in pictureData)
@@ -197,7 +197,7 @@ namespace PSDUnity.Analysis
         /// <param name="exporter"></param>
         /// <param name="atlasName"></param>
         /// <returns></returns>
-        public static void SaveToAtlas(ImgNode[] imgNodes, Exporter exporter)
+        public static void SaveToAtlas(Data.ImgNode[] imgNodes, Data.Exporter exporter)
         {
             if (imgNodes.Length == 0) return;
             var textures = imgNodes.Where(x => x.texture != null).Select(x => x.texture).ToArray();
@@ -250,7 +250,7 @@ namespace PSDUnity.Analysis
         /// <param name="imgType"></param>
         /// <param name="singleNodes"></param>
         /// <param name="pictureInfo"></param>
-        public static void SaveToTextures(ImgType imgType, ImgNode[] singleNodes, Exporter pictureInfo)
+        public static void SaveToTextures(ImgType imgType, Data.ImgNode[] singleNodes,Data. Exporter pictureInfo)
         {
             foreach (var node in singleNodes)
             {
@@ -302,7 +302,7 @@ namespace PSDUnity.Analysis
             }
 
 
-            foreach (ImgNode node in singleNodes)
+            foreach (Data.ImgNode node in singleNodes)
             {
                 UnityEngine.Object.DestroyImmediate(node.texture);
             }
@@ -317,7 +317,7 @@ namespace PSDUnity.Analysis
         private static void ChargeTextureImportRule(TextureImporter textureImporter, RuleObject rule)
         {
             textureImporter.spritePixelsPerUnit = rule.spritePixelsPerUnit;
-            textureImporter.textureCompression = rule.textureCompression;
+            //textureImporter.textureCompression = rule.textureCompression;
             textureImporter.mipmapEnabled = rule.mipmapEnabled;
             textureImporter.isReadable = rule.isReadable;
             textureImporter.wrapMode = rule.wrapMode;
@@ -331,37 +331,37 @@ namespace PSDUnity.Analysis
         /// <param name="layer"></param>
         /// <param name="forceSprite"></param>
         /// <returns></returns>
-        public static ImgNode AnalysisLayer(string baseName, Vector2 rootSize, PsdLayer layer, bool forceSprite = false)
+        public static Data.ImgNode AnalysisLayer(string baseName, Vector2 rootSize, PsdLayer layer, bool forceSprite = false)
         {
-            ImgNode data = null;
+            Data.ImgNode data = null;
             var texture = CreateTexture(layer);
             var rect = GetRectFromLayer(layer);
             switch (layer.LayerType)
             {
                 case LayerType.Normal:
-                    data = new ImgNode(baseName, rect, texture).SetIndex(CalcuteLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
+                    data = new Data.ImgNode(baseName, rect, texture).SetIndex(CalcuteLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
                     break;
                 case LayerType.Color:
                     if (forceSprite)
                     {
-                        data = new ImgNode(baseName, rect, texture).SetIndex(CalcuteLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
+                        data = new Data.ImgNode(baseName, rect, texture).SetIndex(CalcuteLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
                     }
                     else
                     {
-                        data = new ImgNode(layer.Name, rect, GetLayerColor(layer)).SetIndex(CalcuteLayerID(layer));
+                        data = new Data.ImgNode(layer.Name, rect, GetLayerColor(layer)).SetIndex(CalcuteLayerID(layer));
                     }
                     break;
                 case LayerType.Text:
                     var textInfo = layer.Records.TextInfo;
                     var color = new Color(textInfo.color[0], textInfo.color[1], textInfo.color[2], textInfo.color[3]);
-                    data = new ImgNode(layer.Name, rect, textInfo.fontName, textInfo.fontSize, textInfo.text, color);
+                    data = new Data.ImgNode(layer.Name, rect, textInfo.fontName, textInfo.fontSize, textInfo.text, color);
                     break;
                 case LayerType.Complex:
                     if (!RuleObj.forceSprite)
                     {
                         Debug.LogError("you psd have some not supported layer.(defult layer is not supported)! \n make sure your layers is Intelligent object or color lump." + "\n ->Detail:" + layer.Name);
                     }
-                    data = new ImgNode(baseName, rect, texture).SetIndex(CalcuteLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
+                    data = new Data.ImgNode(baseName, rect, texture).SetIndex(CalcuteLayerID(layer)).Analyzing(ExportUtility.RuleObj, layer.Name);
                     break;
                 default:
                     break;
@@ -480,7 +480,7 @@ namespace PSDUnity.Analysis
         /// <param name="layer"></param>
         /// <param name="group"></param>
         /// <param name="OnRetrive"></param>
-        public static void RetriveLayerToSwitchModle(Vector2 rootSize, PsdLayer layer, GroupNode group, bool forceSprite = false)
+        public static void RetriveLayerToSwitchModle(Vector2 rootSize, PsdLayer layer, GroupNodeItem group, bool forceSprite = false)
         {
             if (!layer.IsGroup)
             {
@@ -496,7 +496,7 @@ namespace PSDUnity.Analysis
 
                     if (child.IsGroup)
                     {
-                        GroupNode childNode = new GroupNode(GetRectFromLayer(child), idSpan++, group.depth + 1);
+                        GroupNodeItem childNode = new GroupNodeItem(GetRectFromLayer(child), idSpan++, group.depth + 1);
                         childNode.Analyzing(RuleObj, child.Name);
                         group.AddChild(childNode);
 
@@ -508,7 +508,7 @@ namespace PSDUnity.Analysis
 
                     else
                     {
-                        ImgNode imgnode = AnalysisLayer(group.displayName, rootSize, child, forceSprite);
+                        Data.ImgNode imgnode = AnalysisLayer(group.displayName, rootSize, child, forceSprite);
                         if (imgnode != null)
                         {
                             group.images.Add(imgnode);

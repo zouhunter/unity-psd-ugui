@@ -19,7 +19,7 @@ namespace PSDUnity.UGUI
             return new GameObject("Grid", typeof(GridLayoutGroup));
             
         }
-        public override void AnalysisAreguments(GroupNode layer, string[] areguments)
+        public override void AnalysisAreguments(Data.GroupNode layer, string[] areguments)
         {
             base.AnalysisAreguments(layer, areguments);
             if (areguments != null && areguments.Length > 1)
@@ -33,14 +33,14 @@ namespace PSDUnity.UGUI
                 layer.constraintCount = int.Parse(key);
             }
         }
-        public override UGUINode DrawLayer(GroupNode layer, UGUINode parent)
+        public override UGUINode DrawLayer(Data.GroupNode layer, UGUINode parent)
         {
             UGUINode node = CreateRootNode(layer.displayName, layer.rect, parent);
             node.anchoType = AnchoType.Up | AnchoType.Left;
 
             if (layer.children != null)
             {
-                ctrl.DrawLayers(layer.children.ConvertAll(x => x as GroupNode).ToArray(), node);
+                ctrl.DrawLayers(layer.children.ConvertAll(x => x as Data.GroupNode).ToArray(), node);
             }
             if (layer.images != null)
             {
@@ -52,7 +52,7 @@ namespace PSDUnity.UGUI
             return node;
         }
 
-        private void InitGrid(UGUINode node,GroupNode layer)
+        private void InitGrid(UGUINode node,Data.GroupNode layer)
         {
             GridLayoutGroup gridLayoutGroup = node.InitComponent<GridLayoutGroup>();
 

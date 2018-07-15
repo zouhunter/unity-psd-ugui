@@ -14,7 +14,7 @@ namespace PSDUnity.UGUI
            return new GameObject("Image", typeof(Image));
         }
 
-        public override UGUINode DrawImage(ImgNode image, UGUINode parent)
+        public override UGUINode DrawImage(Data.ImgNode image, UGUINode parent)
         {
             UGUINode node = CreateRootNode(image.Name,image.rect, parent);
             UnityEngine.UI.Image pic = node.InitComponent<UnityEngine.UI.Image>();

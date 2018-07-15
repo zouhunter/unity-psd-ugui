@@ -21,7 +21,7 @@ namespace PSDUnity.Analysis
         private PsdDocument psd;
         private float menuRetio = 0.3f;
         private RuleObject ruleObj;
-        private Exporter exporter;
+        private Data.Exporter exporter;
         private void OnEnable()
         {
             psdPath = EditorPrefs.GetString(Prefs_pdfPath);
@@ -144,7 +144,7 @@ namespace PSDUnity.Analysis
 
             if (exporter == null)
             {
-                exporter = ScriptableObject.CreateInstance<Exporter>();
+                exporter = ScriptableObject.CreateInstance<Data.Exporter>();
             }
             exporter.ruleObj = ruleObj;
             exporter.name = "exporter" + System.DateTime.UtcNow.ToFileTimeUtc();
@@ -152,7 +152,7 @@ namespace PSDUnity.Analysis
             EditorUtility.SetDirty(exporter);
 
             ExportUtility.InitPsdExportEnvrioment(exporter, new Vector2(psd.Width, psd.Height));
-            var rootNode = new GroupNode(new Rect(Vector2.zero, exporter.ruleObj.defultUISize), 0, -1);
+            var rootNode = new GroupNodeItem(new Rect(Vector2.zero, exporter.ruleObj.defultUISize), 0, -1);
             rootNode.displayName = exporter.name;
 
             var groupDatas = ExportUtility.CreatePictures(psdLayers, new Vector2(psd.Width, psd.Height), exporter.ruleObj.defultUISize, exporter.ruleObj.forceSprite);
@@ -165,7 +165,9 @@ namespace PSDUnity.Analysis
                     ExportUtility.ChargeTextures(exporter, groupData);
                 }
             }
-            TreeViewUtility.TreeToList<GroupNode>(rootNode, exporter.groups, true);
+            var list = new List<GroupNodeItem>();
+            TreeViewUtility.TreeToList<GroupNodeItem>(rootNode, list, true);
+            exporter.groups = list.ConvertAll(x => x.data);
             EditorUtility.SetDirty(exporter);
         }
 

@@ -18,17 +18,17 @@ namespace PSDUnity
             public static GUIStyle headerBackground = "RL Header";
         }
 
-        private GroupNode _root;
-        public GroupNode root { get {
+        private GroupNodeItem _root;
+        public GroupNodeItem root { get {
                 return _root;
             } set {
                 _root = value; Reload(); }
         }
         private Dictionary<int, bool> imgDic = new Dictionary<int, bool>();
-        private List<GroupNode> rows = new List<GroupNode>();
+        private List<GroupNodeItem> rows = new List<GroupNodeItem>();
         private Dictionary<int, ReorderableList> imgListDic = new Dictionary<int, ReorderableList>();
         private const float imgNodeHeight = 40;
-        public List<GroupNode> selected = new List<GroupNode>();
+        public List<GroupNodeItem> selected = new List<GroupNodeItem>();
 
         public ExporterTreeView(TreeViewState state) : base(state)
         {
@@ -38,7 +38,7 @@ namespace PSDUnity
         protected override TreeViewItem BuildRoot()
         {
             if (root == null){
-                root = new GroupNode(new Rect(), 0, -1);
+                root = new GroupNodeItem(new Rect(), 0, -1);
             }
             return root;
         }
@@ -49,7 +49,7 @@ namespace PSDUnity
                 Debug.LogError("tree model root is null. did you call SetData()?");
             }
             rows.Clear();
-            AddChildrenRecursive<GroupNode>(rootItem as GroupNode, 0, rows, (x) => { return new GroupNode(x.rect, x.id, x.depth); });
+            AddChildrenRecursive<GroupNodeItem>(rootItem as GroupNodeItem, 0, rows, (x) => { return new GroupNodeItem(x.rect, x.id, x.depth); });
             var list = rows.ConvertAll<TreeViewItem>(x => x);
             return list;
         }
@@ -57,7 +57,7 @@ namespace PSDUnity
         {
             if (imgDic.ContainsKey(item.id) && imgDic[item.id])
             {
-                return GetImgsHeight((item as GroupNode).images);
+                return GetImgsHeight((item as GroupNodeItem).images);
             }
             return 30f;
         }
@@ -138,7 +138,7 @@ namespace PSDUnity
             if (Event.current.type == EventType.MouseDown && args.rowRect.Contains(Event.current.mousePosition))
                 SelectionClick(args.item, false);
 
-            var item = (GroupNode)args.item;
+            var item = (GroupNodeItem)args.item;
             var contentIndent = GetContentIndent(item);
 
             // Background
@@ -163,13 +163,13 @@ namespace PSDUnity
             if (imgDic[item.id])
                 ControlsGUI(controlsRect, item);
         }
-        private void ControlsGUI(Rect controlsRect, GroupNode item)
+        private void ControlsGUI(Rect controlsRect, GroupNodeItem item)
         {
             var rectRect = new Rect(controlsRect.x, controlsRect.y, 120, controlsRect.width * 0.2f);
             item.rect = EditorGUI.RectField(rectRect, item.rect);
             if (!imgListDic.ContainsKey(item.id))
             {
-                var reorder = new ReorderableList(item.images, typeof(ImgNode),true,true,true,true);
+                var reorder = new ReorderableList(item.images, typeof(Data.ImgNode),true,true,true,true);
                 reorder.elementHeight = imgNodeHeight;
                 reorder.drawHeaderCallback = (r) => { EditorGUI.LabelField(r,"Contents"); };
                 reorder.drawElementCallback =( rect, index,isActive, isFocused)=> DrawElementCallBack(item.images,rect,index,isActive,isFocused);
@@ -179,7 +179,7 @@ namespace PSDUnity
             var imgsRect = new Rect(controlsRect.x + 120, controlsRect.y, controlsRect.width - 120, controlsRect.height);
             imgListDic[item.id].DoList(imgsRect);
         }
-        void HeaderGUI(Rect headerRect, string label, GroupNode item)
+        void HeaderGUI(Rect headerRect, string label, GroupNodeItem item)
         {
             headerRect.y += 1f;
             HeaderInfos(headerRect, item);
@@ -198,7 +198,7 @@ namespace PSDUnity
             labelRect.xMin += toggleRect.width + 2f;
             GUI.Label(labelRect, label);
         }
-        void HeaderInfos(Rect rect, GroupNode item)
+        void HeaderInfos(Rect rect, GroupNodeItem item)
         {
             var typeRect = new Rect(EditorGUIUtility.currentViewWidth - 110, rect.y, 100, rect.height);
 //            var type = (GroupType)EditorGUI.EnumPopup(typeRect, item.groupType, EditorStyles.miniLabel);
@@ -282,11 +282,11 @@ namespace PSDUnity
 
             base.OnGUI(rect);
         }
-        private float GetImgsHeight(List<ImgNode> imgList)
+        private float GetImgsHeight(List<Data.ImgNode> imgList)
         {
             return imgNodeHeight * imgList.Count + 70;
         }
-        private void DrawElementCallBack(List<ImgNode> imgs,Rect rect, int index, bool isActive, bool isFocused)
+        private void DrawElementCallBack(List<Data.ImgNode> imgs,Rect rect, int index, bool isActive, bool isFocused)
         {
             var img = imgs[index];
             var nameRect = new Rect(rect.x, rect.y, 100, EditorGUIUtility.singleLineHeight);
@@ -378,7 +378,7 @@ namespace PSDUnity
                         bool validDrag = ValidDrag(args.parentItem, draggedRows);
                         if (args.performDrop && validDrag)
                         {
-                            var parentData = (GroupNode)args.parentItem;
+                            var parentData = (GroupNodeItem)args.parentItem;
                             OnDropDraggedElementsAtIndex(draggedRows, parentData, args.insertAtIndex == -1 ? 0 : args.insertAtIndex);
                         }
                         return validDrag ? DragAndDropVisualMode.Move : DragAndDropVisualMode.None;
@@ -397,11 +397,11 @@ namespace PSDUnity
             }
         }
 
-        public virtual void OnDropDraggedElementsAtIndex(List<TreeViewItem> draggedRows, GroupNode parent, int insertIndex)
+        public virtual void OnDropDraggedElementsAtIndex(List<TreeViewItem> draggedRows, GroupNodeItem parent, int insertIndex)
         {
             var draggedElements = new List<TreeViewItem>();
             foreach (var x in draggedRows)
-                draggedElements.Add(((GroupNode)x));
+                draggedElements.Add(((GroupNodeItem)x));
 
             var selectedIDs = draggedElements.Select(x => x.id).ToArray();
             MoveElements(parent, insertIndex, draggedElements);

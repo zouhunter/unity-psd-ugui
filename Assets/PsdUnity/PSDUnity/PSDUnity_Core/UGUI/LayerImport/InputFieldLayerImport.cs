@@ -44,7 +44,7 @@ namespace PSDUnity.UGUI
             return inputfield.gameObject;
         }
 
-        public override UGUINode DrawLayer(GroupNode layer, UGUINode parent)
+        public override UGUINode DrawLayer(Data.GroupNode layer, UGUINode parent)
         {
             UGUINode node = CreateRootNode(layer.displayName, layer.rect, parent);
             UnityEngine.UI.InputField inputfield = node.InitComponent<UnityEngine.UI.InputField>();
@@ -52,13 +52,13 @@ namespace PSDUnity.UGUI
             return node;
         }
 
-        private void DrawImages(InputField inputfield, UGUINode node, GroupNode layer)
+        private void DrawImages(InputField inputfield, UGUINode node, Data.GroupNode layer)
         {
             if (layer.images != null)
             {
                 for (int i = 0; i < layer.images.Count; i++)
                 {
-                    ImgNode image = layer.images[i];
+                    Data.ImgNode image = layer.images[i];
 
                     if (image.type == ImgType.Label && MatchAddress(image.Name, rule.titleAddress))
                     {

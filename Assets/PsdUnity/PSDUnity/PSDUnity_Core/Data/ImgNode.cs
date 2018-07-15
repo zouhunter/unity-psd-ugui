@@ -1,16 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-namespace PSDUnity
+namespace PSDUnity.Data
 {
-    public enum SuffixType
-    {
-        appendRectHash,//图片的Rect
-        appendIndex,//顺序
-        appendGroup//组的名字
-    }
     [Serializable]
-    public class ImgNode : INameAnalyzing<ImgNode>
+    public class ImgNode : INameAnalyzing<Data.ImgNode>
     {
         public string Name;
         private int hashImage = 0;
@@ -81,7 +75,7 @@ namespace PSDUnity
             this.rect = rect;
         }
 
-        public ImgNode SetIndex(int index)
+        public Data.ImgNode SetIndex(int index)
         {
             this.index = index;
             return this;
@@ -91,7 +85,7 @@ namespace PSDUnity
         /// 将名字转换（去除标记性字符）
         /// </summary>
         /// <returns></returns>
-        public ImgNode Analyzing(RuleObject Rule, string name)
+        public Data.ImgNode Analyzing(RuleObject Rule, string name)
         {
             this.Name = Rule.AnalySisImgName(name, out source, out type);
             this.customNameType = Rule.nameType;

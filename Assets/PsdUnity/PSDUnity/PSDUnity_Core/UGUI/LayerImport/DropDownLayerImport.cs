@@ -69,7 +69,7 @@ namespace PSDUnity.UGUI
             return dropdown.gameObject;
         }
 
-        public override UGUINode DrawLayer(GroupNode layer, UGUINode parent)
+        public override UGUINode DrawLayer(Data.GroupNode layer, UGUINode parent)
         {
             UGUINode node = CreateRootNode(layer.displayName, layer.rect, parent);
 
@@ -102,11 +102,11 @@ namespace PSDUnity.UGUI
         /// <param name="dropdown"></param>
         /// <param name="toggle"></param>
         /// <param name="content"></param>
-        private void DrawImages(UGUINode node,GroupNode layer,Dropdown dropdown,Toggle toggle,RectTransform content)
+        private void DrawImages(UGUINode node, Data.GroupNode layer,Dropdown dropdown,Toggle toggle,RectTransform content)
         {
             for (int i = 0; i < layer.images.Count; i++)
             {
-                ImgNode image = layer.images[i];
+                Data.ImgNode image = layer.images[i];
                 if (MatchIDAddress(image.Name, 1, rule.backgroundsFormat))
                 {
                     PSDImporterUtility.SetPictureOrLoadColor(image, dropdown.image);
@@ -151,13 +151,13 @@ namespace PSDUnity.UGUI
         /// <param name="layer"></param>
         /// <param name="tempNode"></param>
         /// <param name="scrollRect"></param>
-        private void DrawSubLayers(GroupNode layer,UGUINode tempNode,ScrollRect scrollRect)
+        private void DrawSubLayers(Data.GroupNode layer,UGUINode tempNode,ScrollRect scrollRect)
         {
             if (layer.children != null)
             {
                 for (int i = 0; i < layer.children.Count; i++)
                 {
-                    GroupNode child = layer.children[i] as GroupNode;
+                    Data.GroupNode child = layer.children[i] as Data.GroupNode;
                     if (MatchAddress(child.displayName,rule.vbarAddress))
                     {
                         UGUINode barNode = ctrl.DrawLayer(child, tempNode);

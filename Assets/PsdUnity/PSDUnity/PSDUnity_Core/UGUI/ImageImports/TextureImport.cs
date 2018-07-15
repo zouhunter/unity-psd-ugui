@@ -14,7 +14,7 @@ namespace PSDUnity.UGUI
            return new GameObject("RawImage", typeof(RawImage));
         }
 
-        public override UGUINode DrawImage(ImgNode image, UGUINode parent)
+        public override UGUINode DrawImage(Data.ImgNode image, UGUINode parent)
         {
             UGUINode node = CreateRootNode(image.Name, image.rect, parent);
             UnityEngine.UI.RawImage pic = node.InitComponent<UnityEngine.UI.RawImage>();
