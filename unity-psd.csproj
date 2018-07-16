@@ -82,6 +82,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Demos\2.CustomControls\RundSliderLayerImporter.cs" />
     <Compile Include="Assets\Demos\3.Runtime\RuntimeUGUITest.cs" />
     <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\AdditionalLayerInformation.cs" />
     <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\BlendMode.cs" />

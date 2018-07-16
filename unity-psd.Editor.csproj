@@ -130,7 +130,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Demos\2.CustomControls\Editor\RundSliderLayerImporter.cs" />
     <Compile Include="Assets\Editor\Tests\PsdUnityTest.cs" />
     <Compile Include="Assets\Editor\Tests\TreeTest\TreeDataModel\TreeElement.cs" />
     <Compile Include="Assets\Editor\Tests\TreeTest\TreeDataModel\TreeElementUtility.cs" />

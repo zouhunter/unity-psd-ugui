@@ -69,6 +69,14 @@ namespace PSDUnity
             InitPreviewIcons();
         }
 
+        [InitializeOnLoadMethod]
+        private static void ResestTypes()
+        {
+            _layerImportTypes = null;
+            _layerImportEditorTypes = null;
+            _layerImportEditorOptions = null;
+        }
+
         static void InitPreviewIcons()
         {
             previewIcons.Add(LayerType.Group.ToString(), EditorGUIUtility.FindTexture("GameObject Icon"));
@@ -185,6 +193,7 @@ namespace PSDUnity
                     var userType = asbTypes[j];
                     if (userType.IsSubclassOf(baseType) && !userType.IsAbstract && !types.Contains(userType))
                     {
+                        Debug.Log(userType);
                         types.Add(userType);
                     }
                 }
