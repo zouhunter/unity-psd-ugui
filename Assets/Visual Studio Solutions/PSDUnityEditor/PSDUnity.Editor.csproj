@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{50AB4CAA-FCDE-4B78-8587-6AD162E902A4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PSDUnityEditor</RootNamespace>
+    <AssemblyName>PSDUnityEditor</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Assets\StreamingAssets\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\StreamingAssets\bin\Release\</OutputPath>
+    <DefineConstants>TRACE;VS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ntreev.Library.Psd, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\StreamingAssets\bin\Release\Ntreev.Library.Psd.dll</HintPath>
+    </Reference>
+    <Reference Include="PsdUnityRuntime, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\StreamingAssets\bin\Release\PsdUnityRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEditor">
+      <HintPath>..\..\StreamingAssets\bin\Release\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\StreamingAssets\bin\Release\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\StreamingAssets\bin\Release\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Editor\Analysis\AnalysisUtility.cs" />
+    <Compile Include="Editor\Analysis\ExporterTreeView.cs" />
+    <Compile Include="Editor\Analysis\ExportUtility.cs" />
+    <Compile Include="Editor\Analysis\PreviewItem.cs" />
+    <Compile Include="Editor\Analysis\PreviewWindow.cs" />
+    <Compile Include="Editor\Analysis\PsdPreviewer.cs" />
+    <Compile Include="Editor\Analysis\PSDPreviewWindow.cs" />
+    <Compile Include="Editor\Analysis\RuleHelper.cs" />
+    <Compile Include="Editor\Analysis\TreeViewUtil.cs" />
+    <Compile Include="Editor\ExporterDrawer.cs" />
+    <Compile Include="Editor\GroupHolderDrawer.cs" />
+    <Compile Include="Editor\GroupNodeDrawer.cs" />
+    <Compile Include="Editor\GroupNodeEditor.cs" />
+    <Compile Include="Editor\ImgNodeDrawer.cs" />
+    <Compile Include="Editor\LayerEditor.cs" />
+    <Compile Include="Editor\LayerImportDrawer.cs" />
+    <Compile Include="Editor\RuleObjectDrawer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Editor\Analysis.meta" />
+    <None Include="Editor\Analysis\AnalysisUtility.cs.meta" />
+    <None Include="Editor\Analysis\ExporterTreeView.cs.meta" />
+    <None Include="Editor\Analysis\ExportUtility.cs.meta" />
+    <None Include="Editor\Analysis\PreviewItem.cs.meta" />
+    <None Include="Editor\Analysis\PreviewWindow.cs.meta" />
+    <None Include="Editor\Analysis\PsdPreviewer.cs.meta" />
+    <None Include="Editor\Analysis\PSDPreviewWindow.cs.meta" />
+    <None Include="Editor\Analysis\RuleHelper.cs.meta" />
+    <None Include="Editor\Analysis\TreeViewUtil.cs.meta" />
+    <None Include="Editor\ExporterDrawer.cs.meta" />
+    <None Include="Editor\GroupHolderDrawer.cs.meta" />
+    <None Include="Editor\GroupNodeDrawer.cs.meta" />
+    <None Include="Editor\GroupNodeEditor.cs.meta" />
+    <None Include="Editor\ImgNodeDrawer.cs.meta" />
+    <None Include="Editor\LayerEditor.cs.meta" />
+    <None Include="Editor\LayerImportDrawer.cs.meta" />
+    <None Include="Editor\LayerImportEditor.meta" />
+    <None Include="Editor\RuleObjectDrawer.cs.meta" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Editor\LayerImportEditor\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

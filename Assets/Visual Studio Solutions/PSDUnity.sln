@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PsdUnity.Runtime", "PsdUnityRuntime\PsdUnity.Runtime.csproj", "{B580A926-79CF-45B1-A52A-E9D27AA693E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSDUnity.Editor", "PSDUnityEditor\PSDUnity.Editor.csproj", "{50AB4CAA-FCDE-4B78-8587-6AD162E902A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ntreev.Library.Psd", "Ntreev.Library.Psd\Ntreev.Library.Psd.csproj", "{07F6C8D2-8B72-48AC-A6A4-4BB60EA681C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B580A926-79CF-45B1-A52A-E9D27AA693E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B580A926-79CF-45B1-A52A-E9D27AA693E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B580A926-79CF-45B1-A52A-E9D27AA693E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B580A926-79CF-45B1-A52A-E9D27AA693E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50AB4CAA-FCDE-4B78-8587-6AD162E902A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50AB4CAA-FCDE-4B78-8587-6AD162E902A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50AB4CAA-FCDE-4B78-8587-6AD162E902A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50AB4CAA-FCDE-4B78-8587-6AD162E902A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07F6C8D2-8B72-48AC-A6A4-4BB60EA681C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07F6C8D2-8B72-48AC-A6A4-4BB60EA681C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07F6C8D2-8B72-48AC-A6A4-4BB60EA681C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07F6C8D2-8B72-48AC-A6A4-4BB60EA681C3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

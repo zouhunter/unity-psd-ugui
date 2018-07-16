@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B580A926-79CF-45B1-A52A-E9D27AA693E6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PsdUnityRuntime</RootNamespace>
+    <AssemblyName>PsdUnityRuntime</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\StreamingAssets\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\StreamingAssets\bin\Release\</OutputPath>
+    <DefineConstants>TRACE;VS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ntreev.Library.Psd, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\StreamingAssets\bin\Release\Ntreev.Library.Psd.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\StreamingAssets\bin\Release\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\StreamingAssets\bin\Release\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PSDUnity_Core\Attributes\RuleTypeAttribute.cs" />
+    <Compile Include="PSDUnity_Core\Const\PSDUnityConst.cs" />
+    <Compile Include="PSDUnity_Core\Data\Exporter.cs" />
+    <Compile Include="PSDUnity_Core\Data\GroupNode.cs" />
+    <Compile Include="PSDUnity_Core\Data\ImgNode.cs" />
+    <Compile Include="PSDUnity_Core\Data\RuleItem.cs" />
+    <Compile Include="PSDUnity_Core\Data\RuleObject.cs" />
+    <Compile Include="PSDUnity_Core\Enum\AnchoType.cs" />
+    <Compile Include="PSDUnity_Core\Enum\Direction.cs" />
+    <Compile Include="PSDUnity_Core\Enum\GroupType.cs" />
+    <Compile Include="PSDUnity_Core\Enum\ImageSource.cs" />
+    <Compile Include="PSDUnity_Core\Enum\ImageType.cs" />
+    <Compile Include="PSDUnity_Core\Enum\SuffixType.cs" />
+    <Compile Include="PSDUnity_Core\Interface\INameAnalyzing.cs" />
+    <Compile Include="PSDUnity_Core\UGUI\Core\PSDImportCtrl.cs" />
+    <Compile Include="PSDUnity_Core\UGUI\Core\PSDImporterUtility.cs" />
+    <Compile Include="PSDUnity_Core\UGUI\Core\TemplateGenerater.cs" />
+    <Compile Include="PSDUnity_Core\UGUI\Data\UGUINode.cs" />
+    <Compile Include="PSDUnity_Core\UGUI\ImageImports\SpriteImport.cs" />
+    <Compile Include="PSDUnity_Core\UGUI\ImageImports\TextImport.cs" />
+    <Compile Include="PSDUnity_Core\UGUI\ImageImports\TextureImport.cs" />
+    <Compile Include="PSDUnity_Core\UGUI\Interface\ImageImport.cs" />
+    <Compile Include="PSDUnity_Core\UGUI\Interface\Import.cs" />
+    <Compile Include="PSDUnity_Core\UGUI\Interface\LayerImport.cs" />
+    <Compile Include="PSDUnity_Core\UGUI\LayerImport\ButtonLayerImport.cs" />
+    <Compile Include="PSDUnity_Core\UGUI\LayerImport\DropDownLayerImport.cs" />
+    <Compile Include="PSDUnity_Core\UGUI\LayerImport\GridLayerImport.cs" />
+    <Compile Include="PSDUnity_Core\UGUI\LayerImport\GroupLayerImport.cs" />
+    <Compile Include="PSDUnity_Core\UGUI\LayerImport\InputFieldLayerImport.cs" />
+    <Compile Include="PSDUnity_Core\UGUI\LayerImport\PanelLayerImport.cs" />
+    <Compile Include="PSDUnity_Core\UGUI\LayerImport\ScrollBarLayerImport.cs" />
+    <Compile Include="PSDUnity_Core\UGUI\LayerImport\ScrollViewLayerImport.cs" />
+    <Compile Include="PSDUnity_Core\UGUI\LayerImport\SliderLayerImport.cs" />
+    <Compile Include="PSDUnity_Core\UGUI\LayerImport\ToggleLayerImport.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PSDUnity_Core\UGUI\Prefabs\Button.prefab" />
+    <None Include="PSDUnity_Core\UGUI\Prefabs\Canvas.prefab" />
+    <None Include="PSDUnity_Core\UGUI\Prefabs\Dropdown.prefab" />
+    <None Include="PSDUnity_Core\UGUI\Prefabs\Empty.prefab" />
+    <None Include="PSDUnity_Core\UGUI\Prefabs\Grid.prefab" />
+    <None Include="PSDUnity_Core\UGUI\Prefabs\Group.prefab" />
+    <None Include="PSDUnity_Core\UGUI\Prefabs\Image.prefab" />
+    <None Include="PSDUnity_Core\UGUI\Prefabs\InputField.prefab" />
+    <None Include="PSDUnity_Core\UGUI\Prefabs\RawImage.prefab" />
+    <None Include="PSDUnity_Core\UGUI\Prefabs\Scrollbar.prefab" />
+    <None Include="PSDUnity_Core\UGUI\Prefabs\ScrollView.prefab" />
+    <None Include="PSDUnity_Core\UGUI\Prefabs\Slider.prefab" />
+    <None Include="PSDUnity_Core\UGUI\Prefabs\Text.prefab" />
+    <None Include="PSDUnity_Core\UGUI\Prefabs\Toggle.prefab" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

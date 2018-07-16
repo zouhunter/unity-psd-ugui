@@ -14,9 +14,7 @@ Properties/
 *.pdb
 *.unitypackage
 *.exe
-*.csproj
 *.unityproj
-*.sln
 *.suo
 *.tmp
 *.user
