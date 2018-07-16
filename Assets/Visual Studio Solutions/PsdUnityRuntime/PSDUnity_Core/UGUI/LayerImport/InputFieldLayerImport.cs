@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace PSDUnity.UGUI
 {
-    internal class InputFieldLayerImport : LayerImport
+    public class InputFieldLayerImport : LayerImport
     {
         public InputFieldLayerImport()
         {

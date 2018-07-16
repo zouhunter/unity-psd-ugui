@@ -18,85 +18,30 @@ using System.Reflection;
 
 namespace PSDUnity.Data
 {
-  
+
     [CustomEditor(typeof(RuleObject))]
     public class RuleObjectDrawer : Editor
     {
         private bool isGloble;
         private int selected;
-        private string[] options = { "图片生成", "资源导入", "字符匹配"   };
+        private string[] options = { "图片生成", "资源导入", "字符匹配" };
         private Dictionary<int, Dictionary<string, List<SerializedProperty>>> propDic;
         private List<ReorderableList> reorderLists = new List<ReorderableList>();
         private SerializedObject tempObj;
         private SerializedProperty scriptProp;
         private Dictionary<string, List<SerializedProperty>> currentPropertys { get { return propDic[selected]; } }
-
+        private int index = 0;
         private void OnEnable()
         {
             isGloble = RuleHelper.IsGlobleRule(target as RuleObject);
-            InitPropertys();
-            ChargeCurrent();
-            LoadLayerImports();
-        }
-
-        private void LoadLayerImports()
-        {
-            var assetPath = AssetDatabase.GetAssetPath(target);
-            if (string.IsNullOrEmpty(assetPath)) return;
-            
-
-            var ruleObj = target as RuleObject;
-            var types = LoadAllLayerImpoters();
-            foreach (var layerType in types)
+            if (target == null) DestroyImmediate(this);
+            else
             {
-                var importer = ruleObj.layerImports.Find(x =>x != null &&  x.GetType() == layerType);
-                if (importer == null)
-                {
-                    var path = AssetDatabase.GetAssetPath(ruleObj);
-                    var oldItems = AssetDatabase.LoadAllAssetsAtPath(path);
-                    var oldItem = oldItems.Where(x => x is UGUI.LayerImport && x.name == layerType.Name).FirstOrDefault();
-                    if (oldItem == null)
-                    {
-                        importer = ScriptableObject.CreateInstance(layerType) as UGUI.LayerImport;
-                        importer.name = layerType.Name;
-                        Debug.Log("add new:" + layerType.Name);
-                        AssetDatabase.AddObjectToAsset(importer, path);
-                        ruleObj.layerImports.Add(importer);
-                    }
-                    else
-                    {
-                        ruleObj.layerImports.Add(oldItem as UGUI.LayerImport);
-                        //Debug.Log(oldItem);
-                    }
-                }
-                else
-                {
-                    //Debug.Log(importer);
-                }
+                InitPropertys();
+                ChargeCurrent();
+                Debug.Log("OnEnable:" + index++);
+                RuleHelper.LoadLayerImports(target as RuleObject);
             }
-            EditorUtility.SetDirty(ruleObj);
-            AssetDatabase.Refresh();
-            AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
-        }
-
-        private Type[] LoadAllLayerImpoters()
-        {
-            var types = new List<Type>();
-            var innerTypes = typeof(UGUI.LayerImport).Assembly.GetTypes().Where(x => x.IsSubclassOf(typeof(UGUI.LayerImport)) && !x.IsAbstract).ToArray();
-            types.AddRange(innerTypes);
-            var userTypes = Assembly.Load("Assembly-CSharp").GetTypes().Where(x => x.IsSubclassOf(typeof(UGUI.LayerImport)) && !x.IsAbstract).ToArray();
-            foreach (var userType in userTypes)
-            {
-                if (!types.Contains(userType))
-                {
-                    types.Add(userType);
-                }
-                else
-                {
-                    Debug.Log("ignore:" + userType);
-                }
-            }
-            return types.ToArray() ;
         }
 
         public override void OnInspectorGUI()
@@ -174,13 +119,15 @@ namespace PSDUnity.Data
                 var key = propDic.Key;
                 var list = propDic.Value;
                 var reorderList = new ReorderableList(list, typeof(SerializedProperty), true, true, false, false);
-                reorderList.drawHeaderCallback = (rect)=> {
+                reorderList.drawHeaderCallback = (rect) =>
+                {
                     var labelRect = new Rect(rect.x, rect.y, rect.width - 60, rect.height);
-                    EditorGUI.LabelField(labelRect,key);
+                    EditorGUI.LabelField(labelRect, key);
                     var resetRect = new Rect(rect.width - 60, rect.y, 60, rect.height);
                     if (GUI.Button(resetRect, "重置", EditorStyles.miniButtonRight))
                     {
-                        if (tempObj == null){
+                        if (tempObj == null)
+                        {
                             tempObj = new SerializedObject(RuleHelper.GetRuleObj());
                         }
 
@@ -192,16 +139,18 @@ namespace PSDUnity.Data
                         }
                     }
                 };
-                reorderList.elementHeightCallback = (index)=> {
+                reorderList.elementHeightCallback = (index) =>
+                {
                     var property = currentPropertys[key][index];
-                    return EditorGUI.GetPropertyHeight(property,null,true);
+                    return EditorGUI.GetPropertyHeight(property, null, true);
                 };
-                reorderList.drawElementCallback = ( rect,  index,  isActive,  isFocused)=> {
-                    EditorGUI.PropertyField(rect, currentPropertys[key][index],true);
+                reorderList.drawElementCallback = (rect, index, isActive, isFocused) =>
+                {
+                    EditorGUI.PropertyField(rect, currentPropertys[key][index], true);
                 };
                 reorderLists.Add(reorderList);
             }
-            
+
         }
 
         public static void CopyPropertyValue(SerializedProperty destProperty, SerializedProperty sourceProperty)
@@ -294,13 +243,13 @@ namespace PSDUnity.Data
                     Debug.LogError(reorderList);
                 }
             }
-           
+
         }
 
         private void InitPropertys()
         {
             scriptProp = serializedObject.FindProperty("m_Script");
-            propDic = new Dictionary<int,Dictionary<string, List<SerializedProperty>>>();
+            propDic = new Dictionary<int, Dictionary<string, List<SerializedProperty>>>();
             var list = GetRuleItems();
             foreach (var item in list)
             {
@@ -309,7 +258,7 @@ namespace PSDUnity.Data
                 {
                     if (propDic.ContainsKey(item.id))
                     {
-                        if(propDic[item.id].ContainsKey(item.key))
+                        if (propDic[item.id].ContainsKey(item.key))
                         {
                             propDic[item.id][item.key].Add(prop);
                         }
@@ -321,7 +270,7 @@ namespace PSDUnity.Data
                     else
                     {
                         propDic[item.id] = new Dictionary<string, List<SerializedProperty>>();
-                        propDic[item.id] [ item.key] = new List<SerializedProperty>() { prop };
+                        propDic[item.id][item.key] = new List<SerializedProperty>() { prop };
                     }
                 }
             }
@@ -340,7 +289,7 @@ namespace PSDUnity.Data
                     if (ruleAtt != null)
                     {
                         var att = (ruleAtt as RuleTypeAttribute);
-                        list.Add(new RuleItem(att.id, att.key,item.Name));
+                        list.Add(new RuleItem(att.id, att.key, item.Name));
                     }
                 }
             }

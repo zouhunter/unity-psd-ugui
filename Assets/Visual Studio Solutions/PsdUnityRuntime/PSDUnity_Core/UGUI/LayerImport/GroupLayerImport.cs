@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 namespace PSDUnity.UGUI
 {
-    internal class GroupLayerImport : LayerImport
+    public class GroupLayerImport : LayerImport
     {
         public GroupLayerImport()
         {

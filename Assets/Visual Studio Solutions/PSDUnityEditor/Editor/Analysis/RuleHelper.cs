@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using PSDUnity.Data;
 using System;
+using System.Linq;
 
 namespace PSDUnity
 {
@@ -17,7 +18,9 @@ namespace PSDUnity
             if (current == null)
             {
                 current = ScriptableObject.CreateInstance<RuleObject>();
+                LoadLayerImports(current);
             }
+
             return current;
         }
         private static RuleObject TryLoadGlobal()
@@ -31,6 +34,58 @@ namespace PSDUnity
                 }
             }
             return null;
+        }
+
+        public static void LoadLayerImports(RuleObject target)
+        {
+            var assetPath = AssetDatabase.GetAssetPath(target);
+
+            Debug.Log("LoadLayerImports");
+            var types = AnalysisUtility.layerImportTypes;
+            foreach (var layerType in types)
+            {
+                var ruleObj = target;
+
+                var importer = ruleObj.layerImports.Find(x => x != null && x.GetType() == layerType);
+
+                if (importer == null || string.IsNullOrEmpty(AssetDatabase.GetAssetPath(importer)))
+                {
+                    if (string.IsNullOrEmpty(assetPath))
+                    {
+                        importer = ScriptableObject.CreateInstance(layerType) as UGUI.LayerImport;
+                        Debug.Log("create instence:" + layerType.Name);
+                        importer.name = layerType.Name;
+                        ruleObj.layerImports.Add(importer);
+                    }
+                    else
+                    {
+                        var oldItems = AssetDatabase.LoadAllAssetsAtPath(assetPath);
+                        var oldItem = oldItems.Where(x => x is UGUI.LayerImport && x.name == layerType.Name).FirstOrDefault();
+                        if (oldItem == null)
+                        {
+                            importer = ScriptableObject.CreateInstance(layerType) as UGUI.LayerImport;
+                            importer.name = layerType.Name;
+                            Debug.Log("add new:" + layerType.Name);
+                            AssetDatabase.AddObjectToAsset(importer, assetPath);
+                            ruleObj.layerImports.Add(importer);
+                        }
+                        else
+                        {
+                            ruleObj.layerImports.Add(oldItem as UGUI.LayerImport);
+                            //Debug.Log(oldItem);
+                        }
+                    }
+                }
+                else
+                {
+                    //Debug.Log(importer);
+                }
+            }
+            //EditorUtility.SetDirty(ruleObj);
+            //AssetDatabase.Refresh();
+
+            if (string.IsNullOrEmpty(assetPath)) return;
+            AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
         }
 
         public static bool IsGlobleRule(RuleObject rule)
@@ -61,7 +116,7 @@ namespace PSDUnity
         }
         public static void SetDefultRuleObject(RuleObject rule)
         {
-            if(rule == null)
+            if (rule == null)
             {
                 PlayerPrefs.SetString(Pref_defultRuleGuid, "");
             }
@@ -71,7 +126,7 @@ namespace PSDUnity
                 var guid = AssetDatabase.AssetPathToGUID(path);
                 PlayerPrefs.SetString(Pref_defultRuleGuid, guid);
             }
-           
+
         }
     }
 }

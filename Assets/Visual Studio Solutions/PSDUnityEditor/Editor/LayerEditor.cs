@@ -8,9 +8,9 @@ namespace PSDUnity.UGUI
 {
 
     [CustomEditor(typeof(LayerImport),true)]
-    public abstract class LayerImportEditor : Editor
+    public class LayerImportEditor : Editor
     {
-        public abstract Texture2D Icon { get; }
+        public virtual Texture Icon { get { return null; } }
     }
 
 }
