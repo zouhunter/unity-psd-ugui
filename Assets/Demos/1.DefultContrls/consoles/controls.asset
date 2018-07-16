@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db8252410fba56a44b899f082d7d7fdb, type: 3}
-  m_Name: exporter
+  m_Name: controls
   m_EditorClassIdentifier: 
   _exportPath: 
   psdFile: 
@@ -139,6 +139,7 @@ MonoBehaviour:
   wrapMode: 1
   filterMode: 2
   textureCompression: 0
+  scaleWithCanvas: 0
   sepraterCharimg: 35
   sepraterChargroup: 64
   argumentChar: 58
@@ -163,6 +164,7 @@ MonoBehaviour:
   - {fileID: 114454895740905938}
   - {fileID: 114500849848287292}
   - {fileID: 114258564518924986}
+  - {fileID: 114952182735224198}
 --- !u!114 &114703307163913854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,3 +267,15 @@ MonoBehaviour:
   highlightedAddress: h_
   disableAddress: d_
   autoButtonTitle: 1
+--- !u!114 &114952182735224198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1a136319cb07a54caaa38fc728ae05d, type: 3}
+  m_Name: RundSliderLayerImporter
+  m_EditorClassIdentifier: 
+  _suffix: RoundSlider

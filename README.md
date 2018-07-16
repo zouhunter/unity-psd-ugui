@@ -16,12 +16,24 @@
  ![control](Pics/controls.png)
  ### Deep Enough Tree View   
  ![Deepth](Pics/deep.png)
- ### User Define 
- ![Define](Pics/rule.png)
+ ### InnerRules
+ ![内部嵌套规则](Pics/innerObjects.png)
+ ### RuleObject 
+ ![自定义1](Pics/ruleobject1.png)
+ ![自定义2](Pics/ruleobject2.png)
+ ![自定义3](Pics/ruleobject3.png)
+ ### Panel
+ ![内置面板](Pics/panel.png)
+ ### Text
+ ![内置文字](Pics/text.png)
  ### Button
  ![内置按扭](Pics/button.png)
  ### Toggle
  ![内置双选](Pics/toggle.png)
+ ### InputField
+ ![内置输入框](Pics/inputfield.png)
+ ### Dropdown
+ ![内置下拉框](Pics/dropdown.png)
  ### Slider
  ![内置滑动条](Pics/slider.png)
  ### Scrollbar
@@ -33,7 +45,7 @@
  ### Group
  ![内置分组](Pics/group.png)
  ### you can define you own controls also!
-
+ ...
 ## 3.what next update?
  * i have no idear .
 
