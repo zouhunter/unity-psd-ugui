@@ -9,6 +9,12 @@ namespace PSDUnity.UGUI
 {
     public class DropDownLayerImport : LayerImport
     {
+        [Header("[前缀-----------------------------------")]
+        [SerializeField,CustomField("选中遮罩")] protected string maskAddress = "m_";
+        [SerializeField,CustomField("背景格式")] protected string backgroundsFormat = "b{0}_";
+        [SerializeField,CustomField("标题格式")] protected string titlesFormat = "t{0}_";
+        [SerializeField,CustomField("下拉条")] protected string vbarAddress = "vb_";
+
         public DropDownLayerImport()
         {
             _suffix = "DropDown";
@@ -78,9 +84,9 @@ namespace PSDUnity.UGUI
             RectTransform content = scrllRect.content;
             Toggle toggle = content.GetComponentInChildren<Toggle>();
 
-            UGUINode tempNode = CreateNormalNode(dropdown.template.gameObject,layer.rect, node);
+            UGUINode tempNode = CreateNormalNode(dropdown.template.gameObject, layer.rect, node);
             tempNode.anchoType = AnchoType.Down | AnchoType.XStretch;
-            DrawImages(node,layer,dropdown,toggle,content);
+            DrawImages(node, layer, dropdown, toggle, content);
             DrawSubLayers(layer, tempNode, scrllRect);
             return node;
         }
@@ -102,37 +108,37 @@ namespace PSDUnity.UGUI
         /// <param name="dropdown"></param>
         /// <param name="toggle"></param>
         /// <param name="content"></param>
-        private void DrawImages(UGUINode node, Data.GroupNode layer,Dropdown dropdown,Toggle toggle,RectTransform content)
+        private void DrawImages(UGUINode node, Data.GroupNode layer, Dropdown dropdown, Toggle toggle, RectTransform content)
         {
             for (int i = 0; i < layer.images.Count; i++)
             {
                 Data.ImgNode image = layer.images[i];
-                if (MatchIDAddress(image.Name, 1, rule.backgroundsFormat))
+                if (MatchIDAddress(image.Name, 1, backgroundsFormat))
                 {
                     PSDImporterUtility.SetPictureOrLoadColor(image, dropdown.image);
                     SetRectTransform(image.rect, dropdown.GetComponent<RectTransform>());
                     dropdown.name = layer.displayName;
                 }
-                else if (MatchIDAddress(image.Name, 2, rule.backgroundsFormat))
+                else if (MatchIDAddress(image.Name, 2, backgroundsFormat))
                 {
                     PSDImporterUtility.SetPictureOrLoadColor(image, dropdown.template.GetComponent<Graphic>());
                     SetRectTransform(image.rect, dropdown.template);
                 }
-                else if (MatchIDAddress(image.Name, 3, rule.backgroundsFormat))
+                else if (MatchIDAddress(image.Name, 3, backgroundsFormat))
                 {
                     UnityEngine.UI.Image itemimage = (UnityEngine.UI.Image)toggle.targetGraphic;
                     PSDImporterUtility.SetPictureOrLoadColor(image, itemimage);
                     content.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, image.rect.height);
                 }
-                else if (MatchIDAddress(image.Name, 1, rule.titlesFormat))
+                else if (MatchIDAddress(image.Name, 1, titlesFormat))
                 {
                     PSDImporterUtility.SetPictureOrLoadColor(image, dropdown.captionText);
                 }
-                else if (MatchIDAddress(image.Name, 2, rule.titlesFormat))
+                else if (MatchIDAddress(image.Name, 2, titlesFormat))
                 {
                     PSDImporterUtility.SetPictureOrLoadColor(image, dropdown.itemText);
                 }
-                else if (MatchAddress(image.Name,rule.maskAddress))
+                else if (MatchAddress(image.Name, maskAddress))
                 {
                     UnityEngine.UI.Image mask = (UnityEngine.UI.Image)toggle.graphic;
                     mask.enabled = true;
@@ -151,14 +157,14 @@ namespace PSDUnity.UGUI
         /// <param name="layer"></param>
         /// <param name="tempNode"></param>
         /// <param name="scrollRect"></param>
-        private void DrawSubLayers(Data.GroupNode layer,UGUINode tempNode,ScrollRect scrollRect)
+        private void DrawSubLayers(Data.GroupNode layer, UGUINode tempNode, ScrollRect scrollRect)
         {
             if (layer.children != null)
             {
                 for (int i = 0; i < layer.children.Count; i++)
                 {
                     Data.GroupNode child = layer.children[i] as Data.GroupNode;
-                    if (MatchAddress(child.displayName,rule.vbarAddress))
+                    if (MatchAddress(child.displayName, vbarAddress))
                     {
                         UGUINode barNode = ctrl.DrawLayer(child, tempNode);
                         scrollRect.verticalScrollbar = barNode.InitComponent<Scrollbar>();

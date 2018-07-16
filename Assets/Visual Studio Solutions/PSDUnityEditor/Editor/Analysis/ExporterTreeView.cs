@@ -212,7 +212,7 @@ namespace PSDUnity
         {
             var typeRect = new Rect(EditorGUIUtility.currentViewWidth - 110, rect.y, 100, rect.height);
             AnalysisUtility.InitEnviroment(ruleObj);
-            UGUI.LayerImportEditor layerImportEditor = AnalysisUtility.GetLayerEditor(item.data.suffix);
+            UGUI.LayerImportGUI layerImportEditor = AnalysisUtility.GetLayerEditor(item.data.suffix);
             //Debug.Log(layerImportEditor);
 
             var index = Array.IndexOf(AnalysisUtility.layerImportEditorOptions, item.data.suffix);

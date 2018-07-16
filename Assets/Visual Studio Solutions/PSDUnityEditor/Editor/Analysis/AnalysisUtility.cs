@@ -17,19 +17,19 @@ namespace PSDUnity
     {
         public static RuleObject RuleObj { get;private set; }
         private static Dictionary<string, Texture> previewIcons = new Dictionary<string, Texture>();
-        private static Dictionary<string, LayerImportEditor> drawerDic = new Dictionary<string, LayerImportEditor>();
-        private static LayerImportEditor[] _layerImportEditorTypes;
-        public static LayerImportEditor[] layerImportEditorTypes
+        private static Dictionary<string, LayerImportGUI> drawerDic = new Dictionary<string, LayerImportGUI>();
+        private static LayerImportGUI[] _layerImportEditorTypes;
+        public static LayerImportGUI[] layerImportEditorTypes
         {
             get
             {
                 if (_layerImportEditorTypes == null)
                 {
                     var types = LoadAllLayerImporterEditors();
-                    _layerImportEditorTypes = new LayerImportEditor[types.Length];
+                    _layerImportEditorTypes = new LayerImportGUI[types.Length];
                     for (int i = 0; i < types.Length; i++)
                     {
-                        _layerImportEditorTypes[i] = Activator.CreateInstance(types[i]) as LayerImportEditor;
+                        _layerImportEditorTypes[i] = Activator.CreateInstance(types[i]) as LayerImportGUI;
                     }
                 }
                 return _layerImportEditorTypes;
@@ -118,7 +118,7 @@ namespace PSDUnity
             return previewIcons[suffix];
         }
 
-        private static LayerImportEditor GetLayerImportEditor(string suffix)
+        private static LayerImportGUI GetLayerImportEditor(string suffix)
         {
             if (RuleObj == null)
                 Debug.LogError("init enviroment first!");
@@ -134,14 +134,14 @@ namespace PSDUnity
 
                 if (supportTypes.Count() > 0)
                 {
-                    LayerImportEditor layerImportEditor = null;
+                    LayerImportGUI layerImportEditor = null;
                     var type = importer.GetType();
                     while (type != typeof(LayerImport))
                     {
                         layerImportEditor = (from editorType in supportTypes
                                              let att = editorType.GetType().GetCustomAttributes(typeof(CustomLayerAttribute), true)[0] as CustomLayerAttribute
                                              where att.type == type
-                                             select editorType as LayerImportEditor).FirstOrDefault();
+                                             select editorType as LayerImportGUI).FirstOrDefault();
 
                         if (layerImportEditor != null)
                         {
@@ -168,7 +168,7 @@ namespace PSDUnity
 
         private static Type[] LoadAllLayerImporterEditors()
         {
-            var types = LoadAllInstenceTypes<UGUI.LayerImportEditor>(typeof(UGUI.LayerImportEditor).Assembly, Assembly.Load("Assembly-CSharp-Editor"));
+            var types = LoadAllInstenceTypes<UGUI.LayerImportGUI>(typeof(UGUI.LayerImportGUI).Assembly, Assembly.Load("Assembly-CSharp-Editor"));
             return types.ToArray();
         }
 
@@ -192,9 +192,9 @@ namespace PSDUnity
             return types;
         }
 
-        public static LayerImportEditor GetLayerEditor(string suffix)
+        public static LayerImportGUI GetLayerEditor(string suffix)
         {
-            LayerImportEditor drawer = null;
+            LayerImportGUI drawer = null;
             if (drawerDic.ContainsKey(suffix))
             {
                 drawer = drawerDic[suffix];

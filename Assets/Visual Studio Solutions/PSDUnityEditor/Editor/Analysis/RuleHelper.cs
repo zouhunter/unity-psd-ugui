@@ -19,6 +19,7 @@ namespace PSDUnity
             {
                 current = ScriptableObject.CreateInstance<RuleObject>();
                 LoadLayerImports(current);
+                LoadImageImports(current);
             }
 
             return current;
@@ -34,6 +35,66 @@ namespace PSDUnity
                 }
             }
             return null;
+        }
+
+        public static void LoadImageImports(RuleObject target)
+        {
+            var types = new List<Type>() {
+                typeof(UGUI.TextImport),
+                typeof(UGUI.ImageRawImageImport),
+            };
+            var assetPath = AssetDatabase.GetAssetPath(target);
+
+            Debug.Log("LoadImageImports");
+            foreach (var layerType in types)
+            { 
+                var ruleObj = target;
+
+                var importer = ruleObj.imageImports.Find(x => x != null && x.GetType() == layerType);
+
+                if (importer != null && string.IsNullOrEmpty(AssetDatabase.GetAssetPath(importer)))
+                {
+                    ruleObj.imageImports.Remove(importer);
+                }
+
+                if (importer == null)
+                {
+                    if (string.IsNullOrEmpty(assetPath))
+                    {
+                        importer = ScriptableObject.CreateInstance(layerType) as UGUI.ImageImport;
+                        Debug.Log("create instence:" + layerType.Name);
+                        importer.name = layerType.Name;
+                        ruleObj.imageImports.Add(importer);
+                    }
+                    else
+                    {
+                        var oldItems = AssetDatabase.LoadAllAssetsAtPath(assetPath);
+                        var oldItem = oldItems.Where(x => x is UGUI.ImageImport && x.name == layerType.Name).FirstOrDefault();
+                        if (oldItem == null)
+                        {
+                            importer = ScriptableObject.CreateInstance(layerType) as UGUI.ImageImport;
+                            importer.name = layerType.Name;
+                            Debug.Log("add new:" + layerType.Name);
+                            AssetDatabase.AddObjectToAsset(importer, assetPath);
+                            ruleObj.imageImports.Add(importer);
+                        }
+                        else
+                        {
+                            ruleObj.imageImports.Add(oldItem as UGUI.ImageImport);
+                            //Debug.Log(oldItem);
+                        }
+                    }
+                }
+                else
+                {
+                    //Debug.Log(importer);
+                }
+            }
+            //EditorUtility.SetDirty(ruleObj);
+            //AssetDatabase.Refresh();
+
+            if (string.IsNullOrEmpty(assetPath)) return;
+            AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
         }
 
         public static void LoadLayerImports(RuleObject target)

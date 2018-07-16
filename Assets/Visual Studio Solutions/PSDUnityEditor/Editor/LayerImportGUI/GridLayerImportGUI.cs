@@ -8,7 +8,7 @@ using UnityEditor;
 namespace PSDUnity.UGUI
 {
     [CustomLayer(typeof(GridLayerImport))]
-    public class GridLayerImportEditor : UGUI.LayerImportEditor
+    public class GridLayerImportGUI : UGUI.LayerImportGUI
     {
         public override Texture Icon
         {
@@ -21,11 +21,11 @@ namespace PSDUnity.UGUI
         {
             base.HeadGUI(dirRect, item);
 
-            var dir = (Direction)EditorGUI.EnumPopup(dirRect, item.direction);
-            if (dir == Direction.Horizontal || dir == Direction.Vertical){
-                item.direction = dir;
+            var dir = (DirectionAxis)EditorGUI.EnumPopup(dirRect, item.directionAxis);
+            if (dir == DirectionAxis.Horizontal || dir == DirectionAxis.Vertical){
+                item.directionAxis = dir;
             }
-            if (item.direction == 0) item.direction = Direction.Horizontal;
+            if (item.directionAxis == 0) item.directionAxis = DirectionAxis.Horizontal;
             var constenctCountRect = dirRect;
             constenctCountRect.width *= 0.5f;
             constenctCountRect.x -= 50;

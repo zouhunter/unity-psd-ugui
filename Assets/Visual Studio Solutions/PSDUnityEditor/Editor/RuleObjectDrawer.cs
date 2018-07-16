@@ -39,6 +39,7 @@ namespace PSDUnity.Data
                 InitPropertys();
                 ChargeCurrent();
                 RuleHelper.LoadLayerImports(target as RuleObject);
+                RuleHelper.LoadImageImports(target as RuleObject);
             }
         }
 

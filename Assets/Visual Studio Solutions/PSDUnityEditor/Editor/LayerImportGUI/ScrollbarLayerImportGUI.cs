@@ -8,14 +8,14 @@ using PSDUnity.Data;
 
 namespace PSDUnity.UGUI
 {
-    [CustomLayer(typeof(SliderLayerImport))]
-    public class SliderLayerImportEditor : UGUI.LayerImportEditor
+    [CustomLayer(typeof(ScrollBarLayerImport))]
+    public class ScrollbarLayerImportGUI : UGUI.LayerImportGUI
     {
         public override Texture Icon
         {
             get
             {
-                return EditorGUIUtility.IconContent("Slider Icon").image;
+                return EditorGUIUtility.IconContent("Scrollbar Icon").image;
             }
         }
         public override void HeadGUI(Rect dirRect, GroupNode item)

@@ -158,24 +158,24 @@
     <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\Analysis\PsdPreviewer.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\Analysis\RuleHelper.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\Analysis\TreeViewUtil.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\AttributeDrawer\CustomFieldAttributeDrawer.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\ExporterDrawer.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\GroupHolderDrawer.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\GroupNodeDrawer.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\GroupNodeEditor.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\ImgNodeDrawer.cs" />
-    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerEditor.cs" />
-    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportDrawer.cs" />
-    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportEditor\ButtonLayerImportEditor.cs" />
-    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportEditor\DropdownLayerImportEditor.cs" />
-    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportEditor\EmptyLayerImportEditor.cs" />
-    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportEditor\GridLayerImportEditor.cs" />
-    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportEditor\GroupLayerImportEditor.cs" />
-    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportEditor\InputFieldLayerImportEditor.cs" />
-    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportEditor\PanelLayerImportEditor.cs" />
-    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportEditor\ScrollViewLayerImportEditor.cs" />
-    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportEditor\ScrollbarLayerImportEditor.cs" />
-    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportEditor\SliderLayerImportEditor.cs" />
-    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportEditor\ToggleLayerImportEditor.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportGUI.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportGUI\ButtonLayerImportGUI.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportGUI\DropdownLayerImportGUI.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportGUI\EmptyLayerImportGUI.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportGUI\GridLayerImportGUI.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportGUI\GroupLayerImportGUI.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportGUI\InputFieldLayerImportGUI.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportGUI\PanelLayerImportGUI.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportGUI\ScrollViewLayerImportGUI.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportGUI\ScrollbarLayerImportGUI.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportGUI\SliderLayerImportGUI.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportGUI\ToggleLayerImportGUI.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\RuleObjectDrawer.cs" />
   </ItemGroup>
   <ItemGroup>

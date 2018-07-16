@@ -6,6 +6,10 @@ namespace PSDUnity.UGUI
 {
     public class EmptyLayerImport : LayerImport
     {
+        [Header("[前缀-----------------------------------")]
+        [SerializeField, CustomField("背景图片")]
+        protected string backgroundAddress = "b_";
+
         public EmptyLayerImport()
         {
             _suffix = PSDUnityConst.emptySuffix;
@@ -46,7 +50,7 @@ namespace PSDUnity.UGUI
             {
                 Data.ImgNode image = layer.images[i];
 
-                if (MatchAddress(image.Name, rule.backgroundAddress))
+                if (MatchAddress(image.Name, backgroundAddress))
                 {
                     if (image.type == ImgType.Texture)
                     {

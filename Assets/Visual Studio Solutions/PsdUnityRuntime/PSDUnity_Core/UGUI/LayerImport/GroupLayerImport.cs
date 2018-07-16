@@ -6,6 +6,30 @@ namespace PSDUnity.UGUI
 {
     public class GroupLayerImport : LayerImport
     {
+        [Header("[参数-----------------------------------")]
+        [SerializeField, CustomField("重置滚动条")]
+        protected string horizontal = "h";
+        [SerializeField, CustomField("重置滚动条")] protected string vertical = "v";
+
+
+        public DirectionAxis GetDirectionByKey(string[] keys)
+        {
+            DirectionAxis dir = 0;
+            foreach (var key in keys)
+            {
+                if (string.Compare(key, vertical, true) == 0)
+                {
+                    dir |= DirectionAxis.Vertical;
+                }
+
+                if (string.Compare(key, horizontal, true) == 0)
+                {
+                    dir |= DirectionAxis.Horizontal;
+                }
+            }
+
+            return dir;
+        }
         public GroupLayerImport()
         {
             _suffix = "Group";
@@ -14,22 +38,30 @@ namespace PSDUnity.UGUI
         public override void AnalysisAreguments(Data.GroupNode layer, string[] areguments)
         {
             base.AnalysisAreguments(layer, areguments);
-            if (areguments != null && areguments.Length > 1)
+      
+            if (areguments != null)
             {
-                var key = areguments[0];
-                layer. direction = RuleObject.GetDirectionByKey(key);
-            }
-            if (areguments != null && areguments.Length > 2)
-            {
-                var key = areguments[1];
-                layer.spacing = float.Parse(key);
+                if(areguments.Length > 0)
+                {
+                    layer.directionAxis = GetDirectionByKey(areguments);
+                }
+
+                if (areguments.Length == 2)
+                {
+                    float.TryParse(areguments[1], out layer.spacing);
+                }
+
+                else if(areguments.Length >= 3)
+                {
+                    float.TryParse(areguments[2], out layer.spacing);
+                }
             }
         }
         public override GameObject CreateTemplate()
         {
             return new GameObject("Group", typeof(RectTransform));
         }
-    
+
         public override UGUINode DrawLayer(Data.GroupNode layer, UGUINode parent)
         {
             UGUINode node = CreateRootNode(layer.displayName, layer.rect, parent);
@@ -38,7 +70,7 @@ namespace PSDUnity.UGUI
             {
                 foreach (Data.GroupNode item in layer.children)
                 {
-                   var childNode = ctrl.DrawLayer(item, node);
+                    var childNode = ctrl.DrawLayer(item, node);
                     SetLayoutItem(childNode, item.rect);
                 }
             }
@@ -54,14 +86,14 @@ namespace PSDUnity.UGUI
             InitLayoutGroup(layer, node);
             return node;
         }
-        private void SetLayoutItem(UGUINode childNode,Rect rect)
+        private void SetLayoutItem(UGUINode childNode, Rect rect)
         {
             var layout = childNode.transform.gameObject.AddComponent<LayoutElement>();
             layout.preferredWidth = rect.width;
             layout.preferredHeight = rect.height;
             childNode.anchoType = AnchoType.Left | AnchoType.Up;
         }
-        
+
         /// <summary>
         /// 初始化组
         /// </summary>
@@ -71,17 +103,17 @@ namespace PSDUnity.UGUI
         {
             HorizontalOrVerticalLayoutGroup group = null;
 
-            switch (layer.direction)
+            switch (layer.directionAxis)
             {
-                case Direction.Horizontal:
+                case DirectionAxis.Horizontal:
                     group = node.InitComponent<UnityEngine.UI.HorizontalLayoutGroup>();
                     break;
-                case Direction.Vertical:
+                case DirectionAxis.Vertical:
                 default:
                     group = node.InitComponent<UnityEngine.UI.VerticalLayoutGroup>();
                     break;
             }
-            if(group)
+            if (group)
             {
                 (group as UnityEngine.UI.VerticalLayoutGroup).spacing = layer.spacing;
                 group.childAlignment = TextAnchor.UpperLeft;

@@ -104,20 +104,6 @@ namespace PSDUnity.UGUI
             return match;
         }
 
-        protected void StretchTitle(UGUINode node)
-        {
-            var texts = node.transform.GetComponentsInChildren<Text>();
-
-            var title = Array.Find(texts, x => MatchAddress(x.name, rule.titleAddress));
-
-            if (title)
-            {
-                PSDImporterUtility.SetNormalAnchor(AnchoType.XStretch | AnchoType.YStretch, node.transform as RectTransform, title.transform as RectTransform);
-                title.rectTransform.anchoredPosition = Vector3.zero;
-                title.alignment = TextAnchor.MiddleCenter;
-                title.horizontalOverflow = HorizontalWrapMode.Overflow;
-                title.verticalOverflow = VerticalWrapMode.Truncate;
-            }
-        }
+      
     }
 }

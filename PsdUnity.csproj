@@ -183,6 +183,7 @@
     <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\ValueReader.cs" />
     <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Properties\AssemblyInfo.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Properties\AssemblyInfo.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Attributes\CustomFieldAttribute.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Attributes\CustomLayerAttribute.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Attributes\RuleTypeAttribute.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Const\PSDUnityConst.cs" />
@@ -202,9 +203,8 @@
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\Core\PSDImporterUtility.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\Core\TemplateGenerater.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\Data\UGUINode.cs" />
-    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\ImageImports\SpriteImport.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\ImageImports\ImageRawImageImport.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\ImageImports\TextImport.cs" />
-    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\ImageImports\TextureImport.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\Interface\ImageImport.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\Interface\Import.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\Interface\LayerImport.cs" />

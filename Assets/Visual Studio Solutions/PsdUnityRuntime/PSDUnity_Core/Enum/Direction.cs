@@ -11,24 +11,17 @@ using UnityEngine.Assertions.Comparers;
 using System.Collections;
 namespace PSDUnity
 {
-    public enum Direction
+    public enum DirectionAxis
     {
-        None = 1,
         Horizontal = 1<<1,
         Vertical = 1<<2,
-        LeftToRight = 1<<3,
-        BottomToTop = 1<<4,
-        TopToBottom = 1<<5,
-        RightToLeft = 1<<6
     }
-    public enum DirectionID
+    public enum Direction
     {
-        None = 0,
-        Horizontal = 1,
-        Vertical = 2,
-        LeftToRight = 3,
-        BottomToTop = 4,
-        TopToBottom = 5,
-        RightToLeft = 6
+        LeftToRight = 1 << 1,
+        BottomToTop = 1 << 2,
+        TopToBottom = 1 << 3,
+        RightToLeft = 1 << 4
     }
+    
 }

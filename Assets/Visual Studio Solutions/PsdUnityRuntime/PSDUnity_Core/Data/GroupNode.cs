@@ -14,7 +14,8 @@ namespace PSDUnity.Data
         public int depth;
         public string displayName;
         public string suffix = PSDUnityConst.emptySuffix;
-        public Direction direction = Direction.Vertical;
+        public Direction direction = Direction.LeftToRight;
+        public DirectionAxis directionAxis = DirectionAxis.Vertical;
         public int constraintCount;
         public float spacing;
         public Rect rect;   //利用名字解析controlType和arguments

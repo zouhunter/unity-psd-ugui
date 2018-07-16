@@ -9,7 +9,7 @@ using PSDUnity.Data;
 namespace PSDUnity.UGUI
 {
     [CustomLayer(typeof(ScrollViewLayerImport))]
-    public class ScrollViewLayerImportEditor : UGUI.LayerImportEditor
+    public class ScrollViewLayerImportGUI : UGUI.LayerImportGUI
     {
         public override Texture Icon
         {
@@ -23,16 +23,13 @@ namespace PSDUnity.UGUI
             base.HeadGUI(dirRect, item);
             //#向下不兼容的写法
 #if UNITY_5_6
-            var dir = (Direction)EditorGUI.EnumMaskField(dirRect, item.direction);
+            var dir = (DirectionAxis)EditorGUI.EnumMaskField(dirRect, item.directionAxis);
 #elif UNITY_2017
-                                dir = (Direction)EditorGUI.EnumFlagsField(dirRect, item.direction);
+                                dir = (DirectionAxis)EditorGUI.EnumFlagsField(dirRect, item.directionAxis);
 #else
-                                dir = (Direction)EditorGUI.EnumMaskField(dirRect, item.direction);
+                                dir = (DirectionAxis)EditorGUI.EnumMaskField(dirRect, item.directionAxis);
 #endif
-            if (dir == Direction.Horizontal || dir == Direction.Vertical || dir == (Direction.Horizontal | Direction.Vertical))
-            {
-                item.direction = dir;
-            }
+            item.directionAxis = dir;
         }
     }
 }

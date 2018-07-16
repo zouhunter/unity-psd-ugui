@@ -6,6 +6,11 @@ namespace PSDUnity.UGUI
 {
     public class InputFieldLayerImport : LayerImport
     {
+        [Header("[前缀-----------------------------------")]
+        [SerializeField,CustomField("背景图")] protected string backgroundAddress = "b_";
+        [SerializeField, CustomField("文本")] protected string titleAddress = "t_";
+        [SerializeField,CustomField("占位")] protected string placeAddress = "p_";
+
         public InputFieldLayerImport()
         {
             _suffix = "InputField";
@@ -60,21 +65,21 @@ namespace PSDUnity.UGUI
                 {
                     Data.ImgNode image = layer.images[i];
 
-                    if (image.type == ImgType.Label && MatchAddress(image.Name, rule.titleAddress))
+                    if (image.type == ImgType.Label && MatchAddress(image.Name, titleAddress))
                     {
                         UnityEngine.UI.Text text = (UnityEngine.UI.Text)inputfield.textComponent;//inputfield.transform.Find("Text").GetComponent<UnityEngine.UI.Text>();
                         var childNode = CreateNormalNode(text.gameObject, image.rect, node);
                         childNode.anchoType = AnchoType.XStretch | AnchoType.YStretch;
                         PSDImporterUtility.SetPictureOrLoadColor(image, text);
                     }
-                    else if (image.type == ImgType.Label && MatchAddress(image.Name, rule.placeAddress))
+                    else if (image.type == ImgType.Label && MatchAddress(image.Name, placeAddress))
                     {
                         UnityEngine.UI.Text text = (UnityEngine.UI.Text)inputfield.placeholder;//.transform.Find("Placeholder").GetComponent<UnityEngine.UI.Text>();
                         var childNode = CreateNormalNode(text.gameObject, image.rect, node);
                         childNode.anchoType = AnchoType.XStretch | AnchoType.YStretch;
                         PSDImporterUtility.SetPictureOrLoadColor(image, text);
                     }
-                    else if (MatchAddress(image.Name, rule.backgroundAddress))
+                    else if (MatchAddress(image.Name, backgroundAddress))
                     {
                         PSDImporterUtility.SetPictureOrLoadColor(image, inputfield.image);
                         SetRectTransform(image.rect, inputfield.GetComponent<RectTransform>());

@@ -32,11 +32,11 @@ namespace PSDUnity.UGUI
         private void InitDrawers()
         {
             imgImporterDic = new Dictionary<ImgType, ImageImport>();
-            imgImporterDic.Add(ImgType.Texture, ScriptableObject.CreateInstance<TextureImport>());
-            imgImporterDic.Add(ImgType.Image, ScriptableObject.CreateInstance<SpriteImport>());
-            imgImporterDic.Add(ImgType.AtlasImage, ScriptableObject.CreateInstance<SpriteImport>());
-            imgImporterDic.Add(ImgType.Color, ScriptableObject.CreateInstance<SpriteImport>());
-            imgImporterDic.Add(ImgType.Label, ScriptableObject.CreateInstance<TextImport>());
+            imgImporterDic.Add(ImgType.Texture, GetImageImport<ImageRawImageImport>(rule.imageImports));
+            imgImporterDic.Add(ImgType.Image, GetImageImport<ImageRawImageImport>(rule.imageImports));
+            imgImporterDic.Add(ImgType.AtlasImage, GetImageImport<ImageRawImageImport>(rule.imageImports));
+            imgImporterDic.Add(ImgType.Color, GetImageImport<ImageRawImageImport>(rule.imageImports));
+            imgImporterDic.Add(ImgType.Label, GetImageImport<TextImport>(rule.imageImports));
             foreach (var item in imgImporterDic)
             {
                 item.Value.InitEnviroment(this);
@@ -51,6 +51,16 @@ namespace PSDUnity.UGUI
             }
         }
 
+        private ImageImport GetImageImport<T>(List<ImageImport> imports) where T : ImageImport
+        {
+            var import = imports.Find(x => x is T);
+            if(import == null)
+            {
+                import = ScriptableObject.CreateInstance<T>();
+            }
+            return import;
+        }
+
         public void Import(Data.GroupNode rootNode)
         {
             InitBaseSize(uinode, canvasSize);
@@ -58,9 +68,7 @@ namespace PSDUnity.UGUI
             BeginSetUIParents(uinode);//设置层级之前的父子关系
             BeginSetAnchers(uinode);//设置层级的锚点
             BeginReprocess(uinode);//后处理
-            if (rule.scaleWithCanvas){
-                BeginScaleWithCanvas(uinode, canvasSize);//尺寸缩放
-            }
+            BeginScaleWithCanvas(uinode, canvasSize);//尺寸缩放
         }
 
         private void InitBaseSize(UGUINode uinode,Vector2 uiSize)

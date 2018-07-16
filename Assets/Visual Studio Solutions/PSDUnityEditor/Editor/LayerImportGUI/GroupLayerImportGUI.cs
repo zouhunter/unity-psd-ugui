@@ -9,7 +9,7 @@ using PSDUnity.Data;
 namespace PSDUnity.UGUI
 {
     [CustomLayer(typeof(GroupLayerImport))]
-    public class GroupLayerImportEditor : UGUI.LayerImportEditor
+    public class GroupLayerImportGUI : UGUI.LayerImportGUI
     {
         public override Texture Icon
         {
@@ -21,12 +21,12 @@ namespace PSDUnity.UGUI
         public override void HeadGUI(Rect dirRect, GroupNode item)
         {
             base.HeadGUI(dirRect, item);
-            var dir = (Direction)EditorGUI.EnumPopup(dirRect, item.direction);
-            if (dir == Direction.Horizontal || dir == Direction.Vertical)
+            var dir = (DirectionAxis)EditorGUI.EnumPopup(dirRect, item.directionAxis);
+            if (dir == DirectionAxis.Horizontal || dir == DirectionAxis.Vertical)
             {
-                item.direction = dir;
+                item.directionAxis = dir;
             }
-            if (item.direction == 0) item.direction = Direction.Horizontal;
+            if (item.directionAxis == 0) item.directionAxis = DirectionAxis.Horizontal;
             var spanRect = dirRect;
             spanRect.width *= 0.5f;
             spanRect.x -= 50;

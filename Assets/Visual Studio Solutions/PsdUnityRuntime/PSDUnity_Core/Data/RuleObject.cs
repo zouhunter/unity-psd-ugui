@@ -27,6 +27,7 @@ namespace PSDUnity
         [RuleType(0, "生成配制")] public string globalSprite = "Assets/Common/Sprite";
         [RuleType(0, "生成配制")] public string globalTexture = "Assets/Common/Texture";
         /////////////////////////////////////////////////////////////
+
         [RuleType(1, "图片导入")] public bool mipmapEnabled = true;
         [RuleType(1, "图片导入")] public bool isReadable = false;
         [RuleType(1, "图片导入")] public float spritePixelsPerUnit = 100;
@@ -34,41 +35,13 @@ namespace PSDUnity
         [RuleType(1, "图片导入")] public FilterMode filterMode = FilterMode.Trilinear;
         [RuleType(1, "图片导入")] public TextureImporterCompression textureCompression = TextureImporterCompression.Uncompressed;
         /////////////////////////////////////////////////////////////
-        [RuleType(1, "界面创建")] public float textBorder = 0.6f;//生成Text时,需要一定的边距
-        [RuleType(1, "界面创建")] public bool scaleWithCanvas = false;
-        [RuleType(1, "界面创建")] public TextAnchor textAnchor = TextAnchor.UpperLeft;
-        [RuleType(1, "界面创建")] public HorizontalWrapMode text_h_wrapMode = HorizontalWrapMode.Overflow;
-        [RuleType(1, "界面创建")] public VerticalWrapMode text_v_wrapMode = VerticalWrapMode.Truncate;
-        [RuleType(1, "界面创建")] public bool autoButtonTitle = true;//自动将按扭下的文字当作标题
+       
 
-        /////////////////////////////////////////////////////////////
-        [RuleType(2, "前缀标记")] public string titleAddress = "t_";
-        [RuleType(2, "前缀标记")] public string normalAddress = "n_";
-        [RuleType(2, "前缀标记")] public string pressedAddress = "p_";
-        [RuleType(2, "前缀标记")] public string highlightedAddress = "h_";
-        [RuleType(2, "前缀标记")] public string disableAddress = "d_";
-        [RuleType(2, "前缀标记")] public string backgroundAddress = "b_";
-        [RuleType(2, "前缀标记")] public string maskAddress = "m_";
-        [RuleType(2, "前缀标记")] public string handleAddress = "h_";
-        [RuleType(2, "前缀标记")] public string fillAddress = "f_";
-        [RuleType(2, "前缀标记")] public string placeAddress = "p_";
-        [RuleType(2, "前缀标记")] public string vbarAddress = "vb_";
-        [RuleType(2, "前缀标记")] public string hbarAddress = "hb_";
-        [RuleType(2, "前缀标记")] public string contentAddress = "c_";
-        [RuleType(2, "前缀标记")] public string backgroundsFormat = "b{0}_";
-        [RuleType(2, "前缀标记")] public string titlesFormat = "t{0}_";
         ///////////////////////////////////////////////////////////////
         [RuleType(2, "分割标记")] public char sepraterCharimg = '#';
         [RuleType(2, "分割标记")] public char sepraterChargroup = '@';
         [RuleType(2, "分割标记")] public char argumentChar = ':';
-        ///////////////////////////////////////////////////////////////
-        [RuleType(2, "参数标记")] public string horizontal = "h";
-        [RuleType(2, "参数标记")] public string vertical = "v";
-        [RuleType(2, "参数标记")] public string veritcal_horizontal = "vh";
-        [RuleType(2, "参数标记")] public string left_right = "l";
-        [RuleType(2, "参数标记")] public string right_left = "r";
-        [RuleType(2, "参数标记")] public string bottom_top = "b";
-        [RuleType(2, "参数标记")] public string top_bottom = "l";
+
         ///////////////////////////////////////////////////////////////
         [RuleType(2, "后缀标记")] public string asAtalsMark = "A";
         [RuleType(2, "后缀标记")] public string asSingleMark = "S";
@@ -77,7 +50,10 @@ namespace PSDUnity
         [RuleType(2, "后缀标记")] public string asNoRepetMark = "N";
         [RuleType(2, "后缀标记")] public string asCustomMark = "C";
 
-        [RuleType(2, "控件指定")]
+        [RuleType(2, "层级导入")]
+        public List<UGUI.ImageImport> imageImports = new List<UGUI.ImageImport>();
+
+        [RuleType(2, "控件导入")]
         public List<UGUI.LayerImport> layerImports = new List<UGUI.LayerImport>();
 
         public string AnalysisGroupName(string name, out string groupType, out string[] areguments)
@@ -173,38 +149,7 @@ namespace PSDUnity
             return clampName;
         }
 
-        public static Direction GetDirectionByKey(string key)
-        {
-            var dir = Direction.None;
-            switch (key.ToLower())
-            {
-                case "v":
-                    dir = Direction.Vertical;
-                    break;
-                case "h":
-                    dir = Direction.Horizontal;
-                    break;
-                case "vh":
-                case "hv":
-                    dir = Direction.Vertical | Direction.Horizontal;
-                    break;
-                case "b":
-                    dir = Direction.BottomToTop;
-                    break;
-                case "t":
-                    dir = Direction.TopToBottom;
-                    break;
-                case "l":
-                    dir = Direction.LeftToRight;
-                    break;
-                case "r":
-                    dir = Direction.RightToLeft;
-                    break;
-                default:
-                    break;
-            }
-            return dir;
-        }
+      
     }
     /*
 Button-->9a94c0cbaca3a48468b0b1e51fefcbfb

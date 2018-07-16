@@ -7,14 +7,14 @@ using UnityEditor;
 
 namespace PSDUnity.UGUI
 {
-    [CustomLayer(typeof(ButtonLayerImport))]
-    public class ButtonLayerImportEditor : UGUI.LayerImportEditor
+    [CustomLayer(typeof(ToggleLayerImport))]
+    public class ToggleLayerImportGUI : UGUI.LayerImportGUI
     {
         public override Texture Icon
         {
             get
             {
-                return EditorGUIUtility.IconContent("Button Icon").image;
+                return EditorGUIUtility.IconContent("Toggle Icon").image;
             }
         }
     }

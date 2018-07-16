@@ -6,6 +6,11 @@ namespace PSDUnity.UGUI
 {
     public class ToggleLayerImport : LayerImport
     {
+        [Header("[前缀-----------------------------------")]
+        [SerializeField,CustomField("标题")] protected string titleAddress = "t_";
+        [SerializeField,CustomField("背景")] protected string backgroundAddress = "b_";
+        [SerializeField,CustomField("遮罩")] protected string maskAddress = "m_";
+
         public ToggleLayerImport(){
             _suffix = "Toggle";
         }
@@ -40,7 +45,7 @@ namespace PSDUnity.UGUI
 
         private UGUINode DrawBackground(Data.GroupNode layer, Toggle toggle, UGUINode node)
         {
-            var bgImage = layer.images.Find(x => MatchAddress(x.Name, rule.backgroundAddress));
+            var bgImage = layer.images.Find(x => MatchAddress(x.Name, backgroundAddress));
 
             UGUINode bgNode = null;
             if (bgImage != null)
@@ -58,7 +63,7 @@ namespace PSDUnity.UGUI
 
         private void DrawMask(Data.GroupNode layer, Toggle toggle, UGUINode bgNode)
         {
-            var mask = layer.images.Find(x => MatchAddress(x.Name, rule.maskAddress));
+            var mask = layer.images.Find(x => MatchAddress(x.Name, maskAddress));
 
             if (mask != null)
             {
@@ -72,7 +77,7 @@ namespace PSDUnity.UGUI
             for (int imageIndex = 0; imageIndex < layer.images.Count; imageIndex++)
             {
                 Data.ImgNode image = layer.images[imageIndex];
-                if (!MatchAddress(image.Name, rule.backgroundAddress, rule.maskAddress))
+                if (!MatchAddress(image.Name, backgroundAddress, maskAddress))
                 {
                     ctrl.DrawImage(image, node);
                 }
@@ -82,6 +87,21 @@ namespace PSDUnity.UGUI
         {
             base.AfterGenerate(node);
             StretchTitle(node);
+        }
+        protected void StretchTitle(UGUINode node)
+        {
+            var texts = node.transform.GetComponentsInChildren<Text>();
+
+            var title = Array.Find(texts, x => MatchAddress(x.name, titleAddress));
+
+            if (title)
+            {
+                PSDImporterUtility.SetNormalAnchor(AnchoType.XStretch | AnchoType.YStretch, node.transform as RectTransform, title.transform as RectTransform);
+                title.rectTransform.anchoredPosition = Vector3.zero;
+                title.alignment = TextAnchor.MiddleCenter;
+                title.horizontalOverflow = HorizontalWrapMode.Overflow;
+                title.verticalOverflow = VerticalWrapMode.Truncate;
+            }
         }
     }
 }

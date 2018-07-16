@@ -10,8 +10,9 @@ namespace PSDUnity.UGUI
 {
     public abstract class LayerImport : Import
     {
-        [SerializeField]
+        [SerializeField,CustomField("后缀")]
         protected string _suffix = PSDUnity.PSDUnityConst.emptySuffix;
+
         public virtual string Suffix { get { return _suffix; } }
         public virtual UGUINode DrawLayer(Data.GroupNode layer, UGUINode parent)
         {
@@ -19,5 +20,6 @@ namespace PSDUnity.UGUI
             return node;
         }
         public virtual void AnalysisAreguments(Data.GroupNode layer, string[] areguments) { }
+       
     }
 }

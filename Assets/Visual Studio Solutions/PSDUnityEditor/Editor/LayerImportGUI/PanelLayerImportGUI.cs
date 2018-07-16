@@ -7,14 +7,15 @@ using UnityEditor;
 
 namespace PSDUnity.UGUI
 {
-    [CustomLayer(typeof(EmptyLayerImport))]
-    public class EmplyLayerImportEditor : LayerImportEditor
+
+    [CustomLayer(typeof(PanelLayerImport))]
+    public class PanelLayerImportGUI : UGUI.LayerImportGUI
     {
         public override Texture Icon
         {
             get
             {
-                return EditorGUIUtility.IconContent("GameObject Icon").image;
+                return EditorGUIUtility.IconContent("RawImage Icon").image;
             }
         }
     }

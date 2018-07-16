@@ -3,16 +3,14 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 namespace PSDUnity
 {
-    public class CustomLayerAttribute : Attribute
+    public class CustomFieldAttribute : UnityEngine.PropertyAttribute
     {
-        public Type type;
-        public CustomLayerAttribute(Type type)
+        public string title;
+        public CustomFieldAttribute(string title)
         {
-            this.type = type;
+            this.title = title;
         }
     }
-
 }

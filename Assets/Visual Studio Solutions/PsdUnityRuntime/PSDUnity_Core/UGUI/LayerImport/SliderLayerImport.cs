@@ -9,6 +9,41 @@ namespace PSDUnity.UGUI
 {
     public class SliderLayerImport : LayerImport
     {
+        [Header("[前缀-----------------------------------")]
+        [SerializeField, CustomField("背景图片")] protected string backgroundAddress = "b_";
+        [SerializeField, CustomField("填充图片")] protected string fillAddress = "f_";
+        [SerializeField, CustomField("手柄图标")] protected string handleAddress = "h_";
+
+        [Header("[参数-----------------------------------")]
+        [SerializeField,CustomField("从左到右")] protected string left_right = "l";
+        [SerializeField,CustomField("从右到左")] protected string right_left = "r";
+        [SerializeField,CustomField("从下到上")] protected string bottom_top = "b";
+        [SerializeField,CustomField("从上到下")] protected string top_bottom = "l";
+
+
+        public Direction GetDirectionByKey(string key)
+        {
+            Direction dir = 0;
+
+            if (string.Compare(key, bottom_top, true) == 0)
+            {
+                dir = Direction.BottomToTop;
+            }
+            else if (string.Compare(key, top_bottom, true) == 0)
+            {
+                dir = Direction.TopToBottom;
+            }
+            else if (string.Compare(key, left_right, true) == 0)
+            {
+                dir = Direction.LeftToRight;
+            }
+            else if (string.Compare(key, right_left, true) == 0)
+            {
+                dir = Direction.RightToLeft;
+            }
+
+            return dir;
+        }
         public SliderLayerImport()
         {
             _suffix = "Slider";
@@ -20,7 +55,7 @@ namespace PSDUnity.UGUI
             if (areguments != null && areguments.Length > 0)
             {
                 var key = areguments[0];
-                layer.direction = RuleObject.GetDirectionByKey(key);
+                layer.direction = GetDirectionByKey(key);
             }
         }
         public override GameObject CreateTemplate()
@@ -38,15 +73,15 @@ namespace PSDUnity.UGUI
             for (int i = 0; i < layer.images.Count; i++)
             {
                 var imgNode = layer.images[i];
-                if (MatchAddress(imgNode.Name, rule.backgroundAddress))
+                if (MatchAddress(imgNode.Name, backgroundAddress))
                 {
                     DrawBackground(imgNode,node);
                 }
-                else if (MatchAddress(imgNode.Name, rule.fillAddress))
+                else if (MatchAddress(imgNode.Name, fillAddress))
                 {
                     DrawFill(imgNode,node);
                 }
-                else if (MatchAddress(imgNode.Name, rule.handleAddress))
+                else if (MatchAddress(imgNode.Name, handleAddress))
                 {
                     DrawHandle(imgNode, node,layer);
                 }
@@ -61,8 +96,8 @@ namespace PSDUnity.UGUI
         private void DrawHandle(Data.ImgNode handle, UGUINode node,Data.GroupNode layer)
         {
             var slider = node.InitComponent<Slider>();
-            Data.ImgNode bg = layer.images.Find(x => MatchAddress(x.Name, rule.backgroundAddress));
-            Data.ImgNode fill = layer.images.Find(x => MatchAddress(x.Name, rule.fillAddress));
+            Data.ImgNode bg = layer.images.Find(x => MatchAddress(x.Name, backgroundAddress));
+            Data.ImgNode fill = layer.images.Find(x => MatchAddress(x.Name, fillAddress));
 
             var tempRect = fill != null ? fill : bg;
             var rect = new Rect(tempRect.rect.x, tempRect.rect.y, tempRect.rect.width - handle.rect.width, tempRect.rect.height);//x,y 为中心点的坐标！

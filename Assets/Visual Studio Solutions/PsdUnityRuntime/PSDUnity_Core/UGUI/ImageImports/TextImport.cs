@@ -10,12 +10,17 @@ namespace PSDUnity.UGUI
 {
     public class TextImport : ImageImport
     {
+        [Header("[可选-----------------------------------")]
+        [SerializeField, CustomField("字边距")] protected  float textBorder = 0.6f;//生成Text时,需要一定的边距
+        [SerializeField, CustomField("文字锚点")] protected  TextAnchor textAnchor = TextAnchor.UpperLeft;
+        [SerializeField, CustomField("水平适配")] protected  HorizontalWrapMode text_h_wrapMode = HorizontalWrapMode.Overflow;
+        [SerializeField, CustomField("垂直适配")] VerticalWrapMode text_v_wrapMode = VerticalWrapMode.Truncate;
         public override GameObject CreateTemplate()
         {
             var text = new GameObject("Text", typeof(Text)).GetComponent<Text>();
-            text.alignment = rule.textAnchor;// TextAnchor.UpperLeft;
-            text.horizontalOverflow = rule.text_h_wrapMode;// HorizontalWrapMode.Overflow;
-            text.verticalOverflow = rule.text_v_wrapMode;// VerticalWrapMode.Truncate;
+            text.alignment = textAnchor;// TextAnchor.UpperLeft;
+            text.horizontalOverflow = text_h_wrapMode;// HorizontalWrapMode.Overflow;
+            text.verticalOverflow = text_v_wrapMode;// VerticalWrapMode.Truncate;
             return text.gameObject;
         }
 
@@ -36,8 +41,8 @@ namespace PSDUnity.UGUI
         private Rect AdjustTextRect(Rect oldRect,int fontSize)
         {
             var rect = oldRect;
-            rect.width += fontSize * rule.textBorder;
-            rect.height += fontSize * rule.textBorder;
+            rect.width += fontSize * textBorder;
+            rect.height += fontSize * textBorder;
             return rect;
         }
     }
