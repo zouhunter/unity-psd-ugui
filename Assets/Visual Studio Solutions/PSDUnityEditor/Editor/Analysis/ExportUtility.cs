@@ -32,7 +32,7 @@ namespace PSDUnity.Analysis
         #endregion
 
         private static Vector2 maxSize { get; set; }
-        public static RuleObject RuleObj { get { return exporter.ruleObj; } }
+        public static Data.RuleObject RuleObj { get { return exporter.ruleObj; } }
         public static Data.Exporter exporter { get; set; }
         private static Vector2 rootSize { get; set; }
 
@@ -314,7 +314,7 @@ namespace PSDUnity.Analysis
         /// </summary>
         /// <param name="importer"></param>
         /// <param name="rule"></param>
-        private static void ChargeTextureImportRule(TextureImporter textureImporter, RuleObject rule)
+        private static void ChargeTextureImportRule(TextureImporter textureImporter, Data.RuleObject rule)
         {
             textureImporter.spritePixelsPerUnit = rule.spritePixelsPerUnit;
             //textureImporter.textureCompression = rule.textureCompression;

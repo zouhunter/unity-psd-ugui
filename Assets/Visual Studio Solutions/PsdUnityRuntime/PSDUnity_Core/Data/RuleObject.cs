@@ -11,7 +11,7 @@ using UnityEngine.Assertions.Comparers;
 using System.Collections.Generic;
 using UnityEditor;
 using System;
-namespace PSDUnity
+namespace PSDUnity.Data
 {
     public class RuleObject : ScriptableObject
     {
@@ -34,8 +34,10 @@ namespace PSDUnity
         [RuleType(1, "图片导入")] public TextureWrapMode wrapMode = TextureWrapMode.Clamp;
         [RuleType(1, "图片导入")] public FilterMode filterMode = FilterMode.Trilinear;
         [RuleType(1, "图片导入")] public TextureImporterCompression textureCompression = TextureImporterCompression.Uncompressed;
+
+        [RuleType(1, "界面导入")] public bool scaleWithCanvas;
         /////////////////////////////////////////////////////////////
-       
+
 
         ///////////////////////////////////////////////////////////////
         [RuleType(2, "分割标记")] public char sepraterCharimg = '#';

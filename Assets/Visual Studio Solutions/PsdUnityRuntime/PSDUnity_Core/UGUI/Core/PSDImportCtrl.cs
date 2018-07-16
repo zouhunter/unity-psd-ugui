@@ -15,11 +15,11 @@ namespace PSDUnity.UGUI
         private Dictionary<ImgType, ImageImport> imgImporterDic;
         private Dictionary<string, LayerImport> layerImporterDic;
         public Canvas canvas { get; private set; }
-        public  RuleObject rule { get; private set; }
+        public Data.RuleObject rule { get; private set; }
         public  UGUINode uinode { get; private set; }
         public Vector2 canvasSize { get; private set; }
 
-        public PSDImportCtrl(Canvas canvas,RuleObject rule,Vector2 canvasSize)
+        public PSDImportCtrl(Canvas canvas,Data.RuleObject rule,Vector2 canvasSize)
         {
             this.canvas = canvas;
             this.rule = rule;
@@ -68,7 +68,10 @@ namespace PSDUnity.UGUI
             BeginSetUIParents(uinode);//设置层级之前的父子关系
             BeginSetAnchers(uinode);//设置层级的锚点
             BeginReprocess(uinode);//后处理
-            BeginScaleWithCanvas(uinode, canvasSize);//尺寸缩放
+            if(rule.scaleWithCanvas)
+            {
+                BeginScaleWithCanvas(uinode, canvasSize);//尺寸缩放
+            }
         }
 
         private void InitBaseSize(UGUINode uinode,Vector2 uiSize)

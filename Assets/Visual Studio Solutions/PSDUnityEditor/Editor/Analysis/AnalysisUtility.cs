@@ -15,7 +15,7 @@ namespace PSDUnity
 {
     public class AnalysisUtility
     {
-        public static RuleObject RuleObj { get;private set; }
+        public static Data.RuleObject RuleObj { get;private set; }
         private static Dictionary<string, Texture> previewIcons = new Dictionary<string, Texture>();
         private static Dictionary<string, LayerImportGUI> drawerDic = new Dictionary<string, LayerImportGUI>();
         private static LayerImportGUI[] _layerImportEditorTypes;
@@ -80,12 +80,12 @@ namespace PSDUnity
             previewIcons.Add("CANVAS", EditorGUIUtility.IconContent("Canvas Icon").image);
 
         }
-        public static void InitEnviroment(RuleObject ruleObj)
+        public static void InitEnviroment(Data.RuleObject ruleObj)
         {
             RuleObj = ruleObj;
         }
 
-        public static Texture GetPreviewIcon(PreviewItem item, RuleObject rule)
+        public static Texture GetPreviewIcon(PreviewItem item, Data.RuleObject rule)
         {
             RuleObj = rule;
             if (rule == null || item.layerType != LayerType.Group)
