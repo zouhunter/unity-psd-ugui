@@ -7,7 +7,7 @@ using UnityEditor;
 
 namespace PSDUnity.UGUI
 {
-    [CustomEditor(typeof(ToggleLayerImport))]
+    [CustomLayer(typeof(ToggleLayerImport))]
     public class ToggleLayerImportEditor : UGUI.LayerImportEditor
     {
         public override Texture Icon

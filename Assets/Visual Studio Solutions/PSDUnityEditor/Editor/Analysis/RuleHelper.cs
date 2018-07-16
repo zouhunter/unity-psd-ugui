@@ -48,7 +48,11 @@ namespace PSDUnity
 
                 var importer = ruleObj.layerImports.Find(x => x != null && x.GetType() == layerType);
 
-                if (importer == null || string.IsNullOrEmpty(AssetDatabase.GetAssetPath(importer)))
+                if(importer != null && string.IsNullOrEmpty(AssetDatabase.GetAssetPath(importer))){
+                    ruleObj.layerImports.Remove(importer);
+                }
+
+                if (importer == null)
                 {
                     if (string.IsNullOrEmpty(assetPath))
                     {

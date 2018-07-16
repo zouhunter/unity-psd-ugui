@@ -8,6 +8,6 @@ namespace PSDUnity
 {
     public static class PSDUnityConst 
     {
-        public const string emptySuffix = "[-inner empty suffix]";
+        public const string emptySuffix = "[empty]";
     }
 }

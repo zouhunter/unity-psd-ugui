@@ -19,11 +19,21 @@ namespace PSDUnity
         }
 
         private GroupNodeItem _root;
-        public GroupNodeItem root { get {
+        public GroupNodeItem root
+        {
+            get
+            {
                 return _root;
-            } set {
-                _root = value; Reload(); }
+            }
+            set
+            {
+                _root = value;
+                Reload();
+            }
         }
+
+        public RuleObject ruleObj { get; internal set; }
+
         private Dictionary<int, bool> imgDic = new Dictionary<int, bool>();
         private List<GroupNodeItem> rows = new List<GroupNodeItem>();
         private Dictionary<int, ReorderableList> imgListDic = new Dictionary<int, ReorderableList>();
@@ -37,7 +47,8 @@ namespace PSDUnity
         }
         protected override TreeViewItem BuildRoot()
         {
-            if (root == null){
+            if (root == null)
+            {
                 root = new GroupNodeItem(new Rect(), 0, -1);
             }
             return root;
@@ -62,7 +73,7 @@ namespace PSDUnity
             return 30f;
         }
 
-        void AddChildrenRecursive<T>(T parent, int depth, IList<T> newRows, System.Func<T, T> Copy) where T : TreeViewItem
+        private void AddChildrenRecursive<T>(T parent, int depth, IList<T> newRows, System.Func<T, T> Copy) where T : TreeViewItem
         {
             if (parent.children == null) return;
 
@@ -169,10 +180,10 @@ namespace PSDUnity
             item.rect = EditorGUI.RectField(rectRect, item.rect);
             if (!imgListDic.ContainsKey(item.id))
             {
-                var reorder = new ReorderableList(item.images, typeof(Data.ImgNode),true,true,true,true);
+                var reorder = new ReorderableList(item.images, typeof(Data.ImgNode), true, true, true, true);
                 reorder.elementHeight = imgNodeHeight;
-                reorder.drawHeaderCallback = (r) => { EditorGUI.LabelField(r,"Contents"); };
-                reorder.drawElementCallback =( rect, index,isActive, isFocused)=> DrawElementCallBack(item.images,rect,index,isActive,isFocused);
+                reorder.drawHeaderCallback = (r) => { EditorGUI.LabelField(r, "Contents"); };
+                reorder.drawElementCallback = (rect, index, isActive, isFocused) => DrawElementCallBack(item.images, rect, index, isActive, isFocused);
                 reorder.onChangedCallback = (x) => { Reload(); };
                 imgListDic.Add(item.id, reorder);
             }
@@ -190,7 +201,6 @@ namespace PSDUnity
             EditorGUI.BeginChangeCheck();
             if (!imgDic.ContainsKey(item.id)) imgDic[item.id] = false;
             imgDic[item.id] = EditorGUI.Toggle(toggleRect, imgDic[item.id]); // hide when outside cell rect
-            //item.data.enabled = EditorGUI.Toggle(toggleRect, item.data.enabled); // hide when outside cell rect
             if (EditorGUI.EndChangeCheck())
                 RefreshCustomRowHeights();
 
@@ -201,66 +211,20 @@ namespace PSDUnity
         void HeaderInfos(Rect rect, GroupNodeItem item)
         {
             var typeRect = new Rect(EditorGUIUtility.currentViewWidth - 110, rect.y, 100, rect.height);
-//            var type = (GroupType)EditorGUI.EnumPopup(typeRect, item.groupType, EditorStyles.miniLabel);
-//            if (type != item.groupType)
-//            {
-//                var ok = EditorUtility.DisplayDialog("修改类型", "强制修改组类型，可能会造成不可知错误，继续请点确认！", "确认");
-//                if (ok)
-//                {
-//                    item.groupType = type;
-//                }
-//            }
+            AnalysisUtility.InitEnviroment(ruleObj);
+            UGUI.LayerImportEditor layerImportEditor = AnalysisUtility.GetLayerEditor(item.data.suffix);
+            //Debug.Log(layerImportEditor);
 
-//            var dirRect = new Rect(EditorGUIUtility.currentViewWidth - 210, rect.y, 100, rect.height);
-//            switch (item.groupType)
-//            {
-//                case GroupType.GRID:
-//                    var dir = (Direction)EditorGUI.EnumPopup(dirRect, item.direction);
-//                    if (dir == Direction.Horizontal || dir == Direction.Vertical)
-//                    {
-//                        item.direction = dir;
-//                    }
-//                    if (item.direction == 0) item.direction = Direction.Horizontal;
-//                    var constenctCountRect = dirRect;
-//                    constenctCountRect.width *= 0.5f;
-//                    constenctCountRect.x -= 50;
-//                    item.constraintCount = EditorGUI.IntField(constenctCountRect, item.constraintCount, EditorStyles.label);
-//                    break;
-//                case GroupType.SCROLLVIEW:
-////#向下不兼容的写法
-//#if UNITY_5_6
-//                    dir = (Direction)EditorGUI.EnumMaskField(dirRect, item.direction);
-//#elif UNITY_2017
-//                    dir = (Direction)EditorGUI.EnumFlagsField(dirRect, item.direction);
-//#else
-//                    dir = (Direction)EditorGUI.EnumMaskField(dirRect, item.direction);
-//#endif
-//                    if (dir == Direction.Horizontal || dir == Direction.Vertical || dir == (Direction.Horizontal | Direction.Vertical))
-//                    {
-//                        item.direction = dir;
-//                    }
-//                    break;
-//                case GroupType.SLIDER:
-//                case GroupType.SCROLLBAR:
-//                    item.direction = ((Direction)EditorGUI.EnumPopup(dirRect, item.direction));
-//                    break;
-//                case GroupType.GROUP:
-//                    dir = (Direction)EditorGUI.EnumPopup(dirRect, item.direction);
-//                    if (dir == Direction.Horizontal || dir == Direction.Vertical)
-//                    {
-//                        item.direction = dir;
-//                    }
-//                    if (item.direction == 0) item.direction = Direction.Horizontal;
-//                    var spanRect = dirRect;
-//                    spanRect.width *= 0.5f;
-//                    spanRect.x -= 50;
-//                    spanRect.height *= 0.8f;
-//                    spanRect.y += 2f;
-//                    item.spacing = EditorGUI.Slider(spanRect, item.spacing, 0, 50);
-//                    break;
-//                default:
-//                    break;
-//            }
+            var index = Array.IndexOf(AnalysisUtility.layerImportEditorOptions, item.data.suffix);
+
+            index = EditorGUI.Popup(typeRect, index, AnalysisUtility.layerImportEditorOptions, EditorStyles.miniLabel);
+            if (index >= 0)
+            {
+                item.data.suffix = AnalysisUtility.layerImportEditorOptions[index];
+            }
+
+            var dirRect = new Rect(EditorGUIUtility.currentViewWidth - 210, rect.y, 100, rect.height);
+            layerImportEditor.HeadGUI(dirRect,item.data);
         }
         void DrawItemBackground(Rect bgRect)
         {
@@ -286,13 +250,13 @@ namespace PSDUnity
         {
             return imgNodeHeight * imgList.Count + 70;
         }
-        private void DrawElementCallBack(List<Data.ImgNode> imgs,Rect rect, int index, bool isActive, bool isFocused)
+        private void DrawElementCallBack(List<Data.ImgNode> imgs, Rect rect, int index, bool isActive, bool isFocused)
         {
             var img = imgs[index];
             var nameRect = new Rect(rect.x, rect.y, 100, EditorGUIUtility.singleLineHeight);
             img.Name = EditorGUI.TextField(nameRect, img.Name);
 
-            var typeRect = new Rect(rect.x , rect.y + EditorGUIUtility.singleLineHeight, 100, EditorGUIUtility.singleLineHeight);
+            var typeRect = new Rect(rect.x, rect.y + EditorGUIUtility.singleLineHeight, 100, EditorGUIUtility.singleLineHeight);
             img.type = (ImgType)EditorGUI.EnumPopup(typeRect, img.type);
 
             var rectRect = new Rect(rect.x + 100, rect.y, 200, rect.height);
@@ -314,7 +278,7 @@ namespace PSDUnity
             switch (img.type)
             {
                 case ImgType.Label:
-                    img.font = EditorGUI.ObjectField(fontRect, img.font,typeof(Font),false) as Font;
+                    img.font = EditorGUI.ObjectField(fontRect, img.font, typeof(Font), false) as Font;
                     img.fontSize = EditorGUI.IntSlider(fontSizeRect, img.fontSize, 1, 100);
                     img.text = EditorGUI.TextField(textRect, img.text);
                     img.color = EditorGUI.ColorField(colorRect, img.color);

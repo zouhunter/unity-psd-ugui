@@ -7,14 +7,14 @@ using UnityEditor;
 
 namespace PSDUnity.UGUI
 {
-    [CustomLayer(typeof(DropDownLayerImport))]
-    public class DropdownLayerImportEditor : UGUI.LayerImportEditor
+    [CustomLayer(typeof(EmptyLayerImport))]
+    public class EmplyLayerImportEditor : LayerImportEditor
     {
         public override Texture Icon
         {
             get
             {
-                return EditorGUIUtility.IconContent("Dropdown Icon").image;
+                return EditorGUIUtility.IconContent("GameObject Icon").image;
             }
         }
     }

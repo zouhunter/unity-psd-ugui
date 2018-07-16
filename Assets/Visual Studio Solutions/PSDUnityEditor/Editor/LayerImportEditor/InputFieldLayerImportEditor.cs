@@ -7,7 +7,7 @@ using UnityEditor;
 
 namespace PSDUnity.UGUI
 {
-    [CustomEditor(typeof(InputFieldLayerImport))]
+    [CustomLayer(typeof(InputFieldLayerImport))]
     public class InputFieldLayerImportEditor : UGUI.LayerImportEditor
     {
         public override Texture Icon

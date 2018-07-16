@@ -20,7 +20,7 @@ namespace PSDUnity.Analysis
         private ExporterTreeView m_TreeView;
         private GroupNodeItem rootNode;
         [SerializeField]
-        TreeViewState m_TreeViewState = new TreeViewState();
+        private TreeViewState m_TreeViewState = new TreeViewState();
         private void OnEnable()
         {
             exporter = target as Exporter;
@@ -29,6 +29,18 @@ namespace PSDUnity.Analysis
             InitTreeView();
         }
 
+        [UnityEditor.Callbacks.OnOpenAsset()]
+        public static bool OnOpenAsset(int instanceID, int line)
+        {
+            var exporter = EditorUtility.InstanceIDToObject(instanceID) as Exporter;
+            if (exporter != null)
+            {
+                var window =EditorWindow. GetWindow<Analysis.PsdPreviewWindow>();
+                window.OpenGraph(exporter);
+                return true;
+            }
+            return false;
+        }
         private void AutoChargeRule()
         {
             if (exporter.ruleObj == null)
@@ -85,6 +97,7 @@ namespace PSDUnity.Analysis
                     rootNode = TreeViewUtility.ListToTree<GroupNodeItem>(list);
                     m_TreeView = new ExporterTreeView(m_TreeViewState);
                     m_TreeView.root = rootNode;
+                    m_TreeView.ruleObj = (target as Exporter).ruleObj;
                 }
             }
         }
@@ -141,6 +154,13 @@ namespace PSDUnity.Analysis
                 if (GUILayout.Button("Expland", style, layout))
                 {
                     m_TreeView.ExpandAll();
+                }
+
+                if(GUILayout.Button("Clear", style, layout))
+                {
+                    exporter.groups.Clear();
+                    m_TreeView.root = null;
+                    m_TreeView.Reload();
                 }
 
             }
@@ -250,6 +270,7 @@ namespace PSDUnity.Analysis
                     RecordAllPsdInformation();
                     m_TreeView = new ExporterTreeView(m_TreeViewState);
                     m_TreeView.root = rootNode;
+                    m_TreeView.ruleObj = (target as Exporter).ruleObj;
                 }
 
             }

@@ -4,10 +4,11 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using PSDUnity.Data;
 
 namespace PSDUnity.UGUI
 {
-    [CustomEditor(typeof(ScrollBarLayerImport))]
+    [CustomLayer(typeof(ScrollBarLayerImport))]
     public class ScrollbarLayerImportEditor : UGUI.LayerImportEditor
     {
         public override Texture Icon
@@ -16,6 +17,11 @@ namespace PSDUnity.UGUI
             {
                 return EditorGUIUtility.IconContent("Scrollbar Icon").image;
             }
+        }
+        public override void HeadGUI(Rect dirRect, GroupNode item)
+        {
+            base.HeadGUI(dirRect, item);
+            item.direction = ((Direction)EditorGUI.EnumPopup(dirRect, item.direction));
         }
     }
 }

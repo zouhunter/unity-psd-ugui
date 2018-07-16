@@ -37,12 +37,16 @@ namespace PSDUnity.UGUI
             imgImporterDic.Add(ImgType.AtlasImage, ScriptableObject.CreateInstance<SpriteImport>());
             imgImporterDic.Add(ImgType.Color, ScriptableObject.CreateInstance<SpriteImport>());
             imgImporterDic.Add(ImgType.Label, ScriptableObject.CreateInstance<TextImport>());
-     
+            foreach (var item in imgImporterDic)
+            {
+                item.Value.InitEnviroment(this);
+            }
 
             layerImporterDic = new Dictionary<string, LayerImport>();
-            layerImporterDic.Add(PSDUnityConst.emptySuffix, ScriptableObject.CreateInstance<PanelLayerImport>());
+
             foreach (var item in rule.layerImports)
             {
+                item.InitEnviroment(this);
                 layerImporterDic.Add(item.Suffix, item);
             }
         }

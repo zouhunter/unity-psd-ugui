@@ -9,22 +9,45 @@ using PSDUnity;
 using PSDUnity.Analysis;
 using System.Reflection;
 using System.Linq;
+using PSDUnity.UGUI;
 
 namespace PSDUnity
 {
     public class AnalysisUtility
     {
+        public static RuleObject RuleObj { get;private set; }
         private static Dictionary<string, Texture> previewIcons = new Dictionary<string, Texture>();
-        private static Type[] _layerImportEditorTypes;
-        public static Type[] layerImportEditorTypes
+        private static Dictionary<string, LayerImportEditor> drawerDic = new Dictionary<string, LayerImportEditor>();
+        private static LayerImportEditor[] _layerImportEditorTypes;
+        public static LayerImportEditor[] layerImportEditorTypes
         {
             get
             {
                 if (_layerImportEditorTypes == null)
                 {
-                    _layerImportEditorTypes = LoadAllLayerImporterEditors();
+                    var types = LoadAllLayerImporterEditors();
+                    _layerImportEditorTypes = new LayerImportEditor[types.Length];
+                    for (int i = 0; i < types.Length; i++)
+                    {
+                        _layerImportEditorTypes[i] = Activator.CreateInstance(types[i]) as LayerImportEditor;
+                    }
                 }
                 return _layerImportEditorTypes;
+            }
+        }
+        private static string[] _layerImportEditorOptions;
+        public static string[] layerImportEditorOptions
+        {
+            get
+            {
+                if (_layerImportEditorOptions == null)
+                {
+                    if (RuleObj == null)
+                        Debug.LogError("init enviroment first!");
+
+                    _layerImportEditorOptions = RuleObj.layerImports.ConvertAll(x => x.Suffix).ToArray();
+                }
+                return _layerImportEditorOptions;
             }
         }
 
@@ -33,13 +56,14 @@ namespace PSDUnity
         {
             get
             {
-                if(_layerImportTypes == null)
+                if (_layerImportTypes == null)
                 {
                     _layerImportTypes = LoadAllLayerImpoters();
                 }
                 return _layerImportTypes;
             }
         }
+
         static AnalysisUtility()
         {
             InitPreviewIcons();
@@ -54,12 +78,16 @@ namespace PSDUnity
             previewIcons.Add(LayerType.Complex.ToString(), EditorGUIUtility.IconContent("console.warnicon").image);
             previewIcons.Add(LayerType.Overflow.ToString(), EditorGUIUtility.IconContent("console.erroricon").image);
             previewIcons.Add("CANVAS", EditorGUIUtility.IconContent("Canvas Icon").image);
-            //previewIcons.Add(GroupType.PANEL.ToString(), EditorGUIUtility.IconContent("RawImage Icon").image);
 
         }
-
-        internal static Texture GetPreviewIcon(PreviewItem item, RuleObject rule)
+        public static void InitEnviroment(RuleObject ruleObj)
         {
+            RuleObj = ruleObj;
+        }
+
+        public static Texture GetPreviewIcon(PreviewItem item, RuleObject rule)
+        {
+            RuleObj = rule;
             if (rule == null || item.layerType != LayerType.Group)
             {
                 return previewIcons[item.layerType.ToString()];
@@ -69,8 +97,7 @@ namespace PSDUnity
                 string groupType = PSDUnityConst.emptySuffix;
                 string[] args;
                 rule.AnalysisGroupName(item.name, out groupType, out args);
-                if (!previewIcons.ContainsKey(groupType))
-                {
+                if (!previewIcons.ContainsKey(groupType)){
                     previewIcons[groupType] = LoadTexture(groupType);
                 }
                 return previewIcons[groupType];
@@ -79,17 +106,58 @@ namespace PSDUnity
 
         private static Texture LoadTexture(string suffix)
         {
-            var ruleObj = RuleHelper.GetRuleObj();
+            var layerImportEditor = GetLayerImportEditor(suffix);
+            if (layerImportEditor != null)
+            {
+                previewIcons[suffix] = layerImportEditor.Icon;
+            }
+            else
+            {
+                previewIcons[suffix] = EditorGUIUtility.FindTexture("GameObject Icon");
+            }
+            return previewIcons[suffix];
+        }
+
+        private static LayerImportEditor GetLayerImportEditor(string suffix)
+        {
+            if (RuleObj == null)
+                Debug.LogError("init enviroment first!");
+
+            var ruleObj = RuleObj;
             var importer = ruleObj.layerImports.Where(x => string.Compare(x.Suffix, suffix, true) == 0).FirstOrDefault();
             if (importer != null)
             {
-                var drawer = Editor.CreateEditor(importer) as UGUI.LayerImportEditor;
-                if(drawer != null)
+                var supportTypes = from editorType in layerImportEditorTypes
+                                   let atts = editorType.GetType().GetCustomAttributes(typeof(CustomLayerAttribute), true)
+                                   where atts.Count() > 0
+                                   select editorType;
+
+                if (supportTypes.Count() > 0)
                 {
-                    return drawer.Icon;
+                    LayerImportEditor layerImportEditor = null;
+                    var type = importer.GetType();
+                    while (type != typeof(LayerImport))
+                    {
+                        layerImportEditor = (from editorType in supportTypes
+                                             let att = editorType.GetType().GetCustomAttributes(typeof(CustomLayerAttribute), true)[0] as CustomLayerAttribute
+                                             where att.type == type
+                                             select editorType as LayerImportEditor).FirstOrDefault();
+
+                        if (layerImportEditor != null)
+                        {
+                            break;
+                        }
+
+                        type = type.BaseType;
+                    }
+
+                    if (layerImportEditor == null)
+                        layerImportEditor = new EmplyLayerImportEditor();
+
+                    return layerImportEditor;
                 }
             }
-            return EditorGUIUtility.FindTexture("GameObject Icon");
+            return new EmplyLayerImportEditor();
         }
 
         private static Type[] LoadAllLayerImpoters()
@@ -115,7 +183,7 @@ namespace PSDUnity
                 for (int j = 0; j < asbTypes.Length; j++)
                 {
                     var userType = asbTypes[j];
-                    if(userType.IsSubclassOf(baseType) &&!userType.IsAbstract && !types.Contains(userType))
+                    if (userType.IsSubclassOf(baseType) && !userType.IsAbstract && !types.Contains(userType))
                     {
                         types.Add(userType);
                     }
@@ -123,6 +191,22 @@ namespace PSDUnity
             }
             return types;
         }
+
+        public static LayerImportEditor GetLayerEditor(string suffix)
+        {
+            LayerImportEditor drawer = null;
+            if (drawerDic.ContainsKey(suffix))
+            {
+                drawer = drawerDic[suffix];
+            }
+
+            if (drawer == null || !drawerDic.ContainsKey(suffix))
+            {
+                drawer = drawerDic[suffix] = GetLayerImportEditor(suffix);
+            }
+            return drawer;
+        }
+
     }
 
 }

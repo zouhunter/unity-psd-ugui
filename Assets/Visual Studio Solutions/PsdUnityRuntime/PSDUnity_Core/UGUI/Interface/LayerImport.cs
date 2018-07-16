@@ -8,21 +8,16 @@ using PSDUnity;
 
 namespace PSDUnity.UGUI
 {
-    public class LayerImport: Import
+    public abstract class LayerImport : Import
     {
         [SerializeField]
-        protected string _suffix;
+        protected string _suffix = PSDUnity.PSDUnityConst.emptySuffix;
         public virtual string Suffix { get { return _suffix; } }
-
         public virtual UGUINode DrawLayer(Data.GroupNode layer, UGUINode parent)
         {
             UGUINode node = CreateRootNode(layer.displayName, layer.rect, parent);
             return node;
         }
         public virtual void AnalysisAreguments(Data.GroupNode layer, string[] areguments) { }
-        public override GameObject CreateTemplate()
-        {
-            return new GameObject("empty");
-        }
     }
 }

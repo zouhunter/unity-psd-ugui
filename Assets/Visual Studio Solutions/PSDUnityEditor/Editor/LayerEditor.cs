@@ -6,11 +6,11 @@ using System.Collections.Generic;
 using UnityEditor;
 namespace PSDUnity.UGUI
 {
-
-    [CustomEditor(typeof(LayerImport),true)]
-    public class LayerImportEditor : Editor
+    
+    public abstract class LayerImportEditor
     {
         public virtual Texture Icon { get { return null; } }
+        public virtual void HeadGUI(Rect dirRect, Data.GroupNode item) { }
     }
 
 }

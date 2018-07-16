@@ -183,6 +183,7 @@
     <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\ValueReader.cs" />
     <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Properties\AssemblyInfo.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Properties\AssemblyInfo.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Attributes\CustomLayerAttribute.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Attributes\RuleTypeAttribute.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Const\PSDUnityConst.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Data\Exporter.cs" />
@@ -209,6 +210,7 @@
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\Interface\LayerImport.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\LayerImport\ButtonLayerImport.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\LayerImport\DropDownLayerImport.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\LayerImport\EmptyLayerImport.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\LayerImport\GridLayerImport.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\LayerImport\GroupLayerImport.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\LayerImport\InputFieldLayerImport.cs" />

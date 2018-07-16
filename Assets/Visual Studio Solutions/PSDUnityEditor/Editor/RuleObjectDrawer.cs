@@ -30,7 +30,6 @@ namespace PSDUnity.Data
         private SerializedObject tempObj;
         private SerializedProperty scriptProp;
         private Dictionary<string, List<SerializedProperty>> currentPropertys { get { return propDic[selected]; } }
-        private int index = 0;
         private void OnEnable()
         {
             isGloble = RuleHelper.IsGlobleRule(target as RuleObject);
@@ -39,7 +38,6 @@ namespace PSDUnity.Data
             {
                 InitPropertys();
                 ChargeCurrent();
-                Debug.Log("OnEnable:" + index++);
                 RuleHelper.LoadLayerImports(target as RuleObject);
             }
         }

@@ -167,6 +167,7 @@
     <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportDrawer.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportEditor\ButtonLayerImportEditor.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportEditor\DropdownLayerImportEditor.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportEditor\EmptyLayerImportEditor.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportEditor\GridLayerImportEditor.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportEditor\GroupLayerImportEditor.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PSDUnityEditor\Editor\LayerImportEditor\InputFieldLayerImportEditor.cs" />

@@ -62,7 +62,7 @@ namespace PSDUnity
             }
         }
         public Data.GroupNode data = new Data.GroupNode();
-        public UGUI.LayerImport layerImporter;
+        private UGUI.LayerImport layerImporter;
 
         public GroupNodeItem(Rect rect, int id, int depth) : base(id, depth)
         {
@@ -87,9 +87,9 @@ namespace PSDUnity
             set
             {
                 base.children = value;
-                if(value!= null)
+                if (value != null)
                 {
-                    data.children = value.Where(x=>x != null).Select(x => (x as GroupNodeItem).data).ToList();
+                    data.children = value.Where(x => x != null).Select(x => (object)((x as GroupNodeItem).data)).ToList();
                 }
             }
         }
@@ -103,7 +103,7 @@ namespace PSDUnity
             set
             {
                 base.parent = value;
-                if(value != null)
+                if (value != null)
                 {
                     data.parent = (value as GroupNodeItem).data;
                 }
@@ -127,15 +127,15 @@ namespace PSDUnity
         {
             string[] areguments = null;
             this.displayName = Rule.AnalysisGroupName(name, out data.suffix, out areguments);
-            layerImporter = Rule.layerImports.Where(x => x.Suffix == data.suffix).FirstOrDefault();
-            if (layerImporter != null)
+            if (layerImporter == null)
             {
-                layerImporter.AnalysisAreguments(data, areguments);
+                layerImporter = Rule.layerImports.Where(x => x.Suffix == data.suffix).FirstOrDefault();
+                if (layerImporter == null)
+                {
+                    layerImporter = ScriptableObject.CreateInstance<UGUI.PanelLayerImport>();
+                }
             }
-            else
-            {
-                layerImporter = ScriptableObject.CreateInstance<UGUI.PanelLayerImport>();
-            }
+            layerImporter.AnalysisAreguments(data, areguments);
             return this;
         }
     }

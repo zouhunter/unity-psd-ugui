@@ -80,13 +80,6 @@ namespace PSDUnity
         [RuleType(2, "控件指定")]
         public List<UGUI.LayerImport> layerImports = new List<UGUI.LayerImport>();
 
-        //private static string[] groupNames;
-
-        //static RuleObject()
-        //{
-        //    groupNames = System.Enum.GetNames(typeof(GroupType));
-        //}
-
         public string AnalysisGroupName(string name, out string groupType, out string[] areguments)
         {
             areguments = null;

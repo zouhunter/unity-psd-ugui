@@ -8,11 +8,11 @@ namespace PSDUnity.UGUI
         /// <summary>
         /// 快速创建控制器
         /// </summary>
-        /// <param name="arg"></param>
+        /// <param name="rule"></param>
         /// <param name="uiSize"></param>
         /// <param name="defultCanvas"></param>
         /// <returns></returns>
-        public static PSDImportCtrl CreatePsdImportCtrlSafty(RuleObject arg, Vector2 uiSize, Canvas defultCanvas = null)
+        public static PSDImportCtrl CreatePsdImportCtrlSafty(RuleObject rule, Vector2 uiSize, Canvas defultCanvas = null)
         {
             Canvas canvas = null;
             if (defultCanvas != null)
@@ -25,7 +25,7 @@ namespace PSDUnity.UGUI
                 canvas.GetComponent<CanvasScaler>().uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
                 canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             }
-            PSDImportCtrl import = new PSDImportCtrl(canvas, arg, uiSize);
+            PSDImportCtrl import = new PSDImportCtrl(canvas, rule, uiSize);
             UnityEngine.UI.CanvasScaler scaler = canvas.GetComponent<UnityEngine.UI.CanvasScaler>();
             scaler.referenceResolution = new Vector2(uiSize.x, uiSize.y);
 

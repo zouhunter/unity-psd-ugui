@@ -152,11 +152,11 @@ namespace PSDUnity.UGUI
                 default:
                    if(node.children != null)
                     {
-                        if(node.children.Find(x=>MatchAddress(x.displayName,rule.vbarAddress)) != null)
+                        if(node.children.Find(x=>MatchAddress((x as Data.GroupNode).displayName,rule.vbarAddress)) != null)
                         {
                             scrollRect.vertical = true;
                         }
-                        else if(node.children.Find(x => MatchAddress(x.displayName, rule.hbarAddress)) != null)
+                        else if(node.children.Find(x => MatchAddress((x as Data.GroupNode).displayName, rule.hbarAddress)) != null)
                         {
                             scrollRect.horizontal = true;
                         }

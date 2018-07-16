@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using Ntreev.Library.Psd;
 using UnityEditor.IMGUI.Controls;
+using PSDUnity.Data;
 
 namespace PSDUnity.Analysis
 {
@@ -22,14 +23,18 @@ namespace PSDUnity.Analysis
         private float menuRetio = 0.3f;
         private RuleObject ruleObj;
         private Data.Exporter exporter;
+        private bool autoLoad = true;
         private void OnEnable()
         {
-            psdPath = EditorPrefs.GetString(Prefs_pdfPath);
-            ruleObj = RuleHelper.GetRuleObj();
+            if (autoLoad)
+            {
+                psdPath = EditorPrefs.GetString(Prefs_pdfPath);
+                ruleObj = RuleHelper.GetRuleObj();
+            }
         }
         private void OnDisable()
         {
-           if(psd!=null) psd.Dispose();
+            if (psd != null) psd.Dispose();
         }
         private void OnGUI()
         {
@@ -66,16 +71,24 @@ namespace PSDUnity.Analysis
 
         }
 
+        internal void OpenGraph(Exporter exporter)
+        {
+            autoLoad = false;
+            this.exporter = exporter;
+            this.ruleObj = exporter.ruleObj;
+            this.psdPath = exporter.psdFile;
+        }
+
         private void DrawConfigs(Rect configRect)
         {
             var titleRect = new Rect(configRect.x, configRect.y, configRect.width * 0.1f, configRect.height);
             var contentRect = new Rect(configRect.x + configRect.width * 0.1f, configRect.y, configRect.width * 0.5f, configRect.height);
             var noticeRect = new Rect(configRect.x + configRect.width * 0.6f, configRect.y, configRect.width * 0.3f, configRect.height);
-            var createRect = new Rect(configRect.x + configRect.width - 60, configRect.y, 60,EditorGUIUtility.singleLineHeight);
-            EditorGUI.SelectableLabel(titleRect,"使用规则: " );
+            var createRect = new Rect(configRect.x + configRect.width - 60, configRect.y, 60, EditorGUIUtility.singleLineHeight);
+            EditorGUI.SelectableLabel(titleRect, "使用规则: ");
             EditorGUI.LabelField(noticeRect, "[psd文件导出 + ui界面生成]");
-            ruleObj = EditorGUI.ObjectField(contentRect,ruleObj, typeof(RuleObject), false) as RuleObject;
-            if (GUI.Button(createRect,"创建",EditorStyles.miniButtonRight))
+            ruleObj = EditorGUI.ObjectField(contentRect, ruleObj, typeof(RuleObject), false) as RuleObject;
+            if (GUI.Button(createRect, "创建", EditorStyles.miniButtonRight))
             {
                 if (EditorUtility.DisplayDialog("创建新规则", "确认后将生成新的规则文件！", "确认", "取消"))
                 {
@@ -197,7 +210,8 @@ namespace PSDUnity.Analysis
                 if (GUILayout.Button("选择", EditorStyles.miniButtonRight, GUILayout.Width(40)))
                 {
                     string dir = Application.dataPath;
-                    if (!string.IsNullOrEmpty(psdPath)){
+                    if (!string.IsNullOrEmpty(psdPath))
+                    {
                         dir = System.IO.Path.GetDirectoryName(psdPath);
                     }
 
@@ -236,7 +250,7 @@ namespace PSDUnity.Analysis
 
         private void JudgePSDFile()
         {
-        
+
         }
     }
 }
