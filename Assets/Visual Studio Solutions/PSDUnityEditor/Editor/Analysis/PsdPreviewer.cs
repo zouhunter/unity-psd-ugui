@@ -14,7 +14,7 @@ namespace PSDUnity.Analysis
     public class PsdPreviewer : TreeView
     {
         private PsdDocument psd;
-        private RuleObject rule;
+        private Data.RuleObject rule;
         private static int id;
         List<PreviewItem> m_Rows = new List<PreviewItem>();
         const float kRowHeights = 20f;
@@ -350,7 +350,7 @@ namespace PSDUnity.Analysis
             var state = new MultiColumnHeaderState(columns);
             return state;
         }
-        public void SetRule(RuleObject rule)
+        public void SetRule(Data.RuleObject rule)
         {
             this.rule = rule;
         }

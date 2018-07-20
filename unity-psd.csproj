@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{95C8DFB2-43A7-AA22-88CC-954A338B4F72}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
+    <CompilerResponseFile></CompilerResponseFile>
+    <UnityProjectGenerator>VSTU</UnityProjectGenerator>
+    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
+    <UnityVersion>5.6.0f3</UnityVersion>
+    <RootNamespace></RootNamespace>
+    <LangVersion>4</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\UnityVS_bin\Debug\</OutputPath>
+    <IntermediateOutputPath>Temp\UnityVS_obj\Debug\</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_5_6_0;UNITY_5_6;UNITY_5;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_RUNTIME_NAVMESH_BUILDING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;ENABLE_VIDEO;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;ENABLE_VSTU</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\UnityVS_bin\Release\</OutputPath>
+    <IntermediateOutputPath>Temp\UnityVS_obj\Release\</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_5_6_0;UNITY_5_6;UNITY_5;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_RUNTIME_NAVMESH_BUILDING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;ENABLE_VIDEO;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;ENABLE_VSTU</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Core" />
+    <Reference Include="Boo.Lang" />
+    <Reference Include="UnityScript.Lang" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>D:/Program Files/Unity5.6/Editor/Data/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>D:/Program Files/Unity5.6/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>D:/Program Files/Unity5.6/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TestRunner">
+      <HintPath>D:/Program Files/Unity5.6/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>D:/Program Files/Unity5.6/Editor/Data/UnityExtensions/Unity/TestRunner/nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>D:/Program Files/Unity5.6/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HoloLens">
+      <HintPath>D:/Program Files/Unity5.6/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VR">
+      <HintPath>D:/Program Files/Unity5.6/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Assets/Common/Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>D:/Program Files/Unity5.6/Editor/Data/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Demos\2.CustomControls\RundSliderLayerImporter.cs" />
+    <Compile Include="Assets\Demos\3.Runtime\RuntimeUGUITest.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\AdditionalLayerInformation.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\BlendMode.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Channel.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\ChannelType.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\ColorMode.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\ColorSpace.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\CompressionType.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\DescriptorStructure.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\EmbeddedLayer.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Extensions.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\FileHeaderSection.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\IChannel.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\IImageSource.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\ILinkedLayer.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\IProperties.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\IPropertiesExtension.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\IPsdLayer.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\InternalDocument.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\InvalidFormatException.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\LayerBlendingRanges.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\LayerExtraRecords.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\LayerFlags.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\LayerMask.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\LayerRecords.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\LayerType.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\LayerandMaskInformationSection.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\LazyProperties.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\LazyValueReader.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\LinkedLayer.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\PSDReader.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\PathResolver.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Properties.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\PsdDocument.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\PsdLayer.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\PsdResolver.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\PsdUtility.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\RangeStream.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\ColorModeDataSectionReader.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\EmptyResourceReader.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\FileHeaderSectionReader.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\ImageDataSectionReader.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\ImageResources\Reader_GridAndGuides.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\ImageResources\Reader_ResolutionInfo.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\ImageResources\Reader_SlicesInfo.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\ImageResources\Reader_VersionInfo.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\ImageResourcesSectionReader.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerAndMaskInformation\ChannelsReader.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerAndMaskInformation\DocumentResourceReader.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerAndMaskInformation\EmbeddedLayerReader.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerAndMaskInformation\GlobalLayerMaskInfoReader.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerAndMaskInformation\LayerBlendingRangesReader.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerAndMaskInformation\LayerExtraRecordsReader.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerAndMaskInformation\LayerInfoReader.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerAndMaskInformation\LayerMaskReader.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerAndMaskInformation\LayerRecordsReader.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerAndMaskInformation\LayerResourceReader.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerAndMaskInformation\LinkedDocumentReader.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerAndMaskInformation\LinkedDocumnetFileHeaderReader.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerAndMaskInformation\LinkedLayerReader.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerAndMaskInformationSectionReader.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerResources\Reader_PlLd.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerResources\Reader_SoLE.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerResources\Reader_SoLd.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerResources\Reader_TySh.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerResources\Reader_fxrp.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerResources\Reader_iOpa.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerResources\Reader_lfx2.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerResources\Reader_lnk2.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerResources\Reader_lnk3.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerResources\Reader_lnkD.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerResources\Reader_lnkE.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerResources\Reader_lnsr.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerResources\Reader_lrFX.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerResources\Reader_lsct.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerResources\Reader_lsdk.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerResources\Reader_luni.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerResources\Reader_lyid.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerResources\Reader_lyvr.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\LayerResources\Reader_shmd.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\ReaderCollector.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Readers\ResourceReaderBase.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\ResourceIDAttribute.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\SectionType.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Structures\BaseStructure.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Structures\StructureAlias.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Structures\StructureClass.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Structures\StructureEngineData.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Structures\StructureEnumerate.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Structures\StructureEnumerateReference.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Structures\StructureList.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Structures\StructureObjectArray.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Structures\StructureOffset.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Structures\StructureProperty.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Structures\StructureReader.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Structures\StructureReference.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Structures\StructureUnitFloat.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\Structures\StructureUnknownOSType.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\TextInfo.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\UnitType.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\Ntreev.Library.Psd\Ntreev.Library.Psd\ValueReader.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Attributes\CustomFieldAttribute.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Attributes\CustomLayerAttribute.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Attributes\RuleTypeAttribute.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Const\PSDUnityConst.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Data\Exporter.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Data\GroupNode.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Data\ImgNode.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Data\RuleItem.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Data\RuleObject.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Enum\AnchoType.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Enum\Direction.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Enum\GroupType.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Enum\ImageSource.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Enum\ImageType.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Enum\SuffixType.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Interface\INameAnalyzing.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\Core\PSDImportCtrl.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\Core\PSDImporterUtility.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\Core\TemplateGenerater.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\Data\UGUINode.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\ImageImports\ImageRawImageImport.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\ImageImports\TextImport.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\Interface\ImageImport.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\Interface\Import.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\Interface\LayerImport.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\LayerImport\ButtonLayerImport.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\LayerImport\DropDownLayerImport.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\LayerImport\EmptyLayerImport.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\LayerImport\GridLayerImport.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\LayerImport\GroupLayerImport.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\LayerImport\InputFieldLayerImport.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\LayerImport\PanelLayerImport.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\LayerImport\ScrollBarLayerImport.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\LayerImport\ScrollViewLayerImport.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\LayerImport\SliderLayerImport.cs" />
+    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\LayerImport\ToggleLayerImport.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Editor\UnityInternalIcons\README.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="GenerateTargetFrameworkMonikerAttribute" />
+</Project>

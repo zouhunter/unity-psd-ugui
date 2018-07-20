@@ -2,6 +2,6 @@
 {
     public interface INameAnalyzing<T>
     {
-        T Analyzing(RuleObject Rule, string name);
+        T Analyzing(Data.RuleObject Rule, string name);
     }
 }

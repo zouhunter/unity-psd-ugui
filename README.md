@@ -16,16 +16,43 @@
  ![control](Pics/controls.png)
  ### Deep Enough Tree View   
  ![Deepth](Pics/deep.png)
- ### User Define 
- ![Define](Pics/rule.png)
-
+ ### InnerRules
+ ![内部嵌套规则](Pics/innerObjects.png)
+ ### RuleObject 
+ ![自定义1](Pics/ruleobject1.png)
+ ![自定义2](Pics/ruleobject2.png)
+ ![自定义3](Pics/ruleobject3.png)
+ ### Panel
+ ![内置面板](Pics/panel.png)
+ ### Text
+ ![内置文字](Pics/text.png)
+ ### Button
+ ![内置按扭](Pics/button.png)
+ ### Toggle
+ ![内置双选](Pics/toggle.png)
+ ### InputField
+ ![内置输入框](Pics/inputfield.png)
+ ### Dropdown
+ ![内置下拉框](Pics/dropdown.png)
+ ### Slider
+ ![内置滑动条](Pics/slider.png)
+ ### Scrollbar
+ ![内置滚动条](Pics/scrollbar.png)
+ ### ScrollRect
+ ![内置滑动区](Pics/scrollview.png)
+ ### Grid
+ ![内置格子](Pics/grid.png)
+ ### Group
+ ![内置分组](Pics/group.png)
+ ### you can define you own controls also!
+ ...
 ## 3.what next update?
- * script attachd prefab,when you change pictures,this link will continue exist,but rect and position will update
+ * i have no idear .
 
 ## 4.contact me.
 * (when you have any question,or find some bugs,thank you to made me know.)
-* this project path:[PsdUnity](https://github.com/zouhunter/PsdUnity)
-* QQ群:476475016 
+* this project path:[PsdUnity](https://github.com/zouhunter/unity-psd)
+* qq邮箱:1063627025@qq.com
 
 ## 5.Thanks for this project
 in this projects,I learned so much,mybe you need it also

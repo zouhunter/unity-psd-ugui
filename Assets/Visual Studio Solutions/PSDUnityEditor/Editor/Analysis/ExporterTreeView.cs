@@ -32,7 +32,7 @@ namespace PSDUnity
             }
         }
 
-        public RuleObject ruleObj { get; internal set; }
+        public Data.RuleObject ruleObj { get; internal set; }
 
         private Dictionary<int, bool> imgDic = new Dictionary<int, bool>();
         private List<GroupNodeItem> rows = new List<GroupNodeItem>();

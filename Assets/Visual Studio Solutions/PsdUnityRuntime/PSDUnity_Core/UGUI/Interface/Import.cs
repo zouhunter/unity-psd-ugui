@@ -10,7 +10,6 @@ namespace PSDUnity.UGUI
 {
     public abstract class Import:ScriptableObject
     {
-        protected RuleObject rule { get { return ctrl.rule; } }
         protected PSDImportCtrl ctrl { get; private set; }
         public virtual void InitEnviroment(PSDImportCtrl ctrl)
         {
