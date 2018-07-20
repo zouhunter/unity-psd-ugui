@@ -116,8 +116,13 @@
     <None Include="Editor\LayerImportGUI\SliderLayerImportGUI.cs.meta" />
     <None Include="Editor\LayerImportGUI\ToggleLayerImportGUI.cs.meta" />
     <None Include="Editor\RuleObjectDrawer.cs.meta" />
+    <None Include="Icons\psd.png.meta" />
+    <None Include="Icons\rule.png.meta" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Icons\psd.png" />
+    <Content Include="Icons\rule.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
