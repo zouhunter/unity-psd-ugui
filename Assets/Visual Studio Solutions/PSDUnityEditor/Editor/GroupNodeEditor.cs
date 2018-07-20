@@ -71,7 +71,14 @@ namespace PSDUnity
             data.id = id;
             data.depth = depth;
         }
-
+        public void AddChild(GroupNodeItem item)
+        {
+            base.AddChild(item);
+            if (!data.children.Contains(item))
+            {
+                data.children.Add(item.data);
+            }
+        }
         public GroupNodeItem(GroupNode data)
         {
             this.data = data;
@@ -109,6 +116,7 @@ namespace PSDUnity
                 }
             }
         }
+
         public void GetImgNodes(List<Data.ImgNode> imgNodes)
         {
             if (data.images != null)

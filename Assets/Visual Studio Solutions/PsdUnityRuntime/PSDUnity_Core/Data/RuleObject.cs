@@ -32,9 +32,11 @@ namespace PSDUnity
         [RuleType(1, "图片导入")] public float spritePixelsPerUnit = 100;
         [RuleType(1, "图片导入")] public TextureWrapMode wrapMode = TextureWrapMode.Clamp;
         [RuleType(1, "图片导入")] public FilterMode filterMode = FilterMode.Trilinear;
+        [RuleType(1, "图片导入")] public bool spreadUI;
+
         //[RuleType(1, "图片导入")] public TextureImporterCompression textureCompression = TextureImporterCompression.Uncompressed;
         /////////////////////////////////////////////////////////////
-       
+
 
         ///////////////////////////////////////////////////////////////
         [RuleType(2, "分割标记")] public char sepraterCharimg = '#';
