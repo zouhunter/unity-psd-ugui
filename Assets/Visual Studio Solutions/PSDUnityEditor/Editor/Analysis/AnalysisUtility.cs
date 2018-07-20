@@ -15,7 +15,7 @@ namespace PSDUnity
 {
     public class AnalysisUtility
     {
-        public static RuleObject RuleObj { get;private set; }
+        public static RuleObject RuleObj { get; private set; }
         private static Dictionary<string, Texture> previewIcons = new Dictionary<string, Texture>();
         private static Dictionary<string, LayerImportGUI> drawerDic = new Dictionary<string, LayerImportGUI>();
         private static LayerImportGUI[] _layerImportEditorTypes;
@@ -97,7 +97,8 @@ namespace PSDUnity
                 string groupType = PSDUnityConst.emptySuffix;
                 string[] args;
                 rule.AnalysisGroupName(item.name, out groupType, out args);
-                if (!previewIcons.ContainsKey(groupType)){
+                if (!previewIcons.ContainsKey(groupType))
+                {
                     previewIcons[groupType] = LoadTexture(groupType);
                 }
                 return previewIcons[groupType];
@@ -162,14 +163,59 @@ namespace PSDUnity
 
         private static Type[] LoadAllLayerImpoters()
         {
-            var types = LoadAllInstenceTypes<UGUI.LayerImport>(typeof(UGUI.LayerImport).Assembly, Assembly.Load("Assembly-CSharp"));
-            return types.ToArray();
+            Type[] types = null;
+            bool haveAssemble = false;
+            Assembly innerAssemble = null;
+            try
+            {
+                innerAssemble = Assembly.Load("Assembly-CSharp");
+                haveAssemble = true;
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning(e);
+                haveAssemble = false;
+            }
+
+            if (haveAssemble)
+            {
+                types = LoadAllInstenceTypes<UGUI.LayerImport>(typeof(UGUI.LayerImport).Assembly,innerAssemble).ToArray();
+            }
+            else
+            {
+                types = LoadAllInstenceTypes<UGUI.LayerImport>(typeof(UGUI.LayerImport).Assembly).ToArray();
+            }
+
+            return types;
         }
 
         private static Type[] LoadAllLayerImporterEditors()
         {
-            var types = LoadAllInstenceTypes<UGUI.LayerImportGUI>(typeof(UGUI.LayerImportGUI).Assembly, Assembly.Load("Assembly-CSharp-Editor"));
-            return types.ToArray();
+
+            Type[] types = null;
+            bool haveAssemble = false;
+            Assembly innerAssemble = null;
+            try
+            {
+                innerAssemble = Assembly.Load("Assembly-CSharp-Editor");
+                haveAssemble = true;
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning(e);
+                haveAssemble = false;
+            }
+
+            if (haveAssemble)
+            {
+                types = LoadAllInstenceTypes<UGUI.LayerImportGUI>(typeof(UGUI.LayerImportGUI).Assembly, innerAssemble).ToArray();
+            }
+            else
+            {
+                types = LoadAllInstenceTypes<UGUI.LayerImportGUI>(typeof(UGUI.LayerImportGUI).Assembly).ToArray();
+            }
+
+            return types;
         }
 
         private static List<Type> LoadAllInstenceTypes<T>(params Assembly[] assemblys)

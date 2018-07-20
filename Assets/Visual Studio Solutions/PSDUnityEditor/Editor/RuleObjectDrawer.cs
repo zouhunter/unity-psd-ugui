@@ -37,6 +37,9 @@ namespace PSDUnity.Data
                 DestroyImmediate(this);
             else
             {
+                RuleHelper.LoadImageImports(target as RuleObject, () => {
+                    RuleHelper.LoadLayerImports(target as RuleObject);
+                });
                 InitPropertys();
                 ChargeCurrent();
             }
