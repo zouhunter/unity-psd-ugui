@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PSDUnity_Core\Attributes\CustomFieldAttribute.cs" />
+    <Compile Include="PSDUnity_Core\Attributes\CustomLayerAttribute.cs" />
     <Compile Include="PSDUnity_Core\Attributes\RuleTypeAttribute.cs" />
     <Compile Include="PSDUnity_Core\Const\PSDUnityConst.cs" />
     <Compile Include="PSDUnity_Core\Data\Exporter.cs" />
@@ -68,14 +70,14 @@
     <Compile Include="PSDUnity_Core\UGUI\Core\PSDImporterUtility.cs" />
     <Compile Include="PSDUnity_Core\UGUI\Core\TemplateGenerater.cs" />
     <Compile Include="PSDUnity_Core\UGUI\Data\UGUINode.cs" />
-    <Compile Include="PSDUnity_Core\UGUI\ImageImports\SpriteImport.cs" />
+    <Compile Include="PSDUnity_Core\UGUI\ImageImports\ImageRawImageImport.cs" />
     <Compile Include="PSDUnity_Core\UGUI\ImageImports\TextImport.cs" />
-    <Compile Include="PSDUnity_Core\UGUI\ImageImports\TextureImport.cs" />
     <Compile Include="PSDUnity_Core\UGUI\Interface\ImageImport.cs" />
     <Compile Include="PSDUnity_Core\UGUI\Interface\Import.cs" />
     <Compile Include="PSDUnity_Core\UGUI\Interface\LayerImport.cs" />
     <Compile Include="PSDUnity_Core\UGUI\LayerImport\ButtonLayerImport.cs" />
     <Compile Include="PSDUnity_Core\UGUI\LayerImport\DropDownLayerImport.cs" />
+    <Compile Include="PSDUnity_Core\UGUI\LayerImport\EmptyLayerImport.cs" />
     <Compile Include="PSDUnity_Core\UGUI\LayerImport\GridLayerImport.cs" />
     <Compile Include="PSDUnity_Core\UGUI\LayerImport\GroupLayerImport.cs" />
     <Compile Include="PSDUnity_Core\UGUI\LayerImport\InputFieldLayerImport.cs" />

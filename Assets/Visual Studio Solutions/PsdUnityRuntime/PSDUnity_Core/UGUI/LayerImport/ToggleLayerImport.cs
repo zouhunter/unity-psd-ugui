@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 namespace PSDUnity.UGUI
 {
@@ -10,6 +11,10 @@ namespace PSDUnity.UGUI
         [SerializeField,CustomField("标题")] protected string titleAddress = "t_";
         [SerializeField,CustomField("背景")] protected string backgroundAddress = "b_";
         [SerializeField,CustomField("遮罩")] protected string maskAddress = "m_";
+        [Header("[可选-----------------------------------")]
+        //自动将按扭下的文字当作标题
+        [SerializeField, CustomField("查找标题")]
+        protected bool autoToggleTitle = true;
 
         public ToggleLayerImport(){
             _suffix = "Toggle";
@@ -79,6 +84,15 @@ namespace PSDUnity.UGUI
                 Data.ImgNode image = layer.images[imageIndex];
                 if (!MatchAddress(image.Name, backgroundAddress, maskAddress))
                 {
+                    if (autoToggleTitle && image.type == ImgType.Label && !image.Name.StartsWith(titleAddress))
+                    {
+                        var array = layer.images.Where(x => x.type == ImgType.Label).ToList();
+                        if (array.Count > 0 && array.IndexOf(image) == 0)
+                        {
+                            image.Name = titleAddress + image.Name;
+                        }
+                    }
+
                     ctrl.DrawImage(image, node);
                 }
             }

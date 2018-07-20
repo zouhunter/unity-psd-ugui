@@ -9,7 +9,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.Assertions.Must;
 using UnityEngine.Assertions.Comparers;
 using System.Collections.Generic;
-using UnityEditor;
 using System;
 namespace PSDUnity
 {
@@ -33,7 +32,7 @@ namespace PSDUnity
         [RuleType(1, "图片导入")] public float spritePixelsPerUnit = 100;
         [RuleType(1, "图片导入")] public TextureWrapMode wrapMode = TextureWrapMode.Clamp;
         [RuleType(1, "图片导入")] public FilterMode filterMode = FilterMode.Trilinear;
-        [RuleType(1, "图片导入")] public TextureImporterCompression textureCompression = TextureImporterCompression.Uncompressed;
+        //[RuleType(1, "图片导入")] public TextureImporterCompression textureCompression = TextureImporterCompression.Uncompressed;
         /////////////////////////////////////////////////////////////
        
 

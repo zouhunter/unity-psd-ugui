@@ -24,12 +24,13 @@ namespace PSDUnity.UGUI
             //#向下不兼容的写法
 #if UNITY_5_6
             var dir = (DirectionAxis)EditorGUI.EnumMaskField(dirRect, item.directionAxis);
-#elif UNITY_2017
-                                dir = (DirectionAxis)EditorGUI.EnumFlagsField(dirRect, item.directionAxis);
-#else
-                                dir = (DirectionAxis)EditorGUI.EnumMaskField(dirRect, item.directionAxis);
-#endif
             item.directionAxis = dir;
+
+#elif UNITY_2017
+            dir = (DirectionAxis)EditorGUI.EnumFlagsField(dirRect, item.directionAxis);#else
+            item.directionAxis = dir;
+            dir = (DirectionAxis)EditorGUI.EnumMaskField(dirRect, item.directionAxis);
+#endif
         }
     }
 }
