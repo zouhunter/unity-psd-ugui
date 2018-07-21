@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db25a2d5cbe476d41883287321d92db5, type: 3}
+  m_Name: new rule
+  m_EditorClassIdentifier: 
+  createAtlas: 1
+  forceAddress: 0
+  forceSprite: 1
+  maxSize: 4096
+  defultUISize: {x: 1600, y: 900}
+  defultImgSource: 1
+  nameType: 2
+  subFolder: Image
+  globalSprite: Assets/Common/Sprite
+  globalTexture: Assets/Common/Texture
+  mipmapEnabled: 1
+  isReadable: 0
+  spritePixelsPerUnit: 100
+  wrapMode: 1
+  filterMode: 2
+  textureCompression: 0
+  scaleWithCanvas: 0
+  sepraterCharimg: 35
+  sepraterChargroup: 64
+  argumentChar: 58
+  asAtalsMark: A
+  asSingleMark: S
+  asTextureMark: T
+  asGoubleMark: G
+  asNoRepetMark: N
+  asCustomMark: C
+  imageImports:
+  - {fileID: 0}
+  - {fileID: 0}
+  layerImports:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

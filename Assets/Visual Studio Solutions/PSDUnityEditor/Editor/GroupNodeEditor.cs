@@ -62,7 +62,13 @@ namespace PSDUnity
             }
         }
         public Data.GroupNode data = new Data.GroupNode();
-        private UGUI.LayerImport layerImporter;
+        private UGUI.LayerImport layerImporter
+        {
+            get
+            {
+                return data.layerImporter;
+            }
+        }
 
         public GroupNodeItem(Rect rect, int id, int depth) : base(id, depth)
         {
@@ -111,31 +117,11 @@ namespace PSDUnity
         }
         public void GetImgNodes(List<Data.ImgNode> imgNodes)
         {
-            if (data.images != null)
-            {
-                imgNodes.AddRange(data.images);
-            }
-            if (children != null)
-            {
-                foreach (GroupNodeItem item in children)
-                {
-                    item.GetImgNodes(imgNodes);
-                }
-            }
+            data.GetImgNodes(imgNodes);
         }
         public GroupNodeItem Analyzing(RuleObject Rule, string name)
         {
-            string[] areguments = null;
-            this.displayName = Rule.AnalysisGroupName(name, out data.suffix, out areguments);
-            if (layerImporter == null)
-            {
-                layerImporter = Rule.layerImports.Where(x => x.Suffix == data.suffix).FirstOrDefault();
-                if (layerImporter == null)
-                {
-                    layerImporter = ScriptableObject.CreateInstance<UGUI.PanelLayerImport>();
-                }
-            }
-            layerImporter.AnalysisAreguments(data, areguments);
+            data.Analyzing(Rule, name);
             return this;
         }
     }
