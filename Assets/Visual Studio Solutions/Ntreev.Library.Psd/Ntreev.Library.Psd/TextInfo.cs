@@ -45,16 +45,13 @@ namespace Ntreev.Library.Psd
                 }
                 else
                 {
-                    color =new float[4];
+                    color =new float[4] { 0,0,0,1};
                 }
             }
             else
             {
-                //var json= Newtonsoft.Json.JsonConvert.SerializeObject(styleSheetsData);
-                //UnityEngine.Debug.Log(json);
-                color = new float[4];
+                color = new float[4] { 0, 0, 0, 1 };
             }
-
         }
     }
 }

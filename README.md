@@ -12,6 +12,8 @@
  ![previewindow](Pics/psd-preview.png)
  ### "Assets/Create/Psd-Exproter" can define you ui holder
  ![export](Pics/psd-exporter.png)
+ ### "Runtime Import PSD from path"
+ ![runtime](Pics/runtime.png)
  ### Full Control Support 
  ![control](Pics/controls.png)
  ### Deep Enough Tree View   

@@ -14,7 +14,6 @@ namespace PSDUnity.Runtime
         private static Vector2 maxSize { get; set; }
         public static Data.RuleObject RuleObj { get; set; }
         private static Vector2 rootSize { get; set; }
-        private static Dictionary<IPsdLayer, RuntimeContent> contentDic = new Dictionary<IPsdLayer, RuntimeContent>();
         private static int idSpan;
 
         public static Data.GroupNode CreateTree(Data.RuleObject rule, IPsdLayer psdLayer,  Vector2 uiSize, bool forceSprite = false)
@@ -56,86 +55,29 @@ namespace PSDUnity.Runtime
             }
             #endregion
 
-            SwitchCreateTexture(imageNodes, psdLayer);
+            SaveToTextures(pictureData.ToArray());
 
             foreach (var groupData in nodes)
             {
                 rootNode.AddChild(groupData);
             }
 
-            ChargeTextures(psdLayer, rootNode);
-
             return rootNode;
         }
 
-        private static void SwitchCreateTexture(List<Data.ImgNode> pictureData, IPsdLayer rootLayers)
-        {
-            RuntimeContent content;
-            if (!contentDic.ContainsKey(rootLayers) || contentDic[rootLayers] == null)
-            {
-                content = contentDic[rootLayers] = new RuntimeContent();
-            }
-            else
-            {
-                content = contentDic[rootLayers];
-            }
-            SaveToTextures(pictureData.ToArray(), content);
-        }
-
-        private static void SaveToTextures(Data.ImgNode[] singleNodes, RuntimeContent content)
+        private static void SaveToTextures(Data.ImgNode[] singleNodes)
         {
             foreach (var node in singleNodes)
             {
-                if(node.type == ImgType.Texture)
+                 if(node.type == ImgType.Image || node.type == ImgType.AtlasImage)
                 {
-                    content.fileTextures.Add(node.texture);
-                }
-                else if(node.type == ImgType.Image)
-                {
-                    content.fileSprites.Add(Sprite.Create(node.texture, new Rect(0, 0, node.texture.width, node.texture.height), new Vector2(node.texture.width, node.texture.height) * .5f));
+                    node.sprite = Sprite.Create(node.texture, new Rect(0, 0, node.texture.width, node.texture.height), new Vector2(node.texture.width, node.texture.height) * .5f);
                 }
 
             }
         }
 
-        private static void ChargeTextures(IPsdLayer layer, Data.GroupNode groupnode)
-        {
-            RuntimeContent content;
-            //重新加载
-            if (contentDic.ContainsKey(layer))
-            {
-                content = contentDic[layer];
-            }
-            else
-            {
-                return; 
-            }
-         
-            Sprite[] fileSprites = content.fileSprites.ToArray();
-            Texture2D[] fileTextures = content.fileTextures.ToArray(); 
-
-            var pictureData = new List<Data.ImgNode>();
-            groupnode.GetImgNodes(pictureData);
-
-            foreach (var item in pictureData)
-            {
-                switch (item.type)
-                {
-                    case ImgType.Image:
-                    case ImgType.AtlasImage:
-                        item.sprite = Array.Find(fileSprites, x => x.name == item.TextureName);
-                        break;
-                    case ImgType.Texture:
-                        item.texture = Array.Find(fileTextures, x => x.name == item.TextureName);
-                        break;
-                    default:
-                        break;
-                }
-
-            }
-
-        }
-
+        
         private static Data.ImgNode AnalysisLayer(string baseName, Vector2 rootSize, PsdLayer layer, bool forceSprite = false)
         {
             Data.ImgNode data = null;
@@ -203,12 +145,6 @@ namespace PSDUnity.Runtime
             Channel blue = Array.Find(layer.Channels, i => i.Type == ChannelType.Blue);
             Channel alpha = Array.Find(layer.Channels, i => i.Type == ChannelType.Alpha);
 
-            //Channel mask = Array.Find(layer.Channels, i => i.Type == ChannelType.Mask);
-
-            //if (layer.HasMask && alpha != null && alpha.Data != null)
-            //{
-            //    Debug.Log(mask.Data.Length + ":" + alpha.Data.Length);
-            //}
             for (int i = 0; i < pixels.Length; i++)
             {
                 var redErr = red == null || red.Data == null || red.Data.Length <= i;
@@ -274,11 +210,8 @@ namespace PSDUnity.Runtime
             }
             else
             {
-                float index = 0;
                 foreach (var child in layer.Childs)
                 {
-                    var progress = ++index / layer.Childs.Length;
-
                     if (child.IsGroup)
                     {
                         Data.GroupNode childNode = new Data.GroupNode(GetRectFromLayer(child), idSpan++, group.depth + 1);

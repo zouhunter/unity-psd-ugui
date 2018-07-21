@@ -200,7 +200,6 @@
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Enum\ImageType.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Enum\SuffixType.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Interface\INameAnalyzing.cs" />
-    <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Runtime\RuntimeContent.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\Runtime\RuntimeExprotUtility.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\Core\PSDImportCtrl.cs" />
     <Compile Include="Assets\Visual Studio Solutions\PsdUnityRuntime\PSDUnity_Core\UGUI\Core\PSDImporterUtility.cs" />

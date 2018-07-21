@@ -65,13 +65,24 @@
     <Compile Include="Editor\Analysis\PSDPreviewWindow.cs" />
     <Compile Include="Editor\Analysis\RuleHelper.cs" />
     <Compile Include="Editor\Analysis\TreeViewUtil.cs" />
+    <Compile Include="Editor\AttributeDrawer\CustomFieldAttributeDrawer.cs" />
     <Compile Include="Editor\ExporterDrawer.cs" />
     <Compile Include="Editor\GroupHolderDrawer.cs" />
     <Compile Include="Editor\GroupNodeDrawer.cs" />
     <Compile Include="Editor\GroupNodeEditor.cs" />
     <Compile Include="Editor\ImgNodeDrawer.cs" />
-    <Compile Include="Editor\LayerEditor.cs" />
-    <Compile Include="Editor\LayerImportDrawer.cs" />
+    <Compile Include="Editor\LayerImportGUI.cs" />
+    <Compile Include="Editor\LayerImportGUI\ButtonLayerImportGUI.cs" />
+    <Compile Include="Editor\LayerImportGUI\DropdownLayerImportGUI.cs" />
+    <Compile Include="Editor\LayerImportGUI\EmptyLayerImportGUI.cs" />
+    <Compile Include="Editor\LayerImportGUI\GridLayerImportGUI.cs" />
+    <Compile Include="Editor\LayerImportGUI\GroupLayerImportGUI.cs" />
+    <Compile Include="Editor\LayerImportGUI\InputFieldLayerImportGUI.cs" />
+    <Compile Include="Editor\LayerImportGUI\PanelLayerImportGUI.cs" />
+    <Compile Include="Editor\LayerImportGUI\ScrollbarLayerImportGUI.cs" />
+    <Compile Include="Editor\LayerImportGUI\ScrollViewLayerImportGUI.cs" />
+    <Compile Include="Editor\LayerImportGUI\SliderLayerImportGUI.cs" />
+    <Compile Include="Editor\LayerImportGUI\ToggleLayerImportGUI.cs" />
     <Compile Include="Editor\RuleObjectDrawer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -86,18 +97,31 @@
     <None Include="Editor\Analysis\PSDPreviewWindow.cs.meta" />
     <None Include="Editor\Analysis\RuleHelper.cs.meta" />
     <None Include="Editor\Analysis\TreeViewUtil.cs.meta" />
+    <None Include="Editor\AttributeDrawer\CustomFieldAttributeDrawer.cs.meta" />
     <None Include="Editor\ExporterDrawer.cs.meta" />
     <None Include="Editor\GroupHolderDrawer.cs.meta" />
     <None Include="Editor\GroupNodeDrawer.cs.meta" />
     <None Include="Editor\GroupNodeEditor.cs.meta" />
     <None Include="Editor\ImgNodeDrawer.cs.meta" />
-    <None Include="Editor\LayerEditor.cs.meta" />
-    <None Include="Editor\LayerImportDrawer.cs.meta" />
     <None Include="Editor\LayerImportEditor.meta" />
+    <None Include="Editor\LayerImportGUI\ButtonLayerImportGUI.cs.meta" />
+    <None Include="Editor\LayerImportGUI\DropdownLayerImportGUI.cs.meta" />
+    <None Include="Editor\LayerImportGUI\EmptyLayerImportGUI.cs.meta" />
+    <None Include="Editor\LayerImportGUI\GridLayerImportGUI.cs.meta" />
+    <None Include="Editor\LayerImportGUI\GroupLayerImportGUI.cs.meta" />
+    <None Include="Editor\LayerImportGUI\InputFieldLayerImportGUI.cs.meta" />
+    <None Include="Editor\LayerImportGUI\PanelLayerImportGUI.cs.meta" />
+    <None Include="Editor\LayerImportGUI\ScrollbarLayerImportGUI.cs.meta" />
+    <None Include="Editor\LayerImportGUI\ScrollViewLayerImportGUI.cs.meta" />
+    <None Include="Editor\LayerImportGUI\SliderLayerImportGUI.cs.meta" />
+    <None Include="Editor\LayerImportGUI\ToggleLayerImportGUI.cs.meta" />
     <None Include="Editor\RuleObjectDrawer.cs.meta" />
+    <None Include="Icons\psd.png.meta" />
+    <None Include="Icons\rule.png.meta" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Editor\LayerImportEditor\" />
+    <Content Include="Icons\psd.png" />
+    <Content Include="Icons\rule.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

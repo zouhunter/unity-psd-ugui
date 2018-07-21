@@ -12,7 +12,7 @@ using UnityEditor.IMGUI.Controls;
 namespace PSDUnity.Analysis
 {
     [CustomEditor(typeof(Data.Exporter))]
-    public  class ExporterDrawer : Editor
+    public class ExporterDrawer : Editor
     {
         private SerializedProperty scriptProp;
         private Exporter exporter;
@@ -35,7 +35,7 @@ namespace PSDUnity.Analysis
             var exporter = EditorUtility.InstanceIDToObject(instanceID) as Exporter;
             if (exporter != null)
             {
-                var window =EditorWindow. GetWindow<Analysis.PsdPreviewWindow>();
+                var window = EditorWindow.GetWindow<Analysis.PsdPreviewWindow>();
                 window.OpenGraph(exporter);
                 return true;
             }
@@ -53,11 +53,11 @@ namespace PSDUnity.Analysis
         {
             var ruleObj = RuleHelper.GetRuleObj();
             var path = AssetDatabase.GetAssetPath(ruleObj);
-            if(string.IsNullOrEmpty(path))
+            if (string.IsNullOrEmpty(path))
             {
                 ruleObj.name = "内嵌规则";
                 var assetPath = AssetDatabase.GetAssetPath(target);
-                if(!string.IsNullOrEmpty(assetPath))
+                if (!string.IsNullOrEmpty(assetPath))
                 {
                     var oldItem = AssetDatabase.LoadAssetAtPath<RuleObject>(assetPath);
                     if (oldItem != null)
@@ -75,7 +75,7 @@ namespace PSDUnity.Analysis
                         Selection.activeObject = ruleObj;
                     }
                 }
-               else
+                else
                 {
                     //exporter.ruleObj = ruleObj;
                 }
@@ -86,14 +86,14 @@ namespace PSDUnity.Analysis
             }
         }
 
-      
+
         private void InitTreeView()
         {
             if (exporter.groups != null && exporter.groups.Count > 0)
             {
                 if (exporter.groups.Count > 0)
                 {
-                    var list = exporter.groups.ConvertAll(x=>new GroupNodeItem(x));
+                    var list = exporter.groups.ConvertAll(x => new GroupNodeItem(x));
                     rootNode = TreeViewUtility.ListToTree<GroupNodeItem>(list);
                     m_TreeView = new ExporterTreeView(m_TreeViewState);
                     m_TreeView.root = rootNode;
@@ -144,7 +144,8 @@ namespace PSDUnity.Analysis
                     var ctrl = PSDImporterUtility.CreatePsdImportCtrlSafty(exporter.ruleObj, exporter.ruleObj.defultUISize, canvasObj == null ? FindObjectOfType<Canvas>() : (canvasObj as GameObject).GetComponent<Canvas>());
                     var root = new GroupNodeItem(new Rect(Vector2.zero, rootNode.rect.size), 0, -1);
                     root.displayName = "partial build";
-                    foreach (var node in m_TreeView.selected){
+                    foreach (var node in m_TreeView.selected)
+                    {
                         root.AddChild(node);
                     }
                     ctrl.Import(root.data);
@@ -156,7 +157,7 @@ namespace PSDUnity.Analysis
                     m_TreeView.ExpandAll();
                 }
 
-                if(GUILayout.Button("Clear", style, layout))
+                if (GUILayout.Button("Clear", style, layout))
                 {
                     exporter.groups.Clear();
                     m_TreeView.root = null;
@@ -178,7 +179,7 @@ namespace PSDUnity.Analysis
             if (!string.IsNullOrEmpty(exporter.psdFile))
             {
                 var psd = PsdDocument.Create(exporter.psdFile);
-              
+
                 if (psd != null)
                 {
                     try
@@ -203,10 +204,12 @@ namespace PSDUnity.Analysis
                     }
                     catch (Exception e)
                     {
-                        psd.Dispose();
                         throw e;
                     }
-                    psd.Dispose();
+                    finally
+                    {
+                        psd.Dispose();
+                    }
                 }
             }
         }

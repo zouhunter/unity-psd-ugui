@@ -33,13 +33,15 @@ namespace PSDUnity.Data
         private void OnEnable()
         {
             isGloble = RuleHelper.IsGlobleRule(target as RuleObject);
-            if (target == null) DestroyImmediate(this);
+            if (target == null)
+                DestroyImmediate(this);
             else
             {
+                RuleHelper.LoadImageImports(target as RuleObject, () => {
+                    RuleHelper.LoadLayerImports(target as RuleObject);
+                });
                 InitPropertys();
                 ChargeCurrent();
-                RuleHelper.LoadLayerImports(target as RuleObject);
-                RuleHelper.LoadImageImports(target as RuleObject);
             }
         }
 

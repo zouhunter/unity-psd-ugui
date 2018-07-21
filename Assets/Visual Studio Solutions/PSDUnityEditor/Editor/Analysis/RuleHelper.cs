@@ -5,6 +5,7 @@ using UnityEditor;
 using PSDUnity.Data;
 using System;
 using System.Linq;
+using UnityEngine.Events;
 
 namespace PSDUnity
 {
@@ -18,8 +19,9 @@ namespace PSDUnity
             if (current == null)
             {
                 current = ScriptableObject.CreateInstance<RuleObject>();
-                LoadLayerImports(current);
-                LoadImageImports(current);
+                LoadImageImports(current,()=> {
+                   LoadLayerImports(current);
+                });
             }
 
             return current;
@@ -37,14 +39,20 @@ namespace PSDUnity
             return null;
         }
 
-        public static void LoadImageImports(RuleObject target)
+        public static void LoadImageImports(RuleObject target,UnityAction onComplete)
         {
             var types = new List<Type>() {
                 typeof(UGUI.TextImport),
                 typeof(UGUI.ImageRawImageImport),
             };
-            var assetPath = AssetDatabase.GetAssetPath(target);
 
+            var assetPath = AssetDatabase.GetAssetPath(target);
+            if(string.IsNullOrEmpty(assetPath))
+            {
+                Debug.Log("Dely LoadImageImports:" + target);
+                DelyAcceptObject(target,(x)=> LoadImageImports(target,onComplete));
+                return;
+            }
             Debug.Log("LoadImageImports");
             foreach (var layerType in types)
             { 
@@ -90,8 +98,10 @@ namespace PSDUnity
                     //Debug.Log(importer);
                 }
             }
-            //EditorUtility.SetDirty(ruleObj);
-            //AssetDatabase.Refresh();
+
+            if(onComplete != null){
+                onComplete.Invoke();
+            }
 
             if (string.IsNullOrEmpty(assetPath)) return;
             AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
@@ -100,7 +110,12 @@ namespace PSDUnity
         public static void LoadLayerImports(RuleObject target)
         {
             var assetPath = AssetDatabase.GetAssetPath(target);
-
+            if (string.IsNullOrEmpty(assetPath))
+            {
+                Debug.Log("Dely LoadLayerImports:" + target);
+                DelyAcceptObject(target, (x) => LoadLayerImports(x as RuleObject));
+                return;
+            }
             Debug.Log("LoadLayerImports");
             var types = AnalysisUtility.layerImportTypes;
             foreach (var layerType in types)
@@ -151,6 +166,28 @@ namespace PSDUnity
 
             if (string.IsNullOrEmpty(assetPath)) return;
             AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
+        }
+
+        public static void DelyAcceptObject(UnityEngine.Object instence, UnityAction<UnityEngine.Object> onCreate)
+        {
+            if (onCreate == null) return;
+
+            EditorApplication.CallbackFunction action = () =>
+            {
+                var path = AssetDatabase.GetAssetPath(instence);
+                if (!string.IsNullOrEmpty(path))
+                {
+                    var item = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(path);
+                    if (item)
+                    {
+                        onCreate.Invoke(item);
+                    }
+
+                    EditorApplication.update = null;
+
+                }
+            };
+            EditorApplication.update = action;
         }
 
         public static bool IsGlobleRule(RuleObject rule)
