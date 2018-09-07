@@ -11,7 +11,7 @@ using UnityEditor.IMGUI.Controls;
 
 namespace PSDUnity.Analysis
 {
-    [CustomEditor(typeof(Data.Exporter))]
+    [CustomEditor(typeof(Data.Exporter), true)]
     public class ExporterDrawer : Editor
     {
         private SerializedProperty scriptProp;

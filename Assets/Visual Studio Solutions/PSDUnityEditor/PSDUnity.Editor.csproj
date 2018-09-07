@@ -120,8 +120,8 @@
     <None Include="Icons\rule.png.meta" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Icons\psd.png" />
-    <Content Include="Icons\rule.png" />
+    <EmbeddedResource Include="Icons\psd.png" />
+    <EmbeddedResource Include="Icons\rule.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

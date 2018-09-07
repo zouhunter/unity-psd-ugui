@@ -9,7 +9,7 @@ namespace PSDUnity.Data
 {
     public class Exporter : ScriptableObject
     {
-        public string exportPath;
+        public string _exportPath;
         public string psdFile;
         public RuleObject ruleObj;
         public List<Data.GroupNode> groups = new List<Data.GroupNode>();

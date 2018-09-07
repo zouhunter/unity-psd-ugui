@@ -41,6 +41,8 @@ namespace PSDUnity.UGUI
         /// <param name="graph"></param>
         public static void SetPictureOrLoadColor(Data.ImgNode image, UnityEngine.UI.Graphic graph)
         {
+            if (graph == null) return;
+
             graph.color = image.color;
             switch (image.type)
             {

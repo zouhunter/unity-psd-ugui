@@ -19,7 +19,7 @@ using System.Reflection;
 namespace PSDUnity.Data
 {
 
-    [CustomEditor(typeof(RuleObject))]
+    [CustomEditor(typeof(RuleObject),true)]
     public class RuleObjectDrawer : Editor
     {
         private bool isGloble;

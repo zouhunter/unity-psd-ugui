@@ -19,7 +19,7 @@ namespace PSDUnity.UGUI
         public  UGUINode uinode { get; private set; }
         public Vector2 canvasSize { get; private set; }
 
-        public PSDImportCtrl(Canvas canvas,Data.RuleObject rule,Vector2 canvasSize)
+        public PSDImportCtrl(Canvas canvas, Data.RuleObject rule,Vector2 canvasSize)
         {
             this.canvas = canvas;
             this.rule = rule;

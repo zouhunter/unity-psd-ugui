@@ -1,0 +1,266 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19c1b4df19792814c9ebd144c4670ffa, type: 3}
+  m_Name: New My Rule Object
+  m_EditorClassIdentifier: 
+  createAtlas: 1
+  forceAddress: 0
+  forceSprite: 1
+  maxSize: 4096
+  defultUISize: {x: 1600, y: 900}
+  defultImgSource: 1
+  nameType: 2
+  subFolder: Image
+  globalSprite: Assets/Common/Sprite
+  globalTexture: Assets/Common/Texture
+  mipmapEnabled: 1
+  isReadable: 0
+  spritePixelsPerUnit: 100
+  wrapMode: 1
+  filterMode: 2
+  spreadUI: 0
+  sepraterCharimg: 35
+  sepraterChargroup: 64
+  argumentChar: 58
+  asAtalsMark: A
+  asSingleMark: S
+  asTextureMark: T
+  asGoubleMark: G
+  asNoRepetMark: N
+  asCustomMark: C
+  imageImports:
+  - {fileID: 114626724835479330}
+  - {fileID: 114266814413979206}
+  layerImports:
+  - {fileID: 114800300841289560}
+  - {fileID: 114460681868910166}
+  - {fileID: 114798585130160554}
+  - {fileID: 114010058700986474}
+  - {fileID: 114298026157852880}
+  - {fileID: 114727395413607566}
+  - {fileID: 114323306728828234}
+  - {fileID: 114141696547688634}
+  - {fileID: 114212869272932002}
+  - {fileID: 114042564803570292}
+  - {fileID: 114229250839811344}
+  - {fileID: 114644559165579256}
+--- !u!114 &114010058700986474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d98c748d409d3db4cae6a785df88ead6, type: 3}
+  m_Name: EmptyLayerImport
+  m_EditorClassIdentifier: 
+  _suffix: '[empty]'
+  backgroundAddress: b_
+--- !u!114 &114042564803570292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4d89ccedd7e6834facb8e5e68ef166e, type: 3}
+  m_Name: ScrollViewLayerImport
+  m_EditorClassIdentifier: 
+  _suffix: ScrollView
+  backgroundAddress: b_
+  vbarAddress: vb_
+  hbarAddress: hb_
+  contentAddress: c_
+  horizontal: h
+  vertical: v
+--- !u!114 &114141696547688634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de1fe83d9d21af24aac03789fe3f50a3, type: 3}
+  m_Name: PanelLayerImport
+  m_EditorClassIdentifier: 
+  _suffix: Panel
+  backgroundAddress: b_
+--- !u!114 &114212869272932002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55633ef37a5be6b4b8d86700ecca5365, type: 3}
+  m_Name: ScrollBarLayerImport
+  m_EditorClassIdentifier: 
+  _suffix: ScrollBar
+  backgroundAddress: b_
+  handleAddress: h_
+  left_right: l
+  right_left: r
+  bottom_top: b
+  top_bottom: l
+--- !u!114 &114229250839811344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47e87101a95b0cb419b5912be7275306, type: 3}
+  m_Name: SliderLayerImport
+  m_EditorClassIdentifier: 
+  _suffix: Slider
+  backgroundAddress: b_
+  fillAddress: f_
+  handleAddress: h_
+  left_right: l
+  right_left: r
+  bottom_top: b
+  top_bottom: l
+--- !u!114 &114266814413979206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77e617e9b2ee26241955c27ef5c7eda4, type: 3}
+  m_Name: ImageRawImageImport
+  m_EditorClassIdentifier: 
+--- !u!114 &114298026157852880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b757e1949d9d2e344a2c6b82995c63c7, type: 3}
+  m_Name: GridLayerImport
+  m_EditorClassIdentifier: 
+  _suffix: Grid
+  horizontal: h
+  vertical: v
+--- !u!114 &114323306728828234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34253a0e0bb11f14ab1742d6b886959a, type: 3}
+  m_Name: InputFieldLayerImport
+  m_EditorClassIdentifier: 
+  _suffix: InputField
+  backgroundAddress: b_
+  titleAddress: t_
+  placeAddress: p_
+--- !u!114 &114460681868910166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d8daf695879574fb6df2c7e4b0a8c1, type: 3}
+  m_Name: ButtonLayerImport
+  m_EditorClassIdentifier: 
+  _suffix: Button
+  titleAddress: t_
+  normalAddress: n_
+  pressedAddress: p_
+  highlightedAddress: h_
+  disableAddress: d_
+  autoButtonTitle: 1
+--- !u!114 &114626724835479330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff430b5f3bebe449ad3f1c32353df0, type: 3}
+  m_Name: TextImport
+  m_EditorClassIdentifier: 
+  textBorder: 0.6
+  textAnchor: 0
+  text_h_wrapMode: 1
+  text_v_wrapMode: 0
+--- !u!114 &114644559165579256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c0b0fd44d0e004fb81c062c39d91e1, type: 3}
+  m_Name: ToggleLayerImport
+  m_EditorClassIdentifier: 
+  _suffix: Toggle
+  titleAddress: t_
+  backgroundAddress: b_
+  maskAddress: m_
+  autoToggleTitle: 1
+--- !u!114 &114727395413607566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4307f3d72a95fc14595ae5fd45e7e9f9, type: 3}
+  m_Name: GroupLayerImport
+  m_EditorClassIdentifier: 
+  _suffix: Group
+  horizontal: h
+  vertical: v
+--- !u!114 &114798585130160554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdf501d277fd4d848bac5ea997f54f51, type: 3}
+  m_Name: DropDownLayerImport
+  m_EditorClassIdentifier: 
+  _suffix: DropDown
+  maskAddress: m_
+  backgroundsFormat: b{0}_
+  titlesFormat: t{0}_
+  vbarAddress: vb_
+--- !u!114 &114800300841289560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1a136319cb07a54caaa38fc728ae05d, type: 3}
+  m_Name: RundSliderLayerImporter
+  m_EditorClassIdentifier: 
+  _suffix: RoundSlider
