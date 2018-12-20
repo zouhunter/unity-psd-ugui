@@ -32,3 +32,11 @@ Properties/
 #Unity3D Generated File On Crash Reports
 sysinfo.txt
 *.orig
+/unity-psd.sln
+/Assembly-CSharp.csproj
+/Assembly-CSharp-Editor.csproj
+/PsdUnity.csproj
+/PsdUnity.Editor.csproj
+/PsdUnity.sln
+/unity-psd.csproj
+/unity-psd.Editor.csproj
