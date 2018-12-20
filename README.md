@@ -48,12 +48,17 @@
  ![内置分组](Pics/group.png)
  ### you can define you own controls also!
  ...
-## 3.what next update?
- * i have no idear .
-
+## 3.Staps To Create UGUI?
+ * 1.Create a psd file,add some layers Or groups,name it with our document:"图层命名规则.xlsx"
+ * 2.Open you unity3d,click menu:"Asset/Create/Psd-Exproter"
+ * 3.From generated scriptableObject,select the psd file you created
+ * 4.click the button:"转换层级为图片，并记录索引"
+ * 5.click the button:"Build-All“
+ * 6.enjoy yourself
+ 
 ## 4.contact me.
 * (when you have any question,or find some bugs,thank you to made me know.)
-* this project path:[PsdUnity](https://github.com/zouhunter/unity-psd)
+* this project path:[PsdUnity](https://github.com/zouhunter/unity-psd-ugui)
 * qq邮箱:1063627025@qq.com
 
 ## 5.Thanks for this project
